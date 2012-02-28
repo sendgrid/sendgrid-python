@@ -2,13 +2,10 @@ try:
     import json
 except ImportError:
     import simplejson as json
-import re
-import textwrap
 
 class SmtpApiHeader(object):
     def __init__(self):
         self.data = {}
-        self.re_split = re.compile('(["\]}])([,:])(["\[{])')
 
 
     def add_to(self, to):
@@ -71,11 +68,9 @@ class SmtpApiHeader(object):
 
 
     def as_json(self):
-        j = json.dumps(self.data)
-        return self.re_split.sub('\1\2 \3', j)
+        return json.dumps(self.data)
 
 
     def as_string(self):
-        j = self.as_json()
-        str = 'X-SMTPAPI: %s' % textwrap.fill(j, subsequent_indent='  ', width=72)
+        str = 'X-SMTPAPI: %s' % self.as_json()
         return str
