@@ -92,7 +92,7 @@ Sections can be used to further customize messages for the end users. A section 
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "Hello %name%, you work at %place%",
-    "<b>Hello %name%, your code is %code%, you work at %place%</b>")
+    "<b>Hello %name%, you work at %place%</b>")
 message.add_to(
     {
         'example1@example.com': {'%name%': 'Name 1', '%place%': '%home%'},
