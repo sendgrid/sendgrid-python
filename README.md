@@ -126,5 +126,5 @@ Headers can be used to add existing sendgrid functionality (such as for categori
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
-message.add_header("category", "My New Category")
+message.add_header("X-Mailer", "MyApp")
 ```
