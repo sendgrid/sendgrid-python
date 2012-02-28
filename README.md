@@ -122,7 +122,7 @@ message.add_filter_setting("footer", "text/html", "<p style='color:red;'>Here is
 
 ### Using Headers ###
 
-Headers can be used to add existing sendgrid functionality (such as for categories or filters), or custom headers can be added as necessary.
+Custom headers can be added as necessary.
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
