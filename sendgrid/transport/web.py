@@ -85,7 +85,10 @@ class Http(object):
             f = urllib2.urlopen(req)
             output = f.read()
         except IOError, e:
-            output = e.read()
+            try:
+                output = e.read()
+            except AttributeError:
+                raise exceptions.SGServiceException(e)
 
         output = json.loads(output)
 
