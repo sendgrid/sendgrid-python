@@ -15,7 +15,7 @@ git clone git@github.com:sendgrid/sendgrid-python.git
 Using Pypi:
 
 ```
-easy_install sendgrid-python
+easy_install sendgrid
 ```
 
 ## SendGrid APIs ##
