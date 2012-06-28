@@ -23,6 +23,12 @@ class TestMessage(unittest.TestCase):
         # pass text only
         sendgrid.Message(("example1@example.com", "John, Doe"), "subject1", text="text")
 
+        # pass None for html
+        sendgrid.Message(("example1@example.com", "John, Doe"), "subject1", text="text", html=None)
+
+        # pass None for text
+        sendgrid.Message(("example1@example.com", "John, Doe"), "subject1", html="html", text=None)
+
 
     def test_recipients_adding(self):
         message = sendgrid.Message("example@example.com", "subject1", "plain_text", "html")
