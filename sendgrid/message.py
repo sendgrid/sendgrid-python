@@ -23,7 +23,7 @@ class Message(object):
         Raises:
             ValueError: on invalid arguments
         """
-        if not (text + html):
+        if not text and not html:
             raise ValueError("Either html or text should be provided")
 
         self.from_name = ''
