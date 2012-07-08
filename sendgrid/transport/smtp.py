@@ -181,5 +181,8 @@ class Smtp(object):
             encoders.encode_base64(msg)
 
         msg.add_header('Content-Disposition', 'attachment', filename=filename)
+        
+        if attach['cid']:
+          msg.add_header('Content-ID', '<{0}>'.format(attach['cid']))
 
         return msg
