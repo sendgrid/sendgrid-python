@@ -43,6 +43,16 @@ class TestTransports(unittest.TestCase):
         smtp_quit.restore()
 
 
+    def test_smtp_transport_content_id_header(self):
+        smtp_transport = smtp.Smtp('username', 'password', tls=False)
+
+        f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents', 'cid': None})
+        self.assertEqual(None, f.get('Content-ID'))
+
+        f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents', 'cid': 'cid'})
+        self.assertEqual('<cid>', f.get('Content-ID'))
+
+
 class FakeException(IOError):
     def __init__(self, msg):
         self.msg = msg
