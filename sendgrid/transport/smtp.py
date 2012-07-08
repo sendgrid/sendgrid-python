@@ -182,7 +182,7 @@ class Smtp(object):
 
         msg.add_header('Content-Disposition', 'attachment', filename=filename)
         
-        if attach['cid']:
+        if attach.get('cid', False):
           msg.add_header('Content-ID', '<%s>' % attach['cid'])
 
         return msg

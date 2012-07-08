@@ -46,6 +46,9 @@ class TestTransports(unittest.TestCase):
     def test_smtp_transport_content_id_header(self):
         smtp_transport = smtp.Smtp('username', 'password', tls=False)
 
+        f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents'})
+        self.assertEqual(None, f.get('Content-ID'))
+
         f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents', 'cid': None})
         self.assertEqual(None, f.get('Content-ID'))
 
