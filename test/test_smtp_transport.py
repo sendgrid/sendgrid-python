@@ -48,12 +48,15 @@ class TestTransports(unittest.TestCase):
 
         f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents'})
         self.assertEqual(None, f.get('Content-ID'))
+        self.assertEqual('attachment; filename="contents"', f.get('Content-Disposition'))
 
         f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents', 'cid': None})
         self.assertEqual(None, f.get('Content-ID'))
+        self.assertEqual('attachment; filename="contents"', f.get('Content-Disposition'))
 
         f = smtp_transport._getFileMIME({'file': 'img.png', 'name': 'contents', 'cid': 'cid'})
         self.assertEqual('<cid>', f.get('Content-ID'))
+        self.assertEqual(None, f.get('Content-Disposition'))
 
 
 class FakeException(IOError):
