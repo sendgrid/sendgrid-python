@@ -51,6 +51,12 @@ Or
 s.smtp.send(message)
 ```
 
+To set the "from name", you must pass the address and name in a tuple, like this:
+
+```python
+message = sendgrid.Message(("from@mydomain.com", "Joe Smith"), "subject", "plain body", "<b>Html here</b>")
+```
+
 ### Using Categories ###
 
 Categories are used to group email statistics provided by SendGrid.
@@ -61,7 +67,6 @@ To use a category, simply set the category name.  Note: there is a maximum of 10
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
 message.add_category(["Category 1", "Category 2"])
 ```
-
 
 ### Using Attachments ###
 
