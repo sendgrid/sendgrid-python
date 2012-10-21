@@ -73,6 +73,10 @@ class Smtp(object):
         if message.reply_to:
             email_message['Reply-To'] = message.reply_to
 
+        # Add CC recipients to message header
+        if message.cc:
+            email_message['Cc'] = ', '.join(message.cc)
+
         # Add subject
         email_message['Subject'] = self._encodeHeader(message.subject)
         # Add date
@@ -94,6 +98,13 @@ class Smtp(object):
             if headerError:
                 raise ValueError('JSON in headers is valid but incompatible')
 
+        # build a list of recipients (hide BCC recipients from header)
+        recipients = email_message['To'].split(', ')
+        if message.cc:
+            recipients += message.cc
+        if message.bcc:
+            recipients += message.bcc
+
         # Add files if any
         if message.attachments:
             for attach in message.attachments:
@@ -107,7 +118,9 @@ class Smtp(object):
 
         try:
             server.login(self.username, self.password)
-            server.sendmail(email_message['From'], email_message['To'], email_message.as_string())
+            server.sendmail(email_message['From'],
+                            recipients,
+                            email_message.as_string())
             server.quit()
         except Exception, e:
             raise exceptions.SGServiceException(e)
