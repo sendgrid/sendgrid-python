@@ -150,7 +150,7 @@ message.add_category(["Category 1", "Category 2"])
 
 ### Using Unique Arguments ###
 
-Unique Arguments are used for tracking purposes on the message, and can be seen in the Email Activity screen on your account dashboard or through the Event API. Use the message.add_unique_argument() method, which takes a  More information can be found here: http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/
+Unique Arguments are used for tracking purposes on the message, and can be seen in the Email Activity screen on your account dashboard or through the Event API. Use the message.add_unique_argument() method, which takes two parameters, a key and a value. To pass multiple keys/values, use message.add_unique_arguments() and pass a dictionary of key/value pairs. More information can be found here: http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
