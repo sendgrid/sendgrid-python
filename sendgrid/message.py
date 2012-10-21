@@ -43,8 +43,23 @@ class Message(object):
         self.header = SmtpApiHeader()
         self.date = rfc822.formatdate()
 
+    def set_replyto(self, replyto):
+        """
+        Set a Reply-To: address for the outgoing message
 
-    def add_to(self, recipients, names = None):
+        Args:
+            replyto: reply address, accepts string
+
+        Returns:
+            self
+        """
+        if replyto:
+            self.reply_to = replyto
+            self.header.set_replyto(replyto)
+
+        return self
+
+    def add_to(self, recipients, names=None):
         """
         Add recipient
 
@@ -89,10 +104,10 @@ class Message(object):
 
         return self
 
-
     def add_cc(self, recipients):
         """
         Add CC recipients
+        As of publication, CC is NOT supported by either the SMTP or Web API
 
         Args:
             recipients: Email address or list of email addresses
@@ -107,10 +122,10 @@ class Message(object):
 
         return self
 
-
     def add_bcc(self, recipients):
         """
         Add BCC recipients
+        As of publication, only the Web API supports BCC
 
         Args:
             recipients: Email address or list of email addresses
@@ -124,7 +139,6 @@ class Message(object):
             self.bcc += recipients
 
         return self
-
 
     def add_attachment(self, name, file, cid=None):
         """
@@ -141,7 +155,6 @@ class Message(object):
         self.attachments.append({'name': name, 'file': file, 'cid': cid})
 
         return self
-
 
     def add_category(self, category):
         """
@@ -161,7 +174,6 @@ class Message(object):
 
         return self
 
-
     def set_unique_arguments(self, arguments):
         """
         Set message unique arguments (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/)
@@ -175,7 +187,6 @@ class Message(object):
         self.header.set_unique_args(arguments)
 
         return self
-
 
     def add_unique_argument(self, key, value):
         """
@@ -192,7 +203,6 @@ class Message(object):
 
         return self
 
-
     def set_sections(self, value):
         """
         Set sections (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/section-tags/)
@@ -206,7 +216,6 @@ class Message(object):
         self.header.set_section(value)
 
         return self
-
 
     def add_section(self, key, value):
         """
@@ -222,7 +231,6 @@ class Message(object):
 
         return self
 
-
     def add_header(self, key, value):
         """
         Add header to message
@@ -237,7 +245,6 @@ class Message(object):
         self.headers[key] = value
 
         return self
-
 
     def add_filter_setting(self, fltr, setting, value):
         """
