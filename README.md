@@ -41,7 +41,8 @@ import sendgrid
 s = sendgrid.Sendgrid('username', 'password', secure=True)
 
 # make a message object
-message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body", "<p>HTML message body</p>")
+message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body",
+    "<p>HTML message body</p>")
 # add a recipient
 message.add_to("someone@example.com", "John Doe")
 
@@ -49,46 +50,47 @@ message.add_to("someone@example.com", "John Doe")
 s.web.send(message)
 ```
 
-Or
+Or change the last line to use the SMTP API instead:
 
 ```python
 # use the SMTP API to send your message
 s.smtp.send(message)
 ```
 
-To add a 'name' to the From address, you can pass that parameter as a tuple:
+To add a 'name' to the From address, you can pass the first parameter to sendgrid.Message() as a tuple:
 ```python
-message = sendgrid.Message(("from@mydomain.com","My Domain"), "message subject", "plaintext body", "<p>HTML body</p>")
+message = sendgrid.Message(("from@mydomain.com","My Domain"), "message subject", "plaintext body",
+    "<p>HTML body</p>")
 ```
 
-To add a Reply-To address, you can call the set_replyto() method:
+To add a Reply-To address, you can call the message.set_replyto() method:
 ```python
-message = sendgrid.Message(("from@mydomain.com","My Domain"), "message subject", "plaintext body", "<p>HTML body</p>")
+message = sendgrid.Message(("from@mydomain.com","My Domain"), "message subject", "plaintext body",
+    "<p>HTML body</p>")
 message.set_replyto("reply@mydomain.com")
 ```
 
 
 ### Adding Recipients ###
 
-Using the message.add_to() method, you can add recipients with names, but you can also add recipient addresses using message.add_cc() and message.add_bcc(). The CC and BCC methods do not allow you to add names, just the recipient addresses.
+Using the message.add_to() method, you can add recipients with names, but you can also add recipient addresses using message.add_bcc(). The BCC method is only supported by the Web API, and does not allow you to add names, just the recipient addresses.
+
+Neither the SMTP API or Web API support CC at this time, though we have library calls for future use.
 
 ```python
-message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body", "<p>HTML message body</p>")
+message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body",
+    "<p>HTML message body</p>")
 
 # add a To: recipient
 message.add_to("someone1@example.com", "John Doe")
 
-# add a single CC: recipient
-message.add_cc("someone2@example.com")
-
-# add several CC: recipients
-message.add_cc(["someone3@example.com","someone4@example.com"])
-
-# add a single BCC: recipient
+# add a single BCC: recipient, Web API only
 message.add_bcc("someone5@example.com")
 
-# add several BCC: recipients
+# add several BCC: recipients, Web API only
 message.add_bcc(["someone6@example.com","someone7@example.com"])
+
+s.web.send(message)
 ```
 
 
