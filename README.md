@@ -73,9 +73,13 @@ message.set_replyto("reply@mydomain.com")
 
 ### Adding Recipients ###
 
-Using the message.add_to() method, you can add recipients with names, but you can also add recipient addresses using message.add_bcc(). The BCC method is only supported by the Web API, and does not allow you to add names, just the recipient addresses.
+Using the message.add_to() method, you can add recipients with names, but you can also add recipient addresses (without names) using message.add_cc() and message.add_bcc().
 
-Neither the SMTP API or Web API support CC at this time, though we have library calls for future use.
+Note: Only the SMTP API supports CC at this time, though we have code and hooks in place for the Web API implementation of this library for future use.
+
+Both the Web API and SMTP API support BCC.
+
+The message.add_cc() and message.add_bcc() calls support passing a single address, or a list of addresses, as shown in the examples below.
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body",
@@ -84,12 +88,22 @@ message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext me
 # add a To: recipient
 message.add_to("someone1@example.com", "John Doe")
 
-# add a single BCC: recipient by passing a string, Web API only
+# add a single CC: recipient by passing a string, SMTP API only
+message.add_cc("someone2@example.com")
+
+# add several CC: recipients by passing a list, SMTP API only
+message.add_cc(["someone3@example.com","someone4@example.com"])
+
+# add a single BCC: recipient by passing a string
 message.add_bcc("someone5@example.com")
 
-# add several BCC: recipients by passing a list, Web API only
+# add several BCC: recipients by passing a list
 message.add_bcc(["someone6@example.com","someone7@example.com"])
 
+# send message to To, CC and BCC recipients using SMTP API
+s.smtp.send(message)
+
+# send message to To and BCC recipients using Web API (no CC support)
 s.web.send(message)
 ```
 
