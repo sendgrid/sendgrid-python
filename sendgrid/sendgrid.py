@@ -1,5 +1,6 @@
 from transport import smtp, web
 
+
 class Sendgrid(object):
     """
     Sendgrid API

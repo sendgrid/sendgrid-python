@@ -36,7 +36,6 @@ class Smtp(object):
         self.password = password
         self.tls = tls
 
-
     def send(self, message):
         """
         Send message
@@ -85,7 +84,7 @@ class Smtp(object):
         # Add custom headers
         headerError = False
         if message.headers:
-            for k,v in message.headers.iteritems():
+            for k, v in message.headers.iteritems():
                 if isinstance(k, basestring) and isinstance(v, basestring) and self._isAscii(k):
                     email_message[k] = self._encodeHeader(v)
                 else:
@@ -115,19 +114,16 @@ class Smtp(object):
 
         return True
 
-
     def _getMessageMIME(self, payload, subtype):
         """
         Create a text based MIME part from the given text
         """
         return MIMEText(payload, subtype, 'utf-8')
 
-
     def _encodeEmail(self, name, e):
         if name and not self._isAscii(name):
             return utils.formataddr((base64mime.header_encode(name, 'utf-8'), e))
         return utils.formataddr((name, e))
-
 
     def _encodeHeader(self, header):
         """
@@ -141,7 +137,6 @@ class Smtp(object):
                 pass
         return header
 
-
     def _isAscii(self, s):
         """
         Checks if the given string is in ascii format
@@ -151,7 +146,6 @@ class Smtp(object):
         except UnicodeError:
             return False
         return True
-
 
     def _getFileMIME(self, attach):
         """
