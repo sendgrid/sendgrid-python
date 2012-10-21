@@ -16,6 +16,22 @@ class SmtpApiHeader(object):
         else:
             self.data['to'] += to
 
+    def add_cc(self, cc):
+        if 'cc' not in self.data:
+            self.data['cc'] = []
+        if type(cc) is str:
+            self.data['cc'] += [cc]
+        else:
+            self.data['cc'] += cc
+
+    def add_bcc(self, bcc):
+        if 'bcc' not in self.data:
+            self.data['bcc'] = []
+        if type(bcc) is str:
+            self.data['bcc'] += [bcc]
+        else:
+            self.data['bcc'] += bcc
+
     def set_replyto(self, replyto):
         self.data['reply_to'] = replyto
 

@@ -120,6 +120,8 @@ class Message(object):
         else:
             self.cc += recipients
 
+        self.header.add_cc(recipients)
+        
         return self
 
     def add_bcc(self, recipients):
@@ -138,6 +140,8 @@ class Message(object):
         else:
             self.bcc += recipients
 
+        self.header.add_bcc(recipients)
+        
         return self
 
     def add_attachment(self, name, file, cid=None):
