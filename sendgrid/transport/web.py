@@ -69,6 +69,7 @@ class Http(object):
             'toname': message.to_name,
             'text': message.text,
             'html': message.html,
+            'cc': message.cc,  # for future use, not yet implemented
             'bcc': message.bcc,
             'fromname': message.from_name,
             'replyto': message.reply_to,
@@ -92,3 +93,4 @@ class Http(object):
             raise exceptions.SGServiceException(output['errors'])
 
         return True
+
