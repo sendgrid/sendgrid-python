@@ -15,7 +15,7 @@ git clone git@github.com:sendgrid/sendgrid-python.git
 Using PyPI:
 
 ```
-easy_install sendgrid-python
+easy_install sendgrid
 ```
 
 ## SendGrid APIs ##
@@ -73,7 +73,7 @@ message.set_replyto("reply@mydomain.com")
 
 ### Adding Recipients ###
 
-Using the message.add_to() method, you can add recipients with names, but you can also add recipient addresses (without names) using message.add_cc() and message.add_bcc().
+Using the message.add_to() method, you can add recipient email address (optionally with names), but you can also add CC/BCC recipient addresses (without names) using message.add_cc() and message.add_bcc().
 
 Note: Only the SMTP API supports CC at this time, though we have code and hooks in place for the Web API implementation of this library for future use.
 
@@ -85,8 +85,18 @@ The message.add_cc() and message.add_bcc() calls support passing a single addres
 message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body",
     "<p>HTML message body</p>")
 
-# add a To: recipient
+# add a To: recipient with a name
 message.add_to("someone1@example.com", "John Doe")
+
+# add a To: recipient without a name
+message.add_to("someone8@example.com")
+
+# add several To: recipients without names
+message.add_to(["someone9@example.com", "someone10@example.com"])
+
+# add several To: recipients without names
+# note: count of assigned names must match the count of email addresses
+message.add_to(["someone11@example.com", "someone12@example.com"], ["John Smith", "Jane Smith"])
 
 # add a single CC: recipient by passing a string, SMTP API only
 message.add_cc("someone2@example.com")
