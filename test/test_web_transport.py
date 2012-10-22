@@ -34,8 +34,9 @@ class TestTransports(unittest.TestCase):
 
         urllib = fudge.patch_object("urllib", "urlencode", fake_urlencode)
         fake_urlencode.expects_call().with_args({'from': 'example@example.com', 'api_user': 'username', 'text': 'plain_text',
-                                                 'to': ['recipient@example.com'], 'html': 'html', 'date': message.date,
-                                                 'api_key': 'password', 'subject': 'subject1'}, 1).returns("")
+                                                 'to': ['recipient@example.com'], 'toname': [''], 'html': 'html',
+                                                 'date': message.date, 'api_key': 'password', 'subject': 'subject1'},
+                                                 1).returns("")
 
         web_transport = web.Http('username', 'password')
         self.assertTrue(web_transport.send(message))

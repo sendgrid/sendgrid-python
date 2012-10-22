@@ -40,6 +40,13 @@ class TestMessage(unittest.TestCase):
                          "Email list added")
         self.assertEqual(message.to_name, ["John Doe", "John Doe", "Jane Doe"], "Email list added")
 
+        # test that leaving a name blank inserts a blank name
+        message = sendgrid.Message("example@example.com", "subject1", "plain_text", "html")
+        message.add_to("example1@example.com", "John Doe")
+        message.add_to("example2@example.com")
+        self.assertEqual(message.to, ["example1@example.com", "example2@example.com"], "Email list added")
+        self.assertEqual(message.to_name, ["John Doe", ""], "Email list added")
+
         # following should replace existing to addresses and use x-smtpapi header instead
         message = sendgrid.Message("example@example.com", "subject1", "plain_text", "html")
         #invalid data
