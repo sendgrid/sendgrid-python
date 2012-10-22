@@ -78,6 +78,9 @@ class Message(object):
             self.to += [recipients]
             if names:
                 self.to_name += [names]
+            else:
+                self.to_name += [""]
+
         elif isinstance(recipients, dict):
             subvals = {}
             to = []
@@ -97,17 +100,24 @@ class Message(object):
 
             self.header.add_to(to)
             self.to = [to[0]]
+
         else:
             self.to += recipients
             if names:
-                self.to_name += names
+                if len(recipients) != len(names):
+                    raise ValueError('Assigned names count should be equal to recipient address count')
+                else:
+                    self.to_name += names
+            else:
+                for recipient in recipients:
+                    self.to_name += [""]
 
         return self
 
     def add_cc(self, recipients):
         """
         Add CC recipients
-        As of publication, CC is NOT supported by either the SMTP or Web API
+        As of publication, CC is NOT supported by Web API, only SMTP API
 
         Args:
             recipients: Email address or list of email addresses
@@ -127,7 +137,6 @@ class Message(object):
     def add_bcc(self, recipients):
         """
         Add BCC recipients
-        As of publication, only the Web API supports BCC
 
         Args:
             recipients: Email address or list of email addresses
