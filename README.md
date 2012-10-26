@@ -69,7 +69,7 @@ message = sendgrid.Message(("from@mydomain.com","My Domain"), "message subject",
     "<p>HTML body</p>")
 message.set_replyto("reply@mydomain.com")
 ```
-
+Note: Reply-To requires v0.1.3 or higher
 
 ### Adding Recipients ###
 
@@ -116,6 +116,7 @@ s.smtp.send(message)
 # send message to To and BCC recipients using Web API (no CC support)
 s.web.send(message)
 ```
+Note: Using CC/BCC with SMTP API requires v0.1.3 or higher
 
 
 ## Using Attachments ###
