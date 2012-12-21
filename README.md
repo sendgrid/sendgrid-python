@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sendgrid/sendgrid-python.png?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+
 # sendgrid-python #
 This library allows you to quickly and easily send emails through SendGrid using Python.
 
