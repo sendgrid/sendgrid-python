@@ -23,7 +23,7 @@ class Smtp(object):
     """
     HOSTPORT = ('smtp.sendgrid.net', 587)
 
-    def __init__(self, username, password, tls=True):
+    def __init__(self, username, password, **opts):
         """
         Construct smtp transport object
 
@@ -34,7 +34,7 @@ class Smtp(object):
         """
         self.username = username
         self.password = password
-        self.tls = tls
+        self.tls = opts.get('tls', True)
 
     def send(self, message):
         """
