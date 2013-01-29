@@ -13,18 +13,22 @@ class Http(object):
     """
     Transport to send emails using http
     """
-    def __init__(self, username, password, ssl=True):
+    HOSTPORT = ('sendgrid.com',)
+
+    def __init__(self, username, password, **opts):
         """
         Construct web transport object
 
         Args:
-            username: Sendgrid uaername
+            username: Sendgrid username
             password: Sendgrid password
             ssl: Use SSL
+            user: Send mail on behalf of this user
         """
         self.username = username
         self.password = password
-        self.ssl = ssl
+        self.ssl = opts.get('ssl', True)
+        self.user = opts.get('user', None)
 
     def send(self, message):
         """
@@ -39,9 +43,12 @@ class Http(object):
         Raises:
             SGServiceException: on error
         """
-        url = "https://sendgrid.com/api/mail.send.json"
+        protocol = "https://"
         if not self.ssl:
-            url = "http://sendgrid.com/api/mail.send.json"
+            protocol = "http://"
+        endpoint = "/api/mail.send.json"
+
+        url = protocol + ":".join(map(str, self.HOSTPORT)) + endpoint
 
         data = {
             'api_user': self.username,
@@ -73,6 +80,7 @@ class Http(object):
             'bcc': message.bcc,
             'fromname': message.from_name,
             'replyto': message.reply_to,
+            'user': self.user,
             }
 
         for key in optional_params:
@@ -85,7 +93,10 @@ class Http(object):
             f = urllib2.urlopen(req)
             output = f.read()
         except IOError, e:
-            output = e.read()
+            try:
+                output = e.read()
+            except AttributeError:
+                raise exceptions.SGServiceException(e)
 
         output = json.loads(output)
 

@@ -71,7 +71,7 @@ class SmtpApiHeader(object):
     def add_filter_setting(self, fltr, setting, val):
         if 'filters' not in self.data:
             self.data['filters'] = {}
-        if fltr not in self.data:
+        if fltr not in self.data['filters']:
             self.data['filters'][fltr] = {}
         if 'settings' not in self.data['filters'][fltr]:
             self.data['filters'][fltr]['settings'] = {}
