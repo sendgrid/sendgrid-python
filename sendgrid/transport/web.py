@@ -51,12 +51,12 @@ class Http(object):
         url = protocol + ":".join(map(str, self.HOSTPORT)) + endpoint
 
         data = {
-                'api_user': self.username,
-                'api_key': self.password,
-                'to': message.to,
-                'subject': message.subject,
-                'from': message.from_address,
-                'date': message.date,
+            'api_user': self.username,
+            'api_key': self.password,
+            'to': message.to,
+            'subject': message.subject,
+            'from': message.from_address,
+            'date': message.date,
             }
 
         if message.header.data:
@@ -76,6 +76,7 @@ class Http(object):
             'toname': message.to_name,
             'text': message.text,
             'html': message.html,
+            'cc': message.cc,  # for future use, not yet implemented
             'bcc': message.bcc,
             'fromname': message.from_name,
             'replyto': message.reply_to,
@@ -103,3 +104,4 @@ class Http(object):
             raise exceptions.SGServiceException(output['errors'])
 
         return True
+

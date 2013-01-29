@@ -23,7 +23,7 @@ class Message(object):
         Raises:
             ValueError: on invalid arguments
         """
-        if not (text + html):
+        if not text and not html:
             raise ValueError("Either html or text should be provided")
 
         self.from_name = ''
@@ -43,8 +43,23 @@ class Message(object):
         self.header = SmtpApiHeader()
         self.date = rfc822.formatdate()
 
+    def set_replyto(self, replyto):
+        """
+        Set a Reply-To: address for the outgoing message
 
-    def add_to(self, recipients, names = None):
+        Args:
+            replyto: reply address, accepts string
+
+        Returns:
+            self
+        """
+        if replyto:
+            self.reply_to = replyto
+            self.header.set_replyto(replyto)
+
+        return self
+
+    def add_to(self, recipients, names=None):
         """
         Add recipient
 
@@ -63,6 +78,9 @@ class Message(object):
             self.to += [recipients]
             if names:
                 self.to_name += [names]
+            else:
+                self.to_name += [""]
+
         elif isinstance(recipients, dict):
             subvals = {}
             to = []
@@ -82,17 +100,24 @@ class Message(object):
 
             self.header.add_to(to)
             self.to = [to[0]]
+
         else:
             self.to += recipients
             if names:
-                self.to_name += names
+                if len(recipients) != len(names):
+                    raise ValueError('Assigned names count should be equal to recipient address count')
+                else:
+                    self.to_name += names
+            else:
+                for recipient in recipients:
+                    self.to_name += [""]
 
         return self
-
 
     def add_cc(self, recipients):
         """
         Add CC recipients
+        As of publication, CC is NOT supported by Web API, only SMTP API
 
         Args:
             recipients: Email address or list of email addresses
@@ -105,8 +130,9 @@ class Message(object):
         else:
             self.cc += recipients
 
+        self.header.add_cc(recipients)
+        
         return self
-
 
     def add_bcc(self, recipients):
         """
@@ -123,8 +149,9 @@ class Message(object):
         else:
             self.bcc += recipients
 
+        self.header.add_bcc(recipients)
+        
         return self
-
 
     def add_attachment(self, name, file, cid=None):
         """
@@ -141,7 +168,6 @@ class Message(object):
         self.attachments.append({'name': name, 'file': file, 'cid': cid})
 
         return self
-
 
     def add_category(self, category):
         """
@@ -161,7 +187,6 @@ class Message(object):
 
         return self
 
-
     def set_unique_arguments(self, arguments):
         """
         Set message unique arguments (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/)
@@ -175,7 +200,6 @@ class Message(object):
         self.header.set_unique_args(arguments)
 
         return self
-
 
     def add_unique_argument(self, key, value):
         """
@@ -192,7 +216,6 @@ class Message(object):
 
         return self
 
-
     def set_sections(self, value):
         """
         Set sections (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/section-tags/)
@@ -206,7 +229,6 @@ class Message(object):
         self.header.set_section(value)
 
         return self
-
 
     def add_section(self, key, value):
         """
@@ -222,7 +244,6 @@ class Message(object):
 
         return self
 
-
     def add_header(self, key, value):
         """
         Add header to message
@@ -237,7 +258,6 @@ class Message(object):
         self.headers[key] = value
 
         return self
-
 
     def add_filter_setting(self, fltr, setting, value):
         """

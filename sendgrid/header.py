@@ -3,73 +3,82 @@ try:
 except ImportError:
     import simplejson as json
 
+
 class SmtpApiHeader(object):
     def __init__(self):
         self.data = {}
 
-
     def add_to(self, to):
-        if not self.data.has_key('to'):
+        if 'to' not in self.data:
             self.data['to'] = []
         if type(to) is str:
             self.data['to'] += [to]
         else:
             self.data['to'] += to
 
+    def add_cc(self, cc):
+        if 'cc' not in self.data:
+            self.data['cc'] = []
+        if type(cc) is str:
+            self.data['cc'] += [cc]
+        else:
+            self.data['cc'] += cc
+
+    def add_bcc(self, bcc):
+        if 'bcc' not in self.data:
+            self.data['bcc'] = []
+        if type(bcc) is str:
+            self.data['bcc'] += [bcc]
+        else:
+            self.data['bcc'] += bcc
+
+    def set_replyto(self, replyto):
+        self.data['reply_to'] = replyto
 
     def add_sub_val(self, var, val):
-        if not self.data.has_key('sub'):
+        if 'sub' not in self.data:
             self.data['sub'] = {}
         if type(val) is str:
             self.data['sub'][var] = [val]
         else:
             self.data['sub'][var] = val
 
-
     def set_unique_args(self, val):
         if type(val) is dict:
             self.data['unique_args'] = val
 
-
     def add_unique_arg(self, key, val):
-        if not self.data.has_key('unique_args'):
+        if 'unique_args' not in self.data:
             self.data['unique_args'] = {}
         self.data['unique_args'][key] = val
-
 
     def set_category(self, cat):
         self.data['category'] = [cat]
 
-
     def add_category(self, cat):
-        if not self.data.has_key('category'):
+        if 'category' not in self.data:
             self.data['category'] = []
         self.data['category'].append(cat)
 
-
     def add_section(self, key, section):
-        if not self.data.has_key('section'):
+        if 'section' not in self.data:
             self.data['section'] = {}
         self.data['section'][key] = section
-
 
     def set_section(self, val):
         self.data['section'] = val
 
-
     def add_filter_setting(self, fltr, setting, val):
-        if not self.data.has_key('filters'):
+        if 'filters' not in self.data:
             self.data['filters'] = {}
-        if not self.data['filters'].has_key(fltr):
+        if fltr not in self.data:
             self.data['filters'][fltr] = {}
-        if not self.data['filters'][fltr].has_key('settings'):
+        if 'settings' not in self.data['filters'][fltr]:
             self.data['filters'][fltr]['settings'] = {}
         self.data['filters'][fltr]['settings'][setting] = val
 
-
     def as_json(self):
         return json.dumps(self.data)
-
 
     def as_string(self):
         str = 'X-SMTPAPI: %s' % self.as_json()

@@ -36,7 +36,6 @@ class Smtp(object):
         self.password = password
         self.tls = opts.get('tls', True)
 
-
     def send(self, message):
         """
         Send message
@@ -74,6 +73,10 @@ class Smtp(object):
         if message.reply_to:
             email_message['Reply-To'] = message.reply_to
 
+        # Add CC recipients to message header
+        if message.cc:
+            email_message['Cc'] = ', '.join(message.cc)
+
         # Add subject
         email_message['Subject'] = self._encodeHeader(message.subject)
         # Add date
@@ -85,7 +88,7 @@ class Smtp(object):
         # Add custom headers
         headerError = False
         if message.headers:
-            for k,v in message.headers.iteritems():
+            for k, v in message.headers.iteritems():
                 if isinstance(k, basestring) and isinstance(v, basestring) and self._isAscii(k):
                     email_message[k] = self._encodeHeader(v)
                 else:
@@ -94,6 +97,13 @@ class Smtp(object):
 
             if headerError:
                 raise ValueError('JSON in headers is valid but incompatible')
+
+        # build a list of recipients (hide BCC recipients from header)
+        recipients = email_message['To'].split(', ')
+        if message.cc:
+            recipients += message.cc
+        if message.bcc:
+            recipients += message.bcc
 
         # Add files if any
         if message.attachments:
@@ -108,13 +118,14 @@ class Smtp(object):
 
         try:
             server.login(self.username, self.password)
-            server.sendmail(email_message['From'], email_message['To'], email_message.as_string())
+            server.sendmail(email_message['From'],
+                            recipients,
+                            email_message.as_string())
             server.quit()
         except Exception, e:
             raise exceptions.SGServiceException(e)
 
         return True
-
 
     def _getMessageMIME(self, payload, subtype):
         """
@@ -122,12 +133,10 @@ class Smtp(object):
         """
         return MIMEText(payload, subtype, 'utf-8')
 
-
     def _encodeEmail(self, name, e):
         if name and not self._isAscii(name):
             return utils.formataddr((base64mime.header_encode(name, 'utf-8'), e))
         return utils.formataddr((name, e))
-
 
     def _encodeHeader(self, header):
         """
@@ -141,7 +150,6 @@ class Smtp(object):
                 pass
         return header
 
-
     def _isAscii(self, s):
         """
         Checks if the given string is in ascii format
@@ -151,7 +159,6 @@ class Smtp(object):
         except UnicodeError:
             return False
         return True
-
 
     def _getFileMIME(self, attach):
         """
@@ -180,6 +187,9 @@ class Smtp(object):
             msg.set_payload(data)
             encoders.encode_base64(msg)
 
-        msg.add_header('Content-Disposition', 'attachment', filename=filename)
+        if attach.get('cid', False):
+            msg.add_header('Content-ID', '<%s>' % attach['cid'])
+        else:
+            msg.add_header('Content-Disposition', 'attachment', filename=filename)
 
         return msg
