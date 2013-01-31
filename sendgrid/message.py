@@ -26,6 +26,11 @@ class Message(object):
         if not text and not html:
             raise ValueError("Either html or text should be provided")
 
+        if isinstance(html, Message):
+            self.message_embed = True
+        else:
+            self.message_embed = False
+
         self.from_name = ''
         self.from_address = addr_from
         if isinstance(addr_from, tuple):
@@ -131,7 +136,7 @@ class Message(object):
             self.cc += recipients
 
         self.header.add_cc(recipients)
-        
+
         return self
 
     def add_bcc(self, recipients):
@@ -150,7 +155,7 @@ class Message(object):
             self.bcc += recipients
 
         self.header.add_bcc(recipients)
-        
+
         return self
 
     def add_attachment(self, name, file, cid=None):
