@@ -96,7 +96,7 @@ message.add_to("someone8@example.com")
 # add several To: recipients without names
 message.add_to(["someone9@example.com", "someone10@example.com"])
 
-# add several To: recipients without names
+# add several To: recipients with names
 # note: count of assigned names must match the count of email addresses
 message.add_to(["someone11@example.com", "someone12@example.com"], ["John Smith", "Jane Smith"])
 
