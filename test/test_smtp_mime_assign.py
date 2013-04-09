@@ -56,7 +56,7 @@ class TestSmtpMIMEAssignment(unittest.TestCase):
         return message
 
     """
-    test functions
+    test functions with no message embedding
     """
     def test_plain_text(self):
         message = self._genPlainTextMessage()
@@ -96,6 +96,63 @@ class TestSmtpMIMEAssignment(unittest.TestCase):
         self.assertTrue(isinstance(message_html_mime, MIMEMultipart))
         self.assertEqual(message_text_mime.get_content_subtype(), 'mixed')
         self.assertEqual(message_html_mime.get_content_subtype(), 'mixed')
+
+    """
+    test functions with message embedding
+    """
+    def test_simple_embedded_mixed(self):
+        embedded_message = self._genSimpleAlternativeMessage()
+        message = sendgrid.Message('example@example.com',
+                                    'subject',
+                                    'some text',
+                                    embedded_message)
+        message_mime = self.smtp_obj._assignMIME(message)
+        payload = message_mime.get_payload()
+
+        self.assertTrue(isinstance(message_mime, MIMEMultipart))
+        self.assertEqual(message_mime.get_content_subtype(), 'mixed')
+        self.assertEqual(len(payload), 2)
+        self.assertTrue(isinstance(payload[0], MIMEText))
+        self.assertEqual(payload[1].get_content_subtype(), 'alternative')
+
+    def test_multi_embed(self):
+        """
+        the embed portfolio will be as follows:
+
+            multipart/mixed:
+                text
+                multipart/mixed:
+                    no text
+                    multipart/related
+        """
+        embedded_deep_message = self._genSimpleRelatedMessage()
+        embedded_message = sendgrid.Message('example@example.com',
+                                            'subject',
+                                            '',
+                                            embedded_deep_message)
+        message = sendgrid.Message('example@example.com',
+                                    'subject',
+                                    'text',
+                                    embedded_message)
+        message_mime = self.smtp_obj._assignMIME(message)
+        payload = message_mime.get_payload()
+
+        # top level
+        self.assertTrue(isinstance(message_mime, MIMEMultipart))
+        self.assertEqual(message_mime.get_content_subtype(), 'mixed')
+        self.assertEqual(len(payload), 2)
+        self.assertTrue(isinstance(payload[0], MIMEText))
+        self.assertEqual(payload[1].get_content_subtype(), 'mixed')
+
+        #second level
+        message_mime = payload[1]
+        payload = message_mime.get_payload()
+        self.assertTrue(isinstance(message_mime, MIMEMultipart))
+        self.assertEqual(message_mime.get_content_subtype(), 'mixed')
+        self.assertEqual(len(payload), 1)
+        self.assertTrue(isinstance(payload[0], MIMEMultipart))
+        self.assertEqual(payload[0].get_content_subtype(), 'related')
+
 
 if __name__ == '__main__':
     unittest.main()
