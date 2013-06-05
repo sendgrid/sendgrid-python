@@ -19,7 +19,7 @@ class Sendgrid(object):
         Construct Sendgrid API object
 
         Args:
-            username: Sendgrid uaername
+            username: Sendgrid username
             password: Sendgrid password
             secure: Use SSL/TLS
             user: Send mail on behalf of this user (web only)
