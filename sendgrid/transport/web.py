@@ -69,7 +69,7 @@ class Http(object):
                     f = open(attach['file'], 'rb')
                     data['files[' + attach['name'] + ']'] = f.read()
                     f.close()
-                except IOError:
+                except:
                     data['files[' + attach['name'] + ']'] = attach['file']
 
         optional_params = {
