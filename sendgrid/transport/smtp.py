@@ -117,7 +117,10 @@ class Smtp(object):
             server.starttls()
 
         try:
-            server.login(self.username, self.password)
+            # Don't try to authenticate the user if we don't have his/her
+            # credentials or if they're empty.
+            if self.username and self.password:
+                server.login(self.username, self.password)
             server.sendmail(email_message['From'],
                             recipients,
                             email_message.as_string())
