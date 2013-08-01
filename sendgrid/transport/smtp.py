@@ -16,7 +16,6 @@ from sendgrid import exceptions
 # quote-printable
 charset.add_charset('utf-8', charset.QP, charset.QP, 'utf-8')
 
-
 class Smtp(object):
     """
     Transport to send emails using smtp
@@ -50,18 +49,8 @@ class Smtp(object):
             SGServiceException: on error
         """
 
-        # Compose the message.  If there are two bodies we need to create two
-        # mime entities, otherwise we send one message
-        if (message.text and message.html) or message.attachments:
-            email_message = MIMEMultipart('alternative')
-            if message.text:
-                email_message.attach(self._getMessageMIME(message.text, 'plain'))
-            if message.html:
-                email_message.attach(self._getMessageMIME(message.html, 'html'))
-        elif message.text:
-            email_message = self._getMessageMIME(message.text, 'plain')
-        else:
-            email_message = self._getMessageMIME(message.html, 'html')
+        # Compose the message. The bodies will be assigned MIME types recursively.
+        email_message = self._assignMIME(message)
 
         email_message['From'] = self._encodeEmail(message.from_name, message.from_address)
         if message.to_name:
@@ -105,13 +94,6 @@ class Smtp(object):
         if message.bcc:
             recipients += message.bcc
 
-        # Add files if any
-        if message.attachments:
-            for attach in message.attachments:
-                f = self._getFileMIME(attach)
-                if f:
-                    email_message.attach(f)
-
         server = smtplib.SMTP(*self.HOSTPORT)
         if self.tls:
             server.starttls()
@@ -126,6 +108,62 @@ class Smtp(object):
             raise exceptions.SGServiceException(e)
 
         return True
+
+    def _assignMIME(self, message):
+        embedded_message = None
+        if message.message_embed:
+            # MIME assignment should always be done DFS
+            embedded_message = self._assignMIME(message.html)
+        email_message = self._getMIMEMultipart(message, embedded_message)
+
+        if email_message is not None:
+            if message.text:
+                email_message.attach(self._getMessageMIME(message.text, 'plain'))
+            if embedded_message:
+                email_message.attach(embedded_message)
+            elif message.html:
+                email_message.attach(self._getMessageMIME(message.html, 'html'))
+        elif message.text:
+            email_message = self._getMessageMIME(message.text, 'plain')
+        else:
+            email_message = self._getMessageMIME(message.html, 'html')
+
+        # Add files if any
+        if message.attachments:
+            for attach in message.attachments:
+                f = self._getFileMIME(attach)
+                if f:
+                    email_message.attach(f)
+
+        return email_message
+
+    def _getMIMEMultipart(self, message, embedded_message=None):
+        """
+        multipart + anything -> Multipart/Mixed
+        html + text + no attachments -> Multipart/Alternative
+        html + no text + cid attachments -> Multipart/Related
+        html or text + non-cid attachments -> Multipart/Mixed
+        """
+
+        if embedded_message and isinstance(embedded_message, MIMEMultipart):
+            return MIMEMultipart('mixed')
+        elif message.html and message.text and\
+                (message.attachments is None or len(message.attachments) == 0):
+            return MIMEMultipart('alternative')
+        elif self._hasInlineHTMLAttachments(message):
+            return MIMEMultipart('related')
+        elif message.attachments:
+            return MIMEMultipart('mixed')
+
+        return None
+
+    def _hasInlineHTMLAttachments(self, message):
+        if message.html and message.attachments:
+            for attachment in message.attachments:
+                if 'cid' in attachment and attachment['cid'] is not None:
+                    return True
+
+        return False
 
     def _getMessageMIME(self, payload, subtype):
         """
