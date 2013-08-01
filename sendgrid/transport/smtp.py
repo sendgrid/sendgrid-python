@@ -131,12 +131,12 @@ class Smtp(object):
         """
         Create a text based MIME part from the given text
         """
-        return MIMEText(payload, subtype, 'utf-8')
+        return MIMEText(payload.encode('utf-8'), subtype, 'utf-8')
 
     def _encodeEmail(self, name, e):
-        if name and not self._isAscii(name):
-            return utils.formataddr((base64mime.header_encode(name, 'utf-8'), e))
-        return utils.formataddr((name, e))
+        encoded_name = str(Header(unicode(name), 'ISO-8859-1'))
+        encoded_e = e.encode('ascii')
+        return utils.formataddr((encoded_name, encoded_e))
 
     def _encodeHeader(self, header):
         """
