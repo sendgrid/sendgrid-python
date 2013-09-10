@@ -17,6 +17,10 @@ git clone git@github.com:sendgrid/sendgrid-python.git
 Using PyPI:
 
 ```
+pip install sendgrid
+```
+Or
+```
 easy_install sendgrid
 ```
 
