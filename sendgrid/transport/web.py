@@ -24,11 +24,13 @@ class Http(object):
             password: Sendgrid password
             ssl: Use SSL
             user: Send mail on behalf of this user
+            proxy_url: Proxy address for the requests
         """
         self.username = username
         self.password = password
         self.ssl = opts.get('ssl', True)
         self.user = opts.get('user', None)
+        self.proxy_url = opts.get('proxy_url', None)
 
     def send(self, message):
         """
@@ -90,7 +92,13 @@ class Http(object):
         data = urllib.urlencode(data, 1)
         req = urllib2.Request(url, data)
         try:
-            f = urllib2.urlopen(req)
+            if self.proxy_url:
+                scheme = urllib.urlparse(url).scheme
+                proxy_handler = urllib2.ProxyHandler({scheme: self.proxy_url})
+                opener = urllib2.build_opener(proxy_handler)
+                f = opener.open(req)
+            else:
+                f = urllib2.urlopen(req)
             output = f.read()
         except IOError, e:
             try:
@@ -104,4 +112,3 @@ class Http(object):
             raise exceptions.SGServiceException(output['errors'])
 
         return True
-
