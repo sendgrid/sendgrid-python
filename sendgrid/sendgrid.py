@@ -2,7 +2,8 @@ def memoize(f):
     """
     Memoization decorator
     """
-    cache= {}
+    cache = {}
+
     def func(*args):
         if args not in cache:
             cache[args] = f(*args)
@@ -23,12 +24,14 @@ class Sendgrid(object):
             password: Sendgrid password
             secure: Use SSL/TLS
             user: Send mail on behalf of this user (web only)
+            proxy_url: Proxy address for the requests (web only)
+
         """
         self.username = username
         self.password = password
         self.secure = opts.get('secure', True)
         self.user = opts.get('user', None)
-
+        self.proxy_url = opts.get('proxy_url', None)
 
     @property
     @memoize
@@ -37,8 +40,8 @@ class Sendgrid(object):
         Return web transport
         """
         from transport import web
-        return web.Http(self.username, self.password, ssl=self.secure, user=self.user)
-
+        return web.Http(self.username, self.password, ssl=self.secure,
+                        user=self.user, proxy_url=self.proxy_url)
 
     @property
     @memoize
