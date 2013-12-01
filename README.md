@@ -177,7 +177,7 @@ message.add_category(["Category 1", "Category 2"])
 
 ## Using Unique Arguments ###
 
-Unique Arguments are used for tracking purposes on the message, and can be seen in the Email Activity screen on your account dashboard or through the Event API. Use the message.add_unique_argument() method, which takes two parameters, a key and a value. To pass multiple keys/values, use message.add_unique_arguments() (note the plural method name) and pass a dictionary of key/value pairs. More information can be found here: http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/
+Unique Arguments are used for tracking purposes on the message, and can be seen in the Email Activity screen on your account dashboard or through the Event API. Use the message.add_unique_argument() method, which takes two parameters, a key and a value. To pass multiple keys/values, use message.set_unique_arguments() (note the plural method name) and pass a dictionary of key/value pairs. More information can be found here: http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
@@ -185,12 +185,12 @@ message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Htm
 message.add_unique_argument("Customer", "Someone")
 ```
 
-Alternately, you can pass a dict parameter and add multiple arguments using message.add_unique_arguments() like this:
+Alternately, you can pass a dict parameter and add multiple arguments using message.set_unique_arguments() like this:
 
 ```python
 message = sendgrid.Message("from@mydomain.com", "subject", "plain body", "<b>Html here</b>")
 # set multiple unique arguments for a message
-message.add_unique_arguments({"customerAccountNumber": "55555", "activationAttempt": "1"})
+message.set_unique_arguments({"customerAccountNumber": "55555", "activationAttempt": "1"})
 ```
 
 
