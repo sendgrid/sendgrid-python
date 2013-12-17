@@ -86,6 +86,8 @@ class Http(object):
         for key in optional_params:
             if optional_params[key]:
                 data[key] = optional_params[key]
+                if isinstance(data[key], unicode):
+                    data[key] = data[key].encode('utf-8')
 
         data = urllib.urlencode(data, 1)
         req = urllib2.Request(url, data)
