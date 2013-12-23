@@ -1,50 +1,41 @@
-def memoize(f):
-    """
-    Memoization decorator
-    """
-    cache= {}
-    def func(*args):
-        if args not in cache:
-            cache[args] = f(*args)
-        return cache[args]
-    return func
+import requests
+import urllib
 
-
-class Sendgrid(object):
+class SendGridClient(object):
     """
-    Sendgrid API
+    SendGrid API
     """
-    def __init__(self, username, password, **opts):
+    def __init__(self, username, password):
         """
         Construct Sendgrid API object
 
         Args:
             username: Sendgrid username
             password: Sendgrid password
-            secure: Use SSL/TLS
             user: Send mail on behalf of this user (web only)
         """
         self.username = username
         self.password = password
-        self.secure = opts.get('secure', True)
-        self.user = opts.get('user', None)
+        self.mailUrl = 'https://api.sendgrid.com/api/mail.send.json'
 
-
-    @property
-    @memoize
-    def web(self):
-        """
-        Return web transport
-        """
-        from transport import web
-        return web.Http(self.username, self.password, ssl=self.secure, user=self.user)
-
-
-    @property
-    @memoize
-    def smtp(self):
-        """
-        Return smtp transport
-        """
-        from transport import smtp
-        return smtp.Smtp(self.username, self.password, tls=self.secure)
+    def send(self, message):
+      values = {}
+      values['api_user'] = self.username
+      values['api_key'] = self.password
+      values['to[]'] = message.to
+      values['to_name[]'] = message.to_name
+      values['from'] = message.from_name
+      values['subject'] = message.subject
+      values['text'] = message.text
+      values['html'] = message.html
+      values['reply_to'] = message.reply_to
+      values['headers'] = message.headers
+      values['date'] = message.date
+      for filename in message.files:
+        values['files[' + filename + ']'] = message.files[filename]
+      values['x-smtpapi'] = str(message.api_header_as_json())
+      print values
+      r = requests.get(self.mailUrl,params=values)
+      print
+      print r.url
+      return r.text

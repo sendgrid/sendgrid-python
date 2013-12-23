@@ -1,47 +1,87 @@
 import rfc822
-from header import SmtpApiHeader
+import base64
+from header import SMTPAPIHeader
 
 
-class Message(object):
+class Mail(SMTPAPIHeader):
     """
     Sendgrid Message
     """
 
-    def __init__(self, addr_from, subject, text="", html=""):
+    def __init__(self, **opts):
         """
         Constructs Sendgrid Message object
 
         Args:
-            addr_from: From address, email "example@example.com" or tuple ("example@example.com", "John, Doe")
-            subject: Email subject
-            text: Email content, plain text
-            html: Email content, html
+          to: Receipient
+          to_name: Receipient name
+          from: Sender
+          subject: Email title
+          text: Email body
+          html: Email body
+          bcc: Receipient
+          reply_to: Reply address
+          date: Set date
+          headers: Set headers
+          x-smtpapi: Set SG custom header
+          files: Attachments
 
-        Returns:
-            self
-
-        Raises:
-            ValueError: on invalid arguments
         """
-        if not text and not html:
-            raise ValueError("Either html or text should be provided")
+        super(Mail, self).__init__()
+        self.to = opts.get('to', [])
+        self.to_name = opts.get('to_name', [])
+        self.from_name = opts.get('from', None)
+        self.subject = opts.get('subject', None)
+        self.text = opts.get('text', None)
+        self.html = opts.get('html', None)
+        self.bcc = opts.get('bcc', [])
+        self.reply_to = opts.get('reply_to', None)
+        self.files = opts.get('files', {})
+        self.headers = opts.get('headers', None)
+        self.date = opts.get('date', rfc822.formatdate())
 
-        self.from_name = ''
-        self.from_address = addr_from
-        if isinstance(addr_from, tuple):
-            (self.from_address, self.from_name) = addr_from
-        self.to_name = []
-        self.reply_to = ''
-        self.to = []
+    def add_to(self, to):
+        """
+        Add recipient
+
+        Args:
+          to: email str or list of email str(s)
+        """
+        if isinstance(to, (str, unicode)):
+            self.to.append(to)
+        elif isinstance(to, list):
+            self.to += to
+
+    def add_to_name(self, to_name):
+        if isinstance(to_name, (str, unicode)):
+            self.to_name.append(to_name)
+        elif isinstance(to_name, list):
+            self.to_name += to_name
+
+    def set_from(self, from_name):
+        self.from_name = from_name
+
+
+    def set_subject(self, subject):
         self.subject = subject
-        self.html = html
+
+    def set_text(self, text):
         self.text = text
-        self.cc = []
-        self.bcc = []
-        self.headers = {}
-        self.attachments = []
-        self.header = SmtpApiHeader()
-        self.date = rfc822.formatdate()
+
+    def set_html(self, html):
+        self.html = html
+
+    def add_bcc(self, bcc):
+        """
+        Add BCC recipients
+
+        Args:
+          to: email str or list of email str(s)
+        """
+        if isinstance(bcc, (str, unicode)):
+            self.bcc.append(bcc)
+        elif isinstance(bcc, list):
+            self.bcc += bcc
 
     def set_replyto(self, replyto):
         """
@@ -50,227 +90,22 @@ class Message(object):
         Args:
             replyto: reply address, accepts string
 
-        Returns:
-            self
         """
-        if replyto:
-            self.reply_to = replyto
-            self.header.set_replyto(replyto)
+        self.reply_to = replyto
 
-        return self
-
-    def add_to(self, recipients, names=None):
-        """
-        Add recipient
-
-        Args:
-            recipients: recipient, accepts string, list or dict
-                if dict is passed, "To" field will be ignored and batch sending with substitution triggered
-            names:  recipient names, string or list
-
-        Returns:
-            self
-        """
-        if not recipients:
-            raise ValueError('No recipients')
-
-        if isinstance(recipients, (str, unicode)):
-            self.to += [recipients]
-            if names:
-                self.to_name += [names]
-            else:
-                self.to_name += [""]
-
-        elif isinstance(recipients, dict):
-            subvals = {}
-            to = []
-            for email in recipients:
-                to.append(email)
-                for subval in recipients[email]:
-                    if not subval in subvals:
-                        subvals[subval] = []
-
-                    subvals[subval].append(recipients[email][subval])
-
-            for subval in subvals:
-                if len(subvals[subval]) != len(to):
-                    self.header = SmtpApiHeader()
-                    raise ValueError('Sub values count should be equal to recipients count')
-                self.header.add_sub_val(subval, subvals[subval])
-
-            self.header.add_to(to)
-            self.to = [to[0]]
-
-        else:
-            self.to += recipients
-            if names:
-                if len(recipients) != len(names):
-                    raise ValueError('Assigned names count should be equal to recipient address count')
-                else:
-                    self.to_name += names
-            else:
-                for recipient in recipients:
-                    self.to_name += [""]
-
-        return self
-
-    def add_cc(self, recipients):
-        """
-        Add CC recipients
-        As of publication, CC is NOT supported by Web API, only SMTP API
-
-        Args:
-            recipients: Email address or list of email addresses
-
-        Returns:
-            self
-        """
-        if isinstance(recipients, (str, unicode)):
-            self.cc += [recipients]
-        else:
-            self.cc += recipients
-
-        self.header.add_cc(recipients)
-        
-        return self
-
-    def add_bcc(self, recipients):
-        """
-        Add BCC recipients
-
-        Args:
-            recipients: Email address or list of email addresses
-
-        Returns:
-            self
-        """
-        if isinstance(recipients, (str, unicode)):
-            self.bcc += [recipients]
-        else:
-            self.bcc += recipients
-
-        self.header.add_bcc(recipients)
-        
-        return self
-
-    def add_attachment(self, name, file, cid=None):
+    def add_attachment(self, name, filepath):
         """
         Add attachment to email
 
         Args:
             name: name of the file as seen in email
             file: path to file or data string
-            cid: Content-ID header, optional
 
-        Returns:
-            self
         """
-        self.attachments.append({'name': name, 'file': file, 'cid': cid})
+        self.files[name] = base64.urlsafe_b64encode(open(filepath, "rb").read())
 
-        return self
+    def set_headers(self, headers):
+        self.headers = headers
 
-    def add_category(self, category):
-        """
-        Add category to the list of message categories (http://docs.sendgrid.com/documentation/delivery-metrics/categories/)
-
-        Args:
-            category: Category name or list of category names
-
-        Returns:
-            self
-        """
-        if isinstance(category, (str, unicode)):
-            self.header.add_category(category)
-        else:
-            for cat in category:
-                self.header.add_category(cat)
-
-        return self
-
-    def set_unique_arguments(self, arguments):
-        """
-        Set message unique arguments (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/unique-arguments/)
-
-        Args:
-            arguments: Message unique arguments, dict: {"customerAccountNumber": "55555", "activationAttempt": "1"}
-
-        Returns:
-            self
-        """
-        self.header.set_unique_args(arguments)
-
-        return self
-
-    def add_unique_argument(self, key, value):
-        """
-        Add unique argument to message
-
-        Args:
-            key: Key of unique argument
-            value: Value of unique argument
-
-        Returns:
-            self
-        """
-        self.header.add_unique_arg(key, value)
-
-        return self
-
-    def set_sections(self, value):
-        """
-        Set sections (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/section-tags/)
-
-        Args:
-            value: Sections, dict: {"section1": "Section1 Value", "section2": "Section2 Value"}
-
-        Returns:
-            self
-        """
-        self.header.set_section(value)
-
-        return self
-
-    def add_section(self, key, value):
-        """
-        Add section (http://docs.sendgrid.com/documentation/api/smtp-api/developers-guide/section-tags/)
-
-        Args:
-            value: Sections, dict: {"section1": "Section1 Value", "section2": "Section2 Value"}
-
-        Returns:
-            self
-        """
-        self.header.add_section(key, value)
-
-        return self
-
-    def add_header(self, key, value):
-        """
-        Add header to message
-
-        Args:
-            key: Message header i.e. "X-MAILER"
-            value: Header value i.e. "Sendgrid"
-
-        Returns:
-            self
-        """
-        self.headers[key] = value
-
-        return self
-
-    def add_filter_setting(self, fltr, setting, value):
-        """
-        Add filter setting (http://docs.sendgrid.com/documentation/api/smtp-api/filter-settings/)
-
-        Args:
-            fltr: Filter name i.e. "gravatar"
-            setting: Filter setting i.e. "enable"
-            value: Setting value i.e. 1
-
-        Returns:
-            self
-        """
-        self.header.add_filter_setting(fltr, setting, value)
-
-        return self
+    def set_date(self, date):
+        self.date = date
