@@ -1,6 +1,7 @@
+import io
 import rfc822
 import base64
-from header import SMTPAPIHeader
+from smtpapi import SMTPAPIHeader
 
 
 class Mail(SMTPAPIHeader):
@@ -102,7 +103,13 @@ class Mail(SMTPAPIHeader):
             file: path to file or data string
 
         """
-        self.files[name] = base64.urlsafe_b64encode(open(filepath, "rb").read())
+        self.files[name] = open(filepath, "rb").read()
+
+    def add_attachment_stream(self, name, string):
+        if isinstance(string, str):
+            self.files[name] = string
+        elif isinstance(string, io.BytesIO):
+            self.files[name] = string.read()
 
     def set_headers(self, headers):
         self.headers = headers

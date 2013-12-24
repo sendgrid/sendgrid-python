@@ -1,2 +1,7 @@
+build
+dist
+sdist
+*.egg
+*.egg-info
 *.pyc
 venv/
