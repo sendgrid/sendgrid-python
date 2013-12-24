@@ -103,7 +103,7 @@ class Mail(SMTPAPIHeader):
             file: path to file or data string
 
         """
-        self.files[name] = open(filepath, "rb").read()
+        self.files[name] = open(filepath, "r").read()
 
     def add_attachment_stream(self, name, string):
         if isinstance(string, str):
