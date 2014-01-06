@@ -33,6 +33,6 @@ class SendGridClient(object):
       values['date'] = message.date
       for filename in message.files:
         values['files[' + filename + ']'] = message.files[filename]
-      values['x-smtpapi'] = str(message.api_header_as_json())
+      values['x-smtpapi'] = str(message.json_string())
       r = requests.get(self.mailUrl, params=values, proxies=self.proxies)
       return r.status_code, r.json()
