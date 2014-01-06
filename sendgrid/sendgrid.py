@@ -23,12 +23,12 @@ class SendGridClient(object):
       values['api_user'] = self.username
       values['api_key'] = self.password
       values['to[]'] = message.to
-      values['to_name[]'] = message.to_name
+      values['toname[]'] = message.to_name
       values['from'] = message.from_name
       values['subject'] = message.subject
       values['text'] = message.text
       values['html'] = message.html
-      values['reply_to'] = message.reply_to
+      values['replyto'] = message.reply_to
       values['headers'] = message.headers
       values['date'] = message.date
       for filename in message.files:
