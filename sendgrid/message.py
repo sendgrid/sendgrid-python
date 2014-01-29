@@ -1,7 +1,7 @@
 import io
 try:
   import rfc822
-except Exception, e:
+except Exception as e:
   import email.utils as rfc822
 
 from smtpapi import SMTPAPIHeader
