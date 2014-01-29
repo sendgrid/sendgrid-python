@@ -1,10 +1,6 @@
-[![Build Status](https://travis-ci.org/sendgrid/sendgrid-python.png?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
 
 # sendgrid-python #
 This library allows you to quickly and easily send emails through SendGrid using Python.
-
-## License ##
-Licensed under the MIT License.
 
 ## Install ##
 
@@ -20,19 +16,6 @@ Using PyPI:
 easy_install sendgrid
 ```
 
-## SendGrid APIs ##
-SendGrid provides two methods of sending email: the Web API, and SMTP API. SendGrid recommends using the SMTP API for sending emails, but the Web API has less communication overhead. For an explanation of the benefits of each, refer to http://docs.sendgrid.com/documentation/get-started/integrate/examples/smtp-vs-rest/.
-
-This library implements a common interface to make it very easy to use either API.
-
-## Mail Pre-Usage ##
-
-Before we begin using the library, its important to understand a few things about the library architecture:
-
-* Sending an email is as simple as :
-  1. Creating a SendGrid Instance
-  1. Creating a SendGrid Mail object, and setting its data
-  1. Sending the mail using either SMTP API or Web API
 
 ## Mail Usage ##
 

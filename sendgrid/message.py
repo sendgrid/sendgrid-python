@@ -1,118 +1,84 @@
 import io
 import rfc822
-import base64
 from smtpapi import SMTPAPIHeader
 
 
 class Mail(SMTPAPIHeader):
+  """
+  Sendgrid Message
+  """
+
+  def __init__(self, **opts):
     """
-    Sendgrid Message
+    Constructs Sendgrid Message object
+
+    Args:
+      to: Receipient
+      to_name: Receipient name
+      from: Sender
+      subject: Email title
+      text: Email body
+      html: Email body
+      bcc: Receipient
+      reply_to: Reply address
+      date: Set date
+      headers: Set headers
+      x-smtpapi: Set SG custom header
+      files: Attachments
+
     """
+    super(Mail, self).__init__()
+    self.to = opts.get('to', [])
+    self.to_name = opts.get('to_name', [])
+    self.from_name = opts.get('from', '')
+    self.subject = opts.get('subject', '')
+    self.text = opts.get('text', '')
+    self.html = opts.get('html', '')
+    self.bcc = opts.get('bcc', [])
+    self.reply_to = opts.get('reply_to', '')
+    self.files = opts.get('files', {})
+    self.headers = opts.get('headers', '')
+    self.date = opts.get('date', rfc822.formatdate())
 
-    def __init__(self, **opts):
-        """
-        Constructs Sendgrid Message object
+  def add_to(self, to):
+    name, email = rfc822.parseaddr(to.replace(',', ''))
+    if email:
+      self.to.append(email)
+    if name:
+      self.add_to_name(name);
 
-        Args:
-          to: Receipient
-          to_name: Receipient name
-          from: Sender
-          subject: Email title
-          text: Email body
-          html: Email body
-          bcc: Receipient
-          reply_to: Reply address
-          date: Set date
-          headers: Set headers
-          x-smtpapi: Set SG custom header
-          files: Attachments
+  def add_to_name(self, to_name):
+    self.to_name.append(to_name)
 
-        """
-        super(Mail, self).__init__()
-        self.to = opts.get('to', [])
-        self.to_name = opts.get('to_name', [])
-        self.from_name = opts.get('from', None)
-        self.subject = opts.get('subject', None)
-        self.text = opts.get('text', None)
-        self.html = opts.get('html', None)
-        self.bcc = opts.get('bcc', [])
-        self.reply_to = opts.get('reply_to', None)
-        self.files = opts.get('files', {})
-        self.headers = opts.get('headers', None)
-        self.date = opts.get('date', rfc822.formatdate())
+  def set_from(self, from_name):
+    self.from_name = from_name
 
-    def add_to(self, to):
-        """
-        Add recipient
+  def set_subject(self, subject):
+    self.subject = subject
 
-        Args:
-          to: email str or list of email str(s)
-        """
-        if isinstance(to, (str, unicode)):
-            self.to.append(to)
-        elif isinstance(to, list):
-            self.to += to
+  def set_text(self, text):
+    self.text = text
 
-    def add_to_name(self, to_name):
-        if isinstance(to_name, (str, unicode)):
-            self.to_name.append(to_name)
-        elif isinstance(to_name, list):
-            self.to_name += to_name
+  def set_html(self, html):
+    self.html = html
 
-    def set_from(self, from_name):
-        self.from_name = from_name
+  def add_bcc(self, bcc):
+    self.bcc.append(bcc)
 
+  def set_replyto(self, replyto):
+    self.reply_to = replyto
 
-    def set_subject(self, subject):
-        self.subject = subject
+  def add_attachment(self, name, filepath):
+    self.files[name] = open(filepath, "r").read()
 
-    def set_text(self, text):
-        self.text = text
+  def add_attachment_stream(self, name, string):
+    if isinstance(string, str):
+      self.files[name] = string
+    elif isinstance(string, io.BytesIO):
+      self.files[name] = string.read()
 
-    def set_html(self, html):
-        self.html = html
+  def set_headers(self, headers):
+    self.headers = headers
 
-    def add_bcc(self, bcc):
-        """
-        Add BCC recipients
-
-        Args:
-          to: email str or list of email str(s)
-        """
-        if isinstance(bcc, (str, unicode)):
-            self.bcc.append(bcc)
-        elif isinstance(bcc, list):
-            self.bcc += bcc
-
-    def set_replyto(self, replyto):
-        """
-        Set a Reply-To: address for the outgoing message
-
-        Args:
-            replyto: reply address, accepts string
-
-        """
-        self.reply_to = replyto
-
-    def add_attachment(self, name, filepath):
-        """
-        Add attachment to email
-
-        Args:
-            name: name of the file as seen in email
-            file: path to file or data string
-
-        """
-        self.files[name] = open(filepath, "r").read()
-
-    def add_attachment_stream(self, name, string):
-        if isinstance(string, str):
-            self.files[name] = string
-        elif isinstance(string, io.BytesIO):
-            self.files[name] = string.read()
-
-    def set_headers(self, headers):
-        self.headers = headers
-
-    def set_date(self, date):
-        self.date = date
+  def set_date(self, date):
+    self.date = date
