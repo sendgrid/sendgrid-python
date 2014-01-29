@@ -1,6 +1,9 @@
 import os
 import unittest
-import urllib
+try:
+  import urllib.parse as urllib
+except Exception as e:
+  import urllib
 import json
 from sendgrid import SendGridClient, Mail
 
