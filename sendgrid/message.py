@@ -56,7 +56,7 @@ class Mail(SMTPAPIHeader):
     self.to_name.append(to_name)
 
   def set_from(self, from_email):
-    name, email = rfc822.parseaddr(from_emailg.replace(',', ''))
+    name, email = rfc822.parseaddr(from_email.replace(',', ''))
     if email:
       self.from_email = email
     if name:
