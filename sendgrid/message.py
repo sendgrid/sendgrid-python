@@ -34,7 +34,8 @@ class Mail(SMTPAPIHeader):
     super(Mail, self).__init__()
     self.to = opts.get('to', [])
     self.to_name = opts.get('to_name', [])
-    self.from_name = opts.get('from', '')
+    self.from_email = opts.get('from', '')
+    self.from_name = opts.get('from_name', '')
     self.subject = opts.get('subject', '')
     self.text = opts.get('text', '')
     self.html = opts.get('html', '')
@@ -54,7 +55,14 @@ class Mail(SMTPAPIHeader):
   def add_to_name(self, to_name):
     self.to_name.append(to_name)
 
-  def set_from(self, from_name):
+  def set_from(self, from_email):
+    name, email = rfc822.parseaddr(to.replace(',', ''))
+    if email:
+      self.from_email = email
+    if name:
+      self.set_from_name(name)
+
+  def set_from_name(self, from_name):
     self.from_name = from_name
 
   def set_subject(self, subject):

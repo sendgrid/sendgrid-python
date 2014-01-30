@@ -23,7 +23,8 @@ class SendGridClient(object):
     values['api_key'] = self.password
     values['to[]'] = message.to
     values['toname[]'] = message.to_name
-    values['from'] = message.from_name
+    values['from'] = message.from_email
+    values['from_name'] = message.from_name
     values['subject'] = message.subject
     values['text'] = message.text
     values['html'] = message.html
