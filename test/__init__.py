@@ -1,9 +1,5 @@
 import os
 import unittest
-try:
-  import urllib.parse as urllib
-except Exception as e:
-  import urllib
 import json
 from sendgrid import SendGridClient, Mail
 
@@ -43,7 +39,7 @@ class TestSendGrid(unittest.TestCase):
       "category":["testCategory"],
       "unique_args":{"testUnique":"uniqueValue"},
       "filters":{"testFilter":{"settings":{"filter":"filterValue"}}}}'''))
-    self.assertEqual(urllib.urlencode(url, True) , urllib.urlencode(testUrl, True))
+    self.assertEqual(url, testUrl)
 
 if __name__ == '__main__':
   unittest.main()
