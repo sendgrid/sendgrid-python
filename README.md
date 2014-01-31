@@ -7,7 +7,7 @@ This library allows you to quickly and easily send emails through SendGrid using
 
 ```bash
 pip install sendgrid
-//or
+# or
 easy_install sendgrid
 ```
 
