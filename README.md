@@ -15,9 +15,8 @@ easy_install sendgrid
 
 ```python
 import sendgrid
-import os
 
-sg = sendgrid.SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
+sg = sendgrid.SendGridClient('YOUR_SENDGRID_USERNAME', 'YOUR_SENDGRID_PASSWORD')
 message = sendgrid.Mail()
 message.add_to('John Doe <john@email.com>')
 message.set_subject('Example')
