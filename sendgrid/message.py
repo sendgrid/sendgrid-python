@@ -73,7 +73,8 @@ class Mail(SMTPAPIHeader):
     self.html = html
 
   def add_bcc(self, bcc):
-    self.bcc.append(bcc)
+    name, email = rfc822.parseaddr(bcc.replace(',', ''))
+    self.bcc.append(email)
 
   def set_replyto(self, replyto):
     self.reply_to = replyto
