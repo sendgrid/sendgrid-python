@@ -1,0 +1,2 @@
+requests==2.2.1
+smtpapi==0.1.1
