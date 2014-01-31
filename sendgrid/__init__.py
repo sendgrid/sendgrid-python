@@ -1,7 +1,2 @@
-from sendgrid import *
-from message import *
-
-del sendgrid, message
-
-__version__ = "0.1.4"
-version_info = (0, 1, 4)
+from .sendgrid import SendGridClient
+from .message import Mail

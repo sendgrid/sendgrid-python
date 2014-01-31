@@ -1,5 +1,7 @@
 build
 dist
-sendgrid.egg-info
+sdist
+*.egg
+*.egg-info
 *.pyc
 venv/
