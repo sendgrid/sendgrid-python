@@ -32,7 +32,7 @@ class Mail(SMTPAPIHeader):
     super(Mail, self).__init__()
     self.to = opts.get('to', [])
     self.to_name = opts.get('to_name', [])
-    self.from_email = opts.get('from', '')
+    self.from_email = opts.get('from_email', '')
     self.from_name = opts.get('from_name', '')
     self.subject = opts.get('subject', '')
     self.text = opts.get('text', '')
