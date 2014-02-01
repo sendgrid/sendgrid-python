@@ -9,7 +9,7 @@ setup(
     packages=find_packages(),
     license='MIT',
     description='SendGrid library for Python',
-    long_description='SendGrid library for Python',
+    long_description=open('./README.rst').read(),
     install_requires=[
         'requests',
         'smtpapi'
