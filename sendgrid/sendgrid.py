@@ -17,7 +17,7 @@ class SendGridClient(object):
     self.mailUrl = 'https://api.sendgrid.com/api/mail.send.json'
     self.proxies = opts.get('proxies', None)
 
-  def _build_url(self, message):
+  def _build_body(self, message):
     values = {}
     values['api_user'] = self.username
     values['api_key'] = self.password
@@ -38,7 +38,7 @@ class SendGridClient(object):
 
   def send(self, message):
     try:
-      r = requests.get(self.mailUrl, params=self._build_url(message), proxies=self.proxies)
+      r = requests.post(url=self.mailUrl, data=self._build_body(message), proxies=self.proxies)
       return r.status_code, r.json()
     except requests.exceptions.ConnectionError as e:
       raise e
