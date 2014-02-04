@@ -28,7 +28,7 @@ sg.send(message)
 
 #or
 
-message = sendgrid.Mail(to='John Doe <john@email.com', subject='Example', html='Body?', text='Body?', from_email='doe@email.com')
+message = sendgrid.Mail(to='John Doe <john@email.com>', subject='Example', html='Body?', text='Body?', from_email='doe@email.com')
 sg.send(message)
 
 ```
