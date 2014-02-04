@@ -34,7 +34,7 @@ class TestSendGrid(unittest.TestCase):
     "files[testFile]": "fileValue",
     "from": "doe@email.com",
     "headers": "",
-    "from_name": "",
+    "fromname": "",
     "replyto": ""}''')
     testUrl['x-smtpapi'] = json.dumps(json.loads('''{"sub":{"subKey":["subValue"]},
       "section":{"testSection":"sectionValue"},
