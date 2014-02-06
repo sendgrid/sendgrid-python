@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sendgrid',
-    version='0.2.4',
+    version='0.2.5',
     author='Yamil Asusta',
     author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
@@ -11,7 +11,6 @@ setup(
     description='SendGrid library for Python',
     long_description=open('./README.rst').read(),
     install_requires=[
-        'requests',
         'smtpapi'
     ],
 )
