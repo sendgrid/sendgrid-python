@@ -22,8 +22,6 @@ class TestSendGrid(unittest.TestCase):
         m.add_unique_arg('testUnique', 'uniqueValue')
         m.add_filter('testFilter', 'filter', 'filterValue')
         m.add_attachment_stream('testFile', 'fileValue')
-        self.sg.send(m)
-
         url = self.sg._build_body(m)
         url.pop('api_key', None)
         url.pop('api_user', None)
