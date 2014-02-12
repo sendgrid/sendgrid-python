@@ -21,14 +21,14 @@ sg = sendgrid.SendGridClient('YOUR_SENDGRID_USERNAME', 'YOUR_SENDGRID_PASSWORD')
 message = sendgrid.Mail()
 message.add_to('John Doe <john@email.com>')
 message.set_subject('Example')
-message.set_html('Body?')
-message.set_text('Body?')
+message.set_html('Body')
+message.set_text('Body')
 message.set_from('Doe John <doe@email.com>')
 sg.send(message)
 
 #or
 
-message = sendgrid.Mail(to='John Doe <john@email.com>', subject='Example', html='Body?', text='Body?', from_email='doe@email.com')
+message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
 sg.send(message)
 
 ```
@@ -39,21 +39,21 @@ sg.send(message)
 message = sendgrid.Mail()
 message.add_to('example@sendgrid.com')
 # or
-message.add_to('Example Dude <example@sendgrid.com>')
+message.add_to('Example Dude <example@email.com>')
 ```
 
 ### Adding BCC Recipients
 
 ```python
 message = sendgrid.Mail()
-message.add_bcc('example@sendgri.com')
+message.add_bcc('example@email.com')
 ```
 
 ### Setting the Subject
 
 ```python
 message = sendgrid.Mail()
-message.set_subject('New email')
+message.set_subject('Example')
 ```
 
 ### Set Text or HTML
@@ -69,7 +69,7 @@ message.set_html('<html><body>Stuff, you know?</body></html>')
 
 ```python
 message = sendgrid.Mail()
-message.set_from('example@lol.com')
+message.set_from('example@email.com')
 ```
 
 ### Set File Attachments

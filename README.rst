@@ -30,14 +30,14 @@ Example
     message = sendgrid.Mail()
     message.add_to('John Doe <john@email.com>')
     message.set_subject('Example')
-    message.set_html('Body?')
-    message.set_text('Body?')
+    message.set_html('Body')
+    message.set_text('Body')
     message.set_from('Doe John <doe@email.com>')
     sg.send(message)
 
     #or
 
-    message = sendgrid.Mail(to='John Doe <john@email.com', subject='Example', html='Body?', text='Body?', from_email='doe@email.com')
+    message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
     sg.send(message)
 
 Adding Recipients
@@ -46,9 +46,9 @@ Adding Recipients
 .. code::
 
     message = sendgrid.Mail()
-    message.add_to('example@sendgrid.com')
+    message.add_to('example@email.com')
     # or
-    message.add_to('Example Dude <example@sendgrid.com>')
+    message.add_to('Example Dude <example@email.com>')
 
 Adding BCC Recipients
 ~~~~~~~~~~~~~~~~~~~~~
@@ -56,7 +56,7 @@ Adding BCC Recipients
 .. code::
 
     message = sendgrid.Mail()
-    message.add_bcc('example@sendgri.com')
+    message.add_bcc('example@email.com')
 
 Setting the Subject
 ~~~~~~~~~~~~~~~~~~~
@@ -64,7 +64,7 @@ Setting the Subject
 .. code::
 
     message = sendgrid.Mail()
-    message.set_subject('New email')
+    message.set_subject('Example')
 
 Set Text or HTML
 ~~~~~~~~~~~~~~~~
@@ -82,7 +82,7 @@ Set From
 .. code::
 
     message = sendgrid.Mail()
-    message.set_from('example@lol.com')
+    message.set_from('example@email.com')
 
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
