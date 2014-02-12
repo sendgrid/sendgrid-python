@@ -1,4 +1,6 @@
+#  -*- coding: utf-8 -*-
 import sys
+from unicodedata import normalize
 if sys.hexversion < 0x03000000:
     # python 2
     import urllib
@@ -33,12 +35,12 @@ class SendGridClient(object):
             'api_user': self.username,
             'api_key': self.password,
             'to[]': message.to,
-            'toname[]': message.to_name,
+            'toname[]': normalize('NFKD', message.to_name).encode('utf-8'),
             'from': message.from_email,
-            'fromname': message.from_name,
-            'subject': message.subject,
-            'text': message.text,
-            'html': message.html,
+            'fromname': normalize('NFKD', message.from_name).encode('utf-8'),
+            'subject': normalize('NFKD', message.subject).encode('utf-8'),
+            'text': normalize('NFKD', message.text).encode('utf-8'),
+            'html': normalize('NFKD', message.html).encode('utf-8'),
             'replyto': message.reply_to,
             'headers': message.headers,
             'date': message.date,
@@ -56,7 +58,7 @@ class SendGridClient(object):
                     proxy_support = urllib2.ProxyHandler(self.proxies)
                     opener = urllib2.build_opener(proxy_support)
                     urllib2.install_opener(opener)
-                data = urllib.urlencode(self._build_body(message), True).encode('utf-8')
+                data = urllib.urlencode(self._build_body(message), True)
                 req = urllib2.Request(self.mail_url, data)
                 response = urllib2.urlopen(req)
                 body = response.read()
@@ -71,7 +73,8 @@ class SendGridClient(object):
                     proxy_support = urllib.request.ProxyHandler(self.proxies)
                     opener = urllib.request.build_opener(proxy_support)
                     urllib.request.install_opener(opener)
-                data = urllib.parse.urlencode(self._build_body(message)).encode('utf-8')
+                data = urllib.parse.urlencode(self._build_body(message)
+                                              ).encode('utf-8')
                 req = urllib.request.Request(self.mail_url, data)
                 response = urllib.request.urlopen(req)
                 body = response.read()
