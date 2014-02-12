@@ -1,6 +1,8 @@
 # SendGrid-Python #
 This library allows you to quickly and easily send emails through SendGrid using Python.
 
+[![Build Status](https://travis-ci.org/sendgrid/sendgrid-python.png?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+
 **Warning!** This library was recently updated to bring it up to date with all of our other libraries. It behaves completely different from the previous release. Also, SMTP has been deprecated in support for the Web API.
 
 ## Install 
