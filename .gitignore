@@ -9,3 +9,4 @@ sdist
 *.egg-info
 *.pyc
 venv/
+local/
