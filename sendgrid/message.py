@@ -83,7 +83,7 @@ class Mail(SMTPAPIHeader):
         self.files[name] = open(filepath, "r").read()
 
     def add_attachment_stream(self, name, string):
-        if isinstance(string, str):
+        if isinstance(string, str) or isinstance(string, unicode):
             self.files[name] = string
         elif isinstance(string, io.BytesIO):
             self.files[name] = string.read()
