@@ -71,7 +71,7 @@ class SendGridClient(object):
                     proxy_support = urllib.request.ProxyHandler(self.proxies)
                     opener = urllib.request.build_opener(proxy_support)
                     urllib.request.install_opener(opener)
-                data = urllib.parse.urlencode(self._build_body(message)).encode('utf-8')
+                data = urllib.parse.urlencode(self._build_body(message), True).encode('utf-8')
                 req = urllib.request.Request(self.mail_url, data)
                 response = urllib.request.urlopen(req)
                 body = response.read()
