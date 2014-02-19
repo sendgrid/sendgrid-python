@@ -7,13 +7,12 @@ from smtpapi import SMTPAPIHeader
 
 
 class Mail(SMTPAPIHeader):
-    """
-    SendGrid Message
-    """
+
+    """SendGrid Message."""
 
     def __init__(self, **opts):
         """
-        Constructs SendGrid Message object
+        Constructs SendGrid Message object.
 
         Args:
             to: Recipient
@@ -28,6 +27,7 @@ class Mail(SMTPAPIHeader):
             headers: Set headers
             x-smtpapi: Set SG custom header
             files: Attachments
+
         """
         super(Mail, self).__init__()
         self.to = opts.get('to', [])
@@ -73,7 +73,7 @@ class Mail(SMTPAPIHeader):
         self.html = html
 
     def add_bcc(self, bcc):
-        name, email = rfc822.parseaddr(bcc.replace(',', ''))
+        email = rfc822.parseaddr(bcc.replace(',', ''))[1]
         self.bcc.append(email)
 
     def set_replyto(self, replyto):
