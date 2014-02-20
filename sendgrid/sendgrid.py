@@ -10,16 +10,18 @@ else:
 
 
 class SendGridClient(object):
-    """
-    SendGrid API
-    """
+
+    """SendGrid API."""
+
     def __init__(self, username, password, **opts):
         """
-        Construct SendGrid API object
+        Construct SendGrid API object.
+
         Args:
             username: SendGrid username
             password: SendGrid password
             user: Send mail on behalf of this user (web only)
+
         """
         self.username = username
         self.password = password
@@ -56,7 +58,9 @@ class SendGridClient(object):
                     proxy_support = urllib2.ProxyHandler(self.proxies)
                     opener = urllib2.build_opener(proxy_support)
                     urllib2.install_opener(opener)
-                data = urllib.urlencode(self._build_body(message), True).encode('utf-8')
+                data = urllib.urlencode(
+                    self._build_body(message),
+                    True).encode('utf-8')
                 req = urllib2.Request(self.mail_url, data)
                 response = urllib2.urlopen(req)
                 body = response.read()
@@ -71,7 +75,9 @@ class SendGridClient(object):
                     proxy_support = urllib.request.ProxyHandler(self.proxies)
                     opener = urllib.request.build_opener(proxy_support)
                     urllib.request.install_opener(opener)
-                data = urllib.parse.urlencode(self._build_body(message), True).encode('utf-8')
+                data = urllib.parse.urlencode(
+                    self._build_body(message),
+                    True).encode('utf-8')
                 req = urllib.request.Request(self.mail_url, data)
                 response = urllib.request.urlopen(req)
                 body = response.read()
