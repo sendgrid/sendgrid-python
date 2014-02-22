@@ -1,3 +1,4 @@
+import sys
 try:
     import urllib.request as urllib_request
     from urllib.parse import urlencode
