@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sendgrid',
-    version='0.2.7',
+    version='0.2.8',
     author='Yamil Asusta',
     author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
