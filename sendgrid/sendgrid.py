@@ -46,6 +46,12 @@ class SendGridClient(object):
         }
         for filename in message.files:
             values['files[' + filename + ']'] = message.files[filename]
+        if sys.hexversion < 0x03000000:
+            # python 2
+            values = dict((k, v) for k, v in values.iteritems() if v)
+        else:
+            # python 3
+            values = dict((k, v) for k, v in values.items() if v)
         return values
 
     def send(self, message):
@@ -62,4 +68,4 @@ class SendGridClient(object):
             body = response.read()
             return response.getcode(), body
         except URLError as e:
-            raise e
+            return e.code, e.read()
