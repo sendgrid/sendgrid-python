@@ -34,10 +34,7 @@ class TestSendGrid(unittest.TestCase):
                 "text": "WIN",
                 "subject": "test",
                 "files[testFile]": "fileValue",
-                "from": "doe@email.com",
-                "headers": "",
-                "fromname": "",
-                "replyto": ""
+                "from": "doe@email.com"
             }
             ''')
         test_url['x-smtpapi'] = json.dumps(json.loads('''
