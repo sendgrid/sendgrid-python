@@ -1,4 +1,5 @@
 import io
+import sys
 try:
     import rfc822
 except Exception as e:
@@ -87,6 +88,8 @@ class Mail(SMTPAPIHeader):
             self.files[name] = string
         elif isinstance(string, io.BytesIO):
             self.files[name] = string.read()
+        elif sys.hexversion < 0x03000000 and isinstance(string, unicode):
+            self.files[name] = string
 
     def set_headers(self, headers):
         self.headers = headers
