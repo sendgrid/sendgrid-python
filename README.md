@@ -26,12 +26,12 @@ message.set_subject('Example')
 message.set_html('Body')
 message.set_text('Body')
 message.set_from('Doe John <doe@email.com>')
-sg.send(message)
+status, msg = sg.send(message)
 
 #or
 
 message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
-sg.send(message)
+status, msg = sg.send(message)
 
 ```
 
