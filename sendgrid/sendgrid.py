@@ -1,4 +1,5 @@
 import sys
+from socket import timeout
 try:
     import urllib.request as urllib_request
     from urllib.parse import urlencode
@@ -65,8 +66,10 @@ class SendGridClient(object):
                 self._build_body(message),
                 True).encode('utf-8')
             req = urllib_request.Request(self.mail_url, data)
-            response = urllib_request.urlopen(req)
+            response = urllib_request.urlopen(req, timeout = 10)
             body = response.read()
             return response.getcode(), body
         except URLError as e:
             return e.code, e.read()
+        except timeout as e:
+            return 408, e
