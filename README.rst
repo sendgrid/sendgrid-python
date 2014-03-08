@@ -49,6 +49,8 @@ Adding Recipients
     message.add_to('example@email.com')
     # or
     message.add_to('Example Dude <example@email.com>')
+    # or
+    message.add_to(['Example Dude <example@email.com>', 'john@email.com'])
 
 Adding BCC Recipients
 ~~~~~~~~~~~~~~~~~~~~~
@@ -57,6 +59,8 @@ Adding BCC Recipients
 
     message = sendgrid.Mail()
     message.add_bcc('example@email.com')
+    # or
+    message.add_bcc(['Example Dude <example@email.com>', 'john@email.com'])
 
 Setting the Subject
 ~~~~~~~~~~~~~~~~~~~

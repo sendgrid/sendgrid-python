@@ -5,7 +5,7 @@ This library allows you to quickly and easily send emails through SendGrid using
 
 **Warning!** This library was recently updated to bring it up to date with all of our other libraries. It behaves completely different from the previous release. Also, SMTP has been deprecated in support for the Web API.
 
-## Install 
+## Install
 
 ```bash
 pip install sendgrid
@@ -42,6 +42,9 @@ message = sendgrid.Mail()
 message.add_to('example@sendgrid.com')
 # or
 message.add_to('Example Dude <example@email.com>')
+# or
+message.add_to(['Example Dude <example@email.com>', 'john@email.com'])
+
 ```
 
 ### Adding BCC Recipients
@@ -49,6 +52,9 @@ message.add_to('Example Dude <example@email.com>')
 ```python
 message = sendgrid.Mail()
 message.add_bcc('example@email.com')
+# or
+message.add_bcc(['Example Dude <example@email.com>', 'john@email.com'])
+
 ```
 
 ### Setting the Subject
