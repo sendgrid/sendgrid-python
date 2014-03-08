@@ -31,28 +31,35 @@ class Mail(SMTPAPIHeader):
 
         """
         super(Mail, self).__init__()
-        self.to = opts.get('to', [])
-        self.to_name = opts.get('to_name', [])
+        self.add_to(opts.get('to', []))
+        self.add_to_name(opts.get('to_name', []))
         self.from_email = opts.get('from_email', '')
         self.from_name = opts.get('from_name', '')
         self.subject = opts.get('subject', '')
         self.text = opts.get('text', '')
         self.html = opts.get('html', '')
-        self.bcc = opts.get('bcc', [])
+        self.add_bcc(opts.get('bcc', []))
         self.reply_to = opts.get('reply_to', '')
         self.files = opts.get('files', {})
         self.headers = opts.get('headers', '')
         self.date = opts.get('date', rfc822.formatdate())
 
     def add_to(self, to):
-        name, email = rfc822.parseaddr(to.replace(',', ''))
-        if email:
-            self.to.append(email)
-        if name:
-            self.add_to_name(name)
+        if isinstance(to, str):
+            name, email = rfc822.parseaddr(to.replace(',', ''))
+            if email:
+                self.to.append(email)
+            if name:
+                self.add_to_name(name)
+        else:
+            for email in to:
+                self.add_to(email)
 
     def add_to_name(self, to_name):
-        self.to_name.append(to_name)
+        if isinstance(to_name, str):
+            self.to_name.append(to_name)
+        else:
+            self.to_name = self.to_name + to_name
 
     def set_from(self, from_email):
         name, email = rfc822.parseaddr(from_email.replace(',', ''))
@@ -74,8 +81,12 @@ class Mail(SMTPAPIHeader):
         self.html = html
 
     def add_bcc(self, bcc):
-        email = rfc822.parseaddr(bcc.replace(',', ''))[1]
-        self.bcc.append(email)
+        if isinstance(bcc, str):
+            email = rfc822.parseaddr(bcc.replace(',', ''))[1]
+            self.bcc.append(email)
+        else:
+            for email in bcc:
+                self.add_bcc(email)
 
     def set_replyto(self, replyto):
         self.reply_to = replyto
