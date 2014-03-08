@@ -31,13 +31,16 @@ class Mail(SMTPAPIHeader):
 
         """
         super(Mail, self).__init__()
+        self.to = []
         self.add_to(opts.get('to', []))
+        self.to_name = []
         self.add_to_name(opts.get('to_name', []))
         self.from_email = opts.get('from_email', '')
         self.from_name = opts.get('from_name', '')
         self.subject = opts.get('subject', '')
         self.text = opts.get('text', '')
         self.html = opts.get('html', '')
+        self.bcc = []
         self.add_bcc(opts.get('bcc', []))
         self.reply_to = opts.get('reply_to', '')
         self.files = opts.get('files', {})
