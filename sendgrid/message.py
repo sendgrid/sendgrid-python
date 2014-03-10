@@ -47,13 +47,16 @@ class Mail(SMTPAPIHeader):
         self.headers = opts.get('headers', '')
         self.date = opts.get('date', rfc822.formatdate())
 
+    def parse_and_add(self, to):
+        name, email = rfc822.parseaddr(to.replace(',', ''))
+        if email:
+            self.to.append(email)
+        if name:
+            self.add_to_name(name)
+
     def add_to(self, to):
-        if isinstance(to, str):
-            name, email = rfc822.parseaddr(to.replace(',', ''))
-            if email:
-                self.to.append(email)
-            if name:
-                self.add_to_name(name)
+        if isinstance(to, str) or isinstance(to, unicode):
+            self.parse_and_add(str(to))
         else:
             for email in to:
                 self.add_to(email)
