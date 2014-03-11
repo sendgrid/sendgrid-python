@@ -1,14 +1,14 @@
 import os
 import unittest
 import json
+import sys
 from sendgrid import SendGridClient, Mail
 
-
 class TestSendGrid(unittest.TestCase):
-
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
 
+    @unittest.skipUnless(sys.hexversion < 0x03000000, 'only for python2')
     def test_unicode_recipients(self):
         recipients = [u'test@test.com', u'guy@man.com']
         m = Mail(to=recipients,

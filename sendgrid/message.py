@@ -55,8 +55,10 @@ class Mail(SMTPAPIHeader):
             self.add_to_name(name)
 
     def add_to(self, to):
-        if isinstance(to, str) or isinstance(to, unicode):
-            self.parse_and_add(str(to))
+        if isinstance(to, str):
+            self.parse_and_add(to)
+        elif sys.hexversion < 0x03000000 and isinstance(to, unicode):
+            self.parse_and_add(to)
         else:
             for email in to:
                 self.add_to(email)
