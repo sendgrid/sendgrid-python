@@ -1,5 +1,5 @@
 import os
-import unittest
+import unittest2 as unittest
 import json
 import sys
 from sendgrid import SendGridClient, Mail
@@ -8,9 +8,16 @@ class TestSendGrid(unittest.TestCase):
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
 
-    @unittest.skipUnless(sys.hexversion < 0x03000000, 'only for python2')
+    @unittest.skipUnless(sys.version_info < (3,0), 'only for python2')
     def test_unicode_recipients(self):
-        recipients = [u'test@test.com', u'guy@man.com']
+        # Even though the test is skipped, its interpreted, therefore,
+        # the test will fail. Adding a workaround.
+
+        if sys.hexversion < 0x03000000:
+            recipients = [unicode('test@test.com'), unicode('guy@man.com')]
+        else:
+            recipients = []
+
         m = Mail(to=recipients,
                  subject='testing',
                  html='awesome',

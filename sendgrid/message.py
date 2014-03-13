@@ -59,7 +59,7 @@ class Mail(SMTPAPIHeader):
             self.parse_and_add(to)
         elif sys.hexversion < 0x03000000 and isinstance(to, unicode):
             self.parse_and_add(to)
-        else:
+        elif hasattr(to, '__iter__'):
             for email in to:
                 self.add_to(email)
 
@@ -92,7 +92,9 @@ class Mail(SMTPAPIHeader):
         if isinstance(bcc, str):
             email = rfc822.parseaddr(bcc.replace(',', ''))[1]
             self.bcc.append(email)
-        else:
+        elif sys.hexversion < 0x03000000 and isinstance(bcc, unicode):
+            self.bcc.append(rfc822.parseaddr(bcc.replace(',', ''))[1])
+        elif hasattr(bcc, '__iter__'):
             for email in bcc:
                 self.add_bcc(email)
 
