@@ -36,6 +36,7 @@ class SendGridClient(object):
             'api_key': self.password,
             'to[]': message.to,
             'toname[]': message.to_name,
+            'bcc[]': message.bcc,
             'from': message.from_email,
             'fromname': message.from_name,
             'subject': message.subject,
