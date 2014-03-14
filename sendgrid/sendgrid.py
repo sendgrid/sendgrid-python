@@ -47,14 +47,12 @@ class SendGridClient(object):
             'date': message.date,
             'x-smtpapi': message.json_string()
         }
+        for k in list(values.keys()):
+            if not values[k]:
+                del values[k]
         for filename in message.files:
-            values['files[' + filename + ']'] = message.files[filename]
-        if sys.hexversion < 0x03000000:
-            # python 2
-            values = dict((k, v) for k, v in values.iteritems() if v)
-        else:
-            # python 3
-            values = dict((k, v) for k, v in values.items() if v)
+            if message.files[filename]:
+                values['files[' + filename + ']'] = message.files[filename]
         return values
 
     def send(self, message):
@@ -63,9 +61,7 @@ class SendGridClient(object):
                 proxy_support = urllib_request.ProxyHandler(self.proxies)
                 opener = urllib_request.build_opener(proxy_support)
                 urllib_request.install_opener(opener)
-            data = urlencode(
-                self._build_body(message),
-                True).encode('utf-8')
+            data = urlencode(self._build_body(message), True).encode('utf-8')
             req = urllib_request.Request(self.mail_url, data)
             response = urllib_request.urlopen(req, timeout = 10)
             body = response.read()
