@@ -10,8 +10,6 @@ class TestSendGrid(unittest.TestCase):
 
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test_unicode_recipients(self):
-        # Even though the test is skipped, its interpreted, therefore,
-        # the test will fail. Adding a workaround.
         recipients = [unicode('test@test.com'), unicode('guy@man.com')]
         m = Mail(to=recipients,
                  subject='testing',
