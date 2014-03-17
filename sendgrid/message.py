@@ -37,9 +37,9 @@ class Mail(SMTPAPIHeader):
         self.add_to_name(opts.get('to_name', []))
         self.from_email = opts.get('from_email', '')
         self.from_name = opts.get('from_name', '')
-        self.subject = opts.get('subject', '')
-        self.text = opts.get('text', '')
-        self.html = opts.get('html', '')
+        self.subject = opts.get('subject', '').encode('utf-8')
+        self.text = opts.get('text', '').encode('utf-8')
+        self.html = opts.get('html', '').encode('utf-8')
         self.bcc = []
         self.add_bcc(opts.get('bcc', []))
         self.reply_to = opts.get('reply_to', '')
@@ -57,7 +57,7 @@ class Mail(SMTPAPIHeader):
     def add_to(self, to):
         if isinstance(to, str):
             self.parse_and_add(to)
-        elif sys.hexversion < 0x03000000 and isinstance(to, unicode):
+        elif sys.version_info < (3, 0) and isinstance(to, unicode):
             self.parse_and_add(to)
         elif hasattr(to, '__iter__'):
             for email in to:
@@ -80,19 +80,19 @@ class Mail(SMTPAPIHeader):
         self.from_name = from_name
 
     def set_subject(self, subject):
-        self.subject = subject
+        self.subject = subject.encode('utf-8')
 
     def set_text(self, text):
-        self.text = text
+        self.text = text.encode('utf-8')
 
     def set_html(self, html):
-        self.html = html
+        self.html = html.encode('utf-8')
 
     def add_bcc(self, bcc):
         if isinstance(bcc, str):
             email = rfc822.parseaddr(bcc.replace(',', ''))[1]
             self.bcc.append(email)
-        elif sys.hexversion < 0x03000000 and isinstance(bcc, unicode):
+        elif sys.version_info < (3, 0) and isinstance(bcc, unicode):
             self.bcc.append(rfc822.parseaddr(bcc.replace(',', ''))[1])
         elif hasattr(bcc, '__iter__'):
             for email in bcc:
@@ -109,7 +109,7 @@ class Mail(SMTPAPIHeader):
             self.files[name] = string
         elif isinstance(string, io.BytesIO):
             self.files[name] = string.read()
-        elif sys.hexversion < 0x03000000 and isinstance(string, unicode):
+        elif sys.version_info < (3, 0) and isinstance(string, unicode):
             self.files[name] = string
 
     def set_headers(self, headers):
