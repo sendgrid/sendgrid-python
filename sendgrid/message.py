@@ -47,14 +47,19 @@ class Mail(SMTPAPIHeader):
         self.headers = opts.get('headers', '')
         self.date = opts.get('date', rfc822.formatdate())
 
+    def parse_and_add(self, to):
+        name, email = rfc822.parseaddr(to.replace(',', ''))
+        if email:
+            self.to.append(email)
+        if name:
+            self.add_to_name(name)
+
     def add_to(self, to):
         if isinstance(to, str):
-            name, email = rfc822.parseaddr(to.replace(',', ''))
-            if email:
-                self.to.append(email)
-            if name:
-                self.add_to_name(name)
-        else:
+            self.parse_and_add(to)
+        elif sys.hexversion < 0x03000000 and isinstance(to, unicode):
+            self.parse_and_add(to)
+        elif hasattr(to, '__iter__'):
             for email in to:
                 self.add_to(email)
 
@@ -87,7 +92,9 @@ class Mail(SMTPAPIHeader):
         if isinstance(bcc, str):
             email = rfc822.parseaddr(bcc.replace(',', ''))[1]
             self.bcc.append(email)
-        else:
+        elif sys.hexversion < 0x03000000 and isinstance(bcc, unicode):
+            self.bcc.append(rfc822.parseaddr(bcc.replace(',', ''))[1])
+        elif hasattr(bcc, '__iter__'):
             for email in bcc:
                 self.add_bcc(email)
 

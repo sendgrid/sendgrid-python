@@ -1,13 +1,27 @@
 import os
-import unittest
+import unittest2 as unittest
 import json
+import sys
 from sendgrid import SendGridClient, Mail
 
-
 class TestSendGrid(unittest.TestCase):
-
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
+
+    @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
+    def test_unicode_recipients(self):
+        # Even though the test is skipped, its interpreted, therefore,
+        # the test will fail. Adding a workaround.
+        recipients = [unicode('test@test.com'), unicode('guy@man.com')]
+        m = Mail(to=recipients,
+                 subject='testing',
+                 html='awesome',
+                 from_email='from@test.com')
+
+        mock = {'to[]': ['test@test.com', 'guy@man.com']}
+        result = self.sg._build_body(m)
+
+        self.assertEqual(result['to[]'], mock['to[]'])
 
     def test_send(self):
         m = Mail()
