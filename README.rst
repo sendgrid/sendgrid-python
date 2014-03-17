@@ -88,6 +88,14 @@ Set From
     message = sendgrid.Mail()
     message.set_from('example@email.com')
 
+Set ReplyTo
+~~~~~~~~~~~
+
+.. code::
+
+    message.sendgrid.Mail()
+    message.set_replyto('example@email.com')
+
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
 
