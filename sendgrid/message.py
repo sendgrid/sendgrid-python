@@ -37,9 +37,9 @@ class Mail(SMTPAPIHeader):
         self.add_to_name(opts.get('to_name', []))
         self.from_email = opts.get('from_email', '')
         self.from_name = opts.get('from_name', '')
-        self.subject = opts.get('subject', '').encode('utf-8')
-        self.text = opts.get('text', '').encode('utf-8')
-        self.html = opts.get('html', '').encode('utf-8')
+        self.subject = opts.get('subject', '')
+        self.text = opts.get('text', '')
+        self.html = opts.get('html', '')
         self.bcc = []
         self.add_bcc(opts.get('bcc', []))
         self.reply_to = opts.get('reply_to', '')
@@ -80,13 +80,13 @@ class Mail(SMTPAPIHeader):
         self.from_name = from_name
 
     def set_subject(self, subject):
-        self.subject = subject.encode('utf-8')
+        self.subject = subject
 
     def set_text(self, text):
-        self.text = text.encode('utf-8')
+        self.text = text
 
     def set_html(self, html):
-        self.html = html.encode('utf-8')
+        self.html = html
 
     def add_bcc(self, bcc):
         if isinstance(bcc, str):

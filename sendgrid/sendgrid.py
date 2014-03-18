@@ -33,6 +33,11 @@ class SendGridClient(object):
         self.proxies = opts.get('proxies', None)
 
     def _build_body(self, message):
+        if sys.version_info < (3,0):
+            message.subject = message.subject.encode('utf-8')
+            message.text = message.text.encode('utf-8')
+            message.html = message.html.encode('utf-8')
+
         values = {
             'api_user': self.username,
             'api_key': self.password,
