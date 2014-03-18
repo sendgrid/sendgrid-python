@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 def getRequires():
     deps = ['smtpapi']
-    if sys.hexversion < 0x03000000:
+    if sys.version_info < (3, 0):
         deps.append('unittest2')
     else:
         deps.append('unittest2py3k')
