@@ -58,7 +58,7 @@ class Mail(SMTPAPIHeader):
         if isinstance(to, str):
             self.parse_and_add(to)
         elif sys.version_info < (3, 0) and isinstance(to, unicode):
-            self.parse_and_add(to)
+            self.parse_and_add(to.encode('utf-8'))
         elif hasattr(to, '__iter__'):
             for email in to:
                 self.add_to(email)
@@ -66,7 +66,9 @@ class Mail(SMTPAPIHeader):
     def add_to_name(self, to_name):
         if isinstance(to_name, str):
             self.to_name.append(to_name)
-        else:
+        elif sys.version_info < (3, 0) and isinstance(to_name, unicode):
+            self.to_name.append(to_name.encode('utf-8'))
+        elif hasattr(to_name, '__iter__'):
             self.to_name = self.to_name + to_name
 
     def set_from(self, from_email):
@@ -93,7 +95,8 @@ class Mail(SMTPAPIHeader):
             email = rfc822.parseaddr(bcc.replace(',', ''))[1]
             self.bcc.append(email)
         elif sys.version_info < (3, 0) and isinstance(bcc, unicode):
-            self.bcc.append(rfc822.parseaddr(bcc.replace(',', ''))[1])
+            email = rfc822.parseaddr(bcc.replace(',', ''))[1].encode('utf-8')
+            self.bcc.append(email)
         elif hasattr(bcc, '__iter__'):
             for email in bcc:
                 self.add_bcc(email)
