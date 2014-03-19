@@ -39,7 +39,8 @@ class SendGridClient(object):
             message.subject = message.subject.encode('utf-8')
             message.text = message.text.encode('utf-8')
             message.html = message.html.encode('utf-8')
-            message.replyto = message.replyto.encode('utf-8')
+            message.reply_to = message.reply_to.encode('utf-8')
+
 
         values = {
             'api_user': self.username,
