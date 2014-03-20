@@ -18,7 +18,8 @@ class Mail(SMTPAPIHeader):
         Args:
             to: Recipient
             to_name: Recipient name
-            from: Sender
+            from_email: Sender email
+            from_name: Sender name
             subject: Email title
             text: Email body
             html: Email body
