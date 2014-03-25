@@ -32,8 +32,8 @@ class Mail(SMTPAPIHeader):
         """
         super(Mail, self).__init__()
         self.to = []
-        self.add_to(opts.get('to', []))
         self.to_name = []
+        self.add_to(opts.get('to', []))
         self.add_to_name(opts.get('to_name', []))
         self.from_email = opts.get('from_email', '')
         self.from_name = opts.get('from_name', '')
