@@ -27,7 +27,7 @@ class SendGridClient(object):
         self.password = password
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.port = str(opts.get('port', '443'))
-        self.endpoint = '/api/mail.send.json'
+        self.endpoint = opts.get('endpoint', '/api/mail.send.json')
         self.mail_url = self.host + ':' + self.port + self.endpoint
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
