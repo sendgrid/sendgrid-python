@@ -136,6 +136,26 @@ message = sendgrid.Mail()
 message.add_filter("filter", "setting", "value")
 ```
 
+## SMTP
+
+SMTP support has been deprecated from all of our libs. But for those whom still want to use it, here is an example:
+
+```python
+import smtplib
+from email.mime.text import MIMEText
+
+email = MIMEText("this is a text/plain email") # you can make this html too.
+
+email['Subject'] = 'This will be the subject'
+email['From'] = 'yamil@sendgrid.com'
+email['To'] = 'example@email.com'
+email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field 
+
+s = smtplib.SMTP('smtp.sendgrid.net', 587)
+s.login('SENDGRID_USER', 'SENDGRID_PASSWORD')
+s.sendmail(email['From'], [email['To']], email.as_string())
+```
+
 ### TODO:
 
 * Add support for CID
