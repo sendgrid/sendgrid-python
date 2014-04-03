@@ -92,6 +92,7 @@ message = sendgrid.Mail()
 message.add_attachment('./stuff.txt')
 # or
 message.add_attachment_stream('filename', 'somerandomcontentyouwant')
+# strings, unicode, or BytesIO streams
 ```
 
 ## SendGrid's  [X-SMTPAPI](http://sendgrid.com/docs/API_Reference/SMTP_API/)

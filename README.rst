@@ -105,6 +105,7 @@ Set File Attachments
     message.add_attachment('./stuff.txt')
     # or
     message.add_attachment_stream('filename', 'somerandomcontentyouwant')
+    # strings, unicode, or BytesIO streams
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
