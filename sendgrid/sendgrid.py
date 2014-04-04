@@ -34,13 +34,11 @@ class SendGridClient(object):
 
     def _build_body(self, message):
         if sys.version_info < (3,0):
-            message.from_email = message.from_email.encode('utf-8')
-            message.from_name = message.from_name.encode('utf-8')
-            message.subject = message.subject.encode('utf-8')
-            message.text = message.text.encode('utf-8')
-            message.html = message.html.encode('utf-8')
-            message.reply_to = message.reply_to.encode('utf-8')
-
+            ks = ['from_email', 'from_name', 'subject', 'text', 'html', 'reply_to']
+            for k in ks:
+                v = getattr(message, k)
+                if isinstance(v, unicode):
+                    setattr(message, k, v.encode('utf-8'))
 
         values = {
             'api_user': self.username,
