@@ -89,7 +89,7 @@ message.set_replyto('example@email.com')
 
 ```python
 message = sendgrid.Mail()
-message.add_attachment('./stuff.txt')
+message.add_attachment('stuff.txt', './stuff.txt')
 # or
 message.add_attachment_stream('filename', 'somerandomcontentyouwant')
 # strings, unicode, or BytesIO streams
