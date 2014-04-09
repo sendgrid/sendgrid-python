@@ -49,6 +49,7 @@ class Mail(SMTPAPIHeader):
         self.date = opts.get('date', rfc822.formatdate())
 
     def parse_and_add(self, to):
+        super(Mail, self).add_to(to)
         name, email = rfc822.parseaddr(to.replace(',', ''))
         if email:
             self.to.append(email)
