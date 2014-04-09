@@ -12,7 +12,7 @@ def getRequires():
 
 setup(
     name='sendgrid',
-    version='0.3.7',
+    version='0.4.0',
     author='Yamil Asusta',
     author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
