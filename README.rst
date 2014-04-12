@@ -40,6 +40,32 @@ Example
     message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
     status, msg = sg.send(message)
 
+Error handling
+--------------
+
+By default, ``.send`` method returns a tuple ``(http_status_code, message)``,
+however you can pass ``raise_errors=True`` to ``SendGridClient`` constructor,
+then ``.send`` method will raise ``SendGridClientError`` for 4xx errors,
+and ``SendGridServerError`` for 5xx errors.
+
+.. code::
+
+    from sendgrid import SendGridError, SendGridClientError, SendGridServerError
+
+    sg = sendgrid.SendGridClient(username, password, raise_errors=True)
+
+    try:
+        sg.send(message)
+    except SendGridClientError:
+        ...
+    except SendGridServerError:
+        ...
+
+This behavior is going to be default from version 1.0.0. You are
+encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
+
+``SendGridError`` is a base-class for all SendGrid-related exceptions.
+
 Adding Recipients
 ~~~~~~~~~~~~~~~~~
 

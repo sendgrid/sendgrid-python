@@ -2,11 +2,22 @@ import os
 import unittest2 as unittest
 import json
 import sys
+try:
+    from StringIO import StringIO
+except ImportError:  # Python 3
+    from io import StringIO
+
 from sendgrid import SendGridClient, Mail
+from sendgrid.exceptions import SendGridClientError, SendGridServerError
+from sendgrid.sendgrid import HTTPError
+
+
+SG_USER, SG_PWD = os.getenv('SG_USER'), os.getenv('SG_PWD')
+
 
 class TestSendGrid(unittest.TestCase):
     def setUp(self):
-        self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
+        self.sg = SendGridClient(SG_USER, SG_PWD)
 
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test_unicode_recipients(self):
@@ -94,6 +105,27 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(subject, url['subject'])
         self.assertEqual(text, url['text'])
         self.assertEqual(html, url['html'])
+
+
+class SendGridClientUnderTest(SendGridClient):
+
+    def _make_request(self, message):
+        raise self.error
+
+
+class TestSendGridErrorHandling(unittest.TestCase):
+    def setUp(self):
+        self.sg = SendGridClientUnderTest(SG_USER, SG_PWD, raise_errors=True)
+
+    def test_client_raises_clinet_error_in_case_of_4xx(self):
+        self.sg.error = HTTPError('url', 403, 'msg', {}, StringIO('body'))
+        with self.assertRaises(SendGridClientError):
+            self.sg.send(Mail())
+
+    def test_client_raises_clinet_error_in_case_of_5xx(self):
+        self.sg.error = HTTPError('url', 503, 'msg', {}, StringIO('body'))
+        with self.assertRaises(SendGridServerError):
+            self.sg.send(Mail())
 
 
 if __name__ == '__main__':
