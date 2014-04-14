@@ -35,6 +35,32 @@ status, msg = sg.send(message)
 
 ```
 
+### Error handling
+
+By default, `.send` method returns a tuple `(http_status_code, message)`,
+however you can pass `raise_errors=True` to `SendGridClient` constructor,
+then `.send` method will raise `SendGridClientError` for 4xx errors,
+and `SendGridServerError` for 5xx errors.
+
+```python
+from sendgrid import SendGridError, SendGridClientError, SendGridServerError
+
+sg = sendgrid.SendGridClient(username, password, raise_errors=True)
+
+try:
+    sg.send(message)
+except SendGridClientError:
+    ...
+except SendGridServerError:
+    ...
+```
+
+This behavior is going to be default from version 1.0.0. You are
+encouraged to set `raise_errors` to `True` for forwards compatibility.
+
+`SendGridError` is a base-class for all SendGrid-related exceptions.
+
+
 ### Adding Recipients
 
 ```python
@@ -149,7 +175,7 @@ email = MIMEText("this is a text/plain email") # you can make this html too.
 email['Subject'] = 'This will be the subject'
 email['From'] = 'yamil@sendgrid.com'
 email['To'] = 'example@email.com'
-email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field 
+email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field
 
 s = smtplib.SMTP('smtp.sendgrid.net', 587)
 s.login('SENDGRID_USER', 'SENDGRID_PASSWORD')
