@@ -117,6 +117,8 @@ message.set_replyto('example@email.com')
 message = sendgrid.Mail()
 message.add_attachment('stuff.txt', './stuff.txt')
 # or
+message.add_attachment('stuff.txt', open('./stuff.txt', 'rb'))
+# or
 message.add_attachment_stream('filename', 'somerandomcontentyouwant')
 # strings, unicode, or BytesIO streams
 ```
@@ -175,7 +177,7 @@ email = MIMEText("this is a text/plain email") # you can make this html too.
 email['Subject'] = 'This will be the subject'
 email['From'] = 'yamil@sendgrid.com'
 email['To'] = 'example@email.com'
-email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field
+email['Cc'] = 'yamil.asusta@sendgrid.com, community@sendgrid.com' # this is comma separated field
 
 s = smtplib.SMTP('smtp.sendgrid.net', 587)
 s.login('SENDGRID_USER', 'SENDGRID_PASSWORD')
