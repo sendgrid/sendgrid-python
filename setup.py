@@ -1,6 +1,7 @@
 import sys
 from setuptools import setup, find_packages
 
+
 def getRequires():
     deps = ['smtpapi==0.1.2']
     if sys.version_info < (3, 0):
@@ -12,7 +13,7 @@ def getRequires():
 
 setup(
     name='sendgrid',
-    version='0.5.0',
+    version='0.5.1',
     author='Yamil Asusta',
     author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
