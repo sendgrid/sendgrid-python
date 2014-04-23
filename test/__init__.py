@@ -92,7 +92,6 @@ class TestSendGrid(unittest.TestCase):
         subject = '\xd0\x9d\xd0\xb0\xd0\xb4\xd0\xb5\xd0\xb6\xd0\xb4\xd0\xb0'
         text = '\xd0\x9d\xd0\xb0\xd0\xb4\xd0\xb5\xd0\xb6\xd0\xb4\xd0\xb0'
         html = '\xd0\x9d\xd0\xb0\xd0\xb4\xd0\xb5\xd0\xb6\xd0\xb4\xd0\xb0'
-        reply_to = '\xd0\x9d\xd0\xb8\xd0\xba\xd0\xb0@email.com'
         m = Mail()
         m.add_to('John, Doe <john@email.com>')
         m.set_subject(subject)
@@ -105,6 +104,17 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(subject, url['subject'])
         self.assertEqual(text, url['text'])
         self.assertEqual(html, url['html'])
+
+    def test_drop_to_header(self):
+        m = Mail()
+        m.add_to('John, Doe <john@email.com>')
+        m.set_from('doe@email.com')
+        m.set_subject('test')
+        m.set_text('test')
+        m.add_bcc('John, Doe <john@email.com>')
+        url =  self.sg._build_body(m)
+
+        print url
 
 
 class SendGridClientUnderTest(SendGridClient):
