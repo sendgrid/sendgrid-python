@@ -12,7 +12,7 @@ Web API.
 Install
 -------
 
-.. code::
+.. code:: python
 
     pip install sendgrid
     # or
@@ -21,7 +21,7 @@ Install
 Example
 -------
 
-.. code::
+.. code:: python
 
     import sendgrid
 
@@ -48,7 +48,7 @@ however you can pass ``raise_errors=True`` to ``SendGridClient`` constructor,
 then ``.send`` method will raise ``SendGridClientError`` for 4xx errors,
 and ``SendGridServerError`` for 5xx errors.
 
-.. code::
+.. code:: python
 
     from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 
@@ -69,7 +69,7 @@ encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
 Adding Recipients
 ~~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_to('example@email.com')
@@ -81,7 +81,7 @@ Adding Recipients
 Adding BCC Recipients
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_bcc('example@email.com')
@@ -91,7 +91,7 @@ Adding BCC Recipients
 Setting the Subject
 ~~~~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.set_subject('Example')
@@ -99,7 +99,7 @@ Setting the Subject
 Set Text or HTML
 ~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.set_text('Body')
@@ -109,7 +109,7 @@ Set Text or HTML
 Set From
 ~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.set_from('example@email.com')
@@ -117,7 +117,7 @@ Set From
 Set ReplyTo
 ~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message.sendgrid.Mail()
     message.set_replyto('example@email.com')
@@ -125,7 +125,7 @@ Set ReplyTo
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_attachment('stuff.txt', './stuff.txt')
@@ -146,7 +146,7 @@ There are implementations for setter methods too.
 `Substitution`_
 ~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_substitution("key", "value")
@@ -154,7 +154,7 @@ There are implementations for setter methods too.
 `Section`_
 ~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_section("section", "value")
@@ -162,7 +162,7 @@ There are implementations for setter methods too.
 `Category`_
 ~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_category("category")
@@ -170,7 +170,7 @@ There are implementations for setter methods too.
 `Unique Arguments`_
 ~~~~~~~~~~~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_unique_arg("key", "value")
@@ -178,7 +178,7 @@ There are implementations for setter methods too.
 `Filter`_
 ~~~~~~~~~
 
-.. code::
+.. code:: python
 
     message = sendgrid.Mail()
     message.add_filter("filter", "setting", "value")
@@ -191,7 +191,7 @@ TODO:
 Tests
 ~~~~~
 
-.. code::
+.. code:: python
 
     python test/__init__.py
 
