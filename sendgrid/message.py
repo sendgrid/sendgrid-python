@@ -29,7 +29,6 @@ class Mail(SMTPAPIHeader):
             headers: Set headers
             x-smtpapi: Set SG custom header
             files: Attachments
-
         """
         super(Mail, self).__init__()
         self.to = []
@@ -107,7 +106,7 @@ class Mail(SMTPAPIHeader):
         self.reply_to = replyto
 
     def add_attachment(self, name, file_):
-        if isinstance(file_, str): #filepath
+        if isinstance(file_, str):  # filepath
             with open(file_, 'rb') as f:
                 self.files[name] = f.read()
         elif hasattr(file_, 'read'):

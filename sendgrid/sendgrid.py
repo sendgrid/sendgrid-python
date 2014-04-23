@@ -4,7 +4,7 @@ try:
     import urllib.request as urllib_request
     from urllib.parse import urlencode
     from urllib.error import HTTPError
-except ImportError: # Python 2
+except ImportError:  # Python 2
     import urllib2 as urllib_request
     from urllib2 import HTTPError
     from urllib import urlencode
@@ -29,9 +29,6 @@ class SendGridClient(object):
                 to True: `.send` will raise SendGridError. Note, from version
                 1.0.0, the default will be changed to True, so you are
                 recommended to pass True for forwards compatability.
-
-
-
         """
         self.username = username
         self.password = password
@@ -44,14 +41,15 @@ class SendGridClient(object):
         self.proxies = opts.get('proxies', None)
 
     def _build_body(self, message):
-        if sys.version_info < (3,0):
-            ks = ['from_email', 'from_name', 'subject', 'text', 'html', 'reply_to']
+        if sys.version_info < (3, 0):
+            ks = ['from_email', 'from_name', 'subject',
+                  'text', 'html', 'reply_to']
             for k in ks:
                 v = getattr(message, k)
                 if isinstance(v, unicode):
                     setattr(message, k, v.encode('utf-8'))
 
-        if (message.bcc): 
+        if (message.bcc):
             message.set_tos([])
 
         values = {

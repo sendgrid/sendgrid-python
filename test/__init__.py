@@ -113,7 +113,7 @@ class TestSendGrid(unittest.TestCase):
         m.set_subject('test')
         m.set_text('test')
         m.add_bcc('John, Doe <john@email.com>')
-        url =  self.sg._build_body(m)
+        url = self.sg._build_body(m)
         self.assertEqual(smtpapi, url['x-smtpapi'])
 
 
