@@ -1,4 +1,2 @@
-include README.md
 include README.rst
-include requirements.txt
 recursive-exclude test *
