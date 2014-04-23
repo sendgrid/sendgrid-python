@@ -2,7 +2,7 @@ import sys
 from setuptools import setup, find_packages
 
 def getRequires():
-    deps = ['smtpapi']
+    deps = ['smtpapi==0.1.2']
     if sys.version_info < (3, 0):
         deps.append('unittest2')
     else:
