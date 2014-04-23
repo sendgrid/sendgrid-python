@@ -106,12 +106,12 @@ class Mail(SMTPAPIHeader):
     def set_replyto(self, replyto):
         self.reply_to = replyto
 
-    def add_attachment(self, name, file):
-        if isinstance(file, str): #filepath
-            with open(file, 'rb') as f:
+    def add_attachment(self, name, file_):
+        if isinstance(file_, str): #filepath
+            with open(file_, 'rb') as f:
                 self.files[name] = f.read()
-        elif hasattr(file, 'read'):
-            self.files[name] = f.read()
+        elif hasattr(file_, 'read'):
+            self.files[name] = file_.read()
 
     def add_attachment_stream(self, name, string):
         if isinstance(string, str):
