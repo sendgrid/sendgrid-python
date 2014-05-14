@@ -27,7 +27,6 @@ class Mail(SMTPAPIHeader):
             reply_to: Reply address
             date: Set date
             headers: Set headers
-            x-smtpapi: Set SG custom header
             files: Attachments
         """
         super(Mail, self).__init__()
