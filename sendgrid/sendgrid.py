@@ -33,6 +33,7 @@ class SendGridClient(object):
         """
         self.username = username
         self.password = password
+        self.useragent = 'sendgrid/' + pkg_resources.get_distribution('sendgrid').version + ';python'
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.port = str(opts.get('port', '443'))
         self.endpoint = opts.get('endpoint', '/api/mail.send.json')
@@ -84,7 +85,7 @@ class SendGridClient(object):
             urllib_request.install_opener(opener)
         data = urlencode(self._build_body(message), True).encode('utf-8')
         req = urllib_request.Request(self.mail_url, data)
-        req.add_header('User-Agent', 'sendgrid/' + pkg_resources.get_distribution("sendgrid").version + ';python')
+        req.add_header('User-Agent', self.useragent)
         response = urllib_request.urlopen(req, timeout=10)
         body = response.read()
         return response.getcode(), body
