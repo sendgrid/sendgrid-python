@@ -106,7 +106,7 @@ class SendGridClient(object):
 
     def _raising_send(self, message):
         try:
-            self._make_request(message)
+            return self._make_request(message)
         except HTTPError as e:
             if e.code in range(400, 500):
                 raise SendGridClientError(e.code, e.read())
