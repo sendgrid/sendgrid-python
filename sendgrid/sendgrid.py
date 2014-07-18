@@ -1,4 +1,5 @@
 import sys
+import pkg_resources
 from socket import timeout
 try:
     import urllib.request as urllib_request
@@ -83,6 +84,7 @@ class SendGridClient(object):
             urllib_request.install_opener(opener)
         data = urlencode(self._build_body(message), True).encode('utf-8')
         req = urllib_request.Request(self.mail_url, data)
+        req.add_header('User-Agent', 'sendgrid/' + pkg_resources.get_distribution("sendgrid").version + ';python')
         response = urllib_request.urlopen(req, timeout=10)
         body = response.read()
         return response.getcode(), body
