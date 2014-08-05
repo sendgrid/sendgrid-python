@@ -1,6 +1,8 @@
 import sys
 from setuptools import setup, find_packages
 
+execfile('sendgrid/version.py')
+
 
 def getRequires():
     deps = ['smtpapi==0.1.2']
@@ -10,10 +12,9 @@ def getRequires():
         deps.append('unittest2py3k')
     return deps
 
-
 setup(
     name='sendgrid',
-    version='0.5.4',
+    version=str(__version__),
     author='Yamil Asusta',
     author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',

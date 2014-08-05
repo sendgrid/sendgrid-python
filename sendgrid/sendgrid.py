@@ -1,6 +1,6 @@
 import sys
-import pkg_resources
 from socket import timeout
+from .version import __version__
 try:
     import urllib.request as urllib_request
     from urllib.parse import urlencode
@@ -33,7 +33,7 @@ class SendGridClient(object):
         """
         self.username = username
         self.password = password
-        self.useragent = 'sendgrid/' + pkg_resources.get_distribution('sendgrid').version + ';python'
+        self.useragent = 'sendgrid/' + __version__ + ';python'
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.port = str(opts.get('port', '443'))
         self.endpoint = opts.get('endpoint', '/api/mail.send.json')
