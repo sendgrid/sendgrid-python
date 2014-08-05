@@ -39,6 +39,8 @@ class TestSendGrid(unittest.TestCase):
         m.set_html('WIN')
         m.set_text('WIN')
         m.set_from('doe@email.com')
+        m.add_cc('cc@email.com')
+        m.add_bcc('bcc@email.com')
         m.add_substitution('subKey', 'subValue')
         m.add_section('testSection', 'sectionValue')
         m.add_category('testCategory')
@@ -57,7 +59,9 @@ class TestSendGrid(unittest.TestCase):
                 "text": "WIN",
                 "subject": "test",
                 "files[testFile]": "fileValue",
-                "from": "doe@email.com"
+                "from": "doe@email.com",
+                "cc[]": ["cc@email.com"],
+                "bcc[]": ["bcc@email.com"]
             }
             ''')
         test_url['x-smtpapi'] = json.dumps(json.loads('''
