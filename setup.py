@@ -1,7 +1,9 @@
 import sys
 from setuptools import setup, find_packages
 
-execfile('sendgrid/version.py')
+__version__ = None
+with open('sendgrid/version.py') as f:
+    exec(f.read())
 
 
 def getRequires():
