@@ -51,9 +51,6 @@ class SendGridClient(object):
                 if isinstance(v, unicode):
                     setattr(message, k, v.encode('utf-8'))
 
-        if (message.bcc):
-            message.set_tos([])
-
         values = {
             'api_user': self.username,
             'api_key': self.password,

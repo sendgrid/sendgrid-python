@@ -109,17 +109,6 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(text, url['text'])
         self.assertEqual(html, url['html'])
 
-    def test_drop_to_header(self):
-        smtpapi = '{}'
-        m = Mail()
-        m.add_to('John, Doe <john@email.com>')
-        m.set_from('doe@email.com')
-        m.set_subject('test')
-        m.set_text('test')
-        m.add_bcc('John, Doe <john@email.com>')
-        url = self.sg._build_body(m)
-        self.assertEqual(smtpapi, url['x-smtpapi'])
-
 
 class SendGridClientUnderTest(SendGridClient):
 
