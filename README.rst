@@ -130,6 +130,16 @@ Set File Attachments
     message.add_attachment_stream('filename', 'somerandomcontentyouwant')
     # strings, unicode, or BytesIO streams
 
+Set Content ID's
+~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.add_attachment('image.png', open('./image.png', 'rb'))
+    message.add_content_id('image.png', 'ID_IN_HTML')
+    message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
+
 SendGrid's `X-SMTPAPI`_
 -----------------------
 
@@ -178,10 +188,6 @@ There are implementations for setter methods too.
     message = sendgrid.Mail()
     message.add_filter("filter", "setting", "value")
 
-TODO:
-~~~~~
-
--  Add support for CID
 
 Tests
 ~~~~~
