@@ -127,7 +127,7 @@ class Mail(SMTPAPIHeader):
 
     def add_attachment_stream(self, name, string):
         if sys.version_info < (3, 0) and isinstance(name, unicode):
-            name = name.encode('uft-8')
+            name = name.encode('utf-8')
         if isinstance(string, str):
             self.files[name] = string
         elif isinstance(string, io.BytesIO):
