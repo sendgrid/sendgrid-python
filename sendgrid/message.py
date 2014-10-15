@@ -119,6 +119,8 @@ class Mail(SMTPAPIHeader):
         self.reply_to = replyto
 
     def add_attachment(self, name, file_):
+        if sys.version_info < (3, 0) and isinstance(name, unicode):
+            name = name.encode('utf-8')
         if isinstance(file_, str):  # filepath
             with open(file_, 'rb') as f:
                 self.files[name] = f.read()
