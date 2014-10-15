@@ -72,7 +72,8 @@ class Mail(SMTPAPIHeader):
         elif sys.version_info < (3, 0) and isinstance(to_name, unicode):
             self.to_name.append(to_name.encode('utf-8'))
         elif hasattr(to_name, '__iter__'):
-            self.to_name = self.to_name + to_name
+            for tn in to_name:
+                self.add_to_name(tn)
 
     def add_cc(self, cc):
         if isinstance(cc, str):
