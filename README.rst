@@ -4,6 +4,11 @@ SendGrid-Python
 This library allows you to quickly and easily send emails through
 SendGrid using Python.
 
+Warning
+-------
+
+If you upgrade to version ``1.2.x``, the ``add_to`` method behaves differently. In the past this method defaulted to using the ``SMTPAPI`` header. Now you must explicitly call the ``smtpapi.add_to`` method. More on the ``SMTPAPI`` section.
+
 Install
 -------
 
@@ -148,13 +153,23 @@ If you wish to use the X-SMTPAPI on your own app, you can use the
 
 There are implementations for setter methods too.
 
+`Recipients`_
+~~~~~~~~~~~~~
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.smtpapi.add_to('example@email.com')
+
 `Substitution`_
 ~~~~~~~~~~~~~~~
 
 .. code:: python
 
     message = sendgrid.Mail()
-    message.add_substitution("key", "value")
+    message.smtpapi.add_substitution('key', 'value')
+    # or
+    message.add_substitution('key', 'value')
 
 `Section`_
 ~~~~~~~~~~
@@ -162,7 +177,9 @@ There are implementations for setter methods too.
 .. code:: python
 
     message = sendgrid.Mail()
-    message.add_section("section", "value")
+    message.smtpapi.add_section('section', 'value')
+    # or
+    message.add_section('section', 'value')
 
 `Category`_
 ~~~~~~~~~~~
@@ -170,7 +187,9 @@ There are implementations for setter methods too.
 .. code:: python
 
     message = sendgrid.Mail()
-    message.add_category("category")
+    message.smtpapi.add_category('category')
+    # or
+    message.add_category('category')
 
 `Unique Arguments`_
 ~~~~~~~~~~~~~~~~~~~
@@ -178,7 +197,9 @@ There are implementations for setter methods too.
 .. code:: python
 
     message = sendgrid.Mail()
-    message.add_unique_arg("key", "value")
+    message.smtpapi.add_unique_arg('key', 'value')
+    # or
+    message.add_unique_arg('key', 'value')
 
 `Filter`_
 ~~~~~~~~~
@@ -186,7 +207,9 @@ There are implementations for setter methods too.
 .. code:: python
 
     message = sendgrid.Mail()
-    message.add_filter("filter", "setting", "value")
+    message.smtpapi.add_filter('filter', 'setting', 'value')
+    # or
+    message.add_filter('filter', 'setting', 'value')
 
 
 Tests

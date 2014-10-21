@@ -7,7 +7,7 @@ except Exception as e:
 from smtpapi import SMTPAPIHeader
 
 
-class Mail(SMTPAPIHeader):
+class Mail():
 
     """SendGrid Message."""
 
@@ -29,7 +29,6 @@ class Mail(SMTPAPIHeader):
             headers: Set headers
             files: Attachments
         """
-        super(Mail, self).__init__()
         self.to = []
         self.to_name = []
         self.cc = []
@@ -48,9 +47,9 @@ class Mail(SMTPAPIHeader):
         self.headers = opts.get('headers', '')
         self.date = opts.get('date', rfc822.formatdate())
         self.content = opts.get('content', {})
+        self.smtpapi = opts.get('smtpapi', SMTPAPIHeader())
 
     def parse_and_add(self, to):
-        super(Mail, self).add_to(to)
         name, email = rfc822.parseaddr(to.replace(',', ''))
         if email:
             self.to.append(email)
@@ -144,3 +143,35 @@ class Mail(SMTPAPIHeader):
 
     def set_date(self, date):
         self.date = date
+
+    # SMTPAPI Wrapper methods
+
+    def add_substitution(self, key, value):
+        self.smtpapi.add_substitution(key, value)
+
+    def set_substitutions(self, subs):
+        self.smtpapi.set_substitutions(subs)
+
+    def add_unique_arg(self, key, value):
+        self.smtpapi.add_unique_arg(key, value)
+
+    def set_unique_args(self, args):
+        self.smtpapi.set_unique_args(args)
+
+    def add_category(self, cat):
+        self.smtpapi.add_category(cat)
+
+    def set_categories(self, cats):
+        self.smtpapi.set_categories(cats)
+
+    def add_section(self, key, value):
+        self.smtpapi.add_section(key, value)
+
+    def set_sections(self, sections):
+        self.smtpapi.set_sections(sections)
+
+    def add_filter(self, filterKey, setting, value):
+        self.smtpapi.add_filter(filterKey, setting, value)
+
+    def json_string(self):
+        return self.smtpapi.json_string()

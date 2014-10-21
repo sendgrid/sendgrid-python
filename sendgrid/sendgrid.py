@@ -54,7 +54,7 @@ class SendGridClient(object):
         values = {
             'api_user': self.username,
             'api_key': self.password,
-            'to[]': message.to,
+            'to[]': message.to if message.to else [message.from_email],
             'toname[]': message.to_name,
             'cc[]': message.cc,
             'bcc[]': message.bcc,

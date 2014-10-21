@@ -66,7 +66,6 @@ class TestSendGrid(unittest.TestCase):
             ''')
         test_url['x-smtpapi'] = json.dumps(json.loads('''
             {
-                "to" : ["John, Doe <john@email.com>"],
                 "sub": {
                     "subKey": ["subValue"]
                 },
@@ -108,6 +107,32 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(subject, url['subject'])
         self.assertEqual(text, url['text'])
         self.assertEqual(html, url['html'])
+
+
+    def test_smtpapi_add_to(self):
+        '''Test that message.to gets a dummy address for the header to work'''
+        m = Mail()
+        m.smtpapi.add_to('test@email.com')
+        m.set_from('jon@doe.com')
+        m.set_subject('test')
+        url = self.sg._build_body(m)
+        url.pop('api_key', None)
+        url.pop('api_user', None)
+        url.pop('date', None)
+        test_url = json.loads('''
+            {
+                "to[]": ["jon@doe.com"],
+                "subject": "test",
+                "from": "jon@doe.com"
+            }
+            ''')
+        test_url['x-smtpapi'] = json.dumps(json.loads('''
+            {
+                "to": ["test@email.com"]
+            }
+            '''))
+        self.assertEqual(url, test_url)
+
 
 
 class SendGridClientUnderTest(SendGridClient):
