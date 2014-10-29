@@ -122,6 +122,16 @@ Set ReplyTo
     message.sendgrid.Mail()
     message.set_replyto('example@email.com')
 
+
+Using Templates
+~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    # template should be active
+    message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
+
+
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
 
