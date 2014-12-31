@@ -7,7 +7,7 @@ with open('sendgrid/version.py') as f:
 
 
 def getRequires():
-    deps = ['smtpapi==0.1.2']
+    deps = ['smtpapi==0.1.3']
     if sys.version_info < (3, 0):
         deps.append('unittest2')
     else:
