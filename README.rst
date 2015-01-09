@@ -66,8 +66,13 @@ encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
 
 ``SendGridError`` is a base-class for all SendGrid-related exceptions.
 
-Adding Recipients
-~~~~~~~~~~~~~~~~~
+Methods
+~~~~~~~
+
+There are multiple ways to add recipients:
+
+add_to
+^^^^^^
 
 .. code:: python
 
@@ -77,9 +82,27 @@ Adding Recipients
     message.add_to('Example Dude <example@email.com>')
     # or
     message.add_to(['Example Dude <example@email.com>', 'john@email.com'])
+    
+add_to_name
+^^^^^^^^^^^
+    
+.. code:: python
 
-Adding BCC Recipients
-~~~~~~~~~~~~~~~~~~~~~
+    message = sendgrid.Mail()
+    message.add_to('example@email.com')
+    message.add_to_name('Example Dude')
+    
+add_cc
+^^^^^^
+    
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.add_cc('example@email.com')
+    message.add_cc(['example@email.com', 'john@email.com'])
+    
+add_bcc
+^^^^^^^
 
 .. code:: python
 
@@ -87,53 +110,71 @@ Adding BCC Recipients
     message.add_bcc('example@email.com')
     # or
     message.add_bcc(['Example Dude <example@email.com>', 'john@email.com'])
-
-Setting the Subject
-~~~~~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    message = sendgrid.Mail()
-    message.set_subject('Example')
-
-Set Text or HTML
-~~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    message = sendgrid.Mail()
-    message.set_text('Body')
-    # or
-    message.set_html('<html><body>Stuff, you know?</body></html>')
-
-Set From
-~~~~~~~~
+    
+set_from
+^^^^^^^^
 
 .. code:: python
 
     message = sendgrid.Mail()
     message.set_from('example@email.com')
 
-Set ReplyTo
-~~~~~~~~~~~
+set_from_name
+^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_from('example@email.com')
+    message.set_from_name('Example Dude')
+
+set_replyto
+^^^^^^^^^^^
 
 .. code:: python
 
     message.sendgrid.Mail()
     message.set_replyto('example@email.com')
 
-
-Using Templates
-~~~~~~~~~~~~~~~~~
+set_subject
+^^^^^^^^^^^
 
 .. code:: python
 
-    # template should be active
-    message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
+    message = sendgrid.Mail()
+    message.set_subject('Example')
 
+set_text
+^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_text('Body')
+    
+set_html
+^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_html('<html><body>Stuff, you know?</body></html>')
+    
+set_date
+^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_date('Wed, 17 Dec 2014 19:21:16 +0000')
 
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
+
+There are multiple ways to work with attachments:
+
+add_attachment
+^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -141,12 +182,18 @@ Set File Attachments
     message.add_attachment('stuff.txt', './stuff.txt')
     # or
     message.add_attachment('stuff.txt', open('./stuff.txt', 'rb'))
-    # or
+    
+add_attachment_stream
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
     message.add_attachment_stream('filename', 'somerandomcontentyouwant')
     # strings, unicode, or BytesIO streams
-
-Set Content ID's
-~~~~~~~~~~~~~~~~~~~~
+    
+add_content_id
+^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -178,8 +225,22 @@ There are implementations for setter methods too.
 
     message = sendgrid.Mail()
     message.smtpapi.add_substitution('key', 'value')
-    # or
+
+add_substitution
+^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
     message.add_substitution('key', 'value')
+    
+set_substitutions
+^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_substitutions({'key1': ['value1', 'value2'], 'key2': ['value3', 'value4']})
 
 `Section`_
 ~~~~~~~~~~
@@ -188,8 +249,22 @@ There are implementations for setter methods too.
 
     message = sendgrid.Mail()
     message.smtpapi.add_section('section', 'value')
-    # or
+    
+add_section
+^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
     message.add_section('section', 'value')
+    
+set_sections
+^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_sections({'section1': 'value1', 'section2': 'value2'})
 
 `Category`_
 ~~~~~~~~~~~
@@ -198,8 +273,22 @@ There are implementations for setter methods too.
 
     message = sendgrid.Mail()
     message.smtpapi.add_category('category')
-    # or
+    
+add_category
+^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
     message.add_category('category')
+    
+set_categories
+^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_categories(['category1', 'category2'])
 
 `Unique Arguments`_
 ~~~~~~~~~~~~~~~~~~~
@@ -208,8 +297,22 @@ There are implementations for setter methods too.
 
     message = sendgrid.Mail()
     message.smtpapi.add_unique_arg('key', 'value')
-    # or
+    
+add_unique_arg
+^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
     message.add_unique_arg('key', 'value')
+    
+set_unique_args
+^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_unique_args({'key1': 'value1', 'key2': 'value2'})
 
 `Filter`_
 ~~~~~~~~~
@@ -218,9 +321,22 @@ There are implementations for setter methods too.
 
     message = sendgrid.Mail()
     message.smtpapi.add_filter('filter', 'setting', 'value')
-    # or
-    message.add_filter('filter', 'setting', 'value')
+    
+add_filter
+^^^^^^^^^^
 
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.add_filter('filter', 'setting', 'value')
+    
+Using Templates from the Template Engine
+~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    message.add_filter('templates', 'enable', '1')
+    message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
 
 Tests
 ~~~~~
