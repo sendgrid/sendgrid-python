@@ -1,5 +1,6 @@
 import io
 import sys
+import json
 try:
     import rfc822
 except Exception as e:
@@ -139,7 +140,10 @@ class Mail():
         self.content[cid] = value
 
     def set_headers(self, headers):
-        self.headers = headers
+        if isinstance(headers, str):
+            self.headers = headers
+        else:
+            self.headers = json.dumps(headers)
 
     def set_date(self, date):
         self.date = date
