@@ -1,4 +1,4 @@
-import io
+import import sys
 import sys
 import json
 try:
@@ -62,6 +62,12 @@ class Mail():
             self.parse_and_add(to)
         elif sys.version_info < (3, 0) and isinstance(to, unicode):
             self.parse_and_add(to.encode('utf-8'))
+        elif type(to) is tuple:
+            if len(to) == 1:
+                self.add_to(to[0])
+            elif len(to) == 2:
+                self.add_to(to[0])
+                self.add_to_name(to[1])
         elif hasattr(to, '__iter__'):
             for email in to:
                 self.add_to(email)
