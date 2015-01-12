@@ -1,4 +1,4 @@
-import import sys
+import io
 import sys
 import json
 try:
