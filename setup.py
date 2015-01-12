@@ -8,9 +8,9 @@ with open('sendgrid/version.py') as f:
 
 def getRequires():
     deps = ['smtpapi==0.1.3']
-    if sys.version_info < (3, 0):
+    if sys.version_info < (2, 7):
         deps.append('unittest2')
-    else:
+    elif (3, 0) <= sys.version_info:
         deps.append('unittest2py3k')
     return deps
 
