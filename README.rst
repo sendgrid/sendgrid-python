@@ -167,6 +167,14 @@ set_date
 
     message = sendgrid.Mail()
     message.set_date('Wed, 17 Dec 2014 19:21:16 +0000')
+    
+set_headers
+^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_headers({'X-Sent-Using': 'SendGrid-API', 'X-Transport': 'web'});
 
 Set File Attachments
 ~~~~~~~~~~~~~~~~~~~~
