@@ -45,7 +45,7 @@ class Mail():
         self.add_bcc(opts.get('bcc', []))
         self.reply_to = opts.get('reply_to', '')
         self.files = opts.get('files', {})
-        self.headers = opts.get('headers', '')
+        self.set_headers(opts.get('headers', ''))
         self.date = opts.get('date', rfc822.formatdate())
         self.content = opts.get('content', {})
         self.smtpapi = opts.get('smtpapi', SMTPAPIHeader())
