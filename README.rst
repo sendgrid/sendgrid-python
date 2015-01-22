@@ -243,7 +243,7 @@ add_substitution
     message.add_substitution('key', 'value')
     
 set_substitutions
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -337,9 +337,25 @@ add_filter
 
     message = sendgrid.Mail()
     message.add_filter('filter', 'setting', 'value')
+
+`ASM Group`_
+~~~~~~~~~~~~
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.smtpapi.set_asm_group_id(value)
+
+set_asm_group_id
+^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    message = sendgrid.Mail()
+    message.set_asm_group_id(value)
     
 Using Templates from the Template Engine
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 

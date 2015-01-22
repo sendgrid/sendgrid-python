@@ -42,6 +42,7 @@ class TestSendGrid(unittest.TestCase):
         m.set_html('WIN')
         m.set_text('WIN')
         m.set_from('doe@email.com')
+        m.set_asm_group_id(42)
         m.add_cc('cc@email.com')
         m.add_bcc('bcc@email.com')
         m.add_substitution('subKey', 'subValue')
@@ -85,7 +86,8 @@ class TestSendGrid(unittest.TestCase):
                             "filter": "filterValue"
                         }
                     }
-                }
+                },
+                "asm_group_id": 42
             }
             '''))
         self.assertEqual(url, test_url)

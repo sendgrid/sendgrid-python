@@ -183,5 +183,8 @@ class Mail():
     def add_filter(self, filterKey, setting, value):
         self.smtpapi.add_filter(filterKey, setting, value)
 
+    def set_asm_group_id(self, value):
+        self.smtpapi.set_asm_group_id(value)
+
     def json_string(self):
         return self.smtpapi.json_string()
