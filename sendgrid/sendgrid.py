@@ -17,7 +17,7 @@ class SendGridClient(object):
 
     """SendGrid API."""
 
-    def __init__(self, username_or_apikey, password = None, **opts):
+    def __init__(self, username_or_apikey, password=None, **opts):
         """
         Construct SendGrid API object.
 
@@ -33,7 +33,7 @@ class SendGridClient(object):
         """
 
         # Check if username + password or api key
-        if password == None:
+        if password is None:
             # API Key
             self.username = None
             self.password = username_or_apikey
@@ -101,7 +101,7 @@ class SendGridClient(object):
         req = urllib_request.Request(self.mail_url, data)
         req.add_header('User-Agent', self.useragent)
 
-        if self.username == None:
+        if self.username is None:
             # Using API key
             req.add_header('Authorization', 'Bearer ' + self.password)
 
