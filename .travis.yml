@@ -9,9 +9,10 @@ script: python test/__init__.py
 notifications:
   hipchat:
     rooms:
-      secure: EM9R9OJdDnocbOt2oAmm9ZySBN2c/gYItc5VhfrsTGTLip6+nQg+j7/CKvySwoBYbAQQ73Lf/qi0x4x29rWlwXOP0roHoBHKkU19Yf0xD2fXg2v2RYyCndLL6kBMirs3Os/hzMfqlBszmZyJX/Ffrttz0dmOw7H4i3UtNLfLZQ4=
+      secure: Lo3L/YNWpn9ulGX4D2HlWrBOyxMPlLkFcwxbYViG69Ta6BV+c6YE+Pct43tExlL6sZ+nj5p8X4KRTeOM4sqASrebWA25nyUrNTm+vZYFbi5XfmGvvi8TEsgg0MYRQRWWn/R2z0kZW/fqOY6sqJuoIafMBmC3tayTJRiH1Ct2Cw0=
     template:
     - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
       <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
     format: html
+    notify: true
