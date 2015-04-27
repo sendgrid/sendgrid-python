@@ -14,13 +14,17 @@ from sendgrid import SendGridClient, Mail
 from sendgrid.exceptions import SendGridClientError, SendGridServerError
 from sendgrid.sendgrid import HTTPError
 
-
-SG_USER, SG_PWD = os.getenv('SG_USER'), os.getenv('SG_PWD')
-
+SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
+SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
 
 class TestSendGrid(unittest.TestCase):
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
+
+    def test_apikey_init(self):
+        sg = SendGridClient(SG_PWD)
+        self.assertEqual(sg.password, SG_PWD)
+        self.assertIsNone(sg.username)
 
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test_unicode_recipients(self):

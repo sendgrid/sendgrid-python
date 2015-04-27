@@ -66,6 +66,16 @@ encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
 
 ``SendGridError`` is a base-class for all SendGrid-related exceptions.
 
+Usage
+~~~~~
+
+To begin using this library create a new instance of `SendGridClient` with your SendGrid credentials or a SendGrid API Key. API Key is the preferred method. API Keys are in beta. To configure API keys, visit https://sendgrid.com/beta/settings/api_key.
+
+.. code:: python
+  sg = sendgrid.SendGridClient('sendgrid_username', 'sendgrid_password')
+  # or
+  sg = sendgrid.SendGridClient('sendgrid_apikey')
+
 Methods
 ~~~~~~~
 
