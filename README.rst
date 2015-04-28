@@ -4,6 +4,9 @@ SendGrid-Python
 This library allows you to quickly and easily send emails through
 SendGrid using Python.
 
+.. image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master
+    :target: https://travis-ci.org/sendgrid/sendgrid-python
+
 Warning
 -------
 
