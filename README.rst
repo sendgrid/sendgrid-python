@@ -64,7 +64,7 @@ and ``SendGridServerError`` for 5xx errors.
     except SendGridServerError:
         ...
 
-This behavior is going to be default from version 1.0.0. You are
+This behavior is going to be default from version 2.0.0. You are
 encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
 
 ``SendGridError`` is a base-class for all SendGrid-related exceptions.
