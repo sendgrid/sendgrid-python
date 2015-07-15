@@ -1,12 +1,13 @@
-import httplib
 import sys
 from socket import timeout
 from .version import __version__
 try:
+    import http.client as http_client
     import urllib.request as urllib_request
     from urllib.parse import urlencode
     from urllib.error import HTTPError
 except ImportError:  # Python 2
+    import httplib as http_client
     import urllib2 as urllib_request
     from urllib2 import HTTPError
     from urllib import urlencode
@@ -126,13 +127,14 @@ class SendGridClient(object):
             headers['Authorization'] = 'Bearer ' + self.password
         for _ in range(self._max_retry):
             if self._server is None:
-                self._server = httplib.HTTPSConnection(domain, int(self.port))
+                self._server = http_client.HTTPSConnection(domain,
+                                                           int(self.port))
             self._server.request('POST', self.endpoint, data, headers=headers)
             try:
                 response = self._server.getresponse()
                 body = response.read()
                 return response.status, body
-            except httplib.BadStatusLine:
+            except http_client.BadStatusLine:
                 # Persistent request timeout reached. Retrying...
                 self._server.close()
                 self._server = None
