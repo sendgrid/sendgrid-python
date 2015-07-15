@@ -1,3 +1,4 @@
+import httplib
 import sys
 from socket import timeout
 from .version import __version__
@@ -50,6 +51,8 @@ class SendGridClient(object):
         self._raise_errors = opts.get('raise_errors', False)
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
+        self._server = None
+        self._max_retry = 3
 
     def _build_body(self, message):
         if sys.version_info < (3, 0):
@@ -92,7 +95,7 @@ class SendGridClient(object):
                 values['content[' + content + ']'] = message.content[content]
         return values
 
-    def _make_request(self, message):
+    def _make_nonpersistent_request(self, message):
         if self.proxies:
             proxy_support = urllib_request.ProxyHandler(self.proxies)
             opener = urllib_request.build_opener(proxy_support)
@@ -108,6 +111,40 @@ class SendGridClient(object):
         response = urllib_request.urlopen(req, timeout=10)
         body = response.read()
         return response.getcode(), body
+
+    def _make_persistent_request(self, message):
+        data = urlencode(self._build_body(message), True).encode('utf-8')
+        domain = self.host.lstrip('http://').lstrip('https://')
+        headers = {
+            'User-Agent': self.useragent,
+            'Host': domain + ':' + self.port,
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Connection': 'Keep-Alive',
+        }
+        if self.username is None:
+            # Using API key
+            headers['Authorization'] = 'Bearer ' + self.password
+        for _ in range(self._max_retry):
+            if self._server is None:
+                self._server = httplib.HTTPSConnection(domain, int(self.port))
+            self._server.request('POST', self.endpoint, data, headers=headers)
+            try:
+                response = self._server.getresponse()
+                body = response.read()
+                return response.status, body
+            except httplib.BadStatusLine:
+                # Persistent request timeout reached. Retrying...
+                self._server.close()
+                self._server = None
+        raise timeout("Unable to start persistent connection")
+
+    def _make_request(self, message):
+        if not self.proxies:
+            try:
+                return self._make_persistent_request(message)
+            except timeout:
+                pass  # ignore timeout for persistent requests
+        return self._make_nonpersistent_request(message)
 
     def send(self, message):
         if self._raise_errors:
