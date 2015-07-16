@@ -145,7 +145,9 @@ class SendGridClient(object):
             try:
                 return self._make_persistent_request(message)
             except timeout:
-                pass  # ignore timeout for persistent requests
+                # Timeout on persistent request, falling back to
+                # non-persistent request
+                pass
         return self._make_nonpersistent_request(message)
 
     def send(self, message):
