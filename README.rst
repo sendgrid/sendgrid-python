@@ -392,6 +392,7 @@ Deploying
 - Confirm tests pass
 - Commit `Version bump vX.X.X`
 - `python setup.py sdist bdist_wininst upload`
+- Push changes to GitHub
 - Release tag on GitHub `vX.X.X`
 
 MIT License
