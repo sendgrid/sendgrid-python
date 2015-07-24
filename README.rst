@@ -383,6 +383,17 @@ Tests
 
     python test/__init__.py
 
+Deploying
+~~~~~~~~~
+
+- Confirm tests pass
+- Bump the version in `README.rst`, `sendgrid/version.py`
+- Update `CHANGELOG.md`
+- Confirm tests pass
+- Commit `Version bump vX.X.X`
+- `python setup.py sdist bdist_wininst upload`
+- Release tag on GitHub `vX.X.X`
+
 MIT License
 -----------
 
