@@ -18,7 +18,7 @@ setup(
     name='sendgrid',
     version=str(__version__),
     author='SendGrid',
-    author_email='support@sendgrid.com',
+    author_email='libraries@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(),
     license='MIT',
