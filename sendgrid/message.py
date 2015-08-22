@@ -1,6 +1,7 @@
 import io
 import sys
 import json
+import unicodedata
 try:
     import rfc822
 except Exception as e:
@@ -50,10 +51,24 @@ class Mail():
         self.content = opts.get('content', {})
         self.smtpapi = opts.get('smtpapi', SMTPAPIHeader())
 
+    def four_digit_escape(self, email):
+        #return u''.join(char if 32 <= ord(char) <= 126 else '\\u%04x'%ord(char) for char in email)
+        return_string = ""
+        for char in email.decode('utf-8'):
+            print char, ord(char), '\\u%04x' % ord(char)
+            if ( 32 <= ord(char) <= 126):
+                return_string += char
+            else:
+                return_string += '\\u%04x' % ord(char)
+        return return_string
+
     def parse_and_add(self, to):
         name, email = rfc822.parseaddr(to.replace(',', ''))
         if email:
-            self.to.append(email)
+            print type(email)
+            self.to.append(self.four_digit_escape(email)) #self.four_digit_escape(email).encode('utf-8')
+            print self.to
+            print type(self.to[0])
         if name:
             self.add_to_name(name)
 

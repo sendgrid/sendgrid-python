@@ -58,6 +58,7 @@ class SendGridClient(object):
             for k in ks:
                 v = getattr(message, k)
                 if isinstance(v, unicode):
+                    print message, k, v
                     setattr(message, k, v.encode('utf-8'))
 
         values = {
@@ -75,7 +76,7 @@ class SendGridClient(object):
             'date': message.date,
             'x-smtpapi': message.json_string()
         }
-
+        print "values are", values
         if self.username != None:
             # Using username + password
             values['api_user'] = self.username
@@ -98,6 +99,7 @@ class SendGridClient(object):
             opener = urllib_request.build_opener(proxy_support)
             urllib_request.install_opener(opener)
         data = urlencode(self._build_body(message), True).encode('utf-8')
+        print "data i s", data
         req = urllib_request.Request(self.mail_url, data)
         req.add_header('User-Agent', self.useragent)
 
