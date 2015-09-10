@@ -18,6 +18,7 @@ SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
 SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
 
 class TestSendGrid(unittest.TestCase):
+    maxDiff = None
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
 
