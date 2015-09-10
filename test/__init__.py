@@ -21,6 +21,16 @@ SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
 class TestSendGrid(unittest.TestCase):
     maxDiff = None
 
+    def assertDictEqual(self, d1, d2, msg=None): # assertEqual uses for dicts
+            for k,v1 in d1.items():
+                self.assertIn(k, d2, msg)
+                v2 = d2[k]
+                if(isinstance(v1, collections.Iterable) and
+                   not isinstance(v1, str)):
+                    self.assertItemsEqual(v1, v2, msg)
+                else:
+                    self.assertEqual(v1, v2, msg)
+            return True
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
 
