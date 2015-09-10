@@ -95,7 +95,7 @@ class TestSendGrid(unittest.TestCase):
                 "asm_group_id": 42
             }
             '''))
-        self.assertItemsEqual(url, test_url)
+        self.assertDictEqual(url, test_url)
 
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test__build_body_unicode(self):
