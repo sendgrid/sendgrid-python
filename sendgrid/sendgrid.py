@@ -97,7 +97,6 @@ class SendGridClient(object):
             opener = urllib_request.build_opener(proxy_support)
             urllib_request.install_opener(opener)
         data = urlencode(self._build_body(message), True).encode('utf-8')
-        print "data i s", data
         req = urllib_request.Request(self.mail_url, data)
         req.add_header('User-Agent', self.useragent)
 
