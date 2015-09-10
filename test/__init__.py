@@ -22,7 +22,7 @@ class TestSendGrid(unittest.TestCase):
     maxDiff = None
 
     def assertDictEqual(self, d1, d2, msg=None): # assertEqual uses for dicts
-        for k,v1 in d1.iteritems():
+        for k,v1 in d1.items():
             self.assertIn(k, d2, msg)
             v2 = d2[k]
             if(isinstance(v1, collections.Iterable) and
