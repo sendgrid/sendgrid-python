@@ -58,7 +58,7 @@ class Mail():
             if ( 32 <= ord(char) <= 126):
                 return_string.append(char) 
             else:
-                return_string.append('\u%04x' % ord(char))
+                return_string.append('\\u%04x' % ord(char))
         return ''.join(return_string).encode('utf-8')
 
     def parse_and_add(self, to):
