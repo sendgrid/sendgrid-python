@@ -5,6 +5,7 @@ except ImportError:
     import unittest
 import json
 import sys
+import collections
 try:
     from StringIO import StringIO
 except ImportError:  # Python 3
@@ -18,6 +19,7 @@ SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
 SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
 
 class TestSendGrid(unittest.TestCase):
+    
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
 
@@ -94,8 +96,9 @@ class TestSendGrid(unittest.TestCase):
                 "asm_group_id": 42
             }
             '''))
-        self.assertEqual(url, test_url)
-
+        
+        self.assertEqual(url, test_url) 
+        
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test__build_body_unicode(self):
         """test _build_body() handles encoded unicode outside ascii range"""
