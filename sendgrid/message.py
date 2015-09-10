@@ -54,7 +54,7 @@ class Mail():
     def four_digit_escape(self, email):
         #return u''.join(char if 32 <= ord(char) <= 126 else '\\u%04x'%ord(char) for char in email)
         return_string = []
-        if(isinstance(email, unicode))
+        if(isinstance(email, unicode)):
             for char in email.decode('utf-8'):
                 if ( 32 <= ord(char) <= 126):
                     return_string.append(char) 
