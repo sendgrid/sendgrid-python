@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2015-09-09
+### Added
+- Classifiers for compatible python versions
+### Changed
+- Assertion test from `self.assertEqual()` to `self.assertDictEqual()` for Python 3 compatibility
+
 ## [1.4.0] - 2015-04-27
 ### Added
 - Support for API keys
