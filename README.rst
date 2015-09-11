@@ -381,6 +381,9 @@ Tests
 
 .. code:: python
 
+    virtualenv venv
+    source venv/bin/activate
+    python setup.py install
     python test/__init__.py
 
 Deploying
