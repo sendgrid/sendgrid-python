@@ -380,11 +380,11 @@ Tests
 ~~~~~
 
 .. code:: python
-
+    
     virtualenv venv
-    source venv/bin/activate
+    source venv/bin/activate #or . ./activate.sh
     python setup.py install
-    python test/__init__.py
+    unit2 discover
 
 Deploying
 ~~~~~~~~~

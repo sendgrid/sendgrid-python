@@ -17,8 +17,8 @@ def getRequires():
 setup(
     name='sendgrid',
     version=str(__version__),
-    author='SendGrid',
-    author_email='libraries@sendgrid.com',
+    author='Yamil Asusta',
+    author_email='yamil@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(),
     license='MIT',

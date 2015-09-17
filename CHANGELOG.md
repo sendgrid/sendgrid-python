@@ -1,10 +1,6 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.4.2] - 2015-09-15
-### Added
-- Upgrade Mail to new-style class, on Python 2.x.
-
 ## [1.4.1] - 2015-09-09
 ### Added
 - Classifiers for compatible python versions

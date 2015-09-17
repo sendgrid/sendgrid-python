@@ -8,5 +8,6 @@ sdist
 *.egg
 *.egg-info
 *.pyc
-.idea/
 venv/
+.idea
+.env

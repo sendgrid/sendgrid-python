@@ -5,7 +5,6 @@ except ImportError:
     import unittest
 import json
 import sys
-import collections
 try:
     from StringIO import StringIO
 except ImportError:  # Python 3
@@ -15,8 +14,71 @@ from sendgrid import SendGridClient, Mail
 from sendgrid.exceptions import SendGridClientError, SendGridServerError
 from sendgrid.sendgrid import HTTPError
 
-SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
-SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
+if os.path.exists('.env'):
+    for line in open('.env'):
+        var = line.strip().split('=')
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
+
+SG_USER = os.environ.get('SENDGRID_USERNAME') or 'SENDGRID_USERNAME'
+SG_PWD  = os.environ.get('SENDGRID_PASSWORD') or 'SENDGRID_PASSWORD'
+
+# v3 tests
+from sendgrid.client import SendGridAPIClient
+from sendgrid.version import __version__
+
+SG_APIKEY = os.environ.get('SENDGRID_API_KEY') or 'SENDGRID_API_KEY'
+
+class TestSendGridAPIClient(unittest.TestCase):
+    def setUp(self):
+        self.client = SendGridAPIClient(SG_APIKEY)
+
+    def test_apikey_init(self):
+        self.assertEqual(self.client.apikey, SG_APIKEY)
+
+    def test_useragent(self):
+        useragent = 'sendgrid/' + __version__ + ';python_v3'
+        self.assertEqual(self.client.useragent, useragent)
+
+    def test_host(self):
+        host = 'https://api.sendgrid.com'
+        self.assertEqual(self.client.host, host)
+
+class TestAPIKeys(unittest.TestCase):
+    def setUp(self):
+        self.client = SendGridAPIClient(SG_APIKEY)
+
+    def test_apikey_post_patch_delete_test(self):
+        name = "My Amazing API Key of Wonder [PATCH Test]"
+        status, msg = self.client.apikeys.post(name)
+        self.assertEqual(status, 201)
+        msg = json.loads(msg)
+        api_key_id = msg['api_key_id']
+        self.assertEqual(msg['name'], name)
+        print status
+        print msg
+
+        name = "My NEW Amazing API Key of Wonder [PATCH TEST]"
+        status, msg = self.client.apikeys.patch(api_key_id, name)
+        self.assertEqual(status, 200)
+        print status
+        print msg
+
+        status, msg = self.client.apikeys.get()
+        print status
+        print msg
+
+        status, msg = self.client.apikeys.delete(api_key_id)
+        self.assertEqual(status, 204)
+        print status
+
+        status, msg = self.client.apikeys.get()
+        print status
+        print msg
+
+    def test_apikey_get(self):
+        status, msg = self.client.apikeys.get()
+        self.assertEqual(status, 200)
 
 class TestSendGrid(unittest.TestCase):
     

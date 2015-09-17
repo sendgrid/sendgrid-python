@@ -8,7 +8,7 @@ except Exception as e:
 from smtpapi import SMTPAPIHeader
 
 
-class Mail(object):
+class Mail():
 
     """SendGrid Message."""
 
