@@ -46,7 +46,6 @@ class TestAPIKeys(unittest.TestCase):
     def setUp(self):
         SendGridAPIClient = MockSendGridAPIClientRequest
         self.client = SendGridAPIClient(SG_KEY)
-        print self.client._build_request(self.client)
         
     def test_apikeys_init(self):
         self.apikeys = self.client.apikeys
