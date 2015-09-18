@@ -5,7 +5,7 @@ python:
 - '3.2'
 install:
 - python setup.py install
-script: unit2 discover
+script: python -m unittest discover
 notifications:
   hipchat:
     rooms:

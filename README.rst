@@ -384,7 +384,7 @@ Tests
     virtualenv venv
     source venv/bin/activate #or . ./activate.sh
     python setup.py install
-    unit2 discover
+    python -m unittest discover -v
 
 Deploying
 ~~~~~~~~~

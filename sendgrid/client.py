@@ -67,24 +67,24 @@ class SendGridAPIClient(object):
         except timeout as e:
             raise SendGridClientError(408, 'Request timeout')
         body = response.read()
-        return response, body
+        return response.getcode(), body
 
     def get(self, api):
         url = self.host + api.base_endpoint
         response, body = self._build_request(url, False, 'GET')
-        return response.getcode(), body
+        return response, body
 
     def post(self, api, data):
         url = self.host + api.endpoint
         response, body = self._build_request(url, True, 'POST', data)
-        return response.getcode(), body
+        return response, body
 
     def delete(self, api):
         url = self.host + api.endpoint
         response, body = self._build_request(url, False, 'DELETE')
-        return response.getcode(), body
+        return response, body
 
     def patch(self, api, data):
         url = self.host + api.endpoint
         response, body = self._build_request(url, True, 'PATCH', data)
-        return response.getcode(), body
+        return response, body
