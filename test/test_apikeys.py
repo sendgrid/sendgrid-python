@@ -9,7 +9,14 @@ try:
     from StringIO import StringIO
 except ImportError:  # Python 3
     from io import StringIO
-import logging
+try:
+    import urllib.request as urllib_request
+    from urllib.parse import urlencode
+    from urllib.error import HTTPError
+except ImportError:  # Python 2
+    import urllib2 as urllib_request
+    from urllib2 import HTTPError
+    from urllib import urlencode
 
 import sendgrid
 from sendgrid import SendGridClient, Mail
@@ -21,9 +28,22 @@ from sendgrid.version import __version__
 SG_KEY  = os.getenv('SG_KEY') or 'SENDGRID_APIKEY'
 
 class MockSendGridAPIClientRequest(SendGridAPIClient):
+    def __init__(self, apikey, **opts):
+        super(MockSendGridAPIClientRequest, self).__init__(apikey, **opts)
+        self._req = None
+        
     def _build_request(self, url=None, json_header=False, method='GET', data=None):
+        req = urllib_request.Request(url)
+        req.get_method = lambda: method
+        req.add_header('User-Agent', self.useragent)
+        req.add_header('Authorization', 'Bearer ' + self.apikey)
+        if json_header:
+            req.add_header('Content-Type', 'application/json')
+        print "url= " + req._Request__original
+        print "headers= " + str(req.headers)
+        print "data= " + json.dumps(data)
         response = 200
-        body = {"message": "success"}
+        body = {"mock": "success"}
         return response, body
 
 class TestSendGridAPIClient(unittest.TestCase):
