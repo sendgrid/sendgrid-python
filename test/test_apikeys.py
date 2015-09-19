@@ -39,9 +39,9 @@ class MockSendGridAPIClientRequest(SendGridAPIClient):
         req.add_header('Authorization', 'Bearer ' + self.apikey)
         if json_header:
             req.add_header('Content-Type', 'application/json')
-        print "url= " + req._Request__original
-        print "headers= " + str(req.headers)
-        print "data= " + json.dumps(data)
+        # print "url= " + req._Request__original
+        # print "headers= " + str(req.headers)
+        # print "data= " + json.dumps(data)
         response = 200
         body = {"mock": "success"}
         return response, body
