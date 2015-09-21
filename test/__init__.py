@@ -5,6 +5,7 @@ except ImportError:
     import unittest
 import json
 import sys
+import collections
 try:
     from StringIO import StringIO
 except ImportError:  # Python 3
@@ -18,6 +19,8 @@ SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
 SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
 
 class TestSendGrid(unittest.TestCase):
+    maxDiff = None
+
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
 
@@ -55,6 +58,7 @@ class TestSendGrid(unittest.TestCase):
         m.add_unique_arg('testUnique', 'uniqueValue')
         m.add_filter('testFilter', 'filter', 'filterValue')
         m.add_attachment_stream('testFile', 'fileValue')
+        m.set_replyto('John, Doe <john@email.com>')
         url = self.sg._build_body(m)
         url.pop('api_key', None)
         url.pop('api_user', None)
@@ -69,7 +73,10 @@ class TestSendGrid(unittest.TestCase):
                 "files[testFile]": "fileValue",
                 "from": "doe@email.com",
                 "cc[]": ["cc@email.com"],
-                "bcc[]": ["bcc@email.com"]
+                "bcc[]": ["bcc@email.com"],
+                "headers": {
+                    "Reply-To": "John, Doe <john@email.com>"
+                }
             }
             ''')
         test_url['x-smtpapi'] = json.dumps(json.loads('''
@@ -94,8 +101,8 @@ class TestSendGrid(unittest.TestCase):
                 "asm_group_id": 42
             }
             '''))
-        self.assertEqual(url, test_url)
-
+        self.assertEqual(url, test_url) 
+        
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test__build_body_unicode(self):
         """test _build_body() handles encoded unicode outside ascii range"""

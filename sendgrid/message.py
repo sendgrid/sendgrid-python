@@ -43,9 +43,11 @@ class Mail():
         self.html = opts.get('html', '')
         self.bcc = []
         self.add_bcc(opts.get('bcc', []))
-        self.reply_to = opts.get('reply_to', '')
+        self.reply_to = ''
+        self.set_replyto(opts.get('reply_to', ''))
         self.files = opts.get('files', {})
-        self.set_headers(opts.get('headers', ''))
+        self.headers = {}
+        self.set_headers(opts.get('headers', {}))
         self.date = opts.get('date', rfc822.formatdate())
         self.content = opts.get('content', {})
         self.smtpapi = opts.get('smtpapi', SMTPAPIHeader())
@@ -123,7 +125,22 @@ class Mail():
                 self.add_bcc(email)
 
     def set_replyto(self, replyto):
-        self.reply_to = replyto
+        name, email = rfc822.parseaddr(replyto.replace(',', ''))
+        if name and email:
+            self.set_reply_to_name(replyto)
+        elif email:
+            self.reply_to = email
+
+    def set_reply_to_name(self, replyto):
+        if sys.version_info < (3, 0) and isinstance(replyto, unicode):
+            replyto = replyto.encode('utf-8')
+        headers = {
+            "Reply-To":  replyto
+        }
+        self.reply_to = ''
+        self.set_headers(headers)
+
+
 
     def add_attachment(self, name, file_):
         if sys.version_info < (3, 0) and isinstance(name, unicode):
@@ -146,10 +163,19 @@ class Mail():
         self.content[cid] = value
 
     def set_headers(self, headers):
+        # if not headers:
+        #     self.headers = headers
+        # else:
+        # Convert to object to be able in order to append to it
+        if isinstance(self.headers, str):
+            self.headers = json.loads(self.headers)
         if isinstance(headers, str):
-            self.headers = headers
-        else:
-            self.headers = json.dumps(headers)
+            headers = json.loads(headers)
+        for key, value in headers.iteritems():
+            self.headers[key] = value
+
+        # Convert back to string
+        self.headers = json.dumps(self.headers)
 
     def set_date(self, date):
         self.date = date
