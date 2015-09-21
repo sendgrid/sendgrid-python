@@ -39,11 +39,15 @@ class MockSendGridAPIClientRequest(SendGridAPIClient):
         req.add_header('Authorization', 'Bearer ' + self.apikey)
         if json_header:
             req.add_header('Content-Type', 'application/json')
-        # print "url= " + req._Request__original
-        # print "headers= " + str(req.headers)
-        # print "data= " + json.dumps(data)
-        response = 200
-        body = {"mock": "success"}
+        body = data
+        if method == 'POST':
+            response = 201
+        if method == 'PATCH':
+            response = 200
+        if method == 'DELETE':
+            response = 204
+        if method == 'GET':
+            response = 200
         return response, body
 
 class TestSendGridAPIClient(unittest.TestCase):
@@ -77,46 +81,22 @@ class TestAPIKeys(unittest.TestCase):
     def test_apikeys_post(self):
         name = "My Amazing API Key of Wonder [PATCH Test]"
         status, msg = self.client.apikeys.post(name)
-        # self.assertEqual(status, 201)
-        # msg = json.loads(msg)
-        # api_key_id = msg['api_key_id']
-        # self.assertEqual(msg['name'], name)
-        # print status
-        # print msg        
-
-"""
-    def test_apikey_post_patch_delete_test(self):
-        name = "My Amazing API Key of Wonder [PATCH Test]"
-        status, msg = self.client.apikeys.post(name)
         self.assertEqual(status, 201)
-        msg = json.loads(msg)
-        api_key_id = msg['api_key_id']
         self.assertEqual(msg['name'], name)
-        print status
-        print msg
-
+        
+    def test_apikeys_patch(self):
         name = "My NEW Amazing API Key of Wonder [PATCH TEST]"
-        status, msg = self.client.apikeys.patch(api_key_id, name)
+        status, msg = self.client.apikeys.patch(SG_KEY, name)
         self.assertEqual(status, 200)
-        print status
-        print msg
-
-        status, msg = self.client.apikeys.get()
-        print status
-        print msg
-
-        status, msg = self.client.apikeys.delete(api_key_id)
+        self.assertEqual(msg['name'], name)
+        
+    def test_apikeys_delete(self):
+        status, msg = self.client.apikeys.delete(SG_KEY)
         self.assertEqual(status, 204)
-        print status
 
-        status, msg = self.client.apikeys.get()
-        print status
-        print msg
-
-    def test_apikey_get(self):
+    def test_apikeys_get(self):
         status, msg = self.client.apikeys.get()
         self.assertEqual(status, 200)
-"""
 
 if __name__ == '__main__':
     unittest.main()

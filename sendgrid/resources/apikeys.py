@@ -2,7 +2,7 @@ class APIKeys(object):
     """The API Keys feature allows customers to be able to generate an API Key credential 
     which can be used for authentication with the SendGrid v3 Web API or the Mail API Endpoint"""
     
-    def __init__(self, client , **opts):
+    def __init__(self, client, **opts):
         """
         Constructs SendGrid APIKeys object.
         
