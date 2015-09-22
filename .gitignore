@@ -11,3 +11,5 @@ sdist
 venv/
 .idea
 .env
+.python-version
+.tox/
