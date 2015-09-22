@@ -379,12 +379,25 @@ Using Templates from the Template Engine
 Tests
 ~~~~~
 
-.. code:: python
-    
-    virtualenv venv
-    source venv/bin/activate #or . ./activate.sh
-    python setup.py install
-    python -m unittest discover -v
+Prerequisites:
+
+Mac OS X Prerequisite: `xcode-select --install`
+`brew update`
+`brew install pyenv`
+`pip install tox`
+Add `eval "$(pyenv init -)"` to your profile after installing tox, you only need to do this once.
+`pyenv install 2.6.9`
+`pyenv install 2.7.8`
+`pyenv install 3.2.6`
+`pyenv local 3.2.6 2.7.8 2.6.9`
+`pyenv rehash`
+`virtualenv venv`
+`source venv/bin/activate #or . ./activate.sh`
+`python setup.py install`
+
+Run the tests:
+
+`tox`
 
 Deploying
 ~~~~~~~~~
