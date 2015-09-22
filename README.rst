@@ -402,16 +402,15 @@ Tests
     pyenv install 2.6.9
     pyenv install 2.7.8
     pyenv install 3.2.6
-    pyenv local 3.2.6 2.7.8 2.6.9
-    pyenv rehash
-    virtualenv venv
-    source venv/bin/activate #or . ./activate.sh
-    python setup.py install
 
 **Run the tests:**
 
 .. code:: python
-
+    virtualenv venv
+    source venv/bin/activate #or . ./activate.sh
+    python setup.py install
+    pyenv local 3.2.6 2.7.8 2.6.9
+    pyenv rehash
     tox
 
 Deploying

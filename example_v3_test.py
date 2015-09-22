@@ -10,6 +10,12 @@ if os.path.exists('.env'):
 
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
+status, msg = client.asm_groups.get()
+print status
+print msg
+
+"""
+
 name = "My Amazing API Key"
 status, msg = client.apikeys.post(name)
 msg = json.loads(msg)
@@ -29,7 +35,6 @@ status, msg = client.apikeys.get()
 print status
 print msg
 
-"""
 # Get a list of all valid API Keys from your account
 status, msg = client.apikeys.get()
 print status
