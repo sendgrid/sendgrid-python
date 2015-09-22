@@ -132,8 +132,6 @@ class Mail():
             self.reply_to = email
 
     def set_reply_to_name(self, replyto):
-        if sys.version_info < (3, 0) and isinstance(replyto, unicode):
-            replyto = replyto.encode('utf-8')
         headers = {
             "Reply-To":  replyto
         }
@@ -163,19 +161,15 @@ class Mail():
         self.content[cid] = value
 
     def set_headers(self, headers):
-        # if not headers:
-        #     self.headers = headers
-        # else:
-        # Convert to object to be able in order to append to it
+        if sys.version_info < (3, 0) and isinstance(headers, unicode):
+            headers = headers.encode('utf-8')
         if isinstance(self.headers, str):
             self.headers = json.loads(self.headers)
         if isinstance(headers, str):
             headers = json.loads(headers)
         for key, value in headers.iteritems():
             self.headers[key] = value
-
-        # Convert back to string
-        self.headers = json.dumps(self.headers)
+        
 
     def set_date(self, date):
         self.date = date

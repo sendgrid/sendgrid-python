@@ -73,12 +73,12 @@ class TestSendGrid(unittest.TestCase):
                 "files[testFile]": "fileValue",
                 "from": "doe@email.com",
                 "cc[]": ["cc@email.com"],
-                "bcc[]": ["bcc@email.com"],
-                "headers": {
-                    "Reply-To": "John, Doe <john@email.com>"
-                }
+                "bcc[]": ["bcc@email.com"]
+                
             }
             ''')
+        test_url['headers'] =   "{\"Reply-To\": \"John, Doe <john@email.com>\"}"
+                                              
         test_url['x-smtpapi'] = json.dumps(json.loads('''
             {
                 "sub": {

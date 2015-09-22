@@ -1,4 +1,5 @@
 import sys
+import json
 from socket import timeout
 from .version import __version__
 try:
@@ -71,7 +72,7 @@ class SendGridClient(object):
             'text': message.text,
             'html': message.html,
             'replyto': message.reply_to,
-            'headers': message.headers,
+            'headers': json.dumps(message.headers) if message.headers else '',
             'date': message.date,
             'x-smtpapi': message.json_string()
         }
