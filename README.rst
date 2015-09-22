@@ -371,7 +371,7 @@ set_asm_group_id
 Using Templates from the Template Engine
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+
 
     message.add_filter('templates', 'enable', '1')
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
@@ -379,25 +379,40 @@ Using Templates from the Template Engine
 Tests
 ~~~~~
 
-Prerequisites:
+**Prerequisites:**
 
-Mac OS X Prerequisite: `xcode-select --install`
-`brew update`
-`brew install pyenv`
-`pip install tox`
-Add `eval "$(pyenv init -)"` to your profile after installing tox, you only need to do this once.
-`pyenv install 2.6.9`
-`pyenv install 2.7.8`
-`pyenv install 3.2.6`
-`pyenv local 3.2.6 2.7.8 2.6.9`
-`pyenv rehash`
-`virtualenv venv`
-`source venv/bin/activate #or . ./activate.sh`
-`python setup.py install`
+- Mac OS X Prerequisite: 
 
-Run the tests:
+.. code:: python
 
-`tox`
+    xcode-select --install
+
+- Install pyenv and tox
+
+.. code:: python
+
+    brew update
+    brew install pyenv
+    pip install tox
+
+- Add `eval "$(pyenv init -)"` to your profile after installing tox, you only need to do this once.
+
+.. code:: python
+
+    pyenv install 2.6.9
+    pyenv install 2.7.8
+    pyenv install 3.2.6
+    pyenv local 3.2.6 2.7.8 2.6.9
+    pyenv rehash
+    virtualenv venv
+    source venv/bin/activate #or . ./activate.sh
+    python setup.py install
+
+**Run the tests:**
+
+.. code:: python
+
+    tox
 
 Deploying
 ~~~~~~~~~
