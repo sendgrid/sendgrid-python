@@ -406,6 +406,7 @@ Tests
 **Run the tests:**
 
 .. code:: python
+
     virtualenv venv
     source venv/bin/activate #or . ./activate.sh
     python setup.py install
