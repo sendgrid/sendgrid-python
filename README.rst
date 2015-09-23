@@ -224,7 +224,7 @@ add_content_id
     message.add_content_id('image.png', 'ID_IN_HTML')
     message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
     
-SendGrid's `WEB API v3`_
+WEB API v3
 ------------------------
 
 `APIKeys`_
@@ -233,6 +233,7 @@ SendGrid's `WEB API v3`_
 List all API Keys belonging to the authenticated user
 
 .. code:: python
+    
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.apikeys.get()
     
@@ -242,6 +243,7 @@ List all API Keys belonging to the authenticated user
 Retrieve all suppression groups associated with the user.
 
 .. code:: python
+    
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.asm_groups.get()
 
