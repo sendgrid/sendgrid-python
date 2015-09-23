@@ -20,14 +20,14 @@ class TestASMGroups(unittest.TestCase):
         SendGridAPIClient = MockSendGridAPIClientRequest
         self.client = SendGridAPIClient(SG_KEY)
         
-    def test_apikeys_init(self):
+    def test_asm_groups_init(self):
         self.asm_groups = self.client.asm_groups
         self.assertEqual(self.asm_groups.base_endpoint, "/v3/asm/groups")
         self.assertEqual(self.asm_groups.endpoint, "/v3/asm/groups")
         self.assertEqual(self.asm_groups.client, self.client)
 
     def test_asm_groups_get(self):
-        status, msg = self.client.apikeys.get()
+        status, msg = self.client.asm_groups.get()
         self.assertEqual(status, 200)
 
 if __name__ == '__main__':

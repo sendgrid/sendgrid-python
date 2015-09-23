@@ -8,13 +8,23 @@ if os.path.exists('.env'):
         if len(var) == 2:
             os.environ[var[0]] = var[1]
 
+
+
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
-status, msg = client.asm_groups.get([66,67,50])
+status, msg = client.asm_suppressions.post(60, ['elmer+test@thinkingserious.com', 'elmer.thomas@yahoo.com'])
 print status
 print msg
 
 """
+
+status, msg = client.asm_suppressions.get(None,'elmer.thomas@yahoo.com')
+print status
+print msg
+
+status, msg = client.asm_groups.get([66,67,50])
+print status
+print msg
 
 name = "My Amazing API Key"
 status, msg = client.apikeys.post(name)

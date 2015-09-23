@@ -13,6 +13,7 @@ except ImportError:  # Python 2
 from .exceptions import SendGridClientError, SendGridServerError
 from .resources.apikeys import APIKeys
 from .resources.asm_groups import ASMGroups
+from .resources.asm_suppressions import ASMSuppressions
 
 class SendGridAPIClient(object):
 
@@ -34,6 +35,7 @@ class SendGridAPIClient(object):
 
         self.apikeys = APIKeys(self)
         self.asm_groups = ASMGroups(self)
+        self.asm_suppressions = ASMSuppressions(self)
 
     @property
     def apikey(self):
