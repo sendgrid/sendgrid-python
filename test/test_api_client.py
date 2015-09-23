@@ -15,20 +15,21 @@ from sendgrid.version import __version__
 
 SG_KEY  = os.getenv('SG_KEY') or 'SENDGRID_APIKEY'
 
-class TestASMGroups(unittest.TestCase):
+class TestSendGridAPIClient(unittest.TestCase):
     def setUp(self):
-        SendGridAPIClient = MockSendGridAPIClientRequest
+        self.client = MockSendGridAPIClientRequest
         self.client = SendGridAPIClient(SG_KEY)
-        
-    def test_apikeys_init(self):
-        self.asm_groups = self.client.asm_groups
-        self.assertEqual(self.asm_groups.base_endpoint, "/v3/asm/groups")
-        self.assertEqual(self.asm_groups.endpoint, "/v3/asm/groups")
-        self.assertEqual(self.asm_groups.client, self.client)
 
-    def test_asm_groups_get(self):
-        status, msg = self.client.apikeys.get()
-        self.assertEqual(status, 200)
+    def test_apikey_init(self):
+        self.assertEqual(self.client.apikey, SG_KEY)
+
+    def test_useragent(self):
+        useragent = 'sendgrid/' + __version__ + ';python_v3'
+        self.assertEqual(self.client.useragent, useragent)
+
+    def test_host(self):
+        host = 'https://api.sendgrid.com'
+        self.assertEqual(self.client.host, host)
 
 if __name__ == '__main__':
     unittest.main()
