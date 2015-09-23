@@ -230,7 +230,7 @@ WEB API v3
 `APIKeys`_
 ~~~~~~~~~~
 
-List all API Keys belonging to the authenticated user
+List all API Keys belonging to the authenticated user.
 
 .. code:: python
     
@@ -247,7 +247,7 @@ Retrieve all suppression groups associated with the user.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.asm_groups.get()
 
-Get a single record
+Get a single record.
 
 .. code:: python
 
