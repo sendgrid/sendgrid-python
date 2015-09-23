@@ -16,7 +16,8 @@ from sendgrid.exceptions import SendGridClientError, SendGridServerError
 from sendgrid.sendgrid import HTTPError
 
 SG_USER = os.getenv('SG_USER') or 'SENDGRID_USERNAME'
-SG_PWD  = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
+SG_PWD = os.getenv('SG_PWD') or 'SENDGRID_PASSWORD'
+
 
 class TestSendGrid(unittest.TestCase):
     maxDiff = None
@@ -77,8 +78,8 @@ class TestSendGrid(unittest.TestCase):
                 
             }
             ''')
-        test_url['headers'] =   "{\"Reply-To\": \"John, Doe <john@email.com>\"}"
-                                              
+        test_url['headers'] = "{\"Reply-To\": \"John, Doe <john@email.com>\"}"
+
         test_url['x-smtpapi'] = json.dumps(json.loads('''
             {
                 "sub": {
@@ -101,8 +102,8 @@ class TestSendGrid(unittest.TestCase):
                 "asm_group_id": 42
             }
             '''))
-        self.assertEqual(url, test_url) 
-        
+        self.assertEqual(url, test_url)
+
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test__build_body_unicode(self):
         """test _build_body() handles encoded unicode outside ascii range"""
@@ -123,7 +124,6 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(subject, url['subject'])
         self.assertEqual(text, url['text'])
         self.assertEqual(html, url['html'])
-
 
     def test_smtpapi_add_to(self):
         '''Test that message.to gets a dummy address for the header to work'''
@@ -150,7 +150,6 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(url, test_url)
 
 
-
 class SendGridClientUnderTest(SendGridClient):
 
     def _make_request(self, message):
@@ -158,6 +157,7 @@ class SendGridClientUnderTest(SendGridClient):
 
 
 class TestSendGridErrorHandling(unittest.TestCase):
+
     def setUp(self):
         self.sg = SendGridClientUnderTest(SG_USER, SG_PWD, raise_errors=True)
 

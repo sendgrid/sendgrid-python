@@ -138,8 +138,6 @@ class Mail():
         self.reply_to = ''
         self.set_headers(headers)
 
-
-
     def add_attachment(self, name, file_):
         if sys.version_info < (3, 0) and isinstance(name, unicode):
             name = name.encode('utf-8')
@@ -169,7 +167,6 @@ class Mail():
             headers = json.loads(headers)
         for key, value in headers.iteritems():
             self.headers[key] = value
-        
 
     def set_date(self, date):
         self.date = date
