@@ -10,7 +10,7 @@ if os.path.exists('.env'):
 
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
-status, msg = client.asm_groups.get()
+status, msg = client.asm_groups.get([66,67,50])
 print status
 print msg
 

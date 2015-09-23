@@ -72,7 +72,7 @@ class SendGridAPIClient(object):
         return response.getcode(), body
 
     def get(self, api):
-        url = self.host + api.base_endpoint
+        url = self.host + api.endpoint
         response, body = self._build_request(url, False, 'GET')
         return response, body
 
