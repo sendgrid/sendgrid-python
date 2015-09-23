@@ -5,7 +5,8 @@ python:
 - '3.2'
 install:
 - python setup.py install
-script: python test/__init__.py
+script: 
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest discover; fi
 notifications:
   hipchat:
     rooms:
