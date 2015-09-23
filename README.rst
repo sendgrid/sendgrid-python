@@ -225,7 +225,7 @@ add_content_id
     message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
     
 WEB API v3
-------------------------
+----------
 
 `APIKeys`_
 ~~~~~~~~~~
@@ -237,8 +237,17 @@ List all API Keys belonging to the authenticated user.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.apikeys.get()
     
-`ASM Groups`_
-~~~~~~~~~~~~~
+`Advanced Suppression Manager (ASM)`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Advanced Suppression Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
+
+More information_. 
+
+.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/index.html
+
+ASM Groups
+~~~~~~~~~~
 
 Retrieve all suppression groups associated with the user.
 
