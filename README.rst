@@ -223,6 +223,44 @@ add_content_id
     message.add_attachment('image.png', open('./image.png', 'rb'))
     message.add_content_id('image.png', 'ID_IN_HTML')
     message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
+    
+WEB API v3
+----------
+
+`APIKeys`_
+~~~~~~~~~~
+
+List all API Keys belonging to the authenticated user.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.apikeys.get()
+    
+`Advanced Suppression Manager (ASM)`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Advanced Suppression Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
+
+More information_. 
+
+.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/index.html
+
+ASM Groups
+~~~~~~~~~~
+
+Retrieve all suppression groups associated with the user.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.asm_groups.get()
+
+Get a single record.
+
+.. code:: python
+
+    status, msg = client.asm_groups.get(record_id)
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
@@ -402,16 +440,16 @@ Tests
     pyenv install 2.6.9
     pyenv install 2.7.8
     pyenv install 3.2.6
-    pyenv local 3.2.6 2.7.8 2.6.9
-    pyenv rehash
-    virtualenv venv
-    source venv/bin/activate #or . ./activate.sh
-    python setup.py install
 
 **Run the tests:**
 
 .. code:: python
 
+    virtualenv venv
+    source venv/bin/activate #or . ./activate.sh
+    python setup.py install
+    pyenv local 3.2.6 2.7.8 2.6.9
+    pyenv rehash
     tox
 
 Deploying
