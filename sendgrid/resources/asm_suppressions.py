@@ -56,3 +56,8 @@ class ASMSuppressions(object):
         data = {}
         data["recipient_emails"] = emails
         return self.client.post(self, data)
+
+    # Delete a recipient email from the suppressions list for a group.
+    def delete(self, id, email):
+        self.endpoint = self._base_endpoint + "/" + str(id) + "/suppressions/" + email
+        return self.client.delete(self)
