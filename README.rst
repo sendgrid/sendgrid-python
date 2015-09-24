@@ -261,6 +261,36 @@ Get a single record.
 .. code:: python
 
     status, msg = client.asm_groups.get(record_id)
+    
+ASM Suppressions
+~~~~~~~~~~~~~~~~
+
+Suppressions are email addresses that can be added to groups to prevent certain types of emails from being delivered to those addresses.
+
+Add recipient addresses to the suppressions list for a given group.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    group_id = <group_id_number> # If no group_id_number, the emails will be added to the global suppression group
+    emails = ['elmer+test@thinkingserious.com', 'elmer+test2@thinkingserious.com']
+    status, msg = client.asm_suppressions.post(group_id, emails)
+
+Get suppressed addresses for a given group.
+
+.. code:: python
+
+    status, msg = client.asm_suppressions.get(<group_id>)
+
+Get suppression groups associated with a given recipient address.
+
+.. code:: python
+
+    status, msg = client.asm_suppressions.get(None,<email_address>)
+    
+Delete a recipient email from the suppressions list for a group.
+
+    status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
 
 SendGrid's `X-SMTPAPI`_
 -----------------------

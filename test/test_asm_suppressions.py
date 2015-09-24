@@ -36,6 +36,16 @@ class TestASMGroups(unittest.TestCase):
         status, msg = self.client.asm_suppressions.post(id, emails)
         self.assertEqual(status, 201)
         self.assertEqual(msg['recipient_emails'], emails)
+        emails = ['elmer+test@thinkingserious.com', 'elmer.thomas@yahoo.com']
+        status, msg = self.client.asm_suppressions.post(id, emails)
+        self.assertEqual(status, 201)
+        self.assertEqual(msg['recipient_emails'], emails)
+        
+    def test_asm_supressions_delete(self):
+        id = 67
+        email = 'elmer+test@thinkingserious.com'
+        status, msg = self.client.asm_suppressions.delete(id, email)
+        self.assertEqual(status, 204)
 
 if __name__ == '__main__':
     unittest.main()
