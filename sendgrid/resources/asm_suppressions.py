@@ -1,14 +1,14 @@
-class ASMGroups(object):
+class ASMSuppressions(object):
     """Advanced Suppression Manager gives your recipients more control over the types of emails they want to receive 
        by letting them opt out of messages from a certain type of email.
        
-       Groups are specific types of email you would like your recipients to be able to unsubscribe from or subscribe to. 
-       For example: Daily Newsletters, Invoices, System Alerts.
+       Suppressions are email addresses that can be added to groups to prevent certain types of emails from being 
+       delivered to those addresses.
        """
     
     def __init__(self, client, **opts):
         """
-        Constructs SendGrid ASM group object.
+        Constructs SendGrid ASM suppressions object.
         
         See https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/index.html and
         https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/groups.html
@@ -35,22 +35,24 @@ class ASMGroups(object):
     def client(self):
         return self._client
         
-    # Retrieve all suppression groups associated with the user.
-    def get(self, id=None):
-        if id == None:
+    # Get suppressed addresses for a given group id.
+    def get(self, id=None, email=None):
+        if id == None and email == None:
             return self.client.get(self)
         
         if isinstance(id, int):
-            self._endpoint = self._base_endpoint + "/" + str(id)
+            self._endpoint = self._base_endpoint + "/" + str(id) + "/suppressions"
             return self.client.get(self)
         
-        if len(id) > 1:
-            count = 0
-            for i in id:
-                if count == 0:
-                    self._endpoint = self._endpoint + "?id=" + str(i)
-                else:
-                    self._endpoint = self._endpoint + "&id=" + str(i)
-                count = count + 1
+        if isinstance(email, str):
+            self._endpoint = "/v3/asm/suppressions/" + email
             
         return self.client.get(self)
+    
+    # Add recipient addresses to the suppressions list for a given group.
+    # If the group has been deleted, this request will add the address to the global suppression.
+    def post(self, id, emails):
+        self._endpoint = self._base_endpoint + "/" + str(id) + "/suppressions"
+        data = {}
+        data["recipient_emails"] = emails
+        return self.client.post(self, data)
