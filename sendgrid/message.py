@@ -165,7 +165,7 @@ class Mail(object):
             self.headers = json.loads(self.headers)
         if isinstance(headers, str):
             headers = json.loads(headers)
-        for key, value in headers.iteritems():
+        for key, value in headers.items():
             self.headers[key] = value
 
     def set_date(self, date):
