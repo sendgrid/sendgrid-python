@@ -17,7 +17,7 @@ Announcements
 
 For users of our `Web API v3 endpoints`_, we have begun integrating v3 endpoints into this library. As part of this process we have implemented a test automation tool, TOX_. We are also updating and enhancing the core library code.
 
-In no particular order, we have implemented a few of the v3 endpoints already and would appreciate your feedback. Please feel free to submit issues and pull requests on the `v3_beta branch`_. 
+In no particular order, we have implemented a `few of the v3`_ endpoints already and would appreciate your feedback.
 
 Thank you for your continued support! 
 
@@ -516,3 +516,4 @@ MIT License
 .. _`Web API v3 endpoints`: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _TOX: https://testrun.org/tox/latest/
 .. _`v3_beta branch`: https://github.com/sendgrid/sendgrid-python/tree/v3_beta
+-- _`few of the v3`: https://github.com/sendgrid/sendgrid-python/tree/v3_beta#web-api-v3
