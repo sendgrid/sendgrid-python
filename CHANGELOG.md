@@ -1,7 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.4.3] - 2015-10-22
+## [1.5.3] - 2015-09-29
+### Added
+- Refactored tests and added Tox support
+- Framework for Web API v3 endpoints
+- Web API v3 endpionts: apikeys, ASM groups and ASM suppressions
+
+### Fixed 
+- Python 3 Fix [#126](https://github.com/sendgrid/sendgrid-python/issues/126)
+
+## [1.4.3] - 2015-09-22
 ### Fixed
 - Reply To header now supports friendly name [#110](https://github.com/sendgrid/sendgrid-python/issues/110)
 
