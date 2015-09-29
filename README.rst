@@ -236,6 +236,8 @@ add_content_id
 WEB API v3
 ----------
 
+.. _APIKeysAnchor:
+
 `APIKeys`_
 ~~~~~~~~~~
 
@@ -515,5 +517,4 @@ MIT License
 .. _Filter: http://sendgrid.com/docs/API_Reference/SMTP_API/apps.html
 .. _`Web API v3 endpoints`: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _TOX: https://testrun.org/tox/latest/
-.. _`v3_beta branch`: https://github.com/sendgrid/sendgrid-python/tree/v3_beta
--- _`few of the v3`: https://github.com/sendgrid/sendgrid-python/tree/v3_beta#web-api-v3
+.. _`few of the v3`: APIKeysAnchor_
