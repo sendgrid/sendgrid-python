@@ -17,7 +17,7 @@ Announcements
 
 For users of our `Web API v3 endpoints`_, we have begun integrating v3 endpoints into this library. As part of this process we have implemented a test automation tool, TOX_. We are also updating and enhancing the core library code.
 
-In no particular order, we have implemented a few of the v3 endpoints already and would appreciate your feedback. Please feel free to submit issues and pull requests on the `v3_beta branch`_. 
+In no particular order, we have implemented a `few of the v3`_ endpoints already and would appreciate your feedback.
 
 Thank you for your continued support! 
 
@@ -232,6 +232,76 @@ add_content_id
     message.add_attachment('image.png', open('./image.png', 'rb'))
     message.add_content_id('image.png', 'ID_IN_HTML')
     message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
+    
+WEB API v3
+----------
+
+.. _APIKeysAnchor:
+
+`APIKeys`_
+~~~~~~~~~~
+
+List all API Keys belonging to the authenticated user.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.apikeys.get()
+    
+`Advanced Suppression Manager (ASM)`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Advanced Suppression Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
+
+More information_. 
+
+.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/index.html
+
+ASM Groups
+~~~~~~~~~~
+
+Retrieve all suppression groups associated with the user.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.asm_groups.get()
+
+Get a single record.
+
+.. code:: python
+
+    status, msg = client.asm_groups.get(record_id)
+    
+ASM Suppressions
+~~~~~~~~~~~~~~~~
+
+Suppressions are email addresses that can be added to groups to prevent certain types of emails from being delivered to those addresses.
+
+Add recipient addresses to the suppressions list for a given group.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    group_id = <group_id_number> # If no group_id_number, the emails will be added to the global suppression group
+    emails = ['elmer+test@thinkingserious.com', 'elmer+test2@thinkingserious.com']
+    status, msg = client.asm_suppressions.post(group_id, emails)
+
+Get suppressed addresses for a given group.
+
+.. code:: python
+
+    status, msg = client.asm_suppressions.get(<group_id>)
+
+Get suppression groups associated with a given recipient address.
+
+.. code:: python
+
+    status, msg = client.asm_suppressions.get(None,<email_address>)
+    
+Delete a recipient email from the suppressions list for a group.
+
+    status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
@@ -380,7 +450,7 @@ set_asm_group_id
 Using Templates from the Template Engine
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+
 
     message.add_filter('templates', 'enable', '1')
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
@@ -388,12 +458,40 @@ Using Templates from the Template Engine
 Tests
 ~~~~~
 
+**Prerequisites:**
+
+- Mac OS X Prerequisite: 
+
+.. code:: python
+
+    xcode-select --install
+
+- Install pyenv and tox
+
+.. code:: python
+
+    brew update
+    brew install pyenv
+    pip install tox
+
+- Add `eval "$(pyenv init -)"` to your profile after installing tox, you only need to do this once.
+
+.. code:: python
+
+    pyenv install 2.6.9
+    pyenv install 2.7.8
+    pyenv install 3.2.6
+
+**Run the tests:**
+
 .. code:: python
 
     virtualenv venv
-    source venv/bin/activate
+    source venv/bin/activate #or . ./activate.sh
     python setup.py install
-    python test/__init__.py
+    pyenv local 3.2.6 2.7.8 2.6.9
+    pyenv rehash
+    tox
 
 Deploying
 ~~~~~~~~~
@@ -419,4 +517,4 @@ MIT License
 .. _Filter: http://sendgrid.com/docs/API_Reference/SMTP_API/apps.html
 .. _`Web API v3 endpoints`: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _TOX: https://testrun.org/tox/latest/
-.. _`v3_beta branch`: https://github.com/sendgrid/sendgrid-python/tree/v3_beta
+.. _`few of the v3`: APIKeysAnchor_

@@ -8,5 +8,8 @@ sdist
 *.egg
 *.egg-info
 *.pyc
-.idea/
 venv/
+.idea
+.env
+.python-version
+.tox/

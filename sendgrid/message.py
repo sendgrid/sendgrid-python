@@ -8,7 +8,7 @@ except Exception as e:
 from smtpapi import SMTPAPIHeader
 
 
-class Mail(object):
+class Mail():
 
     """SendGrid Message."""
 
@@ -165,7 +165,7 @@ class Mail(object):
             self.headers = json.loads(self.headers)
         if isinstance(headers, str):
             headers = json.loads(headers)
-        for key, value in headers.iteritems():
+        for key, value in headers.items():
             self.headers[key] = value
 
     def set_date(self, date):

@@ -16,4 +16,4 @@ notifications:
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
       <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
     format: html
-    notify: true
+    notify: false
