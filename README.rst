@@ -301,6 +301,8 @@ Get suppression groups associated with a given recipient address.
     
 Delete a recipient email from the suppressions list for a group.
 
+.. code:: python
+
     status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
 
 SendGrid's `X-SMTPAPI`_
