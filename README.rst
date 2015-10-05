@@ -452,7 +452,7 @@ set_asm_group_id
 Using Templates from the Template Engine
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+.. code:: python
 
     message.add_filter('templates', 'enable', '1')
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
