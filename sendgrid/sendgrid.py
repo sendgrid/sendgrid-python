@@ -76,7 +76,6 @@ class SendGridClient(object):
             'date': message.date,
             'x-smtpapi': message.json_string()
         }
-
         if self.username != None:
             # Using username + password
             values['api_user'] = self.username
