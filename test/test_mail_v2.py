@@ -22,6 +22,7 @@ class TestSendGrid(unittest.TestCase):
     
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
+        self.maxDiff = None
 
     def test_apikey_init(self):
         sg = SendGridClient(SG_PWD)
