@@ -510,9 +510,6 @@ Deploying
 - Push changes to GitHub
 - Release tag on GitHub `vX.X.X`
 
-MIT License
------------
-
 .. _X-SMTPAPI: http://sendgrid.com/docs/API_Reference/SMTP_API/
 .. _SMTPAPI Python library: https://github.com/sendgrid/smtpapi-python
 .. _Substitution: http://sendgrid.com/docs/API_Reference/SMTP_API/substitution_tags.html
