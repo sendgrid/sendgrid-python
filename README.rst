@@ -483,6 +483,9 @@ Tests
     pyenv install 2.6.9
     pyenv install 2.7.8
     pyenv install 3.2.6
+    pyenv install 3.3.6
+    pyenv install 3.4.3
+    pyenv install 3.5.0
 
 **Run the tests:**
 
@@ -491,7 +494,7 @@ Tests
     virtualenv venv
     source venv/bin/activate #or . ./activate.sh
     python setup.py install
-    pyenv local 3.2.6 2.7.8 2.6.9
+    pyenv local 3.5.0 3.4.3 3.3.6 3.2.6 2.7.8 2.6.9
     pyenv rehash
     tox
 
