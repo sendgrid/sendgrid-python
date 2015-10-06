@@ -11,7 +11,7 @@ except ImportError:  # Python 2
     from urllib import urlencode
 
 from .exceptions import SendGridClientError, SendGridServerError
-from .resources.apikeys import APIKeys
+from .resources.api_keys import APIKeys
 from .resources.asm_groups import ASMGroups
 from .resources.asm_suppressions import ASMSuppressions
 
