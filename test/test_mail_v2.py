@@ -22,6 +22,7 @@ class TestSendGrid(unittest.TestCase):
     
     def setUp(self):
         self.sg = SendGridClient(SG_USER, SG_PWD)
+        self.maxDiff = None
 
     def test_apikey_init(self):
         sg = SendGridClient(SG_PWD)
@@ -97,7 +98,10 @@ class TestSendGrid(unittest.TestCase):
             }
             '''))
         
-        self.assertEqual(url, test_url) 
+        try:
+            self.assertItemsEqual(url, test_url)
+        except: # Python 3+
+            self.assertCountEqual(url, test_url)
         
     @unittest.skipUnless(sys.version_info < (3, 0), 'only for python2')
     def test__build_body_unicode(self):
