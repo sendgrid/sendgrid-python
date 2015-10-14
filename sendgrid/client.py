@@ -14,6 +14,7 @@ from .exceptions import SendGridClientError, SendGridServerError
 from .resources.api_keys import APIKeys
 from .resources.asm_groups import ASMGroups
 from .resources.asm_suppressions import ASMSuppressions
+from .resources.asm_global_suppressions import ASMGlobalSuppressions
 
 class SendGridAPIClient(object):
 
@@ -36,6 +37,7 @@ class SendGridAPIClient(object):
         self.apikeys = APIKeys(self)
         self.asm_groups = ASMGroups(self)
         self.asm_suppressions = ASMSuppressions(self)
+        self.asm_global_suppressions = ASMGlobalSuppressions(self)
 
     @property
     def apikey(self):

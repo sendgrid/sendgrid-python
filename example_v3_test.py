@@ -8,20 +8,30 @@ if os.path.exists('.env'):
         if len(var) == 2:
             os.environ[var[0]] = var[1]
 
-
-
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+
+# In the global suppression list
+status, msg = client.asm_global_suppressions.get('elmer.thomas+test_global@gmail.com')
+print status
+print msg
+
+# Not in the global suppression list
+status, msg = client.asm_global_suppressions.get('elmer.thomas@gmail.com')
+print status
+print msg
+
+"""
+status, msg = client.apikeys.get()
+print status
+print msg
 
 status, msg = client.asm_suppressions.delete(67,'elmer+test@thinkingserious.com')
 print status
 print msg
 
-"""
-
 status, msg = client.asm_suppressions.post(60, ['elmer+test@thinkingserious.com', 'elmer.thomas@yahoo.com'])
 print status
 print msg
-
 
 status, msg = client.asm_suppressions.get(None,'elmer.thomas@yahoo.com')
 print status

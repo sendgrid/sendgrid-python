@@ -13,7 +13,7 @@ message.add_to('Elmer Thomas <elmer@thinkingserious.com>')
 message.set_subject('Testing from the Python library')
 message.set_html('<b>This was a successful test!</b>')
 message.set_text('This was a successful test!')
-message.set_from('Elmer Thomas <elmer@thinkingserious.com>')
+message.set_from('Elmer Thomas <dx@sendgrid.com>')
 status, msg = sg.send(message)
 print status
 print msg

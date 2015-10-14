@@ -305,6 +305,19 @@ Delete a recipient email from the suppressions list for a group.
 
     status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
 
+ASM Global Suppressions
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Global Suppressions are email addresses that will not receive any emails.
+
+Check if a given email is on the global suppression list.
+
+.. code:: python
+    
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    email = ['elmer@thinkingserious.com']
+    status, msg = client.asm_global_suppressions.get(email)
+
 SendGrid's `X-SMTPAPI`_
 -----------------------
 
