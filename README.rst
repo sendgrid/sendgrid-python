@@ -515,7 +515,7 @@ Deploying
 ~~~~~~~~~
 
 - Confirm tests pass
-- Bump the version in `README.rst`, `sendgrid/version.py`
+- Bump the version in `sendgrid/version.py`
 - Update `CHANGELOG.md`
 - Confirm tests pass
 - Commit `Version bump vX.X.X`
