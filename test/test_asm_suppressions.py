@@ -27,7 +27,7 @@ class TestASMGroups(unittest.TestCase):
         self.assertEqual(self.asm_suppressions.client, self.client)
 
     def test_asm_suppressions_get(self):
-        status, msg = self.client.asm_suppressions.get()
+        status, msg = self.client.asm_suppressions.get(70)
         self.assertEqual(status, 200)
         
     def test_asm_suppressions_post(self):

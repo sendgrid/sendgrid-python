@@ -298,12 +298,6 @@ Get suppressed addresses for a given group.
 .. code:: python
 
     status, msg = client.asm_suppressions.get(<group_id>)
-
-Get suppression groups associated with a given recipient address.
-
-.. code:: python
-
-    status, msg = client.asm_suppressions.get(None,<email_address>)
     
 Delete a recipient email from the suppressions list for a group.
 
