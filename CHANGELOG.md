@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.6] - 2015-10-16 ##
+- Removed unsupported endpoint
+
 ## [1.5.5] - 2015-10-16 ##
 - Added Unsubscribe Groups [POST]
 
