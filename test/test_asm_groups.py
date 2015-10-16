@@ -29,6 +29,13 @@ class TestASMGroups(unittest.TestCase):
     def test_asm_groups_get(self):
         status, msg = self.client.asm_groups.get()
         self.assertEqual(status, 200)
+        
+    def test_asm_groups_post(self):
+        name = "Marketing"
+        description = "Marketing emails"
+        is_default = True
+        status, msg = self.client.asm_groups.post(name, description, is_default)
+        self.assertEqual(status, 201)
 
 if __name__ == '__main__':
     unittest.main()

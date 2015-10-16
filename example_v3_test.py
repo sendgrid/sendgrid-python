@@ -10,6 +10,28 @@ if os.path.exists('.env'):
 
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
+status, msg = client.asm_groups.post("Magic Key 2", "Unlock your Emails", False)
+print status
+print msg
+
+status, msg = client.asm_groups.get()
+print status
+print msg
+
+"""
+
+status, msg = client.asm_groups.get()
+print status
+print msg
+
+status, msg = client.asm_groups.post("Magic Key", "Unlock your Emails")
+print status
+print msg
+
+status, msg = client.asm_groups.get()
+print status
+print msg
+
 # In the global suppression list
 status, msg = client.asm_global_suppressions.get('elmer.thomas+test_global@gmail.com')
 print status
@@ -20,7 +42,6 @@ status, msg = client.asm_global_suppressions.get('elmer.thomas@gmail.com')
 print status
 print msg
 
-"""
 status, msg = client.apikeys.get()
 print status
 print msg
