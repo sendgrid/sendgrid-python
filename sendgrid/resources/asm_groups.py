@@ -54,3 +54,12 @@ class ASMGroups(object):
                 count = count + 1
             
         return self.client.get(self)
+
+    # Create a new unsubscribe group
+    def post(self, name, description, is_default):
+        self._endpoint = self._base_endpoint
+        data = {}
+        data["name"] = name
+        data["description"] = description
+        data["is_default"] = is_default
+        return self.client.post(self, data)

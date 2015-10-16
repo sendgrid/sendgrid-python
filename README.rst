@@ -273,6 +273,12 @@ Get a single record.
 
     status, msg = client.asm_groups.get(record_id)
     
+Create a new suppression group.
+
+.. code:: python
+
+    status, msg = client.asm_groups.post(name, description, is_default)
+    
 ASM Suppressions
 ~~~~~~~~~~~~~~~~
 
