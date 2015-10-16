@@ -1,7 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.5.3] - 2015-09-29
+## [1.5.5] - 2015-10-16 ##
+- Added Unsubscribe Groups [POST]
+
+## [1.5.4] - 2015-10-15 ##
+
+- Global Suppressions [GET]
+
+## [1.5.3] - 2015-09-29 ##
+
 ### Added
 - Refactored tests and added Tox support
 - Framework for Web API v3 endpoints
