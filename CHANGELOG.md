@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.7] - 2015-10-19 ##
+- Include MIT.LICENSE in release tarball
+
 ## [1.5.6] - 2015-10-16 ##
 - Removed unsupported endpoint
 
