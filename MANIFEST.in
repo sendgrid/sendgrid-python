@@ -1,2 +1,3 @@
 include README.rst
+include MIT.LICENSE
 recursive-exclude test *
