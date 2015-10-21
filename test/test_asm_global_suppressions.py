@@ -26,9 +26,19 @@ class TestASMGroups(unittest.TestCase):
         self.assertEqual(self.asm_global_suppressions.endpoint, "/v3/asm/suppressions/global")
         self.assertEqual(self.asm_global_suppressions.client, self.client)
 
-    def test_asm_suppressions_get(self):
+    def test_asm_global_suppressions_get(self):
         status, msg = self.client.asm_global_suppressions.get('test@example.com')
         self.assertEqual(status, 200)
+        
+    def test_asm_suppressions_post(self):
+        emails = ['elmer+test@thinkingserious.com']
+        status, msg = self.client.asm_global_suppressions.post(emails)
+        self.assertEqual(status, 201)
+        self.assertEqual(msg['recipient_emails'], emails)
+        emails = ['elmer+test@thinkingserious.com', 'elmer.thomas@yahoo.com']
+        status, msg = self.client.asm_global_suppressions.post(emails)
+        self.assertEqual(status, 201)
+        self.assertEqual(msg['recipient_emails'], emails)
 
 if __name__ == '__main__':
     unittest.main()
