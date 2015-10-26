@@ -321,9 +321,18 @@ Check if a given email is on the global suppression list.
 Add an email to the global suppression list.
 
 .. code:: python
-  client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-  email = ['elmer@thinkingserious.com']
-  status, msg = client.asm_global_suppressions.post(email)
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    email = ['elmer@thinkingserious.com']
+    status, msg = client.asm_global_suppressions.post(email)
+
+Suppression Unsubscribes
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Get a list of all SendGrid globally unsubscribed emails.
+
+.. code:: python
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.suppressions.get()
 
 SendGrid's `X-SMTPAPI`_
 -----------------------

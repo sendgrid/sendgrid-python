@@ -12,6 +12,10 @@ client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 """
 
+status, msg = client.suppressions.get()
+print status
+print msg
+
 status, msg = client.asm_global_suppressions.post(['elmer.thomas+test_global0@gmail.com'])
 print status
 print msg
