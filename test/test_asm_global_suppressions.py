@@ -30,7 +30,7 @@ class TestASMGroups(unittest.TestCase):
         status, msg = self.client.asm_global_suppressions.get('test@example.com')
         self.assertEqual(status, 200)
         
-    def test_asm_suppressions_post(self):
+    def test_asm_global_suppressions_post(self):
         emails = ['elmer+test@thinkingserious.com']
         status, msg = self.client.asm_global_suppressions.post(emails)
         self.assertEqual(status, 201)
@@ -39,6 +39,10 @@ class TestASMGroups(unittest.TestCase):
         status, msg = self.client.asm_global_suppressions.post(emails)
         self.assertEqual(status, 201)
         self.assertEqual(msg['recipient_emails'], emails)
+        
+    def test_asm_global_suppressions_delete(self):
+        status, msg = self.client.asm_global_suppressions.delete('test@example.com')
+        self.assertEqual(status, 204)
 
 if __name__ == '__main__':
     unittest.main()

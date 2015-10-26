@@ -10,6 +10,11 @@ if os.path.exists('.env'):
 
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
+email = 'elmer.thomas+test_global0@gmail.com'
+status, msg = client.asm_global_suppressions.delete(email)
+print status
+print msg
+
 """
 
 status, msg = client.suppressions.get()

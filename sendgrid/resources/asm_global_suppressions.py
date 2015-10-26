@@ -44,3 +44,8 @@ class ASMGlobalSuppressions(object):
         data = {}
         data["recipient_emails"] = emails
         return self.client.post(self, data)
+        
+    # Remove an email from the global suppressions group
+    def delete(self, email=None):
+        self._endpoint = self._base_endpoint + '/' + email
+        return self.client.delete(self)
