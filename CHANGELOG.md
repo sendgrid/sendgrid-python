@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.10] - 2015-10-26 ##
+
+### Added ###
+- ASM Global Suppressions [DELETE]
+
 ## [1.5.9] - 2015-10-26 ##
 
 ### Added ###
