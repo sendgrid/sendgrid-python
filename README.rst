@@ -324,6 +324,13 @@ Add an email to the global suppression list.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     email = ['elmer@thinkingserious.com']
     status, msg = client.asm_global_suppressions.post(email)
+    
+Delete an email from the global suppression list.
+
+.. code:: python
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    email = 'elmer@thinkingserious.com'
+    status, msg = client.asm_global_suppressions.delete(email)
 
 Suppression Unsubscribes
 ~~~~~~~~~~~~~~~~~~~~~~~~
