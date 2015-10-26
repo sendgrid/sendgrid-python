@@ -15,6 +15,7 @@ from .resources.api_keys import APIKeys
 from .resources.asm_groups import ASMGroups
 from .resources.asm_suppressions import ASMSuppressions
 from .resources.asm_global_suppressions import ASMGlobalSuppressions
+from .resources.suppressions import Suppressions
 
 class SendGridAPIClient(object):
 
@@ -38,6 +39,7 @@ class SendGridAPIClient(object):
         self.asm_groups = ASMGroups(self)
         self.asm_suppressions = ASMSuppressions(self)
         self.asm_global_suppressions = ASMGlobalSuppressions(self)
+        self.suppressions = Suppressions(self)
 
     @property
     def apikey(self):
