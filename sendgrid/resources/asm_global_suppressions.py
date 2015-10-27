@@ -41,6 +41,7 @@ class ASMGlobalSuppressions(object):
         
     # Add an email to the global suppressions group
     def post(self, emails=None):
+        self._endpoint = self._base_endpoint
         data = {}
         data["recipient_emails"] = emails
         return self.client.post(self, data)
