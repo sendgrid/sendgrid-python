@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.12] - 2015-10-28 ##
+
+### Fixed ###
+- Minor Refactor and README update
+
 ## [1.5.11] - 2015-10-27 ##
 
 ### Fixed ###
