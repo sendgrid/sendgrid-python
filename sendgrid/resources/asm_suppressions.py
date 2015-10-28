@@ -36,10 +36,8 @@ class ASMSuppressions(object):
         return self._client
         
     # Get suppressed addresses for a given group id.
-    def get(self, id=None):        
-        if isinstance(id, int):
-            self._endpoint = self._base_endpoint + "/" + str(id) + "/suppressions"
-            return self.client.get(self)
+    def get(self, id):        
+        self._endpoint = self._base_endpoint + "/" + str(id) + "/suppressions"
         return self.client.get(self)
     
     # Add recipient addresses to the suppressions list for a given group.
