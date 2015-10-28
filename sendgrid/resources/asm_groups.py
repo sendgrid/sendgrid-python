@@ -39,8 +39,7 @@ class ASMGroups(object):
     def get(self, id=None):
         if id == None:
             return self.client.get(self)
-        
-        if isinstance(id, int):
+        else:
             self._endpoint = self._base_endpoint + "/" + str(id)
             
         return self.client.get(self)
