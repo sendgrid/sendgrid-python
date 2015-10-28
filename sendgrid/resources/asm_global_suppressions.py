@@ -35,18 +35,18 @@ class ASMGlobalSuppressions(object):
         return self._client
         
     # Determine if an email belongs to the global suppression group
-    def get(self, email=None):
+    def get(self, email):
         self._endpoint = self._base_endpoint + '/' + email
         return self.client.get(self)
         
     # Add an email to the global suppressions group
-    def post(self, emails=None):
+    def post(self, emails):
         self._endpoint = self._base_endpoint
         data = {}
         data["recipient_emails"] = emails
         return self.client.post(self, data)
         
     # Remove an email from the global suppressions group
-    def delete(self, email=None):
+    def delete(self, email):
         self._endpoint = self._base_endpoint + '/' + email
         return self.client.delete(self)
