@@ -248,17 +248,17 @@ List all API Keys belonging to the authenticated user.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.apikeys.get()
     
-`Advanced Suppression Manager (ASM)`_
+`Suppression Management`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Advanced Suppression Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
+Unsubscribe Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
 
 More information_. 
 
-.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Advanced_Suppression_Manager/index.html
+.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/index.html
 
-ASM Groups
-~~~~~~~~~~
+Unsubscribe Groups
+~~~~~~~~~~~~~~~~~~~
 
 Retrieve all suppression groups associated with the user.
 
@@ -279,7 +279,7 @@ Create a new suppression group.
 
     status, msg = client.asm_groups.post(name, description, is_default)
     
-ASM Suppressions
+Suppressions
 ~~~~~~~~~~~~~~~~
 
 Suppressions are email addresses that can be added to groups to prevent certain types of emails from being delivered to those addresses.
@@ -305,7 +305,7 @@ Delete a recipient email from the suppressions list for a group.
 
     status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
 
-ASM Global Suppressions
+Global Suppressions
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Global Suppressions are email addresses that will not receive any emails.
@@ -317,6 +317,12 @@ Check if a given email is on the global suppression list.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     email = ['elmer@thinkingserious.com']
     status, msg = client.asm_global_suppressions.get(email)
+    
+Get a list of all SendGrid globally unsubscribed emails.
+
+.. code:: python
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.suppressions.get()
     
 Add an email to the global suppression list.
 
@@ -331,15 +337,6 @@ Delete an email from the global suppression list.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     email = 'elmer@thinkingserious.com'
     status, msg = client.asm_global_suppressions.delete(email)
-
-Suppression Unsubscribes
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Get a list of all SendGrid globally unsubscribed emails.
-
-.. code:: python
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    status, msg = client.suppressions.get()
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
