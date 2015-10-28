@@ -6,9 +6,11 @@ try:
     import urllib.request as urllib_request
     from urllib.parse import urlencode
     from urllib.error import HTTPError
+    from urllib.error import URLError
 except ImportError:  # Python 2
     import urllib2 as urllib_request
     from urllib2 import HTTPError
+    from urllib2 import URLError
     from urllib import urlencode
 
 from .exceptions import SendGridClientError, SendGridServerError
@@ -121,6 +123,8 @@ class SendGridClient(object):
             return self._make_request(message)
         except HTTPError as e:
             return e.code, e.read()
+        except URLError as e:
+            return 408, e.reason
         except timeout as e:
             return 408, e
 
@@ -134,5 +138,7 @@ class SendGridClient(object):
                 raise SendGridServerError(e.code, e.read())
             else:
                 assert False
+        except URLError as e:
+            raise SendGridClientError(408, 'Request timeout')
         except timeout as e:
             raise SendGridClientError(408, 'Request timeout')
