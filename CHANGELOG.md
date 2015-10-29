@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.13] - 2015-10-28 ##
+
+### Fixed ###
+- Fix timeout via URLError [104](https://github.com/sendgrid/sendgrid-python/issues/104)
+
 ## [1.5.12] - 2015-10-28 ##
 
 ### Fixed ###
