@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.14] - 2015-11-09 ##
+
+### Fixed ###
+- Fix "Mail uses old-style class again" [144](https://github.com/sendgrid/sendgrid-python/issues/144)
+
 ## [1.5.13] - 2015-10-28 ##
 
 ### Fixed ###
