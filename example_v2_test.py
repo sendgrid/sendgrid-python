@@ -36,6 +36,19 @@ print status
 print msg
 
 # Template Engine Example
+#   In the template editor, the subject is <%subject%> and the body is:
+#
+#   Hello :name,
+#   
+#   <%body%>
+#
+#   With Best Regards,
+# 
+#   Your Library Tester
+# 
+#  <%subject%> is replaced with the value in message.set_subject
+#  <%body%> is replaced with the value in message.set_html and message.set_text
+#  :name is replaced with the value in message.add_substitution
 
 message = sendgrid.Mail()
 message.add_filter('templates', 'enable', '1')
