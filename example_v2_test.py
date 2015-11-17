@@ -9,7 +9,6 @@ if os.path.exists('.env'):
 sg = sendgrid.SendGridClient(os.environ.get('SENDGRID_API_KEY'))
 
 """
-
 # Basic Send Example
 
 message = sendgrid.Mail()
@@ -26,7 +25,7 @@ print msg
 
 message = sendgrid.Mail()
 message.add_substitution(':first_name', 'John')
-message.smtpapi.add_to('Elmer Thomas <example@example.com>')
+message.smtpapi.add_to('John Doe <example@example.com>')
 message.set_subject('Testing from the Python library using the SMTPAPI')
 message.set_html('<b>:first_name, this was a successful test of using the SMTPAPI library!</b>')
 message.set_text(':name, this was a successful test of using the SMTPAPI library!')
@@ -36,19 +35,19 @@ print status
 print msg
 
 # Template Engine Example
-#   In the template editor, the subject is <%subject%> and the body is:
+#    In the template editor, the subject is <%subject%> and the body is:
 #
-#   Hello :name,
+#    Hello :name,
 #   
-#   <%body%>
+#    <%body%>
 #
-#   With Best Regards,
+#    With Best Regards,
 # 
-#   Your Library Tester
+#    Your Library Tester
 # 
-#  <%subject%> is replaced with the value in message.set_subject
-#  <%body%> is replaced with the value in message.set_html and message.set_text
-#  :name is replaced with the value in message.add_substitution
+#    <%subject%> is replaced with the value in message.set_subject
+#    <%body%> is replaced with the value in message.set_html and message.set_text
+#    :name is replaced with the value in message.add_substitution
 
 message = sendgrid.Mail()
 message.add_filter('templates', 'enable', '1')

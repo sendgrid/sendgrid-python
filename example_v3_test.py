@@ -11,8 +11,7 @@ if os.path.exists('.env'):
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 """
-
-email = 'elmer.thomas+test_global0@gmail.com'
+email = 'example@example.com'
 status, msg = client.asm_global_suppressions.delete(email)
 print status
 print msg
@@ -21,7 +20,7 @@ status, msg = client.suppressions.get()
 print status
 print msg
 
-status, msg = client.asm_global_suppressions.post(['elmer.thomas+test_global0@gmail.com'])
+status, msg = client.asm_global_suppressions.post(['example@example.com'])
 print status
 print msg
 
@@ -47,12 +46,12 @@ print status
 print msg
 
 # In the global suppression list
-status, msg = client.asm_global_suppressions.get('elmer.thomas+test_global@gmail.com')
+status, msg = client.asm_global_suppressions.get('example@example.com')
 print status
 print msg
 
 # Not in the global suppression list
-status, msg = client.asm_global_suppressions.get('elmer.thomas@gmail.com')
+status, msg = client.asm_global_suppressions.get('example@example.com')
 print status
 print msg
 
@@ -60,11 +59,11 @@ status, msg = client.apikeys.get()
 print status
 print msg
 
-status, msg = client.asm_suppressions.delete(67,'elmer+test@thinkingserious.com')
+status, msg = client.asm_suppressions.delete(67,'example@example.com')
 print status
 print msg
 
-status, msg = client.asm_suppressions.post(60, ['elmer+test@thinkingserious.com', 'elmer.thomas@yahoo.com'])
+status, msg = client.asm_suppressions.post(60, ['example@example.com', 'example@example.com])
 print status
 print msg
 
