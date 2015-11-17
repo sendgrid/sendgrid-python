@@ -9,12 +9,14 @@ if os.path.exists('.env'):
 sg = sendgrid.SendGridClient(os.environ.get('SENDGRID_USERNAME'), os.environ.get('SENDGRID_PASSWORD'))
 
 """
+to = 'Jane Doe <example@example.com>'
+from = 'John Doe <example@example.com>'
 message = sendgrid.Mail()
-message.add_to('Elmer Thomas <elmer@thinkingserious.com>')
+message.add_to(to)
 message.set_subject('Testing from the Python library')
 message.set_html('<b>This was a successful test!</b>')
 message.set_text('This was a successful test!')
-message.set_from('Elmer Thomas <dx@sendgrid.com>')
+message.set_from(from)
 status, msg = sg.send(message)
 print status
 print msg

@@ -248,6 +248,29 @@ List all API Keys belonging to the authenticated user.
     client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     status, msg = client.apikeys.get()
     
+Generate a new API Key for the authenticated user
+
+.. code:: python
+
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    name = "My Amazing API Key"
+    status, msg = client.apikeys.post(name)
+    
+Revoke an existing API Key
+
+.. code:: python
+
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    status, msg = client.apikeys.delete(api_key_id)
+    
+Update the name of an existing API Key
+
+.. code:: python
+
+    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    name = "My NEW API Key 3000"
+    status, msg = client.apikeys.patch(api_key_id, name)
+    
 `Suppression Management`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

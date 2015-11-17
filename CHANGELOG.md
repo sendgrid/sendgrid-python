@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.15] - 2015-11-17 ##
+
+### Added ###
+
+- API Keys documentation for [POST, PATCH, DELETE]
+
 ## [1.5.14] - 2015-11-09 ##
 
 ### Fixed ###
