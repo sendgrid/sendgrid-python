@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.16] - 2015-11-17 ##
+
+### Added ###
+
+- Template Engine documentation
+- SMTPAPI documentation
+
 ## [1.5.15] - 2015-11-17 ##
 
 ### Added ###
