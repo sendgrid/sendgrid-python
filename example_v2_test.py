@@ -13,11 +13,11 @@ sg = sendgrid.SendGridClient(os.environ.get('SENDGRID_API_KEY'))
 # Basic Send Example
 
 message = sendgrid.Mail()
-message.add_to('Elmer Thomas <elmer.thomas@sendgrid.com>')
+message.add_to('John Doe <example@example.com>')
 message.set_subject('Testing from the Python library')
 message.set_html('<b>This was a successful test!</b>')
 message.set_text('This was a successful test!')
-message.set_from('Elmer Thomas <dx@sendgrid.com>')
+message.set_from('Jane Doe <example@example.com')
 status, msg = sg.send(message)
 print status
 print msg
@@ -25,12 +25,12 @@ print msg
 # SMTPAPI Basic Send Example
 
 message = sendgrid.Mail()
-message.add_substitution(':first_name', 'Elmer')
-message.smtpapi.add_to('Elmer Thomas <elmer.thomas@sendgrid.com>')
+message.add_substitution(':first_name', 'John')
+message.smtpapi.add_to('Elmer Thomas <example@example.com>')
 message.set_subject('Testing from the Python library using the SMTPAPI')
 message.set_html('<b>:first_name, this was a successful test of using the SMTPAPI library!</b>')
 message.set_text(':name, this was a successful test of using the SMTPAPI library!')
-message.set_from('Elmer Thomas <dx@sendgrid.com>')
+message.set_from('Jane Doe <example@example.com>')
 status, msg = sg.send(message)
 print status
 print msg
@@ -40,12 +40,12 @@ print msg
 message = sendgrid.Mail()
 message.add_filter('templates', 'enable', '1')
 message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
-message.add_substitution(':name', 'Elmer')
-message.add_to('Elmer Thomas <elmer.thomas@sendgrid.com>')
+message.add_substitution(':name', 'John')
+message.add_to('John Doe <example@example.com')
 message.set_subject('Testing from the Python library using the SMTPAPI')
 message.set_html('<b>This was a successful test of using the SMTPAPI library!</b>')
 message.set_text('This was a successful test of using the SMTPAPI library!')
-message.set_from('Elmer Thomas <dx@sendgrid.com>')
+message.set_from('Jane Doe <example@example.com>')
 status, msg = sg.send(message)
 print status
 print msg

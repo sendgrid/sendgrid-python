@@ -290,7 +290,7 @@ Add recipient addresses to the suppressions list for a given group.
     
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     group_id = <group_id_number> # If no group_id_number, the emails will be added to the global suppression group
-    emails = ['test@email.com', 'test2@email.com']
+    emails = ['example@example.com', 'example@example.com']
     status, msg = client.asm_suppressions.post(group_id, emails)
 
 Get suppressed addresses for a given group.
@@ -315,7 +315,7 @@ Check if a given email is on the global suppression list.
 .. code:: python
     
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = ['test@email.com']
+    email = ['example@example.com']
     status, msg = client.asm_global_suppressions.get(email)
     
 Get a list of all SendGrid globally unsubscribed emails.
@@ -328,14 +328,14 @@ Add an email to the global suppression list.
 
 .. code:: python
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = ['test@email.com']
+    email = ['example@example.com']
     status, msg = client.asm_global_suppressions.post(email)
     
 Delete an email from the global suppression list.
 
 .. code:: python
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = 'test@email.com'
+    email = 'example@example.com'
     status, msg = client.asm_global_suppressions.delete(email)
 
 SendGrid's `X-SMTPAPI`_
@@ -354,11 +354,11 @@ Example
     sg = sendgrid.SendGridClient('SENDGRID_API_KEY')
     message = sendgrid.Mail()
     message.add_substitution(':first_name', 'John')
-    message.smtpapi.add_to('John <john@email.com>')
+    message.smtpapi.add_to('John <example@example.com>')
     message.set_subject('Testing from the Python library using the SMTPAPI')
     message.set_html('<b>:first_name, this was a successful test of using the SMTPAPI library!</b>')
     message.set_text(':name, this was a successful test of using the SMTPAPI library!')
-    message.set_from('Doe <doe@email.com>')
+    message.set_from('Jane <example@example.com>')
     sg.send(message)
 
 `Recipients`_
