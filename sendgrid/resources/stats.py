@@ -39,7 +39,7 @@ class Stats(object):
         # Required
         args = {'start_date': start_date}
         # Optional arguements
-        if end_date:
+        if end_date: 
             args['end_date'] = end_date
         if aggregated_by:
             args['aggregated_by'] = aggregated_by
