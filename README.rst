@@ -276,10 +276,6 @@ Update the name of an existing API Key
 
 Unsubscribe Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
 
-More information_. 
-
-.. _information: https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/index.html
-
 Unsubscribe Groups
 ~~~~~~~~~~~~~~~~~~~
 
@@ -360,6 +356,17 @@ Delete an email from the global suppression list.
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     email = 'example@example.com'
     status, msg = client.asm_global_suppressions.delete(email)
+
+`Global Stats`_
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Global Stats provide all of your user’s email statistics for a given date range.
+
+.. code:: python
+    start_date = '2015-10-01' # required
+    end_date = None # optional
+    aggregated_by = 'week' # optional, must be day, week or month
+    status, msg = client.stats.get(start_date, end_date, aggregated_by)
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
@@ -592,3 +599,5 @@ Deploying
 .. _`Web API v3 endpoints`: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _TOX: https://testrun.org/tox/latest/
 .. _`few of the v3`: APIKeysAnchor_
+.. _`Suppression Management`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/index.html
+.. _`Global Stats`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html

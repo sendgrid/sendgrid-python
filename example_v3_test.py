@@ -10,6 +10,16 @@ if os.path.exists('.env'):
 
 client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
+start_date = '2015-10-01'
+end_date = None
+aggregated_by = 'week' # must be day, week or month
+status, msg = client.stats.get(
+                start_date=start_date, 
+                end_date=end_date, 
+                aggregated_by=aggregated_by)
+print status
+print msg
+
 """
 email = 'example@example.com'
 status, msg = client.asm_global_suppressions.delete(email)
