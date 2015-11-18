@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.17] - 2015-11-17 ##
+
+### Added ###
+
+- Global Stats [GET]
+
 ## [1.5.16] - 2015-11-17 ##
 
 ### Added ###
