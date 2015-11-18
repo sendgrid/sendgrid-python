@@ -37,7 +37,7 @@ Example
 
     import sendgrid
 
-    sg = sendgrid.SendGridClient('YOUR_SENDGRID_USERNAME', 'YOUR_SENDGRID_PASSWORD')
+    sg = sendgrid.SendGridClient('YOUR_SENDGRID_API_KEY')
 
     message = sendgrid.Mail()
     message.add_to('John Doe <john@email.com>')
@@ -245,7 +245,7 @@ List all API Keys belonging to the authenticated user.
 
 .. code:: python
     
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     status, msg = client.apikeys.get()
     
 Generate a new API Key for the authenticated user
@@ -287,7 +287,7 @@ Retrieve all suppression groups associated with the user.
 
 .. code:: python
     
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     status, msg = client.asm_groups.get()
 
 Get a single record.
@@ -311,9 +311,9 @@ Add recipient addresses to the suppressions list for a given group.
 
 .. code:: python
     
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     group_id = <group_id_number> # If no group_id_number, the emails will be added to the global suppression group
-    emails = ['elmer+test@thinkingserious.com', 'elmer+test2@thinkingserious.com']
+    emails = ['example@example.com', 'example@example.com']
     status, msg = client.asm_suppressions.post(group_id, emails)
 
 Get suppressed addresses for a given group.
@@ -337,28 +337,28 @@ Check if a given email is on the global suppression list.
 
 .. code:: python
     
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    email = ['elmer@thinkingserious.com']
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
+    email = ['example@example.com']
     status, msg = client.asm_global_suppressions.get(email)
     
 Get a list of all SendGrid globally unsubscribed emails.
 
 .. code:: python
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     status, msg = client.suppressions.get()
     
 Add an email to the global suppression list.
 
 .. code:: python
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    email = ['elmer@thinkingserious.com']
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
+    email = ['example@example.com']
     status, msg = client.asm_global_suppressions.post(email)
     
 Delete an email from the global suppression list.
 
 .. code:: python
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    email = 'elmer@thinkingserious.com'
+    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
+    email = 'example@example.com'
     status, msg = client.asm_global_suppressions.delete(email)
 
 SendGrid's `X-SMTPAPI`_
@@ -368,6 +368,21 @@ If you wish to use the X-SMTPAPI on your own app, you can use the
 `SMTPAPI Python library`_.
 
 There are implementations for setter methods too.
+
+Example
+~~~~~~~
+
+.. code:: python
+
+    sg = sendgrid.SendGridClient('SENDGRID_API_KEY')
+    message = sendgrid.Mail()
+    message.add_substitution(':first_name', 'John')
+    message.smtpapi.add_to('John <example@example.com>')
+    message.set_subject('Testing from the Python library using the SMTPAPI')
+    message.set_html('<b>:first_name, this was a successful test of using the SMTPAPI library!</b>')
+    message.set_text(':name, this was a successful test of using the SMTPAPI library!')
+    message.set_from('Jane <example@example.com>')
+    sg.send(message)
 
 `Recipients`_
 ~~~~~~~~~~~~~
@@ -512,6 +527,7 @@ Using Templates from the Template Engine
 
     message.add_filter('templates', 'enable', '1')
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
+    message.add_substitution('key', 'value')
 
 Tests
 ~~~~~
