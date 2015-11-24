@@ -103,6 +103,7 @@ class SendGridClient(object):
         data = urlencode(self._build_body(message), True).encode('utf-8')
         req = urllib_request.Request(self.mail_url, data)
         req.add_header('User-Agent', self.useragent)
+        req.add_header('Accept', '*/*')
 
         if self.username is None:
             # Using API key
