@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.18] - 2015-11-17 ##
+
+### Fixed ###
+
+- Fix "HTTP 406 Not Acceptable Errors" [149](https://github.com/sendgrid/sendgrid-python/issues/149)
+
 ## [1.5.17] - 2015-11-17 ##
 
 ### Added ###
