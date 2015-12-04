@@ -21,6 +21,11 @@ In no particular order, we have implemented a `few of the v3`_ endpoints already
 
 Thank you for your continued support! 
 
+API Key
+-------
+
+To use the SendGrid Web API, you will need an API Key. You can create one in your `SendGrid Dashboard`_.
+
 Install
 -------
 
@@ -235,6 +240,8 @@ add_content_id
     
 WEB API v3
 ----------
+
+To use the SendGrid Web API v3, you will need an API Key. You can create one in your `SendGrid Dashboard`_.
 
 .. _APIKeysAnchor:
 
@@ -601,3 +608,4 @@ Deploying
 .. _`few of the v3`: APIKeysAnchor_
 .. _`Suppression Management`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/index.html
 .. _`Global Stats`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html
+.. _`SendGrid Dashboard`: https://app.sendgrid.com/settings/api_keys
