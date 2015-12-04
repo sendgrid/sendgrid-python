@@ -360,7 +360,7 @@ Delete an email from the global suppression list.
 `Global Stats`_
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Global Stats provide all of your user’s email statistics for a given date range.
+Global Stats provide all of your user's email statistics for a given date range.
 
 .. code:: python
     start_date = '2015-10-01' # required
