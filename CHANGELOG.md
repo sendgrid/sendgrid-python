@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.19] - 2015-12-03 ##
+
+### Fixed ###
+
+- Can't install normally [155](https://github.com/sendgrid/sendgrid-python/issues/155)
+
 ## [1.5.18] - 2015-11-17 ##
 
 ### Fixed ###
