@@ -69,7 +69,7 @@ and ``SendGridServerError`` for 5xx errors.
 
     from sendgrid import SendGridError, SendGridClientError, SendGridServerError
 
-    sg = sendgrid.SendGridClient(username, password, raise_errors=True)
+    sg = sendgrid.SendGridClient('YOUR_SENDGRID_API_KEY', None, raise_errors=True)
 
     try:
         sg.send(message)
@@ -86,13 +86,11 @@ encouraged to set ``raise_errors`` to ``True`` for forwards compatibility.
 Usage
 ~~~~~
 
-To begin using this library create a new instance of `SendGridClient` with your SendGrid credentials or a SendGrid API Key. API Key is the preferred method. API Keys are in beta. To configure API keys, visit https://app.sendgrid.com/settings/api_keys.
+To begin using this library create a new instance of `SendGridClient` with your SendGrid API Key. To configure API keys, visit https://app.sendgrid.com/settings/api_keys.
 
 .. code:: python
 
-    sg = sendgrid.SendGridClient('sendgrid_username', 'sendgrid_password')
-    # or
-    sg = sendgrid.SendGridClient('sendgrid_apikey')
+    sg = sendgrid.SendGridClient('YOUR_SENDGRID_API_KEY')
 
 Methods
 ~~~~~~~
