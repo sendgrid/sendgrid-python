@@ -51,6 +51,7 @@ class SendGridClient(object):
         self.endpoint = opts.get('endpoint', '/api/mail.send.json')
         self.mail_url = self.host + ':' + self.port + self.endpoint
         self._raise_errors = opts.get('raise_errors', False)
+        self.timeout = opts.get('timeout', 10)
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
 
@@ -109,7 +110,7 @@ class SendGridClient(object):
             # Using API key
             req.add_header('Authorization', 'Bearer ' + self.password)
 
-        response = urllib_request.urlopen(req, timeout=10)
+        response = urllib_request.urlopen(req, timeout = self.timeout)
         body = response.read()
         return response.getcode(), body
 
