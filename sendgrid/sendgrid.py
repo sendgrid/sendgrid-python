@@ -110,7 +110,7 @@ class SendGridClient(object):
             # Using API key
             req.add_header('Authorization', 'Bearer ' + self.password)
 
-        response = urllib_request.urlopen(req, self.timeout)
+        response = urllib_request.urlopen(req, timeout = self.timeout)
         body = response.read()
         return response.getcode(), body
 
