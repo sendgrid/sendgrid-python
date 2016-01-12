@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.5.20] - 2015-01-12 ##
+
+### Added ###
+
+- Change timeout to opts variable [157](https://github.com/sendgrid/sendgrid-python/pull/157)
+- Thanks [tgehrs](https://github.com/tgehrs)!
+
 ## [1.5.19] - 2015-12-03 ##
 
 ### Fixed ###
