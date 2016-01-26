@@ -4,20 +4,11 @@ class Subusers(object):
         """
         Constructs SendGrid Subusers object.
 
-        See https://sendgrid.com/docs/API_Reference/Web_API_v3/subusers.html
+        https://sendgrid.com/docs/API_Reference/Web_API_v3/subusers.html
         """
-        self._name = None
         self._base_endpoint = "/v3/subusers"
         self._endpoint = "/v3/subusers"
         self._client = client
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        self._name = value
 
     @property
     def base_endpoint(self):
@@ -36,31 +27,49 @@ class Subusers(object):
     def client(self):
         return self._client
 
-    # Get a list of active API keys
     def get(self):
+        """
+        Get a list of subusers
+        """
+        self.endpoint = self._base_endpoint
         return self.client.get(self)
 
-    # Create a new subuser with username, email, password (string) and IP list (string[])
     def post(self, username, email, password, ips = []):
+        """
+        Create a new subuser
+
+        :param username: string
+        :param email: string
+        :param password: string
+        :param ips: string[]
+        """
         data = {}
-        self.username = username
-        self.email = email
-        self.password = password
-        data['username'] = self.username
-        data['email'] = self.email
-        data['password'] = self.password
+        data['username'] = username
+        data['email'] = email
+        data['password'] = password
         data['ips'] = ips
+
+        self.endpoint = self._base_endpoint
         return self.client.post(self, data)
 
-    # Delete a subuser
     def delete(self, username):
+        """
+        Delete a subuser
+
+        :param username: string
+        """
         self.endpoint = self._base_endpoint + "/" + username
         return self.client.delete(self)
 
-    # Enable/disable a subuser
     def patch(self, username, disabled):
+        """
+        Enable/disable a subuser
+
+        :param username: string
+        :param disabled: bool
+        """
         data = {}
-        self.disabled = disabled
-        data['disabled'] = self.disabled
+        data['disabled'] = disabled
+
         self.endpoint = self._base_endpoint + "/" + username
         return self.client.patch(self, data)

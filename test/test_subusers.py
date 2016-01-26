@@ -22,7 +22,6 @@ class TestSubusers(unittest.TestCase):
 
     def test_subusers_init(self):
         self.subusers = self.client.subusers
-        self.assertEqual(self.subusers.name, None)
         self.assertEqual(self.subusers.base_endpoint, "/v3/subusers")
         self.assertEqual(self.subusers.endpoint, "/v3/subusers")
         self.assertEqual(self.subusers.client, self.client)
@@ -43,13 +42,18 @@ class TestSubusers(unittest.TestCase):
         status, msg = self.client.subusers.patch(username, disabled)
         self.assertEqual(status, 200)
 
+        self.test_subusers_get()
+
     def test_subusers_delete(self):
         username = "test-subuser1"
         status, msg = self.client.subusers.delete(username)
         self.assertEqual(status, 204)
 
+        self.test_subusers_get()
+
     def test_subusers_get(self):
         status, msg = self.client.subusers.get()
+        self.assertEqual(self.client.subusers.endpoint, "/v3/subusers")
         self.assertEqual(status, 200)
 
 if __name__ == '__main__':
