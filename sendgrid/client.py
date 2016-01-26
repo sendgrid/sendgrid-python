@@ -18,6 +18,7 @@ from .resources.asm_global_suppressions import ASMGlobalSuppressions
 from .resources.suppressions import Suppressions
 from .resources.stats import Stats
 from .resources.subusers import Subusers
+from .resources.whitelabel_domains import WhitelabelDomains
 
 class SendGridAPIClient(object):
 
@@ -45,6 +46,7 @@ class SendGridAPIClient(object):
         self.suppressions = Suppressions(self)
         self.stats = Stats(self)
         self.subusers = Subusers(self)
+        self.whitelabel_domains = WhitelabelDomains(self)
 
     @property
     def apikey(self):
