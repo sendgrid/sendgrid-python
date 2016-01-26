@@ -36,6 +36,7 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
+        self._basic = opts.get('basic', False)
 
         self.apikeys = APIKeys(self)
         self.asm_groups = ASMGroups(self)
@@ -61,7 +62,7 @@ class SendGridAPIClient(object):
         req = urllib_request.Request(url)
         req.get_method = lambda: method
         req.add_header('User-Agent', self.useragent)
-        req.add_header('Authorization', 'Bearer ' + self.apikey)
+        req.add_header('Authorization', ('Basic ' if self._basic else 'Bearer ') + self.apikey)
         if json_header:
             req.add_header('Content-Type', 'application/json')
         try:
