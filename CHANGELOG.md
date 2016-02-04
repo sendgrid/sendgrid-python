@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.6.20] - 2015-02-04 ##
+
+### Updated ###
+
+- smtpi-sendgrid dependency is now 0.3.1, the latest version: [161](https://github.com/sendgrid/sendgrid-python/pull/161/files). Thanks [Kevin Brown](https://github.com/kevin-brown)!
+
 ## [1.5.20] - 2015-01-12 ##
 
 ### Added ###
