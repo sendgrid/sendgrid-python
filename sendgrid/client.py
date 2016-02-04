@@ -21,6 +21,7 @@ from .resources.subusers import Subusers
 from .resources.whitelabel_domains import WhitelabelDomains
 from .resources.whitelabel_ips import WhitelabelIPs
 from .resources.ip_pools import IPPools
+from .resources.ip_addresses import IPAddresses
 
 class SendGridAPIClient(object):
 
@@ -51,6 +52,7 @@ class SendGridAPIClient(object):
         self.whitelabel_domains = WhitelabelDomains(self)
         self.whitelabel_ips = WhitelabelIPs(self)
         self.ip_pools = IPPools(self)
+        self.ips = IPAddresses(self)
 
     @property
     def apikey(self):
