@@ -29,7 +29,7 @@ print(response.status_code)
 print(response.json())
 
 # POST Create a template.
-data = {"name": "UniversalClient Template Test v1"}
+data = {"name": "UniversalClient Template Test v111"}
 response = templates.post(data=data)
 print(response.status_code)
 response_json = response.json()
@@ -37,7 +37,7 @@ print(response_json)
 template_id = response_json['id']
 
 # PATCH Edit a template.
-data = {"name": "UniversalClient Template Test v2"}
+data = {"name": "UniversalClient Template Test v222"}
 response = templates._(template_id).patch(data=data)
 print(response.status_code)
 print(response.json())
