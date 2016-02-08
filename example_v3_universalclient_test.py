@@ -2,11 +2,8 @@ import sendgrid
 import json
 
 import os
-if os.path.exists('.env'):
-    for line in open('.env'):
-        var = line.strip().split('=')
-        if len(var) == 2:
-            os.environ[var[0]] = var[1]
+from sendgrid.config import Config
+config = Config()
 
 # StopLight Proxy Test
 # https://designer.stoplight.io/wk/F8THnzoqMYoLiWfin/xffLhad2tAAaLiKEq/S5LsAX4SWF7cJHu2R/requests/56b3da76f787db00033b3e18
@@ -15,7 +12,13 @@ sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 templates = sg.client.templates
 
-#TODO: Do the POST first
+# POST Create a template.
+data = {"name": "UniversalClient Template Test v3000"}
+response = templates.post(data=data)
+print(response.status_code)
+response_json = response.json()
+print(response_json)
+template_id = response_json['id']
 
 # GET Retrieve all templates.
 response = templates.get()
@@ -23,21 +26,12 @@ print(response.status_code)
 print(response.json())
 
 # GET Retrieve a single template.
-template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
 response = templates._(template_id).get()
 print(response.status_code)
 print(response.json())
 
-# POST Create a template.
-data = {"name": "UniversalClient Template Test v111"}
-response = templates.post(data=data)
-print(response.status_code)
-response_json = response.json()
-print(response_json)
-template_id = response_json['id']
-
 # PATCH Edit a template.
-data = {"name": "UniversalClient Template Test v222"}
+data = {"name": "UniversalClient Template Test v3001"}
 response = templates._(template_id).patch(data=data)
 print(response.status_code)
 print(response.json())
