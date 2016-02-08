@@ -35,6 +35,7 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
+        self.timeout = opts.get('timeout', 10)
 
         self.apikeys = APIKeys(self)
         self.asm_groups = ASMGroups(self)
@@ -66,7 +67,7 @@ class SendGridAPIClient(object):
             if data:
                 response = urllib_request.urlopen(req, json.dumps(data))
             else:
-                response = urllib_request.urlopen(req, timeout=10)
+                response = urllib_request.urlopen(req, timeout=self.timeout)
         except HTTPError as e:
             if 400 <= e.code < 500:
                 raise SendGridClientError(e.code, e.read())
