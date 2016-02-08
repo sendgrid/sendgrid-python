@@ -44,6 +44,7 @@ class APIKeys(object):
         
     # Create a new API key with name (string)
     def post(self, name):
+        self.endpoint = self._base_endpoint
         data = {}
         self.name = name
         data['name'] = self.name
