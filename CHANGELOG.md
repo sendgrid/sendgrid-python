@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.6.22] - 2015-02-08 ##
+
+### Fixed ###
+
+- a call to GET api_keys after a call to DELETE api_keys would throw an error.
+
 ## [1.6.21] - 2015-02-08 ##
 
 ### Added ###
