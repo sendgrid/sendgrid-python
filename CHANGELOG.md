@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.6.21] - 2015-02-08 ##
+
+### Added ###
+
+- the timeout value is no longer hard coded.
+
 ## [1.6.20] - 2015-02-04 ##
 
 ### Updated ###
