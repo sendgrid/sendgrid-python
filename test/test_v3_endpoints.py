@@ -67,7 +67,7 @@ class TestAPIKeys(unittest.TestCase):
         self.assertEqual(response.status_code, 204) 
 
 class TestTemplates(unittest.TestCase):
-    template_id = ""
+    id = ""
     def setUp(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
         self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
@@ -77,7 +77,7 @@ class TestTemplates(unittest.TestCase):
         data = {"name": "Python Client Template Endpoint Test v4000"}
         response = self.templates.post(data=data)
         response_json = response.json()
-        self.__class__.template_id = response_json['id']
+        self.__class__.id = response_json['id']
         self.assertEqual(response.status_code, 201)
 
     def test_01_templates_get(self):
@@ -85,16 +85,16 @@ class TestTemplates(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_02_templates_get_specific(self):
-        response = self.templates._(self.__class__.template_id).get()
+        response = self.templates._(self.__class__.id).get()
         self.assertEqual(response.status_code, 200)       
         
     def test_03_templates_patch(self):
         data = {"name": "Python Client Template Endpoint Test v4001"}
-        response = self.templates._(self.__class__.template_id).patch(data=data)
+        response = self.templates._(self.__class__.id).patch(data=data)
         self.assertEqual(response.status_code, 200)
         
     def test_04_templates_delete(self):
-        response = self.templates._(self.__class__.template_id).delete()
+        response = self.templates._(self.__class__.id).delete()
         self.assertEqual(response.status_code, 204)
 
 if __name__ == '__main__':
