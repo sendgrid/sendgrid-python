@@ -32,6 +32,10 @@ class TestAPIKeys(unittest.TestCase):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
         self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
         self.api_keys = self.sg.client.api_keys
+        scopes = self.sg.client.scopes
+        response = scopes.get()
+        response_json = response.json()
+        self.scope = response_json['scopes']
 
     def test_00_api_keys_post(self):
         data = {"name": "Python Client APIKeys Test v4000"}
@@ -54,8 +58,8 @@ class TestAPIKeys(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         
     def test_04_api_keys_put(self):
-        data = {"name": "Python Client Template Endpoint Test v4002"}
-        response = self.api_keys._(self.__class__.api_key_id).patch(data=data)
+        data = {"name": "Python Client Template Endpoint Test v4002", "scopes": self.scope}
+        response = self.api_keys._(self.__class__.api_key_id).put(data=data)
         self.assertEqual(response.status_code, 200)
         
     def test_05_api_keys_delete(self):

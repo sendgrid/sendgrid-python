@@ -10,6 +10,11 @@ config = Config()
 # sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https://qpsfwaq3savksegdq.stoplight-proxy.io/v3/")
 sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
+scopes = sg.client.scopes
+response = scopes.get()
+response_json = response.json()
+scope_data = {"name": "UniversalClient Template Test v3001", "scopes": response_json['scopes'] }
+
 templates = sg.client.templates
 
 # POST Create a template.
@@ -33,6 +38,11 @@ print(response.json())
 # PATCH Edit a template.
 data = {"name": "UniversalClient Template Test v3001"}
 response = templates._(template_id).patch(data=data)
+print(response.status_code)
+print(response.json())
+
+# PUT Update the name & scopes of an API Key
+response = templates._(template_id).patch(data=scope_data)
 print(response.status_code)
 print(response.json())
 
