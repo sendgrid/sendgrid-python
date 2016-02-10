@@ -47,24 +47,36 @@ class TestAPIKeys(unittest.TestCase):
     def test_01_api_keys_get(self):
         response = self.api_keys.get()
         self.assertEqual(response.status_code, 200)
-    
+
     def test_02_api_keys_get_specific(self):
         response = self.api_keys._(self.__class__.api_key_id).get()
-        self.assertEqual(response.status_code, 200)       
-        
+        self.assertEqual(response.status_code, 200)
+
     def test_03_api_keys_patch(self):
         data = {"name": "Python Client APIKeys Test v4001"}
         response = self.api_keys._(self.__class__.api_key_id).patch(data=data)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_04_api_keys_put(self):
-        data = {"name": "Python Client Template Endpoint Test v4002", "scopes": self.scope}
+        data = {"name": "Python Client APIKeys Test v4002", "scopes": self.scope}
         response = self.api_keys._(self.__class__.api_key_id).put(data=data)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_05_api_keys_delete(self):
         response = self.api_keys._(self.__class__.api_key_id).delete()
-        self.assertEqual(response.status_code, 204) 
+        self.assertEqual(response.status_code, 204)
+
+
+class TestScopes(unittest.TestCase):
+    def setUp(self):
+        self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
+        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
+        self.scopes = self.sg.client.scopes
+
+    def test_01_scopes_get(self):
+        response = self.scopes.get()
+        self.assertEqual(response.status_code, 200)
+
 
 class TestTemplates(unittest.TestCase):
     id = ""
@@ -76,26 +88,23 @@ class TestTemplates(unittest.TestCase):
     def test_00_templates_post(self):
         data = {"name": "Python Client Template Endpoint Test v4000"}
         response = self.templates.post(data=data)
+        self.assertEqual(response.status_code, 201)
         response_json = response.json()
         self.__class__.id = response_json['id']
-        self.assertEqual(response.status_code, 201)
 
     def test_01_templates_get(self):
         response = self.templates.get()
         self.assertEqual(response.status_code, 200)
-    
+
     def test_02_templates_get_specific(self):
         response = self.templates._(self.__class__.id).get()
-        self.assertEqual(response.status_code, 200)       
-        
+        self.assertEqual(response.status_code, 200)
+
     def test_03_templates_patch(self):
         data = {"name": "Python Client Template Endpoint Test v4001"}
         response = self.templates._(self.__class__.id).patch(data=data)
         self.assertEqual(response.status_code, 200)
-        
-    def test_04_templates_delete(self):
+
+    def test_05_templates_delete(self):
         response = self.templates._(self.__class__.id).delete()
         self.assertEqual(response.status_code, 204)
-
-if __name__ == '__main__':
-    unittest.main()
