@@ -15,7 +15,7 @@ class SendGridAPIClient(object):
         """
         self._apikey = apikey
         self.useragent = 'sendgrid/' + __version__ + ';python_v3'
-        self.host = opts.get('host', 'https://api.sendgrid.com/v3/')
+        self.host = opts.get('host', 'https://api.sendgrid.com/v3')
         self.version = __version__
 
         headers = "{\"Authorization\": \"Bearer " + self._apikey + "\", \

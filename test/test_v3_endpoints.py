@@ -23,19 +23,20 @@ class TestSendGridAPIClient(unittest.TestCase):
         self.assertEqual(self.client.useragent, useragent)
 
     def test_host(self):
-        host = 'https://api.sendgrid.com/v3/'
+        host = 'https://api.sendgrid.com/v3'
         self.assertEqual(self.client.host, host)
 
 class TestAPIKeys(unittest.TestCase):
     api_key_id = ""
     def setUp(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
+        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key, host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
         self.api_keys = self.sg.client.api_keys
         scopes = self.sg.client.scopes
         response = scopes.get()
         response_json = response.json()
         self.scope = response_json['scopes']
+
 
     def test_00_api_keys_post(self):
         data = {"name": "Python Client APIKeys Test v4000"}
@@ -62,7 +63,7 @@ class TestAPIKeys(unittest.TestCase):
         response = self.api_keys._(self.__class__.api_key_id).put(data=data)
         self.assertEqual(response.status_code, 200)
 
-    def test_05_api_keys_delete(self):
+    def test_06_api_keys_delete_specific(self):
         response = self.api_keys._(self.__class__.api_key_id).delete()
         self.assertEqual(response.status_code, 204)
 
@@ -70,20 +71,49 @@ class TestAPIKeys(unittest.TestCase):
 class TestScopes(unittest.TestCase):
     def setUp(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
+        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key, host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
         self.scopes = self.sg.client.scopes
+
 
     def test_01_scopes_get(self):
         response = self.scopes.get()
         self.assertEqual(response.status_code, 200)
 
 
+class TestSuppression(unittest.TestCase):
+    email = "info@elmerthomas.com"
+    def setUp(self):
+        self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
+        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key, host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
+        self.bounces = self.sg.client.suppression.bounces
+
+
+    def test_01_bounces_get(self):
+        response = self.bounces.get()
+        self.assertEqual(response.status_code, 200)
+
+    def test_02_bounces_get_specific(self):
+        response = self.bounces._(self.__class__.email).get()
+        self.assertEqual(response.status_code, 200)
+
+    def test_05_bounces_delete(self):
+        params = {"mock": 204}
+        response = self.bounces.delete(params=params)
+        self.assertEqual(response.status_code, 204)
+
+    def test_06_bounces_delete_specific(self):
+        params = {"mock": 204}
+        response = self.bounces._(self.__class__.email).delete(params=params)
+        self.assertEqual(response.status_code, 204)
+
+
 class TestTemplates(unittest.TestCase):
     id = ""
     def setUp(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key)
+        self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key, host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
         self.templates = self.sg.client.templates
+
 
     def test_00_templates_post(self):
         data = {"name": "Python Client Template Endpoint Test v4000"}
@@ -105,6 +135,6 @@ class TestTemplates(unittest.TestCase):
         response = self.templates._(self.__class__.id).patch(data=data)
         self.assertEqual(response.status_code, 200)
 
-    def test_05_templates_delete(self):
+    def test_06_templates_delete_specific(self):
         response = self.templates._(self.__class__.id).delete()
         self.assertEqual(response.status_code, 204)

@@ -8,18 +8,20 @@ if os.path.exists('.env'):
 
 sg = sendgrid.SendGridClient(os.environ.get('SENDGRID_API_KEY'))
 
-"""
+
 # Basic Send Example
 
 message = sendgrid.Mail()
-message.add_to('John Doe <example@example.com>')
+message.add_to('Bounce <blahblahblah@sendgrid.com>')
 message.set_subject('Testing from the Python library')
 message.set_html('<b>This was a successful test!</b>')
 message.set_text('This was a successful test!')
-message.set_from('Jane Doe <example@example.com')
+message.set_from('DX <dx@sendgrid.com')
 status, msg = sg.send(message)
 print status
 print msg
+
+"""
 
 # SMTPAPI Basic Send Example
 

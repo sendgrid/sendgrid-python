@@ -8,8 +8,15 @@ config = Config()
 # StopLight Proxy Test
 # https://designer.stoplight.io/wk/F8THnzoqMYoLiWfin/xffLhad2tAAaLiKEq/S5LsAX4SWF7cJHu2R/requests/56b3da76f787db00033b3e18
 # sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https://qpsfwaq3savksegdq.stoplight-proxy.io/v3/")
-sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
 
+bounces = sg.client.suppression.bounces
+params = {"mock": 200}
+response = bounces.get(params=params)
+response_json = response.json()
+print(response_json)
+
+"""
 scopes = sg.client.scopes
 response = scopes.get()
 response_json = response.json()
@@ -49,3 +56,4 @@ print(response.json())
 # DELETE Delete a template.
 response = templates._(template_id).delete()
 print(response.status_code)
+"""
