@@ -5,3 +5,5 @@ from .exceptions import SendGridError, SendGridClientError, SendGridServerError
 from .message import Mail
 #v3 API
 from .client import SendGridAPIClient
+#Async
+from .async import AsyncSendGridClient, AsyncSendGridAPIClient
