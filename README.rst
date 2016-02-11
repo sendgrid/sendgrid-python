@@ -541,6 +541,26 @@ Using Templates from the Template Engine
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
     message.add_substitution('key', 'value')
 
+Asyncio- compatible version of client
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use sendgrid-python also with asyncio library. It's enough to use `sendgrid.AsyncSendGridClient`
+instead of `sendgrid.SendGridClient` or `sendgrid.AsyncSendGridAPIClient` instead of `sendgrid.SendGridAPIClient`.
+
+.. code:: python
+
+    import sendgrid
+
+    sg = sendgrid.AsyncSendGridClient('YOUR_SENDGRID_API_KEY')
+
+    message = sendgrid.Mail()
+    message.add_to('John Doe <john@email.com>')
+    message.set_subject('Example')
+    message.set_html('Body')
+    message.set_text('Body')
+    message.set_from('Doe John <doe@email.com>')
+    status, msg = yield from sg.send(message)
+
 Tests
 ~~~~~
 

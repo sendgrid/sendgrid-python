@@ -82,20 +82,16 @@ class SendGridAPIClient(object):
 
     def get(self, api):
         url = self.host + api.endpoint
-        response, body = self._build_request(url, False, 'GET')
-        return response, body
+        return self._build_request(url, False, 'GET')
 
     def post(self, api, data):
         url = self.host + api.endpoint
-        response, body = self._build_request(url, True, 'POST', data)
-        return response, body
+        return self._build_request(url, True, 'POST', data)
 
     def delete(self, api):
         url = self.host + api.endpoint
-        response, body = self._build_request(url, False, 'DELETE')
-        return response, body
+        return self._build_request(url, False, 'DELETE')
 
     def patch(self, api, data):
         url = self.host + api.endpoint
-        response, body = self._build_request(url, True, 'PATCH', data)
-        return response, body
+        return self._build_request(url, True, 'PATCH', data)

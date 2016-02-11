@@ -12,6 +12,8 @@ def getRequires():
         deps.append('unittest2')
     elif (3, 0) <= sys.version_info < (3, 2):
         deps.append('unittest2py3k')
+    if (3, 0) <= sys.version_info:
+        deps.append('aiohttp')
     return deps
 
 setup(
