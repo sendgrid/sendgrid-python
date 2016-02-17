@@ -1,6 +1,24 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.6.22] - 2015-02-08 ##
+
+### Fixed ###
+
+- a call to GET api_keys after a call to DELETE api_keys would throw an error.
+
+## [1.6.21] - 2015-02-08 ##
+
+### Added ###
+
+- the timeout value is no longer hard coded.
+
+## [1.6.20] - 2015-02-04 ##
+
+### Updated ###
+
+- smtpi-sendgrid dependency is now 0.3.1, the latest version: [161](https://github.com/sendgrid/sendgrid-python/pull/161/files). Thanks [Kevin Brown](https://github.com/kevin-brown)!
+
 ## [1.5.20] - 2015-01-12 ##
 
 ### Added ###

@@ -13,3 +13,4 @@ venv/
 .env
 .python-version
 .tox/
+profile*
