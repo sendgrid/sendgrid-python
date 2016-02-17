@@ -10,13 +10,20 @@ config = Config()
 # sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https://qpsfwaq3savksegdq.stoplight-proxy.io/v3/")
 sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3")
 
+data = {"sample": "data"}
+params = {"mock": 200}
+response = sg.client.asm.suppressions.global_.post(data=data, params=params)
+response_json = response.json()
+print(response_json)
+
+
+"""
 bounces = sg.client.suppression.bounces
 params = {"mock": 200}
 response = bounces.get(params=params)
 response_json = response.json()
 print(response_json)
 
-"""
 scopes = sg.client.scopes
 response = scopes.get()
 response_json = response.json()

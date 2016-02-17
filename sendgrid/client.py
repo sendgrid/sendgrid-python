@@ -1,6 +1,7 @@
-from universalclient import Client, jsonFilter
+from .universalclient import Client, jsonFilter
 import json
 from .version import __version__
+
 class SendGridAPIClient(object):
 
     """SendGrid API."""
