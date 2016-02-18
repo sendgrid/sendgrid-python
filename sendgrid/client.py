@@ -3,19 +3,6 @@ import json
 from copy import deepcopy
 from .version import __version__
 
-class UniversalClient(Client):
-    
-    def __getattribute__(self, name):
-        _getattr = super(Client, self).__getattribute__
-        attributes = _getattr("_attributes")
-        attributes = deepcopy(attributes)
-        # Hack to get around global keyword issue
-        if name == "global_":
-            name = "global"
-        attributes["_path"].append(name)
-        attributes["oauth"] = _getattr("_http")
-        return UniversalClient(**attributes)
-
 class SendGridAPIClient(object):
 
     """SendGrid API."""
@@ -37,7 +24,7 @@ class SendGridAPIClient(object):
                     \"Content-Type\": \"application/json\", \
                     \"User-agent\": \"" + self.useragent + "\"}"
                     
-        self.client = UniversalClient(self.host, dataFilter=jsonFilter, headers=json.loads(headers))
+        self.client = Client(self.host, dataFilter=jsonFilter, headers=json.loads(headers))
 
     @property
     def apikey(self):

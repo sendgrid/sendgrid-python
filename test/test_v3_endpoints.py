@@ -118,13 +118,13 @@ class UnitTests(unittest.TestCase):
     def test_asm_suppressions_global_post(self):
         data = {'sample': 'data'}
         params = {'mock': 200}
-        response = self.sg.client.asm.suppressions.global_.post(data=data, params=params)
+        response = self.sg.client.asm.suppressions._("global").post(data=data, params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_asm_suppressions_global__email_address__get(self):
         params = {'mock': 200}
         email_address = "test_url_param"
-        response = self.sg.client.asm.suppressions.global_._(email_address).get(params=params)
+        response = self.sg.client.asm.suppressions._("global")._(email_address).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_asm_suppressions__email__get(self):
