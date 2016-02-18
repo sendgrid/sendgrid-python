@@ -140,7 +140,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_browsers_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.browsers.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -151,25 +151,25 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_campaigns_get(self):
-        params = {'mock': 200}
+        params = {'limit': 0, 'mock': 200, 'offset': 0}
         response = self.sg.client.campaigns.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_campaigns__campaign_id__patch(self):
         data = {'sample': 'data'}
-        params = {'mock': 200}
+        params = {'campaign_id': 'test_string', 'mock': 200}
         campaign_id = "test_url_param"
         response = self.sg.client.campaigns._(campaign_id).patch(data=data, params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_campaigns__campaign_id__get(self):
-        params = {'mock': 200}
+        params = {'campaign_id': 0, 'mock': 200}
         campaign_id = "test_url_param"
         response = self.sg.client.campaigns._(campaign_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_campaigns__campaign_id__delete(self):
-        params = {'mock': 204}
+        params = {'campaign_id': 'test_string', 'mock': 204}
         campaign_id = "test_url_param"
         response = self.sg.client.campaigns._(campaign_id).delete(params=params)
         self.assertEqual(response.status_code, 204)
@@ -195,7 +195,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_campaigns__campaign_id__schedules_delete(self):
-        params = {'mock': 204}
+        params = {'campaign_id': 'test_string', 'mock': 204}
         campaign_id = "test_url_param"
         response = self.sg.client.campaigns._(campaign_id).schedules.delete(params=params)
         self.assertEqual(response.status_code, 204)
@@ -209,33 +209,33 @@ class UnitTests(unittest.TestCase):
 
     def test_campaigns__campaign_id__schedules_test_post(self):
         data = {'sample': 'data'}
-        params = {'mock': 200}
+        params = {'campaign_id': 'test_string', 'mock': 200}
         campaign_id = "test_url_param"
         response = self.sg.client.campaigns._(campaign_id).schedules.test.post(data=data, params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_categories_get(self):
-        params = {'mock': 200}
+        params = {'limit': 'test_string', 'order': 'test_string', 'mock': 200, 'sort_by': 'test_string'}
         response = self.sg.client.categories.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_categories_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'categories': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.categories.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_categories_stats_sums_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'sort_by_metric': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200, 'sort_by_direction': 'test_string'}
         response = self.sg.client.categories.stats.sums.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_clients_stats_get(self):
-        params = {'mock': 200}
+        params = {'aggregated_by': 'test_string', 'end_date': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.clients.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_clients__client_type__stats_get(self):
-        params = {'mock': 200}
+        params = {'aggregated_by': 'test_string', 'end_date': 'test_string', 'start_date': 'test_string', 'mock': 200}
         client_type = "test_url_param"
         response = self.sg.client.clients._(client_type).stats.get(params=params)
         self.assertEqual(response.status_code, 200)
@@ -252,7 +252,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_custom_fields__custom_field_id__get(self):
-        params = {'mock': 200}
+        params = {'mock': 200, 'custom_field_id': 0}
         custom_field_id = "test_url_param"
         response = self.sg.client.contactdb.custom_fields._(custom_field_id).get(params=params)
         self.assertEqual(response.status_code, 200)
@@ -281,46 +281,46 @@ class UnitTests(unittest.TestCase):
 
     def test_contactdb_lists__list_id__patch(self):
         data = {'sample': 'data'}
-        params = {'mock': 200}
+        params = {'mock': 200, 'list_id': 0}
         list_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).patch(data=data, params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_lists__list_id__get(self):
-        params = {'mock': 200}
+        params = {'mock': 200, 'list_id': 0}
         list_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_lists__list_id__delete(self):
-        params = {'mock': 202}
+        params = {'delete_contacts': 0, 'mock': 202}
         list_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).delete(params=params)
         self.assertEqual(response.status_code, 202)
 
     def test_contactdb_lists__list_id__recipients_post(self):
         data = {'sample': 'data'}
-        params = {'mock': 201}
+        params = {'mock': 201, 'list_id': 0}
         list_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).recipients.post(data=data, params=params)
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_lists__list_id__recipients_get(self):
-        params = {'mock': 200}
+        params = {'page_size': 0, 'page': 0, 'mock': 200, 'list_id': 0}
         list_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).recipients.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_lists__list_id__recipients__recipient_id__post(self):
         data = {'sample': 'data'}
-        params = {'mock': 201}
+        params = {'recipient_id': 'test_string', 'mock': 201, 'list_id': 0}
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(data=data, params=params)
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_lists__list_id__recipients__recipient_id__delete(self):
-        params = {'mock': 204}
+        params = {'recipient_id': 0, 'mock': 204, 'list_id': 0}
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(params=params)
@@ -339,7 +339,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_recipients_get(self):
-        params = {'mock': 200}
+        params = {'page_size': 0, 'page': 0, 'mock': 200}
         response = self.sg.client.contactdb.recipients.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -359,24 +359,24 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients_search_get(self):
-        params = {'mock': 200}
+        params = {'{field_name}': 'test_string', 'mock': 200}
         response = self.sg.client.contactdb.recipients.search.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients__recipient_id__get(self):
-        params = {'mock': 200}
+        params = {'recipient_id': 'test_string', 'mock': 200}
         recipient_id = "test_url_param"
         response = self.sg.client.contactdb.recipients._(recipient_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients__recipient_id__delete(self):
-        params = {'mock': 204}
+        params = {'recipient_id': 'test_string', 'mock': 204}
         recipient_id = "test_url_param"
         response = self.sg.client.contactdb.recipients._(recipient_id).delete(params=params)
         self.assertEqual(response.status_code, 204)
 
     def test_contactdb_recipients__recipient_id__lists_get(self):
-        params = {'mock': 200}
+        params = {'recipient_id': 'test_string', 'mock': 200}
         recipient_id = "test_url_param"
         response = self.sg.client.contactdb.recipients._(recipient_id).lists.get(params=params)
         self.assertEqual(response.status_code, 200)
@@ -399,41 +399,41 @@ class UnitTests(unittest.TestCase):
 
     def test_contactdb_segments__segment_id__patch(self):
         data = {'sample': 'data'}
-        params = {'mock': 200}
+        params = {'mock': 200, 'segment_id': 'test_string'}
         segment_id = "test_url_param"
         response = self.sg.client.contactdb.segments._(segment_id).patch(data=data, params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_segments__segment_id__get(self):
-        params = {'mock': 200}
+        params = {'mock': 200, 'segment_id': 0}
         segment_id = "test_url_param"
         response = self.sg.client.contactdb.segments._(segment_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_segments__segment_id__delete(self):
-        params = {'mock': 204}
+        params = {'delete_contacts': 0, 'mock': 204}
         segment_id = "test_url_param"
         response = self.sg.client.contactdb.segments._(segment_id).delete(params=params)
         self.assertEqual(response.status_code, 204)
 
     def test_contactdb_segments__segment_id__recipients_get(self):
-        params = {'mock': 200}
+        params = {'page_size': 'test_string', 'page': 'test_string', 'mock': 200}
         segment_id = "test_url_param"
         response = self.sg.client.contactdb.segments._(segment_id).recipients.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_devices_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.devices.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_geo_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'country': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.geo.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_ips_get(self):
-        params = {'mock': 200}
+        params = {'exclude_whitelabels': 'test_string', 'ip': 'test_string', 'subuser': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'mock': 200}
         response = self.sg.client.ips.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -479,13 +479,13 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_mail_batch__batch_id__get(self):
-        params = {'mock': 200}
+        params = {'batch_id': 'test_string', 'mock': 200}
         batch_id = "test_url_param"
         response = self.sg.client.mail.batch._(batch_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_mail_settings_get(self):
-        params = {'mock': 200}
+        params = {'limit': 'test_string', 'mock': 200, 'offset': 'test_string'}
         response = self.sg.client.mail_settings.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -589,12 +589,12 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_mailbox_providers_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.mailbox_providers.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_partner_settings_get(self):
-        params = {'mock': 200}
+        params = {'limit': 0, 'mock': 200, 'offset': 0}
         response = self.sg.client.partner_settings.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -626,7 +626,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -637,22 +637,22 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_subusers_get(self):
-        params = {'mock': 200}
+        params = {'username': 'test_string', 'limit': 0, 'mock': 200, 'offset': 0}
         response = self.sg.client.subusers.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_subusers_reputations_get(self):
-        params = {'mock': 200}
+        params = {'subuser_name': 'test_string', 'mock': 200}
         response = self.sg.client.subusers.reputations.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_subusers_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'subusers': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.subusers.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_subusers_stats_sums_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'sort_by_metric': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200, 'sort_by_direction': 'test_string'}
         response = self.sg.client.subusers.stats.sums.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -664,14 +664,14 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_subusers__subuser_name__delete(self):
-        params = {'mock': 204}
+        params = {'subuser_name': 'test_string', 'mock': 204}
         subuser_name = "test_url_param"
         response = self.sg.client.subusers._(subuser_name).delete(params=params)
         self.assertEqual(response.status_code, 204)
 
     def test_subusers__subuser_name__ips_put(self):
         data = {'sample': 'data'}
-        params = {'mock': 200}
+        params = {'subuser_name': 'test_string', 'mock': 200}
         subuser_name = "test_url_param"
         response = self.sg.client.subusers._(subuser_name).ips.put(data=data, params=params)
         self.assertEqual(response.status_code, 200)
@@ -691,19 +691,19 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_subusers__subuser_name__monitor_get(self):
-        params = {'mock': 200}
+        params = {'subuser_name': 'test_string', 'mock': 200}
         subuser_name = "test_url_param"
         response = self.sg.client.subusers._(subuser_name).monitor.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_subusers__subuser_name__monitor_delete(self):
-        params = {'mock': 204}
+        params = {'subuser_name': 'test_string', 'mock': 204}
         subuser_name = "test_url_param"
         response = self.sg.client.subusers._(subuser_name).monitor.delete(params=params)
         self.assertEqual(response.status_code, 204)
 
     def test_suppression_bounces_get(self):
-        params = {'mock': 200}
+        params = {'start_time': 0, 'end_time': 0, 'mock': 200}
         response = self.sg.client.suppression.bounces.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -719,7 +719,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_suppression_bounces__email__delete(self):
-        params = {'mock': 204}
+        params = {'email_address': 'test_string', 'mock': 204}
         email = "test_url_param"
         response = self.sg.client.suppression.bounces._(email).delete(params=params)
         self.assertEqual(response.status_code, 204)
@@ -792,7 +792,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_tracking_settings_get(self):
-        params = {'mock': 200}
+        params = {'limit': 'test_string', 'mock': 200, 'offset': 'test_string'}
         response = self.sg.client.tracking_settings.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -875,19 +875,19 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_user_scheduled_sends__batch_id__get(self):
-        params = {'mock': 200}
+        params = {'batch_id': 'test_string', 'mock': 200}
         batch_id = "test_url_param"
         response = self.sg.client.user.scheduled_sends._(batch_id).get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_user_scheduled_sends__batch_id__delete(self):
-        params = {'mock': 204}
+        params = {'batch_id': 'test_string', 'mock': 204}
         batch_id = "test_url_param"
         response = self.sg.client.user.scheduled_sends._(batch_id).delete(params=params)
         self.assertEqual(response.status_code, 204)
 
     def test_user_webhooks_parse_stats_get(self):
-        params = {'mock': 200}
+        params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string', 'mock': 200}
         response = self.sg.client.user.webhooks.parse.stats.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -898,7 +898,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_whitelabel_domains_get(self):
-        params = {'mock': 200}
+        params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 0, 'limit': 0, 'offset': 0, 'mock': 200}
         response = self.sg.client.whitelabel.domains.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -971,7 +971,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_whitelabel_ips_get(self):
-        params = {'mock': 200}
+        params = {'limit': 'test_string', 'mock': 200}
         response = self.sg.client.whitelabel.ips.get(params=params)
         self.assertEqual(response.status_code, 200)
 
@@ -996,27 +996,27 @@ class UnitTests(unittest.TestCase):
 
     def test_whitelabel_links_post(self):
         data = {'sample': 'data'}
-        params = {'mock': 201}
+        params = {'limit': 0, 'mock': 201, 'offset': 0}
         response = self.sg.client.whitelabel.links.post(data=data, params=params)
         self.assertEqual(response.status_code, 201)
 
     def test_whitelabel_links_get(self):
-        params = {'mock': 200}
+        params = {'limit': 'test_string', 'mock': 200}
         response = self.sg.client.whitelabel.links.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links_default_get(self):
-        params = {'mock': 200}
+        params = {'domain': 'test_string', 'mock': 200}
         response = self.sg.client.whitelabel.links.default.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links_subuser_get(self):
-        params = {'mock': 200}
+        params = {'username': 'test_string', 'mock': 200}
         response = self.sg.client.whitelabel.links.subuser.get(params=params)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links_subuser_delete(self):
-        params = {'mock': 204}
+        params = {'username': 'test_string', 'mock': 204}
         response = self.sg.client.whitelabel.links.subuser.delete(params=params)
         self.assertEqual(response.status_code, 204)
 

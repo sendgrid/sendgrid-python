@@ -13,8 +13,8 @@ sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'), host="https:
 data = {"sample": "data"}
 params = {"mock": 200}
 response = sg.client.asm.suppressions.global_.post(data=data, params=params)
-response_json = response.json()
-print(response_json)
+print response.status_code
+print response.text
 
 
 """
