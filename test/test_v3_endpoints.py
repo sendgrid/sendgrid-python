@@ -13,7 +13,7 @@ config = Config()
 class UnitTests(unittest.TestCase):
     def setUp(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-        self.host = "https://e9sk3d3bfaikbpdq7.stoplight-proxy.io/v3"
+        self.host = os.environ.get('TEST_HOST')
         self.sg = sendgrid.SendGridAPIClient(self.sendgrid_api_key, host=self.host)
         self.api_keys = self.sg.client.api_keys
 
