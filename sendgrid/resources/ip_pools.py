@@ -1,4 +1,7 @@
-import urllib
+try:
+    from urllib.parse import quote_plus
+except ImportError:  # Python 2
+    from urllib import quote_plus
 
 class IPPools(object):
 
@@ -54,5 +57,5 @@ class IPPools(object):
 
         :param name: str
         """
-        self.endpoint = self._base_endpoint + '/' + urllib.quote_plus(name)
+        self.endpoint = self._base_endpoint + '/' + quote_plus(name)
         return self.client.delete(self)

@@ -1,4 +1,7 @@
-import urllib
+try:
+    from urllib.parse import quote_plus
+except ImportError:  # Python 2
+    from urllib import quote_plus
 
 class IPAddresses(object):
 
@@ -46,7 +49,7 @@ class IPAddresses(object):
         data = {}
         data['ip'] = ip
 
-        self.endpoint = self._base_endpoint + '/pools/' + urllib.quote_plus(ip_pool) + '/ips'
+        self.endpoint = self._base_endpoint + '/pools/' + quote_plus(ip_pool) + '/ips'
         return self.client.post(self, data)
 
     def delete(self, ip_pool, ip):
@@ -58,6 +61,6 @@ class IPAddresses(object):
         """
         self.endpoint = (
             self._base_endpoint +
-            '/pools/' + urllib.quote_plus(ip_pool) +
-            '/ips/' + urllib.quote_plus(ip))
+            '/pools/' + quote_plus(ip_pool) +
+            '/ips/' + quote_plus(ip))
         return self.client.delete(self)
