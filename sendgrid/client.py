@@ -17,6 +17,11 @@ from .resources.asm_suppressions import ASMSuppressions
 from .resources.asm_global_suppressions import ASMGlobalSuppressions
 from .resources.suppressions import Suppressions
 from .resources.stats import Stats
+from .resources.subusers import Subusers
+from .resources.whitelabel_domains import WhitelabelDomains
+from .resources.whitelabel_ips import WhitelabelIPs
+from .resources.ip_pools import IPPools
+from .resources.ip_addresses import IPAddresses
 
 class SendGridAPIClient(object):
 
@@ -35,6 +40,7 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         # urllib cannot connect to SSL servers using proxies
         self.proxies = opts.get('proxies', None)
+        self._basic = opts.get('basic', False)
         self.timeout = opts.get('timeout', 10)
 
         self.apikeys = APIKeys(self)
@@ -43,6 +49,11 @@ class SendGridAPIClient(object):
         self.asm_global_suppressions = ASMGlobalSuppressions(self)
         self.suppressions = Suppressions(self)
         self.stats = Stats(self)
+        self.subusers = Subusers(self)
+        self.whitelabel_domains = WhitelabelDomains(self)
+        self.whitelabel_ips = WhitelabelIPs(self)
+        self.ip_pools = IPPools(self)
+        self.ips = IPAddresses(self)
 
     @property
     def apikey(self):
@@ -60,7 +71,7 @@ class SendGridAPIClient(object):
         req = urllib_request.Request(url)
         req.get_method = lambda: method
         req.add_header('User-Agent', self.useragent)
-        req.add_header('Authorization', 'Bearer ' + self.apikey)
+        req.add_header('Authorization', ('Basic ' if self._basic else 'Bearer ') + self.apikey)
         if json_header:
             req.add_header('Content-Type', 'application/json')
         try:

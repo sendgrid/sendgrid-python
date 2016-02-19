@@ -38,13 +38,19 @@ class TestAPIKeys(unittest.TestCase):
         status, msg = self.client.apikeys.patch(SG_KEY, name)
         self.assertEqual(status, 200)
         self.assertEqual(msg['name'], name)
-        
+
+        self.test_apikeys_get()
+
     def test_apikeys_delete(self):
         status, msg = self.client.apikeys.delete(SG_KEY)
         self.assertEqual(status, 204)
 
+        self.test_apikeys_get()
+
     def test_apikeys_get(self):
         status, msg = self.client.apikeys.get()
+        self.assertEqual(self.client.apikeys.name, None)
+        self.assertEqual(self.client.apikeys.endpoint, "/v3/api_keys")
         self.assertEqual(status, 200)
 
 if __name__ == '__main__':

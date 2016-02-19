@@ -40,25 +40,31 @@ class APIKeys(object):
         
     # Get a list of active API keys
     def get(self):
+        self.name = None
+        self.endpoint = self._base_endpoint
         return self.client.get(self)
         
     # Create a new API key with name (string)
     def post(self, name):
         self.endpoint = self._base_endpoint
         data = {}
+        data['name'] = name
+
         self.name = name
-        data['name'] = self.name
+        self.endpoint = self._base_endpoint
         return self.client.post(self, data)
         
     # Delete a API key
     def delete(self, api_key_id):
+        self.name = None
         self.endpoint = self._base_endpoint + "/" + api_key_id
         return self.client.delete(self)
         
     # Update a API key's name
     def patch(self, api_key_id, name):
         data = {}
+        data['name'] = name
+
         self.name = name
-        data['name'] = self.name
         self.endpoint = self._base_endpoint + "/" + api_key_id
         return self.client.patch(self, data)
