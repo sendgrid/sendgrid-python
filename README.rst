@@ -345,12 +345,14 @@ Check if a given email is on the global suppression list.
 Get a list of all SendGrid globally unsubscribed emails.
 
 .. code:: python
+
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     status, msg = client.suppressions.get()
     
 Add an email to the global suppression list.
 
 .. code:: python
+
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     email = ['example@example.com']
     status, msg = client.asm_global_suppressions.post(email)
@@ -358,6 +360,7 @@ Add an email to the global suppression list.
 Delete an email from the global suppression list.
 
 .. code:: python
+
     client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
     email = 'example@example.com'
     status, msg = client.asm_global_suppressions.delete(email)
@@ -368,6 +371,7 @@ Delete an email from the global suppression list.
 Global Stats provide all of your user's email statistics for a given date range.
 
 .. code:: python
+
     start_date = '2015-10-01' # required
     end_date = None # optional
     aggregated_by = 'week' # optional, must be day, week or month
