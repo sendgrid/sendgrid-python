@@ -7,7 +7,7 @@ with open('sendgrid/version.py') as f:
 
 
 def getRequires():
-    deps = ['smtpapi==0.3.1', 'universalclient']
+    deps = ['smtpapi==0.3.1', 'python_http_client']
     if sys.version_info < (2, 7):
         deps.append('unittest2')
     elif (3, 0) <= sys.version_info < (3, 2):
@@ -17,8 +17,8 @@ def getRequires():
 setup(
     name='sendgrid',
     version=str(__version__),
-    author='Yamil Asusta',
-    author_email='yamil@sendgrid.com',
+    author='Yamil Asusta, Elmer Thomas',
+    author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(),
     license='MIT',
