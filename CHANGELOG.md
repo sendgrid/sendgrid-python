@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2016-03-01 ##
+
+### Added ###
+
+- breaking change is only for the Web API v3 endpoints
+- we now have support for all Web API v3 endpoints
+
 ## [1.6.22] - 2015-02-08 ##
 
 ### Fixed ###

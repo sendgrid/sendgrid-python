@@ -10,8 +10,9 @@ python:
 - '3.5'
 install:
 - python setup.py install
-script: 
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest discover; fi
+script:
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest
+  discover; fi
 notifications:
   hipchat:
     rooms:
@@ -19,6 +20,10 @@ notifications:
     template:
     - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
+      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on
+      GitHub</a>'
     format: html
     notify: false
+env:
+  global:
+    secure: Dez9lIrNCbIoCdgz96kptm0idaXuNnLam8BriY5HbLRdDvgsLihqlQiMPIHZbWzT8C1E2HtSLGES3vTRAWBkyKgi/EyfIe7ngqIUhFRcb2dY0gFrPOXaOwOAegTYpjY3fYaqMdW1va++2I4ft/SEd1l5tJWnkN+Fj9vGYua1GdE=
