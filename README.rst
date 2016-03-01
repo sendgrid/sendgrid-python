@@ -10,14 +10,18 @@ SendGrid using Python.
 Warning
 -------
 
+Version ``2.0.0`` is a breaking change for the Web API v3 endpoints. The mail send endpoint is not affected by this update.
+
 If you upgrade to version ``1.2.x``, the ``add_to`` method behaves differently. In the past this method defaulted to using the ``SMTPAPI`` header. Now you must explicitly call the ``smtpapi.add_to`` method. More on the ``SMTPAPI`` section.
 
 Announcements
 -------------
 
-For users of our `Web API v3 endpoints`_, we have begun integrating v3 endpoints into this library. As part of this process we have implemented a test automation tool, TOX_. We are also updating and enhancing the core library code.
+Version 2.0.0 brings you full support for all Web API v3 endpoints. We have the following resources to get you started quickly:
 
-In no particular order, we have implemented a `few of the v3`_ endpoints already and would appreciate your feedback.
+- `SendGrid Documentation`_
+- `Usage Documentation`_
+- `Example Code`_
 
 Thank you for your continued support! 
 
@@ -235,143 +239,6 @@ add_content_id
     message.add_attachment('image.png', open('./image.png', 'rb'))
     message.add_content_id('image.png', 'ID_IN_HTML')
     message.set_html('<html><body>TEXT BEFORE IMAGE<img src="cid:ID_IN_HTML"></img>AFTER IMAGE</body></html>')
-    
-WEB API v3
-----------
-
-To use the SendGrid Web API v3, you will need an API Key. You can create one in your `SendGrid Dashboard`_.
-
-.. _APIKeysAnchor:
-
-`APIKeys`_
-~~~~~~~~~~
-
-List all API Keys belonging to the authenticated user.
-
-.. code:: python
-    
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    status, msg = client.apikeys.get()
-    
-Generate a new API Key for the authenticated user
-
-.. code:: python
-
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    name = "My Amazing API Key"
-    status, msg = client.apikeys.post(name)
-    
-Revoke an existing API Key
-
-.. code:: python
-
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    status, msg = client.apikeys.delete(api_key_id)
-    
-Update the name of an existing API Key
-
-.. code:: python
-
-    client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    name = "My NEW API Key 3000"
-    status, msg = client.apikeys.patch(api_key_id, name)
-    
-`Suppression Management`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Unsubscribe Manager gives your recipients more control over the types of emails they want to receive by letting them opt out of messages from a certain type of email.
-
-Unsubscribe Groups
-~~~~~~~~~~~~~~~~~~~
-
-Retrieve all suppression groups associated with the user.
-
-.. code:: python
-    
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    status, msg = client.asm_groups.get()
-
-Get a single record.
-
-.. code:: python
-
-    status, msg = client.asm_groups.get(record_id)
-    
-Create a new suppression group.
-
-.. code:: python
-
-    status, msg = client.asm_groups.post(name, description, is_default)
-    
-Suppressions
-~~~~~~~~~~~~~~~~
-
-Suppressions are email addresses that can be added to groups to prevent certain types of emails from being delivered to those addresses.
-
-Add recipient addresses to the suppressions list for a given group.
-
-.. code:: python
-    
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    group_id = <group_id_number> # If no group_id_number, the emails will be added to the global suppression group
-    emails = ['example@example.com', 'example@example.com']
-    status, msg = client.asm_suppressions.post(group_id, emails)
-
-Get suppressed addresses for a given group.
-
-.. code:: python
-
-    status, msg = client.asm_suppressions.get(<group_id>)
-    
-Delete a recipient email from the suppressions list for a group.
-
-.. code:: python
-
-    status, msg = client.asm_suppressions.delete(<group_id>,<email_address>)
-
-Global Suppressions
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Global Suppressions are email addresses that will not receive any emails.
-
-Check if a given email is on the global suppression list.
-
-.. code:: python
-    
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = ['example@example.com']
-    status, msg = client.asm_global_suppressions.get(email)
-    
-Get a list of all SendGrid globally unsubscribed emails.
-
-.. code:: python
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    status, msg = client.suppressions.get()
-    
-Add an email to the global suppression list.
-
-.. code:: python
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = ['example@example.com']
-    status, msg = client.asm_global_suppressions.post(email)
-    
-Delete an email from the global suppression list.
-
-.. code:: python
-    client = sendgrid.SendGridAPIClient('SENDGRID_API_KEY')
-    email = 'example@example.com'
-    status, msg = client.asm_global_suppressions.delete(email)
-
-`Global Stats`_
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Global Stats provide all of your user's email statistics for a given date range.
-
-.. code:: python
-    start_date = '2015-10-01' # required
-    end_date = None # optional
-    aggregated_by = 'week' # optional, must be day, week or month
-    status, msg = client.stats.get(start_date, end_date, aggregated_by)
 
 SendGrid's `X-SMTPAPI`_
 -----------------------
@@ -541,59 +408,6 @@ Using Templates from the Template Engine
     message.add_filter('templates', 'template_id', 'TEMPLATE-ALPHA-NUMERIC-ID')
     message.add_substitution('key', 'value')
 
-Tests
-~~~~~
-
-**Prerequisites:**
-
-- Mac OS X Prerequisite: 
-
-.. code:: python
-
-    xcode-select --install
-
-- Install pyenv and tox
-
-.. code:: python
-
-    brew update
-    brew install pyenv
-    pip install tox
-
-- Add `eval "$(pyenv init -)"` to your profile after installing tox, you only need to do this once.
-
-.. code:: python
-
-    pyenv install 2.6.9
-    pyenv install 2.7.8
-    pyenv install 3.2.6
-    pyenv install 3.3.6
-    pyenv install 3.4.3
-    pyenv install 3.5.0
-
-**Run the tests:**
-
-.. code:: python
-
-    virtualenv venv
-    source venv/bin/activate #or . ./activate.sh
-    python setup.py install
-    pyenv local 3.5.0 3.4.3 3.3.6 3.2.6 2.7.8 2.6.9
-    pyenv rehash
-    tox
-
-Deploying
-~~~~~~~~~
-
-- Confirm tests pass
-- Bump the version in `sendgrid/version.py`
-- Update `CHANGELOG.md`
-- Confirm tests pass
-- Commit `Version bump vX.X.X`
-- `python setup.py sdist bdist_wininst upload`
-- Push changes to GitHub
-- Release tag on GitHub `vX.X.X`
-
 .. _X-SMTPAPI: http://sendgrid.com/docs/API_Reference/SMTP_API/
 .. _SMTPAPI Python library: https://github.com/sendgrid/smtpapi-python
 .. _Substitution: http://sendgrid.com/docs/API_Reference/SMTP_API/substitution_tags.html
@@ -607,3 +421,6 @@ Deploying
 .. _`Suppression Management`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/index.html
 .. _`Global Stats`: https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html
 .. _`SendGrid Dashboard`: https://app.sendgrid.com/settings/api_keys
+.. _`SendGrid Documentation`: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
+.. _`Usage Documentation`: https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md
+.. _`Example Code`: https://github.com/sendgrid/sendgrid-python/blob/master/examples

@@ -1,19 +1,15 @@
 import sendgrid
+import json
 import os
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-host = os.environ.get('HOST') # e.g. https://api.sendgrid.com
-request_headers = {
-    "Authorization": 'Bearer {0}'.format(sendgrid_api_key),
-    "Content-Type": "application/json"
-}
-sg = sendgrid.SendGridAPIClient(host=host, request_headers=request_headers)
+
+sg = sendgrid.SendGridAPIClient()
 
 ##################################################
 # List all bounces #
 # GET /suppression/bounces #
 
 params = {'start_time': 0, 'end_time': 0}
-response = self.sg.client.suppression.bounces.get(query_params=params)
+response = sg.client.suppression.bounces.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -22,7 +18,7 @@ print(response.response_headers)
 # Delete bounces #
 # DELETE /suppression/bounces #
 
-response = self.sg.client.suppression.bounces.delete()
+response = sg.client.suppression.bounces.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -32,7 +28,7 @@ print(response.response_headers)
 # GET /suppression/bounces/{email} #
 
 email = "test_url_param"
-response = self.sg.client.suppression.bounces._(email).get()
+response = sg.client.suppression.bounces._(email).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -43,7 +39,7 @@ print(response.response_headers)
 
 params = {'email_address': 'test_string'}
 email = "test_url_param"
-response = self.sg.client.suppression.bounces._(email).delete(query_params=params)
+response = sg.client.suppression.bounces._(email).delete(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

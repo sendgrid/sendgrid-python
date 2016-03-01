@@ -1,18 +1,14 @@
 import sendgrid
+import json
 import os
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-host = os.environ.get('HOST') # e.g. https://api.sendgrid.com
-request_headers = {
-    "Authorization": 'Bearer {0}'.format(sendgrid_api_key),
-    "Content-Type": "application/json"
-}
-sg = sendgrid.SendGridAPIClient(host=host, request_headers=request_headers)
+
+sg = sendgrid.SendGridAPIClient()
 
 ##################################################
 # Get a user's account information. #
 # GET /user/account #
 
-response = self.sg.client.user.account.get()
+response = sg.client.user.account.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -22,7 +18,7 @@ print(response.response_headers)
 # PATCH /user/profile #
 
 data = {'sample': 'data'}
-response = self.sg.client.user.profile.patch(request_body=data)
+response = sg.client.user.profile.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -31,7 +27,7 @@ print(response.response_headers)
 # Get a user's profile #
 # GET /user/profile #
 
-response = self.sg.client.user.profile.get()
+response = sg.client.user.profile.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -41,7 +37,7 @@ print(response.response_headers)
 # POST /user/scheduled_sends #
 
 data = {'sample': 'data'}
-response = self.sg.client.user.scheduled_sends.post(request_body=data)
+response = sg.client.user.scheduled_sends.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -50,7 +46,7 @@ print(response.response_headers)
 # Get all scheduled sends #
 # GET /user/scheduled_sends #
 
-response = self.sg.client.user.scheduled_sends.get()
+response = sg.client.user.scheduled_sends.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -61,7 +57,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
+response = sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -71,7 +67,7 @@ print(response.response_headers)
 # GET /user/scheduled_sends/{batch_id} #
 
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).get()
+response = sg.client.user.scheduled_sends._(batch_id).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -81,7 +77,7 @@ print(response.response_headers)
 # DELETE /user/scheduled_sends/{batch_id} #
 
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).delete()
+response = sg.client.user.scheduled_sends._(batch_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -91,7 +87,7 @@ print(response.response_headers)
 # PATCH /user/settings/enforced_tls #
 
 data = {'sample': 'data'}
-response = self.sg.client.user.settings.enforced_tls.patch(request_body=data)
+response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -100,7 +96,7 @@ print(response.response_headers)
 # Get the current Enforced TLS settings. #
 # GET /user/settings/enforced_tls #
 
-response = self.sg.client.user.settings.enforced_tls.get()
+response = sg.client.user.settings.enforced_tls.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -110,7 +106,7 @@ print(response.response_headers)
 # PATCH /user/webhooks/event/settings #
 
 data = {'sample': 'data'}
-response = self.sg.client.user.webhooks.event.settings.patch(request_body=data)
+response = sg.client.user.webhooks.event.settings.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -119,7 +115,7 @@ print(response.response_headers)
 # Retrieve Event Webhook Settings #
 # GET /user/webhooks/event/settings #
 
-response = self.sg.client.user.webhooks.event.settings.get()
+response = sg.client.user.webhooks.event.settings.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -129,7 +125,7 @@ print(response.response_headers)
 # POST /user/webhooks/event/test #
 
 data = {'sample': 'data'}
-response = self.sg.client.user.webhooks.event.test.post(request_body=data)
+response = sg.client.user.webhooks.event.test.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -138,7 +134,7 @@ print(response.response_headers)
 # Retrieve Parse API settings #
 # GET /user/webhooks/parse/settings #
 
-response = self.sg.client.user.webhooks.parse.settings.get()
+response = sg.client.user.webhooks.parse.settings.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -148,7 +144,7 @@ print(response.response_headers)
 # GET /user/webhooks/parse/stats #
 
 params = {'aggregated_by': 'test_string', 'limit': 'test_string', 'start_date': 'test_string', 'end_date': 'test_string', 'offset': 'test_string'}
-response = self.sg.client.user.webhooks.parse.stats.get(query_params=params)
+response = sg.client.user.webhooks.parse.stats.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

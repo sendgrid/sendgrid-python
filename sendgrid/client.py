@@ -4,17 +4,16 @@ import os
 from .version import __version__
 
 class SendGridAPIClient(object):
-
     """SendGrid API."""
-
     def __init__(self, **opts):
         """
         Construct SendGrid v3 API object.
 
-        Args:
-            opts: You can pass in a different host
+        :params host: Base URL for the API call
+        :type host: string
+        
         """
-        path = "/Users/thinkingserious/Workspace/sendgrid-python"
+        path =  '{0}/..'.format(os.path.abspath(os.path.dirname(__file__)))
         python_http_client.Config(path)
         self._apikey = os.environ.get('SENDGRID_API_KEY')
         self.useragent = 'sendgrid/{0};python_v3'.format(__version__)

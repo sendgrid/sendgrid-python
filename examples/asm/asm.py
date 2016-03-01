@@ -1,19 +1,15 @@
 import sendgrid
+import json
 import os
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-host = os.environ.get('HOST') # e.g. https://api.sendgrid.com
-request_headers = {
-    "Authorization": 'Bearer {0}'.format(sendgrid_api_key),
-    "Content-Type": "application/json"
-}
-sg = sendgrid.SendGridAPIClient(host=host, request_headers=request_headers)
+
+sg = sendgrid.SendGridAPIClient()
 
 ##################################################
 # Create a Group #
 # POST /asm/groups #
 
 data = {'sample': 'data'}
-response = self.sg.client.asm.groups.post(request_body=data)
+response = sg.client.asm.groups.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -22,7 +18,7 @@ print(response.response_headers)
 # Retrieve all suppression groups associated with the user. #
 # GET /asm/groups #
 
-response = self.sg.client.asm.groups.get()
+response = sg.client.asm.groups.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -33,7 +29,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).patch(request_body=data)
+response = sg.client.asm.groups._(group_id).patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -43,7 +39,7 @@ print(response.response_headers)
 # GET /asm/groups/{group_id} #
 
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).get()
+response = sg.client.asm.groups._(group_id).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -53,7 +49,7 @@ print(response.response_headers)
 # DELETE /asm/groups/{group_id} #
 
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).delete()
+response = sg.client.asm.groups._(group_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -64,7 +60,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
+response = sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -74,7 +70,7 @@ print(response.response_headers)
 # GET /asm/groups/{group_id}/suppressions #
 
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions.get()
+response = sg.client.asm.groups._(group_id).suppressions.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -85,7 +81,7 @@ print(response.response_headers)
 
 group_id = "test_url_param"
         email = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions._(email).delete()
+response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -95,7 +91,7 @@ print(response.response_headers)
 # POST /asm/suppressions/global #
 
 data = {'sample': 'data'}
-response = self.sg.client.asm.suppressions._("global").post(request_body=data)
+response = sg.client.asm.suppressions._("global").post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -105,7 +101,7 @@ print(response.response_headers)
 # GET /asm/suppressions/global/{email_address} #
 
 email_address = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email_address).get()
+response = sg.client.asm.suppressions._("global")._(email_address).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -115,7 +111,7 @@ print(response.response_headers)
 # GET /asm/suppressions/global/{email} #
 
 email = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email).get()
+response = sg.client.asm.suppressions._("global")._(email).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -125,7 +121,7 @@ print(response.response_headers)
 # DELETE /asm/suppressions/global/{email} #
 
 email = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email).delete()
+response = sg.client.asm.suppressions._("global")._(email).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

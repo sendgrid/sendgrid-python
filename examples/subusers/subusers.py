@@ -1,19 +1,15 @@
 import sendgrid
+import json
 import os
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-host = os.environ.get('HOST') # e.g. https://api.sendgrid.com
-request_headers = {
-    "Authorization": 'Bearer {0}'.format(sendgrid_api_key),
-    "Content-Type": "application/json"
-}
-sg = sendgrid.SendGridAPIClient(host=host, request_headers=request_headers)
+
+sg = sendgrid.SendGridAPIClient()
 
 ##################################################
 # Create Subuser #
 # POST /subusers #
 
 data = {'sample': 'data'}
-response = self.sg.client.subusers.post(request_body=data)
+response = sg.client.subusers.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -23,7 +19,7 @@ print(response.response_headers)
 # GET /subusers #
 
 params = {'username': 'test_string', 'limit': 0, 'offset': 0}
-response = self.sg.client.subusers.get(query_params=params)
+response = sg.client.subusers.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -33,7 +29,7 @@ print(response.response_headers)
 # GET /subusers/reputations #
 
 params = {'usernames': 'test_string'}
-response = self.sg.client.subusers.reputations.get(query_params=params)
+response = sg.client.subusers.reputations.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -43,7 +39,7 @@ print(response.response_headers)
 # GET /subusers/stats #
 
 params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'offset': 0, 'start_date': 'test_string', 'subusers': 'test_string'}
-response = self.sg.client.subusers.stats.get(query_params=params)
+response = sg.client.subusers.stats.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -53,7 +49,7 @@ print(response.response_headers)
 # GET /subusers/stats/sums #
 
 params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 0, 'start_date': 'test_string', 'sort_by_direction': 'test_string'}
-response = self.sg.client.subusers.stats.sums.get(query_params=params)
+response = sg.client.subusers.stats.sums.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -64,7 +60,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).patch(request_body=data)
+response = sg.client.subusers._(subuser_name).patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -74,7 +70,7 @@ print(response.response_headers)
 # DELETE /subusers/{subuser_name} #
 
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).delete()
+response = sg.client.subusers._(subuser_name).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -85,7 +81,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).ips.put(request_body=data)
+response = sg.client.subusers._(subuser_name).ips.put(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -96,7 +92,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.put(request_body=data)
+response = sg.client.subusers._(subuser_name).monitor.put(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -107,7 +103,7 @@ print(response.response_headers)
 
 data = {'sample': 'data'}
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.post(request_body=data)
+response = sg.client.subusers._(subuser_name).monitor.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -117,7 +113,7 @@ print(response.response_headers)
 # GET /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.get()
+response = sg.client.subusers._(subuser_name).monitor.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -127,7 +123,7 @@ print(response.response_headers)
 # DELETE /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.delete()
+response = sg.client.subusers._(subuser_name).monitor.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
