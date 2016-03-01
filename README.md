@@ -103,8 +103,6 @@ We encourage contribution to our libraries, please see our [CONTRIBUTING](https:
 - [v3 Web API](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-python/blob/master/examples)
 
-...
-
 ## Unsupported Libraries
 
 - [Official and Unsupported SendGrid Libraries](https://sendgrid.com/docs/Integrate/libraries.html)
