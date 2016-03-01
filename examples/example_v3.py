@@ -1,6 +1,4 @@
 import sendgrid
-import json
-import os
 
 sg = sendgrid.SendGridAPIClient()
 
