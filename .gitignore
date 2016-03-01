@@ -15,3 +15,5 @@ venv/
 .tox/
 profile*
 *_example.py
+register.py
+README.txt

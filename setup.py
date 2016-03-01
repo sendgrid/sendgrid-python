@@ -1,10 +1,14 @@
 import sys
+import os
 from setuptools import setup, find_packages
 
 __version__ = None
 with open('sendgrid/version.py') as f:
     exec(f.read())
 
+long_description = 'Please see our GitHub README'
+if os.path.exists('README.txt'):
+    long_description = open('README.txt').read()
 
 def getRequires():
     deps = ['smtpapi==0.3.1', 'python_http_client==1.2.3']
@@ -17,13 +21,13 @@ def getRequires():
 setup(
     name='sendgrid',
     version=str(__version__),
-    author='Yamil Asusta, Elmer Thomas',
+    author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(),
     license='MIT',
     description='SendGrid library for Python',
-    long_description=open('./README.rst').read(),
+    long_description=long_description,
     install_requires=getRequires(),
     classifiers=[
         'Programming Language :: Python :: 2.6',

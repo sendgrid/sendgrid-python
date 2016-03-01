@@ -7,7 +7,11 @@ try:
 except ImportError:
     import unittest
 import os
-host = os.environ.get('MOCK_HOST')
+
+if os.environ.get('TRAVIS'):
+    host = os.environ.get('MOCK_HOST')
+else:
+    host = "http://localhost:4010"
 
 class UnitTests(unittest.TestCase):
     def setUp(self):
