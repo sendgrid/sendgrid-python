@@ -7,7 +7,7 @@ try:
 except ImportError:
     import unittest
 import os
-host = 'http://localhost:4010'
+host = os.environ.get('MOCK_HOST')
 
 class UnitTests(unittest.TestCase):
     def setUp(self):
