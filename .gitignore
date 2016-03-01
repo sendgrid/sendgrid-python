@@ -14,3 +14,4 @@ venv/
 .python-version
 .tox/
 profile*
+*_example.py
