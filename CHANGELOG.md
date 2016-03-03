@@ -1,11 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [2.1.0] - 2016-03-02 ##
+## [2.1.1] - 2016-03-02 ##
 
 ### Added ###
 
 - you can now pass an apikey to the SendGridAPIClient, per issue [#168](https://github.com/sendgrid/sendgrid-python/issues/168). Thanks [Matt](https://github.com/mbernier)!
+- fix .rst formatting for PyPi
 
 ## [2.0.0] - 2016-03-01 ##
 
