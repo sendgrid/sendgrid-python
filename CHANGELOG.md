@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added ###
 
+- you can now pass a path to your .env file to the SendGridAPIClient
+
+## [2.1.1] - 2016-03-02 ##
+
+### Added ###
+
 - you can now pass an apikey to the SendGridAPIClient, per issue [#168](https://github.com/sendgrid/sendgrid-python/issues/168). Thanks [Matt](https://github.com/mbernier)!
 - fix .rst formatting for PyPi
 
