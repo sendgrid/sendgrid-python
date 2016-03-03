@@ -2,7 +2,8 @@ import sendgrid
 import json
 import os
 
-sg = sendgrid.SendGridAPIClient()
+sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
+# You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
 ##################################################
 # Get a user's account information. #

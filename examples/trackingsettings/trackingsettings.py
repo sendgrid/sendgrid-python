@@ -2,10 +2,11 @@ import sendgrid
 import json
 import os
 
-sg = sendgrid.SendGridAPIClient()
+sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
+# You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
 ##################################################
-# Get Tracking Settings #
+# Retrieve Tracking Settings #
 # GET /tracking_settings #
 
 params = {'limit': 0, 'offset': 0}
@@ -25,7 +26,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get Click Track Settings #
+# Retrieve Click Track Settings #
 # GET /tracking_settings/click #
 
 response = sg.client.tracking_settings.click.get()
@@ -44,7 +45,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get Google Analytics Settings #
+# Retrieve Google Analytics Settings #
 # GET /tracking_settings/google_analytics #
 
 response = sg.client.tracking_settings.google_analytics.get()
@@ -82,7 +83,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get Subscription Tracking Settings #
+# Retrieve Subscription Tracking Settings #
 # GET /tracking_settings/subscription #
 
 response = sg.client.tracking_settings.subscription.get()

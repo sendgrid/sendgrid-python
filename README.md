@@ -18,9 +18,9 @@ or
 - [SMTAPI-Python](https://github.com/sendgrid/smtpapi-python)
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
-## Environment Variables
+## Environment Variables (for v3 Web API)
 
-[Sample .env](https://github.com/sendgrid/sendgrid-python/blob/python_http_client/.env_sample), please rename to `.env` and add your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys).
+[Sample .env](https://github.com/sendgrid/sendgrid-python/blob/python_http_client/.env_sample), please rename to `.env` and add your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys), or you can pass your API Key into the SendGridClient constructor.
 
 # Quick Start
 
@@ -30,6 +30,7 @@ or
 import sendgrid
 
 sg = sendgrid.SendGridClient('YOUR_SENDGRID_API_KEY')
+
 
 message = sendgrid.Mail()
 message.add_to('John Doe <john@email.com>')
@@ -52,7 +53,8 @@ print(status, msg)
 ```python
 import sendgrid
 
-sg = sendgrid.SendGridAPIClient()
+sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
+# You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
 response = sg.client.api_keys.get()
 print(response.status_code)

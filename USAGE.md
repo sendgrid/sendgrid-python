@@ -2,16 +2,13 @@ This documentation is based on our [Swagger specification](https://github.com/se
 
 # INITIALIZATION
 
-```
+```python
 import sendgrid
 import os
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-host = os.environ.get('HOST') # e.g. https://api.sendgrid.com
-request_headers = {
-    "Authorization": 'Bearer {0}'.format(sendgrid_api_key),
-    "Content-Type": "application/json"
-}
-sg = sendgrid.SendGridAPIClient(host=host, request_headers=request_headers)
+
+
+sg = sendgrid.SendGridAPIClient(apikey='SENDGRID_API_KEY')
+# You can also store your API key an .env variable 'SENDGRID_API_KEY'
 ```
 
 # Table of Contents
@@ -1474,9 +1471,11 @@ print response.response_headers
 <a name="mail_settings"></a>
 # MAIL SETTINGS
 
-## Get all mail settings
+## Retrieve all mail settings
 
+**This endpoint allows you to retrieve a list of all mail settings.**
 
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings
 
@@ -1489,7 +1488,11 @@ print response.response_headers
 ```
 ## Update address whitelist mail settings
 
+**This endpoint allows you to update your current email address whitelist settings.**
 
+The address whitelist setting whitelists a specified email address or domain for which mail should never be suppressed. For example, you own the domain example.com, and one or more of your recipients use email@example.com addresses, by placing example.com in the address whitelist setting, all bounces, blocks, and unsubscribes logged for that domain will be ignored and sent as if under normal sending conditions.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/address_whitelist
 
@@ -1500,9 +1503,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get address whitelist mail settings
+## Retrieve address whitelist mail settings
 
+**This endpoint allows you to retrieve your current email address whitelist settings.**
 
+The address whitelist setting whitelists a specified email address or domain for which mail should never be suppressed. For example, you own the domain example.com, and one or more of your recipients use email@example.com addresses, by placing example.com in the address whitelist setting, all bounces, blocks, and unsubscribes logged for that domain will be ignored and sent as if under normal sending conditions.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/address_whitelist
 
@@ -1514,7 +1521,11 @@ print response.response_headers
 ```
 ## Update BCC mail settings
 
+**This endpoint allows you to update your current BCC mail settings.**
 
+When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field, if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/bcc
 
@@ -1525,9 +1536,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get BCC mail settings
+## Retrieve all BCC mail settings
 
+**This endpoint allows you to retrieve your current BCC mail settings.**
 
+When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field, if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/bcc
 
@@ -1539,7 +1554,11 @@ print response.response_headers
 ```
 ## Update bounce purge mail settings
 
+**This endpoint allows you to update your current bounce purge settings.**
 
+This setting allows you to set a schedule for SendGrid to automatically delete contacts from your soft and hard bounce suppression lists.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/bounce_purge
 
@@ -1550,9 +1569,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get bounce purge mail settings
+## Retrieve bounce purge mail settings
 
+**This endpoint allows you to retrieve your current bounce purge settings.**
 
+This setting allows you to set a schedule for SendGrid to automatically delete contacts from your soft and hard bounce suppression lists.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/bounce_purge
 
@@ -1564,7 +1587,11 @@ print response.response_headers
 ```
 ## Update footer mail settings
 
+**This endpoint allows you to update your current Footer mail settings.**
 
+The footer setting will insert a custom footer at the bottom of the text and HTML bodies. Use the embedded HTML editor and plain text entry fields to create the content of the footers to be inserted into your emails.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/footer
 
@@ -1575,9 +1602,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get footer mail settings [params can be null?]
+## Retrieve footer mail settings
 
+**This endpoint allows you to retrieve your current Footer mail settings.**
 
+The footer setting will insert a custom footer at the bottom of the text and HTML bodies. Use the embedded HTML editor and plain text entry fields to create the content of the footers to be inserted into your emails.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/footer
 
@@ -1589,7 +1620,11 @@ print response.response_headers
 ```
 ## Update forward bounce mail settings
 
+**This endpoint allows you to update your current bounce forwarding mail settings.**
 
+Activating this setting allows you to specify an email address to which bounce reports are forwarded.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/forward_bounce
 
@@ -1600,9 +1635,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get forward bounce mail settings
+## Retrieve forward bounce mail settings
 
+**This endpoint allows you to retrieve your current bounce forwarding mail settings.**
 
+Activating this setting allows you to specify an email address to which bounce reports are forwarded.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/forward_bounce
 
@@ -1614,7 +1653,11 @@ print response.response_headers
 ```
 ## Update forward spam mail settings
 
+**This endpoint allows you to update your current Forward Spam mail settings.**
 
+Enabling the forward spam setting allows you to specify an email address to which spam reports will be forwarded.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/forward_spam
 
@@ -1625,9 +1668,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get forward spam mail settings
+## Retrieve forward spam mail settings
 
+**This endpoint allows you to retrieve your current Forward Spam mail settings.**
 
+Enabling the forward spam setting allows you to specify an email address to which spam reports will be forwarded.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/forward_spam
 
@@ -1639,7 +1686,11 @@ print response.response_headers
 ```
 ## Update plain content mail settings
 
+**This endpoint allows you to update your current Plain Content mail settings.**
 
+The plain content setting will automatically convert any plain text emails that you send to HTML before sending.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/plain_content
 
@@ -1650,9 +1701,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get plain content mail settings
+## Retrieve plain content mail settings
 
+**This endpoint allows you to retrieve your current Plain Content mail settings.**
 
+The plain content setting will automatically convert any plain text emails that you send to HTML before sending.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/plain_content
 
@@ -1664,7 +1719,11 @@ print response.response_headers
 ```
 ## Update spam check mail settings
 
+**This endpoint allows you to update your current spam checker mail settings.**
 
+The spam checker filter notifies you when emails are detected that exceed a predefined spam threshold.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/spam_check
 
@@ -1675,9 +1734,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get spam check mail settings
+## Retrieve spam check mail settings
 
+**This endpoint allows you to retrieve your current Spam Checker mail settings.**
 
+The spam checker filter notifies you when emails are detected that exceed a predefined spam threshold.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/spam_check
 
@@ -1689,7 +1752,13 @@ print response.response_headers
 ```
 ## Update template mail settings
 
+**This endpoint allows you to update your current legacy email template settings.**
 
+This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). 
+
+The legacy email template setting wraps an HTML template around your email content. This can be useful for sending out marketing email and/or other HTML formatted messages.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/template
 
@@ -1700,9 +1769,15 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get template mail settings
+## Retrieve legacy template mail settings
 
+**This endpoint allows you to retrieve your current legacy email template settings.**
 
+This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). 
+
+The legacy email template setting wraps an HTML template around your email content. This can be useful for sending out marketing email and/or other HTML formatted messages.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### GET /mail_settings/template
 
@@ -2330,9 +2405,13 @@ print response.response_headers
 <a name="tracking_settings"></a>
 # TRACKING SETTINGS
 
-## Get Tracking Settings
+## Retrieve Tracking Settings
 
+**This endpoint allows you to retrieve a list of all tracking settings that you can enable on your account.**
 
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### GET /tracking_settings
 
@@ -2345,7 +2424,11 @@ print response.response_headers
 ```
 ## Update Click Tracking Settings
 
+**This endpoint allows you to change your current click tracking setting. You can enable, or disable, click tracking using this endpoint.**
 
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/click
 
@@ -2356,9 +2439,13 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get Click Track Settings
+## Retrieve Click Track Settings
 
+**This endpoint allows you to retrieve your current click tracking setting.**
 
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### GET /tracking_settings/click
 
@@ -2370,7 +2457,15 @@ print response.response_headers
 ```
 ## Update Google Analytics Settings
 
+**This endpoint allows you to update your current setting for Google Analytics.**
 
+For more information about using Google Analytics, please refer to [Googles URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
+
+We default the settings to Googles recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/google_analytics
 
@@ -2381,9 +2476,17 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get Google Analytics Settings
+## Retrieve Google Analytics Settings
 
+**This endpoint allows you to retrieve your current setting for Google Analytics.**
 
+For more information about using Google Analytics, please refer to [Googles URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
+
+We default the settings to Googles recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### GET /tracking_settings/google_analytics
 
@@ -2395,7 +2498,13 @@ print response.response_headers
 ```
 ## Update Open Tracking Settings
 
+**This endpoint allows you to update your current settings for open tracking.**
 
+Open Tracking adds an invisible image at the end of the email which can track email opens. If the email recipient has images enabled on their email client, a request to SendGrids server for the invisible image is executed and an open event is logged. These events are logged in the Statistics portal, Email Activity interface, and are reported by the Event Webhook.
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/open
 
@@ -2408,7 +2517,13 @@ print response.response_headers
 ```
 ## Get Open Tracking Settings
 
+**This endpoint allows you to retrieve your current settings for open tracking.**
 
+Open Tracking adds an invisible image at the end of the email which can track email opens. If the email recipient has images enabled on their email client, a request to SendGrids server for the invisible image is executed and an open event is logged. These events are logged in the Statistics portal, Email Activity interface, and are reported by the Event Webhook.
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### GET /tracking_settings/open
 
@@ -2420,7 +2535,13 @@ print response.response_headers
 ```
 ## Update Subscription Tracking Settings
 
+**This endpoint allows you to update your current settings for subscription tracking.**
 
+Subscription tracking adds links to the bottom of your emails that allows your recipients to subscribe to, or unsubscribe from, your emails.
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/subscription
 
@@ -2431,9 +2552,15 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get Subscription Tracking Settings
+## Retrieve Subscription Tracking Settings
 
+**This endpoint allows you to retrieve your current settings for subscription tracking.**
 
+Subscription tracking adds links to the bottom of your emails that allows your recipients to subscribe to, or unsubscribe from, your emails.
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### GET /tracking_settings/subscription
 

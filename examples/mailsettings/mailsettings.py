@@ -2,10 +2,11 @@ import sendgrid
 import json
 import os
 
-sg = sendgrid.SendGridAPIClient()
+sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
+# You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
 ##################################################
-# Get all mail settings #
+# Retrieve all mail settings #
 # GET /mail_settings #
 
 params = {'limit': 0, 'offset': 0}
@@ -25,7 +26,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get address whitelist mail settings #
+# Retrieve address whitelist mail settings #
 # GET /mail_settings/address_whitelist #
 
 response = sg.client.mail_settings.address_whitelist.get()
@@ -44,7 +45,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get BCC mail settings #
+# Retrieve all BCC mail settings #
 # GET /mail_settings/bcc #
 
 response = sg.client.mail_settings.bcc.get()
@@ -63,7 +64,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get bounce purge mail settings #
+# Retrieve bounce purge mail settings #
 # GET /mail_settings/bounce_purge #
 
 response = sg.client.mail_settings.bounce_purge.get()
@@ -82,7 +83,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get footer mail settings [params can be null?] #
+# Retrieve footer mail settings #
 # GET /mail_settings/footer #
 
 response = sg.client.mail_settings.footer.get()
@@ -101,7 +102,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get forward bounce mail settings #
+# Retrieve forward bounce mail settings #
 # GET /mail_settings/forward_bounce #
 
 response = sg.client.mail_settings.forward_bounce.get()
@@ -120,7 +121,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get forward spam mail settings #
+# Retrieve forward spam mail settings #
 # GET /mail_settings/forward_spam #
 
 response = sg.client.mail_settings.forward_spam.get()
@@ -139,7 +140,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get plain content mail settings #
+# Retrieve plain content mail settings #
 # GET /mail_settings/plain_content #
 
 response = sg.client.mail_settings.plain_content.get()
@@ -158,7 +159,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get spam check mail settings #
+# Retrieve spam check mail settings #
 # GET /mail_settings/spam_check #
 
 response = sg.client.mail_settings.spam_check.get()
@@ -177,7 +178,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get template mail settings #
+# Retrieve legacy template mail settings #
 # GET /mail_settings/template #
 
 response = sg.client.mail_settings.template.get()
