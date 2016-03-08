@@ -82,7 +82,6 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 ```
 git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
-cp .env_sample .env
 ```
 
 Update your settings in `.env`
