@@ -20,7 +20,7 @@ or
 
 ## Environment Variables (for v3 Web API)
 
-[Sample .env](https://github.com/sendgrid/sendgrid-python/blob/python_http_client/.env_sample), please rename to `.env` and add your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys), or you can pass your API Key into the SendGridClient constructor.
+[Sample .env](https://github.com/sendgrid/sendgrid-python/blob/master/.env_sample), please rename to `.env` and add your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys), or you can pass your API Key into the SendGridClient constructor.
 
 # Quick Start
 
@@ -117,10 +117,3 @@ We encourage contribution to our libraries, please see our [CONTRIBUTING](https:
 sendgrid-python is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
-
-
-
-
-
-
-
