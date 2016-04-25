@@ -2,6 +2,7 @@ import sendgrid
 import json
 import os
 
+
 sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
 # You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
@@ -9,18 +10,8 @@ sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
 # Returns a list of all partner settings. #
 # GET /partner_settings #
 
-params = {'limit': 0, 'offset': 0}
+params = {'limit': 1, 'offset': 1}
 response = sg.client.partner_settings.get(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Updates New Relic partner settings. #
-# PATCH /partner_settings/new_relic #
-
-data = {'sample': 'data'}
-response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -35,11 +26,15 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Update SendWithUs Settings #
-# PATCH /partner_settings/sendwithus #
+# Updates New Relic partner settings. #
+# PATCH /partner_settings/new_relic #
 
-data = {'sample': 'data'}
-response = sg.client.partner_settings.sendwithus.patch(request_body=data)
+data = {
+  "enable_subuser_statistics": true, 
+  "enabled": true, 
+  "license_key": ""
+}
+response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -49,6 +44,15 @@ print(response.response_headers)
 # GET /partner_settings/sendwithus #
 
 response = sg.client.partner_settings.sendwithus.get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Update SendWithUs Settings #
+# PATCH /partner_settings/sendwithus #
+
+response = sg.client.partner_settings.sendwithus.patch()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
