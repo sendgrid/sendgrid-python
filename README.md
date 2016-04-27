@@ -104,6 +104,7 @@ We encourage contribution to our libraries, please see our [CONTRIBUTING](https:
 - [v2 Mail Send](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE_v2.md)
 - [v3 Web API](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-python/blob/master/examples)
+- [v3 Web API Mail Send Helper]()
 
 ## Unsupported Libraries
 
