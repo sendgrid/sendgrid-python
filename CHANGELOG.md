@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [2.1.1] - 2016-03-02 ##
+## [2.2.1] - 2016-03-02 ##
 
 ### Added ###
 
