@@ -4,7 +4,7 @@ import json
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
-    def __init__(self):
+    def __init__(self, from_email = None, subject = None, to_email = None, content = None):
         self.from_email = None
         self.subject = None
         self.personalizations = None
@@ -23,6 +23,15 @@ class Mail(object):
         self.tracking_settings = None
         self.reply_to = None
 
+        # Minimum required to send an email
+        if from_email and subject and to_email and content:
+            self.set_from(from_email)
+            personalization = Personalization()
+            personalization.add_to(to_email)
+            self.add_personalization(personalization)
+            self.set_subject(subject)
+            self.add_content(content)
+
     def __str__(self):
         self.get()
 
@@ -36,29 +45,29 @@ class Mail(object):
         if self.subject:
             mail["subject"] = self.subject
         if self.personalizations:
-            mail["personalization"] = [ob for ob in self.personalizations]
+            mail["personalization"] = [personalization.get() for personalization in self.personalizations]
         if self.contents:
-            mail["content"] = [ob for ob in self.contents]
+            mail["content"] = [ob.get() for ob in self.contents]
         if self.attachments:
-            mail["attachments"] = [ob for ob in self.attachments]
+            mail["attachments"] = [ob.get() for ob in self.attachments]
         if self.template_id:
             mail["template_id"] = self.template_id
         if self.sections:
             sections = {}
             for key in self.sections:
-                sections.update(key)
+                sections.update(key.get())
             mail["sections"] = sections
         if self.headers:
             headers = {}
             for key in self.headers:
-                headers.update(key)
+                headers.update(key.get())
             mail["headers"] = headers
         if self.categories:
-            mail["categories"] = self.categories
+            mail["categories"] = [category.get() for category in self.categories]
         if self.custom_args:
             custom_args = {}
             for key in self.custom_args:
-                custom_args.update(key)
+                custom_args.update(key.get())
             mail["custom_args"] = custom_args
         if self.send_at:
             mail["send_at"] = self.send_at
@@ -69,11 +78,11 @@ class Mail(object):
         if self.ip_pool_name:
             mail["ip_pool_name"] = self.ip_pool_name
         if self.mail_settings:
-            mail["mail_settings"] = self.mail_settings
+            mail["mail_settings"] = self.mail_settings.get()
         if self.tracking_settings:
-            mail["tracking_settings"] = self.tracking_settings
+            mail["tracking_settings"] = self.tracking_settings.get()
         if self.reply_to:
-            mail["reply_to"] = self.reply_to
+            mail["reply_to"] = self.reply_to.get()
         return mail
 
     def set_from(self, email):
@@ -85,17 +94,17 @@ class Mail(object):
     def add_personalization(self, personalizations):
         if self.personalizations is None:
             self.personalizations = []
-        self.personalizations.append(personalizations.get())
+        self.personalizations.append(personalizations)
 
     def add_content(self, content):
         if self.contents is None:
             self.contents = []
-        self.contents.append(content.get())
+        self.contents.append(content)
 
     def add_attachment(self, attachment):
         if self.attachments is None:
             self.attachments = []
-        self.attachments.append(attachment.get())
+        self.attachments.append(attachment)
 
     def set_template_id(self, template_id):
         self.template_id = template_id
@@ -103,22 +112,22 @@ class Mail(object):
     def add_section(self, section):
         if self.sections is None:
             self.sections = []
-        self.sections.append(section.get())
+        self.sections.append(section)
 
     def add_header(self, header):
         if self.headers is None:
             self.headers = []
-        self.headers.append(header.get())
+        self.headers.append(header)
 
     def add_category(self, category):
         if self.categories is None:
             self.categories = []
-        self.categories.append(category.get())
+        self.categories.append(category)
 
     def add_custom_arg(self, custom_arg):
         if self.custom_args is None:
             self.custom_args = []
-        self.custom_args.append(custom_arg.get())
+        self.custom_args.append(custom_arg)
 
     def set_send_at(self, send_at):
         self.send_at = send_at
@@ -130,16 +139,16 @@ class Mail(object):
         self.asm = asm.get()
 
     def set_mail_settings(self, mail_settings):
-        self.mail_settings = mail_settings.get()
+        self.mail_settings = mail_settings
 
     def set_tracking_settings(self, tracking_settings):
-        self.tracking_settings = tracking_settings.get()
+        self.tracking_settings = tracking_settings
 
     def set_ip_pool_name(self, ip_pool_name):
         self.ip_pool_name = ip_pool_name
 
     def set_reply_to(self, reply_to):
-        self.reply_to = reply_to.get()
+        self.reply_to = reply_to
 
 ################################################################
 # The following objects are meant to be extended with validation
@@ -312,10 +321,7 @@ class Personalization(object):
         if self.ccs:
             personalization["cc"] = self.ccs
         if self.bccs:
-            bcc_list = []
-            for bcc in self.bccs:
-                bcc_list.append(bcc["email"])
-            personalization["bcc"] = bcc_list
+            personalization["bcc"] = self.bccs
         if self.subject:
             personalization["subject"] = self.subject
         if self.headers:
@@ -451,7 +457,7 @@ class FooterSettings(object):
 
 class SandBoxMode(object):
     def __init__(self, enable=None):
-        self.enable = enable if enable else None
+        self.enable = enable if enable else False
 
     def get(self):
         sandbox_mode = {}

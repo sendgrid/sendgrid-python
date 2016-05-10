@@ -2,8 +2,6 @@
 
 **This library allows you to quickly and easily use the SendGrid Web API via Python.**
 
-Currently this library supports our [v2 Mail endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) and the [v3 Web API](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
-
 # Installation
 
 `pip install sendgrid`
@@ -15,61 +13,63 @@ or
 ## Dependencies
 
 - The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
-- [SMTAPI-Python](https://github.com/sendgrid/smtpapi-python)
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
-## Environment Variables (for v3 Web API)
+## Environment Variables
 
-[Sample .env](https://github.com/sendgrid/sendgrid-python/blob/master/.env_sample), please rename to `.env` and add your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys), or you can pass your API Key into the SendGridClient constructor.
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
+
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env
+```
 
 # Quick Start
 
-## v2 Mail Send endpoint (Send an Email)
+## Hello Email
 
 ```python
 import sendgrid
+from sendgrid.helpers.mail import *
 
-sg = sendgrid.SendGridClient('YOUR_SENDGRID_API_KEY')
-
-
-message = sendgrid.Mail()
-message.add_to('John Doe <john@email.com>')
-message.set_subject('Example')
-message.set_html('Body')
-message.set_text('Body')
-message.set_from('Doe John <doe@email.com>')
-status, msg = sg.send(message)
-print(status, msg)
-
-#or
-
-message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
-status, msg = sg.send(message)
-print(status, msg)
+from_email = Email("dx@sendgrid.com")
+subject = "Hello World from the SendGrid Python Library"
+to_email = Email("elmer.thomas@sendgrid.com")
+content = Content("text/plain", "some text here")
+mail = Mail(from_email, subject, to_email, content)
+response = sg.client.mail.send.beta.post(request_body=mail.get())
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
 ```
 
-## v3 Web API endpoints
+## General v3 Web API Usage
 
 ```python
 import sendgrid
 
-sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
-# You can also store your API key an .env variable 'SENDGRID_API_KEY'
-
+sg = sendgrid.SendGridAPIClient()
 response = sg.client.api_keys.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
 ```
 
+# Usage
+
+- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
+- [v3 Web API](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md)
+- [Example Code](https://github.com/sendgrid/sendgrid-python/blob/master/examples)
+- [v3 Web API Mail Send Helper]()
+
 # Announcements
 
-**BREAKING CHANGE as of 2016.03.01**
+**BREAKING CHANGE as of XXXX.XX.XX**
 
-Version `2.0.0` is a breaking change for the **Web API v3 endpoints**. The
-mail send endpoint is not affected by this update.
-
-Version 2.0.0 brings you full support for all Web API v3 endpoints. We
+Version 3.0.0 brings you full support for all Web API v3 endpoints. We
 have the following resources to get you started quickly:
 
 -   [SendGrid
@@ -80,11 +80,6 @@ have the following resources to get you started quickly:
     Code](https://github.com/sendgrid/sendgrid-python/blob/master/examples)
 
 Thank you for your continued support!
-
-For the **v2 Mail Send Endpoint**, if you upgrade to version `1.2.x`, the `add_to` method behaves
-differently. In the past this method defaulted to using the `SMTPAPI`
-header. Now you must explicitly call the `smtpapi.add_to` method. More
-on the `SMTPAPI` section.
 
 ## Roadmap
 
@@ -97,14 +92,6 @@ We encourage contribution to our libraries, please see our [CONTRIBUTING](https:
 * [Feature Request](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature_request)
 * [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit_a_bug_report)
 * [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements_to_the_codebase)
-
-## Usage
-
-- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
-- [v2 Mail Send](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE_v2.md)
-- [v3 Web API](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md)
-- [Example Code](https://github.com/sendgrid/sendgrid-python/blob/master/examples)
-- [v3 Web API Mail Send Helper]()
 
 ## Unsupported Libraries
 
