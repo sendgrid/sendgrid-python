@@ -10,8 +10,7 @@ import os
 if os.environ.get('TRAVIS'):
     host = os.environ.get('MOCK_HOST')
 else:
-    host = "https://e9sk3d3bfaikbpdq7.stoplight-proxy.io"
-    #host = "http://localhost:4010"
+    host = "http://localhost:4010"
 
 class UnitTests(unittest.TestCase):
     def setUp(self):

@@ -45,7 +45,7 @@ class Mail(object):
         if self.subject:
             mail["subject"] = self.subject
         if self.personalizations:
-            mail["personalization"] = [personalization.get() for personalization in self.personalizations]
+            mail["personalizations"] = [personalization.get() for personalization in self.personalizations]
         if self.contents:
             mail["content"] = [ob.get() for ob in self.contents]
         if self.attachments:

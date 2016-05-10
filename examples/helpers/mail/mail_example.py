@@ -1,5 +1,6 @@
 import json
 import os
+import urllib2
 from sendgrid.helpers.mail import *
 from sendgrid import *
 
@@ -93,7 +94,8 @@ def build_kitchen_sink():
 
     mail.set_send_at(1443636842)
 
-    mail.set_batch_id("sendgrid_batch_id")
+    # This must be a valid [batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
+    # mail.set_batch_id("N2VkYjBjYWItMGU4OC0xMWU2LWJhMzYtZjQ1Yzg5OTBkNzkxLWM5ZTUyZjNhOA")
 
     mail.set_asm(ASM(99, [4, 5, 6, 7, 8]))
 
