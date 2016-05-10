@@ -11,6 +11,8 @@ except ImportError:
 class UnitTests(unittest.TestCase):
 
     def test_helloEmail(self):
+        self.maxDiff = None
+
         """Minimum required to send an email"""
         mail = Mail()
 
@@ -25,7 +27,7 @@ class UnitTests(unittest.TestCase):
         mail.add_content(Content("text/plain", "some text here"))
         mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
 
-        self.assertEqual(json.dumps(mail.get(), sort_keys=True), '{"content": [{"type": "text/plain", "value": "some text here"}, {"type": "text/html", "value": "<html><body>some text here</body></html>"}], "from": {"email": "dx@sendgrid.com"}, "personalization": [{"to": [{"email": "elmer.thomas@sendgrid.com"}]}], "subject": "Hello World from the SendGrid Python Library"}')
+        self.assertEqual(json.dumps(mail.get(), sort_keys=True), '{"content": [{"type": "text/plain", "value": "some text here"}, {"type": "text/html", "value": "<html><body>some text here</body></html>"}], "from": {"email": "dx@sendgrid.com"}, "personalizations": [{"to": [{"email": "elmer.thomas@sendgrid.com"}]}], "subject": "Hello World from the SendGrid Python Library"}')
 
     def test_kitchenSink(self):
         self.maxDiff = None

@@ -2,7 +2,7 @@
 
 # Quick Start
 
-Run the [example]() (make sure you have set your environment variable to include your SENDGRID_API_KEY).
+Run the [example](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples/helpers/mail) (make sure you have set your environment variable to include your SENDGRID_API_KEY).
 
 ```bash
 cp examples/helpers/mail_settings.py .
