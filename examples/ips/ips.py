@@ -2,21 +2,22 @@ import sendgrid
 import json
 import os
 
+
 sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
 # You can also store your API key an .env variable 'SENDGRID_API_KEY'
 
 ##################################################
-# List all IPs #
+# Retrieve all IP addresses #
 # GET /ips #
 
-params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 0, 'exclude_whitelabels': 0, 'offset': 0}
+params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
 response = sg.client.ips.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# List all assigned IPs #
+# Retrieve all assigned IPs #
 # GET /ips/assigned #
 
 response = sg.client.ips.assigned.get()
@@ -28,14 +29,16 @@ print(response.response_headers)
 # Create an IP pool. #
 # POST /ips/pools #
 
-data = {'sample': 'data'}
+data = {
+  "name": "marketing"
+}
 response = sg.client.ips.pools.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# List all IP pools. #
+# Retrieve all IP pools. #
 # GET /ips/pools #
 
 response = sg.client.ips.pools.get()
@@ -47,19 +50,11 @@ print(response.response_headers)
 # Update an IP pools name. #
 # PUT /ips/pools/{pool_name} #
 
-data = {'sample': 'data'}
+data = {
+  "name": "new_pool_name"
+}
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).put(request_body=data)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# List the IPs in a specified pool. #
-# GET /ips/pools/{pool_name} #
-
-pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -75,10 +70,22 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Add an IP to a pool #
+# Retrieve all IPs in a specified pool. #
+# GET /ips/pools/{pool_name} #
+
+pool_name = "test_url_param"
+response = sg.client.ips.pools._(pool_name).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Add an IP address to a pool #
 # POST /ips/pools/{pool_name}/ips #
 
-data = {'sample': 'data'}
+data = {
+  "ip": "0.0.0.0"
+}
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).ips.post(request_body=data)
 print(response.status_code)
@@ -97,17 +104,19 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Add an IP to warmup. #
+# Add an IP to warmup #
 # POST /ips/warmup #
 
-data = {'sample': 'data'}
+data = {
+  "ip": "0.0.0.0"
+}
 response = sg.client.ips.warmup.post(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get all IPs that are currently warming up. #
+# Retrieve all IPs currently in warmup #
 # GET /ips/warmup #
 
 response = sg.client.ips.warmup.get()
@@ -116,7 +125,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get warmup status for a particular IP. #
+# Retrieve warmup status for a specific IP address #
 # GET /ips/warmup/{ip_address} #
 
 ip_address = "test_url_param"
@@ -126,7 +135,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Remove an IP from warmup. #
+# Remove an IP from warmup #
 # DELETE /ips/warmup/{ip_address} #
 
 ip_address = "test_url_param"
@@ -136,7 +145,7 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# See which pools an IP address belongs to. #
+# Retrieve all IP pools an IP address belongs to #
 # GET /ips/{ip_address} #
 
 ip_address = "test_url_param"

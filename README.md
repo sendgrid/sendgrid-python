@@ -1,4 +1,4 @@
-[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=v3beta)](https://travis-ci.org/sendgrid/sendgrid-python)
 
 **This library allows you to quickly and easily use the SendGrid Web API via Python.**
 

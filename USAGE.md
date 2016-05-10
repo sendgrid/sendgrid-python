@@ -13,7 +13,7 @@ sg = sendgrid.SendGridAPIClient(apikey='SENDGRID_API_KEY')
 
 # Table of Contents
 
-* [API KEY](#api_key)
+* [ACCESS SETTINGS](#access_settings)
 * [API KEYS](#api_keys)
 * [ASM](#asm)
 * [BROWSERS](#browsers)
@@ -38,24 +38,125 @@ sg = sendgrid.SendGridAPIClient(apikey='SENDGRID_API_KEY')
 * [WHITELABEL](#whitelabel)
 
 
-<a name="api_key"></a>
-# API KEY
+<a name="access_settings"></a>
+# ACCESS SETTINGS
 
-## Create API keys
+## Retrieve all recent access attempts
 
-This will create a new random API Key for the user. A JSON request body containing a "name" property is required. If number of maximum keys is reached, HTTP 403 will be returned.
+**This endpoint allows you to retrieve a list of all of the IP addresses that recently attempted to access your account either through the User Interface or the API.**
 
-There is a limit of 100 API Keys on your account.
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
 
-The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
 
-See the [API Key Permissions List](https://sendgrid.com/docs/API_Reference/Web_API_v3/API_Keys/api_key_permissions_list.html) for a list of all available scopes.
+### GET /access_settings/activity
 
-### POST /api_key
-
+```python
+params = {'limit': 1}
+response = self.sg.client.access_settings.activity.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
 ```
-data = {'sample': 'data'}
-response = self.sg.client.api_key.post(request_body=data)
+## Add one or more IPs to the whitelist
+
+**This endpoint allows you to add one or more IP addresses to your IP whitelist.**
+
+When adding an IP to your whitelist, include the IP address in an array. You can whitelist one IP at a time, or you can whitelist multiple IPs at once.
+
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
+
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
+
+### POST /access_settings/whitelist
+
+```python
+data = {
+  "ips": [
+    {
+      "ip": "192.168.1.1"
+    },
+    {
+      "ip": "192.*.*.*"
+    },
+    {
+      "ip": "192.168.1.3/32"
+    }
+  ]
+}
+response = self.sg.client.access_settings.whitelist.post(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a list of currently whitelisted IPs
+
+**This endpoint allows you to retrieve a list of IP addresses that are currently whitelisted.**
+
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
+
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
+
+### GET /access_settings/whitelist
+
+```python
+response = self.sg.client.access_settings.whitelist.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Remove one or more IPs from the whitelist
+
+**This endpoint allows you to remove one or more IPs from your IP whitelist.**
+
+You can remove one IP at a time, or you can remove multiple IP addresses.
+
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
+
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
+
+### DELETE /access_settings/whitelist
+
+```python
+response = self.sg.client.access_settings.whitelist.delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Remove a specific IP from the whitelist
+
+**This endpoint allows you to remove a specific IP address from your IP whitelist.**
+
+When removing a specific IP address from your whitelist, you must include the ID in your call.
+
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
+
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
+
+### DELETE /access_settings/whitelist/{rule_id}
+
+```python
+rule_id = "test_url_param"
+response = self.sg.client.access_settings.whitelist._(rule_id).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a specific whitelisted IP
+
+**This endpoint allows you to retreive a specific IP address that has been whitelisted.**
+
+You must include the ID for the specific IP address you want to retrieve in your call.
+
+IP Access Management allows you to control which IP addresses can be used to access your account, either through the User Interface or the API. There is no limit to the number of IP addresses that you can add to your whitelist. It is possible to remove your own IP address from the whitelist, thus preventing yourself from accessing your account.
+
+For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
+
+### GET /access_settings/whitelist/{rule_id}
+
+```python
+rule_id = "test_url_param"
+response = self.sg.client.access_settings.whitelist._(rule_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -63,19 +164,51 @@ print response.response_headers
 <a name="api_keys"></a>
 # API KEYS
 
-## List all API Keys belonging to the authenticated user
+## Create API keys
+
+**This enpoint allows you to create a new random API Key for the user.**
+
+A JSON request body containing a "name" property is required. If number of maximum keys is reached, HTTP 403 will be returned.
+
+There is a limit of 100 API Keys on your account.
+
+The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
+
+See the [API Key Permissions List](https://sendgrid.com/docs/API_Reference/Web_API_v3/API_Keys/api_key_permissions_list.html) for a list of all available scopes.
+
+### POST /api_keys
+
+```python
+data = {
+  "name": "My API Key",
+  "scopes": [
+    "mail.send",
+    "alerts.create",
+    "alerts.read"
+  ]
+}
+response = self.sg.client.api_keys.post(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve all API Keys belonging to the authenticated user
+
+**This endpoint allows you to retrieve all API Keys that belong to the authenticated user.**
 
 The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
 ### GET /api_keys
 
-```
+```python
 response = self.sg.client.api_keys.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Update the name & scopes of an API Key
+
+**This endpoint allows you to update the name and scopes of a given API key.**
 
 A JSON request body with a "name" property is required.
 Most provide the list of all the scopes an api key should have.
@@ -85,61 +218,23 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ### PUT /api_keys/{api_key_id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "A New Hope",
+  "scopes": [
+    "user.profile.read",
+    "user.profile.update"
+  ]
+}
 api_key_id = "test_url_param"
 response = self.sg.client.api_keys._(api_key_id).put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update API keys
-
-**Update the name of an existing API Key**
-
-A JSON request body with a "name" property is required.
-
-The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
-
-## URI Parameters
-
-| URI Parameter   | Type  | Required?  | Description  |
-|---|---|---|---|
-|api_key_id |string | required | The ID of the API Key you are updating.|
-
-### PATCH /api_keys/{api_key_id}
-
-```
-data = {'sample': 'data'}
-api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).patch(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Get an existing API Key
-
-Retrieve a single api key.
-If the API Key ID does not exist an HTTP 404 will be returned.
-
-## URI Parameters
-
-| Param   | Type  | Required?  | Description  |
-|---|---|---|---|
-|api_key_id |string | required | The ID of the API Key for which you are requesting information.|
-
-### GET /api_keys/{api_key_id}
-
-```
-api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
 ## Delete API keys
 
-**Revoke an existing API Key**
+**This endpoint allows you to revoke an existing API Key**
 
 Authentications using this API Key will fail after this request is made, with some small propogation delay.If the API Key ID does not exist an HTTP 404 will be returned.
 
@@ -153,9 +248,50 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ### DELETE /api_keys/{api_key_id}
 
-```
+```python
 api_key_id = "test_url_param"
 response = self.sg.client.api_keys._(api_key_id).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve an existing API Key
+
+**This endpoint allows you to retrieve a single api key.**
+
+If the API Key ID does not exist an HTTP 404 will be returned.
+
+### GET /api_keys/{api_key_id}
+
+```python
+api_key_id = "test_url_param"
+response = self.sg.client.api_keys._(api_key_id).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update API keys
+
+**This endpoint allows you to update the name of an existing API Key.**
+
+A JSON request body with a "name" property is required.
+
+The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
+
+## URI Parameters
+
+| URI Parameter   | Type  | Required?  | Description  |
+|---|---|---|---|
+|api_key_id |string | required | The ID of the API Key you are updating.|
+
+### PATCH /api_keys/{api_key_id}
+
+```python
+data = {
+  "name": "A New Hope"
+}
+api_key_id = "test_url_param"
+response = self.sg.client.api_keys._(api_key_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -175,8 +311,12 @@ Each user can create up to 25 different suppression groups.
 
 ### POST /asm/groups
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "description": "A group description",
+  "is_default": false,
+  "name": "A group name"
+}
 response = self.sg.client.asm.groups.post(request_body=data)
 print response.status_code
 print response.response_body
@@ -194,7 +334,7 @@ Each user can create up to 25 different suppression groups.
 
 ### GET /asm/groups
 
-```
+```python
 response = self.sg.client.asm.groups.get()
 print response.status_code
 print response.response_body
@@ -212,8 +352,12 @@ Each user can create up to 25 different suppression groups.
 
 ### PATCH /asm/groups/{group_id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "description": "Suggestions for items our users might like.",
+  "id": 103,
+  "name": "Item Suggestions"
+}
 group_id = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).patch(request_body=data)
 print response.status_code
@@ -232,7 +376,7 @@ Each user can create up to 25 different suppression groups.
 
 ### GET /asm/groups/{group_id}
 
-```
+```python
 group_id = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).get()
 print response.status_code
@@ -253,7 +397,7 @@ Each user can create up to 25 different suppression groups.
 
 ### DELETE /asm/groups/{group_id}
 
-```
+```python
 group_id = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).delete()
 print response.status_code
@@ -270,8 +414,13 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ### POST /asm/groups/{group_id}/suppressions
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "recipient_emails": [
+    "test1@example.com",
+    "test2@example.com"
+  ]
+}
 group_id = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
 print response.status_code
@@ -286,7 +435,7 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ### GET /asm/groups/{group_id}/suppressions
 
-```
+```python
 group_id = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).suppressions.get()
 print response.status_code
@@ -301,7 +450,7 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ### DELETE /asm/groups/{group_id}/suppressions/{email}
 
-```
+```python
 group_id = "test_url_param"
         email = "test_url_param"
 response = self.sg.client.asm.groups._(group_id).suppressions._(email).delete()
@@ -311,37 +460,35 @@ print response.response_headers
 ```
 ## Add recipient addresses to the global suppression group.
 
-Global Suppressions are email addresses that will not receive any emails.
+**This endpoint allows you to add one or more email addresses to the global suppressions group.**
+
+A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
 ### POST /asm/suppressions/global
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "recipient_emails": [
+    "test1@example.com",
+    "test2@example.com"
+  ]
+}
 response = self.sg.client.asm.suppressions._("global").post(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Check if a recipient address is in the global suppressions group.
-
-Global Suppressions are email addresses that will not receive any emails.
-
-### GET /asm/suppressions/global/{email_address}
-
-```
-email_address = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email_address).get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Retrieve a Global Suppression
 
+**This endpoint allows you to retrieve a global suppression. You can also use this endpoint to confirm if an email address is already globally suppresed.**
 
+If the email address you include in the URL path parameter `{email}` is alreayd globally suppressed, the response will include that email address. If the address you enter for `{email}` is not globally suppressed, an empty JSON object `{}` will be returned.
+
+A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
 ### GET /asm/suppressions/global/{email}
 
-```
+```python
 email = "test_url_param"
 response = self.sg.client.asm.suppressions._("global")._(email).get()
 print response.status_code
@@ -350,11 +497,13 @@ print response.response_headers
 ```
 ## Delete a Global Suppression
 
+**This endpoint allows you to remove an email address from the global suppressions group.**
 
+A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
 ### DELETE /asm/suppressions/global/{email}
 
-```
+```python
 email = "test_url_param"
 response = self.sg.client.asm.suppressions._("global")._(email).delete()
 print response.status_code
@@ -364,7 +513,7 @@ print response.response_headers
 <a name="browsers"></a>
 # BROWSERS
 
-## Retrieve email statistics by browser. 
+## Retrieve email statistics by browser.
 
 **This endpoint allows you to retrieve your email statistics segmented by browser type.**
 
@@ -374,8 +523,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /browsers/stats
 
-```
-params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'browsers': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'browsers': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': '2016-01-01'}
 response = self.sg.client.browsers.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -386,8 +535,9 @@ print response.response_headers
 
 ## Create a Campaign
 
-Our Marketing Campaigns API lets you create, manage, send, and schedule campaigns.
+**This endpoint allows you to create a campaign.**
 
+Our Marketing Campaigns API lets you create, manage, send, and schedule campaigns.
 
 Note: In order to send or schedule the campaign, you will be required to provide a subject, sender ID, content (we suggest both html and plain text), and at least one list or segment ID. This information is not required when you create a campaign.
 
@@ -397,14 +547,35 @@ For more information:
 
 ### POST /campaigns
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "categories": [
+    "spring line"
+  ],
+  "custom_unsubscribe_url": "",
+  "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>",
+  "ip_pool": "marketing",
+  "list_ids": [
+    110,
+    124
+  ],
+  "plain_content": "Check out our spring line!",
+  "segment_ids": [
+    110
+  ],
+  "sender_id": 124451,
+  "subject": "New Products for Spring!",
+  "suppression_group_id": 42,
+  "title": "March Newsletter"
+}
 response = self.sg.client.campaigns.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get all Campaigns
+## Retrieve all Campaigns
+
+**This endpoint allows you to retrieve a list of all of your campaigns.**
 
 Returns campaigns in reverse order they were created (newest first).
 
@@ -416,7 +587,7 @@ For more information:
 
 ### GET /campaigns
 
-```
+```python
 params = {'limit': 0, 'offset': 0}
 response = self.sg.client.campaigns.get(query_params=params)
 print response.status_code
@@ -433,23 +604,27 @@ For more information:
 
 ### PATCH /campaigns/{campaign_id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "categories": [
+    "summer line"
+  ],
+  "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+  "plain_content": "Check out our summer line!",
+  "subject": "New Products for Summer!",
+  "title": "May Newsletter"
+}
 campaign_id = "test_url_param"
 response = self.sg.client.campaigns._(campaign_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get a single campaign
+## Retrieve a single campaign
 
-This is a place for notes and extra information about this endpoint. It is written
-in Markdown - more info in the [documentation](/docs/designer#markdown).
+**This endpoint allows you to retrieve a specific campaign.**
 
-There are several special markdown helpers that automatically build tables
-and html off of your endpoint definition. You can find some examples in this content.
-
-Click the "Open Editor" button above to start editing this content.
+Our Marketing Campaigns API lets you create, manage, send, and schedule campaigns.
 
 For more information:
 
@@ -457,7 +632,7 @@ For more information:
 
 ### GET /campaigns/{campaign_id}
 
-```
+```python
 campaign_id = "test_url_param"
 response = self.sg.client.campaigns._(campaign_id).get()
 print response.status_code
@@ -466,73 +641,26 @@ print response.response_headers
 ```
 ## Delete a Campaign
 
+**This endpoint allows you to delete a specific campaign.**
+
+Our Marketing Campaigns API lets you create, manage, send, and schedule campaigns.
+
 For more information:
 
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### DELETE /campaigns/{campaign_id}
 
-```
+```python
 campaign_id = "test_url_param"
 response = self.sg.client.campaigns._(campaign_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update a Scheduled Campaign
-
-Changes the send_at time for the specified campaign.
-
-For more information:
-
-* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
-
-### PATCH /campaigns/{campaign_id}/schedules
-
-```
-data = {'sample': 'data'}
-campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Schedule a Campaign
-
-Send your campaign at a specific date and time.
-
-For more information:
-
-* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
-
-### POST /campaigns/{campaign_id}/schedules
-
-```
-data = {'sample': 'data'}
-campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## View Scheduled Time of a Campaign
-
-View the time that this campaign is scheduled to be sent. 
-
-For more information:
-
-* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
-
-### GET /campaigns/{campaign_id}/schedules
-
-```
-campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
 ## Unschedule a Scheduled Campaign
+
+**This endpoint allows you to unschedule a campaign that has already been scheduled to be sent.**
 
 A successful unschedule will return a 204.
 If the specified campaign is in the process of being sent, the only option is to cancel (a different method).
@@ -543,16 +671,72 @@ For more information:
 
 ### DELETE /campaigns/{campaign_id}/schedules
 
-```
+```python
 campaign_id = "test_url_param"
 response = self.sg.client.campaigns._(campaign_id).schedules.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
+## Schedule a Campaign
+
+**This endpoint allows you to schedule a specific date and time for your campaign to be sent.**
+
+For more information:
+
+* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
+
+### POST /campaigns/{campaign_id}/schedules
+
+```python
+data = {
+  "send_at": 1489771528
+}
+campaign_id = "test_url_param"
+response = self.sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update a Scheduled Campaign
+
+**This endpoint allows to you change the scheduled time and date for a campaign to be sent.**
+
+For more information:
+
+* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
+
+### PATCH /campaigns/{campaign_id}/schedules
+
+```python
+campaign_id = "test_url_param"
+response = self.sg.client.campaigns._(campaign_id).schedules.patch()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## View Scheduled Time of a Campaign
+
+**This endpoint allows you to retrieve the date and time that the given campaign has been scheduled to be sent.**
+
+For more information:
+
+* [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
+
+### GET /campaigns/{campaign_id}/schedules
+
+```python
+campaign_id = "test_url_param"
+response = self.sg.client.campaigns._(campaign_id).schedules.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
 ## Send a Campaign
 
-Send your campaign right now. Normally a POST would have a request body, but since this endpoint is telling us to send a resource that is already created, we don't need a body.
+**This endpoint allows you to immediately send a campaign at the time you make the API call.**
+
+Normally a POST would have a request body, but since this endpoint is telling us to send a resource that is already created, a request body is not needed.
 
 For more information:
 
@@ -560,15 +744,16 @@ For more information:
 
 ### POST /campaigns/{campaign_id}/schedules/now
 
-```
-data = {'sample': 'data'}
+```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.now.post(request_body=data)
+response = self.sg.client.campaigns._(campaign_id).schedules.now.post()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Send a Test Campaign
+
+**This endpoint allows you to send a test campaign.**
 
 To send to multiple addresses, use an array for the JSON "to" value ["one@address","two@address"]
 
@@ -578,8 +763,10 @@ For more information:
 
 ### POST /campaigns/{campaign_id}/schedules/test
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "to": "your.email@example.com"
+}
 campaign_id = "test_url_param"
 response = self.sg.client.campaigns._(campaign_id).schedules.test.post(request_body=data)
 print response.status_code
@@ -589,14 +776,16 @@ print response.response_headers
 <a name="categories"></a>
 # CATEGORIES
 
-## Get categories
+## Retrieve all categories
 
+**This endpoint allows you to retrieve a list of all of your categories.**
 
+Categories can help organize your email analytics by enabling you to tag emails by type or broad topic. You can define your own custom categories. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html).
 
 ### GET /categories
 
-```
-params = {'category': 'test_string', 'sort_by': 'test_string', 'limit': 0, 'order': 'test_string', 'offset': 0}
+```python
+params = {'category': 'test_string', 'limit': 1, 'offset': 1}
 response = self.sg.client.categories.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -608,12 +797,12 @@ print response.response_headers
 
 If you do not define any query parameters, this endpoint will return a sum for each category in groups of 10.
 
-Categories allow you to group your emails together according to broad topics that you define. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html). 
+Categories allow you to group your emails together according to broad topics that you define. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html).
 
 ### GET /categories/stats
 
-```
-params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'offset': 0, 'start_date': 'test_string', 'categories': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01', 'categories': 'test_string'}
 response = self.sg.client.categories.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -625,12 +814,12 @@ print response.response_headers
 
 If you do not define any query parameters, this endpoint will return a sum for each category in groups of 10.
 
-Categories allow you to group your emails together according to broad topics that you define. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html). 
+Categories allow you to group your emails together according to broad topics that you define. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html).
 
 ### GET /categories/stats/sums
 
-```
-params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 0, 'start_date': 'test_string', 'sort_by_direction': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'start_date': '2016-01-01', 'sort_by_direction': 'asc'}
 response = self.sg.client.categories.stats.sums.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -649,8 +838,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /clients/stats
 
-```
-params = {'aggregated_by': 'test_string', 'start_date': 'test_string', 'end_date': 'test_string'}
+```python
+params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-04-01'}
 response = self.sg.client.clients.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -672,8 +861,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /clients/{client_type}/stats
 
-```
-params = {'aggregated_by': 'test_string', 'start_date': 'test_string', 'end_date': 'test_string'}
+```python
+params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-04-01'}
 client_type = "test_url_param"
 response = self.sg.client.clients._(client_type).stats.get(query_params=params)
 print response.status_code
@@ -685,58 +874,60 @@ print response.response_headers
 
 ## Create a Custom Field
 
-Create a custom field.
+**This endpoint allows you to create a custom field.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### POST /contactdb/custom_fields
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "pet",
+  "type": "text"
+}
 response = self.sg.client.contactdb.custom_fields.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List All Custom Fields
+## Retrieve all custom fields
 
-Get all custom fields. 
+**This endpoint allows you to retrieve all custom fields.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/custom_fields
 
-```
+```python
 response = self.sg.client.contactdb.custom_fields.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get a Custom Field
+## Retrieve a Custom Field
 
-Get a custom field by ID.
+**This endpoint allows you to retrieve a custom field by ID.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/custom_fields/{custom_field_id}
 
-```
-params = {'custom_field_id': 0}
+```python
 custom_field_id = "test_url_param"
-response = self.sg.client.contactdb.custom_fields._(custom_field_id).get(query_params=params)
+response = self.sg.client.contactdb.custom_fields._(custom_field_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Delete a Custom Field
 
-Delete a custom field by ID.
+**This endpoint allows you to delete a custom field by ID.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### DELETE /contactdb/custom_fields/{custom_field_id}
 
-```
+```python
 custom_field_id = "test_url_param"
 response = self.sg.client.contactdb.custom_fields._(custom_field_id).delete()
 print response.status_code
@@ -745,28 +936,30 @@ print response.response_headers
 ```
 ## Create a List
 
-Create a list for your recipients.
+**This endpoint allows you to create a list for your recipients.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/lists
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "your list name"
+}
 response = self.sg.client.contactdb.lists.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List All Lists
+## Retrieve all lists
 
-Returns an empty list if you GET and no lists exist on your account.
+**This endpoint allows you to retrieve all of your recipient lists. If you don't have any lists, an empty array will be returned.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/lists
 
-```
+```python
 response = self.sg.client.contactdb.lists.get()
 print response.status_code
 print response.response_body
@@ -774,46 +967,27 @@ print response.response_headers
 ```
 ## Delete Multiple lists
 
-Delete multiple lists.
+**This endpoint allows you to delete multiple recipient lists.**
 
-
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### DELETE /contactdb/lists
 
-```
+```python
 response = self.sg.client.contactdb.lists.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update a List
+## Retrieve a single list
 
-Update the name of a list.
+This endpoint allows you to retrieve a single recipient list.
 
-
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
-
-### PATCH /contactdb/lists/{list_id}
-
-```
-data = {'sample': 'data'}
-params = {'list_id': 0}
-list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Get a single list.
-
-Get a single list. 
-
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/lists/{list_id}
 
-```
+```python
 params = {'list_id': 0}
 list_id = "test_url_param"
 response = self.sg.client.contactdb.lists._(list_id).get(query_params=params)
@@ -821,16 +995,36 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
+## Update a List
+
+**This endpoint allows you to update the name of one of your recipient lists.**
+
+
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+### PATCH /contactdb/lists/{list_id}
+
+```python
+data = {
+  "name": "newlistname"
+}
+params = {'list_id': 0}
+list_id = "test_url_param"
+response = self.sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
 ## Delete a List
 
-Delete a list by ID.
+**This endpoint allows you to delete a specific recipient list with the given ID.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### DELETE /contactdb/lists/{list_id}
 
-```
-params = {'delete_contacts': 0}
+```python
+params = {'delete_contacts': 'true'}
 list_id = "test_url_param"
 response = self.sg.client.contactdb.lists._(list_id).delete(query_params=params)
 print response.status_code
@@ -839,31 +1033,35 @@ print response.response_headers
 ```
 ## Add Multiple Recipients to a List
 
+**This endpoint allows you to add multiple recipients to a list.**
+
 Adds existing recipients to a list, passing in the recipient IDs to add. Recipient IDs should be passed exactly as they are returned from recipient endpoints.
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/lists/{list_id}/recipients
 
-```
-data = {'sample': 'data'}
-params = {'list_id': 0}
+```python
+data = [
+  "recipient_id1",
+  "recipient_id2"
+]
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients.post(request_body=data, query_params=params)
+response = self.sg.client.contactdb.lists._(list_id).recipients.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List Recipients on a List
+## Retrieve all recipients on a List
 
-List all the recipients currently on a specific list.
+**This endpoint allows you to retrieve all recipients on the list with the given ID.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/lists/{list_id}/recipients
 
-```
-params = {'page': 0, 'page_size': 0, 'list_id': 0}
+```python
+params = {'page': 1, 'page_size': 1, 'list_id': 0}
 list_id = "test_url_param"
 response = self.sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print response.status_code
@@ -872,31 +1070,29 @@ print response.response_headers
 ```
 ## Add a Single Recipient to a List
 
-Add a recipient to a list.
+**This endpoint allows you to add a single recipient to a list.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/lists/{list_id}/recipients/{recipient_id}
 
-```
-data = {'sample': 'data'}
-params = {'recipient_id': 'test_string', 'list_id': 0}
+```python
 list_id = "test_url_param"
         recipient_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body=data, query_params=params)
+response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Delete a Single Recipient from a Single List
 
-Delete a single recipient from a list.
+**This endpoint allows you to delete a single recipient from a list.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### DELETE /contactdb/lists/{list_id}/recipients/{recipient_id}
 
-```
+```python
 params = {'recipient_id': 0, 'list_id': 0}
 list_id = "test_url_param"
         recipient_id = "test_url_param"
@@ -905,9 +1101,29 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
+## Retrieve recipients
+
+**This endpoint allows you to retrieve all of your Marketing Campaigns recipients.**
+
+Batch deletion of a page makes it possible to receive an empty page of recipients before reaching the end of
+the list of recipients. To avoid this issue; iterate over pages until a 404 is retrieved.
+
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+### GET /contactdb/recipients
+
+```python
+params = {'page': 1, 'page_size': 1}
+response = self.sg.client.contactdb.recipients.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
 ## Update Recipient
 
-Updates one or more recipients. The body is an array of recipient objects.
+**This endpoint allows you to update one or more recipients.**
+
+The body of an API call to this endpoint must include an array of one or more recipient objects.
 
 It is of note that you can add custom field data as parameters on recipient objects. We have provided an example using some of the default custom fields SendGrid provides.
 
@@ -915,8 +1131,14 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### PATCH /contactdb/recipients
 
-```
-data = {'sample': 'data'}
+```python
+data = [
+  {
+    "email": "jones@example.com",
+    "first_name": "Guy",
+    "last_name": "Jones"
+  }
+]
 response = self.sg.client.contactdb.recipients.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -924,80 +1146,83 @@ print response.response_headers
 ```
 ## Add recipients
 
-Add a recipient to your contactdb. It is of note that you can add custom field data as a parameter on this endpoint. We have provided an example using some of the default custom fields SendGrid provides.
+**This endpoint allows you to add a Marketing Campaigns recipient.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+It is of note that you can add custom field data as a parameter on this endpoint. We have provided an example using some of the default custom fields SendGrid provides.
+
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/recipients
 
-```
-data = {'sample': 'data'}
+```python
+data = [
+  {
+    "age": 25,
+    "email": "example@example.com",
+    "first_name": "",
+    "last_name": "User"
+  },
+  {
+    "age": 25,
+    "email": "example2@example.com",
+    "first_name": "Example",
+    "last_name": "User"
+  }
+]
 response = self.sg.client.contactdb.recipients.post(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## List Recipients [waiting on Bryan Adamson's response]
-
-Batch deletion of a page makes it possible to receive an empty page of recipients before reaching the end of
-the list of recipients. To avoid this issue; iterate over pages until a 404 is retrieved.
-
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
-
-### GET /contactdb/recipients
-
-```
-params = {'page': 0, 'page_size': 0}
-response = self.sg.client.contactdb.recipients.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Delete Recipient
 
-Deletes one or more recipients. The body is a list of recipient ids to delete.
+**This endpoint allows you to deletes one or more recipients.**
+
+The body of an API call to this endpoint must include an array of recipient IDs of the recipients you want to delete.
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### DELETE /contactdb/recipients
 
-```
+```python
 response = self.sg.client.contactdb.recipients.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get the count of billable recipients
+## Retrieve the count of billable recipients
+
+**This endpoint allows you to retrieve the number of Marketing Campaigns recipients that you will be billed for.**
 
 You are billed for marketing campaigns based on the highest number of recipients you have had in your account at one time. This endpoint will allow you to know the current billable count value.
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/recipients/billable_count
 
-```
+```python
 response = self.sg.client.contactdb.recipients.billable_count.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get a Count of Recipients
+## Retrieve a Count of Recipients
 
-Get a count of the current number of recipients in your contact database.
+**This endpoint allows you to retrieve the total number of Marketing Campaigns recipients.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/recipients/count
 
-```
+```python
 response = self.sg.client.contactdb.recipients.count.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get Recipients Matching Search Criteria
+## Retrieve recipients matching search criteria
 
-Search the recipients in your contactdb.
+**This endpoint allows you to perform a search on all of your Marketing Campaigns recipients.**
 
 field_name:
 
@@ -1012,7 +1237,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### GET /contactdb/recipients/search
 
-```
+```python
 params = {'{field_name}': 'test_string'}
 response = self.sg.client.contactdb.recipients.search.get(query_params=params)
 print response.status_code
@@ -1021,61 +1246,60 @@ print response.response_headers
 ```
 ## Retrieve a single recipient
 
-Retrieve a single recipient by ID from your contact database.
+**This endpoint allows you to retrieve a single recipient by ID from your contact database.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/recipients/{recipient_id}
 
-```
-params = {'recipient_id': 'test_string'}
+```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).get(query_params=params)
+response = self.sg.client.contactdb.recipients._(recipient_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Delete a Recipient
 
-Delete a single recipient from your contact database, by ID.
+**This endpoint allows you to delete a single recipient with the given ID from your contact database.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### DELETE /contactdb/recipients/{recipient_id}
 
-```
-params = {'recipient_id': 'test_string'}
+```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).delete(query_params=params)
+response = self.sg.client.contactdb.recipients._(recipient_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get the Lists the Recipient Is On
+## Retrieve the lists that a recipient is on
 
-Each recipient can be on many lists. This endpoint gives you the lists this recipient is associated to.
+**This endpoint allows you to retrieve the lists that a given recipient belongs to.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+Each recipient can be on many lists. This endpoint gives you all of the lists that any one recipient has been added to.
+
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/recipients/{recipient_id}/lists
 
-```
-params = {'recipient_id': 'test_string'}
+```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).lists.get(query_params=params)
+response = self.sg.client.contactdb.recipients._(recipient_id).lists.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get reserved custom fields fields.
+## Retrieve reserved fields
 
-List fields that are reserved and can't be used for custom field names. [GET]
+**This endpoint allows you to list all fields that are reserved and can't be used for custom field names.**
 
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/reserved_fields
 
-```
+```python
 response = self.sg.client.contactdb.reserved_fields.get()
 print response.status_code
 print response.response_body
@@ -1083,44 +1307,73 @@ print response.response_headers
 ```
 ## Create a Segment
 
-Create a segment. All recipients in your contactdb will be added or removed automatically depending on whether they match the criteria for this segment.
+**This endpoint allows you to create a segment.**
+
+All recipients in your contactdb will be added or removed automatically depending on whether they match the criteria for this segment.
 
 List Id:
 
 * Send this to segment from an existing list
 * Don't send this in order to segment from your entire contactdb.
 
-Valid operators for create and update depend on the type of the field you are segmenting: 
+Valid operators for create and update depend on the type of the field you are segmenting:
 
-* **Dates:** "eq", "ne", "lt" (before), "gt" (after) 
-* **Text:** "contains", "eq" (is - matches the full field), "ne" (is not - matches any field where the entire field is not the condition value) 
-* **Numbers:** "eq", "lt", "gt" 
-* **Email Clicks and Opens:** "eq" (opened), "ne" (not opened) 
+* **Dates:** "eq", "ne", "lt" (before), "gt" (after)
+* **Text:** "contains", "eq" (is - matches the full field), "ne" (is not - matches any field where the entire field is not the condition value)
+* **Numbers:** "eq", "lt", "gt"
+* **Email Clicks and Opens:** "eq" (opened), "ne" (not opened)
 
-Segment conditions using "eq" or "ne" for email clicks and opens should provide a "field" of either *clicks.campaign_identifier* or *opens.campaign_identifier*. The condition value should be a string containing the id of a completed campaign. 
+Segment conditions using "eq" or "ne" for email clicks and opens should provide a "field" of either *clicks.campaign_identifier* or *opens.campaign_identifier*. The condition value should be a string containing the id of a completed campaign.
 
 Segments may contain multiple condtions, joined by an "and" or "or" in the "and_or" field. The first condition in the conditions list must have an empty "and_or", and subsequent conditions must all specify an "and_or".
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### POST /contactdb/segments
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "conditions": [
+    {
+      "and_or": "",
+      "field": "last_name",
+      "operator": "eq",
+      "value": "Miller"
+    },
+    {
+      "and_or": "and",
+      "field": "last_clicked",
+      "operator": "gt",
+      "value": "01/02/2015"
+    },
+    {
+      "and_or": "or",
+      "field": "clicks.campaign_identifier",
+      "operator": "eq",
+      "value": "513"
+    }
+  ],
+  "list_id": 4,
+  "name": "Last Name Miller"
+}
 response = self.sg.client.contactdb.segments.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List All Segments
+## Retrieve all segments
 
-Get all your segments.
+**This endpoint allows you to retrieve all of your segments.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### GET /contactdb/segments
 
-```
+```python
 response = self.sg.client.contactdb.segments.get()
 print response.status_code
 print response.response_body
@@ -1128,14 +1381,27 @@ print response.response_headers
 ```
 ## Update a segment
 
-Update a segment.
+**This endpoint allows you to update a segment.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### PATCH /contactdb/segments/{segment_id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "conditions": [
+    {
+      "and_or": "",
+      "field": "last_name",
+      "operator": "eq",
+      "value": "Miller"
+    }
+  ],
+  "list_id": 5,
+  "name": "The Millers"
+}
 params = {'segment_id': 'test_string'}
 segment_id = "test_url_param"
 response = self.sg.client.contactdb.segments._(segment_id).patch(request_body=data, query_params=params)
@@ -1143,15 +1409,17 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Retrieve a Segment
+## Retrieve a segment
 
-Get a single segment by ID.
+**This endpoint allows you to retrieve a single segment with the given ID.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### GET /contactdb/segments/{segment_id}
 
-```
+```python
 params = {'segment_id': 0}
 segment_id = "test_url_param"
 response = self.sg.client.contactdb.segments._(segment_id).get(query_params=params)
@@ -1159,32 +1427,38 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Delete a Segment
+## Delete a segment
 
-Delete a segment from your contactdb. You also have the option to delete all the contacts from your contactdb who were in this segment.
+**This endpoint allows you to delete a segment from your recipients database.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+You also have the option to delete all the contacts from your Marketing Campaigns recipient database who were in this segment.
+
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### DELETE /contactdb/segments/{segment_id}
 
-```
-params = {'delete_contacts': 0}
+```python
+params = {'delete_contacts': 'true'}
 segment_id = "test_url_param"
 response = self.sg.client.contactdb.segments._(segment_id).delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List Recipients On a Segment
+## Retrieve recipients on a segment
 
-List all of the recipients in a segment.
+**This endpoint allows you to retrieve all of the recipients in a segment with the given ID.**
 
-The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
+The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
+
+For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### GET /contactdb/segments/{segment_id}/recipients
 
-```
-params = {'page': 0, 'page_size': 0}
+```python
+params = {'page': 1, 'page_size': 1}
 segment_id = "test_url_param"
 response = self.sg.client.contactdb.segments._(segment_id).recipients.get(query_params=params)
 print response.status_code
@@ -1213,8 +1487,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /devices/stats
 
-```
-params = {'aggregated_by': 'test_string', 'limit': 0, 'start_date': 'test_string', 'end_date': 'test_string', 'offset': 0}
+```python
+params = {'aggregated_by': 'day', 'limit': 1, 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 1}
 response = self.sg.client.devices.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -1233,8 +1507,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /geo/stats
 
-```
-params = {'end_date': 'test_string', 'country': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'offset': 0, 'start_date': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'country': 'US', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01'}
 response = self.sg.client.geo.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -1243,28 +1517,32 @@ print response.response_headers
 <a name="ips"></a>
 # IPS
 
-## List all IPs
+## Retrieve all IP addresses
 
-See a list of all assigned and unassigned IPs.
-Response includes warm up status, pools, assigned subusers, and whitelabel info.
-The start_date field corresponds to when warmup started for that IP.
+**This endpoint allows you to retrieve a list of all assigned and unassigned IPs.**
+
+Response includes warm up status, pools, assigned subusers, and whitelabel info. The start_date field corresponds to when warmup started for that IP.
+
+A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### GET /ips
 
-```
-params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 0, 'exclude_whitelabels': 0, 'offset': 0}
+```python
+params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
 response = self.sg.client.ips.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List all assigned IPs
+## Retrieve all assigned IPs
 
-Retrieve a list of your IP addresses.
+**This endpoint allows you to retrieve only assigned IP addresses.**
+
+A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### GET /ips/assigned
 
-```
+```python
 response = self.sg.client.ips.assigned.get()
 print response.status_code
 print response.response_body
@@ -1272,24 +1550,40 @@ print response.response_headers
 ```
 ## Create an IP pool.
 
+**This endpoint allows you to create an IP pool.**
 
+**Each user can create up to 10 different IP pools.**
+
+IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
+
+IP pools can only be used with whitelabeled IP addresses.
+
+If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### POST /ips/pools
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "marketing"
+}
 response = self.sg.client.ips.pools.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List all IP pools.
+## Retrieve all IP pools.
 
+**This endpoint allows you to retreive all of your IP pools.**
 
+IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
+
+IP pools can only be used with whitelabeled IP addresses.
+
+If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### GET /ips/pools
 
-```
+```python
 response = self.sg.client.ips.pools.get()
 print response.status_code
 print response.response_body
@@ -1297,52 +1591,78 @@ print response.response_headers
 ```
 ## Update an IP pools name.
 
+**This endpoint allows you to update the name of an IP pool.**
 
+IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
+
+IP pools can only be used with whitelabeled IP addresses.
+
+If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### PUT /ips/pools/{pool_name}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "new_pool_name"
+}
 pool_name = "test_url_param"
 response = self.sg.client.ips.pools._(pool_name).put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## List the IPs in a specified pool.
-
-
-
-### GET /ips/pools/{pool_name}
-
-```
-pool_name = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
 ## Delete an IP pool.
 
+**This endpoint allows you to delete an IP pool.**
 
+IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
+
+IP pools can only be used with whitelabeled IP addresses.
+
+If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### DELETE /ips/pools/{pool_name}
 
-```
+```python
 pool_name = "test_url_param"
 response = self.sg.client.ips.pools._(pool_name).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Add an IP to a pool
+## Retrieve all IPs in a specified pool.
 
+**This endpoint allows you to list all of the IP addresses that are in a specific IP pool.**
 
+IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
+
+IP pools can only be used with whitelabeled IP addresses.
+
+If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
+
+### GET /ips/pools/{pool_name}
+
+```python
+pool_name = "test_url_param"
+response = self.sg.client.ips.pools._(pool_name).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Add an IP address to a pool
+
+**This endpoint allows you to add an IP address to an IP pool.**
+
+You can add the same IP address to multiple pools. It may take up to 60 seconds for your IP address to be added to a pool after your request is made.
+
+A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### POST /ips/pools/{pool_name}/ips
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "ip": "0.0.0.0"
+}
 pool_name = "test_url_param"
 response = self.sg.client.ips.pools._(pool_name).ips.post(request_body=data)
 print response.status_code
@@ -1351,11 +1671,15 @@ print response.response_headers
 ```
 ## Remove an IP address from a pool.
 
+**This endpoint allows you to remove an IP address from an IP pool.**
 
+The same IP address can be added to multiple IP pools.
+
+A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### DELETE /ips/pools/{pool_name}/ips/{ip}
 
-```
+```python
 pool_name = "test_url_param"
         ip = "test_url_param"
 response = self.sg.client.ips.pools._(pool_name).ips._(ip).delete()
@@ -1363,64 +1687,86 @@ print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Add an IP to warmup.
+## Add an IP to warmup
 
+**This endpoint allows you to enter an IP address into warmup mode.**
 
+SendGrid can automatically warm up dedicated IP addresses by limiting the amount of mail that can be sent through them per hour, with the limit determined by how long the IP address has been in warmup. See the [warmup schedule](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_warmup_schedule.html) for more details on how SendGrid limits your email traffic for IPs in warmup.
+
+For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### POST /ips/warmup
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "ip": "0.0.0.0"
+}
 response = self.sg.client.ips.warmup.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get all IPs that are currently warming up.
+## Retrieve all IPs currently in warmup
 
+**This endpoint allows you to retrieve all of your IP addresses that are currently warming up.**
 
+SendGrid can automatically warm up dedicated IP addresses by limiting the amount of mail that can be sent through them per hour, with the limit determined by how long the IP address has been in warmup. See the [warmup schedule](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_warmup_schedule.html) for more details on how SendGrid limits your email traffic for IPs in warmup.
+
+For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### GET /ips/warmup
 
-```
+```python
 response = self.sg.client.ips.warmup.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get warmup status for a particular IP.
+## Retrieve warmup status for a specific IP address
 
+**This endpoint allows you to retrieve the warmup status for a specific IP address.**
 
+SendGrid can automatically warm up dedicated IP addresses by limiting the amount of mail that can be sent through them per hour, with the limit determined by how long the IP address has been in warmup. See the [warmup schedule](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_warmup_schedule.html) for more details on how SendGrid limits your email traffic for IPs in warmup.
+
+For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### GET /ips/warmup/{ip_address}
 
-```
+```python
 ip_address = "test_url_param"
 response = self.sg.client.ips.warmup._(ip_address).get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Remove an IP from warmup.
+## Remove an IP from warmup
 
+**This endpoint allows you to remove an IP address from warmup mode.**
 
+SendGrid can automatically warm up dedicated IP addresses by limiting the amount of mail that can be sent through them per hour, with the limit determined by how long the IP address has been in warmup. See the [warmup schedule](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_warmup_schedule.html) for more details on how SendGrid limits your email traffic for IPs in warmup.
+
+For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### DELETE /ips/warmup/{ip_address}
 
-```
+```python
 ip_address = "test_url_param"
 response = self.sg.client.ips.warmup._(ip_address).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## See which pools an IP address belongs to.
+## Retrieve all IP pools an IP address belongs to
 
+**This endpoint allows you to see which IP pools a particular IP address has been added to.**
 
+The same IP address can be added to multiple IP pools.
+
+A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### GET /ips/{ip_address}
 
-```
+```python
 ip_address = "test_url_param"
 response = self.sg.client.ips._(ip_address).get()
 print response.status_code
@@ -1432,9 +1778,9 @@ print response.response_headers
 
 ## Create a batch ID
 
-Generate a new Batch ID to associate with scheduled sends via the mail/send endpoint.
+**This endpoint allows you to generate a new batch ID. This batch ID can be associated with scheduled sends via the mail/send endpoint.**
 
-If you set the SMTPAPI header batch_id, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint. 
+If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
 
 More Information:
 
@@ -1442,18 +1788,17 @@ More Information:
 
 ### POST /mail/batch
 
-```
-data = {'sample': 'data'}
-response = self.sg.client.mail.batch.post(request_body=data)
+```python
+response = self.sg.client.mail.batch.post()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Validate batch ID
 
-Validate whether or not a batch id is valid.
+**This endpoint allows you to validate a batch ID.**
 
-If you set the SMTPAPI header batch_id, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint. 
+If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
 
 More Information:
 
@@ -1461,7 +1806,7 @@ More Information:
 
 ### GET /mail/batch/{batch_id}
 
-```
+```python
 batch_id = "test_url_param"
 response = self.sg.client.mail.batch._(batch_id).get()
 print response.status_code
@@ -1479,8 +1824,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings
 
-```
-params = {'limit': 0, 'offset': 0}
+```python
+params = {'limit': 1, 'offset': 1}
 response = self.sg.client.mail_settings.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -1496,8 +1841,14 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/address_whitelist
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true,
+  "list": [
+    "email1@example.com",
+    "example.com"
+  ]
+}
 response = self.sg.client.mail_settings.address_whitelist.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1513,7 +1864,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/address_whitelist
 
-```
+```python
 response = self.sg.client.mail_settings.address_whitelist.get()
 print response.status_code
 print response.response_body
@@ -1529,8 +1880,11 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/bcc
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "email": "email@example.com",
+  "enabled": false
+}
 response = self.sg.client.mail_settings.bcc.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1546,25 +1900,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/bcc
 
-```
+```python
 response = self.sg.client.mail_settings.bcc.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Update bounce purge mail settings
-
-**This endpoint allows you to update your current bounce purge settings.**
-
-This setting allows you to set a schedule for SendGrid to automatically delete contacts from your soft and hard bounce suppression lists.
-
-Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
-
-### PATCH /mail_settings/bounce_purge
-
-```
-data = {'sample': 'data'}
-response = self.sg.client.mail_settings.bounce_purge.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1579,8 +1916,29 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/bounce_purge
 
-```
+```python
 response = self.sg.client.mail_settings.bounce_purge.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update bounce purge mail settings
+
+**This endpoint allows you to update your current bounce purge settings.**
+
+This setting allows you to set a schedule for SendGrid to automatically delete contacts from your soft and hard bounce suppression lists.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
+
+### PATCH /mail_settings/bounce_purge
+
+```python
+data = {
+  "enabled": true,
+  "hard_bounces": 5,
+  "soft_bounces": 5
+}
+response = self.sg.client.mail_settings.bounce_purge.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1595,8 +1953,12 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/footer
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true,
+  "html_content": "...",
+  "plain_content": "..."
+}
 response = self.sg.client.mail_settings.footer.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1612,25 +1974,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/footer
 
-```
+```python
 response = self.sg.client.mail_settings.footer.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Update forward bounce mail settings
-
-**This endpoint allows you to update your current bounce forwarding mail settings.**
-
-Activating this setting allows you to specify an email address to which bounce reports are forwarded.
-
-Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
-
-### PATCH /mail_settings/forward_bounce
-
-```
-data = {'sample': 'data'}
-response = self.sg.client.mail_settings.forward_bounce.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1645,25 +1990,28 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/forward_bounce
 
-```
+```python
 response = self.sg.client.mail_settings.forward_bounce.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update forward spam mail settings
+## Update forward bounce mail settings
 
-**This endpoint allows you to update your current Forward Spam mail settings.**
+**This endpoint allows you to update your current bounce forwarding mail settings.**
 
-Enabling the forward spam setting allows you to specify an email address to which spam reports will be forwarded.
+Activating this setting allows you to specify an email address to which bounce reports are forwarded.
 
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
-### PATCH /mail_settings/forward_spam
+### PATCH /mail_settings/forward_bounce
 
-```
-data = {'sample': 'data'}
-response = self.sg.client.mail_settings.forward_spam.patch(request_body=data)
+```python
+data = {
+  "email": "example@example.com",
+  "enabled": true
+}
+response = self.sg.client.mail_settings.forward_bounce.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1678,8 +2026,28 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/forward_spam
 
-```
+```python
 response = self.sg.client.mail_settings.forward_spam.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update forward spam mail settings
+
+**This endpoint allows you to update your current Forward Spam mail settings.**
+
+Enabling the forward spam setting allows you to specify an email address to which spam reports will be forwarded.
+
+Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
+
+### PATCH /mail_settings/forward_spam
+
+```python
+data = {
+  "email": "",
+  "enabled": false
+}
+response = self.sg.client.mail_settings.forward_spam.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1694,8 +2062,10 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/plain_content
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": false
+}
 response = self.sg.client.mail_settings.plain_content.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1711,7 +2081,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/plain_content
 
-```
+```python
 response = self.sg.client.mail_settings.plain_content.get()
 print response.status_code
 print response.response_body
@@ -1727,8 +2097,12 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/spam_check
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true,
+  "max_score": 5,
+  "url": "url"
+}
 response = self.sg.client.mail_settings.spam_check.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1744,7 +2118,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/spam_check
 
-```
+```python
 response = self.sg.client.mail_settings.spam_check.get()
 print response.status_code
 print response.response_body
@@ -1754,7 +2128,7 @@ print response.response_headers
 
 **This endpoint allows you to update your current legacy email template settings.**
 
-This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). 
+This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
 The legacy email template setting wraps an HTML template around your email content. This can be useful for sending out marketing email and/or other HTML formatted messages.
 
@@ -1762,8 +2136,11 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### PATCH /mail_settings/template
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true,
+  "html_content": "<% body %>"
+}
 response = self.sg.client.mail_settings.template.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -1773,7 +2150,7 @@ print response.response_headers
 
 **This endpoint allows you to retrieve your current legacy email template settings.**
 
-This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). 
+This setting refers to our original email templates. We currently support more fully featured [transactional templates](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
 The legacy email template setting wraps an HTML template around your email content. This can be useful for sending out marketing email and/or other HTML formatted messages.
 
@@ -1781,7 +2158,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/template
 
-```
+```python
 response = self.sg.client.mail_settings.template.get()
 print response.status_code
 print response.response_body
@@ -1800,8 +2177,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /mailbox_providers/stats
 
-```
-params = {'end_date': 'test_string', 'mailbox_providers': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'offset': 0, 'start_date': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'mailbox_providers': 'test_string', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01'}
 response = self.sg.client.mailbox_providers.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -1818,26 +2195,9 @@ Our partner settings allow you to integrate your SendGrid account with our partn
 
 ### GET /partner_settings
 
-```
-params = {'limit': 0, 'offset': 0}
+```python
+params = {'limit': 1, 'offset': 1}
 response = self.sg.client.partner_settings.get(query_params=params)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Updates New Relic partner settings.
-
-**This endpoint allows you to update or change your New Relic partner settings.**
-
-Our partner settings allow you to integrate your SendGrid account with our partners to increase your SendGrid experience and functionality. For more information about our partners, and how you can begin integrating with them, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/partners.html).
-
-By integrating with New Relic, you can send your SendGrid email statistics to your New Relic Dashboard. If you enable this setting, your stats will be sent to New Relic every 5 minutes. You will need your New Relic License Key to enable this setting. For more information, please see our [Classroom](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/new_relic.html).
-
-### PATCH /partner_settings/new_relic
-
-```
-data = {'sample': 'data'}
-response = self.sg.client.partner_settings.new_relic.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1852,21 +2212,29 @@ By integrating with New Relic, you can send your SendGrid email statistics to yo
 
 ### GET /partner_settings/new_relic
 
-```
+```python
 response = self.sg.client.partner_settings.new_relic.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update SendWithUs Settings
+## Updates New Relic partner settings.
 
+**This endpoint allows you to update or change your New Relic partner settings.**
 
+Our partner settings allow you to integrate your SendGrid account with our partners to increase your SendGrid experience and functionality. For more information about our partners, and how you can begin integrating with them, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/partners.html).
 
-### PATCH /partner_settings/sendwithus
+By integrating with New Relic, you can send your SendGrid email statistics to your New Relic Dashboard. If you enable this setting, your stats will be sent to New Relic every 5 minutes. You will need your New Relic License Key to enable this setting. For more information, please see our [Classroom](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/new_relic.html).
 
-```
-data = {'sample': 'data'}
-response = self.sg.client.partner_settings.sendwithus.patch(request_body=data)
+### PATCH /partner_settings/new_relic
+
+```python
+data = {
+  "enable_subuser_statistics": true,
+  "enabled": true,
+  "license_key": ""
+}
+response = self.sg.client.partner_settings.new_relic.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1877,8 +2245,20 @@ print response.response_headers
 
 ### GET /partner_settings/sendwithus
 
-```
+```python
 response = self.sg.client.partner_settings.sendwithus.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update SendWithUs Settings
+
+
+
+### PATCH /partner_settings/sendwithus
+
+```python
+response = self.sg.client.partner_settings.sendwithus.patch()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1886,15 +2266,15 @@ print response.response_headers
 <a name="scopes"></a>
 # SCOPES
 
-## Returns a list of scopes for which this user has access.
+## Retrieve a list of scopes for which this user has access.
 
 **This endpoint returns a list of all scopes that this user has access to.**
 
-API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html), or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html). API Keys may be assigned certain permissions, or scopes, that limit which API endpoints they are able to access. For a more detailed explanation of how you can use API Key permissios, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html#-API-Key-Permissions) or [Classroom](https://sendgrid.com/docs/Classroom/Basics/API/api_key_permissions.html). 
+API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html), or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html). API Keys may be assigned certain permissions, or scopes, that limit which API endpoints they are able to access. For a more detailed explanation of how you can use API Key permissios, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html#-API-Key-Permissions) or [Classroom](https://sendgrid.com/docs/Classroom/Basics/API/api_key_permissions.html).
 
 ### GET /scopes
 
-```
+```python
 response = self.sg.client.scopes.get()
 print response.status_code
 print response.response_body
@@ -1911,8 +2291,8 @@ Parent accounts will see aggregated stats for their account and all subuser acco
 
 ### GET /stats
 
-```
-params = {'aggregated_by': 'test_string', 'limit': 0, 'start_date': 'test_string', 'end_date': 'test_string', 'offset': 0}
+```python
+params = {'aggregated_by': 'day', 'limit': 1, 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 1}
 response = self.sg.client.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -1932,8 +2312,16 @@ For more information about Subusers:
 
 ### POST /subusers
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "email": "John@example.com",
+  "ips": [
+    "1.1.1.1",
+    "2.2.2.2"
+  ],
+  "password": "johns_password",
+  "username": "John@example.com"
+}
 response = self.sg.client.subusers.post(request_body=data)
 print response.status_code
 print response.response_body
@@ -1950,7 +2338,7 @@ For more information about Subusers:
 
 ### GET /subusers
 
-```
+```python
 params = {'username': 'test_string', 'limit': 0, 'offset': 0}
 response = self.sg.client.subusers.get(query_params=params)
 print response.status_code
@@ -1965,7 +2353,7 @@ This endpoint allows you to request the reputations for your subusers.
 
 ### GET /subusers/reputations
 
-```
+```python
 params = {'usernames': 'test_string'}
 response = self.sg.client.subusers.reputations.get(query_params=params)
 print response.status_code
@@ -1984,9 +2372,29 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ### GET /subusers/stats
 
-```
-params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'offset': 0, 'start_date': 'test_string', 'subusers': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01', 'subusers': 'test_string'}
 response = self.sg.client.subusers.stats.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve monthly stats for all subusers
+
+**This endpoint allows you to retrieve the monthly email statistics for all subusers over the given date range.**
+
+While you can always view the statistics for all email activity on your account, subuser statistics enable you to view specific segments of your stats for your subusers. Emails sent, bounces, and spam reports are always tracked for subusers. Unsubscribes, clicks, and opens are tracked if you have enabled the required settings.
+
+When using the `sort_by_metric` to sort your stats by a specific metric, you can not sort by the following metrics:
+`bounce_drops`, `deferred`, `invalid_emails`, `processed`, `spam_report_drops`, `spam_reports`, or `unsubscribe_drops`.
+
+For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/subuser.html).
+
+### GET /subusers/stats/monthly
+
+```python
+params = {'subuser': 'test_string', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'date': 'test_string', 'sort_by_direction': 'asc'}
+response = self.sg.client.subusers.stats.monthly.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2002,8 +2410,8 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ### GET /subusers/stats/sums
 
-```
-params = {'end_date': 'test_string', 'aggregated_by': 'test_string', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 0, 'start_date': 'test_string', 'sort_by_direction': 'test_string'}
+```python
+params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'start_date': '2016-01-01', 'sort_by_direction': 'asc'}
 response = self.sg.client.subusers.stats.sums.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -2020,8 +2428,10 @@ For more information about Subusers:
 
 ### PATCH /subusers/{subuser_name}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "disabled": false
+}
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).patch(request_body=data)
 print response.status_code
@@ -2039,7 +2449,7 @@ For more information about Subusers:
 
 ### DELETE /subusers/{subuser_name}
 
-```
+```python
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).delete()
 print response.status_code
@@ -2048,7 +2458,7 @@ print response.response_headers
 ```
 ## Update IPs assigned to a subuser
 
-Each subuser should be assigned to an IP address, from which all of this subuser's mail will be sent. Often, this is the same IP as the parent account, but each subuser can have their own, or multiple, IP addresses as well. 
+Each subuser should be assigned to an IP address, from which all of this subuser's mail will be sent. Often, this is the same IP as the parent account, but each subuser can have their own, or multiple, IP addresses as well.
 
 More information:
 
@@ -2057,8 +2467,10 @@ More information:
 
 ### PUT /subusers/{subuser_name}/ips
 
-```
-data = {'sample': 'data'}
+```python
+data = [
+  "127.0.0.1"
+]
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).ips.put(request_body=data)
 print response.status_code
@@ -2071,8 +2483,11 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### PUT /subusers/{subuser_name}/monitor
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "email": "example@example.com",
+  "frequency": 500
+}
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).monitor.put(request_body=data)
 print response.status_code
@@ -2085,23 +2500,13 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### POST /subusers/{subuser_name}/monitor
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "email": "example@example.com",
+  "frequency": 50000
+}
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).monitor.post(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Retrieve monitor settings for a subuser
-
-Subuser monitor settings allow you to receive a sample of an outgoing message by a specific customer at a specific frequency of emails.
-
-### GET /subusers/{subuser_name}/monitor
-
-```
-subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2112,9 +2517,43 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### DELETE /subusers/{subuser_name}/monitor
 
-```
+```python
 subuser_name = "test_url_param"
 response = self.sg.client.subusers._(subuser_name).monitor.delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve monitor settings for a subuser
+
+Subuser monitor settings allow you to receive a sample of an outgoing message by a specific customer at a specific frequency of emails.
+
+### GET /subusers/{subuser_name}/monitor
+
+```python
+subuser_name = "test_url_param"
+response = self.sg.client.subusers._(subuser_name).monitor.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve the monthly email statistics for a single subuser
+
+**This endpoint allows you to retrive the monthly email statistics for a specific subuser.**
+
+While you can always view the statistics for all email activity on your account, subuser statistics enable you to view specific segments of your stats for your subusers. Emails sent, bounces, and spam reports are always tracked for subusers. Unsubscribes, clicks, and opens are tracked if you have enabled the required settings.
+
+When using the `sort_by_metric` to sort your stats by a specific metric, you can not sort by the following metrics:
+`bounce_drops`, `deferred`, `invalid_emails`, `processed`, `spam_report_drops`, `spam_reports`, or `unsubscribe_drops`.
+
+For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/subuser.html).
+
+### GET /subusers/{subuser_name}/stats/monthly
+
+```python
+params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 1}
+subuser_name = "test_url_param"
+response = self.sg.client.subusers._(subuser_name).stats.monthly.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2122,18 +2561,92 @@ print response.response_headers
 <a name="suppression"></a>
 # SUPPRESSION
 
-## List all bounces
+## Retrieve all blocks
 
-Bounces are messages that are returned to the server that sent it. 
+**This endpoint allows you to retrieve a list of all email addresses that are currently on your blocks list.**
 
-For more information see: 
+[Blocks](https://sendgrid.com/docs/Glossary/blocks.html) happen when your message was rejected for a reason related to the message, not the recipient address. This can happen when your mail server IP address has been added to a blacklist or blocked by an ISP, or if the message content is flagged by a filter on the receiving server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
+
+### GET /suppression/blocks
+
+```python
+params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
+response = self.sg.client.suppression.blocks.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete blocks
+
+**This endpoint allows you to delete all email addresses on your blocks list.**
+
+There are two options for deleting blocked emails:
+
+1. You can delete all blocked emails by setting `delete_all` to true in the request body.
+2. You can delete some blocked emails by specifying the email addresses in an array in the request body.
+
+[Blocks](https://sendgrid.com/docs/Glossary/blocks.html) happen when your message was rejected for a reason related to the message, not the recipient address. This can happen when your mail server IP address has been added to a blacklist or blocked by an ISP, or if the message content is flagged by a filter on the receiving server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
+
+### DELETE /suppression/blocks
+
+```python
+response = self.sg.client.suppression.blocks.delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete a specific block
+
+**This endpoint allows you to delete a specific email address from your blocks list.**
+
+[Blocks](https://sendgrid.com/docs/Glossary/blocks.html) happen when your message was rejected for a reason related to the message, not the recipient address. This can happen when your mail server IP address has been added to a blacklist or blocked by an ISP, or if the message content is flagged by a filter on the receiving server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
+
+### DELETE /suppression/blocks/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.blocks._(email).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a specific block
+
+**This endpoint allows you to retrieve a specific email address from your blocks list.**
+
+[Blocks](https://sendgrid.com/docs/Glossary/blocks.html) happen when your message was rejected for a reason related to the message, not the recipient address. This can happen when your mail server IP address has been added to a blacklist or blocked by an ISP, or if the message content is flagged by a filter on the receiving server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
+
+### GET /suppression/blocks/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.blocks._(email).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve all bounces
+
+**This endpoint allows you to retrieve all of your bounces.**
+
+Bounces are messages that are returned to the server that sent it.
+
+For more information see:
 
 * [User Guide > Bounces](https://sendgrid.com/docs/User_Guide/Suppressions/bounces.html) for more information
 * [Glossary > Bounces](https://sendgrid.com/docs/Glossary/Bounces.html)
 
 ### GET /suppression/bounces
 
-```
+```python
 params = {'start_time': 0, 'end_time': 0}
 response = self.sg.client.suppression.bounces.get(query_params=params)
 print response.status_code
@@ -2142,31 +2655,41 @@ print response.response_headers
 ```
 ## Delete bounces
 
-Bounces are messages that are returned to the server that sent it. This endpoint allows you to delete email addresses from your bounce list. 
+**This endpoint allows you to delete all of your bounces. You can also use this endpoint to remove a specific email address from your bounce list.**
 
-For more information see: 
+Bounces are messages that are returned to the server that sent it.
+
+For more information see:
 
 * [User Guide > Bounces](https://sendgrid.com/docs/User_Guide/Suppressions/bounces.html) for more information
 * [Glossary > Bounces](https://sendgrid.com/docs/Glossary/Bounces.html)
 * [Classroom > List Scrubbing Guide](https://sendgrid.com/docs/Classroom/Deliver/list_scrubbing.html)
 
-Note: the 'delete_all' and 'emails' parameters should be used independently of each other as they have different purposes.
+Note: the `delete_all` and `emails` parameters should be used independently of each other as they have different purposes.
 
 ### DELETE /suppression/bounces
 
-```
+```python
 response = self.sg.client.suppression.bounces.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get a Bounce
+## Retrieve a Bounce
 
+**This endpoint allows you to retrieve a specific bounce for a given email address.**
 
+Bounces are messages that are returned to the server that sent it.
+
+For more information see:
+
+* [User Guide > Bounces](https://sendgrid.com/docs/User_Guide/Suppressions/bounces.html) for more information
+* [Glossary > Bounces](https://sendgrid.com/docs/Glossary/Bounces.html)
+* [Classroom > List Scrubbing Guide](https://sendgrid.com/docs/Classroom/Deliver/list_scrubbing.html)
 
 ### GET /suppression/bounces/{email}
 
-```
+```python
 email = "test_url_param"
 response = self.sg.client.suppression.bounces._(email).get()
 print response.status_code
@@ -2175,9 +2698,11 @@ print response.response_headers
 ```
 ## Delete a bounce
 
-Bounces are messages that are returned to the server that sent it. This endpoint allows you to delete a single email addresses from your bounce list. 
+**This endpoint allows you to remove an email address from your bounce list.**
 
-For more information see: 
+Bounces are messages that are returned to the server that sent it. This endpoint allows you to delete a single email addresses from your bounce list.
+
+For more information see:
 
 * [User Guide > Bounces](https://sendgrid.com/docs/User_Guide/Suppressions/bounces.html) for more information
 * [Glossary > Bounces](https://sendgrid.com/docs/Glossary/Bounces.html)
@@ -2185,10 +2710,177 @@ For more information see:
 
 ### DELETE /suppression/bounces/{email}
 
-```
-params = {'email_address': 'test_string'}
+```python
+params = {'email_address': 'example@example.com'}
 email = "test_url_param"
 response = self.sg.client.suppression.bounces._(email).delete(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete invalid emails
+
+**This endpoint allows you to remove email addresses from your invalid email address list.**
+
+There are two options for deleting invalid email addresses:
+
+1) You can delete all invalid email addresses by setting `delete_all` to true in the request body.
+2) You can delete some invalid email addresses by specifying certain addresses in an array in the request body.
+
+An invalid email occurs when you attempt to send email to an address that is formatted in a manner that does not meet internet email format standards or the email does not exist at the recipients mail server.
+
+Examples include addresses without the @ sign or addresses that include certain special characters and/or spaces. This response can come from our own server or the recipient mail server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
+
+### DELETE /suppression/invalid_emails
+
+```python
+response = self.sg.client.suppression.invalid_emails.delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve all invalid emails
+
+**This endpoint allows you to retrieve a list of all invalid email addresses.**
+
+An invalid email occurs when you attempt to send email to an address that is formatted in a manner that does not meet internet email format standards or the email does not exist at the recipients mail server.
+
+Examples include addresses without the @ sign or addresses that include certain special characters and/or spaces. This response can come from our own server or the recipient mail server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
+
+### GET /suppression/invalid_emails
+
+```python
+params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
+response = self.sg.client.suppression.invalid_emails.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a specific invalid email
+
+**This endpoint allows you to retrieve a specific invalid email addresses.**
+
+An invalid email occurs when you attempt to send email to an address that is formatted in a manner that does not meet internet email format standards or the email does not exist at the recipients mail server.
+
+Examples include addresses without the @ sign or addresses that include certain special characters and/or spaces. This response can come from our own server or the recipient mail server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
+
+### GET /suppression/invalid_emails/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.invalid_emails._(email).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete a specific invalid email
+
+**This endpoint allows you to remove a specific email address from the invalid email address list.**
+
+An invalid email occurs when you attempt to send email to an address that is formatted in a manner that does not meet internet email format standards or the email does not exist at the recipients mail server.
+
+Examples include addresses without the @ sign or addresses that include certain special characters and/or spaces. This response can come from our own server or the recipient mail server.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
+
+### DELETE /suppression/invalid_emails/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.invalid_emails._(email).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a specific spam report
+
+**This endpoint allows you to retrieve a specific spam report.**
+
+[Spam reports](https://sendgrid.com/docs/Glossary/spam_reports.html) happen when a recipient indicates that they think your email is [spam](https://sendgrid.com/docs/Glossary/spam.html) and then their email provider reports this to SendGrid.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
+
+### GET /suppression/spam_report/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.spam_report._(email).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete a specific spam report
+
+**This endpoint allows you to delete a specific spam report.**
+
+[Spam reports](https://sendgrid.com/docs/Glossary/spam_reports.html) happen when a recipient indicates that they think your email is [spam](https://sendgrid.com/docs/Glossary/spam.html) and then their email provider reports this to SendGrid.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
+
+### DELETE /suppression/spam_report/{email}
+
+```python
+email = "test_url_param"
+response = self.sg.client.suppression.spam_report._(email).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete spam reports
+
+**This endpoint allows you to delete your spam reports.**
+
+There are two options for deleting spam reports:
+
+1) You can delete all spam reports by setting "delete_all" to true in the request body.
+2) You can delete some spam reports by specifying the email addresses in an array in the request body.
+
+[Spam reports](https://sendgrid.com/docs/Glossary/spam_reports.html) happen when a recipient indicates that they think your email is [spam](https://sendgrid.com/docs/Glossary/spam.html) and then their email provider reports this to SendGrid.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
+
+### DELETE /suppression/spam_reports
+
+```python
+response = self.sg.client.suppression.spam_reports.delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve all spam reports
+
+**This endpoint allows you to retrieve all spam reports.**
+
+[Spam reports](https://sendgrid.com/docs/Glossary/spam_reports.html) happen when a recipient indicates that they think your email is [spam](https://sendgrid.com/docs/Glossary/spam.html) and then their email provider reports this to SendGrid.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
+
+### GET /suppression/spam_reports
+
+```python
+params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
+response = self.sg.client.suppression.spam_reports.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve all global suppressions
+
+**This endpoint allows you to retrieve a list of all email address that are globally suppressed.**
+
+A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
+
+### GET /suppression/unsubscribes
+
+```python
+params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
+response = self.sg.client.suppression.unsubscribes.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2206,8 +2898,10 @@ Transactional templates are templates created specifically for transactional ema
 
 ### POST /templates
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "name": "example_name"
+}
 response = self.sg.client.templates.post(request_body=data)
 print response.status_code
 print response.response_body
@@ -2223,27 +2917,8 @@ Transactional templates are templates created specifically for transactional ema
 
 ### GET /templates
 
-```
+```python
 response = self.sg.client.templates.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Edit a transactional template.
-
-**This endpoint allows you to edit a transactional template.**
-
-Each user can create up to 300 different transactional templates. Transactional templates are specific to accounts and subusers. Templates created on a parent account will not be accessible from the subuser accounts.
-
-Transactional templates are templates created specifically for transactional email and are not to be confused with [Marketing Campaigns templates](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/templates.html). For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
-
-
-### PATCH /templates/{template_id}
-
-```
-data = {'sample': 'data'}
-template_id = "test_url_param"
-response = self.sg.client.templates._(template_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2259,9 +2934,30 @@ Transactional templates are templates created specifically for transactional ema
 
 ### GET /templates/{template_id}
 
-```
+```python
 template_id = "test_url_param"
 response = self.sg.client.templates._(template_id).get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Edit a transactional template.
+
+**This endpoint allows you to edit a transactional template.**
+
+Each user can create up to 300 different transactional templates. Transactional templates are specific to accounts and subusers. Templates created on a parent account will not be accessible from the subuser accounts.
+
+Transactional templates are templates created specifically for transactional email and are not to be confused with [Marketing Campaigns templates](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/templates.html). For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
+
+
+### PATCH /templates/{template_id}
+
+```python
+data = {
+  "name": "new_example_name"
+}
+template_id = "test_url_param"
+response = self.sg.client.templates._(template_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2277,7 +2973,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ### DELETE /templates/{template_id}
 
-```
+```python
 template_id = "test_url_param"
 response = self.sg.client.templates._(template_id).delete()
 print response.status_code
@@ -2295,8 +2991,15 @@ For more information about transactional templates, please see our [User Guide](
 
 ### POST /templates/{template_id}/versions
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "active": 1,
+  "html_content": "<%body%>",
+  "name": "example_version_name",
+  "plain_content": "<%body%>",
+  "subject": "<%subject%>",
+  "template_id": "ddb96bbc-9b92-425e-8979-99464621b543"
+}
 template_id = "test_url_param"
 response = self.sg.client.templates._(template_id).versions.post(request_body=data)
 print response.status_code
@@ -2319,35 +3022,17 @@ For more information about transactional templates, please see our [User Guide](
 
 ### PATCH /templates/{template_id}/versions/{version_id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "active": 1,
+  "html_content": "<%body%>",
+  "name": "updated_example_name",
+  "plain_content": "<%body%>",
+  "subject": "<%subject%>"
+}
 template_id = "test_url_param"
         version_id = "test_url_param"
 response = self.sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Retrieve a specific transactional template version.
-
-**This endpoint allows you to retrieve a specific version of a template.**
-
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
-
-For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
-
-## URI Parameters
-| URI Parameter | Type | Description |
-|---|---|---|
-| template_id | string | The ID of the original template |
-| version_id | string |  The ID of the template version |
-
-### GET /templates/{template_id}/versions/{version_id}
-
-```
-template_id = "test_url_param"
-        version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2368,10 +3053,34 @@ For more information about transactional templates, please see our [User Guide](
 
 ### DELETE /templates/{template_id}/versions/{version_id}
 
-```
+```python
 template_id = "test_url_param"
         version_id = "test_url_param"
 response = self.sg.client.templates._(template_id).versions._(version_id).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve a specific transactional template version.
+
+**This endpoint allows you to retrieve a specific version of a template.**
+
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+
+For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
+
+## URI Parameters
+| URI Parameter | Type | Description |
+|---|---|---|
+| template_id | string | The ID of the original template |
+| version_id | string |  The ID of the template version |
+
+### GET /templates/{template_id}/versions/{version_id}
+
+```python
+template_id = "test_url_param"
+        version_id = "test_url_param"
+response = self.sg.client.templates._(template_id).versions._(version_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2393,11 +3102,10 @@ For more information about transactional templates, please see our [User Guide](
 
 ### POST /templates/{template_id}/versions/{version_id}/activate
 
-```
-data = {'sample': 'data'}
+```python
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).activate.post(request_body=data)
+response = self.sg.client.templates._(template_id).versions._(version_id).activate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2415,8 +3123,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings
 
-```
-params = {'limit': 0, 'offset': 0}
+```python
+params = {'limit': 1, 'offset': 1}
 response = self.sg.client.tracking_settings.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -2432,8 +3140,10 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### PATCH /tracking_settings/click
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true
+}
 response = self.sg.client.tracking_settings.click.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -2449,7 +3159,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/click
 
-```
+```python
 response = self.sg.client.tracking_settings.click.get()
 print response.status_code
 print response.response_body
@@ -2469,8 +3179,15 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### PATCH /tracking_settings/google_analytics
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true,
+  "utm_campaign": "website",
+  "utm_content": "",
+  "utm_medium": "email",
+  "utm_source": "sendgrid.com",
+  "utm_term": ""
+}
 response = self.sg.client.tracking_settings.google_analytics.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -2490,7 +3207,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/google_analytics
 
-```
+```python
 response = self.sg.client.tracking_settings.google_analytics.get()
 print response.status_code
 print response.response_body
@@ -2508,8 +3225,10 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### PATCH /tracking_settings/open
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "enabled": true
+}
 response = self.sg.client.tracking_settings.open.patch(request_body=data)
 print response.status_code
 print response.response_body
@@ -2527,27 +3246,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/open
 
-```
+```python
 response = self.sg.client.tracking_settings.open.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Update Subscription Tracking Settings
-
-**This endpoint allows you to update your current settings for subscription tracking.**
-
-Subscription tracking adds links to the bottom of your emails that allows your recipients to subscribe to, or unsubscribe from, your emails.
-
-You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
-
-For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
-
-### PATCH /tracking_settings/subscription
-
-```
-data = {'sample': 'data'}
-response = self.sg.client.tracking_settings.subscription.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2564,8 +3264,34 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/subscription
 
-```
+```python
 response = self.sg.client.tracking_settings.subscription.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update Subscription Tracking Settings
+
+**This endpoint allows you to update your current settings for subscription tracking.**
+
+Subscription tracking adds links to the bottom of your emails that allows your recipients to subscribe to, or unsubscribe from, your emails.
+
+You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
+
+For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
+
+### PATCH /tracking_settings/subscription
+
+```python
+data = {
+  "enabled": true,
+  "html_content": "html content",
+  "landing": "landing page html",
+  "plain_content": "text content",
+  "replace": "replacement tag",
+  "url": "url"
+}
+response = self.sg.client.tracking_settings.subscription.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2575,17 +3301,9 @@ print response.response_headers
 
 ## Get a user's account information.
 
+**This endpoint allows you to retrieve your user account details.**
+
 Your user's account information includes the user's account type and reputation.
-
-### GET /user/account
-
-```
-response = self.sg.client.user.account.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Update a user's profile
 
 Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
 
@@ -2593,13 +3311,85 @@ For more information about your user profile:
 
 * [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
 
-It should be noted that any one or more of the parameters can be updated via the PATCH /user/profile endpoint. The only requirement is that you include at least one when you PATCH.
+### GET /user/account
 
-### PATCH /user/profile
-
+```python
+response = self.sg.client.user.account.get()
+print response.status_code
+print response.response_body
+print response.response_headers
 ```
-data = {'sample': 'data'}
-response = self.sg.client.user.profile.patch(request_body=data)
+## Retrieve your credit balance
+
+**This endpoint allows you to retrieve the current credit balance for your account.**
+
+Your monthly credit allotment limits the number of emails you may send before incurring overage charges. For more information about credits and billing, please visit our [Clssroom](https://sendgrid.com/docs/Classroom/Basics/Billing/billing_info_and_faqs.html).
+
+### GET /user/credits
+
+```python
+response = self.sg.client.user.credits.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update your account email address
+
+**This endpoint allows you to update the email address currently on file for your account.**
+
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
+
+For more information about your user profile:
+
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+### PUT /user/email
+
+```python
+data = {
+  "email": "example@example.com"
+}
+response = self.sg.client.user.email.put(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve your account email address
+
+**This endpoint allows you to retrieve the email address currently on file for your account.**
+
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
+
+For more information about your user profile:
+
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+### GET /user/email
+
+```python
+response = self.sg.client.user.email.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update your password
+
+**This endpoint allows you to update your password.**
+
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
+
+For more information about your user profile:
+
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+### PUT /user/password
+
+```python
+data = {
+  "new_password": "new_password",
+  "old_password": "old_password"
+}
+response = self.sg.client.user.password.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2614,67 +3404,81 @@ For more information about your user profile:
 
 ### GET /user/profile
 
-```
+```python
 response = self.sg.client.user.profile.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update a user's profile
+
+**This endpoint allows you to update your current profile details.**
+
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
+
+For more information about your user profile:
+
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+It should be noted that any one or more of the parameters can be updated via the PATCH /user/profile endpoint. The only requirement is that you include at least one when you PATCH.
+
+### PATCH /user/profile
+
+```python
+data = {
+  "city": "Orange",
+  "first_name": "Example",
+  "last_name": "User"
+}
+response = self.sg.client.user.profile.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Cancel or pause a scheduled send
 
-Cancel or pause a scheduled send. If the maximum number of cancellations/pauses are added, HTTP 400 will
+**This endpoint allows you to cancel or pause an email that has been scheduled to be sent.**
+
+If the maximum number of cancellations/pauses are added, HTTP 400 will
 be returned.
 
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### POST /user/scheduled_sends
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "batch_id": "YOUR_BATCH_ID",
+  "status": "pause"
+}
 response = self.sg.client.user.scheduled_sends.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get all scheduled sends
+## Retrieve all scheduled sends
 
-Get all cancel/paused scheduled send information.
+**This endpoint allows you to retrieve all cancel/paused scheduled send information.**
 
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### GET /user/scheduled_sends
 
-```
+```python
 response = self.sg.client.user.scheduled_sends.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Update user scheduled send information
-
-Update the status of a scheduled send.
-
-The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
-
-### PATCH /user/scheduled_sends/{batch_id}
-
-```
-data = {'sample': 'data'}
-batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Retrieve scheduled send
 
-Get cancel/paused scheduled send information for a specific batch_id.
+**This endpoint allows you to retrieve the cancel/paused scheduled send information for a specific `batch_id`.**
 
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### GET /user/scheduled_sends/{batch_id}
 
-```
+```python
 batch_id = "test_url_param"
 response = self.sg.client.user.scheduled_sends._(batch_id).get()
 print response.status_code
@@ -2683,89 +3487,191 @@ print response.response_headers
 ```
 ## Delete a cancellation or pause of a scheduled send
 
-Delete the cancellation/pause of a scheduled send.
+**This endpoint allows you to delete the cancellation/pause of a scheduled send.**
 
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### DELETE /user/scheduled_sends/{batch_id}
 
-```
+```python
 batch_id = "test_url_param"
 response = self.sg.client.user.scheduled_sends._(batch_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Change the Enforced TLS settings
+## Update user scheduled send information
 
+**This endpoint allows you to update the status of a scheduled send for the given `batch_id`.**
 
+The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
+
+### PATCH /user/scheduled_sends/{batch_id}
+
+```python
+data = {
+  "status": "pause"
+}
+batch_id = "test_url_param"
+response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve current Enforced TLS settings.
+
+**This endpoint allows you to retrieve your current Enforced TLS settings.**
+
+The Enforced TLS settings specify whether or not the recipient is required to support TLS or have a valid certificate. See the [SMTP Ports User Guide](https://sendgrid.com/docs/Classroom/Basics/Email_Infrastructure/smtp_ports.html) for more information on opportunistic TLS.
+
+**Note:** If either setting is enabled and the recipient does not support TLS or have a valid certificate, we drop the message and send a block event with TLS required but not supported as the description.
+
+### GET /user/settings/enforced_tls
+
+```python
+response = self.sg.client.user.settings.enforced_tls.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Update Enforced TLS settings
+
+**This endpoint allows you to update your current Enforced TLS settings.**
+
+The Enforced TLS settings specify whether or not the recipient is required to support TLS or have a valid certificate. See the [SMTP Ports User Guide](https://sendgrid.com/docs/Classroom/Basics/Email_Infrastructure/smtp_ports.html) for more information on opportunistic TLS.
+
+**Note:** If either setting is enabled and the recipient does not support TLS or have a valid certificate, we drop the message and send a block event with TLS required but not supported as the description.
 
 ### PATCH /user/settings/enforced_tls
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "require_tls": true,
+  "require_valid_cert": false
+}
 response = self.sg.client.user.settings.enforced_tls.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Get the current Enforced TLS settings.
+## Update your username
 
+**This endpoint allows you to update the username for your account.**
 
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
 
-### GET /user/settings/enforced_tls
+For more information about your user profile:
 
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+### PUT /user/username
+
+```python
+data = {
+  "username": "test_username"
+}
+response = self.sg.client.user.username.put(request_body=data)
+print response.status_code
+print response.response_body
+print response.response_headers
 ```
-response = self.sg.client.user.settings.enforced_tls.get()
+## Retrieve your username
+
+**This endpoint allows you to retrieve your current account username.**
+
+Keeping your user profile up to date is important. This will help SendGrid to verify who you are as well as contact you should we need to.
+
+For more information about your user profile:
+
+* [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
+
+### GET /user/username
+
+```python
+response = self.sg.client.user.username.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve Event Webhook settings
+
+**This endpoint allows you to retrieve your current event webhook settings.**
+
+If an event type is marked as `true`, then the event webhook will include information about that event.
+
+SendGrids Event Webhook will notify a URL of your choice via HTTP POST with information about events that occur as SendGrid processes your email.
+
+Common uses of this data are to remove unsubscribes, react to spam reports, determine unengaged recipients, identify bounced email addresses, or create advanced analytics of your email program.
+
+### GET /user/webhooks/event/settings
+
+```python
+response = self.sg.client.user.webhooks.event.settings.get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
 ## Update Event Notification Settings
 
+**This endpoint allows you to update your current event webhook settings.**
 
+If an event type is marked as `true`, then the event webhook will include information about that event.
+
+SendGrids Event Webhook will notify a URL of your choice via HTTP POST with information about events that occur as SendGrid processes your email.
+
+Common uses of this data are to remove unsubscribes, react to spam reports, determine unengaged recipients, identify bounced email addresses, or create advanced analytics of your email program.
 
 ### PATCH /user/webhooks/event/settings
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "bounce": true,
+  "click": true,
+  "deferred": true,
+  "delivered": true,
+  "dropped": true,
+  "enabled": true,
+  "group_resubscribe": true,
+  "group_unsubscribe": true,
+  "open": true,
+  "processed": true,
+  "spam_report": true,
+  "unsubscribe": true,
+  "url": "url"
+}
 response = self.sg.client.user.webhooks.event.settings.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Retrieve Event Webhook Settings
+## Test Event Notification Settings
 
+**This endpoint allows you to test your event webhook by sending a fake event notification post to the provided URL.**
 
+SendGrids Event Webhook will notify a URL of your choice via HTTP POST with information about events that occur as SendGrid processes your email.
 
-### GET /user/webhooks/event/settings
-
-```
-response = self.sg.client.user.webhooks.event.settings.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Test Event Notification Settings 
-
-
+Common uses of this data are to remove unsubscribes, react to spam reports, determine unengaged recipients, identify bounced email addresses, or create advanced analytics of your email program.
 
 ### POST /user/webhooks/event/test
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "url": "url"
+}
 response = self.sg.client.user.webhooks.event.test.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Retrieve Parse API settings
+## Retrieve Parse Webhook settings
 
+**This endpoint allows you to retrieve your current inbound parse webhook settings.**
 
+SendGrid can parse the attachments and contents of incoming emails. The Parse API will POST the parsed email to a URL that you specify. For more information, see our Inbound [Parse Webhook documentation](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### GET /user/webhooks/parse/settings
 
-```
+```python
 response = self.sg.client.user.webhooks.parse.settings.get()
 print response.status_code
 print response.response_body
@@ -2781,8 +3687,8 @@ There are a number of pre-made integrations for the SendGrid Parse Webhook which
 
 ### GET /user/webhooks/parse/stats
 
-```
-params = {'aggregated_by': 'test_string', 'limit': 'test_string', 'start_date': 'test_string', 'end_date': 'test_string', 'offset': 'test_string'}
+```python
+params = {'aggregated_by': 'day', 'limit': 'test_string', 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
 response = self.sg.client.user.webhooks.parse.stats.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -2805,8 +3711,19 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### POST /whitelabel/domains
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "automatic_security": false,
+  "custom_spf": true,
+  "default": true,
+  "domain": "example.com",
+  "ips": [
+    "192.168.1.1",
+    "192.168.1.2"
+  ],
+  "subdomain": "news",
+  "username": "john@example.com"
+}
 response = self.sg.client.whitelabel.domains.post(request_body=data)
 print response.status_code
 print response.response_body
@@ -2823,8 +3740,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains
 
-```
-params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 0, 'limit': 0, 'offset': 0}
+```python
+params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 'true', 'limit': 1, 'offset': 1}
 response = self.sg.client.whitelabel.domains.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -2845,31 +3762,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains/default
 
-```
+```python
 response = self.sg.client.whitelabel.domains.default.get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## List the domain whitelabel associated with the given user.
-
-**This endpoint allows you to retrieve all of the whitelabels that have been assigned to a specific subuser.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The the parent may then associate the whitelabel via the subuser management tools.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type  | Description  |
-|---|---|---|
-| username | string  | Username of the subuser to find associated whitelabels for. |
-
-### GET /whitelabel/domains/subuser
-
-```
-response = self.sg.client.whitelabel.domains.subuser.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2891,26 +3785,48 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### DELETE /whitelabel/domains/subuser
 
-```
+```python
 response = self.sg.client.whitelabel.domains.subuser.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Update a domain whitelabel.
+## List the domain whitelabel associated with the given user.
 
-**This endpoint allows you to update the settings for a domain whitelabel.**
+**This endpoint allows you to retrieve all of the whitelabels that have been assigned to a specific subuser.**
+
+A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The the parent may then associate the whitelabel via the subuser management tools.
+
+For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
+
+## URI Parameters
+| URI Parameter   | Type  | Description  |
+|---|---|---|
+| username | string  | Username of the subuser to find associated whitelabels for. |
+
+### GET /whitelabel/domains/subuser
+
+```python
+response = self.sg.client.whitelabel.domains.subuser.get()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete a domain whitelabel.
+
+**This endpoint allows you to delete a domain whitelabel.**
 
 A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
 
 For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
 
-### PATCH /whitelabel/domains/{domain_id}
+### DELETE /whitelabel/domains/{domain_id}
 
-```
-data = {'sample': 'data'}
+```python
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
+response = self.sg.client.whitelabel.domains._(domain_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2926,26 +3842,30 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains/{domain_id}
 
-```
+```python
 domain_id = "test_url_param"
 response = self.sg.client.whitelabel.domains._(domain_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-## Delete a domain whitelabel.
+## Update a domain whitelabel.
 
-**This endpoint allows you to delete a domain whitelabel.**
+**This endpoint allows you to update the settings for a domain whitelabel.**
 
 A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
 
 For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
 
-### DELETE /whitelabel/domains/{domain_id}
+### PATCH /whitelabel/domains/{domain_id}
 
-```
+```python
+data = {
+  "custom_spf": true,
+  "default": false
+}
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).delete()
+response = self.sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2967,8 +3887,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### POST /whitelabel/domains/{domain_id}/subuser
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "username": "jane@example.com"
+}
 domain_id = "test_url_param"
 response = self.sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
 print response.status_code
@@ -2990,8 +3912,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### POST /whitelabel/domains/{id}/ips
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "ip": "192.168.0.1"
+}
 id = "test_url_param"
 response = self.sg.client.whitelabel.domains._(id).ips.post(request_body=data)
 print response.status_code
@@ -3014,7 +3938,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### DELETE /whitelabel/domains/{id}/ips/{ip}
 
-```
+```python
 id = "test_url_param"
         ip = "test_url_param"
 response = self.sg.client.whitelabel.domains._(id).ips._(ip).delete()
@@ -3037,10 +3961,9 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### POST /whitelabel/domains/{id}/validate
 
-```
-data = {'sample': 'data'}
+```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(id).validate.post(request_body=data)
+response = self.sg.client.whitelabel.domains._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3057,8 +3980,12 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/ips
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "domain": "example.com",
+  "ip": "192.168.1.1",
+  "subdomain": "email"
+}
 response = self.sg.client.whitelabel.ips.post(request_body=data)
 print response.status_code
 print response.response_body
@@ -3076,26 +4003,9 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/ips
 
-```
-params = {'ip': 'test_string', 'limit': 0, 'offset': 0}
+```python
+params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
 response = self.sg.client.whitelabel.ips.get(query_params=params)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Retrieve an IP whitelabel
-
-**This endpoint allows you to retrieve an IP whitelabel.**
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### GET /whitelabel/ips/{id}
-
-```
-id = "test_url_param"
-response = self.sg.client.whitelabel.ips._(id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3110,9 +4020,26 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### DELETE /whitelabel/ips/{id}
 
-```
+```python
 id = "test_url_param"
 response = self.sg.client.whitelabel.ips._(id).delete()
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve an IP whitelabel
+
+**This endpoint allows you to retrieve an IP whitelabel.**
+
+A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
+
+### GET /whitelabel/ips/{id}
+
+```python
+id = "test_url_param"
+response = self.sg.client.whitelabel.ips._(id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3127,10 +4054,9 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/ips/{id}/validate
 
-```
-data = {'sample': 'data'}
+```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.ips._(id).validate.post(request_body=data)
+response = self.sg.client.whitelabel.ips._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3145,9 +4071,13 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/links
 
-```
-data = {'sample': 'data'}
-params = {'limit': 0, 'offset': 0}
+```python
+data = {
+  "default": true,
+  "domain": "example.com",
+  "subdomain": "mail"
+}
+params = {'limit': 1, 'offset': 1}
 response = self.sg.client.whitelabel.links.post(request_body=data, query_params=params)
 print response.status_code
 print response.response_body
@@ -3163,8 +4093,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/links
 
-```
-params = {'limit': 0}
+```python
+params = {'limit': 1}
 response = self.sg.client.whitelabel.links.get(query_params=params)
 print response.status_code
 print response.response_body
@@ -3187,30 +4117,9 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/links/default
 
-```
+```python
 params = {'domain': 'test_string'}
 response = self.sg.client.whitelabel.links.default.get(query_params=params)
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Retrieve Associated Link Whitelabel
-
-**This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
-
-Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
-must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### GET /whitelabel/links/subuser
-
-```
-params = {'username': 'test_string'}
-response = self.sg.client.whitelabel.links.subuser.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3229,9 +4138,47 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### DELETE /whitelabel/links/subuser
 
-```
+```python
 params = {'username': 'test_string'}
 response = self.sg.client.whitelabel.links.subuser.delete(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Retrieve Associated Link Whitelabel
+
+**This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
+
+Link whitelables can be associated with subusers from the parent account. This functionality allows
+subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
+
+Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
+
+### GET /whitelabel/links/subuser
+
+```python
+params = {'username': 'test_string'}
+response = self.sg.client.whitelabel.links.subuser.get(query_params=params)
+print response.status_code
+print response.response_body
+print response.response_headers
+```
+## Delete a Link Whitelabel
+
+**This endpoint allows you to delete a link whitelabel.**
+
+Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
+
+### DELETE /whitelabel/links/{id}
+
+```python
+id = "test_url_param"
+response = self.sg.client.whitelabel.links._(id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3246,8 +4193,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### PATCH /whitelabel/links/{id}
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "default": true
+}
 id = "test_url_param"
 response = self.sg.client.whitelabel.links._(id).patch(request_body=data)
 print response.status_code
@@ -3264,26 +4213,9 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/links/{id}
 
-```
+```python
 id = "test_url_param"
 response = self.sg.client.whitelabel.links._(id).get()
-print response.status_code
-print response.response_body
-print response.response_headers
-```
-## Delete a Link Whitelabel
-
-**This endpoint allows you to delete a link whitelabel.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### DELETE /whitelabel/links/{id}
-
-```
-id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3298,10 +4230,9 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/links/{id}/validate
 
-```
-data = {'sample': 'data'}
+```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).validate.post(request_body=data)
+response = self.sg.client.whitelabel.links._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3320,12 +4251,13 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/links/{link_id}/subuser
 
-```
-data = {'sample': 'data'}
+```python
+data = {
+  "username": "jane@example.com"
+}
 link_id = "test_url_param"
 response = self.sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
 ```
-

@@ -88,7 +88,7 @@ Update your settings in `.env`
 
 ##### Execute: #####
 
-See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/master/examples) to get started quickly.
+See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples) to get started quickly.
 
 <a name="understanding_the_codebase"></a>
 ## Understanding the Code Base
@@ -110,9 +110,9 @@ The Web API v3 client is `client.py`, the other files are legacy code for our ma
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in the `[tests](https://github.com/sendgrid/sendgrid-python/tree/master/tests)` directory.
+All test files are in the `[tests](https://github.com/sendgrid/sendgrid-python/tree/v3beta/tests)` directory.
 
-For the purposes of contributing to this repo, please update the [`test_v3_endpoints.py`](https://github.com/sendgrid/sendgrid-python/blob/master/test/test_v3_endpoints.py) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`test_v3_endpoints.py`](https://github.com/sendgrid/sendgrid-python/tree/v3beta/test/test_v3_endpoints.py) file with unit tests as you modify the code.
 
 For Python 2.6.*:
 

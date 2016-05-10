@@ -11,5 +11,5 @@ python mail_settings.py
 
 ## Usage
 
-- See the [examples]() for complete working examples.
-- [Documentation]()
+- See the [examples](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples/helpers/mail) for complete working examples.
+- [Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/overview.html)
