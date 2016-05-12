@@ -8,12 +8,12 @@ from sendgrid import *
 
 def build_hello_email():
     """Minimum required to send an email"""
-    from_email = Email("dx@sendgrid.com")
+    from_email = Email("test@example.com")
     subject = "Hello World from the SendGrid Python Library"
-    to_email = Email("elmer.thomas@sendgrid.com")
+    to_email = Email("test@example.com")
     content = Content("text/plain", "some text here")
     mail = Mail(from_email, subject, to_email, content)
-    mail.personalizations[0].add_to(Email("elmer.thomas+add_second_email@sendgrid.com"))
+    mail.personalizations[0].add_to(Email("test@example.com"))
 
     return mail.get()
 
@@ -21,39 +21,39 @@ def build_kitchen_sink():
     """All settings set"""
     mail = Mail()
 
-    mail.set_from(Email("dx@sendgrid.com", "Elmer Thomas"))
+    mail.set_from(Email("test@example.com", "Example User"))
 
     mail.set_subject("Hello World from the SendGrid Python Library")
 
     personalization = Personalization()
-    personalization.add_to(Email("elmer.thomas@sendgrid.com", "Elmer Thomas"))
-    personalization.add_to(Email("elmer.thomas@gmail.com", "Elmer Thomas Alias"))
-    personalization.add_cc(Email("matt.bernier@sendgrid.com", "Matt Bernier"))
-    personalization.add_cc(Email("eric.shallock@sendgrid.com", "Eric Shallock"))
-    personalization.add_bcc(Email("matt.bernier+dx@sendgrid.com"))
-    personalization.add_bcc(Email("eric.shallock+dx@sendgrid.com"))
+    personalization.add_to(Email("test@example.com", "Example User"))
+    personalization.add_to(Email("test@example.com", "Example User"))
+    personalization.add_cc(Email("test@example.com", "Example User"))
+    personalization.add_cc(Email("test@example.com", "Example User"))
+    personalization.add_bcc(Email("test@example.com"))
+    personalization.add_bcc(Email("test@example.com"))
     personalization.set_subject("Hello World from the Personalized SendGrid Python Library")
     personalization.add_header(Header("X-Test", "test"))
     personalization.add_header(Header("X-Mock", "true"))
-    personalization.add_substitution(Substitution("%name%", "Tim"))
-    personalization.add_substitution(Substitution("%city%", "Riverside"))
+    personalization.add_substitution(Substitution("%name%", "Example User"))
+    personalization.add_substitution(Substitution("%city%", "Denver"))
     personalization.add_custom_arg(CustomArg("user_id", "343"))
     personalization.add_custom_arg(CustomArg("type", "marketing"))
     personalization.set_send_at(1443636843)
     mail.add_personalization(personalization)
 
     personalization2 = Personalization()
-    personalization2.add_to(Email("elmer.thomas@sendgrid.com", "Elmer Thomas"))
-    personalization2.add_to(Email("elmer.thomas@gmail.com", "Elmer Thomas Alias"))
-    personalization2.add_cc(Email("matt.bernier@sendgrid.com", "Matt Bernier"))
-    personalization2.add_cc(Email("eric.shallock@sendgrid.com", "Eric Shallock"))
-    personalization2.add_bcc(Email("matt.bernier+dx@sendgrid.com"))
-    personalization2.add_bcc(Email("eric.shallock+dx@sendgrid.com"))
+    personalization2.add_to(Email("test@example.com", "Example User"))
+    personalization2.add_to(Email("test@example.com", "Example User"))
+    personalization2.add_cc(Email("test@example.com", "Example User"))
+    personalization2.add_cc(Email("test@example.com", "Eric Shallock"))
+    personalization2.add_bcc(Email("test@example.com"))
+    personalization2.add_bcc(Email("test@example.com"))
     personalization2.set_subject("Hello World from the Personalized SendGrid Python Library")
     personalization2.add_header(Header("X-Test", "test"))
     personalization2.add_header(Header("X-Mock", "true"))
-    personalization2.add_substitution(Substitution("%name%", "Tim"))
-    personalization2.add_substitution(Substitution("%city%", "Riverside"))
+    personalization2.add_substitution(Substitution("%name%", "Example User"))
+    personalization2.add_substitution(Substitution("%city%", "Denver"))
     personalization2.add_custom_arg(CustomArg("user_id", "343"))
     personalization2.add_custom_arg(CustomArg("type", "marketing"))
     personalization2.set_send_at(1443636843)
@@ -102,7 +102,7 @@ def build_kitchen_sink():
     mail.set_ip_pool_name("24")
 
     mail_settings = MailSettings()
-    mail_settings.set_bcc_settings(BCCSettings(True, Email("dx+reply@sendgrid.com")))
+    mail_settings.set_bcc_settings(BCCSettings(True, Email("test@example.com")))
     mail_settings.set_bypass_list_management(BypassListManagement(True))
     mail_settings.set_footer_settings(FooterSettings(True, "Footer Text", "<html><body>Footer Text</body></html>"))
     mail_settings.set_sandbox_mode(SandBoxMode(True))
@@ -116,7 +116,7 @@ def build_kitchen_sink():
     tracking_settings.set_ganalytics(Ganalytics(True, "some source", "some medium", "some term", "some_content", "some_campaign"))
     mail.set_tracking_settings(tracking_settings)
 
-    mail.set_reply_to(Email("dx+reply@sendgrid.com"))
+    mail.set_reply_to(Email("test@example.com"))
 
     return mail.get()
 

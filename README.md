@@ -43,9 +43,9 @@ source ./sendgrid.env
 import sendgrid
 from sendgrid.helpers.mail import *
 
-from_email = Email("dx@sendgrid.com")
+from_email = Email("test@example.com")
 subject = "Hello World from the SendGrid Python Library"
-to_email = Email("elmer.thomas@sendgrid.com")
+to_email = Email("test@example.com")
 content = Content("text/plain", "some text here")
 mail = Mail(from_email, subject, to_email, content)
 response = sg.client.mail.send.beta.post(request_body=mail.get())
