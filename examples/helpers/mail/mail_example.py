@@ -13,7 +13,7 @@ def build_hello_email():
     to_email = Email("test@example.com")
     content = Content("text/plain", "some text here")
     mail = Mail(from_email, subject, to_email, content)
-    mail.personalizations[0].add_to(Email("test@example.com"))
+    mail.personalizations[0].add_to(Email("test2@example.com"))
 
     return mail.get()
 
