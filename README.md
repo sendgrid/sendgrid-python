@@ -12,10 +12,16 @@ By using this endpoint, you accept that you may encounter bugs and that the endp
 
 # Installation
 
+## Environment Variables
+
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
+
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
-source sendgrid.env
+source ./sendgrid.env
 ```
 
 ## TRYING OUT THE V3 BETA MAIL SEND
@@ -54,18 +60,6 @@ or
 
 - The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
-
-## Environment Variables
-
-First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
-
-Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
-
-```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
-```
 
 # Quick Start
 
