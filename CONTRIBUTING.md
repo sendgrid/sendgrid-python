@@ -74,7 +74,6 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 ##### Prerequisites #####
 
 * Python 2.6 through 3.5
-* smtpapi-python
 * python_http_client
 
 ##### Initial setup: #####
@@ -97,22 +96,22 @@ See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/v3bet
 
 Working examples that demonstrate usage.
 
-**/tests**
+**/test**
 
 Tests for the mail send and Web API v3 endpoints.
 
 **/sendgrid**
 
-The Web API v3 client is `client.py`, the other files are legacy code for our mail send v2 endpoint.
+The Web API v3 client is `sendgrid.py`, the other files are legacy code for our mail send v2 endpoint.
 
 <a name="testing"></a>
 ## Testing
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in the `[tests](https://github.com/sendgrid/sendgrid-python/tree/v3beta/tests)` directory.
+All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/tree/v3beta/test) directory.
 
-For the purposes of contributing to this repo, please update the [`test_v3_endpoints.py`](https://github.com/sendgrid/sendgrid-python/tree/v3beta/test/test_v3_endpoints.py) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/blob/v3beta/test/test_sendgrid.py) file with unit tests as you modify the code.
 
 For Python 2.6.*:
 
@@ -165,11 +164,6 @@ Generally, we follow the style guidelines as suggested by the official language.
 * [PEP8](https://www.python.org/dev/peps/pep-0008/)
 
 Please run your code through [pyflakes](https://pypi.python.org/pypi/pyflakes), [pylint](https://www.pylint.org/) and [pep8](https://pypi.python.org/pypi/pep8)
-
-### Directory Structure
-
-* `examples` for example calls
-* `test`, for all tests
 
 ## Creating a Pull Request<a name="creating_a_pull_request"></a>
 
