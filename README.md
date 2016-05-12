@@ -44,9 +44,9 @@ python mail_example.py
 git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.git
 ```
 
-Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
-Review the corresponding [examples](https://github.com/sendgrid/sendgrid-python/blob/master/examples).
-From the root directory of this repo, use `from sendgrid import *`
+* Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
+* Review the corresponding [examples](https://github.com/sendgrid/sendgrid-python/blob/master/examples).
+* From the root directory of this repo, use `from sendgrid import *`
 
 ## Once we are out of v3 BETA, the following will apply
 
