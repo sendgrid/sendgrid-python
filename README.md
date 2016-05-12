@@ -12,6 +12,12 @@ By using this endpoint, you accept that you may encounter bugs and that the endp
 
 # Installation
 
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source sendgrid.env
+```
+
 ## TRYING OUT THE V3 BETA MAIL SEND
 
 ```bash
@@ -20,7 +26,7 @@ cd sendgrid-python
 cp examples/helpers/mail/mail_example.py .
 ```
 
-* Update the [emails](https://github.com/sendgrid/sendgrid-python/blob/v3beta/examples/helpers/mail/mail_example.py#L11).
+* Update the to and from [emails](https://github.com/sendgrid/sendgrid-python/blob/v3beta/examples/helpers/mail/mail_example.py#L11).
 
 ```bash
 python mail_example.py
@@ -31,6 +37,10 @@ python mail_example.py
 ```bash
 git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.git
 ```
+
+Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
+Review the corresponding [examples](https://github.com/sendgrid/sendgrid-python/blob/master/examples).
+From the root directory of this repo, use `from sendgrid import *`
 
 ## Once we are out of v3 BETA, the following will apply
 
