@@ -47,6 +47,7 @@ git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.
 * Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
 * Review the corresponding [examples](https://github.com/sendgrid/sendgrid-python/blob/v3beta/examples).
 * From the root directory of this repo, use `from sendgrid import *`
+* Check out the documentation for [Web API v3 /mail/send/beta endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html).
 
 ## Once we are out of v3 BETA, the following will apply
 
