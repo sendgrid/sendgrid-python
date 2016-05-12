@@ -12,6 +12,28 @@ By using this endpoint, you accept that you may encounter bugs and that the endp
 
 # Installation
 
+## TRYING OUT THE V3 BETA MAIL SEND
+
+```bash
+git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.git
+cd sendgrid-python
+cp examples/helpers/mail/mail_example.py .
+```
+
+* Update the [emails](https://github.com/sendgrid/sendgrid-python/blob/v3beta/examples/helpers/mail/mail_example.py#L11).
+
+```bash
+python mail_example.py
+```
+
+## TRYING OUT THE V3 BETA WEB API
+
+```bash
+git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.git
+```
+
+## Once we are out of v3 BETA, the following will apply
+
 `pip install sendgrid`
 
 or
