@@ -69,17 +69,17 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.access_settings.whitelist.delete(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_access_settings_whitelist__rule_id__delete(self):
-        rule_id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.access_settings.whitelist._(rule_id).delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_access_settings_whitelist__rule_id__get(self):
         rule_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.access_settings.whitelist._(rule_id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_access_settings_whitelist__rule_id__delete(self):
+        rule_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.access_settings.whitelist._(rule_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_api_keys_post(self):
         data = {
@@ -112,18 +112,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.api_keys._(api_key_id).put(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_api_keys__api_key_id__delete(self):
-        api_key_id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.api_keys._(api_key_id).delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
-    def test_api_keys__api_key_id__get(self):
-        api_key_id = "test_url_param"
-        headers = {'X-Mock': 200}
-        response = self.sg.client.api_keys._(api_key_id).get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_api_keys__api_key_id__patch(self):
         data = {
   "name": "A New Hope"
@@ -132,6 +120,18 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.api_keys._(api_key_id).patch(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_api_keys__api_key_id__get(self):
+        api_key_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.api_keys._(api_key_id).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_api_keys__api_key_id__delete(self):
+        api_key_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.api_keys._(api_key_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_asm_groups_post(self):
         data = {
@@ -283,11 +283,14 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.campaigns._(campaign_id).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_campaigns__campaign_id__schedules_delete(self):
+    def test_campaigns__campaign_id__schedules_patch(self):
+        data = {
+  "send_at": 1489451436
+}
         campaign_id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.campaigns._(campaign_id).schedules.delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
+        headers = {'X-Mock': 200}
+        response = self.sg.client.campaigns._(campaign_id).schedules.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
 
     def test_campaigns__campaign_id__schedules_post(self):
         data = {
@@ -298,17 +301,17 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.campaigns._(campaign_id).schedules.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 201)
 
-    def test_campaigns__campaign_id__schedules_patch(self):
-        campaign_id = "test_url_param"
-        headers = {'X-Mock': 200}
-        response = self.sg.client.campaigns._(campaign_id).schedules.patch(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_campaigns__campaign_id__schedules_get(self):
         campaign_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.campaigns._(campaign_id).schedules.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_campaigns__campaign_id__schedules_delete(self):
+        campaign_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.campaigns._(campaign_id).schedules.delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_campaigns__campaign_id__schedules_now_post(self):
         campaign_id = "test_url_param"
@@ -406,13 +409,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.contactdb.lists.delete(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_contactdb_lists__list_id__get(self):
-        params = {'list_id': 0}
-        list_id = "test_url_param"
-        headers = {'X-Mock': 200}
-        response = self.sg.client.contactdb.lists._(list_id).get(query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_contactdb_lists__list_id__patch(self):
         data = {
   "name": "newlistname"
@@ -421,6 +417,13 @@ class UnitTests(unittest.TestCase):
         list_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_contactdb_lists__list_id__get(self):
+        params = {'list_id': 0}
+        list_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.contactdb.lists._(list_id).get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_lists__list_id__delete(self):
@@ -462,12 +465,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_contactdb_recipients_get(self):
-        params = {'page': 1, 'page_size': 1}
-        headers = {'X-Mock': 200}
-        response = self.sg.client.contactdb.recipients.get(query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_contactdb_recipients_patch(self):
         data = [
   {
@@ -498,6 +495,12 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 201}
         response = self.sg.client.contactdb.recipients.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 201)
+
+    def test_contactdb_recipients_get(self):
+        params = {'page': 1, 'page_size': 1}
+        headers = {'X-Mock': 200}
+        response = self.sg.client.contactdb.recipients.get(query_params=params, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients_delete(self):
         data = [
@@ -666,17 +669,17 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.ips.pools._(pool_name).put(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_ips_pools__pool_name__delete(self):
-        pool_name = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.ips.pools._(pool_name).delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_ips_pools__pool_name__get(self):
         pool_name = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.ips.pools._(pool_name).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_ips_pools__pool_name__delete(self):
+        pool_name = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.ips.pools._(pool_name).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_ips_pools__pool_name__ips_post(self):
         data = {
@@ -736,6 +739,154 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.mail.batch._(batch_id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
+    def test_mail_send_beta_post(self):
+        data = {
+  "asm": {
+    "group_id": 1,
+    "groups_to_display": [
+      1,
+      2,
+      3
+    ]
+  },
+  "attachments": [
+    {
+      "content": "[BASE64 encoded content block here]",
+      "content_id": "ii_139db99fdb5c3704",
+      "disposition": "inline",
+      "filename": "file1.jpg",
+      "name": "file1",
+      "type": "jpg"
+    }
+  ],
+  "batch_id": "[YOUR BATCH ID GOES HERE]",
+  "categories": [
+    "category1",
+    "category2"
+  ],
+  "content": [
+    {
+      "type": "text/html",
+      "value": "<html><p>Hello, world!</p><img src='cid:ii_139db99fdb5c3704'></img></html>"
+    }
+  ],
+  "custom_args": {
+    "New Argument 1": "New Value 1",
+    "activationAttempt": "1",
+    "customerAccountNumber": "[CUSTOMER ACCOUNT NUMBER GOES HERE]"
+  },
+  "from": {
+    "email": "sam.smith@example.com",
+    "name": "Sam Smith"
+  },
+  "headers": {},
+  "ip_pool_name": "[YOUR POOL NAME GOES HERE]",
+  "mail_settings": {
+    "bcc": {
+      "email": "ben.doe@example.com",
+      "enable": True
+    },
+    "bypass_list_management": {
+      "enable": True
+    },
+    "footer": {
+      "enable": True,
+      "html": "<p>Thanks</br>The SendGrid Team</p>",
+      "text": "Thanks,/n The SendGrid Team"
+    },
+    "sandbox_mode": {
+      "enable": False
+    },
+    "spam_check": {
+      "enable": True,
+      "post_to_url": "http://example.com/compliance",
+      "threshold": 3
+    }
+  },
+  "personalizations": [
+    {
+      "bcc": [
+        {
+          "email": "sam.doe@example.com",
+          "name": "Sam Doe"
+        }
+      ],
+      "cc": [
+        {
+          "email": "jane.doe@example.com",
+          "name": "Jane Doe"
+        }
+      ],
+      "custom_args": {
+        "New Argument 1": "New Value 1",
+        "activationAttempt": "1",
+        "customerAccountNumber": "[CUSTOMER ACCOUNT NUMBER GOES HERE]"
+      },
+      "headers": {
+        "X-Accept-Language": "en",
+        "X-Mailer": "MyApp"
+      },
+      "send_at": 1409348513,
+      "subject": "Hello, World!",
+      "substitutions": {
+        "sub": {
+          "%name%": [
+            "John",
+            "Jane",
+            "Sam"
+          ]
+        }
+      },
+      "to": [
+        {
+          "email": "john.doe@example.com",
+          "name": "John Doe"
+        }
+      ]
+    }
+  ],
+  "reply_to": {
+    "email": "sam.smith@example.com",
+    "name": "Sam Smith"
+  },
+  "sections": {
+    "section": {
+      ":sectionName1": "section 1 text",
+      ":sectionName2": "section 2 text"
+    }
+  },
+  "send_at": 1409348513,
+  "subject": "Hello, World!",
+  "template_id": "[YOUR TEMPLATE ID GOES HERE]",
+  "tracking_settings": {
+    "click_tracking": {
+      "enable": True,
+      "enable_text": True
+    },
+    "ganalytics": {
+      "enable": True,
+      "utm_campaign": "[NAME OF YOUR REFERRER SOURCE]",
+      "utm_content": "[USE THIS SPACE TO DIFFERENTIATE YOUR EMAIL FROM ADS]",
+      "utm_medium": "[NAME OF YOUR MARKETING MEDIUM e.g. email]",
+      "utm_name": "[NAME OF YOUR CAMPAIGN]",
+      "utm_term": "[IDENTIFY PAID KEYWORDS HERE]"
+    },
+    "open_tracking": {
+      "enable": True,
+      "substitution_tag": "%opentrack"
+    },
+    "subscription_tracking": {
+      "enable": True,
+      "html": "If you would like to unsubscribe and stop receiving these emails <% clickhere %>.",
+      "substitution_tag": "<%click here%>",
+      "text": "If you would like to unsubscribe and stop receiveing these emails <% click here %>."
+    }
+  }
+}
+        headers = {'X-Mock': 202}
+        response = self.sg.client.mail.send.beta.post(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 202)
+
     def test_mail_settings_get(self):
         params = {'limit': 1, 'offset': 1}
         headers = {'X-Mock': 200}
@@ -773,11 +924,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.mail_settings.bcc.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_mail_settings_bounce_purge_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.mail_settings.bounce_purge.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_mail_settings_bounce_purge_patch(self):
         data = {
   "enabled": True,
@@ -786,6 +932,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.mail_settings.bounce_purge.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_mail_settings_bounce_purge_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.mail_settings.bounce_purge.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_mail_settings_footer_patch(self):
@@ -803,11 +954,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.mail_settings.footer.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_mail_settings_forward_bounce_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.mail_settings.forward_bounce.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_mail_settings_forward_bounce_patch(self):
         data = {
   "email": "example@example.com",
@@ -817,9 +963,9 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.mail_settings.forward_bounce.patch(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_mail_settings_forward_spam_get(self):
+    def test_mail_settings_forward_bounce_get(self):
         headers = {'X-Mock': 200}
-        response = self.sg.client.mail_settings.forward_spam.get(request_headers=headers)
+        response = self.sg.client.mail_settings.forward_bounce.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_mail_settings_forward_spam_patch(self):
@@ -829,6 +975,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.mail_settings.forward_spam.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_mail_settings_forward_spam_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.mail_settings.forward_spam.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_mail_settings_plain_content_patch(self):
@@ -885,11 +1036,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.partner_settings.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_partner_settings_new_relic_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.partner_settings.new_relic.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_partner_settings_new_relic_patch(self):
         data = {
   "enable_subuser_statistics": True,
@@ -900,14 +1046,9 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.partner_settings.new_relic.patch(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_partner_settings_sendwithus_get(self):
+    def test_partner_settings_new_relic_get(self):
         headers = {'X-Mock': 200}
-        response = self.sg.client.partner_settings.sendwithus.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
-    def test_partner_settings_sendwithus_patch(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.partner_settings.sendwithus.patch(request_headers=headers)
+        response = self.sg.client.partner_settings.new_relic.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_scopes_get(self):
@@ -1009,17 +1150,17 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.subusers._(subuser_name).monitor.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_subusers__subuser_name__monitor_delete(self):
-        subuser_name = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.subusers._(subuser_name).monitor.delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_subusers__subuser_name__monitor_get(self):
         subuser_name = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.subusers._(subuser_name).monitor.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_subusers__subuser_name__monitor_delete(self):
+        subuser_name = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.subusers._(subuser_name).monitor.delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_subusers__subuser_name__stats_monthly_get(self):
         params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 1}
@@ -1035,14 +1176,15 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_suppression_blocks_delete(self):
+        data = {
+  "delete_all": False,
+  "emails": [
+    "example1@example.com",
+    "example2@example.com"
+  ]
+}
         headers = {'X-Mock': 204}
-        response = self.sg.client.suppression.blocks.delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
-    def test_suppression_blocks__email__delete(self):
-        email = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.suppression.blocks._(email).delete(request_headers=headers)
+        response = self.sg.client.suppression.blocks.delete(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_suppression_blocks__email__get(self):
@@ -1050,6 +1192,12 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.suppression.blocks._(email).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_suppression_blocks__email__delete(self):
+        email = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.suppression.blocks._(email).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_suppression_bounces_get(self):
         params = {'start_time': 0, 'end_time': 0}
@@ -1082,16 +1230,23 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.suppression.bounces._(email).delete(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_suppression_invalid_emails_delete(self):
-        headers = {'X-Mock': 204}
-        response = self.sg.client.suppression.invalid_emails.delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_suppression_invalid_emails_get(self):
         params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
         headers = {'X-Mock': 200}
         response = self.sg.client.suppression.invalid_emails.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_suppression_invalid_emails_delete(self):
+        data = {
+  "delete_all": False,
+  "emails": [
+    "example1@example.com",
+    "example2@example.com"
+  ]
+}
+        headers = {'X-Mock': 204}
+        response = self.sg.client.suppression.invalid_emails.delete(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_suppression_invalid_emails__email__get(self):
         email = "test_url_param"
@@ -1117,6 +1272,12 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.suppression.spam_report._(email).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
+    def test_suppression_spam_reports_get(self):
+        params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
+        headers = {'X-Mock': 200}
+        response = self.sg.client.suppression.spam_reports.get(query_params=params, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
     def test_suppression_spam_reports_delete(self):
         data = {
   "delete_all": False,
@@ -1128,12 +1289,6 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 204}
         response = self.sg.client.suppression.spam_reports.delete(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 204)
-
-    def test_suppression_spam_reports_get(self):
-        params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
-        headers = {'X-Mock': 200}
-        response = self.sg.client.suppression.spam_reports.get(query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
 
     def test_suppression_unsubscribes_get(self):
         params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
@@ -1154,12 +1309,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.templates.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_templates__template_id__get(self):
-        template_id = "test_url_param"
-        headers = {'X-Mock': 200}
-        response = self.sg.client.templates._(template_id).get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_templates__template_id__patch(self):
         data = {
   "name": "new_example_name"
@@ -1167,6 +1316,12 @@ class UnitTests(unittest.TestCase):
         template_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.templates._(template_id).patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_templates__template_id__get(self):
+        template_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.templates._(template_id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_templates__template_id__delete(self):
@@ -1203,19 +1358,19 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.templates._(template_id).versions._(version_id).patch(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_templates__template_id__versions__version_id__delete(self):
-        template_id = "test_url_param"
-        version_id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.templates._(template_id).versions._(version_id).delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_templates__template_id__versions__version_id__get(self):
         template_id = "test_url_param"
         version_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.templates._(template_id).versions._(version_id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_templates__template_id__versions__version_id__delete(self):
+        template_id = "test_url_param"
+        version_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.templates._(template_id).versions._(version_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_templates__template_id__versions__version_id__activate_post(self):
         template_id = "test_url_param"
@@ -1274,11 +1429,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.tracking_settings.open.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_tracking_settings_subscription_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.tracking_settings.subscription.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_tracking_settings_subscription_patch(self):
         data = {
   "enabled": True,
@@ -1290,6 +1440,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.tracking_settings.subscription.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_tracking_settings_subscription_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.tracking_settings.subscription.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_account_get(self):
@@ -1324,11 +1479,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.user.password.put(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_user_profile_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.user.profile.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_user_profile_patch(self):
         data = {
   "city": "Orange",
@@ -1337,6 +1487,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.user.profile.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_profile_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.user.profile.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_scheduled_sends_post(self):
@@ -1353,6 +1508,15 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.user.scheduled_sends.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
+    def test_user_scheduled_sends__batch_id__patch(self):
+        data = {
+  "status": "pause"
+}
+        batch_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 204)
+
     def test_user_scheduled_sends__batch_id__get(self):
         batch_id = "test_url_param"
         headers = {'X-Mock': 200}
@@ -1365,20 +1529,6 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.user.scheduled_sends._(batch_id).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
-    def test_user_scheduled_sends__batch_id__patch(self):
-        data = {
-  "status": "pause"
-}
-        batch_id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data, request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
-    def test_user_settings_enforced_tls_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.user.settings.enforced_tls.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
     def test_user_settings_enforced_tls_patch(self):
         data = {
   "require_tls": True,
@@ -1386,6 +1536,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.user.settings.enforced_tls.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_settings_enforced_tls_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.user.settings.enforced_tls.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_username_put(self):
@@ -1399,11 +1554,6 @@ class UnitTests(unittest.TestCase):
     def test_user_username_get(self):
         headers = {'X-Mock': 200}
         response = self.sg.client.user.username.get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
-
-    def test_user_webhooks_event_settings_get(self):
-        headers = {'X-Mock': 200}
-        response = self.sg.client.user.webhooks.event.settings.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_webhooks_event_settings_patch(self):
@@ -1424,6 +1574,11 @@ class UnitTests(unittest.TestCase):
 }
         headers = {'X-Mock': 200}
         response = self.sg.client.user.webhooks.event.settings.patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_webhooks_event_settings_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.user.webhooks.event.settings.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_user_webhooks_event_test_post(self):
@@ -1473,27 +1628,15 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.whitelabel.domains.default.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_whitelabel_domains_subuser_delete(self):
-        headers = {'X-Mock': 204}
-        response = self.sg.client.whitelabel.domains.subuser.delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_whitelabel_domains_subuser_get(self):
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains.subuser.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_whitelabel_domains__domain_id__delete(self):
-        domain_id = "test_url_param"
+    def test_whitelabel_domains_subuser_delete(self):
         headers = {'X-Mock': 204}
-        response = self.sg.client.whitelabel.domains._(domain_id).delete(request_headers=headers)
+        response = self.sg.client.whitelabel.domains.subuser.delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
-
-    def test_whitelabel_domains__domain_id__get(self):
-        domain_id = "test_url_param"
-        headers = {'X-Mock': 200}
-        response = self.sg.client.whitelabel.domains._(domain_id).get(request_headers=headers)
-        self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_domains__domain_id__patch(self):
         data = {
@@ -1504,6 +1647,18 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(domain_id).patch(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_whitelabel_domains__domain_id__get(self):
+        domain_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.whitelabel.domains._(domain_id).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_whitelabel_domains__domain_id__delete(self):
+        domain_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.whitelabel.domains._(domain_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_domains__domain_id__subuser_post(self):
         data = {
@@ -1552,17 +1707,17 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.whitelabel.ips.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_whitelabel_ips__id__delete(self):
-        id = "test_url_param"
-        headers = {'X-Mock': 204}
-        response = self.sg.client.whitelabel.ips._(id).delete(request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_whitelabel_ips__id__get(self):
         id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.ips._(id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_whitelabel_ips__id__delete(self):
+        id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.whitelabel.ips._(id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_ips__id__validate_post(self):
         id = "test_url_param"
@@ -1593,22 +1748,16 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.whitelabel.links.default.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_whitelabel_links_subuser_delete(self):
-        params = {'username': 'test_string'}
-        headers = {'X-Mock': 204}
-        response = self.sg.client.whitelabel.links.subuser.delete(query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 204)
-
     def test_whitelabel_links_subuser_get(self):
         params = {'username': 'test_string'}
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links.subuser.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_whitelabel_links__id__delete(self):
-        id = "test_url_param"
+    def test_whitelabel_links_subuser_delete(self):
+        params = {'username': 'test_string'}
         headers = {'X-Mock': 204}
-        response = self.sg.client.whitelabel.links._(id).delete(request_headers=headers)
+        response = self.sg.client.whitelabel.links.subuser.delete(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_links__id__patch(self):
@@ -1625,6 +1774,12 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links._(id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_whitelabel_links__id__delete(self):
+        id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.whitelabel.links._(id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_links__id__validate_post(self):
         id = "test_url_param"
