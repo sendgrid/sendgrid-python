@@ -59,21 +59,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete an IP pool. #
-# DELETE /ips/pools/{pool_name} #
-
-pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve all IPs in a specified pool. #
 # GET /ips/pools/{pool_name} #
 
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete an IP pool. #
+# DELETE /ips/pools/{pool_name} #
+
+pool_name = "test_url_param"
+response = sg.client.ips.pools._(pool_name).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

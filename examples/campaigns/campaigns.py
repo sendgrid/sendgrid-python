@@ -84,11 +84,14 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Unschedule a Scheduled Campaign #
-# DELETE /campaigns/{campaign_id}/schedules #
+# Update a Scheduled Campaign #
+# PATCH /campaigns/{campaign_id}/schedules #
 
+data = {
+  "send_at": 1489451436
+}
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete()
+response = sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -107,21 +110,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Update a Scheduled Campaign #
-# PATCH /campaigns/{campaign_id}/schedules #
-
-campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.patch()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # View Scheduled Time of a Campaign #
 # GET /campaigns/{campaign_id}/schedules #
 
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Unschedule a Scheduled Campaign #
+# DELETE /campaigns/{campaign_id}/schedules #
+
+campaign_id = "test_url_param"
+response = sg.client.campaigns._(campaign_id).schedules.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

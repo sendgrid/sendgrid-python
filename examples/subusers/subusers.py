@@ -138,21 +138,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete monitor settings #
-# DELETE /subusers/{subuser_name}/monitor #
-
-subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve monitor settings for a subuser #
 # GET /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete monitor settings #
+# DELETE /subusers/{subuser_name}/monitor #
+
+subuser_name = "test_url_param"
+response = sg.client.subusers._(subuser_name).monitor.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

@@ -63,15 +63,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve bounce purge mail settings #
-# GET /mail_settings/bounce_purge #
-
-response = sg.client.mail_settings.bounce_purge.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update bounce purge mail settings #
 # PATCH /mail_settings/bounce_purge #
 
@@ -81,6 +72,15 @@ data = {
   "soft_bounces": 5
 }
 response = sg.client.mail_settings.bounce_purge.patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve bounce purge mail settings #
+# GET /mail_settings/bounce_purge #
+
+response = sg.client.mail_settings.bounce_purge.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -109,15 +109,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve forward bounce mail settings #
-# GET /mail_settings/forward_bounce #
-
-response = sg.client.mail_settings.forward_bounce.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update forward bounce mail settings #
 # PATCH /mail_settings/forward_bounce #
 
@@ -131,10 +122,10 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve forward spam mail settings #
-# GET /mail_settings/forward_spam #
+# Retrieve forward bounce mail settings #
+# GET /mail_settings/forward_bounce #
 
-response = sg.client.mail_settings.forward_spam.get()
+response = sg.client.mail_settings.forward_bounce.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -148,6 +139,15 @@ data = {
   "enabled": false
 }
 response = sg.client.mail_settings.forward_spam.patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve forward spam mail settings #
+# GET /mail_settings/forward_spam #
+
+response = sg.client.mail_settings.forward_spam.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

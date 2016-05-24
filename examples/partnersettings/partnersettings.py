@@ -16,15 +16,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Returns all New Relic partner settings. #
-# GET /partner_settings/new_relic #
-
-response = sg.client.partner_settings.new_relic.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Updates New Relic partner settings. #
 # PATCH /partner_settings/new_relic #
 
@@ -39,19 +30,10 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get SendWithUs Settings #
-# GET /partner_settings/sendwithus #
+# Returns all New Relic partner settings. #
+# GET /partner_settings/new_relic #
 
-response = sg.client.partner_settings.sendwithus.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Update SendWithUs Settings #
-# PATCH /partner_settings/sendwithus #
-
-response = sg.client.partner_settings.sendwithus.patch()
+response = sg.client.partner_settings.new_relic.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

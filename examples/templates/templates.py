@@ -27,16 +27,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve a single transactional template. #
-# GET /templates/{template_id} #
-
-template_id = "test_url_param"
-response = sg.client.templates._(template_id).get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Edit a transactional template. #
 # PATCH /templates/{template_id} #
 
@@ -45,6 +35,16 @@ data = {
 }
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve a single transactional template. #
+# GET /templates/{template_id} #
+
+template_id = "test_url_param"
+response = sg.client.templates._(template_id).get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -96,23 +96,23 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete a transactional template version. #
-# DELETE /templates/{template_id}/versions/{version_id} #
-
-template_id = "test_url_param"
-        version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve a specific transactional template version. #
 # GET /templates/{template_id}/versions/{version_id} #
 
 template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete a transactional template version. #
+# DELETE /templates/{template_id}/versions/{version_id} #
+
+template_id = "test_url_param"
+        version_id = "test_url_param"
+response = sg.client.templates._(template_id).versions._(version_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

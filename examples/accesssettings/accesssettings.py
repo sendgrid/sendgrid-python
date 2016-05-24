@@ -56,21 +56,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Remove a specific IP from the whitelist #
-# DELETE /access_settings/whitelist/{rule_id} #
-
-rule_id = "test_url_param"
-response = sg.client.access_settings.whitelist._(rule_id).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve a specific whitelisted IP #
 # GET /access_settings/whitelist/{rule_id} #
 
 rule_id = "test_url_param"
 response = sg.client.access_settings.whitelist._(rule_id).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Remove a specific IP from the whitelist #
+# DELETE /access_settings/whitelist/{rule_id} #
+
+rule_id = "test_url_param"
+response = sg.client.access_settings.whitelist._(rule_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

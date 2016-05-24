@@ -84,15 +84,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve Subscription Tracking Settings #
-# GET /tracking_settings/subscription #
-
-response = sg.client.tracking_settings.subscription.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update Subscription Tracking Settings #
 # PATCH /tracking_settings/subscription #
 
@@ -105,6 +96,15 @@ data = {
   "url": "url"
 }
 response = sg.client.tracking_settings.subscription.patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve Subscription Tracking Settings #
+# GET /tracking_settings/subscription #
+
+response = sg.client.tracking_settings.subscription.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

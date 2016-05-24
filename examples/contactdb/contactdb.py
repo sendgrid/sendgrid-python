@@ -78,17 +78,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve a single list #
-# GET /contactdb/lists/{list_id} #
-
-params = {'list_id': 0}
-list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).get(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update a List #
 # PATCH /contactdb/lists/{list_id} #
 
@@ -98,6 +87,17 @@ data = {
 params = {'list_id': 0}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve a single list #
+# GET /contactdb/lists/{list_id} #
+
+params = {'list_id': 0}
+list_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -162,16 +162,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve recipients #
-# GET /contactdb/recipients #
-
-params = {'page': 1, 'page_size': 1}
-response = sg.client.contactdb.recipients.get(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update Recipient #
 # PATCH /contactdb/recipients #
 
@@ -206,6 +196,16 @@ data = [
   }
 ]
 response = sg.client.contactdb.recipients.post(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve recipients #
+# GET /contactdb/recipients #
+
+params = {'page': 1, 'page_size': 1}
+response = sg.client.contactdb.recipients.get(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

@@ -25,21 +25,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete a specific block #
-# DELETE /suppression/blocks/{email} #
-
-email = "test_url_param"
-response = sg.client.suppression.blocks._(email).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve a specific block #
 # GET /suppression/blocks/{email} #
 
 email = "test_url_param"
 response = sg.client.suppression.blocks._(email).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete a specific block #
+# DELETE /suppression/blocks/{email} #
+
+email = "test_url_param"
+response = sg.client.suppression.blocks._(email).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -85,20 +85,20 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete invalid emails #
-# DELETE /suppression/invalid_emails #
-
-response = sg.client.suppression.invalid_emails.delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve all invalid emails #
 # GET /suppression/invalid_emails #
 
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
 response = sg.client.suppression.invalid_emails.get(query_params=params)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete invalid emails #
+# DELETE /suppression/invalid_emails #
+
+response = sg.client.suppression.invalid_emails.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -144,20 +144,20 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete spam reports #
-# DELETE /suppression/spam_reports #
-
-response = sg.client.suppression.spam_reports.delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve all spam reports #
 # GET /suppression/spam_reports #
 
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
 response = sg.client.suppression.spam_reports.get(query_params=params)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete spam reports #
+# DELETE /suppression/spam_reports #
+
+response = sg.client.suppression.spam_reports.delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

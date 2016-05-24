@@ -46,15 +46,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Disassociate a domain whitelabel from a given user. #
-# DELETE /whitelabel/domains/subuser #
-
-response = sg.client.whitelabel.domains.subuser.delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # List the domain whitelabel associated with the given user. #
 # GET /whitelabel/domains/subuser #
 
@@ -64,11 +55,24 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete a domain whitelabel. #
-# DELETE /whitelabel/domains/{domain_id} #
+# Disassociate a domain whitelabel from a given user. #
+# DELETE /whitelabel/domains/subuser #
 
+response = sg.client.whitelabel.domains.subuser.delete()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Update a domain whitelabel. #
+# PATCH /whitelabel/domains/{domain_id} #
+
+data = {
+  "custom_spf": true, 
+  "default": false
+}
 domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).delete()
+response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -84,15 +88,11 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Update a domain whitelabel. #
-# PATCH /whitelabel/domains/{domain_id} #
+# Delete a domain whitelabel. #
+# DELETE /whitelabel/domains/{domain_id} #
 
-data = {
-  "custom_spf": true, 
-  "default": false
-}
 domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
+response = sg.client.whitelabel.domains._(domain_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -169,21 +169,21 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete an IP whitelabel #
-# DELETE /whitelabel/ips/{id} #
-
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve an IP whitelabel #
 # GET /whitelabel/ips/{id} #
 
 id = "test_url_param"
 response = sg.client.whitelabel.ips._(id).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete an IP whitelabel #
+# DELETE /whitelabel/ips/{id} #
+
+id = "test_url_param"
+response = sg.client.whitelabel.ips._(id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -234,16 +234,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Disassociate a Link Whitelabel #
-# DELETE /whitelabel/links/subuser #
-
-params = {'username': 'test_string'}
-response = sg.client.whitelabel.links.subuser.delete(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Retrieve Associated Link Whitelabel #
 # GET /whitelabel/links/subuser #
 
@@ -254,11 +244,11 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete a Link Whitelabel #
-# DELETE /whitelabel/links/{id} #
+# Disassociate a Link Whitelabel #
+# DELETE /whitelabel/links/subuser #
 
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete()
+params = {'username': 'test_string'}
+response = sg.client.whitelabel.links.subuser.delete(query_params=params)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -282,6 +272,16 @@ print(response.response_headers)
 
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).get()
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Delete a Link Whitelabel #
+# DELETE /whitelabel/links/{id} #
+
+id = "test_url_param"
+response = sg.client.whitelabel.links._(id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

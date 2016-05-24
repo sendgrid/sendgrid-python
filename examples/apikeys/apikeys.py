@@ -49,11 +49,14 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Delete API keys #
-# DELETE /api_keys/{api_key_id} #
+# Update API keys #
+# PATCH /api_keys/{api_key_id} #
 
+data = {
+  "name": "A New Hope"
+}
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete()
+response = sg.client.api_keys._(api_key_id).patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -69,14 +72,11 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Update API keys #
-# PATCH /api_keys/{api_key_id} #
+# Delete API keys #
+# DELETE /api_keys/{api_key_id} #
 
-data = {
-  "name": "A New Hope"
-}
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).patch(request_body=data)
+response = sg.client.api_keys._(api_key_id).delete()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)

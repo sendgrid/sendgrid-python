@@ -58,15 +58,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Get a user's profile #
-# GET /user/profile #
-
-response = sg.client.user.profile.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update a user's profile #
 # PATCH /user/profile #
 
@@ -76,6 +67,15 @@ data = {
   "last_name": "User"
 }
 response = sg.client.user.profile.patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Get a user's profile #
+# GET /user/profile #
+
+response = sg.client.user.profile.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -103,6 +103,19 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
+# Update user scheduled send information #
+# PATCH /user/scheduled_sends/{batch_id} #
+
+data = {
+  "status": "pause"
+}
+batch_id = "test_url_param"
+response = sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
 # Retrieve scheduled send #
 # GET /user/scheduled_sends/{batch_id} #
 
@@ -123,14 +136,14 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Update user scheduled send information #
-# PATCH /user/scheduled_sends/{batch_id} #
+# Update Enforced TLS settings #
+# PATCH /user/settings/enforced_tls #
 
 data = {
-  "status": "pause"
+  "require_tls": true, 
+  "require_valid_cert": false
 }
-batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
+response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -140,19 +153,6 @@ print(response.response_headers)
 # GET /user/settings/enforced_tls #
 
 response = sg.client.user.settings.enforced_tls.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Update Enforced TLS settings #
-# PATCH /user/settings/enforced_tls #
-
-data = {
-  "require_tls": true, 
-  "require_valid_cert": false
-}
-response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
@@ -179,15 +179,6 @@ print(response.response_body)
 print(response.response_headers)
 
 ##################################################
-# Retrieve Event Webhook settings #
-# GET /user/webhooks/event/settings #
-
-response = sg.client.user.webhooks.event.settings.get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
 # Update Event Notification Settings #
 # PATCH /user/webhooks/event/settings #
 
@@ -207,6 +198,15 @@ data = {
   "url": "url"
 }
 response = sg.client.user.webhooks.event.settings.patch(request_body=data)
+print(response.status_code)
+print(response.response_body)
+print(response.response_headers)
+
+##################################################
+# Retrieve Event Webhook settings #
+# GET /user/webhooks/event/settings #
+
+response = sg.client.user.webhooks.event.settings.get()
 print(response.status_code)
 print(response.response_body)
 print(response.response_headers)
