@@ -20,7 +20,7 @@ print(response.response_headers)
 # PATCH /tracking_settings/click #
 
 data = {
-  "enabled": true
+  "enabled": True
 }
 response = sg.client.tracking_settings.click.patch(request_body=data)
 print(response.status_code)
@@ -41,7 +41,7 @@ print(response.response_headers)
 # PATCH /tracking_settings/google_analytics #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "utm_campaign": "website", 
   "utm_content": "", 
   "utm_medium": "email", 
@@ -67,7 +67,7 @@ print(response.response_headers)
 # PATCH /tracking_settings/open #
 
 data = {
-  "enabled": true
+  "enabled": True
 }
 response = sg.client.tracking_settings.open.patch(request_body=data)
 print(response.status_code)
@@ -88,7 +88,7 @@ print(response.response_headers)
 # PATCH /tracking_settings/subscription #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "html_content": "html content", 
   "landing": "landing page html", 
   "plain_content": "text content", 

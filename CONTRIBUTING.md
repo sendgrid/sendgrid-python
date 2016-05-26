@@ -90,6 +90,8 @@ source ./sendgrid.env
 
 See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples) to get started quickly.
 
+If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
+
 <a name="understanding_the_codebase"></a>
 ## Understanding the Code Base
 

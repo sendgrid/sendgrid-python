@@ -52,7 +52,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ```python
 params = {'limit': 1}
-response = self.sg.client.access_settings.activity.get(query_params=params)
+response = sg.client.access_settings.activity.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -83,7 +83,7 @@ data = {
     }
   ]
 }
-response = self.sg.client.access_settings.whitelist.post(request_body=data)
+response = sg.client.access_settings.whitelist.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -99,7 +99,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 ### GET /access_settings/whitelist
 
 ```python
-response = self.sg.client.access_settings.whitelist.get()
+response = sg.client.access_settings.whitelist.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -117,7 +117,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 ### DELETE /access_settings/whitelist
 
 ```python
-response = self.sg.client.access_settings.whitelist.delete()
+response = sg.client.access_settings.whitelist.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -136,7 +136,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ```python
 rule_id = "test_url_param"
-response = self.sg.client.access_settings.whitelist._(rule_id).get()
+response = sg.client.access_settings.whitelist._(rule_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -155,7 +155,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ```python
 rule_id = "test_url_param"
-response = self.sg.client.access_settings.whitelist._(rule_id).delete()
+response = sg.client.access_settings.whitelist._(rule_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -186,7 +186,7 @@ data = {
     "alerts.read"
   ]
 }
-response = self.sg.client.api_keys.post(request_body=data)
+response = sg.client.api_keys.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -200,7 +200,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 ### GET /api_keys
 
 ```python
-response = self.sg.client.api_keys.get()
+response = sg.client.api_keys.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -226,7 +226,7 @@ data = {
   ]
 }
 api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).put(request_body=data)
+response = sg.client.api_keys._(api_key_id).put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -252,7 +252,7 @@ data = {
   "name": "A New Hope"
 }
 api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).patch(request_body=data)
+response = sg.client.api_keys._(api_key_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -267,7 +267,7 @@ If the API Key ID does not exist an HTTP 404 will be returned.
 
 ```python
 api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).get()
+response = sg.client.api_keys._(api_key_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -290,7 +290,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ```python
 api_key_id = "test_url_param"
-response = self.sg.client.api_keys._(api_key_id).delete()
+response = sg.client.api_keys._(api_key_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -313,10 +313,10 @@ Each user can create up to 25 different suppression groups.
 ```python
 data = {
   "description": "A group description",
-  "is_default": false,
+  "is_default": False,
   "name": "A group name"
 }
-response = self.sg.client.asm.groups.post(request_body=data)
+response = sg.client.asm.groups.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -334,7 +334,7 @@ Each user can create up to 25 different suppression groups.
 ### GET /asm/groups
 
 ```python
-response = self.sg.client.asm.groups.get()
+response = sg.client.asm.groups.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -358,7 +358,7 @@ data = {
   "name": "Item Suggestions"
 }
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).patch(request_body=data)
+response = sg.client.asm.groups._(group_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -377,7 +377,7 @@ Each user can create up to 25 different suppression groups.
 
 ```python
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).get()
+response = sg.client.asm.groups._(group_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -398,7 +398,7 @@ Each user can create up to 25 different suppression groups.
 
 ```python
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).delete()
+response = sg.client.asm.groups._(group_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -421,7 +421,7 @@ data = {
   ]
 }
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
+response = sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -436,7 +436,7 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ```python
 group_id = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions.get()
+response = sg.client.asm.groups._(group_id).suppressions.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -452,7 +452,7 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 ```python
 group_id = "test_url_param"
         email = "test_url_param"
-response = self.sg.client.asm.groups._(group_id).suppressions._(email).delete()
+response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -472,7 +472,7 @@ data = {
     "test2@example.com"
   ]
 }
-response = self.sg.client.asm.suppressions._("global").post(request_body=data)
+response = sg.client.asm.suppressions._("global").post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -489,7 +489,7 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ```python
 email = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email).get()
+response = sg.client.asm.suppressions._("global")._(email).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -504,7 +504,7 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ```python
 email = "test_url_param"
-response = self.sg.client.asm.suppressions._("global")._(email).delete()
+response = sg.client.asm.suppressions._("global")._(email).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -524,7 +524,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ```python
 params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'browsers': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': '2016-01-01'}
-response = self.sg.client.browsers.stats.get(query_params=params)
+response = sg.client.browsers.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -567,7 +567,7 @@ data = {
   "suppression_group_id": 42,
   "title": "March Newsletter"
 }
-response = self.sg.client.campaigns.post(request_body=data)
+response = sg.client.campaigns.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -588,7 +588,7 @@ For more information:
 
 ```python
 params = {'limit': 0, 'offset': 0}
-response = self.sg.client.campaigns.get(query_params=params)
+response = sg.client.campaigns.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -614,7 +614,7 @@ data = {
   "title": "May Newsletter"
 }
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).patch(request_body=data)
+response = sg.client.campaigns._(campaign_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -633,7 +633,7 @@ For more information:
 
 ```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).get()
+response = sg.client.campaigns._(campaign_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -652,7 +652,7 @@ For more information:
 
 ```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).delete()
+response = sg.client.campaigns._(campaign_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -672,7 +672,7 @@ data = {
   "send_at": 1489451436
 }
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
+response = sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -692,7 +692,7 @@ data = {
   "send_at": 1489771528
 }
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
+response = sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -709,7 +709,7 @@ For more information:
 
 ```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.get()
+response = sg.client.campaigns._(campaign_id).schedules.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -729,7 +729,7 @@ For more information:
 
 ```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.delete()
+response = sg.client.campaigns._(campaign_id).schedules.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -748,7 +748,7 @@ For more information:
 
 ```python
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.now.post()
+response = sg.client.campaigns._(campaign_id).schedules.now.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -770,7 +770,7 @@ data = {
   "to": "your.email@example.com"
 }
 campaign_id = "test_url_param"
-response = self.sg.client.campaigns._(campaign_id).schedules.test.post(request_body=data)
+response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -788,7 +788,7 @@ Categories can help organize your email analytics by enabling you to tag emails 
 
 ```python
 params = {'category': 'test_string', 'limit': 1, 'offset': 1}
-response = self.sg.client.categories.get(query_params=params)
+response = sg.client.categories.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -805,7 +805,7 @@ Categories allow you to group your emails together according to broad topics tha
 
 ```python
 params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01', 'categories': 'test_string'}
-response = self.sg.client.categories.stats.get(query_params=params)
+response = sg.client.categories.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -822,7 +822,7 @@ Categories allow you to group your emails together according to broad topics tha
 
 ```python
 params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'start_date': '2016-01-01', 'sort_by_direction': 'asc'}
-response = self.sg.client.categories.stats.sums.get(query_params=params)
+response = sg.client.categories.stats.sums.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -842,7 +842,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ```python
 params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-04-01'}
-response = self.sg.client.clients.stats.get(query_params=params)
+response = sg.client.clients.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -866,7 +866,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 ```python
 params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-04-01'}
 client_type = "test_url_param"
-response = self.sg.client.clients._(client_type).stats.get(query_params=params)
+response = sg.client.clients._(client_type).stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -887,7 +887,7 @@ data = {
   "name": "pet",
   "type": "text"
 }
-response = self.sg.client.contactdb.custom_fields.post(request_body=data)
+response = sg.client.contactdb.custom_fields.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -901,7 +901,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ### GET /contactdb/custom_fields
 
 ```python
-response = self.sg.client.contactdb.custom_fields.get()
+response = sg.client.contactdb.custom_fields.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -916,7 +916,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ```python
 custom_field_id = "test_url_param"
-response = self.sg.client.contactdb.custom_fields._(custom_field_id).get()
+response = sg.client.contactdb.custom_fields._(custom_field_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -931,7 +931,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ```python
 custom_field_id = "test_url_param"
-response = self.sg.client.contactdb.custom_fields._(custom_field_id).delete()
+response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -948,7 +948,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 data = {
   "name": "your list name"
 }
-response = self.sg.client.contactdb.lists.post(request_body=data)
+response = sg.client.contactdb.lists.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -962,7 +962,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ### GET /contactdb/lists
 
 ```python
-response = self.sg.client.contactdb.lists.get()
+response = sg.client.contactdb.lists.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -976,7 +976,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ### DELETE /contactdb/lists
 
 ```python
-response = self.sg.client.contactdb.lists.delete()
+response = sg.client.contactdb.lists.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -996,7 +996,7 @@ data = {
 }
 params = {'list_id': 0}
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
+response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1012,7 +1012,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```python
 params = {'list_id': 0}
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).get(query_params=params)
+response = sg.client.contactdb.lists._(list_id).get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1028,7 +1028,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```python
 params = {'delete_contacts': 'true'}
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).delete(query_params=params)
+response = sg.client.contactdb.lists._(list_id).delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1049,7 +1049,7 @@ data = [
   "recipient_id2"
 ]
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients.post(request_body=data)
+response = sg.client.contactdb.lists._(list_id).recipients.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1065,7 +1065,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```python
 params = {'page': 1, 'page_size': 1, 'list_id': 0}
 list_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
+response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1081,7 +1081,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```python
 list_id = "test_url_param"
         recipient_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1098,7 +1098,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 params = {'recipient_id': 0, 'list_id': 0}
 list_id = "test_url_param"
         recipient_id = "test_url_param"
-response = self.sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1123,7 +1123,7 @@ data = [
     "last_name": "Jones"
   }
 ]
-response = self.sg.client.contactdb.recipients.patch(request_body=data)
+response = sg.client.contactdb.recipients.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1153,7 +1153,7 @@ data = [
     "last_name": "User"
   }
 ]
-response = self.sg.client.contactdb.recipients.post(request_body=data)
+response = sg.client.contactdb.recipients.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1171,7 +1171,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ```python
 params = {'page': 1, 'page_size': 1}
-response = self.sg.client.contactdb.recipients.get(query_params=params)
+response = sg.client.contactdb.recipients.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1187,7 +1187,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ### DELETE /contactdb/recipients
 
 ```python
-response = self.sg.client.contactdb.recipients.delete()
+response = sg.client.contactdb.recipients.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1203,7 +1203,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ### GET /contactdb/recipients/billable_count
 
 ```python
-response = self.sg.client.contactdb.recipients.billable_count.get()
+response = sg.client.contactdb.recipients.billable_count.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1217,7 +1217,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ### GET /contactdb/recipients/count
 
 ```python
-response = self.sg.client.contactdb.recipients.count.get()
+response = sg.client.contactdb.recipients.count.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1241,7 +1241,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ```python
 params = {'{field_name}': 'test_string'}
-response = self.sg.client.contactdb.recipients.search.get(query_params=params)
+response = sg.client.contactdb.recipients.search.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1256,7 +1256,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).get()
+response = sg.client.contactdb.recipients._(recipient_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1271,7 +1271,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).delete()
+response = sg.client.contactdb.recipients._(recipient_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1288,7 +1288,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ```python
 recipient_id = "test_url_param"
-response = self.sg.client.contactdb.recipients._(recipient_id).lists.get()
+response = sg.client.contactdb.recipients._(recipient_id).lists.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1302,7 +1302,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ### GET /contactdb/reserved_fields
 
 ```python
-response = self.sg.client.contactdb.reserved_fields.get()
+response = sg.client.contactdb.reserved_fields.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1360,7 +1360,7 @@ data = {
   "list_id": 4,
   "name": "Last Name Miller"
 }
-response = self.sg.client.contactdb.segments.post(request_body=data)
+response = sg.client.contactdb.segments.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1376,7 +1376,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 ### GET /contactdb/segments
 
 ```python
-response = self.sg.client.contactdb.segments.get()
+response = sg.client.contactdb.segments.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1406,7 +1406,7 @@ data = {
 }
 params = {'segment_id': 'test_string'}
 segment_id = "test_url_param"
-response = self.sg.client.contactdb.segments._(segment_id).patch(request_body=data, query_params=params)
+response = sg.client.contactdb.segments._(segment_id).patch(request_body=data, query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1424,7 +1424,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 ```python
 params = {'segment_id': 0}
 segment_id = "test_url_param"
-response = self.sg.client.contactdb.segments._(segment_id).get(query_params=params)
+response = sg.client.contactdb.segments._(segment_id).get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1444,7 +1444,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 ```python
 params = {'delete_contacts': 'true'}
 segment_id = "test_url_param"
-response = self.sg.client.contactdb.segments._(segment_id).delete(query_params=params)
+response = sg.client.contactdb.segments._(segment_id).delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1462,7 +1462,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 ```python
 params = {'page': 1, 'page_size': 1}
 segment_id = "test_url_param"
-response = self.sg.client.contactdb.segments._(segment_id).recipients.get(query_params=params)
+response = sg.client.contactdb.segments._(segment_id).recipients.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1491,7 +1491,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ```python
 params = {'aggregated_by': 'day', 'limit': 1, 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 1}
-response = self.sg.client.devices.stats.get(query_params=params)
+response = sg.client.devices.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1511,7 +1511,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ```python
 params = {'end_date': '2016-04-01', 'country': 'US', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01'}
-response = self.sg.client.geo.stats.get(query_params=params)
+response = sg.client.geo.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1531,7 +1531,7 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 
 ```python
 params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
-response = self.sg.client.ips.get(query_params=params)
+response = sg.client.ips.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1545,7 +1545,7 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 ### GET /ips/assigned
 
 ```python
-response = self.sg.client.ips.assigned.get()
+response = sg.client.ips.assigned.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1568,7 +1568,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 data = {
   "name": "marketing"
 }
-response = self.sg.client.ips.pools.post(request_body=data)
+response = sg.client.ips.pools.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1586,7 +1586,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 ### GET /ips/pools
 
 ```python
-response = self.sg.client.ips.pools.get()
+response = sg.client.ips.pools.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1608,7 +1608,7 @@ data = {
   "name": "new_pool_name"
 }
 pool_name = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).put(request_body=data)
+response = sg.client.ips.pools._(pool_name).put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1627,7 +1627,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ```python
 pool_name = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).get()
+response = sg.client.ips.pools._(pool_name).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1646,7 +1646,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ```python
 pool_name = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).delete()
+response = sg.client.ips.pools._(pool_name).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1666,7 +1666,7 @@ data = {
   "ip": "0.0.0.0"
 }
 pool_name = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).ips.post(request_body=data)
+response = sg.client.ips.pools._(pool_name).ips.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1684,7 +1684,7 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 ```python
 pool_name = "test_url_param"
         ip = "test_url_param"
-response = self.sg.client.ips.pools._(pool_name).ips._(ip).delete()
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1703,7 +1703,7 @@ For more general information about warming up IPs, please see our [Classroom](ht
 data = {
   "ip": "0.0.0.0"
 }
-response = self.sg.client.ips.warmup.post(request_body=data)
+response = sg.client.ips.warmup.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1719,7 +1719,7 @@ For more general information about warming up IPs, please see our [Classroom](ht
 ### GET /ips/warmup
 
 ```python
-response = self.sg.client.ips.warmup.get()
+response = sg.client.ips.warmup.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1736,7 +1736,7 @@ For more general information about warming up IPs, please see our [Classroom](ht
 
 ```python
 ip_address = "test_url_param"
-response = self.sg.client.ips.warmup._(ip_address).get()
+response = sg.client.ips.warmup._(ip_address).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1753,7 +1753,7 @@ For more general information about warming up IPs, please see our [Classroom](ht
 
 ```python
 ip_address = "test_url_param"
-response = self.sg.client.ips.warmup._(ip_address).delete()
+response = sg.client.ips.warmup._(ip_address).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1770,7 +1770,7 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 
 ```python
 ip_address = "test_url_param"
-response = self.sg.client.ips._(ip_address).get()
+response = sg.client.ips._(ip_address).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1791,7 +1791,7 @@ More Information:
 ### POST /mail/batch
 
 ```python
-response = self.sg.client.mail.batch.post()
+response = sg.client.mail.batch.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1810,7 +1810,7 @@ More Information:
 
 ```python
 batch_id = "test_url_param"
-response = self.sg.client.mail.batch._(batch_id).get()
+response = sg.client.mail.batch._(batch_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1856,7 +1856,7 @@ data = {
   "content": [
     {
       "type": "text/html",
-      "value": "<html><p>Hello, world!</p><img src='cid:ii_139db99fdb5c3704'></img></html>"
+      "value": "<html><p>Hello, world!</p><img src=[CID GOES HERE]></img></html>"
     }
   ],
   "custom_args": {
@@ -1873,21 +1873,21 @@ data = {
   "mail_settings": {
     "bcc": {
       "email": "ben.doe@example.com",
-      "enable": true
+      "enable": True
     },
     "bypass_list_management": {
-      "enable": true
+      "enable": True
     },
     "footer": {
-      "enable": true,
+      "enable": True,
       "html": "<p>Thanks</br>The SendGrid Team</p>",
       "text": "Thanks,/n The SendGrid Team"
     },
     "sandbox_mode": {
-      "enable": false
+      "enable": False
     },
     "spam_check": {
-      "enable": true,
+      "enable": True,
       "post_to_url": "http://example.com/compliance",
       "threshold": 3
     }
@@ -1949,11 +1949,11 @@ data = {
   "template_id": "[YOUR TEMPLATE ID GOES HERE]",
   "tracking_settings": {
     "click_tracking": {
-      "enable": true,
-      "enable_text": true
+      "enable": True,
+      "enable_text": True
     },
     "ganalytics": {
-      "enable": true,
+      "enable": True,
       "utm_campaign": "[NAME OF YOUR REFERRER SOURCE]",
       "utm_content": "[USE THIS SPACE TO DIFFERENTIATE YOUR EMAIL FROM ADS]",
       "utm_medium": "[NAME OF YOUR MARKETING MEDIUM e.g. email]",
@@ -1961,18 +1961,18 @@ data = {
       "utm_term": "[IDENTIFY PAID KEYWORDS HERE]"
     },
     "open_tracking": {
-      "enable": true,
+      "enable": True,
       "substitution_tag": "%opentrack"
     },
     "subscription_tracking": {
-      "enable": true,
+      "enable": True,
       "html": "If you would like to unsubscribe and stop receiving these emails <% clickhere %>.",
       "substitution_tag": "<%click here%>",
       "text": "If you would like to unsubscribe and stop receiveing these emails <% click here %>."
     }
   }
 }
-response = self.sg.client.mail.send.beta.post(request_body=data)
+response = sg.client.mail.send.beta.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -1990,7 +1990,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 params = {'limit': 1, 'offset': 1}
-response = self.sg.client.mail_settings.get(query_params=params)
+response = sg.client.mail_settings.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2007,13 +2007,13 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "list": [
     "email1@example.com",
     "example.com"
   ]
 }
-response = self.sg.client.mail_settings.address_whitelist.patch(request_body=data)
+response = sg.client.mail_settings.address_whitelist.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2029,7 +2029,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/address_whitelist
 
 ```python
-response = self.sg.client.mail_settings.address_whitelist.get()
+response = sg.client.mail_settings.address_whitelist.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2047,9 +2047,9 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```python
 data = {
   "email": "email@example.com",
-  "enabled": false
+  "enabled": False
 }
-response = self.sg.client.mail_settings.bcc.patch(request_body=data)
+response = sg.client.mail_settings.bcc.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2065,7 +2065,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/bcc
 
 ```python
-response = self.sg.client.mail_settings.bcc.get()
+response = sg.client.mail_settings.bcc.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2082,11 +2082,11 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "hard_bounces": 5,
   "soft_bounces": 5
 }
-response = self.sg.client.mail_settings.bounce_purge.patch(request_body=data)
+response = sg.client.mail_settings.bounce_purge.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2102,7 +2102,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/bounce_purge
 
 ```python
-response = self.sg.client.mail_settings.bounce_purge.get()
+response = sg.client.mail_settings.bounce_purge.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2119,11 +2119,11 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "html_content": "...",
   "plain_content": "..."
 }
-response = self.sg.client.mail_settings.footer.patch(request_body=data)
+response = sg.client.mail_settings.footer.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2139,7 +2139,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/footer
 
 ```python
-response = self.sg.client.mail_settings.footer.get()
+response = sg.client.mail_settings.footer.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2157,9 +2157,9 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```python
 data = {
   "email": "example@example.com",
-  "enabled": true
+  "enabled": True
 }
-response = self.sg.client.mail_settings.forward_bounce.patch(request_body=data)
+response = sg.client.mail_settings.forward_bounce.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2175,7 +2175,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/forward_bounce
 
 ```python
-response = self.sg.client.mail_settings.forward_bounce.get()
+response = sg.client.mail_settings.forward_bounce.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2193,9 +2193,9 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```python
 data = {
   "email": "",
-  "enabled": false
+  "enabled": False
 }
-response = self.sg.client.mail_settings.forward_spam.patch(request_body=data)
+response = sg.client.mail_settings.forward_spam.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2211,7 +2211,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/forward_spam
 
 ```python
-response = self.sg.client.mail_settings.forward_spam.get()
+response = sg.client.mail_settings.forward_spam.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2228,9 +2228,9 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": false
+  "enabled": False
 }
-response = self.sg.client.mail_settings.plain_content.patch(request_body=data)
+response = sg.client.mail_settings.plain_content.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2246,7 +2246,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/plain_content
 
 ```python
-response = self.sg.client.mail_settings.plain_content.get()
+response = sg.client.mail_settings.plain_content.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2263,11 +2263,11 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "max_score": 5,
   "url": "url"
 }
-response = self.sg.client.mail_settings.spam_check.patch(request_body=data)
+response = sg.client.mail_settings.spam_check.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2283,7 +2283,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/spam_check
 
 ```python
-response = self.sg.client.mail_settings.spam_check.get()
+response = sg.client.mail_settings.spam_check.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2302,10 +2302,10 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "html_content": "<% body %>"
 }
-response = self.sg.client.mail_settings.template.patch(request_body=data)
+response = sg.client.mail_settings.template.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2323,7 +2323,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ### GET /mail_settings/template
 
 ```python
-response = self.sg.client.mail_settings.template.get()
+response = sg.client.mail_settings.template.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2343,7 +2343,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ```python
 params = {'end_date': '2016-04-01', 'mailbox_providers': 'test_string', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01'}
-response = self.sg.client.mailbox_providers.stats.get(query_params=params)
+response = sg.client.mailbox_providers.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2361,7 +2361,7 @@ Our partner settings allow you to integrate your SendGrid account with our partn
 
 ```python
 params = {'limit': 1, 'offset': 1}
-response = self.sg.client.partner_settings.get(query_params=params)
+response = sg.client.partner_settings.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2378,11 +2378,11 @@ By integrating with New Relic, you can send your SendGrid email statistics to yo
 
 ```python
 data = {
-  "enable_subuser_statistics": true,
-  "enabled": true,
+  "enable_subuser_statistics": True,
+  "enabled": True,
   "license_key": ""
 }
-response = self.sg.client.partner_settings.new_relic.patch(request_body=data)
+response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2398,7 +2398,7 @@ By integrating with New Relic, you can send your SendGrid email statistics to yo
 ### GET /partner_settings/new_relic
 
 ```python
-response = self.sg.client.partner_settings.new_relic.get()
+response = sg.client.partner_settings.new_relic.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2415,7 +2415,7 @@ API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://s
 ### GET /scopes
 
 ```python
-response = self.sg.client.scopes.get()
+response = sg.client.scopes.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2433,7 +2433,7 @@ Parent accounts will see aggregated stats for their account and all subuser acco
 
 ```python
 params = {'aggregated_by': 'day', 'limit': 1, 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 1}
-response = self.sg.client.stats.get(query_params=params)
+response = sg.client.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2462,7 +2462,7 @@ data = {
   "password": "johns_password",
   "username": "John@example.com"
 }
-response = self.sg.client.subusers.post(request_body=data)
+response = sg.client.subusers.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2480,7 +2480,7 @@ For more information about Subusers:
 
 ```python
 params = {'username': 'test_string', 'limit': 0, 'offset': 0}
-response = self.sg.client.subusers.get(query_params=params)
+response = sg.client.subusers.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2495,7 +2495,7 @@ This endpoint allows you to request the reputations for your subusers.
 
 ```python
 params = {'usernames': 'test_string'}
-response = self.sg.client.subusers.reputations.get(query_params=params)
+response = sg.client.subusers.reputations.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2514,7 +2514,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ```python
 params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'offset': 1, 'start_date': '2016-01-01', 'subusers': 'test_string'}
-response = self.sg.client.subusers.stats.get(query_params=params)
+response = sg.client.subusers.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2534,7 +2534,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ```python
 params = {'subuser': 'test_string', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'date': 'test_string', 'sort_by_direction': 'asc'}
-response = self.sg.client.subusers.stats.monthly.get(query_params=params)
+response = sg.client.subusers.stats.monthly.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2552,7 +2552,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ```python
 params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1, 'start_date': '2016-01-01', 'sort_by_direction': 'asc'}
-response = self.sg.client.subusers.stats.sums.get(query_params=params)
+response = sg.client.subusers.stats.sums.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2570,10 +2570,10 @@ For more information about Subusers:
 
 ```python
 data = {
-  "disabled": false
+  "disabled": False
 }
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).patch(request_body=data)
+response = sg.client.subusers._(subuser_name).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2591,7 +2591,7 @@ For more information about Subusers:
 
 ```python
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).delete()
+response = sg.client.subusers._(subuser_name).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2612,7 +2612,7 @@ data = [
   "127.0.0.1"
 ]
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).ips.put(request_body=data)
+response = sg.client.subusers._(subuser_name).ips.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2629,7 +2629,7 @@ data = {
   "frequency": 500
 }
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.put(request_body=data)
+response = sg.client.subusers._(subuser_name).monitor.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2646,7 +2646,7 @@ data = {
   "frequency": 50000
 }
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.post(request_body=data)
+response = sg.client.subusers._(subuser_name).monitor.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2659,7 +2659,7 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ```python
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.get()
+response = sg.client.subusers._(subuser_name).monitor.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2672,7 +2672,7 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ```python
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).monitor.delete()
+response = sg.client.subusers._(subuser_name).monitor.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2693,7 +2693,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 ```python
 params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 1}
 subuser_name = "test_url_param"
-response = self.sg.client.subusers._(subuser_name).stats.monthly.get(query_params=params)
+response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2713,7 +2713,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
-response = self.sg.client.suppression.blocks.get(query_params=params)
+response = sg.client.suppression.blocks.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2734,7 +2734,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ### DELETE /suppression/blocks
 
 ```python
-response = self.sg.client.suppression.blocks.delete()
+response = sg.client.suppression.blocks.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2751,7 +2751,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.blocks._(email).get()
+response = sg.client.suppression.blocks._(email).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2768,7 +2768,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.blocks._(email).delete()
+response = sg.client.suppression.blocks._(email).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2788,7 +2788,7 @@ For more information see:
 
 ```python
 params = {'start_time': 0, 'end_time': 0}
-response = self.sg.client.suppression.bounces.get(query_params=params)
+response = sg.client.suppression.bounces.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2810,7 +2810,7 @@ Note: the `delete_all` and `emails` parameters should be used independently of e
 ### DELETE /suppression/bounces
 
 ```python
-response = self.sg.client.suppression.bounces.delete()
+response = sg.client.suppression.bounces.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2831,7 +2831,7 @@ For more information see:
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.bounces._(email).get()
+response = sg.client.suppression.bounces._(email).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2853,7 +2853,7 @@ For more information see:
 ```python
 params = {'email_address': 'example@example.com'}
 email = "test_url_param"
-response = self.sg.client.suppression.bounces._(email).delete(query_params=params)
+response = sg.client.suppression.bounces._(email).delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2872,7 +2872,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
-response = self.sg.client.suppression.invalid_emails.get(query_params=params)
+response = sg.client.suppression.invalid_emails.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2895,7 +2895,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ### DELETE /suppression/invalid_emails
 
 ```python
-response = self.sg.client.suppression.invalid_emails.delete()
+response = sg.client.suppression.invalid_emails.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2914,7 +2914,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.invalid_emails._(email).get()
+response = sg.client.suppression.invalid_emails._(email).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2933,7 +2933,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.invalid_emails._(email).delete()
+response = sg.client.suppression.invalid_emails._(email).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2950,7 +2950,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.spam_report._(email).get()
+response = sg.client.suppression.spam_report._(email).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2967,7 +2967,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 email = "test_url_param"
-response = self.sg.client.suppression.spam_report._(email).delete()
+response = sg.client.suppression.spam_report._(email).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -2984,7 +2984,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```python
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
-response = self.sg.client.suppression.spam_reports.get(query_params=params)
+response = sg.client.suppression.spam_reports.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3005,7 +3005,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ### DELETE /suppression/spam_reports
 
 ```python
-response = self.sg.client.suppression.spam_reports.delete()
+response = sg.client.suppression.spam_reports.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3020,7 +3020,7 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ```python
 params = {'start_time': 1, 'limit': 1, 'end_time': 1, 'offset': 1}
-response = self.sg.client.suppression.unsubscribes.get(query_params=params)
+response = sg.client.suppression.unsubscribes.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3042,7 +3042,7 @@ Transactional templates are templates created specifically for transactional ema
 data = {
   "name": "example_name"
 }
-response = self.sg.client.templates.post(request_body=data)
+response = sg.client.templates.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3058,7 +3058,7 @@ Transactional templates are templates created specifically for transactional ema
 ### GET /templates
 
 ```python
-response = self.sg.client.templates.get()
+response = sg.client.templates.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3079,7 +3079,7 @@ data = {
   "name": "new_example_name"
 }
 template_id = "test_url_param"
-response = self.sg.client.templates._(template_id).patch(request_body=data)
+response = sg.client.templates._(template_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3097,7 +3097,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ```python
 template_id = "test_url_param"
-response = self.sg.client.templates._(template_id).get()
+response = sg.client.templates._(template_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3115,7 +3115,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ```python
 template_id = "test_url_param"
-response = self.sg.client.templates._(template_id).delete()
+response = sg.client.templates._(template_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3141,7 +3141,7 @@ data = {
   "template_id": "ddb96bbc-9b92-425e-8979-99464621b543"
 }
 template_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions.post(request_body=data)
+response = sg.client.templates._(template_id).versions.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3172,7 +3172,7 @@ data = {
 }
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
+response = sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3196,7 +3196,7 @@ For more information about transactional templates, please see our [User Guide](
 ```python
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).get()
+response = sg.client.templates._(template_id).versions._(version_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3220,7 +3220,7 @@ For more information about transactional templates, please see our [User Guide](
 ```python
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).delete()
+response = sg.client.templates._(template_id).versions._(version_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3245,7 +3245,7 @@ For more information about transactional templates, please see our [User Guide](
 ```python
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = self.sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(template_id).versions._(version_id).activate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3265,7 +3265,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ```python
 params = {'limit': 1, 'offset': 1}
-response = self.sg.client.tracking_settings.get(query_params=params)
+response = sg.client.tracking_settings.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3282,9 +3282,9 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ```python
 data = {
-  "enabled": true
+  "enabled": True
 }
-response = self.sg.client.tracking_settings.click.patch(request_body=data)
+response = sg.client.tracking_settings.click.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3300,7 +3300,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ### GET /tracking_settings/click
 
 ```python
-response = self.sg.client.tracking_settings.click.get()
+response = sg.client.tracking_settings.click.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3321,14 +3321,14 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "utm_campaign": "website",
   "utm_content": "",
   "utm_medium": "email",
   "utm_source": "sendgrid.com",
   "utm_term": ""
 }
-response = self.sg.client.tracking_settings.google_analytics.patch(request_body=data)
+response = sg.client.tracking_settings.google_analytics.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3348,7 +3348,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ### GET /tracking_settings/google_analytics
 
 ```python
-response = self.sg.client.tracking_settings.google_analytics.get()
+response = sg.client.tracking_settings.google_analytics.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3367,9 +3367,9 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ```python
 data = {
-  "enabled": true
+  "enabled": True
 }
-response = self.sg.client.tracking_settings.open.patch(request_body=data)
+response = sg.client.tracking_settings.open.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3387,7 +3387,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ### GET /tracking_settings/open
 
 ```python
-response = self.sg.client.tracking_settings.open.get()
+response = sg.client.tracking_settings.open.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3406,14 +3406,14 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ```python
 data = {
-  "enabled": true,
+  "enabled": True,
   "html_content": "html content",
   "landing": "landing page html",
   "plain_content": "text content",
   "replace": "replacement tag",
   "url": "url"
 }
-response = self.sg.client.tracking_settings.subscription.patch(request_body=data)
+response = sg.client.tracking_settings.subscription.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3431,7 +3431,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ### GET /tracking_settings/subscription
 
 ```python
-response = self.sg.client.tracking_settings.subscription.get()
+response = sg.client.tracking_settings.subscription.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3454,7 +3454,7 @@ For more information about your user profile:
 ### GET /user/account
 
 ```python
-response = self.sg.client.user.account.get()
+response = sg.client.user.account.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3468,7 +3468,7 @@ Your monthly credit allotment limits the number of emails you may send before in
 ### GET /user/credits
 
 ```python
-response = self.sg.client.user.credits.get()
+response = sg.client.user.credits.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3489,7 +3489,7 @@ For more information about your user profile:
 data = {
   "email": "example@example.com"
 }
-response = self.sg.client.user.email.put(request_body=data)
+response = sg.client.user.email.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3507,7 +3507,7 @@ For more information about your user profile:
 ### GET /user/email
 
 ```python
-response = self.sg.client.user.email.get()
+response = sg.client.user.email.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3529,7 +3529,7 @@ data = {
   "new_password": "new_password",
   "old_password": "old_password"
 }
-response = self.sg.client.user.password.put(request_body=data)
+response = sg.client.user.password.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3554,7 +3554,7 @@ data = {
   "first_name": "Example",
   "last_name": "User"
 }
-response = self.sg.client.user.profile.patch(request_body=data)
+response = sg.client.user.profile.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3570,7 +3570,7 @@ For more information about your user profile:
 ### GET /user/profile
 
 ```python
-response = self.sg.client.user.profile.get()
+response = sg.client.user.profile.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3591,7 +3591,7 @@ data = {
   "batch_id": "YOUR_BATCH_ID",
   "status": "pause"
 }
-response = self.sg.client.user.scheduled_sends.post(request_body=data)
+response = sg.client.user.scheduled_sends.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3605,7 +3605,7 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 ### GET /user/scheduled_sends
 
 ```python
-response = self.sg.client.user.scheduled_sends.get()
+response = sg.client.user.scheduled_sends.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3623,7 +3623,7 @@ data = {
   "status": "pause"
 }
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
+response = sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3638,7 +3638,7 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ```python
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).get()
+response = sg.client.user.scheduled_sends._(batch_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3653,7 +3653,7 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ```python
 batch_id = "test_url_param"
-response = self.sg.client.user.scheduled_sends._(batch_id).delete()
+response = sg.client.user.scheduled_sends._(batch_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3670,10 +3670,10 @@ The Enforced TLS settings specify whether or not the recipient is required to su
 
 ```python
 data = {
-  "require_tls": true,
-  "require_valid_cert": false
+  "require_tls": True,
+  "require_valid_cert": False
 }
-response = self.sg.client.user.settings.enforced_tls.patch(request_body=data)
+response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3689,7 +3689,7 @@ The Enforced TLS settings specify whether or not the recipient is required to su
 ### GET /user/settings/enforced_tls
 
 ```python
-response = self.sg.client.user.settings.enforced_tls.get()
+response = sg.client.user.settings.enforced_tls.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3710,7 +3710,7 @@ For more information about your user profile:
 data = {
   "username": "test_username"
 }
-response = self.sg.client.user.username.put(request_body=data)
+response = sg.client.user.username.put(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3728,7 +3728,7 @@ For more information about your user profile:
 ### GET /user/username
 
 ```python
-response = self.sg.client.user.username.get()
+response = sg.client.user.username.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3747,21 +3747,21 @@ Common uses of this data are to remove unsubscribes, react to spam reports, dete
 
 ```python
 data = {
-  "bounce": true,
-  "click": true,
-  "deferred": true,
-  "delivered": true,
-  "dropped": true,
-  "enabled": true,
-  "group_resubscribe": true,
-  "group_unsubscribe": true,
-  "open": true,
-  "processed": true,
-  "spam_report": true,
-  "unsubscribe": true,
+  "bounce": True,
+  "click": True,
+  "deferred": True,
+  "delivered": True,
+  "dropped": True,
+  "enabled": True,
+  "group_resubscribe": True,
+  "group_unsubscribe": True,
+  "open": True,
+  "processed": True,
+  "spam_report": True,
+  "unsubscribe": True,
   "url": "url"
 }
-response = self.sg.client.user.webhooks.event.settings.patch(request_body=data)
+response = sg.client.user.webhooks.event.settings.patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3779,7 +3779,7 @@ Common uses of this data are to remove unsubscribes, react to spam reports, dete
 ### GET /user/webhooks/event/settings
 
 ```python
-response = self.sg.client.user.webhooks.event.settings.get()
+response = sg.client.user.webhooks.event.settings.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3798,7 +3798,7 @@ Common uses of this data are to remove unsubscribes, react to spam reports, dete
 data = {
   "url": "url"
 }
-response = self.sg.client.user.webhooks.event.test.post(request_body=data)
+response = sg.client.user.webhooks.event.test.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3812,7 +3812,7 @@ SendGrid can parse the attachments and contents of incoming emails. The Parse AP
 ### GET /user/webhooks/parse/settings
 
 ```python
-response = self.sg.client.user.webhooks.parse.settings.get()
+response = sg.client.user.webhooks.parse.settings.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3829,7 +3829,7 @@ There are a number of pre-made integrations for the SendGrid Parse Webhook which
 
 ```python
 params = {'aggregated_by': 'day', 'limit': 'test_string', 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
-response = self.sg.client.user.webhooks.parse.stats.get(query_params=params)
+response = sg.client.user.webhooks.parse.stats.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3853,9 +3853,9 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 data = {
-  "automatic_security": false,
-  "custom_spf": true,
-  "default": true,
+  "automatic_security": False,
+  "custom_spf": True,
+  "default": True,
   "domain": "example.com",
   "ips": [
     "192.168.1.1",
@@ -3864,7 +3864,7 @@ data = {
   "subdomain": "news",
   "username": "john@example.com"
 }
-response = self.sg.client.whitelabel.domains.post(request_body=data)
+response = sg.client.whitelabel.domains.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3882,7 +3882,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 'true', 'limit': 1, 'offset': 1}
-response = self.sg.client.whitelabel.domains.get(query_params=params)
+response = sg.client.whitelabel.domains.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3903,7 +3903,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ### GET /whitelabel/domains/default
 
 ```python
-response = self.sg.client.whitelabel.domains.default.get()
+response = sg.client.whitelabel.domains.default.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3926,7 +3926,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ### GET /whitelabel/domains/subuser
 
 ```python
-response = self.sg.client.whitelabel.domains.subuser.get()
+response = sg.client.whitelabel.domains.subuser.get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3949,7 +3949,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ### DELETE /whitelabel/domains/subuser
 
 ```python
-response = self.sg.client.whitelabel.domains.subuser.delete()
+response = sg.client.whitelabel.domains.subuser.delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3966,11 +3966,11 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 data = {
-  "custom_spf": true,
-  "default": false
+  "custom_spf": True,
+  "default": False
 }
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
+response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -3988,7 +3988,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).get()
+response = sg.client.whitelabel.domains._(domain_id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4005,7 +4005,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).delete()
+response = sg.client.whitelabel.domains._(domain_id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4032,7 +4032,7 @@ data = {
   "username": "jane@example.com"
 }
 domain_id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
+response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4057,7 +4057,7 @@ data = {
   "ip": "192.168.0.1"
 }
 id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(id).ips.post(request_body=data)
+response = sg.client.whitelabel.domains._(id).ips.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4081,7 +4081,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ```python
 id = "test_url_param"
         ip = "test_url_param"
-response = self.sg.client.whitelabel.domains._(id).ips._(ip).delete()
+response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4103,7 +4103,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.domains._(id).validate.post()
+response = sg.client.whitelabel.domains._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4126,7 +4126,7 @@ data = {
   "ip": "192.168.1.1",
   "subdomain": "email"
 }
-response = self.sg.client.whitelabel.ips.post(request_body=data)
+response = sg.client.whitelabel.ips.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4145,7 +4145,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
-response = self.sg.client.whitelabel.ips.get(query_params=params)
+response = sg.client.whitelabel.ips.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4162,7 +4162,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.ips._(id).get()
+response = sg.client.whitelabel.ips._(id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4179,7 +4179,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.ips._(id).delete()
+response = sg.client.whitelabel.ips._(id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4196,7 +4196,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.ips._(id).validate.post()
+response = sg.client.whitelabel.ips._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4213,12 +4213,12 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 data = {
-  "default": true,
+  "default": True,
   "domain": "example.com",
   "subdomain": "mail"
 }
 params = {'limit': 1, 'offset': 1}
-response = self.sg.client.whitelabel.links.post(request_body=data, query_params=params)
+response = sg.client.whitelabel.links.post(request_body=data, query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4235,7 +4235,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 params = {'limit': 1}
-response = self.sg.client.whitelabel.links.get(query_params=params)
+response = sg.client.whitelabel.links.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4259,7 +4259,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 params = {'domain': 'test_string'}
-response = self.sg.client.whitelabel.links.default.get(query_params=params)
+response = sg.client.whitelabel.links.default.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4280,7 +4280,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 params = {'username': 'test_string'}
-response = self.sg.client.whitelabel.links.subuser.get(query_params=params)
+response = sg.client.whitelabel.links.subuser.get(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4301,7 +4301,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 params = {'username': 'test_string'}
-response = self.sg.client.whitelabel.links.subuser.delete(query_params=params)
+response = sg.client.whitelabel.links.subuser.delete(query_params=params)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4318,10 +4318,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 data = {
-  "default": true
+  "default": True
 }
 id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).patch(request_body=data)
+response = sg.client.whitelabel.links._(id).patch(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4338,7 +4338,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).get()
+response = sg.client.whitelabel.links._(id).get()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4355,7 +4355,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).delete()
+response = sg.client.whitelabel.links._(id).delete()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4372,7 +4372,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```python
 id = "test_url_param"
-response = self.sg.client.whitelabel.links._(id).validate.post()
+response = sg.client.whitelabel.links._(id).validate.post()
 print response.status_code
 print response.response_body
 print response.response_headers
@@ -4396,7 +4396,7 @@ data = {
   "username": "jane@example.com"
 }
 link_id = "test_url_param"
-response = self.sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
+response = sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
 print response.status_code
 print response.response_body
 print response.response_headers

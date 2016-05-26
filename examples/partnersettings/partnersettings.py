@@ -20,8 +20,8 @@ print(response.response_headers)
 # PATCH /partner_settings/new_relic #
 
 data = {
-  "enable_subuser_statistics": true, 
-  "enabled": true, 
+  "enable_subuser_statistics": True, 
+  "enabled": True, 
   "license_key": ""
 }
 response = sg.client.partner_settings.new_relic.patch(request_body=data)

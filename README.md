@@ -41,6 +41,8 @@ cp examples/helpers/mail/mail_example.py .
 python mail_example.py
 ```
 
+* Check out the documentation for [Web API v3 /mail/send/beta endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html).
+
 ## TRYING OUT THE V3 BETA WEB API
 
 ```bash
@@ -49,8 +51,7 @@ git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-python.
 
 * Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
 * Review the corresponding [examples](https://github.com/sendgrid/sendgrid-python/blob/v3beta/examples).
-* From the root directory of this repo, use `from sendgrid import *`
-* Check out the documentation for [Web API v3 /mail/send/beta endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html).
+* If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
 
 ## Once we are out of v3 BETA, the following will apply
 
@@ -102,8 +103,8 @@ print(response.response_headers)
 
 # Usage
 
-- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
-- [v3 Web API](https://github.com/sendgrid/sendgrid-python/tree/v3beta/USAGE.md)
+- [SendGrid Documentation](https://sendgrid.com/docs/API_Reference/index.html)
+- [Usage Documentation](https://github.com/sendgrid/sendgrid-python/tree/v3beta/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples)
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/v3beta/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 

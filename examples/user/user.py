@@ -140,8 +140,8 @@ print(response.response_headers)
 # PATCH /user/settings/enforced_tls #
 
 data = {
-  "require_tls": true, 
-  "require_valid_cert": false
+  "require_tls": True, 
+  "require_valid_cert": False
 }
 response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print(response.status_code)
@@ -183,18 +183,18 @@ print(response.response_headers)
 # PATCH /user/webhooks/event/settings #
 
 data = {
-  "bounce": true, 
-  "click": true, 
-  "deferred": true, 
-  "delivered": true, 
-  "dropped": true, 
-  "enabled": true, 
-  "group_resubscribe": true, 
-  "group_unsubscribe": true, 
-  "open": true, 
-  "processed": true, 
-  "spam_report": true, 
-  "unsubscribe": true, 
+  "bounce": True, 
+  "click": True, 
+  "deferred": True, 
+  "delivered": True, 
+  "dropped": True, 
+  "enabled": True, 
+  "group_resubscribe": True, 
+  "group_unsubscribe": True, 
+  "open": True, 
+  "processed": True, 
+  "spam_report": True, 
+  "unsubscribe": True, 
   "url": "url"
 }
 response = sg.client.user.webhooks.event.settings.patch(request_body=data)

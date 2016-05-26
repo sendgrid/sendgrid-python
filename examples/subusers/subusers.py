@@ -78,7 +78,7 @@ print(response.response_headers)
 # PATCH /subusers/{subuser_name} #
 
 data = {
-  "disabled": false
+  "disabled": False
 }
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).patch(request_body=data)

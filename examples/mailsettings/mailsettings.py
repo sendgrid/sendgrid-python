@@ -20,7 +20,7 @@ print(response.response_headers)
 # PATCH /mail_settings/address_whitelist #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "list": [
     "email1@example.com", 
     "example.com"
@@ -46,7 +46,7 @@ print(response.response_headers)
 
 data = {
   "email": "email@example.com", 
-  "enabled": false
+  "enabled": False
 }
 response = sg.client.mail_settings.bcc.patch(request_body=data)
 print(response.status_code)
@@ -67,7 +67,7 @@ print(response.response_headers)
 # PATCH /mail_settings/bounce_purge #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "hard_bounces": 5, 
   "soft_bounces": 5
 }
@@ -90,7 +90,7 @@ print(response.response_headers)
 # PATCH /mail_settings/footer #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "html_content": "...", 
   "plain_content": "..."
 }
@@ -114,7 +114,7 @@ print(response.response_headers)
 
 data = {
   "email": "example@example.com", 
-  "enabled": true
+  "enabled": True
 }
 response = sg.client.mail_settings.forward_bounce.patch(request_body=data)
 print(response.status_code)
@@ -136,7 +136,7 @@ print(response.response_headers)
 
 data = {
   "email": "", 
-  "enabled": false
+  "enabled": False
 }
 response = sg.client.mail_settings.forward_spam.patch(request_body=data)
 print(response.status_code)
@@ -157,7 +157,7 @@ print(response.response_headers)
 # PATCH /mail_settings/plain_content #
 
 data = {
-  "enabled": false
+  "enabled": False
 }
 response = sg.client.mail_settings.plain_content.patch(request_body=data)
 print(response.status_code)
@@ -178,7 +178,7 @@ print(response.response_headers)
 # PATCH /mail_settings/spam_check #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "max_score": 5, 
   "url": "url"
 }
@@ -201,7 +201,7 @@ print(response.response_headers)
 # PATCH /mail_settings/template #
 
 data = {
-  "enabled": true, 
+  "enabled": True, 
   "html_content": "<% body %>"
 }
 response = sg.client.mail_settings.template.patch(request_body=data)

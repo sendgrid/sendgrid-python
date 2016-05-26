@@ -10,9 +10,9 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /whitelabel/domains #
 
 data = {
-  "automatic_security": false, 
-  "custom_spf": true, 
-  "default": true, 
+  "automatic_security": False, 
+  "custom_spf": True, 
+  "default": True, 
   "domain": "example.com", 
   "ips": [
     "192.168.1.1", 
@@ -68,8 +68,8 @@ print(response.response_headers)
 # PATCH /whitelabel/domains/{domain_id} #
 
 data = {
-  "custom_spf": true, 
-  "default": false
+  "custom_spf": True, 
+  "default": False
 }
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
@@ -203,7 +203,7 @@ print(response.response_headers)
 # POST /whitelabel/links #
 
 data = {
-  "default": true, 
+  "default": True, 
   "domain": "example.com", 
   "subdomain": "mail"
 }
@@ -258,7 +258,7 @@ print(response.response_headers)
 # PATCH /whitelabel/links/{id} #
 
 data = {
-  "default": true
+  "default": True
 }
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).patch(request_body=data)

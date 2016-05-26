@@ -11,7 +11,7 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 data = {
   "description": "A group description", 
-  "is_default": false, 
+  "is_default": False, 
   "name": "A group name"
 }
 response = sg.client.asm.groups.post(request_body=data)
