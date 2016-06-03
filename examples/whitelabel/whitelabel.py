@@ -23,8 +23,8 @@ data = {
 }
 response = sg.client.whitelabel.domains.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # List all domain whitelabels. #
@@ -33,8 +33,8 @@ print(response.response_headers)
 params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 'true', 'limit': 1, 'offset': 1}
 response = sg.client.whitelabel.domains.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Get the default domain whitelabel. #
@@ -42,8 +42,8 @@ print(response.response_headers)
 
 response = sg.client.whitelabel.domains.default.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # List the domain whitelabel associated with the given user. #
@@ -51,8 +51,8 @@ print(response.response_headers)
 
 response = sg.client.whitelabel.domains.subuser.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Disassociate a domain whitelabel from a given user. #
@@ -60,8 +60,8 @@ print(response.response_headers)
 
 response = sg.client.whitelabel.domains.subuser.delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a domain whitelabel. #
@@ -74,8 +74,8 @@ data = {
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a domain whitelabel. #
@@ -84,8 +84,8 @@ print(response.response_headers)
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a domain whitelabel. #
@@ -94,8 +94,8 @@ print(response.response_headers)
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Associate a domain whitelabel with a given user. #
@@ -107,8 +107,8 @@ data = {
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add an IP to a domain whitelabel. #
@@ -120,8 +120,8 @@ data = {
 id = "test_url_param"
 response = sg.client.whitelabel.domains._(id).ips.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Remove an IP from a domain whitelabel. #
@@ -131,18 +131,19 @@ id = "test_url_param"
         ip = "test_url_param"
 response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Validate a domain whitelabel. #
 # POST /whitelabel/domains/{id}/validate #
 
+data = null
 id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post()
+response = sg.client.whitelabel.domains._(id).validate.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Create an IP whitelabel #
@@ -155,8 +156,8 @@ data = {
 }
 response = sg.client.whitelabel.ips.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all IP whitelabels #
@@ -165,8 +166,8 @@ print(response.response_headers)
 params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
 response = sg.client.whitelabel.ips.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve an IP whitelabel #
@@ -175,8 +176,8 @@ print(response.response_headers)
 id = "test_url_param"
 response = sg.client.whitelabel.ips._(id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete an IP whitelabel #
@@ -185,18 +186,19 @@ print(response.response_headers)
 id = "test_url_param"
 response = sg.client.whitelabel.ips._(id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Validate an IP whitelabel #
 # POST /whitelabel/ips/{id}/validate #
 
+data = null
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post()
+response = sg.client.whitelabel.ips._(id).validate.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Create a Link Whitelabel #
@@ -210,8 +212,8 @@ data = {
 params = {'limit': 1, 'offset': 1}
 response = sg.client.whitelabel.links.post(request_body=data, query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all link whitelabels #
@@ -220,8 +222,8 @@ print(response.response_headers)
 params = {'limit': 1}
 response = sg.client.whitelabel.links.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a Default Link Whitelabel #
@@ -230,8 +232,8 @@ print(response.response_headers)
 params = {'domain': 'test_string'}
 response = sg.client.whitelabel.links.default.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Associated Link Whitelabel #
@@ -240,8 +242,8 @@ print(response.response_headers)
 params = {'username': 'test_string'}
 response = sg.client.whitelabel.links.subuser.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Disassociate a Link Whitelabel #
@@ -250,8 +252,8 @@ print(response.response_headers)
 params = {'username': 'test_string'}
 response = sg.client.whitelabel.links.subuser.delete(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a Link Whitelabel #
@@ -263,8 +265,8 @@ data = {
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a Link Whitelabel #
@@ -273,8 +275,8 @@ print(response.response_headers)
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Link Whitelabel #
@@ -283,18 +285,19 @@ print(response.response_headers)
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Validate a Link Whitelabel #
 # POST /whitelabel/links/{id}/validate #
 
+data = null
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post()
+response = sg.client.whitelabel.links._(id).validate.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Associate a Link Whitelabel #
@@ -306,6 +309,6 @@ data = {
 link_id = "test_url_param"
 response = sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

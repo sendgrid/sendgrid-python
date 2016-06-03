@@ -19,8 +19,8 @@ data = {
 }
 response = sg.client.api_keys.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all API Keys belonging to the authenticated user #
@@ -28,8 +28,8 @@ print(response.response_headers)
 
 response = sg.client.api_keys.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update the name & scopes of an API Key #
@@ -45,8 +45,8 @@ data = {
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).put(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update API keys #
@@ -58,8 +58,8 @@ data = {
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve an existing API Key #
@@ -68,8 +68,8 @@ print(response.response_headers)
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete API keys #
@@ -78,6 +78,6 @@ print(response.response_headers)
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

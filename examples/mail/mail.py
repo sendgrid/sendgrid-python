@@ -9,10 +9,11 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # Create a batch ID #
 # POST /mail/batch #
 
-response = sg.client.mail.batch.post()
+data = null
+response = sg.client.mail.batch.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Validate batch ID #
@@ -21,8 +22,8 @@ print(response.response_headers)
 batch_id = "test_url_param"
 response = sg.client.mail.batch._(batch_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # v3 Mail Send Beta #
@@ -173,6 +174,6 @@ data = {
 }
 response = sg.client.mail.send.beta.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

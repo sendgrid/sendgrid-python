@@ -85,8 +85,8 @@ content = Content("text/plain", "some text here")
 mail = Mail(from_email, subject, to_email, content)
 response = sg.client.mail.send.beta.post(request_body=mail.get())
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 ```
 
 ## General v3 Web API Usage
@@ -97,8 +97,8 @@ import sendgrid
 sg = sendgrid.SendGridAPIClient()
 response = sg.client.api_keys.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 ```
 
 # Usage

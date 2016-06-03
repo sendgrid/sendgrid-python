@@ -31,8 +31,8 @@ data = {
 }
 response = sg.client.campaigns.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all Campaigns #
@@ -41,8 +41,8 @@ print(response.response_headers)
 params = {'limit': 0, 'offset': 0}
 response = sg.client.campaigns.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a Campaign #
@@ -60,8 +60,8 @@ data = {
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a single campaign #
@@ -70,8 +70,8 @@ print(response.response_headers)
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Campaign #
@@ -80,8 +80,8 @@ print(response.response_headers)
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a Scheduled Campaign #
@@ -93,8 +93,8 @@ data = {
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Schedule a Campaign #
@@ -106,8 +106,8 @@ data = {
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # View Scheduled Time of a Campaign #
@@ -116,8 +116,8 @@ print(response.response_headers)
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Unschedule a Scheduled Campaign #
@@ -126,18 +126,19 @@ print(response.response_headers)
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Send a Campaign #
 # POST /campaigns/{campaign_id}/schedules/now #
 
+data = null
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post()
+response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Send a Test Campaign #
@@ -149,6 +150,6 @@ data = {
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

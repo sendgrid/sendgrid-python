@@ -12,8 +12,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 params = {'limit': 1, 'offset': 1}
 response = sg.client.tracking_settings.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Click Tracking Settings #
@@ -24,8 +24,8 @@ data = {
 }
 response = sg.client.tracking_settings.click.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Click Track Settings #
@@ -33,8 +33,8 @@ print(response.response_headers)
 
 response = sg.client.tracking_settings.click.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Google Analytics Settings #
@@ -50,8 +50,8 @@ data = {
 }
 response = sg.client.tracking_settings.google_analytics.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Google Analytics Settings #
@@ -59,8 +59,8 @@ print(response.response_headers)
 
 response = sg.client.tracking_settings.google_analytics.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Open Tracking Settings #
@@ -71,8 +71,8 @@ data = {
 }
 response = sg.client.tracking_settings.open.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Get Open Tracking Settings #
@@ -80,8 +80,8 @@ print(response.response_headers)
 
 response = sg.client.tracking_settings.open.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Subscription Tracking Settings #
@@ -97,8 +97,8 @@ data = {
 }
 response = sg.client.tracking_settings.subscription.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Subscription Tracking Settings #
@@ -106,6 +106,6 @@ print(response.response_headers)
 
 response = sg.client.tracking_settings.subscription.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

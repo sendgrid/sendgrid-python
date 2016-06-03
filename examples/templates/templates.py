@@ -14,8 +14,8 @@ data = {
 }
 response = sg.client.templates.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all transactional templates. #
@@ -23,8 +23,8 @@ print(response.response_headers)
 
 response = sg.client.templates.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Edit a transactional template. #
@@ -36,8 +36,8 @@ data = {
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a single transactional template. #
@@ -46,8 +46,8 @@ print(response.response_headers)
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a template. #
@@ -56,8 +56,8 @@ print(response.response_headers)
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Create a new transactional template version. #
@@ -74,8 +74,8 @@ data = {
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).versions.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Edit a transactional template version. #
@@ -92,8 +92,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a specific transactional template version. #
@@ -103,8 +103,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a transactional template version. #
@@ -114,17 +114,18 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Activate a transactional template version. #
 # POST /templates/{template_id}/versions/{version_id}/activate #
 
+data = null
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

@@ -16,8 +16,8 @@ data = {
 }
 response = sg.client.asm.groups.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all suppression groups associated with the user. #
@@ -25,8 +25,8 @@ print(response.response_headers)
 
 response = sg.client.asm.groups.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a suppression group. #
@@ -40,8 +40,8 @@ data = {
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Get information on a single suppression group. #
@@ -50,8 +50,8 @@ print(response.response_headers)
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a suppression group. #
@@ -60,8 +60,8 @@ print(response.response_headers)
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add suppressions to a suppression group #
@@ -76,8 +76,8 @@ data = {
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all suppressions for a suppression group #
@@ -86,8 +86,8 @@ print(response.response_headers)
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a suppression from a suppression group #
@@ -97,8 +97,8 @@ group_id = "test_url_param"
         email = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add recipient addresses to the global suppression group. #
@@ -112,8 +112,8 @@ data = {
 }
 response = sg.client.asm.suppressions._("global").post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a Global Suppression #
@@ -122,8 +122,8 @@ print(response.response_headers)
 email = "test_url_param"
 response = sg.client.asm.suppressions._("global")._(email).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Global Suppression #
@@ -132,6 +132,6 @@ print(response.response_headers)
 email = "test_url_param"
 response = sg.client.asm.suppressions._("global")._(email).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

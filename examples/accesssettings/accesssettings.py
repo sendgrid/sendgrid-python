@@ -12,8 +12,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 params = {'limit': 1}
 response = sg.client.access_settings.activity.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add one or more IPs to the whitelist #
@@ -34,8 +34,8 @@ data = {
 }
 response = sg.client.access_settings.whitelist.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a list of currently whitelisted IPs #
@@ -43,8 +43,8 @@ print(response.response_headers)
 
 response = sg.client.access_settings.whitelist.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Remove one or more IPs from the whitelist #
@@ -52,8 +52,8 @@ print(response.response_headers)
 
 response = sg.client.access_settings.whitelist.delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a specific whitelisted IP #
@@ -62,8 +62,8 @@ print(response.response_headers)
 rule_id = "test_url_param"
 response = sg.client.access_settings.whitelist._(rule_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Remove a specific IP from the whitelist #
@@ -72,6 +72,6 @@ print(response.response_headers)
 rule_id = "test_url_param"
 response = sg.client.access_settings.whitelist._(rule_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

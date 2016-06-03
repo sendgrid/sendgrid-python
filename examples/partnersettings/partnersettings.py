@@ -12,8 +12,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 params = {'limit': 1, 'offset': 1}
 response = sg.client.partner_settings.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Updates New Relic partner settings. #
@@ -26,8 +26,8 @@ data = {
 }
 response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Returns all New Relic partner settings. #
@@ -35,6 +35,6 @@ print(response.response_headers)
 
 response = sg.client.partner_settings.new_relic.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

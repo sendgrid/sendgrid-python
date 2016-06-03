@@ -12,8 +12,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-04-01'}
 response = sg.client.clients.stats.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve stats by a specific client type. #
@@ -23,6 +23,6 @@ params = {'aggregated_by': 'day', 'start_date': '2016-01-01', 'end_date': '2016-
 client_type = "test_url_param"
 response = sg.client.clients._(client_type).stats.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

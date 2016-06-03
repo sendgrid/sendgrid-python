@@ -124,17 +124,17 @@ def send_hello_email():
     sg = SendGridAPIClient()
     data = build_hello_email()
     response = sg.client.mail.send.beta.post(request_body=data)
-    print(response.response_headers)
     print(response.status_code)
-    print(response.response_body)
+    print(response.headers)
+    print(response.body)
 
 def send_kitchen_sink():
     sg = SendGridAPIClient()
     data = build_kitchen_sink()
     response = sg.client.mail.send.beta.post(request_body=data)
-    print(response.response_headers)
     print(response.status_code)
-    print(response.response_body)
+    print(response.headers)
+    print(response.body)
 
 send_hello_email() # this will actually send an email
 send_kitchen_sink() # this will only send an email if you set SandBox Mode to False

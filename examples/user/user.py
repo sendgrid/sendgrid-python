@@ -11,8 +11,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 response = sg.client.user.account.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve your credit balance #
@@ -20,8 +20,8 @@ print(response.response_headers)
 
 response = sg.client.user.credits.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update your account email address #
@@ -32,8 +32,8 @@ data = {
 }
 response = sg.client.user.email.put(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve your account email address #
@@ -41,8 +41,8 @@ print(response.response_headers)
 
 response = sg.client.user.email.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update your password #
@@ -54,8 +54,8 @@ data = {
 }
 response = sg.client.user.password.put(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a user's profile #
@@ -68,8 +68,8 @@ data = {
 }
 response = sg.client.user.profile.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Get a user's profile #
@@ -77,8 +77,8 @@ print(response.response_headers)
 
 response = sg.client.user.profile.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Cancel or pause a scheduled send #
@@ -90,8 +90,8 @@ data = {
 }
 response = sg.client.user.scheduled_sends.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all scheduled sends #
@@ -99,8 +99,8 @@ print(response.response_headers)
 
 response = sg.client.user.scheduled_sends.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update user scheduled send information #
@@ -112,8 +112,8 @@ data = {
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve scheduled send #
@@ -122,8 +122,8 @@ print(response.response_headers)
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a cancellation or pause of a scheduled send #
@@ -132,8 +132,8 @@ print(response.response_headers)
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Enforced TLS settings #
@@ -145,8 +145,8 @@ data = {
 }
 response = sg.client.user.settings.enforced_tls.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve current Enforced TLS settings. #
@@ -154,8 +154,8 @@ print(response.response_headers)
 
 response = sg.client.user.settings.enforced_tls.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update your username #
@@ -166,8 +166,8 @@ data = {
 }
 response = sg.client.user.username.put(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve your username #
@@ -175,8 +175,8 @@ print(response.response_headers)
 
 response = sg.client.user.username.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Event Notification Settings #
@@ -199,8 +199,8 @@ data = {
 }
 response = sg.client.user.webhooks.event.settings.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Event Webhook settings #
@@ -208,8 +208,8 @@ print(response.response_headers)
 
 response = sg.client.user.webhooks.event.settings.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Test Event Notification Settings  #
@@ -220,8 +220,8 @@ data = {
 }
 response = sg.client.user.webhooks.event.test.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve Parse Webhook settings #
@@ -229,8 +229,8 @@ print(response.response_headers)
 
 response = sg.client.user.webhooks.parse.settings.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieves Inbound Parse Webhook statistics. #
@@ -239,6 +239,6 @@ print(response.response_headers)
 params = {'aggregated_by': 'day', 'limit': 'test_string', 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
 response = sg.client.user.webhooks.parse.stats.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
