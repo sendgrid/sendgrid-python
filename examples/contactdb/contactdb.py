@@ -144,7 +144,7 @@ print(response.headers)
 
 data = null
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
+recipient_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body=data)
 print(response.status_code)
 print(response.body)
@@ -156,7 +156,7 @@ print(response.headers)
 
 params = {'recipient_id': 0, 'list_id': 0}
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
+recipient_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
 print(response.status_code)
 print(response.body)

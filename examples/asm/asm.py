@@ -6,13 +6,13 @@ import os
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
-# Create a Group #
+# Create a new suppression group #
 # POST /asm/groups #
 
 data = {
-  "description": "A group description", 
-  "is_default": False, 
-  "name": "A group name"
+  "description": "Suggestions for products our users might like.", 
+  "is_default": True, 
+  "name": "Product Suggestions"
 }
 response = sg.client.asm.groups.post(request_body=data)
 print(response.status_code)
@@ -20,10 +20,11 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve all suppression groups associated with the user. #
+# Retrieve information about multiple suppression groups #
 # GET /asm/groups #
 
-response = sg.client.asm.groups.get()
+params = {'id': 1}
+response = sg.client.asm.groups.get(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -94,8 +95,17 @@ print(response.headers)
 # DELETE /asm/groups/{group_id}/suppressions/{email} #
 
 group_id = "test_url_param"
-        email = "test_url_param"
+email = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
+print(response.status_code)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Retrieve all suppressions #
+# GET /asm/suppressions #
+
+response = sg.client.asm.suppressions.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -131,6 +141,16 @@ print(response.headers)
 
 email = "test_url_param"
 response = sg.client.asm.suppressions._("global")._(email).delete()
+print(response.status_code)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Retrieve all suppression groups for an email address #
+# GET /asm/suppressions/{email} #
+
+email = "test_url_param"
+response = sg.client.asm.suppressions._(email).get()
 print(response.status_code)
 print(response.body)
 print(response.headers)

@@ -28,6 +28,7 @@ print(response.headers)
 ##################################################
 # v3 Mail Send Beta #
 # POST /mail/send/beta #
+# This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-python/blob/v3beta/sendgrid/helpers/mail/README.md).
 
 data = {
   "asm": {

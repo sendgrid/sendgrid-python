@@ -128,7 +128,7 @@ print(response.headers)
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
 id = "test_url_param"
-        ip = "test_url_param"
+ip = "test_url_param"
 response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
 print(response.status_code)
 print(response.body)

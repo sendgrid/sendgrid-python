@@ -96,7 +96,7 @@ print(response.headers)
 # DELETE /ips/pools/{pool_name}/ips/{ip} #
 
 pool_name = "test_url_param"
-        ip = "test_url_param"
+ip = "test_url_param"
 response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
 print(response.status_code)
 print(response.body)

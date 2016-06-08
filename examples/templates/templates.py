@@ -89,7 +89,7 @@ data = {
   "subject": "<%subject%>"
 }
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
 print(response.status_code)
 print(response.body)
@@ -100,7 +100,7 @@ print(response.headers)
 # GET /templates/{template_id}/versions/{version_id} #
 
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 print(response.status_code)
 print(response.body)
@@ -111,7 +111,7 @@ print(response.headers)
 # DELETE /templates/{template_id}/versions/{version_id} #
 
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).delete()
 print(response.status_code)
 print(response.body)
@@ -123,7 +123,7 @@ print(response.headers)
 
 data = null
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body=data)
 print(response.status_code)
 print(response.body)
