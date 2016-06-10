@@ -20,7 +20,6 @@ class SendGridAPIClient(object):
 
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
-            "Content-Type": "application/json",
             "User-agent": self.useragent
         }
 
