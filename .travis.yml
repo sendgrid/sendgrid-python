@@ -24,6 +24,3 @@ notifications:
       GitHub</a>'
     format: html
     notify: false
-env:
-  matrix:
-    secure: CYhmQGIhXrefDruEOBzMo1jZ+NPyFjDqPeqsnLHoGcYhkbp3GW+fCPHEypRMG72K/f1+Vc2/6ka76dvu6/NpflO8ooyYKzXEhds/oemGUuvcsZdVOFeGeIu3h9lpdHgeOjB3N3l7rwJU0nFTk7Bmb0bY7AVH5qfFqLJ6syEfjVU=
