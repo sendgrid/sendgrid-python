@@ -88,7 +88,7 @@ source ./sendgrid.env
 
 ##### Execute: #####
 
-See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/v3beta/examples) to get started quickly.
+See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/master/examples) to get started quickly.
 
 If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
 
@@ -114,7 +114,7 @@ All PRs require passing tests before the PR will be reviewed.
 
 All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory.
 
-For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/v3beta/test/test_sendgrid.py) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
 For Python 2.6.*:
 

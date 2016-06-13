@@ -123,7 +123,7 @@ def build_kitchen_sink():
 def send_hello_email():
     sg = SendGridAPIClient()
     data = build_hello_email()
-    response = sg.client.mail.send.beta.post(request_body=data)
+    response = sg.client.mail.send.post(request_body=data)
     print(response.status_code)
     print(response.headers)
     print(response.body)
@@ -131,7 +131,7 @@ def send_hello_email():
 def send_kitchen_sink():
     sg = SendGridAPIClient()
     data = build_kitchen_sink()
-    response = sg.client.mail.send.beta.post(request_body=data)
+    response = sg.client.mail.send.post(request_body=data)
     print(response.status_code)
     print(response.headers)
     print(response.body)
