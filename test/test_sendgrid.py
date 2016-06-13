@@ -739,7 +739,7 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.mail.batch._(batch_id).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_mail_send_beta_post(self):
+    def test_mail_send_post(self):
         data = {
   "asm": {
     "group_id": 1,
@@ -884,7 +884,7 @@ class UnitTests(unittest.TestCase):
   }
 }
         headers = {'X-Mock': 202}
-        response = self.sg.client.mail.send.beta.post(request_body=data, request_headers=headers)
+        response = self.sg.client.mail.send.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 202)
 
     def test_mail_settings_get(self):
