@@ -11,7 +11,7 @@ if os.path.exists('README.txt'):
     long_description = open('README.txt').read()
 
 def getRequires():
-    deps = ['smtpapi==0.3.1', 'python_http_client>=1.2.4']
+    deps = ['python_http_client>=2.1.0']
     if sys.version_info < (2, 7):
         deps.append('unittest2')
     elif (3, 0) <= sys.version_info < (3, 2):

@@ -14,6 +14,6 @@ venv/
 .python-version
 .tox/
 profile*
-*_example.py
 register.py
 README.txt
+temp.py

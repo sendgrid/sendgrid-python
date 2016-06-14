@@ -1,15 +1,28 @@
-Hello! Thank you for choosing to help contribute to the sendgrid-python library. There are many ways you can contribute and help is always welcome.
+Hello! Thank you for choosing to help contribute to one of the SendGrid open source libraries. There are many ways you can contribute and help is always welcome.  We simply ask that you follow the following contribution policies.
 
+- [CLAs and CCLAs](#cla)
+- [Roadmap & Milestones](#roadmap)
+- [Feature Request](#feature_request)
+- [Submit a Bug Report](#submit_a_bug_report)
+- [Improvements to the Codebase](#improvements_to_the_codebase)
+- [Understanding the Code Base](#understanding_the_codebase)
+- [Testing](#testing)
+- [Style Guidelines & Naming Conventions](#style_guidelines_and_naming_conventions)
+- [Creating a Pull Request](#creating_a_pull_request)
+
+<a name="roadmap"></a>
 We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions and additional PRs are welcomed and encouraged.
 
-* [Feature Request](#feature_request)
-* [Submit a Bug Report](#submit_a_bug_report)
-* [Improvements to the Codebase](#improvements_to_the_codebase)
-* [Understanding the Code Base](#understanding_the_codebase)
-* [Testing](#testing)
-* [Testing Multiple Versions of Python](#testing_multiple_versoins_of_python)
-* [Style Guidelines & Naming Conventions](#style_guidelines_and_naming_conventions)
-* [Creating a Pull Request](#creating_a_pull_request)
+<a name="cla"></a>
+## CLAs and CCLAs
+
+Before you get started, SendGrid requires that a SendGrid Contributor License Agreement (CLA) or a SendGrid Company Contributor Licensing Agreement (CCLA) be filled out by every contributor to a SendGrid open source project.
+
+Our goal with the CLA and CCLA is to clarify the rights of our contributors and reduce other risks arising from inappropriate contributions.  The CLA also clarifies the rights SendGrid holds in each contribution and helps to avoid misunderstandings over what rights each contributor is required to grant to SendGrid when making a contribution.  In this way the CLA and CCLA encourage broad participation by our open source community and help us build strong open source projects, free from any individual contributor withholding or revoking rights to any contribution.
+
+SendGrid does not merge a pull request made against a SendGrid open source project until that pull request is associated with a signed CLA (or CCLA). Copies of the CLA and CCLA are available [here](https://drive.google.com/a/sendgrid.com/file/d/0B0PlcM9qA91LN2VEUTJWU2RIVXc/view).
+
+You may submit your completed [CLA or CCLA](https://drive.google.com/a/sendgrid.com/file/d/0B0PlcM9qA91LN2VEUTJWU2RIVXc/view) to SendGrid at [dx@sendgrid.com](mailto:dx@sendgrid.com).  SendGrid will then confirm you are ready to begin making contributions.
 
 There are a few ways to contribute, which we'll enumerate below:
 
@@ -38,29 +51,7 @@ Before you decide to create a new issue, please try the following:
 
 ### Please use our Bug Report Template
 
-In order to make the process easier, we've included a sample bug report template (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
-
-```
-Short and descriptive example bug report title
-
-#### Issue Summary
-
-A summary of the issue and the environment in which it occurs. If suitable, include the steps required to reproduce the bug. Please feel free to include screenshots, screencasts, code examples.
-
-
-#### Steps to Reproduce
-
-1. This is the first step
-2. This is the second step
-3. Further steps, etc.
-
-Any other information you want to share that is relevant to the issue being reported. Especially, why do you consider this to be a bug? What do you expect to happen instead?
-
-#### Technical details:
-
-* sendgrid-python Version: master (latest commit: 2cb34372ef0f31352f7c90015a45e1200cb849da)
-* Python Version: 2.7
-```
+In order to make the process easier, we've included a [sample bug report template]((https://github.com/sendgrid/sendgrid-python/.github/ISSUE_TEMPLATE)) (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
 
 <a name="improvements_to_the_codebase"></a>
 ## Improvements to the Codebase
@@ -69,26 +60,37 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 ### Development Environment ###
 
-#### Install and run locally ####
+#### Install and Run Locally ####
 
 ##### Prerequisites #####
 
-* Python 2.6 through 3.5
-* smtpapi-python
-* python_http_client
+- Python 2.6 through 3.5
+- [python_http_client](https://github.com/sendgrid/python-http-client)
 
 ##### Initial setup: #####
 
-```
+```bash
 git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
 ```
 
-Update your settings in `.env`
+## Environment Variables
+
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
+
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env
+```
 
 ##### Execute: #####
 
 See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/master/examples) to get started quickly.
+
+If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
 
 <a name="understanding_the_codebase"></a>
 ## Understanding the Code Base
@@ -99,20 +101,20 @@ Working examples that demonstrate usage.
 
 **/tests**
 
-Tests for the mail send and Web API v3 endpoints.
+Currently we have unit and profiling tests.
 
 **/sendgrid**
 
-The Web API v3 client is `client.py`, the other files are legacy code for our mail send v2 endpoint.
+The Web API v3 client is `sendgrid.py`, the other files are legacy code for our mail send v2 endpoint.
 
 <a name="testing"></a>
 ## Testing
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in the `[tests](https://github.com/sendgrid/sendgrid-python/tree/master/tests)` directory.
+All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory.
 
-For the purposes of contributing to this repo, please update the [`test_v3_endpoints.py`](https://github.com/sendgrid/sendgrid-python/blob/master/test/test_v3_endpoints.py) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
 For Python 2.6.*:
 
@@ -122,19 +124,18 @@ For Python 2.7.* and up:
 
 `python -m unittest discover -v`
 
-<a name="testing_multiple_versoins_of_python"></a>
-## Testing Multiple Versions of Python
+### Testing Multiple Versions of Python
 
 All PRs require passing tests before the PR will be reviewed.
 
-### Prequisites: ###
+#### Prequisites: ####
 
 The above local "Initial setup" is complete
 
 * [pyenv](https://github.com/yyuu/pyenv)
 * [tox](https://pypi.python.org/pypi/tox)
 
-### Initial setup: ###
+#### Initial setup: ####
 
 Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, etc) after installing tox, you only need to do this once.
 
@@ -148,9 +149,9 @@ pyenv install 3.5.0
 python setup.py install
 pyenv local 3.5.0 3.4.3 3.3.6 3.2.6 2.7.8 2.6.9
 pyenv rehash
-````
+```
 
-### Execute: ###
+#### Execute: ####
 
 ```
 source venv/bin/activate
@@ -162,14 +163,13 @@ tox
 
 Generally, we follow the style guidelines as suggested by the official language. However, we ask that you conform to the styles that already exist in the library. If you wish to deviate, please explain your reasoning.
 
-* [PEP8](https://www.python.org/dev/peps/pep-0008/)
+- [PEP8](https://www.python.org/dev/peps/pep-0008/)
 
-Please run your code through [pyflakes](https://pypi.python.org/pypi/pyflakes), [pylint](https://www.pylint.org/) and [pep8](https://pypi.python.org/pypi/pep8)
+Please run your code through:
 
-### Directory Structure
-
-* `examples` for example calls
-* `test`, for all tests
+- [pyflakes](https://pypi.python.org/pypi/pyflakes)
+- [pylint](https://www.pylint.org/)
+- [pep8](https://pypi.python.org/pypi/pep8)
 
 ## Creating a Pull Request<a name="creating_a_pull_request"></a>
 

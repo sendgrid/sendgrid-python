@@ -3,8 +3,7 @@ import json
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
-# You can also store your API key an .env variable 'SENDGRID_API_KEY'
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
 # Create a Custom Field #
@@ -16,8 +15,8 @@ data = {
 }
 response = sg.client.contactdb.custom_fields.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all custom fields #
@@ -25,8 +24,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.custom_fields.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a Custom Field #
@@ -35,8 +34,8 @@ print(response.response_headers)
 custom_field_id = "test_url_param"
 response = sg.client.contactdb.custom_fields._(custom_field_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Custom Field #
@@ -45,8 +44,8 @@ print(response.response_headers)
 custom_field_id = "test_url_param"
 response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Create a List #
@@ -57,8 +56,8 @@ data = {
 }
 response = sg.client.contactdb.lists.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all lists #
@@ -66,8 +65,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.lists.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete Multiple lists #
@@ -75,19 +74,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.lists.delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Retrieve a single list #
-# GET /contactdb/lists/{list_id} #
-
-params = {'list_id': 0}
-list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).get(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a List #
@@ -100,8 +88,19 @@ params = {'list_id': 0}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Retrieve a single list #
+# GET /contactdb/lists/{list_id} #
+
+params = {'list_id': 0}
+list_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).get(query_params=params)
+print(response.status_code)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a List #
@@ -111,8 +110,8 @@ params = {'delete_contacts': 'true'}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).delete(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add Multiple Recipients to a List #
@@ -125,8 +124,8 @@ data = [
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all recipients on a List #
@@ -136,19 +135,20 @@ params = {'page': 1, 'page_size': 1, 'list_id': 0}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add a Single Recipient to a List #
 # POST /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
+data = null
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
+recipient_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Single Recipient from a Single List #
@@ -156,21 +156,11 @@ print(response.response_headers)
 
 params = {'recipient_id': 0, 'list_id': 0}
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
+recipient_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Retrieve recipients #
-# GET /contactdb/recipients #
-
-params = {'page': 1, 'page_size': 1}
-response = sg.client.contactdb.recipients.get(query_params=params)
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update Recipient #
@@ -185,8 +175,8 @@ data = [
 ]
 response = sg.client.contactdb.recipients.patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Add recipients #
@@ -208,8 +198,18 @@ data = [
 ]
 response = sg.client.contactdb.recipients.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Retrieve recipients #
+# GET /contactdb/recipients #
+
+params = {'page': 1, 'page_size': 1}
+response = sg.client.contactdb.recipients.get(query_params=params)
+print(response.status_code)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete Recipient #
@@ -217,8 +217,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.recipients.delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve the count of billable recipients #
@@ -226,8 +226,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.recipients.billable_count.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a Count of Recipients #
@@ -235,8 +235,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.recipients.count.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve recipients matching search criteria #
@@ -245,8 +245,8 @@ print(response.response_headers)
 params = {'{field_name}': 'test_string'}
 response = sg.client.contactdb.recipients.search.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a single recipient #
@@ -255,8 +255,8 @@ print(response.response_headers)
 recipient_id = "test_url_param"
 response = sg.client.contactdb.recipients._(recipient_id).get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a Recipient #
@@ -265,8 +265,8 @@ print(response.response_headers)
 recipient_id = "test_url_param"
 response = sg.client.contactdb.recipients._(recipient_id).delete()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve the lists that a recipient is on #
@@ -275,8 +275,8 @@ print(response.response_headers)
 recipient_id = "test_url_param"
 response = sg.client.contactdb.recipients._(recipient_id).lists.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve reserved fields #
@@ -284,8 +284,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.reserved_fields.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Create a Segment #
@@ -317,8 +317,8 @@ data = {
 }
 response = sg.client.contactdb.segments.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all segments #
@@ -326,8 +326,8 @@ print(response.response_headers)
 
 response = sg.client.contactdb.segments.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update a segment #
@@ -349,8 +349,8 @@ params = {'segment_id': 'test_string'}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).patch(request_body=data, query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve a segment #
@@ -360,8 +360,8 @@ params = {'segment_id': 0}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Delete a segment #
@@ -371,8 +371,8 @@ params = {'delete_contacts': 'true'}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).delete(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve recipients on a segment #
@@ -382,6 +382,6 @@ params = {'page': 1, 'page_size': 1}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).recipients.get(query_params=params)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 

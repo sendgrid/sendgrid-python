@@ -1,7 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [2.2.1] - 2016-03-02 ##
+## [3.0.0] - 2016-06-13 ##
+### Added
+- Breaking change to support the v3 Web API
+- New HTTP client
+- v3 Mail Send helper
+
+## [2.1.1] - 2016-03-02 ##
 
 ### Added ###
 

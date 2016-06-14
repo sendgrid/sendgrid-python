@@ -3,8 +3,7 @@ import json
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey='YOUR_SENDGRID_API_KEY')
-# You can also store your API key an .env variable 'SENDGRID_API_KEY'
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
 # Create API keys #
@@ -20,8 +19,8 @@ data = {
 }
 response = sg.client.api_keys.post(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Retrieve all API Keys belonging to the authenticated user #
@@ -29,8 +28,8 @@ print(response.response_headers)
 
 response = sg.client.api_keys.get()
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update the name & scopes of an API Key #
@@ -46,28 +45,8 @@ data = {
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).put(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Delete API keys #
-# DELETE /api_keys/{api_key_id} #
-
-api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
-
-##################################################
-# Retrieve an existing API Key #
-# GET /api_keys/{api_key_id} #
-
-api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).get()
-print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
 
 ##################################################
 # Update API keys #
@@ -79,6 +58,26 @@ data = {
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).patch(request_body=data)
 print(response.status_code)
-print(response.response_body)
-print(response.response_headers)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Retrieve an existing API Key #
+# GET /api_keys/{api_key_id} #
+
+api_key_id = "test_url_param"
+response = sg.client.api_keys._(api_key_id).get()
+print(response.status_code)
+print(response.body)
+print(response.headers)
+
+##################################################
+# Delete API keys #
+# DELETE /api_keys/{api_key_id} #
+
+api_key_id = "test_url_param"
+response = sg.client.api_keys._(api_key_id).delete()
+print(response.status_code)
+print(response.body)
+print(response.headers)
 
