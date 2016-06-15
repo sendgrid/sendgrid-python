@@ -19,7 +19,14 @@ print(response.headers)
 # Delete blocks #
 # DELETE /suppression/blocks #
 
-response = sg.client.suppression.blocks.delete()
+data = {
+  "delete_all": False, 
+  "emails": [
+    "example1@example.com", 
+    "example2@example.com"
+  ]
+}
+response = sg.client.suppression.blocks.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -58,7 +65,14 @@ print(response.headers)
 # Delete bounces #
 # DELETE /suppression/bounces #
 
-response = sg.client.suppression.bounces.delete()
+data = {
+  "delete_all": True, 
+  "emails": [
+    "example@example.com", 
+    "example2@example.com"
+  ]
+}
+response = sg.client.suppression.bounces.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -98,7 +112,14 @@ print(response.headers)
 # Delete invalid emails #
 # DELETE /suppression/invalid_emails #
 
-response = sg.client.suppression.invalid_emails.delete()
+data = {
+  "delete_all": False, 
+  "emails": [
+    "example1@example.com", 
+    "example2@example.com"
+  ]
+}
+response = sg.client.suppression.invalid_emails.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -157,7 +178,14 @@ print(response.headers)
 # Delete spam reports #
 # DELETE /suppression/spam_reports #
 
-response = sg.client.suppression.spam_reports.delete()
+data = {
+  "delete_all": False, 
+  "emails": [
+    "example1@example.com", 
+    "example2@example.com"
+  ]
+}
+response = sg.client.suppression.spam_reports.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)

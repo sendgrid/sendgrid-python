@@ -138,9 +138,8 @@ print(response.headers)
 # Validate a domain whitelabel. #
 # POST /whitelabel/domains/{id}/validate #
 
-data = null
 id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post(request_body=data)
+response = sg.client.whitelabel.domains._(id).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -193,9 +192,8 @@ print(response.headers)
 # Validate an IP whitelabel #
 # POST /whitelabel/ips/{id}/validate #
 
-data = null
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post(request_body=data)
+response = sg.client.whitelabel.ips._(id).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -292,9 +290,8 @@ print(response.headers)
 # Validate a Link Whitelabel #
 # POST /whitelabel/links/{id}/validate #
 
-data = null
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post(request_body=data)
+response = sg.client.whitelabel.links._(id).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)

@@ -133,9 +133,8 @@ print(response.headers)
 # Send a Campaign #
 # POST /campaigns/{campaign_id}/schedules/now #
 
-data = null
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body=data)
+response = sg.client.campaigns._(campaign_id).schedules.now.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)

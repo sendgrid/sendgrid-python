@@ -59,8 +59,10 @@ easy_install sendgrid
 
 ```python
 import sendgrid
+import os
 from sendgrid.helpers.mail import *
 
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
 subject = "Hello World from the SendGrid Python Library"
 to_email = Email("test@example.com")
@@ -76,8 +78,9 @@ print(response.headers)
 
 ```python
 import sendgrid
+import os
 
-sg = sendgrid.SendGridAPIClient()
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 response = sg.client.api_keys.get()
 print(response.status_code)
 print(response.body)

@@ -50,7 +50,14 @@ print(response.headers)
 # Remove one or more IPs from the whitelist #
 # DELETE /access_settings/whitelist #
 
-response = sg.client.access_settings.whitelist.delete()
+data = {
+  "ids": [
+    1, 
+    2, 
+    3
+  ]
+}
+response = sg.client.access_settings.whitelist.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)

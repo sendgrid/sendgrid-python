@@ -72,7 +72,13 @@ print(response.headers)
 # Delete Multiple lists #
 # DELETE /contactdb/lists #
 
-response = sg.client.contactdb.lists.delete()
+data = [
+  1, 
+  2, 
+  3, 
+  4
+]
+response = sg.client.contactdb.lists.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -142,10 +148,9 @@ print(response.headers)
 # Add a Single Recipient to a List #
 # POST /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
-data = null
 list_id = "test_url_param"
 recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body=data)
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -215,7 +220,11 @@ print(response.headers)
 # Delete Recipient #
 # DELETE /contactdb/recipients #
 
-response = sg.client.contactdb.recipients.delete()
+data = [
+  "recipient_id1", 
+  "recipient_id2"
+]
+response = sg.client.contactdb.recipients.delete(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)

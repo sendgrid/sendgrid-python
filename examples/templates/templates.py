@@ -121,10 +121,9 @@ print(response.headers)
 # Activate a transactional template version. #
 # POST /templates/{template_id}/versions/{version_id}/activate #
 
-data = null
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body=data)
+response = sg.client.templates._(template_id).versions._(version_id).activate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
