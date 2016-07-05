@@ -11,6 +11,7 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 data = {
   "name": "My API Key", 
+  "sample": "data", 
   "scopes": [
     "mail.send", 
     "alerts.create", 
@@ -26,7 +27,8 @@ print(response.headers)
 # Retrieve all API Keys belonging to the authenticated user #
 # GET /api_keys #
 
-response = sg.client.api_keys.get()
+params = {'limit': 1}
+response = sg.client.api_keys.get(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)

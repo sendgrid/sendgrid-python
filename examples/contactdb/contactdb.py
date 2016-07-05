@@ -90,7 +90,7 @@ print(response.headers)
 data = {
   "name": "newlistname"
 }
-params = {'list_id': 0}
+params = {'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
 print(response.status_code)
@@ -101,7 +101,7 @@ print(response.headers)
 # Retrieve a single list #
 # GET /contactdb/lists/{list_id} #
 
-params = {'list_id': 0}
+params = {'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).get(query_params=params)
 print(response.status_code)
@@ -137,7 +137,7 @@ print(response.headers)
 # Retrieve all recipients on a List #
 # GET /contactdb/lists/{list_id}/recipients #
 
-params = {'page': 1, 'page_size': 1, 'list_id': 0}
+params = {'page': 1, 'page_size': 1, 'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print(response.status_code)
@@ -159,7 +159,7 @@ print(response.headers)
 # Delete a Single Recipient from a Single List #
 # DELETE /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
-params = {'recipient_id': 0, 'list_id': 0}
+params = {'recipient_id': 1, 'list_id': 1}
 list_id = "test_url_param"
 recipient_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
@@ -251,7 +251,7 @@ print(response.headers)
 # Retrieve recipients matching search criteria #
 # GET /contactdb/recipients/search #
 
-params = {'{field_name}': 'test_string'}
+params = {'%7Bfield_name%7D': 'test_string', '{field_name}': 'test_string'}
 response = sg.client.contactdb.recipients.search.get(query_params=params)
 print(response.status_code)
 print(response.body)
@@ -365,7 +365,7 @@ print(response.headers)
 # Retrieve a segment #
 # GET /contactdb/segments/{segment_id} #
 
-params = {'segment_id': 0}
+params = {'segment_id': 1}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).get(query_params=params)
 print(response.status_code)

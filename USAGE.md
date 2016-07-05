@@ -13,6 +13,7 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # Table of Contents
 
 * [ACCESS SETTINGS](#access_settings)
+* [ALERTS](#alerts)
 * [API KEYS](#api_keys)
 * [ASM](#asm)
 * [BROWSERS](#browsers)
@@ -173,6 +174,115 @@ print response.status_code
 print response.body
 print response.headers
 ```
+<a name="alerts"></a>
+# ALERTS
+
+## Create a new Alert
+
+**This endpoint allows you to create a new alert.**
+
+Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
+* Usage alerts allow you to set the threshold at which an alert will be sent.
+* Stats notifications allow you to set how frequently you would like to receive email statistics reports. For example, "daily", "weekly", or "monthly".
+
+For more information about alerts, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/alerts.html).
+
+### POST /alerts
+
+
+```python
+data = {
+  "email_to": "example@example.com",
+  "frequency": "daily",
+  "type": "stats_notification"
+}
+response = sg.client.alerts.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve all alerts
+
+**This endpoint allows you to retieve all of your alerts.**
+
+Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
+* Usage alerts allow you to set the threshold at which an alert will be sent.
+* Stats notifications allow you to set how frequently you would like to receive email statistics reports. For example, "daily", "weekly", or "monthly".
+
+For more information about alerts, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/alerts.html).
+
+### GET /alerts
+
+
+```python
+response = sg.client.alerts.get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Update an alert
+
+**This endpoint allows you to update an alert.**
+
+Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
+* Usage alerts allow you to set the threshold at which an alert will be sent.
+* Stats notifications allow you to set how frequently you would like to receive email statistics reports. For example, "daily", "weekly", or "monthly".
+
+For more information about alerts, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/alerts.html).
+
+### PATCH /alerts/{alert_id}
+
+
+```python
+data = {
+  "email_to": "example@example.com"
+}
+alert_id = "test_url_param"
+response = sg.client.alerts._(alert_id).patch(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve a specific alert
+
+**This endpoint allows you to retrieve a specific alert.**
+
+Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
+* Usage alerts allow you to set the threshold at which an alert will be sent.
+* Stats notifications allow you to set how frequently you would like to receive email statistics reports. For example, "daily", "weekly", or "monthly".
+
+For more information about alerts, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/alerts.html).
+
+### GET /alerts/{alert_id}
+
+
+```python
+alert_id = "test_url_param"
+response = sg.client.alerts._(alert_id).get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Delete an alert
+
+**This endpoint allows you to delete an alert.**
+
+Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
+* Usage alerts allow you to set the threshold at which an alert will be sent.
+* Stats notifications allow you to set how frequently you would like to receive email statistics reports. For example, "daily", "weekly", or "monthly".
+
+For more information about alerts, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/alerts.html).
+
+### DELETE /alerts/{alert_id}
+
+
+```python
+alert_id = "test_url_param"
+response = sg.client.alerts._(alert_id).delete()
+print response.status_code
+print response.body
+print response.headers
+```
 <a name="api_keys"></a>
 # API KEYS
 
@@ -194,6 +304,7 @@ See the [API Key Permissions List](https://sendgrid.com/docs/API_Reference/Web_A
 ```python
 data = {
   "name": "My API Key",
+  "sample": "data",
   "scopes": [
     "mail.send",
     "alerts.create",
@@ -215,7 +326,8 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 
 ```python
-response = sg.client.api_keys.get()
+params = {'limit': 1}
+response = sg.client.api_keys.get(query_params=params)
 print response.status_code
 print response.body
 print response.headers
@@ -347,6 +459,10 @@ print response.headers
 
 This endpoint will return information for each group ID that you include in your request. To add a group ID to your request, simply append `&id=` followed by the group ID.
 
+Suppressions are a list of email addresses that will not receive content sent under a given [group](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html).
+
+Suppression groups, or [unsubscribe groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html), allow you to label a category of content that you regularly send. This gives your recipients the ability to opt out of a specific set of your email. For example, you might define a group for your transactional email, and one for your marketing email so that your users can continue recieving your transactional email witout having to receive your marketing content.
+
 ### GET /asm/groups
 
 
@@ -464,6 +580,31 @@ print response.status_code
 print response.body
 print response.headers
 ```
+## Search for suppressions within a group
+
+**This endpoint allows you to search a suppression group for multiple suppressions.**
+
+When given a list of email addresses and a group ID, this endpoint will return only the email addresses that have been unsubscribed from the given group.
+
+Suppressions are a list of email addresses that will not receive content sent under a given [group](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html).
+
+### POST /asm/groups/{group_id}/suppressions/search
+
+
+```python
+data = {
+  "recipient_emails": [
+    "exists1@example.com",
+    "exists2@example.com",
+    "doesnotexists@example.com"
+  ]
+}
+group_id = "test_url_param"
+response = sg.client.asm.groups._(group_id).suppressions.search.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
 ## Delete a suppression from a suppression group
 
 **This endpoint allows you to remove a suppressed email address from the given suppression group.**
@@ -485,7 +626,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a list of all suppressions.**
 
-Suppressions are email addresses that can be added to [groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html) to prevent certain types of emails from being delivered to those addresses.
+Suppressions are a list of email addresses that will not receive content sent under a given [group](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html).
 
 ### GET /asm/suppressions
 
@@ -553,9 +694,9 @@ print response.headers
 ```
 ## Retrieve all suppression groups for an email address
 
-**This endpoint will return a list of all suppression groups, indicating if the given email address is suppressed for each group.**
+**This endpoint returns the list of all groups that the given email address has been unsubscribed from.**
 
-Suppressions are email addresses that can be added to [groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html) to prevent certain types of emails from being delivered to those addresses.
+Suppressions are a list of email addresses that will not receive content sent under a given [group](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html).
 
 ### GET /asm/suppressions/{email}
 
@@ -648,7 +789,7 @@ For more information:
 
 
 ```python
-params = {'limit': 0, 'offset': 0}
+params = {'limit': 1, 'offset': 1}
 response = sg.client.campaigns.get(query_params=params)
 print response.status_code
 print response.body
@@ -1083,7 +1224,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 data = {
   "name": "newlistname"
 }
-params = {'list_id': 0}
+params = {'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
 print response.status_code
@@ -1100,7 +1241,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 
 ```python
-params = {'list_id': 0}
+params = {'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).get(query_params=params)
 print response.status_code
@@ -1156,7 +1297,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 
 ```python
-params = {'page': 1, 'page_size': 1, 'list_id': 0}
+params = {'page': 1, 'page_size': 1, 'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print response.status_code
@@ -1190,7 +1331,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 
 ```python
-params = {'recipient_id': 0, 'list_id': 0}
+params = {'recipient_id': 1, 'list_id': 1}
 list_id = "test_url_param"
 recipient_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
@@ -1346,7 +1487,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 
 ```python
-params = {'{field_name}': 'test_string'}
+params = {'%7Bfield_name%7D': 'test_string', '{field_name}': 'test_string'}
 response = sg.client.contactdb.recipients.search.get(query_params=params)
 print response.status_code
 print response.body
@@ -1536,7 +1677,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 
 
 ```python
-params = {'segment_id': 0}
+params = {'segment_id': 1}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).get(query_params=params)
 print response.status_code
@@ -2054,13 +2195,8 @@ data = {
       "send_at": 1409348513,
       "subject": "Hello, World!",
       "substitutions": {
-        "sub": {
-          "%name%": [
-            "John",
-            "Jane",
-            "Sam"
-          ]
-        }
+        "id": "substitutions",
+        "type": "object"
       },
       "to": [
         {
@@ -2642,7 +2778,7 @@ For more information about Subusers:
 
 
 ```python
-params = {'username': 'test_string', 'limit': 0, 'offset': 0}
+params = {'username': 'test_string', 'limit': 1, 'offset': 1}
 response = sg.client.subusers.get(query_params=params)
 print response.status_code
 print response.body
@@ -2866,7 +3002,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 
 ```python
-params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 1}
+params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1}
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params=params)
 print response.status_code
@@ -2974,7 +3110,7 @@ For more information see:
 
 
 ```python
-params = {'start_time': 0, 'end_time': 0}
+params = {'start_time': 1, 'end_time': 1}
 response = sg.client.suppression.bounces.get(query_params=params)
 print response.status_code
 print response.body
@@ -4061,17 +4197,91 @@ print response.status_code
 print response.body
 print response.headers
 ```
-## Retrieve Parse Webhook settings
+## Create a parse setting
 
-**This endpoint allows you to retrieve your current inbound parse webhook settings.**
+**This endpoint allows you to create a new inbound parse setting.**
 
-SendGrid can parse the attachments and contents of incoming emails. The Parse API will POST the parsed email to a URL that you specify. For more information, see our Inbound [Parse Webhook documentation](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the content, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+
+### POST /user/webhooks/parse/settings
+
+
+```python
+data = {
+  "hostname": "myhostname.com",
+  "send_raw": False,
+  "spam_check": True,
+  "url": "http://email.myhosthame.com"
+}
+response = sg.client.user.webhooks.parse.settings.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve all parse settings
+
+**This endpoint allows you to retrieve all of your current inbound parse settings.**
+
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### GET /user/webhooks/parse/settings
 
 
 ```python
 response = sg.client.user.webhooks.parse.settings.get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Update a parse setting
+
+**This endpoint allows you to update a specific inbound parse setting.**
+
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+
+### PATCH /user/webhooks/parse/settings/{hostname}
+
+
+```python
+data = {
+  "send_raw": True,
+  "spam_check": False,
+  "url": "http://newdomain.com/parse"
+}
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).patch(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve a specific parse setting
+
+**This endpoint allows you to retrieve a specific inbound parse setting.**
+
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+
+### GET /user/webhooks/parse/settings/{hostname}
+
+
+```python
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Delete a parse setting
+
+**This endpoint allows you to delete a specific inbound parse setting.**
+
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+
+### DELETE /user/webhooks/parse/settings/{hostname}
+
+
+```python
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).delete()
 print response.status_code
 print response.body
 print response.headers

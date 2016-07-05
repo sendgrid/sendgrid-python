@@ -55,7 +55,7 @@ print(response.headers)
 # Retrieve all bounces #
 # GET /suppression/bounces #
 
-params = {'start_time': 0, 'end_time': 0}
+params = {'start_time': 1, 'end_time': 1}
 response = sg.client.suppression.bounces.get(query_params=params)
 print(response.status_code)
 print(response.body)

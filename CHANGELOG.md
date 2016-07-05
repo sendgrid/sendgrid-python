@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.1] - 2016-07-05 ##
+### Fixed
+- [Issue 185](https://github.com/sendgrid/sendgrid-python/issues/185): Getting HTTP Error 406 when getting bounces
+### Updated
+- Examples, USAGE.md and Unit Tests with updated content and new endpoints
+
 ## [3.0.0] - 2016-06-13 ##
 ### Added
 - Breaking change to support the v3 Web API

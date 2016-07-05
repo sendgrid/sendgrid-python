@@ -38,7 +38,7 @@ print(response.headers)
 # Retrieve all Campaigns #
 # GET /campaigns #
 
-params = {'limit': 0, 'offset': 0}
+params = {'limit': 1, 'offset': 1}
 response = sg.client.campaigns.get(query_params=params)
 print(response.status_code)
 print(response.body)

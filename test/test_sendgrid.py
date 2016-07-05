@@ -81,9 +81,46 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.access_settings.whitelist._(rule_id).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
+    def test_alerts_post(self):
+        data = {
+  "email_to": "example@example.com",
+  "frequency": "daily",
+  "type": "stats_notification"
+}
+        headers = {'X-Mock': 201}
+        response = self.sg.client.alerts.post(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 201)
+
+    def test_alerts_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.alerts.get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_alerts__alert_id__patch(self):
+        data = {
+  "email_to": "example@example.com"
+}
+        alert_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.alerts._(alert_id).patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_alerts__alert_id__get(self):
+        alert_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.alerts._(alert_id).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_alerts__alert_id__delete(self):
+        alert_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.alerts._(alert_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
+
     def test_api_keys_post(self):
         data = {
   "name": "My API Key",
+  "sample": "data",
   "scopes": [
     "mail.send",
     "alerts.create",
@@ -95,8 +132,9 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_api_keys_get(self):
+        params = {'limit': 1}
         headers = {'X-Mock': 200}
-        response = self.sg.client.api_keys.get(request_headers=headers)
+        response = self.sg.client.api_keys.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_api_keys__api_key_id__put(self):
@@ -135,17 +173,18 @@ class UnitTests(unittest.TestCase):
 
     def test_asm_groups_post(self):
         data = {
-  "description": "A group description",
-  "is_default": False,
-  "name": "A group name"
+  "description": "Suggestions for products our users might like.",
+  "is_default": True,
+  "name": "Product Suggestions"
 }
-        headers = {'X-Mock': 200}
+        headers = {'X-Mock': 201}
         response = self.sg.client.asm.groups.post(request_body=data, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_asm_groups_get(self):
+        params = {'id': 1}
         headers = {'X-Mock': 200}
-        response = self.sg.client.asm.groups.get(request_headers=headers)
+        response = self.sg.client.asm.groups.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_asm_groups__group_id__patch(self):
@@ -189,12 +228,30 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.asm.groups._(group_id).suppressions.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
+    def test_asm_groups__group_id__suppressions_search_post(self):
+        data = {
+  "recipient_emails": [
+    "exists1@example.com",
+    "exists2@example.com",
+    "doesnotexists@example.com"
+  ]
+}
+        group_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.asm.groups._(group_id).suppressions.search.post(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
     def test_asm_groups__group_id__suppressions__email__delete(self):
         group_id = "test_url_param"
         email = "test_url_param"
         headers = {'X-Mock': 204}
         response = self.sg.client.asm.groups._(group_id).suppressions._(email).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
+
+    def test_asm_suppressions_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.asm.suppressions.get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
 
     def test_asm_suppressions_global_post(self):
         data = {
@@ -218,6 +275,12 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 204}
         response = self.sg.client.asm.suppressions._("global")._(email).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
+
+    def test_asm_suppressions__email__get(self):
+        email = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.asm.suppressions._(email).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
 
     def test_browsers_stats_get(self):
         params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'browsers': 'test_string', 'limit': 'test_string', 'offset': 'test_string', 'start_date': '2016-01-01'}
@@ -251,7 +314,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_campaigns_get(self):
-        params = {'limit': 0, 'offset': 0}
+        params = {'limit': 1, 'offset': 1}
         headers = {'X-Mock': 200}
         response = self.sg.client.campaigns.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
@@ -413,14 +476,14 @@ class UnitTests(unittest.TestCase):
         data = {
   "name": "newlistname"
 }
-        params = {'list_id': 0}
+        params = {'list_id': 1}
         list_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_lists__list_id__get(self):
-        params = {'list_id': 0}
+        params = {'list_id': 1}
         list_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.lists._(list_id).get(query_params=params, request_headers=headers)
@@ -444,7 +507,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_lists__list_id__recipients_get(self):
-        params = {'page': 1, 'page_size': 1, 'list_id': 0}
+        params = {'page': 1, 'page_size': 1, 'list_id': 1}
         list_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.lists._(list_id).recipients.get(query_params=params, request_headers=headers)
@@ -458,7 +521,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_lists__list_id__recipients__recipient_id__delete(self):
-        params = {'recipient_id': 0, 'list_id': 0}
+        params = {'recipient_id': 1, 'list_id': 1}
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         headers = {'X-Mock': 204}
@@ -522,7 +585,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients_search_get(self):
-        params = {'{field_name}': 'test_string'}
+        params = {'%7Bfield_name%7D': 'test_string', '{field_name}': 'test_string'}
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.recipients.search.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
@@ -604,7 +667,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_segments__segment_id__get(self):
-        params = {'segment_id': 0}
+        params = {'segment_id': 1}
         segment_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.segments._(segment_id).get(query_params=params, request_headers=headers)
@@ -767,7 +830,7 @@ class UnitTests(unittest.TestCase):
   "content": [
     {
       "type": "text/html",
-      "value": "<html><p>Hello, world!</p><img src='cid:ii_139db99fdb5c3704'></img></html>"
+      "value": "<html><p>Hello, world!</p><img src=[CID GOES HERE]></img></html>"
     }
   ],
   "custom_args": {
@@ -829,13 +892,8 @@ class UnitTests(unittest.TestCase):
       "send_at": 1409348513,
       "subject": "Hello, World!",
       "substitutions": {
-        "sub": {
-          "%name%": [
-            "John",
-            "Jane",
-            "Sam"
-          ]
-        }
+        "id": "substitutions",
+        "type": "object"
       },
       "to": [
         {
@@ -1077,7 +1135,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_subusers_get(self):
-        params = {'username': 'test_string', 'limit': 0, 'offset': 0}
+        params = {'username': 'test_string', 'limit': 1, 'offset': 1}
         headers = {'X-Mock': 200}
         response = self.sg.client.subusers.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
@@ -1163,7 +1221,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_subusers__subuser_name__stats_monthly_get(self):
-        params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 0, 'sort_by_metric': 'test_string', 'offset': 1}
+        params = {'date': 'test_string', 'sort_by_direction': 'asc', 'limit': 1, 'sort_by_metric': 'test_string', 'offset': 1}
         subuser_name = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.subusers._(subuser_name).stats.monthly.get(query_params=params, request_headers=headers)
@@ -1200,7 +1258,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_suppression_bounces_get(self):
-        params = {'start_time': 0, 'end_time': 0}
+        params = {'start_time': 1, 'end_time': 1}
         headers = {'X-Mock': 200}
         response = self.sg.client.suppression.bounces.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
@@ -1589,10 +1647,44 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.user.webhooks.event.test.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
+    def test_user_webhooks_parse_settings_post(self):
+        data = {
+  "hostname": "myhostname.com",
+  "send_raw": False,
+  "spam_check": True,
+  "url": "http://email.myhosthame.com"
+}
+        headers = {'X-Mock': 201}
+        response = self.sg.client.user.webhooks.parse.settings.post(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 201)
+
     def test_user_webhooks_parse_settings_get(self):
         headers = {'X-Mock': 200}
         response = self.sg.client.user.webhooks.parse.settings.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_user_webhooks_parse_settings__hostname__patch(self):
+        data = {
+  "send_raw": True,
+  "spam_check": False,
+  "url": "http://newdomain.com/parse"
+}
+        hostname = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.user.webhooks.parse.settings._(hostname).patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_webhooks_parse_settings__hostname__get(self):
+        hostname = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.user.webhooks.parse.settings._(hostname).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_webhooks_parse_settings__hostname__delete(self):
+        hostname = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.user.webhooks.parse.settings._(hostname).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_user_webhooks_parse_stats_get(self):
         params = {'aggregated_by': 'day', 'limit': 'test_string', 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
