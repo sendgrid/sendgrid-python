@@ -25,7 +25,8 @@ elif [ "$UNAME" = "Linux" ] ; then
   fi
 fi
 
-#LATEST=$(curl -s https://api.github.com/repos/stoplightio/prism/tags | grep -Eo '"name":.*?[^\\]",'  | head -n 1 | sed 's/[," ]//g' | cut -d ':' -f 2)
+LATEST=$(curl -s https://api.github.com/repos/stoplightio/prism/tags | grep -Eo '"name":.*?[^\\]",'  | head -n 1 | sed 's/[," ]//g' | cut -d ':' -f 2)
+echo "Latest: $LATEST"
 LATEST="v0.1.5"
 URL="https://github.com/stoplightio/prism/releases/download/v0.1.5/prism_$PLATFORM"
 DEST=./prism/bin/prism
@@ -34,6 +35,7 @@ if [ -z $LATEST ] ; then
   echo "Error requesting. Download binary from ${URL}"
   exit 1
 else
+  echo "Latest: $LATEST"
   curl -L $URL -o $DEST
   chmod +x $DEST
 fi
