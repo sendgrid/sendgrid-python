@@ -30,11 +30,11 @@ class UnitTests(unittest.TestCase):
             else:
                 print("Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory")
                 sys.exit()
-        print "Activating Prism (~20 seconds)"
+        print("Activating Prism (~20 seconds)")
         devnull = open(os.devnull, 'w')
         cls.p = subprocess.Popen(["prism", "run", "-s", "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"], stdout=devnull, stderr=subprocess.STDOUT)
         time.sleep(15)
-        print "Prism Started"
+        print("Prism Started")
 
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
@@ -1909,4 +1909,4 @@ class UnitTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.p.kill()
-        print "Prism Shut Down"
+        print("Prism Shut Down")
