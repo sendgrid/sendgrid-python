@@ -11,6 +11,9 @@ python:
 install:
 - python setup.py install
 before_script:
+- mkdir prism
+- mkdir prism/bin
+- export PATH=$PATH:$PWD/prism/bin/
 - ./test/prism.sh
 script:
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest
