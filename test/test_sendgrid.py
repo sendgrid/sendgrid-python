@@ -32,7 +32,7 @@ class UnitTests(unittest.TestCase):
                 sys.exit()
         print "Activating Prism (~20 seconds)"
         devnull = open(os.devnull, 'w')
-        cls.p = subprocess.Popen(["prism", "run", "-s", "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"], stdout=devnull, stderr=subprocess.STDOUT)
+        cls.p = subprocess.Popen(["/usr/local/bin/prism", "run", "-s", "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"], stdout=devnull, stderr=subprocess.STDOUT)
         time.sleep(15)
         print "Prism Started"
 
