@@ -7,16 +7,34 @@ try:
 except ImportError:
     import unittest
 import os
-if os.environ.get('TRAVIS'):
-    host = os.environ.get('MOCK_HOST')
-else:
-    host = "http://localhost:4010"
+import subprocess
+import sys
+import time
+
+host = "http://localhost:4010"
 
 class UnitTests(unittest.TestCase):
-    def setUp(self):
-        self.host = host
-        self.path = '{0}{1}'.format(os.path.abspath(os.path.dirname(__file__)), '/..')
-        self.sg = sendgrid.SendGridAPIClient(host=host, path=self.path)
+    @classmethod
+    def setUpClass(cls):
+        cls.host = host
+        cls.path = '{0}{1}'.format(os.path.abspath(os.path.dirname(__file__)), '/..')
+        cls.sg = sendgrid.SendGridAPIClient(host=host, path=cls.path)
+        if os.path.isfile('/usr/local/bin/prism') == False:
+            if sys.platform != 'win32':
+                try:
+                    p1 = subprocess.Popen(["curl", "https://raw.githubusercontent.com/stoplightio/prism/master/install.sh"], stdout=subprocess.PIPE)
+                    p2 = subprocess.Popen(["sh"], stdin=p1.stdout, stdout=subprocess.PIPE)
+                except Exception as e:
+                    print("Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /user/local/bin directory", e.read())
+                    sys.exit()
+            else:
+                print("Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory")
+                sys.exit()
+        print("Activating Prism (~20 seconds)")
+        devnull = open(os.devnull, 'w')
+        cls.p = subprocess.Popen(["prism", "run", "-s", "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"], stdout=devnull, stderr=subprocess.STDOUT)
+        time.sleep(15)
+        print("Prism Started")
 
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
@@ -1888,3 +1906,7 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.whitelabel.links._(link_id).subuser.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
+    @classmethod
+    def tearDownClass(cls):
+        cls.p.kill()
+        print("Prism Shut Down")
