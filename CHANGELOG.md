@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.4] - 2016-07-08 ##
+### Added
+- Dependency update to fix issue #186
+
 ## [3.0.3] - 2016-07-07 ##
 ### Added
 - Tests now mocked automatically against [prism](https://stoplight.io/prism/)
