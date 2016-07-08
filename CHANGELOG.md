@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.3] - 2016-07-07 ##
+### Added
+- Tests now mocked automatically against [prism](https://stoplight.io/prism/)
+
 ## [3.0.1] - 2016-07-05 ##
 ### Fixed
 - [Issue 185](https://github.com/sendgrid/sendgrid-python/issues/185): Getting HTTP Error 406 when getting bounces
