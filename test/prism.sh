@@ -34,8 +34,10 @@ if [ -z $LATEST ] ; then
   echo "Error requesting. Download binary from ${URL}"
   exit 1
 else
-  curl -sL $URL -o $DEST
+  curl -L $URL -o $DEST
+  echo "curl success"
   chmod +x $DEST
+  echo "chmod success"
 fi
 }
 
