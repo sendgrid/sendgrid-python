@@ -1,8 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.5] - 2016-07-11 ##
+### Fixed
+- Fixed logic errors related to issue #189
+
 ## [3.0.4] - 2016-07-08 ##
-### Added
+### Fixed
 - Dependency update to fix issue #186
 
 ## [3.0.3] - 2016-07-07 ##
