@@ -142,12 +142,10 @@ Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, e
 ```
 pyenv install 2.6.9
 pyenv install 2.7.11
-pyenv install 3.2.6
-pyenv install 3.3.6
 pyenv install 3.4.3
 pyenv install 3.5.0
 python setup.py install
-pyenv local 3.5.0 3.4.3 3.3.6 3.2.6 2.7.8 2.6.9
+pyenv local 3.5.0 3.4.3 2.7.8 2.6.9
 pyenv rehash
 ```
 
