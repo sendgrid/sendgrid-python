@@ -53,21 +53,15 @@ class Mail(object):
         if self.template_id:
             mail["template_id"] = self.template_id
         if self.sections:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
+            sections = {sec.key: sec.value for sec in self.sections}
             mail["sections"] = sections
         if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
+            headers = {header.key: header.value for header in self.headers}
             mail["headers"] = headers
         if self.categories:
             mail["categories"] = [category.get() for category in self.categories]
         if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
+            custom_args = {arg.key: arg.value for arg in self.custom_args}
             mail["custom_args"] = custom_args
         if self.send_at:
             mail["send_at"] = self.send_at
