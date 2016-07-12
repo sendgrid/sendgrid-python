@@ -11,11 +11,10 @@ Version 3.X.X is a breaking change for the entire library. Generally, any [major
 Version 3.X.X brings you full support for all Web API v3 endpoints. We
 have the following resources to get you started quickly:
 
--   [SendGrid
-    v3 Web API Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
--   [v3 Web API Python Usage
-    Examples](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
--   [v3 Web API Python Example
+-   [General Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
+-   [Python Usage
+    Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
+-   [Python Example
     Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
 -   [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 
@@ -53,7 +52,7 @@ easy_install sendgrid
 
 ## Dependencies
 
-- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python))
+- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
 # Quick Start
