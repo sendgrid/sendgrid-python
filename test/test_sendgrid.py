@@ -603,7 +603,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_contactdb_recipients_search_get(self):
-        params = {'%7Bfield_name%7D': 'test_string', '{field_name}': 'test_string'}
+        params = {'{field_name}': 'test_string'}
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.recipients.search.get(query_params=params, request_headers=headers)
         self.assertEqual(response.status_code, 200)
@@ -1131,6 +1131,74 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.scopes.get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_senders_post(self):
+        data = {
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}
+        headers = {'X-Mock': 201}
+        response = self.sg.client.senders.post(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 201)
+
+    def test_senders_get(self):
+        headers = {'X-Mock': 200}
+        response = self.sg.client.senders.get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_senders__sender_id__patch(self):
+        data = {
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}
+        sender_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.senders._(sender_id).patch(request_body=data, request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_senders__sender_id__get(self):
+        sender_id = "test_url_param"
+        headers = {'X-Mock': 200}
+        response = self.sg.client.senders._(sender_id).get(request_headers=headers)
+        self.assertEqual(response.status_code, 200)
+
+    def test_senders__sender_id__delete(self):
+        sender_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.senders._(sender_id).delete(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
+
+    def test_senders__sender_id__resend_verification_post(self):
+        sender_id = "test_url_param"
+        headers = {'X-Mock': 204}
+        response = self.sg.client.senders._(sender_id).resend_verification.post(request_headers=headers)
+        self.assertEqual(response.status_code, 204)
 
     def test_stats_get(self):
         params = {'aggregated_by': 'day', 'limit': 1, 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 1}

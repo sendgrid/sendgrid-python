@@ -251,7 +251,7 @@ print(response.headers)
 # Retrieve recipients matching search criteria #
 # GET /contactdb/recipients/search #
 
-params = {'%7Bfield_name%7D': 'test_string', '{field_name}': 'test_string'}
+params = {'{field_name}': 'test_string'}
 response = sg.client.contactdb.recipients.search.get(query_params=params)
 print(response.status_code)
 print(response.body)

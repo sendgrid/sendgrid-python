@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.6] - 2016-07-12 ##
+### Added
+- Update docs, unit tests and examples to include Sender ID
+
 ## [3.0.5] - 2016-07-11 ##
 ### Fixed
 - Fixed logic errors related to issue #189
