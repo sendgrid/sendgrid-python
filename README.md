@@ -6,22 +6,22 @@
 
 **BREAKING CHANGE as of 2016.06.14**
 
-Version `3.X.X` is a breaking change for the entire library.
+Version 3.X.X is a breaking change for the entire library. Generally, any [major point release](http://semver.org/) will be a breaking change.
 
 Version 3.X.X brings you full support for all Web API v3 endpoints. We
 have the following resources to get you started quickly:
 
 -   [SendGrid
-    Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
--   [Usage
-    Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
--   [Example
+    v3 Web API Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
+-   [v3 Web API Python Usage
+    Examples](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
+-   [v3 Web API Python Example
     Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
--   [Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
+-   [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 
-Note that this is the first of many iterations. We need your help to determine priority, please do so by creating [issues](https://github.com/sendgrid/sendgrid-python/issues) or [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md).
+This is the first of many iterations and we need your help to determine priority. You can help by creating [issues](https://github.com/sendgrid/sendgrid-python/issues), [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvoting or commenting on existing issues or pull requests.
 
-Thank you for your continued support!
+We appreciate your continued support, thank you!
 
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
 
