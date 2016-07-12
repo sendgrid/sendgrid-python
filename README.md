@@ -19,6 +19,8 @@ have the following resources to get you started quickly:
     Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
 -   [Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 
+Note that this is the first of many iterations. We need your help to determine priority, please do so by creating [issues](https://github.com/sendgrid/sendgrid-python/issues) or [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md).
+
 Thank you for your continued support!
 
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
@@ -58,6 +60,8 @@ easy_install sendgrid
 
 ## Hello Email
 
+The minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail):
+
 ```python
 import sendgrid
 import os
@@ -65,11 +69,46 @@ from sendgrid.helpers.mail import *
 
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
-subject = "Hello World from the SendGrid Python Library"
+subject = "Hello World from the SendGrid Python Library!"
 to_email = Email("test@example.com")
-content = Content("text/plain", "some text here")
+content = Content("text/plain", "Hello, Email!")
+# The constructor creates a personalization object for you, to add to it,
+# please see [this example](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16).
 mail = Mail(from_email, subject, to_email, content)
 response = sg.client.mail.send.post(request_body=mail.get())
+print(response.status_code)
+print(response.body)
+print(response.headers)
+```
+
+The minimum needed code to send an email without the /mail/send Helper:
+
+```python
+import sendgrid
+import os
+
+data = {
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "test@example.com"
+        }
+      ],
+      "subject": "Hello World from the SendGrid Python Library!"
+    }
+  ],
+  "from": {
+    "email": "test@example.com"
+  },
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "Hello, Email!"
+    }
+  ]
+}
+response = sg.client.mail.send.post(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
