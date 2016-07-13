@@ -124,11 +124,11 @@ print(response.headers)
 
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
 
-## Roadmap
+# Roadmap
 
 If you are intersted in the future direction of this project, please take a look at our open [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/pulls). We would love to hear your feedback.
 
-## How to Contribute
+# How to Contribute
 
 We encourage contribution to our libraries (you might even score some nifty swag), please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) guide for details.
 
