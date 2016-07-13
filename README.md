@@ -2,27 +2,13 @@
 
 **This library allows you to quickly and easily use the SendGrid Web API via Python.**
 
-# Announcements
+Version 3.X.X of this library brings you full support for all [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
 
-**BREAKING CHANGE as of 2016.06.14**
+This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
-Version 3.X.X is a breaking change for the entire library. Generally, any [major point release](http://semver.org/) will be a breaking change.
-
-Version 3.X.X brings you full support for all Web API v3 endpoints. We
-have the following resources to get you started quickly:
-
--   [General Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
--   [Python Usage
-    Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
--   [Python Example
-    Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
--   [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
-
-This is the first of many iterations and we need your help to determine priority. You can help by creating [issues](https://github.com/sendgrid/sendgrid-python/issues), [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvoting or commenting on existing issues or pull requests.
+Please browse the rest of this README for further detail.
 
 We appreciate your continued support, thank you!
-
-All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
 
 # Installation
 
@@ -59,7 +45,9 @@ easy_install sendgrid
 
 ## Hello Email
 
-The minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here]() is a full example):
+The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L20) is a full example).
+
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it,
 
 ```python
 import sendgrid
@@ -71,8 +59,6 @@ from_email = Email("test@example.com")
 subject = "Hello World from the SendGrid Python Library!"
 to_email = Email("test@example.com")
 content = Content("text/plain", "Hello, Email!")
-# The constructor creates a personalization object for you, to add to it,
-# please see [this example](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16).
 mail = Mail(from_email, subject, to_email, content)
 response = sg.client.mail.send.post(request_body=mail.get())
 print(response.status_code)
@@ -80,7 +66,7 @@ print(response.body)
 print(response.headers)
 ```
 
-The minimum needed code to send an email without the /mail/send Helper ([here]() is a full example):
+The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27) is a full example).
 
 ```python
 import sendgrid
@@ -131,15 +117,20 @@ print(response.headers)
 - [SendGrid Documentation](https://sendgrid.com/docs/API_Reference/index.html)
 - [Usage Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
+- [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
+
+# Announcements
+
+All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
 
 ## Roadmap
 
-If you are intersted in the future direction of this project, please take a look at our [milestones](https://github.com/sendgrid/sendgrid-python/milestones). We would love to hear your feedback.
+If you are intersted in the future direction of this project, please take a look at our open [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/pulls). We would love to hear your feedback.
 
 ## How to Contribute
 
-We encourage contribution to our libraries, please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) guide for details.
+We encourage contribution to our libraries (you might even score some nifty swag), please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) guide for details.
 
 Quick links:
 
