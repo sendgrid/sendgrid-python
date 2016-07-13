@@ -59,7 +59,7 @@ easy_install sendgrid
 
 ## Hello Email
 
-The minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail):
+The minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here]() is a full example):
 
 ```python
 import sendgrid
@@ -80,7 +80,7 @@ print(response.body)
 print(response.headers)
 ```
 
-The minimum needed code to send an email without the /mail/send Helper:
+The minimum needed code to send an email without the /mail/send Helper ([here]() is a full example):
 
 ```python
 import sendgrid
