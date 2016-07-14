@@ -99,14 +99,27 @@ print(response.body)
 print(response.headers)
 ```
 
-## General v3 Web API Usage
+## General v3 Web API Usage (With Fluent Interface)
 
 ```python
 import sendgrid
 import os
 
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-response = sg.client.api_keys.get()
+response = sg.client.suppression.bounces.get()
+print(response.status_code)
+print(response.body)
+print(response.headers)
+```
+
+## General v3 Web API Usage (Without Fluent Interface)
+
+```python
+import sendgrid
+import os
+
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+response = sg.client._("suppression/bounces").get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
