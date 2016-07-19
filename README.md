@@ -32,9 +32,7 @@ All updates to this library is documented in our [CHANGELOG](https://github.com/
 
 ## Setup Environment Variables
 
-First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
-
-Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+Update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
 
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
