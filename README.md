@@ -23,6 +23,11 @@ Thank you for your continued support!
 
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
 
+# Prerequisites
+
+- Python version 2.6, 2.7, 3.4 or 3.5
+- The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python))
+
 # Installation
 
 ## Setup Environment Variables
@@ -51,9 +56,7 @@ easy_install sendgrid
 
 ## Dependencies
 
-- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python))
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
-- Python Version 2.6, 2.7, 3.4 or 3.5
 
 # Quick Start
 
