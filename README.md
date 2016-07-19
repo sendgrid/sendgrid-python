@@ -53,6 +53,7 @@ easy_install sendgrid
 
 - The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python))
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
+- Python Version 2.6, 2.7, 3.4 or 3.5
 
 # Quick Start
 
