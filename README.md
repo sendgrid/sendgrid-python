@@ -47,11 +47,9 @@ easy_install sendgrid
 
 ## Hello Email
 
-The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L20) is a full example).
+The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L20) is a full example):
 
 ### With Mail Helper Class
-
-The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it,
 
 ```python
 import sendgrid
@@ -70,9 +68,11 @@ print(response.body)
 print(response.headers)
 ```
 
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it.
+
 ### Without Mail Helper Class
 
-The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27) is a full example).
+The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27) is a full example):
 
 ```python
 import sendgrid
@@ -141,7 +141,7 @@ print(response.headers)
 
 # Announcements
 
-All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md).
+All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases).
 
 # Roadmap
 
