@@ -12,11 +12,14 @@ We appreciate your continued support, thank you!
 
 # Installation
 
+## Prerequisites
+
+- Python version 2.6, 2.7, 3.4 or 3.5
+- The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
+
 ## Setup Environment Variables
 
-First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
-
-Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+Update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
 
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
@@ -38,7 +41,6 @@ easy_install sendgrid
 
 ## Dependencies
 
-- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
 # Quick Start
@@ -46,6 +48,8 @@ easy_install sendgrid
 ## Hello Email
 
 The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L20) is a full example).
+
+### With Mail Helper Class
 
 The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it,
 
@@ -65,6 +69,8 @@ print(response.status_code)
 print(response.body)
 print(response.headers)
 ```
+
+### Without Mail Helper Class
 
 The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27) is a full example).
 
