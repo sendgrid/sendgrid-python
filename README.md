@@ -78,6 +78,7 @@ The following is the minimum needed code to send an email without the /mail/send
 import sendgrid
 import os
 
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 data = {
   "personalizations": [
     {
