@@ -26,7 +26,7 @@ Please review [our guide](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/
 Using pip:
 
 ```bash
-pip unistall sendgrid
+pip uninstall sendgrid
 pip install sendgrid=1.6.22
 ```
 
@@ -54,7 +54,7 @@ except urllib2.HTTPError as e:
 <a name="versions"></a>
 ## Versions
 
-We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guarenteed to be a breaking change.
+We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guarenteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
 
 <a name="environment"></a>
 ## Environment Variables and Your SendGrid API Key
