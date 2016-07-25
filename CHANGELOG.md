@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.1.7] - 2016-07-25 ##
+### Added
+- Solves [issue 195](https://github.com/sendgrid/sendgrid-python/pull/195)
+- The variable apikey and api_key are now interchangeable to help support those migrating from v2
+- Thanks to [Ian Douglas](https://github.com/iandouglas) for the feedback!
+
 ## [3.0.7] - 2016-07-20 ##
 ### Added
 - README updates
