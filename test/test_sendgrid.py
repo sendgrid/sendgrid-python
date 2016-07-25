@@ -18,7 +18,7 @@ class UnitTests(unittest.TestCase):
     def setUpClass(cls):
         cls.host = host
         cls.path = '{0}{1}'.format(os.path.abspath(os.path.dirname(__file__)), '/..')
-        cls.sg = sendgrid.SendGridAPIClient(host=host, path=cls.path)
+        cls.sg = sendgrid.SendGridAPIClient(host=host, path=cls.path, api_key=os.environ.get('SENDGRID_API_KEY'))
         if os.path.isfile('/usr/local/bin/prism') == False:
             if sys.platform != 'win32':
                 try:
@@ -38,6 +38,8 @@ class UnitTests(unittest.TestCase):
 
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
+        # Support the previous naming convention for API keys
+        self.assertEqual(self.sg.api_key, self.sg.apikey)
 
     def test_useragent(self):
         useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
