@@ -33,12 +33,6 @@ source ./sendgrid.env
 pip install sendgrid
 ```
 
-or
-
-```bash
-easy_install sendgrid
-```
-
 ## Dependencies
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
@@ -158,6 +152,10 @@ Quick links:
 - [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit_a_bug_report)
 - [Sign the CLA to Create a Pull Request](https://github.com/sendgrid/sendgrid-open-source-templates/tree/master/CONTRIBUTING.md#cla)
 - [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements_to_the_codebase)
+
+# Troubleshooting
+
+Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md) for common library issues.
 
 # About
 
