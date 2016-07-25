@@ -3,7 +3,7 @@ If you have a non-library SendGrid issue, please contact our [support team](http
 If you can't find a solution below, please open an [issue](https://github.com/sendgrid/sendgrid-python/issues).
 
 
-# Table of Contents
+## Table of Contents
 
 * [Migrating from v2 to v3](#migrating)
 * [Continue Using v2](#v2)
