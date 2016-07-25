@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.1.8] - 2016-07-25 ##
+### Added
+- [Troubleshooting](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md) section
+
 ## [3.1.7] - 2016-07-25 ##
 ### Added
 - Solves [issue 195](https://github.com/sendgrid/sendgrid-python/pull/195)
