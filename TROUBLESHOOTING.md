@@ -45,6 +45,8 @@ Click the "Clone or download" green button in [GitHub](https://github.com/sendgr
 To read the error message returned by SendGrid's API:
 
 ```python
+import urllib2
+
 try:
   response = sg.client.mail.send.post(request_body=mail.get())
 except urllib2.HTTPError as e:
