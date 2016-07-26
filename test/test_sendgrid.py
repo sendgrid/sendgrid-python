@@ -40,6 +40,11 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
         # Support the previous naming convention for API keys
         self.assertEqual(self.sg.api_key, self.sg.apikey)
+        my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
+        tmp = os.environ.get('SENDGRID_API_KEY')
+        os.environ['SENDGRID_API_KEY'] = ""
+        self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
+        os.environ['SENDGRID_API_KEY'] = tmp
 
     def test_useragent(self):
         useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')

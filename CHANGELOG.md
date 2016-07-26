@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.1.9] - 2016-07-26 ##
+### Fixed
+- [Issue #197](https://github.com/sendgrid/sendgrid-python/issues/197): api_key / apikey attribute logic incorrect
+- Thanks to [johguse](https://github.com/johguse) for reporting the bug
+
 ## [3.1.8] - 2016-07-25 ##
 ### Added
 - [Troubleshooting](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md) section

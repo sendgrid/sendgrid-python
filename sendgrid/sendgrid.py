@@ -15,7 +15,7 @@ class SendGridAPIClient(object):
         self.path = opts.get('path', os.path.abspath(os.path.dirname(__file__)))
         self._apikey = opts.get('apikey', os.environ.get('SENDGRID_API_KEY'))
         # Support v2 api_key naming
-        self._apikey = opts.get('api_key', os.environ.get('SENDGRID_API_KEY'))
+        self._apikey = opts.get('api_key', self._apikey)
         self._api_key = self._apikey
         self.useragent = 'sendgrid/{0};python'.format(__version__)
         self.host = opts.get('host', 'https://api.sendgrid.com')
