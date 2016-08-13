@@ -1,0 +1,25 @@
+# Incoming Parse endpoing
+endpoint: '/inbound'
+
+# Port to listen on
+port: 5000
+
+# List all Incoming Parse fields you would like parsed
+keys:
+ - from
+ - attachments
+ - headers
+ - text
+ - envelope
+ - to
+ - html
+ - sender_ip
+ - attachment-info
+ - subject
+ - dkim
+ - SPF
+ - charsets
+ - content-ids
+ - spam_report
+ - spam_score
+ - email
