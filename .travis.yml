@@ -8,6 +8,8 @@ python:
 - '3.5'
 install:
 - python setup.py install
+- pip install pyyaml
+- pip install flask
 before_script:
 - mkdir prism
 - mkdir prism/bin
