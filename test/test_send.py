@@ -1,4 +1,3 @@
-from sendgrid.helpers.inbound.send import Send
 try:
     import unittest2 as unittest
 except ImportError:
