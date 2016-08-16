@@ -64,7 +64,7 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 <a name="heroku"></a>
 # Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/inbound/sendgrid/helpers/inbound)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/inbound)
 
 <a name="code_walkthrough"></a>
 # Code Walkthrough
