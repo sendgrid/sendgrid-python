@@ -13,9 +13,9 @@
 # Quick Start for Local Testing with Sample Data
 
 ```bash
-pip install -r requirements.txt
 git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
+pip install -r requirements.txt
 ```
 
 Run the Inbound Parse listener in your terminal:
@@ -43,9 +43,9 @@ View the results in the first terminal.
 Run the Inbound Parse listener in your terminal:
 
 ```bash
-pip install -r requirements.txt
 git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
+pip install -r requirements.txt
 python sendgrid/helpers/inbound/app.py
 ```
 
@@ -65,6 +65,16 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 # Deploy to Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/inbound)
+
+To make changes, clone, modify and push the changes:
+
+```bash
+heroku clone -a the-name-of-your-app
+vim config.yml
+git add .
+git commit -m "update configuration"
+git push heroku master
+```
 
 <a name="code_walkthrough"></a>
 # Code Walkthrough

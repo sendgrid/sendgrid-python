@@ -1,11 +1,15 @@
 """Receiver module for processing SendGrid Inbound Parse messages"""
 from config import Config
-from flask import Flask, request
+from flask import Flask, request, render_template
 from parse import Parse
 import os
 
 app = Flask(__name__)
 config = Config()
+
+@app.route ('/', methods =['GET'])
+def index():
+    return render_template('index.html')
 
 @app.route (config.endpoint, methods =['POST'])
 def inbound_parse():
