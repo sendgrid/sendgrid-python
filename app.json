@@ -7,8 +7,5 @@
   ],
   "website": "http://www.sendgrid.com",
   "repository": "https://github.com/sendgrid/sendgrid-python/tree/inbound",
-  "logo": "https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png",
-  "scripts": {
-    "postdeploy": "python sendgrid/helpers/inbound/app.py"
-  }
+  "logo": "https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png"
 }
