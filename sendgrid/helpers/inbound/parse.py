@@ -1,3 +1,4 @@
+"""Parse data received from the SendGrid Inbound Parse webhook"""
 import base64
 import email
 import mimetypes
@@ -11,6 +12,7 @@ class Parse(object):
         self._payload = request.form
         self._raw_payload = request.data
 
+    """Return a dictionary of key/values in the payload received from the webhook"""
     def key_values(self):
         key_values = {}
         for key in self.keys:
@@ -18,6 +20,8 @@ class Parse(object):
                 key_values[key] = self.payload[key]
         return key_values
 
+    """This only applies to raw payloads:
+    https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html#-Raw-Parameters"""
     def get_raw_email(self):
         if 'email' in self.payload:
             raw_email = email.message_from_string(self.payload['email'])
@@ -25,6 +29,10 @@ class Parse(object):
         else:
             return None
 
+    """Returns an object with:
+    type = file content type
+    file_name = the name of the file
+    contents = base64 encoded file contents"""
     def attachments(self):
         attachments = []
         if 'attachment-info' in self.payload:

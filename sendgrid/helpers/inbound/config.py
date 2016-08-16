@@ -1,3 +1,4 @@
+"""Setup credentials (.env) and application variables (config.yml)"""
 import os
 import yaml
 
@@ -12,7 +13,9 @@ class Config(object):
         self.base_path = os.path.abspath(os.path.dirname(__file__))
         with open(self.base_path + '/config.yml') as stream:
             config = yaml.load(stream)
+            self._debug_mode = config['debug_mode']
             self._endpoint = config['endpoint']
+            self._host = config['host']
             self._keys = config['keys']
             self._port = config['port']
 
@@ -28,8 +31,16 @@ class Config(object):
                     os.environ[var[0]] = var[1]
 
     @property
+    def debug_mode(self):
+        return self._debug_mode
+
+    @property
     def endpoint(self):
         return self._endpoint
+
+    @property
+    def host(self):
+        return self._host
 
     @property
     def keys(self):

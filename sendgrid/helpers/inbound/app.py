@@ -1,3 +1,4 @@
+"""Receiver module for processing SendGrid Inbound Parse messages"""
 from config import Config
 from flask import Flask, request
 from parse import Parse
@@ -8,10 +9,12 @@ config = Config()
 @app.route (config.endpoint, methods =['POST'])
 def inbound_parse():
     parse = Parse(config, request)
+    # Sample proccessing action
     print parse.key_values()
     # Tell SendGrid's Inbound Parse to stop sending POSTs
     # Everything is 200 OK :)
     return "OK"
 
 if __name__=='__main__':
-    app.run(debug=True, port=int("5000"))
+    # Be sure to set config.debug_mode to False in production
+    app.run(debug=config.debug_mode, port=int(config.port))

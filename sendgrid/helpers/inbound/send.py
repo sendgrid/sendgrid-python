@@ -1,13 +1,15 @@
+"""A module for sending test SendGrid Inbound Parse messages
+Usage: ./send.py [path to file containing test data]"""
 import os
+import sys
+from config import Config
 from python_http_client import Client
 
 class Send(object):
     def __init__(self, url):
         self._url = url
-        pass
 
     def test_payload(self, payload_filepath):
-        base_url = "http://127.0.0.1:5000/inbound"
         headers = {
             "User-Agent": "SendGrid-Test",
             "Content-Type": "multipart/form-data; boundary=xYzZY"
@@ -21,10 +23,9 @@ class Send(object):
     def url(self):
         return self._url
 
-send = Send('http://127.0.0.1:5000/inbound')
-# TODO: should take the path as an argument
-dir_path = os.path.dirname(os.path.realpath(__file__))
-response = send.test_payload(dir_path + '/sample_data/default_data.txt')
+config = Config()
+send = Send(config.host)
+response = send.test_payload(sys.argv[1])
 print response.status_code
 print response.headers
 print response.body
