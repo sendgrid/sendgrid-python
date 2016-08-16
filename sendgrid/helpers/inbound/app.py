@@ -10,7 +10,7 @@ config = Config()
 def inbound_parse():
     parse = Parse(config, request)
     # Sample proccessing action
-    print parse.key_values()
+    print(parse.key_values())
     # Tell SendGrid's Inbound Parse to stop sending POSTs
     # Everything is 200 OK :)
     return "OK"
