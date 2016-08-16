@@ -2,6 +2,7 @@
 from config import Config
 from flask import Flask, request
 from parse import Parse
+import os
 
 app = Flask(__name__)
 config = Config()
@@ -17,4 +18,7 @@ def inbound_parse():
 
 if __name__=='__main__':
     # Be sure to set config.debug_mode to False in production
+    port = int(os.environ.get("PORT", config.port))
+    if port != config.port:
+        config.debug = False
     app.run(host = '0.0.0.0', debug=config.debug_mode, port=int(config.port))
