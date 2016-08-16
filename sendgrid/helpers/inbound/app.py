@@ -17,4 +17,4 @@ def inbound_parse():
 
 if __name__=='__main__':
     # Be sure to set config.debug_mode to False in production
-    app.run(debug=config.debug_mode, port=int(config.port))
+    app.run(host = '0.0.0.0', debug=config.debug_mode, port=int(config.port))
