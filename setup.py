@@ -25,6 +25,7 @@ setup(
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(),
+    include_package_data=True,
     license='MIT',
     description='SendGrid library for Python',
     long_description=long_description,
