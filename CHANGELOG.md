@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [3.2.10] - 2016-08-17 ##
+## [3.2.0] - 2016-08-17 ##
 ### Added
 - Helper code for our [Inbound Parse webhook](https://github.com/sendgrid/sendgrid-python/tree/inbound/sendgrid/helpers/inbound)
 
