@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.2.10] - 2016-08-17 ##
+### Added
+- Helper code for our [Inbound Parse webhook](https://github.com/sendgrid/sendgrid-python/tree/inbound/sendgrid/helpers/inbound)
+
 ## [3.1.10] - 2016-07-26 ##
 ### Fixed
 - Release 3.1.9 was botched (sorry!), so [the apikey/api_key fix](https://github.com/sendgrid/sendgrid-python/issues/197) 3.1.9 was supposed to address is now in this release
