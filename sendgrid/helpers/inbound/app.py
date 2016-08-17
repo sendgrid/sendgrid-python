@@ -5,8 +5,13 @@ except:
     # Python 3+, Travis
     from sendgrid.helpers.inbound.config import Config
 
+try:
+    from parse import Parse
+except:
+    # Python 3+, Travis
+    from sendgrid.helpers.inbound.parse import Parse
+
 from flask import Flask, request, render_template
-from parse import Parse
 import os
 
 app = Flask(__name__)
