@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+## [3.2.1] - 2016-08-17 ##
+### Fixed
+- pep8 formatting
+- include Heroku config files in PyPi
 
 ## [3.2.0] - 2016-08-17 ##
 ### Added

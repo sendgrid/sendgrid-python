@@ -4,6 +4,7 @@ import email
 import mimetypes
 from werkzeug.utils import secure_filename
 
+
 class Parse(object):
     def __init__(self, config, request):
         self._keys = config.keys
@@ -12,7 +13,8 @@ class Parse(object):
         self._payload = request.form
         self._raw_payload = request.data
 
-    """Return a dictionary of key/values in the payload received from the webhook"""
+    """Return a dictionary of key/values in the payload received from
+       the webhook"""
     def key_values(self):
         key_values = {}
         for key in self.keys:
@@ -49,7 +51,7 @@ class Parse(object):
         # Check if we have a raw message
         attachments = []
         raw_email = self.get_raw_email()
-        if raw_email != None:
+        if raw_email is not None:
             counter = 1
             for part in raw_email.walk():
                 attachment = {}
