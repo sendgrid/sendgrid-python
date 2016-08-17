@@ -84,7 +84,7 @@ While you are waiting for your MX records to propogate, you can test by using th
 git clone https://github.com/sendgrid/sendgrid-python.git
 cd [path to sendgrid-python]
 pip install -r requirements.txt
-python sendgrid/helpers/inbound/send.py ./sendgrid/helpers/inbound/sample_data/default_data.txt https://[name-of-your-app].herokuapp.com/inbound
+python sendgrid/helpers/inbound/send.py ./sendgrid/helpers/inbound/sample_data/default_data.txt -host https://[name-of-your-app].herokuapp.com/inbound
 ```
 
 To make changes: clone, modify and push the changes.
