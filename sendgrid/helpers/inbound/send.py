@@ -1,8 +1,13 @@
 """A module for sending test SendGrid Inbound Parse messages
 Usage: ./send.py [path to file containing test data]"""
+import argparse
 import os
 import sys
-from config import Config
+try:
+    from config import Config
+except:
+    # Python 3+, Travis
+    from sendgrid.helpers.inbound.config import Config
 from python_http_client import Client
 
 class Send(object):
@@ -24,8 +29,12 @@ class Send(object):
         return self._url
 
 config = Config()
-send = Send(config.host)
+parser = argparse.ArgumentParser(description='Test data and optional host.')
+parser.add_argument('data', type=str, help='path to the sample data')
+parser.add_argument('-host', type=str, help='name of host to send the sample data to', default=config.host, required=False)
+args = parser.parse_args()
+send = Send(args.host)
 response = send.test_payload(sys.argv[1])
-print response.status_code
-print response.headers
-print response.body
+print(response.status_code)
+print(response.headers)
+print(response.body)

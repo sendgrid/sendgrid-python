@@ -1,5 +1,10 @@
 """Receiver module for processing SendGrid Inbound Parse messages"""
-from config import Config
+try:
+    from config import Config
+except:
+    # Python 3+, Travis
+    from sendgrid.helpers.inbound.config import Config
+
 from flask import Flask, request, render_template
 from parse import Parse
 import os
