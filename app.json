@@ -6,6 +6,6 @@
     "inbound parse"
   ],
   "website": "http://www.sendgrid.com",
-  "repository": "https://github.com/sendgrid/sendgrid-python/tree/inbound",
+  "repository": "https://github.com/sendgrid/sendgrid-python/tree/master",
   "logo": "https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png"
 }

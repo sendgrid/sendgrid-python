@@ -67,7 +67,7 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 
 Get a [Heroku](https://www.heroku.com) account.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/inbound)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/master)
 
 [Setup your MX records.](https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html#-Setup) Depending on your domain name host, you may need to wait up to 48 hours for the settings to propagate.
 
