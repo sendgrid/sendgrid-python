@@ -42,7 +42,7 @@ Click the "Clone or download" green button in [GitHub](https://github.com/sendgr
 <a name="error"></a>
 ## Error Messages
 
-To read the error message returned by SendGrid's API:
+To read the error message returned by SendGrid's API in Python 2.X:
 
 ```python
 import urllib2
@@ -53,6 +53,15 @@ except urllib2.HTTPError as e:
     print e.read()
 ```
 
+To read the error message returned by SendGrid's API in Python 3.X:
+
+```python
+import urllib
+try:
+  response = sg.client.mail.send.post(request_body=mail.get())
+except urllib.error.HTTPError as e:
+    print e.read()
+```
 <a name="versions"></a>
 ## Versions
 
