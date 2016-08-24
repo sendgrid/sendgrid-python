@@ -1,4 +1,4 @@
-This documentation will provide examples for specific use cases. Please open an issue or make a pull request for any use cases you would like us to document here. Thank you!
+This documentation provides examples for specific use cases. Please [open an issue](https://github.com/sendgrid/sendgrid-python/issues) or make a pull request for any use cases you would like us to document here. Thank you!
 
 # Table of Contents
 
@@ -7,11 +7,9 @@ This documentation will provide examples for specific use cases. Please open an 
 <a name="transactional_templates"></a>
 # Transactional Templates
 
-For these examples, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html) with substitution values -name- and -city-.
+For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
 
-Following is example template content.
-
-Template ID:
+Template ID (replace with your own):
 
 ```text
 13b8f94f-bcae-4ec6-b752-70d6cb59f932
