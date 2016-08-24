@@ -91,7 +91,7 @@ data = {
     {
       "to": [
         {
-          "email": "elmer@sendgrid.com"
+          "email": "test@example.com"
         }
       ],
       "substitutions": {
@@ -102,7 +102,7 @@ data = {
     },
   ],
   "from": {
-    "email": "dx@sendgrid.com"
+    "email": "test@example.com"
   },
   "content": [
     {
