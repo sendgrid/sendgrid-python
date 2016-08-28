@@ -38,14 +38,15 @@ class Parse(object):
         contents = base64 encoded file contents"""
         attachments = None
         if 'attachment-info' in self.payload:
-            attachments = self._get_attachments(self.payload, self.request)
+            attachments = self._get_attachments(self.request)
         # Check if we have a raw message
         raw_email = self.get_raw_email()
         if raw_email is not None:
-            attachments = self._get_attachments_raw(self.payload)
+            attachments = self._get_attachments_raw(raw_email)
         return attachments
 
-    def _get_attachments(self, payload, request):
+    def _get_attachments(self, request):
+        attachments = []
         for _, filestorage in request.files.iteritems():
             attachment = {}
             if filestorage.filename not in (None, 'fdopen', '<fdopen>'):
@@ -56,7 +57,7 @@ class Parse(object):
                 attachments.append(attachment)
         return attachments
 
-    def _get_attachments_raw(self, payload):
+    def _get_attachments_raw(self, raw_email):
         attachments = []
         counter = 1
         for part in raw_email.walk():
