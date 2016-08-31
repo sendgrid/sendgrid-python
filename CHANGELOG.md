@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.3.0] - 2016-08-31 ##
+### Updated
+- Pull #212
+- Allow for custom Inbound Parse config.yml
+
 ## [3.2.3] - 2016-08-31 ##
 ### Updated
 - Pull #211
