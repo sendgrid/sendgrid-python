@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.2.3] - 2016-08-31 ##
+### Updated
+- Pull #211
+- Within sendgrid/helpers/inbound/parse.py - moved doc strings to be under function definitions
+- broke up def attachments(...) into two individual private functions, so it's a bit less cumbersome and can be individually tested better
+- Big thanks to [Christopher Li](https://github.com/LiYChristopher) for the pull request!
+
 ## [3.2.2] - 2016-08-23 ##
 ### Added
 - Table of Contents in the README
