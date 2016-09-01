@@ -10,6 +10,7 @@ install:
 - python setup.py install
 - pip install pyyaml
 - pip install flask
+- pip install six
 before_script:
 - mkdir prism
 - mkdir prism/bin
