@@ -2,6 +2,7 @@
 import base64
 import email
 import mimetypes
+from six import iteritems
 from werkzeug.utils import secure_filename
 
 
@@ -47,7 +48,7 @@ class Parse(object):
 
     def _get_attachments(self, request):
         attachments = []
-        for _, filestorage in request.files.iteritems():
+        for _, filestorage in iteritems(request.files):
             attachment = {}
             if filestorage.filename not in (None, 'fdopen', '<fdopen>'):
                 filename = secure_filename(filestorage.filename)
@@ -72,7 +73,7 @@ class Parse(object):
                 filename = 'part-%03d%s' % (counter, ext)
             counter += 1
             attachment['type'] = part.get_content_type()
-            attachment['filename'] = filename
+            attachment['file_name'] = filename
             attachment['contents'] = part.get_payload(decode=False)
             attachments.append(attachment)
         return attachments
