@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.3.1] - 2016-08-31 ##
+### Fixed
+- Pull #213
+- Naming inconsistency, we now standardized on `file_name`
+- Support for use of `iteritems` in Python 3
+
 ## [3.3.0] - 2016-08-31 ##
 ### Updated
 - Pull #212
