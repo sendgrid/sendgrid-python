@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.4.0] - 2016-09-02 ##
+### Added
+- Pull #215
+- Support larger files. Note that there is a 20MB maximum.
+
 ## [3.3.1] - 2016-08-31 ##
 ### Fixed
 - Pull #213
