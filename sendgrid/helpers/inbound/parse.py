@@ -54,7 +54,7 @@ class Parse(object):
                 filename = secure_filename(filestorage.filename)
                 attachment['type'] = filestorage.content_type
                 attachment['file_name'] = filename
-                attachment['contents'] = base64.b64encode(filestorage.getvalue())
+                attachment['contents'] = base64.b64encode(filestorage.read())
                 attachments.append(attachment)
         return attachments
 
