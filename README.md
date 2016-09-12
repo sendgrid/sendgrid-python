@@ -164,6 +164,8 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 <a name="announcements"></a>
 # Announcements
 
+Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
+
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases).
 
 <a name="roadmap"></a>
