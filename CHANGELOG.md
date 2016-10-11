@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.0] - 2016-10-11 ##
+### Added
+- Pull #234 [Substitutions allow non-strings for values](https://github.com/sendgrid/sendgrid-python/pull/234)
+- Big thanks to [ittus](https://github.com/ittus) for the pull request!
+
 ## [3.5.0] - 2016-10-11 ##
 ### Added
 - Pull #233: [Allow dict to be passed to add_headers](https://github.com/sendgrid/sendgrid-python/pull/233)
