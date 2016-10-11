@@ -219,14 +219,14 @@ class Header(object):
 
 class Substitution(object):
     def __init__(self, key=None, value=None):
-        self.key = key if key != None else None
-        self.value = value if value != None else None
+        self.key = str(key) if key != None else None
+        self.value = str(value) if value != None else None
 
     def set_key(self, key):
-        self.key = key
+        self.key = str(key) if key != None else None
 
     def set_value(self, value):
-        self.value = value
+        self.value = str(value) if value != None else None
 
     def get(self):
         substitution = {}
