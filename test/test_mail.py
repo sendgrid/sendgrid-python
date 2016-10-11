@@ -51,7 +51,6 @@ class UnitTests(unittest.TestCase):
         personalization.add_header(Header("X-Mock", "true"))
         personalization.add_substitution(Substitution("%name%", "Example User"))
         personalization.add_substitution(Substitution("%city%", "Denver"))
-        personalization.add_substitution(Substitution("%year%", 2017))
         personalization.add_custom_arg(CustomArg("user_id", "343"))
         personalization.add_custom_arg(CustomArg("type", "marketing"))
         personalization.set_send_at(1443636843)
