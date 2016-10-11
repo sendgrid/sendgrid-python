@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.5.0] - 2016-10-11 ##
+### Added
+- Pull #233: [Allow dict to be passed to add_headers](https://github.com/sendgrid/sendgrid-python/pull/233)
+- Big thanks to [Navin Pai](https://github.com/navinpai) for the pull request!
+
 ## [3.4.0] - 2016-09-02 ##
 ### Added
 - Pull #215

@@ -16,4 +16,4 @@ venv/
 profile*
 register.py
 README.txt
-temp.py
+temp*.py
