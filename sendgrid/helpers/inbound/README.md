@@ -91,8 +91,9 @@ To make changes: clone, modify and push the changes.
 
 For example:
 ```bash
-heroku clone -a name-of-your-app
-vim config.yml
+git clone https://github.com/sendgrid/sendgrid-python.git 
+heroku git:remote -a [name-of-your-app]
+---make changes---
 git add .
 git commit -m "update configuration"
 git push heroku master
