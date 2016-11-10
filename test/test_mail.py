@@ -25,9 +25,16 @@ class UnitTests(unittest.TestCase):
         mail.add_personalization(personalization)
 
         mail.add_content(Content("text/plain", "some text here"))
-        mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+        mail.add_content(
+            Content(
+                "text/html",
+                "<html><body>some text here</body></html>"))
 
-        self.assertEqual(json.dumps(mail.get(), sort_keys=True), '{"content": [{"type": "text/plain", "value": "some text here"}, {"type": "text/html", "value": "<html><body>some text here</body></html>"}], "from": {"email": "test@example.com"}, "personalizations": [{"to": [{"email": "test@example.com"}]}], "subject": "Hello World from the SendGrid Python Library"}')
+        self.assertEqual(
+            json.dumps(
+                mail.get(),
+                sort_keys=True),
+            '{"content": [{"type": "text/plain", "value": "some text here"}, {"type": "text/html", "value": "<html><body>some text here</body></html>"}], "from": {"email": "test@example.com"}, "personalizations": [{"to": [{"email": "test@example.com"}]}], "subject": "Hello World from the SendGrid Python Library"}')
 
     def test_kitchenSink(self):
         self.maxDiff = None
@@ -46,10 +53,12 @@ class UnitTests(unittest.TestCase):
         personalization.add_cc(Email("test@example.com", "Example User"))
         personalization.add_bcc(Email("test@example.com"))
         personalization.add_bcc(Email("test@example.com"))
-        personalization.set_subject("Hello World from the Personalized SendGrid Python Library")
+        personalization.set_subject(
+            "Hello World from the Personalized SendGrid Python Library")
         personalization.add_header(Header("X-Test", "test"))
         personalization.add_header(Header("X-Mock", "true"))
-        personalization.add_substitution(Substitution("%name%", "Example User"))
+        personalization.add_substitution(
+            Substitution("%name%", "Example User"))
         personalization.add_substitution(Substitution("%city%", "Denver"))
         personalization.add_custom_arg(CustomArg("user_id", "343"))
         personalization.add_custom_arg(CustomArg("type", "marketing"))
@@ -63,10 +72,12 @@ class UnitTests(unittest.TestCase):
         personalization2.add_cc(Email("test@example.com", "Example User"))
         personalization2.add_bcc(Email("test@example.com"))
         personalization2.add_bcc(Email("test@example.com"))
-        personalization2.set_subject("Hello World from the Personalized SendGrid Python Library")
+        personalization2.set_subject(
+            "Hello World from the Personalized SendGrid Python Library")
         personalization2.add_header(Header("X-Test", "test"))
         personalization2.add_header(Header("X-Mock", "true"))
-        personalization2.add_substitution(Substitution("%name%", "Example User"))
+        personalization2.add_substitution(
+            Substitution("%name%", "Example User"))
         personalization2.add_substitution(Substitution("%city%", "Denver"))
         personalization2.add_custom_arg(CustomArg("user_id", "343"))
         personalization2.add_custom_arg(CustomArg("type", "marketing"))
@@ -74,10 +85,14 @@ class UnitTests(unittest.TestCase):
         mail.add_personalization(personalization2)
 
         mail.add_content(Content("text/plain", "some text here"))
-        mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+        mail.add_content(
+            Content(
+                "text/html",
+                "<html><body>some text here</body></html>"))
 
         attachment = Attachment()
-        attachment.set_content("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
+        attachment.set_content(
+            "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
         attachment.set_type("application/pdf")
         attachment.set_filename("balance_001.pdf")
         attachment.set_disposition("attachment")
@@ -94,13 +109,19 @@ class UnitTests(unittest.TestCase):
 
         mail.set_template_id("13b8f94f-bcae-4ec6-b752-70d6cb59f932")
 
-        mail.add_section(Section("%section1%", "Substitution Text for Section 1"))
-        mail.add_section(Section("%section2%", "Substitution Text for Section 2"))
+        mail.add_section(
+            Section(
+                "%section1%",
+                "Substitution Text for Section 1"))
+        mail.add_section(
+            Section(
+                "%section2%",
+                "Substitution Text for Section 2"))
 
         mail.add_header(Header("X-Test1", "test1"))
         mail.add_header(Header("X-Test3", "test2"))
 
-        mail.add_header({"X-Test4" : "test4"})
+        mail.add_header({"X-Test4": "test4"})
 
         mail.add_category(Category("May"))
         mail.add_category(Category("2016"))
@@ -117,18 +138,39 @@ class UnitTests(unittest.TestCase):
         mail.set_ip_pool_name("24")
 
         mail_settings = MailSettings()
-        mail_settings.set_bcc_settings(BCCSettings(True, Email("test@example.com")))
+        mail_settings.set_bcc_settings(
+            BCCSettings(True, Email("test@example.com")))
         mail_settings.set_bypass_list_management(BypassListManagement(True))
-        mail_settings.set_footer_settings(FooterSettings(True, "Footer Text", "<html><body>Footer Text</body></html>"))
+        mail_settings.set_footer_settings(
+            FooterSettings(
+                True,
+                "Footer Text",
+                "<html><body>Footer Text</body></html>"))
         mail_settings.set_sandbox_mode(SandBoxMode(True))
-        mail_settings.set_spam_check(SpamCheck(True, 1, "https://spamcatcher.sendgrid.com"))
+        mail_settings.set_spam_check(
+            SpamCheck(True, 1, "https://spamcatcher.sendgrid.com"))
         mail.set_mail_settings(mail_settings)
 
         tracking_settings = TrackingSettings()
         tracking_settings.set_click_tracking(ClickTracking(True, True))
-        tracking_settings.set_open_tracking(OpenTracking(True, "Optional tag to replace with the open image in the body of the message"))
-        tracking_settings.set_subscription_tracking(SubscriptionTracking(True, "text to insert into the text/plain portion of the message", "<html><body>html to insert into the text/html portion of the message</body></html>", "Optional tag to replace with the open image in the body of the message"))
-        tracking_settings.set_ganalytics(Ganalytics(True, "some source", "some medium", "some term", "some content", "some campaign"))
+        tracking_settings.set_open_tracking(
+            OpenTracking(
+                True,
+                "Optional tag to replace with the open image in the body of the message"))
+        tracking_settings.set_subscription_tracking(
+            SubscriptionTracking(
+                True,
+                "text to insert into the text/plain portion of the message",
+                "<html><body>html to insert into the text/html portion of the message</body></html>",
+                "Optional tag to replace with the open image in the body of the message"))
+        tracking_settings.set_ganalytics(
+            Ganalytics(
+                True,
+                "some source",
+                "some medium",
+                "some term",
+                "some content",
+                "some campaign"))
         mail.set_tracking_settings(tracking_settings)
 
         mail.set_reply_to(Email("test@example.com"))

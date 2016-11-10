@@ -15,8 +15,10 @@ class Parse(object):
         self._raw_payload = request.data
 
     def key_values(self):
-        """Return a dictionary of key/values in the payload received from
-           the webhook"""
+        """
+        Return a dictionary of key/values in the payload received from
+        the webhook
+        """
         key_values = {}
         for key in self.keys:
             if key in self.payload:
@@ -24,12 +26,14 @@ class Parse(object):
         return key_values
 
     def get_raw_email(self):
-         """This only applies to raw payloads:
-         https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html#-Raw-Parameters"""
-         if 'email' in self.payload:
+        """
+        This only applies to raw payloads:
+        https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html#-Raw-Parameters
+        """
+        if 'email' in self.payload:
             raw_email = email.message_from_string(self.payload['email'])
             return raw_email
-         else:
+        else:
             return None
 
     def attachments(self):
