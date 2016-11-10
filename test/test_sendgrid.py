@@ -1,6 +1,4 @@
 import sendgrid
-import json
-from sendgrid import SendGridAPIClient
 from sendgrid.version import __version__
 try:
     import unittest2 as unittest
@@ -23,20 +21,25 @@ class UnitTests(unittest.TestCase):
             os.path.abspath(
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(
-            host=host, path=cls.path, api_key=os.environ.get('SENDGRID_API_KEY'))
-        if os.path.isfile('/usr/local/bin/prism') == False:
+            host=host, path=cls.path,
+            api_key=os.environ.get('SENDGRID_API_KEY'))
+        if os.path.isfile('/usr/local/bin/prism') is False:
             if sys.platform != 'win32':
                 try:
                     p1 = subprocess.Popen(
                         [
                             "curl",
-                            "https://raw.githubusercontent.com/stoplightio/prism/master/install.sh"],
+                            "https://raw.githubusercontent.com/stoplightio/"
+                            "prism/master/install.sh"],
                         stdout=subprocess.PIPE)
-                    p2 = subprocess.Popen(
+                    subprocess.Popen(
                         ["sh"], stdin=p1.stdout, stdout=subprocess.PIPE)
                 except Exception as e:
                     print(
-                        "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /user/local/bin directory",
+                        "Error downloading the prism binary, you can try "
+                        "downloading directly here "
+                        "(https://github.com/stoplightio/prism/releases) "
+                        "and place in your /user/local/bin directory",
                         e.read())
                     sys.exit()
             else:
