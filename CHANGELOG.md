@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.1] - 2016-11-10 ##
+### Fixed
+- Pull #246 [Typo 'user' for 'usr'](https://github.com/sendgrid/sendgrid-python/pull/246)
+- Big thanks to [Mike Ralphson](https://github.com/MikeRalphson) for the pull request!
+
 ## [3.6.0] - 2016-10-11 ##
 ### Added
 - Pull #234 [Substitutions allow non-strings for values](https://github.com/sendgrid/sendgrid-python/pull/234)
