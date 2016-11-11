@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.2] - 2016-11-10 ##
+### Fixed
+- Pull #240 [Add six to requirements.txt](https://github.com/sendgrid/sendgrid-python/pull/246)
+- Big thanks to [Wataru Sato](https://github.com/awwa) for the pull request!
+
 ## [3.6.1] - 2016-11-10 ##
 ### Fixed
 - Pull #246 [Typo 'user' for 'usr'](https://github.com/sendgrid/sendgrid-python/pull/246)
