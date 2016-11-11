@@ -25,7 +25,7 @@ class UnitTests(unittest.TestCase):
                     p1 = subprocess.Popen(["curl", "https://raw.githubusercontent.com/stoplightio/prism/master/install.sh"], stdout=subprocess.PIPE)
                     p2 = subprocess.Popen(["sh"], stdin=p1.stdout, stdout=subprocess.PIPE)
                 except Exception as e:
-                    print("Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /user/local/bin directory", e.read())
+                    print("Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory", e.read())
                     sys.exit()
             else:
                 print("Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory")
