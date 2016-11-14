@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.3] - 2016-11-10 ##
+### Updated
+- Pull #243 [Update deprecated Heroku command](https://github.com/sendgrid/sendgrid-python/pull/243)
+- Big thanks to [Roberto Ortega](https://github.com/berto) for the pull request!
+
 ## [3.6.2] - 2016-11-10 ##
 ### Fixed
 - Pull #240 [Add six to requirements.txt](https://github.com/sendgrid/sendgrid-python/pull/246)
