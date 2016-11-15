@@ -39,7 +39,7 @@ class UnitTests(unittest.TestCase):
                         "Error downloading the prism binary, you can try "
                         "downloading directly here "
                         "(https://github.com/stoplightio/prism/releases) "
-                        "and place in your /user/local/bin directory",
+                        "and place in your /usr/local/bin directory",
                         e.read())
                     sys.exit()
             else:
