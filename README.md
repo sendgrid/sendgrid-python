@@ -4,7 +4,7 @@ Please see our announcement regarding [breaking changes](https://github.com/send
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
 
-Version 3.X.X of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
+Version 3.X.X+ of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
 
 This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
