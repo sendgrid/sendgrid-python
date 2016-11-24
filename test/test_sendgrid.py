@@ -43,6 +43,11 @@ class UnitTests(unittest.TestCase):
         my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
         self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
 
+    def test_apikey_init__webapi_v3(self):
+        # Checks if webapi v3 key gets set. 
+        my_sendgrid = sendgrid.SendGridAPIClient(apikey="__some_test_sg_webapi_v3_key_here__")
+        self.assertEqual(my_sendgrid.apikey, "__some_test_sg_webapi_v3_key_here__") 
+    
     def test_useragent(self):
         useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
