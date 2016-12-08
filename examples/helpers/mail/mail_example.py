@@ -121,6 +121,8 @@ def build_kitchen_sink():
     return mail.get()
 
 def send_hello_email():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     sg = SendGridAPIClient()
     data = build_hello_email()
     response = sg.client.mail.send.post(request_body=data)
@@ -129,6 +131,8 @@ def send_hello_email():
     print(response.body)
 
 def send_kitchen_sink():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     sg = SendGridAPIClient()
     data = build_kitchen_sink()
     response = sg.client.mail.send.post(request_body=data)
