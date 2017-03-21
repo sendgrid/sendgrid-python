@@ -66,7 +66,7 @@ mail.set_template_id("13b8f94f-bcae-4ec6-b752-70d6cb59f932")
 try:
     response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.HTTPError as e:
-    print e.read()
+    print (e.read())
     exit()
 print(response.status_code)
 print(response.body)
@@ -115,7 +115,7 @@ data = {
 try:
     response = sg.client.mail.send.post(request_body=data)
 except urllib.HTTPError as e:
-    print e.read()
+    print (e.read())
     exit()
 print(response.status_code)
 print(response.body)
