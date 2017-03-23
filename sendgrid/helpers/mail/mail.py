@@ -537,8 +537,8 @@ class MailSettings(object):
 
 class ClickTracking(object):
     def __init__(self, enable=None, enable_text=None):
-        self.enable = enable if enable else None
-        self.enable_text = enable_text if enable_text !=None else None
+        self.enable = enable if enable is not None else None
+        self.enable_text = enable_text if enable_text is not None else None
 
     def set_enable(self, enable):
         self.enable = enable
