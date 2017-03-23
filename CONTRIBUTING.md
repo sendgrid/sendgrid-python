@@ -64,7 +64,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 ##### Prerequisites #####
 
-- Python 2.6 through 3.5
+- Python 2.6 through 3.6
 - [python_http_client](https://github.com/sendgrid/python-http-client)
 
 ##### Initial setup: #####
