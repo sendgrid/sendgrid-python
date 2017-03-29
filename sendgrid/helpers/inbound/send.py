@@ -1,11 +1,10 @@
 """A module for sending test SendGrid Inbound Parse messages
 Usage: ./send.py [path to file containing test data]"""
 import argparse
-import os
 import sys
 try:
     from config import Config
-except:
+except ImportError:
     # Python 3+, Travis
     from sendgrid.helpers.inbound.config import Config
 from python_http_client import Client

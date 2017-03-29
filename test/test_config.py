@@ -6,6 +6,7 @@ except ImportError:
 
 
 class UnitTests(unittest.TestCase):
+
     def setUp(self):
         self.config = Config()
 

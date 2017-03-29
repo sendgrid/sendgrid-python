@@ -10,6 +10,7 @@ long_description = 'Please see our GitHub README'
 if os.path.exists('README.txt'):
     long_description = open('README.txt').read()
 
+
 def getRequires():
     deps = ['python_http_client>=2.1.1']
     if sys.version_info < (2, 7):
