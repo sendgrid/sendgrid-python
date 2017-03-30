@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.5] - 2017-03-30 ##
+### Updated
+- Pull #300 [Exclude test package](https://github.com/sendgrid/sendgrid-python/pull/250)
+- Big thanks to [Iryna Shcherbina](https://github.com/irushchyshyn) for the pull request!
+
 ## [3.6.4] - 2017-03-29 ##
 ### Updated
 - Pull #250 [Improve code quality](https://github.com/sendgrid/sendgrid-python/pull/250)
