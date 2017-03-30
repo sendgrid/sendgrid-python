@@ -64,13 +64,13 @@ class Mail(object):
         if self.sections is not None:
             sections = {}
             for key in self.sections:
-                sections.update(key.get())
+                sections.update(key)
             mail["sections"] = sections
 
         if self.headers is not None:
             headers = {}
             for key in self.headers:
-                headers.update(key.get())
+                headers.update(key)
             mail["headers"] = headers
 
         if self.categories is not None:
@@ -80,7 +80,7 @@ class Mail(object):
         if self.custom_args is not None:
             custom_args = {}
             for key in self.custom_args:
-                custom_args.update(key.get())
+                custom_args.update(key)
             mail["custom_args"] = custom_args
 
         if self.send_at is not None:
