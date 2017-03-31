@@ -89,7 +89,7 @@ class Mail(object):
             mail["batch_id"] = self.batch_id
 
         if self.asm is not None:
-            mail["asm"] = self.asm
+            mail["asm"] = self.asm.get()
 
         if self.ip_pool_name is not None:
             mail["ip_pool_name"] = self.ip_pool_name
