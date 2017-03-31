@@ -1,2 +1,2 @@
-from .config import *
-from .parse import *
+from .config import *  # noqa
+from .parse import *  # noqa

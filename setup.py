@@ -10,6 +10,7 @@ long_description = 'Please see our GitHub README'
 if os.path.exists('README.txt'):
     long_description = open('README.txt').read()
 
+
 def getRequires():
     deps = ['python_http_client>=2.1.1']
     if sys.version_info < (2, 7):
@@ -24,7 +25,7 @@ setup(
     author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
-    packages=find_packages(exclude=["temp*.py"]),
+    packages=find_packages(exclude=["temp*.py", "register.py", "test"]),
     include_package_data=True,
     license='MIT',
     description='SendGrid library for Python',
@@ -36,6 +37,7 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ]
 )

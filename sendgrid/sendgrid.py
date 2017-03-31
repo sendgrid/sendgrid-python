@@ -3,8 +3,10 @@ import python_http_client
 
 from .version import __version__
 
+
 class SendGridAPIClient(object):
     """SendGrid API."""
+
     def __init__(self, **opts):
         """
         Construct SendGrid v3 API object.
@@ -12,7 +14,8 @@ class SendGridAPIClient(object):
         :params host: Base URL for the API call
         :type host: string
         """
-        self.path = opts.get('path', os.path.abspath(os.path.dirname(__file__)))
+        self.path = opts.get(
+            'path', os.path.abspath(os.path.dirname(__file__)))
         self._apikey = opts.get('apikey', os.environ.get('SENDGRID_API_KEY'))
         # Support v2 api_key naming
         self._apikey = opts.get('api_key', self._apikey)

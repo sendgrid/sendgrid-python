@@ -3,7 +3,8 @@
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
-    def __init__(self, from_email=None, subject=None, to_email=None, content=None):
+    def __init__(
+            self, from_email=None, subject=None, to_email=None, content=None):
         self._from_email = None
         self._subject = None
         self._template_id = None
@@ -14,7 +15,6 @@ class Mail(object):
         self._mail_settings = None
         self._tracking_settings = None
         self._reply_to = None
-
         self._personalizations = None
         self._contents = None
         self._attachments = None
@@ -44,43 +44,62 @@ class Mail(object):
             mail["from"] = self.from_email.get()
         if self.subject is not None:
             mail["subject"] = self.subject
+
         if self.personalizations is not None:
-            mail["personalizations"] = [personalization.get() for personalization in self.personalizations]
+            mail["personalizations"] = [
+                personalization.get()
+                for personalization in self.personalizations
+            ]
+
         if self.contents is not None:
             mail["content"] = [ob.get() for ob in self.contents]
+
         if self.attachments is not None:
             mail["attachments"] = [ob.get() for ob in self.attachments]
+
         if self.template_id is not None:
             mail["template_id"] = self.template_id
+
         if self.sections is not None:
             sections = {}
             for key in self.sections:
                 sections.update(key.get())
             mail["sections"] = sections
+
         if self.headers is not None:
             headers = {}
             for key in self.headers:
                 headers.update(key.get())
             mail["headers"] = headers
+
         if self.categories is not None:
-            mail["categories"] = [category.get() for category in self.categories]
+            mail["categories"] = [category.get() for category in
+                                  self.categories]
+
         if self.custom_args is not None:
             custom_args = {}
             for key in self.custom_args:
                 custom_args.update(key.get())
             mail["custom_args"] = custom_args
+
         if self.send_at is not None:
             mail["send_at"] = self.send_at
+
         if self.batch_id is not None:
             mail["batch_id"] = self.batch_id
+
         if self.asm is not None:
-            mail["asm"] = self.asm.get()
+            mail["asm"] = self.asm
+
         if self.ip_pool_name is not None:
             mail["ip_pool_name"] = self.ip_pool_name
+
         if self.mail_settings is not None:
             mail["mail_settings"] = self.mail_settings.get()
+
         if self.tracking_settings is not None:
             mail["tracking_settings"] = self.tracking_settings.get()
+
         if self.reply_to is not None:
             mail["reply_to"] = self.reply_to.get()
         return mail
@@ -232,12 +251,14 @@ class Mail(object):
             self._custom_args = []
         self._custom_args.append(custom_arg)
 
+
 ################################################################
 # The following objects are meant to be extended with validation
 ################################################################
 
 
 class Email(object):
+
     def __init__(self, email=None, name=None):
         self._name = None
         self._email = None
@@ -267,18 +288,21 @@ class Email(object):
         email = {}
         if self.name is not None:
             email["name"] = self.name
+
         if self.email is not None:
             email["email"] = self.email
         return email
 
 
 class Content(object):
-    def __init__(self, type=None, value=None):
+
+    def __init__(self, type_=None, value=None):
         self._type = None
         self._value = None
 
-        if type is not None:
-            self.type = type
+        if type_ is not None:
+            self.type = type_
+
         if value is not None:
             self.value = value
 
@@ -302,12 +326,14 @@ class Content(object):
         content = {}
         if self.type is not None:
             content["type"] = self.type
+
         if self.value is not None:
             content["value"] = self.value
         return content
 
 
 class Header(object):
+
     def __init__(self, key=None, value=None):
         self._key = None
         self._value = None
@@ -341,12 +367,14 @@ class Header(object):
 
 
 class Substitution(object):
+
     def __init__(self, key=None, value=None):
         self._key = None
         self._value = None
 
         if key is not None:
             self.key = key
+
         if value is not None:
             self.value = value
 
@@ -356,7 +384,7 @@ class Substitution(object):
 
     @key.setter
     def key(self, value):
-        self._key = value
+        self._key = str(value)
 
     @property
     def value(self):
@@ -364,7 +392,7 @@ class Substitution(object):
 
     @value.setter
     def value(self, value):
-        self._value = value
+        self._value = str(value)
 
     def get(self):
         substitution = {}
@@ -374,12 +402,14 @@ class Substitution(object):
 
 
 class Section(object):
+
     def __init__(self, key=None, value=None):
         self._key = None
         self._value = None
 
         if key is not None:
             self.key = key
+
         if value is not None:
             self.value = value
 
@@ -407,12 +437,14 @@ class Section(object):
 
 
 class CustomArg(object):
+
     def __init__(self, key=None, value=None):
         self._key = None
         self._value = None
 
         if key is not None:
             self.key = key
+
         if value is not None:
             self.value = value
 
@@ -440,6 +472,7 @@ class CustomArg(object):
 
 
 class Personalization(object):
+
     def __init__(self):
         self._tos = None
         self._ccs = None
@@ -548,33 +581,41 @@ class Personalization(object):
         personalization = {}
         if self.tos is not None:
             personalization["to"] = self.tos
+
         if self.ccs is not None:
             personalization["cc"] = self.ccs
+
         if self.bccs is not None:
             personalization["bcc"] = self.bccs
+
         if self.subject is not None:
             personalization["subject"] = self.subject
+
         if self.headers is not None:
             headers = {}
             for key in self.headers:
                 headers.update(key)
             personalization["headers"] = headers
+
         if self.substitutions is not None:
             substitutions = {}
             for key in self.substitutions:
                 substitutions.update(key)
             personalization["substitutions"] = substitutions
+
         if self.custom_args is not None:
             custom_args = {}
             for key in self.custom_args:
                 custom_args.update(key)
             personalization["custom_args"] = custom_args
+
         if self.send_at is not None:
             personalization["send_at"] = self.send_at
         return personalization
 
 
 class Attachment(object):
+
     def __init__(self):
         self._content = None
         self._type = None
@@ -626,18 +667,23 @@ class Attachment(object):
         attachment = {}
         if self.content is not None:
             attachment["content"] = self.content
+
         if self.type is not None:
             attachment["type"] = self.type
+
         if self.filename is not None:
             attachment["filename"] = self.filename
+
         if self.disposition is not None:
             attachment["disposition"] = self.disposition
+
         if self.content_id is not None:
             attachment["content_id"] = self.content_id
         return attachment
 
 
 class Category(object):
+
     def __init__(self, name=None):
         self._name = None
         if name is not None:
@@ -656,12 +702,14 @@ class Category(object):
 
 
 class ASM(object):
+
     def __init__(self, group_id=None, groups_to_display=None):
         self._group_id = None
         self._groups_to_display = None
 
         if group_id is not None:
             self._group_id = group_id
+
         if groups_to_display is not None:
             self._groups_to_display = groups_to_display
 
@@ -685,18 +733,21 @@ class ASM(object):
         asm = {}
         if self.group_id is not None:
             asm["group_id"] = self.group_id
+
         if self.groups_to_display is not None:
             asm["groups_to_display"] = self.groups_to_display
         return asm
 
 
 class BCCSettings(object):
+
     def __init__(self, enable=None, email=None):
         self._enable = None
         self._email = None
 
         if enable is not None:
             self.enable = enable
+
         if email is not None:
             self.email = email
 
@@ -720,6 +771,7 @@ class BCCSettings(object):
         bcc_settings = {}
         if self.enable is not None:
             bcc_settings["enable"] = self.enable
+
         if self.email is not None:
             email = self.email.get()
             bcc_settings["email"] = email["email"]
@@ -727,6 +779,7 @@ class BCCSettings(object):
 
 
 class BypassListManagement(object):
+
     def __init__(self, enable=None):
         self._enable = None
 
@@ -749,6 +802,7 @@ class BypassListManagement(object):
 
 
 class FooterSettings(object):
+
     def __init__(self, enable=None, text=None, html=None):
         self._enable = None
         self._text = None
@@ -756,8 +810,10 @@ class FooterSettings(object):
 
         if enable is not None:
             self.enable = enable
+
         if text is not None:
             self.text = text
+
         if html is not None:
             self.html = html
 
@@ -789,14 +845,17 @@ class FooterSettings(object):
         footer_settings = {}
         if self.enable is not None:
             footer_settings["enable"] = self.enable
+
         if self.text is not None:
             footer_settings["text"] = self.text
+
         if self.html is not None:
             footer_settings["html"] = self.html
         return footer_settings
 
 
 class SandBoxMode(object):
+
     def __init__(self, enable=None):
         self._enable = None
 
@@ -819,6 +878,7 @@ class SandBoxMode(object):
 
 
 class SpamCheck(object):
+
     def __init__(self, enable=None, threshold=None, post_to_url=None):
         self._enable = None
         self._threshold = None
@@ -826,8 +886,10 @@ class SpamCheck(object):
 
         if enable is not None:
             self.enable = enable
+
         if threshold is not None:
             self.threshold = threshold
+
         if post_to_url is not None:
             self.post_to_url = post_to_url
 
@@ -859,14 +921,17 @@ class SpamCheck(object):
         spam_check = {}
         if self.enable is not None:
             spam_check["enable"] = self.enable
+
         if self.threshold is not None:
             spam_check["threshold"] = self.threshold
+
         if self.post_to_url is not None:
             spam_check["post_to_url"] = self.post_to_url
         return spam_check
 
 
 class MailSettings(object):
+
     def __init__(self):
         self._bcc_settings = None
         self._bypass_list_management = None
@@ -918,24 +983,31 @@ class MailSettings(object):
         mail_settings = {}
         if self.bcc_settings is not None:
             mail_settings["bcc"] = self.bcc_settings.get()
+
         if self.bypass_list_management is not None:
-            mail_settings["bypass_list_management"] = self.bypass_list_management.get()
+            mail_settings[
+                "bypass_list_management"] = self.bypass_list_management.get()
+
         if self.footer_settings is not None:
             mail_settings["footer"] = self.footer_settings.get()
+
         if self.sandbox_mode is not None:
             mail_settings["sandbox_mode"] = self.sandbox_mode.get()
+
         if self.spam_check is not None:
             mail_settings["spam_check"] = self.spam_check.get()
         return mail_settings
 
 
 class ClickTracking(object):
+
     def __init__(self, enable=None, enable_text=None):
         self._enable = None
         self._enable_text = None
 
         if enable is not None:
             self.enable = enable
+
         if enable_text is not None:
             self.enable_text = enable_text
 
@@ -959,12 +1031,14 @@ class ClickTracking(object):
         click_tracking = {}
         if self.enable is not None:
             click_tracking["enable"] = self.enable
+
         if self.enable_text is not None:
             click_tracking["enable_text"] = self.enable_text
         return click_tracking
 
 
 class OpenTracking(object):
+
     def __init__(self, enable=None, substitution_tag=None):
         self._enable = None
         self._substitution_tag = None
@@ -994,12 +1068,14 @@ class OpenTracking(object):
         open_tracking = {}
         if self.enable is not None:
             open_tracking["enable"] = self.enable
+
         if self.substitution_tag is not None:
             open_tracking["substitution_tag"] = self.substitution_tag
         return open_tracking
 
 
 class SubscriptionTracking(object):
+
     def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
         self._enable = None
         self._text = None
@@ -1051,16 +1127,20 @@ class SubscriptionTracking(object):
         subscription_tracking = {}
         if self.enable is not None:
             subscription_tracking["enable"] = self.enable
+
         if self.text is not None:
             subscription_tracking["text"] = self.text
+
         if self.html is not None:
             subscription_tracking["html"] = self.html
+
         if self.substitution_tag is not None:
             subscription_tracking["substitution_tag"] = self.substitution_tag
         return subscription_tracking
 
 
 class Ganalytics(object):
+
     def __init__(self,
                  enable=None,
                  utm_source=None,
@@ -1154,6 +1234,7 @@ class Ganalytics(object):
 
 
 class TrackingSettings(object):
+
     def __init__(self):
         self._click_tracking = None
         self._open_tracking = None
@@ -1199,7 +1280,8 @@ class TrackingSettings(object):
         if self.open_tracking is not None:
             tracking_settings["open_tracking"] = self.open_tracking.get()
         if self.subscription_tracking is not None:
-            tracking_settings["subscription_tracking"] = self.subscription_tracking.get()
+            tracking_settings[
+                "subscription_tracking"] = self.subscription_tracking.get()
         if self.ganalytics is not None:
             tracking_settings["ganalytics"] = self.ganalytics.get()
         return tracking_settings

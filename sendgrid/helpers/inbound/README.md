@@ -78,7 +78,7 @@ Update your SendGrid Incoming Parse settings: [Settings Page](https://app.sendgr
 
 Next, send an email to [anything]@inbound.yourdomain.com, then look at your Heroku logs: https://dashboard.heroku.com/apps/[name-of-your-app]/logs
 
-While you are waiting for your MX records to propogate, you can test by using the test data sender:
+While you are waiting for your MX records to propagate, you can test by using the test data sender:
 
 ```bash
 git clone https://github.com/sendgrid/sendgrid-python.git
@@ -91,8 +91,9 @@ To make changes: clone, modify and push the changes.
 
 For example:
 ```bash
-heroku clone -a name-of-your-app
-vim config.yml
+git clone https://github.com/sendgrid/sendgrid-python.git 
+heroku git:remote -a [name-of-your-app]
+---make changes---
 git add .
 git commit -m "update configuration"
 git push heroku master
@@ -115,7 +116,7 @@ This module parses the incoming POST data from a [Flask request object](http://f
 
 ## send.py & /sample_data
 
-This module is used to send sample test data. It is useful for testing and development, particularly while you wait for your MX records to propogate.
+This module is used to send sample test data. It is useful for testing and development, particularly while you wait for your MX records to propagate.
 
 <a name="testing"></a>
 # Testing the Source Code

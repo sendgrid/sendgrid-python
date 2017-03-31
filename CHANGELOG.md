@@ -1,6 +1,31 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.6.5] - 2017-03-30 ##
+### Updated
+- Pull #300 [Exclude test package](https://github.com/sendgrid/sendgrid-python/pull/250)
+- Big thanks to [Iryna Shcherbina](https://github.com/irushchyshyn) for the pull request!
+
+## [3.6.4] - 2017-03-29 ##
+### Updated
+- Pull #250 [Improve code quality](https://github.com/sendgrid/sendgrid-python/pull/250)
+- Big thanks to [Andrii Soldatenko](https://github.com/andriisoldatenko) for the pull request!
+
+## [3.6.3] - 2016-11-10 ##
+### Updated
+- Pull #243 [Update deprecated Heroku command](https://github.com/sendgrid/sendgrid-python/pull/243)
+- Big thanks to [Roberto Ortega](https://github.com/berto) for the pull request!
+
+## [3.6.2] - 2016-11-10 ##
+### Fixed
+- Pull #240 [Add six to requirements.txt](https://github.com/sendgrid/sendgrid-python/pull/246)
+- Big thanks to [Wataru Sato](https://github.com/awwa) for the pull request!
+
+## [3.6.1] - 2016-11-10 ##
+### Fixed
+- Pull #246 [Typo 'user' for 'usr'](https://github.com/sendgrid/sendgrid-python/pull/246)
+- Big thanks to [Mike Ralphson](https://github.com/MikeRalphson) for the pull request!
+
 ## [3.6.0] - 2016-10-11 ##
 ### Added
 - Pull #234 [Substitutions allow non-strings for values](https://github.com/sendgrid/sendgrid-python/pull/234)

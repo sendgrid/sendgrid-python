@@ -3,6 +3,7 @@ This documentation provides examples for specific use cases. Please [open an iss
 # Table of Contents
 
 * [Transactional Templates](#transactional_templates)
+* [Attachment](#attachment)
 
 <a name="transactional_templates"></a>
 # Transactional Templates
@@ -66,7 +67,7 @@ mail.set_template_id("13b8f94f-bcae-4ec6-b752-70d6cb59f932")
 try:
     response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.HTTPError as e:
-    print e.read()
+    print (e.read())
     exit()
 print(response.status_code)
 print(response.body)
@@ -115,8 +116,55 @@ data = {
 try:
     response = sg.client.mail.send.post(request_body=data)
 except urllib.HTTPError as e:
-    print e.read()
+    print (e.read())
     exit()
+print(response.status_code)
+print(response.body)
+print(response.headers)
+```
+
+<a name="attachment"></a>
+# Attachment
+
+```python
+import base64
+import sendgrid
+import os
+from sendgrid.helpers.mail import Email, Content, Mail, Attachment
+try:
+    # Python 3
+    import urllib.request as urllib
+except ImportError:
+    # Python 2
+    import urllib2 as urllib
+
+sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+from_email = Email("test@example.com")
+subject = "subject"
+to_email = Email("to_email@example.com")
+content = Content("text/html", "I'm a content example")
+
+file_path = "file_path.pdf"
+with open(file_path,'rb') as f:
+    data = f.read()
+    f.close()
+encoded = base64.b64encode(data).decode()
+
+attachment = Attachment()
+attachment.set_content(encoded)
+attachment.set_type("application/pdf")
+attachment.set_filename("test.pdf")
+attachment.set_disposition("attachment")
+attachment.set_content_id("Example Content ID")
+
+mail = Mail(from_email, subject, to_email, content)
+mail.add_attachment(attachment)
+try:
+    response = sg.client.mail.send.post(request_body=mail.get())
+except urllib.HTTPError as e:
+    print(e.read())
+    exit()
+
 print(response.status_code)
 print(response.body)
 print(response.headers)
