@@ -1,6 +1,38 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2017-04-05 ##
+### BREAKING CHANGE
+- Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
+- Big thanks to [Denis Vlasov](https://github.com/denis90) for the pull request!
+- The changes break the impelmentation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
+- `set_from()` is now the property `from_email`
+- `set_subject()` is now the property `subject`
+- `set_template_id()` is now the property `template_id`
+- `set_send_at()` is now the property `send_at`
+- `set_batch_id()` is now the property `batch_id`
+- `set_asm()` is now the property `asm`
+- `set_ip_pool_name()` is now the property `ip_pool_name`
+- `set_mail_settings()` is now the property `mail_settings`
+- `set_tracking_settings()` is now the property `tracking_settings`
+- `set_reply_to()` is now the property `reply_to`
+- `personalization.set_send_at()` is now the property `personalization.send_at`
+- `personalization.set_subject()` is now the property `personalization.subject`
+- `attachment.set_content()` is now the property `attachment.content`
+- `attachment.set_type()` is now the property `attachment.type`
+- `attachment.set_filename()` is now the property `attachment.filename`
+- `attachment.set_disposition()` is now the property `attachment.disposition`
+- `attachment.set_content_id()` is now the property `attachment.content_id`
+- `mail_settings.set_bcc_settings()` is now the property `mail_settings.bcc_settings`
+- `mail_settings.set_bypass_list_management()` is now the property `mail_settings.bypass_list_management`
+- `mail_settings.set_footer_settings()` is now the property `mail_settings.footer_settings`
+- `mail_settings.set_sandbox_mode()` is now the property `mail_settings.sandbox_mode`
+- `mail_settings.set_spam_check()` is now the property `mail_settings.spam_check`
+- `tracking_settings.set_click_tracking()` is now the property `click_tracking`
+- `tracking_settings.set_open_tracking()` is now the property `open_tracking`
+- `tracking_settings.set_subscription_tracking()` is now the property `subscription_tracking`
+- `tracking_settings.set_ganalytics()` is now the property `ganalytics`
+
 ## [3.6.5] - 2017-03-30 ##
 ### Updated
 - Pull #300 [Exclude test package](https://github.com/sendgrid/sendgrid-python/pull/250)

@@ -63,7 +63,7 @@ content = Content("text/html", "I'm replacing the <strong>body tag</strong>")
 mail = Mail(from_email, subject, to_email, content)
 mail.personalizations[0].add_substitution(Substitution("-name-", "Example User"))
 mail.personalizations[0].add_substitution(Substitution("-city-", "Denver"))
-mail.set_template_id("13b8f94f-bcae-4ec6-b752-70d6cb59f932")
+mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
 try:
     response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.HTTPError as e:
@@ -151,11 +151,11 @@ with open(file_path,'rb') as f:
 encoded = base64.b64encode(data).decode()
 
 attachment = Attachment()
-attachment.set_content(encoded)
-attachment.set_type("application/pdf")
-attachment.set_filename("test.pdf")
-attachment.set_disposition("attachment")
-attachment.set_content_id("Example Content ID")
+attachment.content = encoded
+attachment.type = "application/pdf"
+attachment.filename = "test.pdf"
+attachment.disposition = "attachment"
+attachment.content_id = "Example Content ID"
 
 mail = Mail(from_email, subject, to_email, content)
 mail.add_attachment(attachment)
