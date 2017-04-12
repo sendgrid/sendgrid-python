@@ -158,7 +158,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 - [Processing Inbound Email](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound)
 
-<a name="use_cases">
+<a name="use_cases"></a>
 # Use Cases
 
 [Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
@@ -199,5 +199,4 @@ sendgrid-python is guided and supported by the SendGrid [Developer Experience Te
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
 
-![SendGrid Logo]
-(https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
