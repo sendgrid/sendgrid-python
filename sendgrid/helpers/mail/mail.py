@@ -70,7 +70,7 @@ class Mail(object):
         if self.headers is not None:
             headers = {}
             for key in self.headers:
-                headers.update(key)
+                headers.update(key.get())
             mail["headers"] = headers
 
         if self.categories is not None:
@@ -366,7 +366,7 @@ class Personalization(object):
         if self.headers is not None:
             headers = {}
             for key in self.headers:
-                headers.update(key.get())
+                headers.update(key)
             personalization["headers"] = headers
 
         if self.substitutions is not None:
