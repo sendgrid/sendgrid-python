@@ -63,6 +63,14 @@ class UnitTests(unittest.TestCase):
         my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
         self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
 
+    def test_impersonate_subuser_init(self):
+        temp_subuser = 'abcxyz@this.is.a.test.subuser'
+        sg_impersonate = sendgrid.SendGridAPIClient(
+            host=host, path=self.path,
+            api_key=os.environ.get('SENDGRID_API_KEY'),
+            impersonate_subuser=temp_subuser)
+        self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
+
     def test_useragent(self):
         useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)

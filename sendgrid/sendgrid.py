@@ -20,15 +20,20 @@ class SendGridAPIClient(object):
         # Support v2 api_key naming
         self._apikey = opts.get('api_key', self._apikey)
         self._api_key = self._apikey
+        # Support impersonation of subusers
+        self._impersonate_subuser = opts.get('impersonate_subuser', None)
         self.useragent = 'sendgrid/{0};python'.format(__version__)
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.version = __version__
+
 
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
             "User-agent": self.useragent,
             "Accept": 'application/json'
         }
+        if self._impersonate_subuser:
+            headers['On-Behalf-Of'] = self._impersonate_subuser
 
         self.client = python_http_client.Client(host=self.host,
                                                 request_headers=headers,
@@ -49,3 +54,7 @@ class SendGridAPIClient(object):
     @api_key.setter
     def api_key(self, value):
         self._apikey = value
+
+    @property
+    def impersonate_subuser(self):
+        return self._impersonate_subuser
