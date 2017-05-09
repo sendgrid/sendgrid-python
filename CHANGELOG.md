@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.1.0] - 2017-05-08 ##
+### Added
+- Pull #314 Add ability to impersonate subuser
+- Big thanks to [w-](https://github.com/w-) for the pull request!
+
 ## [4.0.0] - 2017-04-05 ##
 ### BREAKING CHANGE
 - Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
