@@ -1,5 +1,5 @@
 """v3/mail/send response body builder"""
-
+from ..exceptions import SendGridException
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -24,6 +24,15 @@ class Mail(object):
         self._custom_args = None
 
         # Minimum required to send an email
+        if not isinstance(from_email,Email):
+            raise SendGridException("'from_email' not a object of Email class")
+        if bool(subject) is False:
+            raise SendGridException("No subject in the Email")
+        if not isinstance(to_email,Email):
+            raise SendGridException("'to_email' not a object of Email class")
+        if not isinstance(content,Content):
+            raise SendGridException("'content' not a object of Content class")
+
         if from_email and subject and to_email and content:
             self.from_email = from_email
             self.subject = subject
@@ -251,6 +260,26 @@ class Mail(object):
             self._custom_args = []
         self._custom_args.append(custom_arg)
 
+################################################################
+
+
+class SendGridMessage(Mail):
+    def __init__(self,from_email=None,subject=None,to_email=None,plain_text_content=None,html_content=None):
+        if html_content is not None:
+            content = Content("text/html",plain_text_content + html_content)
+        else:
+            content = Content("text/plain",plain_text_content)
+        super().__init__(from_email,subject,to_email,content)
+
+
+        
+
+def create_mail(from_email,subject,to_email,plain_text_content,html_content=None):
+    return SendGridMessage(from_email,subject,to_email,plain_text_content,html_content)
+
+
+
+################################################################
 
 ################################################################
 # The following objects are meant to be extended with validation
