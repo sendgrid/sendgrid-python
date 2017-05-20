@@ -265,11 +265,20 @@ class Mail(object):
 
 class SendGridMessage(Mail):
     def __init__(self,from_email=None,subject=None,to_email=None,plain_text_content=None,html_content=None):
-        if html_content is not None:
-            content = Content("text/html",plain_text_content + html_content)
+        self.from_email = from_email
+        self.subject = subject
+        self.to_email = to_email
+        self.plain_text_content = plain_text_content
+        self.html_content = html_content
+
+    def get(self):
+        if self.plain_text_content is None:
+            self.plain_text_content = ""
+        if self.html_content is not None:
+            self.content = Content("text/html",self.plain_text_content + self.html_content)
         else:
-            content = Content("text/plain",plain_text_content)
-        super().__init__(from_email,subject,to_email,content)
+            self.content = Content("text/plain",self.plain_text_content)
+        return Mail(self.from_email,self.subject,self.to_email,self.content).get()
 
 
         

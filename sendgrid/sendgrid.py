@@ -58,3 +58,15 @@ class SendGridAPIClient(object):
     @property
     def impersonate_subuser(self):
         return self._impersonate_subuser
+
+
+class SendGridClient(SendGridAPIClient):
+    def __init__(self, **opts):
+        super().__init__(**opts)
+
+    def send_mail(self,msg):
+        try:
+            return self.client.mail.send.post(request_body=msg.get())
+        except Exception as e:
+            print(e)
+            print(e.args)
