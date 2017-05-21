@@ -1,6 +1,7 @@
 """v3/mail/send response body builder"""
 from ..exceptions import SendGridException
 
+
 class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(
@@ -24,15 +25,6 @@ class Mail(object):
         self._custom_args = None
 
         # Minimum required to send an email
-        if not isinstance(from_email,Email):
-            raise SendGridException("'from_email' not a object of Email class")
-        if bool(subject) is False:
-            raise SendGridException("No subject in the Email")
-        if not isinstance(to_email,Email):
-            raise SendGridException("'to_email' not a object of Email class")
-        if not isinstance(content,Content):
-            raise SendGridException("'content' not a object of Content class")
-
         if from_email and subject and to_email and content:
             self.from_email = from_email
             self.subject = subject
@@ -264,7 +256,12 @@ class Mail(object):
 
 
 class SendGridMessage(Mail):
-    def __init__(self,from_email=None,subject=None,to_email=None,plain_text_content=None,html_content=None):
+    def __init__(self, 
+                from_email=None,
+                subject=None, 
+                to_email=None, 
+                plain_text_content=None, 
+                html_content=None):
         self.from_email = from_email
         self.subject = subject
         self.to_email = to_email
@@ -275,18 +272,14 @@ class SendGridMessage(Mail):
         if self.plain_text_content is None:
             self.plain_text_content = ""
         if self.html_content is not None:
-            self.content = Content("text/html",self.plain_text_content + self.html_content)
+            self.content = Content("text/html", self.plain_text_content + self.html_content)
         else:
-            self.content = Content("text/plain",self.plain_text_content)
-        return Mail(self.from_email,self.subject,self.to_email,self.content).get()
+            self.content = Content("text/plain", self.plain_text_content)
+        return Mail(self.from_email, self.subject, self.to_email, self.content).get()
 
 
-        
-
-def create_mail(from_email,subject,to_email,plain_text_content,html_content=None):
-    return SendGridMessage(from_email,subject,to_email,plain_text_content,html_content)
-
-
+def create_mail(from_email, subject, to_email, plain_text_content, html_content=None):
+    return SendGridMessage(from_email, subject, to_email, plain_text_content, html_content)
 
 ################################################################
 

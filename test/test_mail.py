@@ -19,6 +19,7 @@ from sendgrid.helpers.mail import (
     Personalization,
     SandBoxMode,
     Section,
+    SendGridMessage,
     SpamCheck,
     SubscriptionTracking,
     Substitution,
@@ -63,6 +64,31 @@ class UnitTests(unittest.TestCase):
             '"from": {"email": "test@example.com"}, "personalizations": '
             '[{"to": [{"email": "test@example.com"}]}], '
             '"subject": "Hello World from the SendGrid Python Library"}'
+        )
+
+    def test_message(self):
+        self.maxDiff = None
+
+        from_email = Email("test@example.com")
+        to_email = Email("test@example.com")
+        subject = "Testing sendgrid message"
+        plain_content = "SendGrid Python"
+        html_content = "<html><head></head><body><font color='red'>Something</font></body></html>"
+        msg = SendGridMessage()
+        msg.from_email = from_email
+        msg.to_email = to_email                             
+        msg.subject = subject
+        msg.plain_text_content = plain_content
+        msg.html_content = html_content
+        self.assertEqual(
+            json.dumps(
+                msg.get(),
+                sort_keys=True),
+            '{"content": [{"type": "text/html", "value": "SendGrid Python<html><head></head><body><font color=\'red\'>Something</font></body></html>"}],'
+            ' "from": {"email": "test@example.com"},'
+            ' "personalizations": [{"to": [{"email":'
+            ' "test@example.com"}]}],'
+            ' "subject": "Testing sendgrid message"}'
         )
 
     def test_kitchenSink(self):

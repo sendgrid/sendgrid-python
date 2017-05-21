@@ -26,7 +26,6 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.version = __version__
 
-
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
             "User-agent": self.useragent,
@@ -64,9 +63,8 @@ class SendGridClient(SendGridAPIClient):
     def __init__(self, **opts):
         super().__init__(**opts)
 
-    def send_mail(self,msg):
+    def send_mail(self, msg):
         try:
             return self.client.mail.send.post(request_body=msg.get())
         except Exception as e:
-            print(e)
-            print(e.args)
+            print("SendGrid API returned :- "+e.__str__())
