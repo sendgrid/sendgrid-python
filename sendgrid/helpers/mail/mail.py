@@ -1,5 +1,4 @@
 """v3/mail/send response body builder"""
-from ..exceptions import SendGridException
 
 
 class Mail(object):

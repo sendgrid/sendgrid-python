@@ -2,7 +2,7 @@ import os
 import python_http_client
 
 from .version import __version__
-
+from .helpers.exceptions import SendGridException
 
 class SendGridAPIClient(object):
     """SendGrid API."""
@@ -67,4 +67,4 @@ class SendGridClient(SendGridAPIClient):
         try:
             return self.client.mail.send.post(request_body=msg.get())
         except Exception as e:
-            print("SendGrid API returned :- "+e.__str__())
+            raise SendGridException(e.__str__()) from None
