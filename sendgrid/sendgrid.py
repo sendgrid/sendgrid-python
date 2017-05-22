@@ -67,4 +67,6 @@ class SendGridClient(SendGridAPIClient):
         try:
             return self.client.mail.send.post(request_body=msg.get())
         except Exception as e:
-            raise SendGridException(e.__str__()) from None
+                exc = SendGridException(e.__str__())
+                exc.__cause__  = None
+                raise exc
