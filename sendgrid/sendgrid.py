@@ -26,7 +26,13 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.version = __version__
 
+        headers = self._get_default_headers()
 
+        self.client = python_http_client.Client(host=self.host,
+                                                request_headers=headers,
+                                                version=3)
+
+    def _get_default_headers(self):
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
             "User-agent": self.useragent,
@@ -35,9 +41,10 @@ class SendGridAPIClient(object):
         if self._impersonate_subuser:
             headers['On-Behalf-Of'] = self._impersonate_subuser
 
-        self.client = python_http_client.Client(host=self.host,
-                                                request_headers=headers,
-                                                version=3)
+        return headers
+
+    def reset_request_headers(self):
+        self.client.request_headers = self._get_default_headers()
 
     @property
     def apikey(self):
