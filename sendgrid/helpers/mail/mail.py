@@ -79,7 +79,7 @@ class Mail(object):
         if self.custom_args is not None:
             custom_args = {}
             for key in self.custom_args:
-                custom_args.update(key.get())
+                custom_args.update(key)
             mail["custom_args"] = custom_args
 
         if self.send_at is not None:
