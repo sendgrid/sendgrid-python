@@ -2,7 +2,7 @@ import os
 import python_http_client
 
 from .version import __version__
-from .helpers.exceptions import SendGridException
+
 
 class SendGridAPIClient(object):
     """SendGrid API."""
@@ -26,6 +26,13 @@ class SendGridAPIClient(object):
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.version = __version__
 
+        headers = self._get_default_headers()
+
+        self.client = python_http_client.Client(host=self.host,
+                                                request_headers=headers,
+                                                version=3)
+
+    def _get_default_headers(self):
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
             "User-agent": self.useragent,
@@ -34,9 +41,10 @@ class SendGridAPIClient(object):
         if self._impersonate_subuser:
             headers['On-Behalf-Of'] = self._impersonate_subuser
 
-        self.client = python_http_client.Client(host=self.host,
-                                                request_headers=headers,
-                                                version=3)
+        return headers
+
+    def reset_request_headers(self):
+        self.client.request_headers = self._get_default_headers()
 
     @property
     def apikey(self):
@@ -57,16 +65,3 @@ class SendGridAPIClient(object):
     @property
     def impersonate_subuser(self):
         return self._impersonate_subuser
-
-
-class SendGridClient(SendGridAPIClient):
-    def __init__(self, **opts):
-        super().__init__(**opts)
-
-    def send_mail(self, msg):
-        try:
-            return self.client.mail.send.post(request_body=msg.get())
-        except Exception as e:
-                exc = SendGridException(e.__str__())
-                exc.__cause__  = None
-                raise exc

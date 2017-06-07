@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.2.0] - 2017-06-01 ##
+### Added
+- Pull #318 Add ability to reset request headers on client attribute
+- Big thanks to [w-](https://github.com/w-) for the pull request!
+
 ## [4.1.0] - 2017-05-08 ##
 ### Added
 - Pull #314 Add ability to impersonate subuser
