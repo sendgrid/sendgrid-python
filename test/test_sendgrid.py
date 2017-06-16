@@ -1,4 +1,5 @@
 import sendgrid
+from sendgrid.helpers.mail import *
 from sendgrid.version import __version__
 try:
     import unittest2 as unittest
@@ -108,6 +109,13 @@ class UnitTests(unittest.TestCase):
         for k,v in self.sg._get_default_headers().items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
+    def test_hello_world(self):
+        from_email = Email("test@example.com")
+        to_email = Email("test@example.com")
+        subject = "Sending with SendGrid is Fun"
+        content = Content("text/plain", "and easy to do anywhere, even with Python")
+        mail = Mail(from_email, subject, to_email, content)
+        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}
