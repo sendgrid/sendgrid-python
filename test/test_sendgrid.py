@@ -115,8 +115,9 @@ class UnitTests(unittest.TestCase):
         subject = "Sending with SendGrid is Fun"
         content = Content("text/plain", "and easy to do anywhere, even with Python")
         mail = Mail(from_email, subject, to_email, content)
-        self.assertEqual(str(mail.get()), "{'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'}")
-    
+        is_same = cmp(mail.get(), {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
+        self.assertEqual(is_same, 0)
+
     def test_access_settings_activity_get(self):
         params = {'limit': 1}
         headers = {'X-Mock': 200}
