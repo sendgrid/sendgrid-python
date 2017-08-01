@@ -1,6 +1,7 @@
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+[![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 
-Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
+**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
 
@@ -168,7 +169,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
-All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases).
+All updates to this library are documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
 
 <a name="roadmap"></a>
 # Roadmap
