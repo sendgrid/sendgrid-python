@@ -33,8 +33,9 @@ class UnitTests(unittest.TestCase):
                             "https://raw.githubusercontent.com/stoplightio/"
                             "prism/master/install.sh"],
                         stdout=subprocess.PIPE)
-                    subprocess.Popen(
+                    prisminstaller = subprocess.Popen(
                         ["sh"], stdin=p1.stdout, stdout=subprocess.PIPE)
+                    prisminstaller.wait()
                 except Exception as e:
                     print(
                         "Error downloading the prism binary, you can try "
