@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.2.1] - 2017-08-03 ##
+### Fixed
+- Issue #321: Installing 4.2.0 installs the wrong version of python-http-client
+- Big thanks to [w-](https://github.com/w-) for the heads up!
+
 ## [4.2.0] - 2017-06-01 ##
 ### Added
 - Pull #318 Add ability to reset request headers on client attribute
