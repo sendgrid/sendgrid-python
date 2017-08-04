@@ -13,6 +13,10 @@ install:
 - pip install flask
 - pip install six
 - pip install pypandoc
+# - sudo apt-get install -y pandoc
+addons:
+  apt_packages:
+    - pandoc
 before_script:
 - mkdir prism
 - mkdir prism/bin
