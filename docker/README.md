@@ -1,11 +1,12 @@
-To easily install sendgrid-python, you can use Docker.
+You can use Docker to easily try out or test sendgrid-python.
 
-# Installation
+<a name="Quickstart"></a>
+# Quickstart
 
 1. Install Docker on your machine
-2. Pull the latest Docker image with `docker code here`
-3. Run it with `docker code here`.
+2. Run `docker run -it sendgrid/sendgrid-python`.
 
+<a name="Info"></a>
 # Info
 
 This Docker image contains
@@ -13,25 +14,51 @@ This Docker image contains
  - Stoplight's Prism, which lets you try out the API without actually sending email
  - A complete setup for testing the repository or your own fork
 
+You can mount repositories in the `/mnt/sendgrid-python` and `/mnt/python-http-client` directories to use them instead of the default SendGrid libraries.  Read on for more info.
+
+<a name="Options"></a>
 # Options
 
-To use a different version of sendgrid-python or python-http-client, mount it with the `-v <host_dir>:<container_dir>` option.  If you put it under `/mnt`, the container will automatically detect it and make the proper symlinks under root.
+The easiest way to use an old version is to use an old tag.
 
-For instance, to install v3.6.1:
+    $ docker run -it sendgrid/sendgrid-python:v3.6.1
 
-    $ DOCKER PULL CODE HERE
+Tags from before this Docker image was created may not exist.  You may download and mount old versions of the repository to use them.
+
+## Specifying a version
+
+To use a different version of sendgrid-python or python-http-client - for instance, to replicate your production setup - mount it with the `-v <host_dir>:<container_dir>` option.  When you put either repository under `/mnt`, the container will automatically detect it and make the proper symlinks.
+
+For instance, to install sendgrid-python v3.6.1 with an older version of python-http-client:
+
     $ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
     $ realpath sendgrid-python
-      /foo/sendgrid-python
-    $ DOCKER RUN CODE HERE
+      /path/to/sendgrid-python
+    $ git clone https://github.com/sendgrid/python-http-client.git --branch v1.2.4
+    $ realpath python-http-client
+      /path/to/python-http-client
+    $ docker run -it -v /path/to/sendgrid-python:/mnt/sendgrid-python \
+                     -v /path/to/python-http-client:/mnt/python-http-client \
+                     sendgrid/sendgrid-python
 
-To install your own version:
+## To install your own version:
 
-    $ DOCKER PULL CODE HERE
-    $ git clone https://github.com/foo/cool-sendgrid-python.git
+    $ git clone https://github.com/you/cool-sendgrid-python.git
     $ realpath sendgrid-python
-      /foo/cool-sendgrid-python
-    $ DOCKER RUN CODE HERE
+      /path/to/cool-sendgrid-python
+    $ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
 
+Note that the paths you specify in `-v` must be absolute.
+
+<a name="Testing"></a>
 # Testing
 Testing is easy!  Run the container, `cd sendgrid`, and run `tox`.
+
+<a name="about"></a>
+# About
+
+sendgrid-python is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
+
+sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
+
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
