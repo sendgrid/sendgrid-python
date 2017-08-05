@@ -18,12 +18,15 @@ This Docker image contains
 To use a different version of sendgrid-python or python-http-client, mount it with the `-v <host_dir>:<container_dir>` option.  If you put it under `/mnt`, the container will automatically detect it and make the proper symlinks under root.
 
 For instance, to install v3.6.1:
+
     $ DOCKER PULL CODE HERE
     $ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
     $ realpath sendgrid-python
       /foo/sendgrid-python
     $ DOCKER RUN CODE HERE
+
 To install your own version:
+
     $ DOCKER PULL CODE HERE
     $ git clone https://github.com/foo/cool-sendgrid-python.git
     $ realpath sendgrid-python
@@ -31,4 +34,4 @@ To install your own version:
     $ DOCKER RUN CODE HERE
 
 # Testing
-Testing is easy!  Just `cd sendgrid` and run `tox`.
+Testing is easy!  Run the container, `cd sendgrid`, and run `tox`.
