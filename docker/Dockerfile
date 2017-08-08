@@ -30,7 +30,7 @@ RUN python2.7 get-pip.py && \
 
 # set up default sendgrid env
 WORKDIR /root/sources
-RUN git clone https://github.com/gabrielkrell/sendgrid-python.git && \
+RUN git clone https://github.com/sendgrid/sendgrid-python.git && \
     git clone https://github.com/sendgrid/python-http-client.git
 WORKDIR /root
 RUN ln -s /root/sources/sendgrid-python/sendgrid && \
