@@ -12,7 +12,7 @@ You can use Docker to easily try out or test sendgrid-python.
 This Docker image contains
  - `sendgrid-python` and `python-http-client`
  - Stoplight's Prism, which lets you try out the API without actually sending email
- - A complete setup for testing the repository or your own fork
+ - `tox` and all supported Python versions, set up to test `sendgrid-python` or your own fork
 
 Run it in interactive mode with `-it`.
 
@@ -23,18 +23,18 @@ You can mount repositories in the `/mnt/sendgrid-python` and `/mnt/python-http-c
 
 ## Using an old version
 
-The easiest way to use an old version is to use an old tag.
+The easiest way to use an old version is to use an [old tag](https://github.com/sendgrid/sendgrid-python/releases).
 
 ```sh-session
 $ docker run -it sendgrid/sendgrid-python:v3.6.1
 ```
 
-Tags from before this Docker image was created might not exist yet. You may [manually download](#Versions) old versions in order to use them.
+Tags from before this Docker image was created might not exist yet. You may [manually download](#Versions) [old versions](https://github.com/sendgrid/sendgrid-python/releases) in order to use them.
 
 <a name="Versions"></a>
-## Specifying a version
+## Specifying specific versions
 
-To use a different version of sendgrid-python or python-http-client - for instance, to replicate your production setup - mount it with the `-v <host_dir>:<container_dir>` option. When you put either repository under `/mnt`, the container will automatically detect it and make the proper symlinks. You can edit these files from the host machine while the container is running.
+To use different versions of sendgrid-python or python-http-client - for instance, to replicate your production setup - mount them with the `-v <host_dir>:<container_dir>` option. When you put either repository under `/mnt`, the container will automatically detect it and make the proper symlinks. You can edit these files from the host machine while the container is running.
 
 For instance, to install sendgrid-python 3.6.1 and use the current python-http-client:
 

@@ -16,15 +16,16 @@ then
 fi
 
 SENDGRID_PYTHON_VERSION=$(python2.7 -c 'import sendgrid; print(sendgrid.__version__)')
-echo "Welcome to the sendgrid-python docker (version $SENDGRID_PYTHON_VERSION)"
+echo "Welcome to sendgrid-python docker v${SENDGRID_PYTHON_VERSION}."
 echo
 
 if [ "$1" != "--no-mock" ]
 then
-	echo "Starting Prism in mock mode. Disable this by running this container with --no-mock."
+	echo "Starting Prism in mock mode. Calls made to Prism will not actually send emails."
+	echo "Disable this by running this container with --no-mock."
 	prism run --mock --spec $OAI_SPEC_URL 2> /dev/null &
 else
-	echo "Starting Prism in live (passthrough) mode. You can send emails as normal."
+	echo "Starting Prism in live (--no-mock) mode. Calls made to Prism will send emails."
 	prism run --spec $OAI_SPEC_URL 2> /dev/null  &
 fi
 echo "To use Prism, make API calls to localhost:4010. For example,"
@@ -34,14 +35,14 @@ echo "        api_key=os.environ.get('SENDGRID_API_KEY_CAMPAIGNS'))"
 echo "To stop Prism, run \"kill $!\" from the shell."
 
 echo
-echo "Starting python. Type \"import sendgrid\" to get started; return to shell with exit()."
-echo "To test sendgrid-python, \"cd sendgrid\" and run \"tox\"."
+echo "Starting Python. Type \"import sendgrid\" to get started; return to shell with exit()."
 echo
 
 python2.7
 
 echo
-echo "When you want to get back into Python, here are the installed versions:"
-echo "$PYTHON_VERSIONS"
+echo "To get back into Python, run one of the installed versions:"
+echo "    $PYTHON_VERSIONS"
+echo "To test sendgrid-python, \"cd sendgrid\" and run \"tox\"."
 echo
 exec $SHELL
