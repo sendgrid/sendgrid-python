@@ -25,7 +25,9 @@ You can mount repositories in the `/mnt/sendgrid-python` and `/mnt/python-http-c
 
 The easiest way to use an old version is to use an old tag.
 
-    $ docker run -it sendgrid/sendgrid-python:v3.6.1
+```sh-session
+$ docker run -it sendgrid/sendgrid-python:v3.6.1
+```
 
 Tags from before this Docker image was created might not exist yet. You may [manually download](#Versions) old versions in order to use them.
 
@@ -36,29 +38,35 @@ To use a different version of sendgrid-python or python-http-client - for instan
 
 For instance, to install sendgrid-python 3.6.1 and use the current python-http-client:
 
-    $ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
-    $ realpath sendgrid-python
-    /path/to/sendgrid-python
-    $ docker run -it -v /path/to/sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
+```sh-session
+$ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
+$ realpath sendgrid-python
+/path/to/sendgrid-python
+$ docker run -it -v /path/to/sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
+```
 
 To install sendgrid-python v3.6.1 and use an older version of python-http-client:
 
-    $ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
-    $ realpath sendgrid-python
-    /path/to/sendgrid-python
-    $ git clone https://github.com/sendgrid/python-http-client.git --branch v1.2.4
-    $ realpath python-http-client
-    /path/to/python-http-client
-    $ docker run -it -v /path/to/sendgrid-python:/mnt/sendgrid-python \
-                     -v /path/to/python-http-client:/mnt/python-http-client \
-                     sendgrid/sendgrid-python
+```sh-session
+$ git clone https://github.com/sendgrid/sendgrid-python.git --branch v3.6.1
+$ realpath sendgrid-python
+/path/to/sendgrid-python
+$ git clone https://github.com/sendgrid/python-http-client.git --branch v1.2.4
+$ realpath python-http-client
+/path/to/python-http-client
+$ docker run -it -v /path/to/sendgrid-python:/mnt/sendgrid-python \
+>                -v /path/to/python-http-client:/mnt/python-http-client \
+>                sendgrid/sendgrid-python
+```
 
 ## Specifying your own fork:
 
-    $ git clone https://github.com/you/cool-sendgrid-python.git
-    $ realpath cool-sendgrid-python
-    /path/to/cool-sendgrid-python
-    $ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
+```sh-session
+$ git clone https://github.com/you/cool-sendgrid-python.git
+$ realpath cool-sendgrid-python
+/path/to/cool-sendgrid-python
+$ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
+```
 
 Note that the paths you specify in `-v` must be absolute.
 
