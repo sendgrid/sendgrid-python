@@ -2,7 +2,8 @@
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 
-**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
+**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.  
+     Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/docker/USAGE.md).
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
 
