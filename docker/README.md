@@ -1,9 +1,20 @@
 # Supported tags and respective `Dockerfile` links
- - `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
-
+ - `v4.2.1`, `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
+ - `v4.2.0`
+ - `v4.1.0`
+ - `v4.0.0`
+ - `v3.6.5`
+ - `v3.6.4`
+ - `v3.6.3`
+ - `v3.6.2`
+ - `v3.3.0`
+ - `v3.2.3`
+ - `v3.2.2`
+ - `v3.2.1`
+ - `v3.2.0`
 # Quick reference
  - **Where to get help:**
-   [contact SendGrid Support](https://support.sendgrid.com/hc/en-us)
+   [Contact SendGrid Support](https://support.sendgrid.com/hc/en-us)
 
  - **Where to file issues:**
    https://github.com/sendgrid/sendgrid-python/issues
