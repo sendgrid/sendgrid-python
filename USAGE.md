@@ -790,7 +790,7 @@ For more information:
 
 
 ```python
-params = {'limit': 1, 'offset': 1}
+params = {'limit': 10, 'offset': 0}
 response = sg.client.campaigns.get(query_params=params)
 print response.status_code
 print response.body
