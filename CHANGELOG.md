@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.0.0] - 2017-08-11
+### BREAKING CHANGE
+- The breaking change actually happened in [version 4.2.1](https://github.com/sendgrid/sendgrid-python/releases/tag/v4.2.1), where I mistakenly applied a patch version bump. See issues #328 and #321 for details.
+- This version (5.0.0) replaces error handling via HTTPError from urllib in favor of custom error handling via the [HTTPError class](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) as was the case in version 4.2.0.
+
 ## [4.2.1] - 2017-08-03 ##
 ### Fixed
 - Issue #321: Installing 4.2.0 installs the wrong version of python-http-client

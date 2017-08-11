@@ -12,7 +12,7 @@ if os.path.exists('README.txt'):
 
 
 def getRequires():
-    deps = ['python_http_client==2.2.*']
+    deps = ['python_http_client==3.0.*']
     if sys.version_info < (2, 7):
         deps.append('unittest2')
     elif (3, 0) <= sys.version_info < (3, 2):
