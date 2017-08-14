@@ -21,7 +21,7 @@
    https://github.com/sendgrid/sendgrid-python/issues
 
  - **Where to get more info:**
-   [USAGE.md](https://github.com/sendgrid/sendgrid-python/docker/USAGE.md)
+   [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md)
 
  - **Maintained by:**
    [SendGrid Inc.](https://sendgrid.com)
@@ -44,7 +44,7 @@
    $ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/sendgrid-python
    ```
 
-For more detailed information, see [USAGE.md](https://github.com/sendgrid/sendgrid-python/docker/USAGE.md).
+For more detailed information, see [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
 # About
 
