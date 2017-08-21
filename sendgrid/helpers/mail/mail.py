@@ -384,7 +384,7 @@ class Substitution(object):
 
     @key.setter
     def key(self, value):
-        self._key = str(value)
+        self._key = value
 
     @property
     def value(self):
@@ -392,7 +392,7 @@ class Substitution(object):
 
     @value.setter
     def value(self, value):
-        self._value = str(value)
+        self._value = value
 
     def get(self):
         substitution = {}
