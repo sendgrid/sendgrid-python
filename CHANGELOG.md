@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.0.1] - 2017-08-29
+### Fix
+- Pull #337, fixes issue #366
+- On install, some experienced: `ValueError: ("Expected ',' or end-of-list in", 'python-http-client ==3.0.*', 'at', '*')`
+
 ## [5.0.0] - 2017-08-11
 ### BREAKING CHANGE
 - The breaking change actually happened in [version 4.2.1](https://github.com/sendgrid/sendgrid-python/releases/tag/v4.2.1), where I mistakenly applied a patch version bump. See issues #328 and #321 for details.
