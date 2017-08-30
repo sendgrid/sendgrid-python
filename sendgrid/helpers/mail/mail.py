@@ -251,6 +251,36 @@ class Mail(object):
             self._custom_args = []
         self._custom_args.append(custom_arg)
 
+################################################################
+
+
+class SendGridMessage(Mail):
+    def __init__(self, 
+                from_email=None,
+                subject=None, 
+                to_email=None, 
+                plain_text_content=None, 
+                html_content=None):
+        self.from_email = from_email
+        self.subject = subject
+        self.to_email = to_email
+        self.plain_text_content = plain_text_content
+        self.html_content = html_content
+
+    def get(self):
+        if self.plain_text_content is None:
+            self.plain_text_content = ""
+        if self.html_content is not None:
+            self.content = Content("text/html", self.plain_text_content + self.html_content)
+        else:
+            self.content = Content("text/plain", self.plain_text_content)
+        return Mail(self.from_email, self.subject, self.to_email, self.content).get()
+
+
+def create_mail(from_email, subject, to_email, plain_text_content, html_content=None):
+    return SendGridMessage(from_email, subject, to_email, plain_text_content, html_content)
+
+################################################################
 
 ################################################################
 # The following objects are meant to be extended with validation
