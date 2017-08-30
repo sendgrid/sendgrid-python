@@ -33,7 +33,7 @@ class Mail(object):
             self.add_content(content)
 
     def __str__(self):
-        self.get()
+        return str(self.get())
 
     def get(self):
         """

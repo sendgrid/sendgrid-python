@@ -65,6 +65,8 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
+        self.assertTrue(isinstance(str(mail), str))
+
     def test_kitchenSink(self):
         self.maxDiff = None
 
