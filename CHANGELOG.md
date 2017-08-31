@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.2.0] - 2017-08-31 ##
+### Added
+- Pull #335: Permit unicode string values with Substitution helper
+- Big thanks to [Mehron Kugler](https://github.com/mehronkugler) for the pull request!
+
 ## [5.1.0] - 2017-08-30 ##
 ### Added
 - Pull #338: Allow the `__str__` method for the `Mail` object return an `String` instead of a `NoneType`
