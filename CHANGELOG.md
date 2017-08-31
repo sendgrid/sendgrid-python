@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.1.0] - 2017-08-30 ##
+### Added
+- Pull #338: Allow the `__str__` method for the `Mail` object return an `String` instead of a `NoneType`
+- Solves #292: The `__str__` method of the `Mail` class, doesn't actually return anything
+- Big thanks to [belfazt](https://github.com/belfazt) for the pull request!
+
 ## [5.0.1] - 2017-08-29
 ### Fix
 - Pull #337, fixes issue #366
