@@ -5,22 +5,21 @@ The following code assumes you are storing the API key in an [environment variab
 ```python
 import os
 import sendgrid
-from sendgrid.helpers.mail import *
+from sendgrid.helpers.mail import From, To, Subject, PlainTextContent, HtmlContent, Mail
 
-client = sendgrid.SendGridClientFactory(os.environ.get('SENDGRID_API_KEY'))
-from_email = Email("test@example.com", "Example User")
-to_email = Email("test@example.com", "Example User")
-subject = "Sending with SendGrid is Fun"
-plain_text_content = "and easy to do anywhere, even with Python"
-html_content = "<strong>and easy to do anywhere, even with Ruby</strong>"
-msg = Mail.create_single_email(from_email, subject, to_email, content)
+msg = Mail(From("test@example.com", "Example User"),
+           To("test@example.com", "Example User"),
+           Subject("Sending with SendGrid is Fun"),
+           PlainTextContent("and easy to do anywhere, even with Python"),
+           HtmlContent("<strong>and easy to do anywhere, even with Ruby</strong>"))
+
 try:
-    response = client.send_email(msg)
-except urllib.error.HTTPError as e:
+    response = sendgrid.send(msg, api_key=os.environ.get('SENDGRID_API_KEY'))
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+except Exception as e:
     print(e.read())
-print(response.status_code)
-print(response.body)
-print(response.headers)
 ```
 
 # Send a Single Email to Multiple Recipients
