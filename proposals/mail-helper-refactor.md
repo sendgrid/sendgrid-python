@@ -234,7 +234,7 @@ msg.global_headers = [
 ]
 
 msg.section = Section('%section1%', 'Substitution for Section 1 Tag')
-msg.sections = = [
+msg.sections = [
     Section('%section2%', 'Substitution for Section 2 Tag'),
     Section('%section3%': 'Substitution for Section 3 Tag')    
 ]
