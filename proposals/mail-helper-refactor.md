@@ -10,7 +10,7 @@ import sendgrid
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_email=To('to@example.com', 'To Name'),
+           to_emails=To('to@example.com', 'To Name'),
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -38,7 +38,7 @@ to_emails = [
     To('to1@example.com', 'To Name 1')
 ]
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_emails=tos,
+           to_emails=to_emails,
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -113,40 +113,40 @@ msg = Mail(from_email=From('from@example.com', 'From Name'),
 # For a detailed description of each of these settings, please see the [documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
 msg.to = To('test1@example.com', 'Example User1')
-msg.tos = [ 
+msg.to = [ 
     To('test2@example.com', 'Example User2'),
     To('test3@example.com', 'Example User3')
 ]
 
 msg.cc = Cc('test4@example.com', 'Example User4')
-msg.ccs = [ 
+msg.cc = [ 
     Cc('test5@example.com', 'Example User5'),
     Cc('test6@example.com', 'Example User6')
 ]
 
 msg.bcc = Bcc('test7@example.com', 'Example User7')
-msg.bccs = [ 
+msg.bcc = [ 
     Bcc('test8@example.com', 'Example User8'),
     Bcc('test9@example.com', 'Example User9')
 ]
 
 msg.header = Header('X-Test1', 'Test1')
 msg.header = Header('X-Test2', 'Test2')
-msg.headers = [
+msg.header = [
     Header('X-Test3', 'Test3'),
     Header('X-Test4', 'Test4')
 ]
 
 msg.substitution = Substitution('%name1%', 'Example Name 1')
 msg.substitution = Substitution('%city1%', 'Denver')
-msg.substitutions = [
+msg.substitution = [
     Substitution('%name2%', 'Example Name 2'),
     Substitution('%city2%', 'Orange')
 ]
 
 msg.custom_arg = CustomArg('marketing1', 'false')
 msg.custom_arg = CustomArg('transactional1', 'true')
-msg.custom_args = [
+msg.custom_arg = [
     CustomArg('marketing2', 'true'),
     CustomArg('transactional2', 'false')
 ]
@@ -156,19 +156,19 @@ msg.send_at = SendAt(1461775051)
 # If you need to add more [Personalizations](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html), here is an example of adding another Personalization by passing in a personalization index.
 
 msg.to = To('test10@example.com', 'Example User10', p=p=1)
-msg.tos = [ 
+msg.to = [ 
     To('test11@example.com', 'Example User11', p=1),
     To('test12@example.com', 'Example User12', p=1)
 ]
 
 msg.cc = Cc('test13@example.com', 'Example User13', p=1)
-msg.ccs = [ 
+msg.cc = [ 
     Cc('test14@example.com', 'Example User14', p=1),
     Cc('test15@example.com', 'Example User15', p=1)
 ]
 
 msg.bcc = Bcc('test16@example.com', 'Example User16', p=1)
-msg.bccs = [ 
+msg.bcc = [ 
     Bcc('test17@example.com', 'Example User17', p=1),
     Bcc('test18@example.com', 'Example User18', p=1)
 ]
@@ -182,14 +182,14 @@ msg.headers = [
 
 msg.substitution = Substitution('%name3%', 'Example Name 3', p=1)
 msg.substitution = Substitution('%city3%', 'Redwood City', p=1)
-msg.substitutions = [
+msg.substitution = [
     Substitution('%name4%', 'Example Name 4', p=1),
     Substitution('%city4%', 'London', p=1)
 ]
 
 msg.custom_arg = CustomArg('marketing3', 'true', p=1)
 msg.custom_arg = CustomArg('transactional3', 'false', p=1)
-msg.custom_args = [
+msg.custom_arg = [
     CustomArg('marketing4', 'false', p=1),
     CustomArg('transactional4': 'true', p=1)
 ]
@@ -202,7 +202,7 @@ msg.global_subject = Subject('Sending with SendGrid is Fun')
 
 msg.content = Content(MimeType.Text, 'and easy to do anywhere, even with Python')
 msg.content = Content(MimeType.Html, '<strong>and easy to do anywhere, even with Python</strong>')
-msg.contents = [
+msg.content = [
     Content('text/calendar', 'Party Time!!'),
     Content('text/custom', 'Party Time 2!!')
 ]
@@ -212,7 +212,7 @@ msg.attachment = Attachment(FileName('balance_001.pdf'),
                             Type('application/pdf'),
                             Disposition('attachment'),
                             Name('Balance Sheet'))
-msg.attachments = [
+msg.attachment = [
     Attachment(FileName('banner.png'),
                File('base64 encoded content'),
                Type('image/png'),
@@ -234,7 +234,7 @@ msg.global_headers = [
 ]
 
 msg.section = Section('%section1%', 'Substitution for Section 1 Tag')
-msg.sections = [
+msg.section = [
     Section('%section2%', 'Substitution for Section 2 Tag'),
     Section('%section3%': 'Substitution for Section 3 Tag')    
 ]
@@ -258,7 +258,7 @@ import sendgrid
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, Attachment
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_email=To('to@example.com', 'To Name'),
+           to_emails=To('to@example.com', 'To Name'),
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -321,11 +321,11 @@ import sendgrid
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, Attachment
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_email=To('to@example.com', 'To Name'),
+           to_emails=To('to@example.com', 'To Name'),
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
-msg.substitutions = = [
+msg.substitution = [
     Substitution('-name-', 'Example User'),
     Substitution('-city-', 'Denver')
 ]
