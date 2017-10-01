@@ -16,3 +16,6 @@ venv/
 profile*
 README.txt
 temp*.py
+.coverage
+coverage.xml
+htmlcov
