@@ -1,4 +1,5 @@
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+[![codecov](https://codecov.io/gh/meahow/sendgrid-python/branch/master/graph/badge.svg)](https://codecov.io/gh/meahow/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 
