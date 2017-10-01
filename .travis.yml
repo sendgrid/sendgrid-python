@@ -13,6 +13,7 @@ install:
 - pip install flask
 - pip install six
 - pip install pypandoc
+- pip install codecov
 # - sudo apt-get install -y pandoc
 addons:
   apt_packages:
@@ -25,6 +26,8 @@ before_script:
 script:
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest
   discover; fi
+after_script:
+- codecov
 before_deploy:
 - python ./register.py
 deploy:
