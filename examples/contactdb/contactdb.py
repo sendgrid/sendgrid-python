@@ -137,7 +137,7 @@ print(response.headers)
 # Retrieve all recipients on a List #
 # GET /contactdb/lists/{list_id}/recipients #
 
-params = {'page': 1, 'page_size': 1, 'list_id': 1}
+params = {'page': 1, 'page_size': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
 print(response.status_code)
