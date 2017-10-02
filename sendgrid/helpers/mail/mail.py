@@ -265,9 +265,9 @@ class Email(object):
             self.parse_email(email)
         else:
             #allows backwards compatibility for Email(email, name)
-            if email is not None:
+            if not email:
                 self.email = email
-            if name is not None:
+            if not name:
                 self.name = name
 
     @property
