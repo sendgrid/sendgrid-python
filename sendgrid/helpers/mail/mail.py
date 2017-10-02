@@ -260,15 +260,14 @@ class Mail(object):
 class Email(object):
 
     def __init__(self, email=None, name=None):
-        if not name
+        if not name:
             # allows passing emails as "dude Fella <example@example.com>"
             self.parse_email(email)
         else:
             #allows backwards compatibility for Email(email, name)
-            if not email:
+            if email is not None:
                 self.email = email
-            if not name:
-                self.name = name
+            self.name = name
 
     @property
     def name(self):
