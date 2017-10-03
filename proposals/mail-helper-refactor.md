@@ -80,7 +80,7 @@ global_substitutions = {
     '-time-': strftime("%Y-%m-%d %H:%M:%S", gmtime())
 }
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_emails=tos,
+           to_emails=to_emails,
            subject=Subject('Hi -name-'),
            plain_text_content=PlainTextContent('Hello -name-, your github is -github-, email sent at -time-'),
            html_content=HtmlContent('<strong>Hello -name-, your github is <a href=\"-github-\">here</a></strong> email sent at -time-'),
@@ -105,7 +105,7 @@ import sendgrid
 from sendgrid.helpers.mail import *
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_email=To('to@example.com', 'To Name'),
+           to_emails=To('to@example.com', 'To Name'),
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -175,7 +175,7 @@ msg.bcc = [
 
 msg.header = Header('X-Test5', 'Test5', p=1)
 msg.header = Header('X-Test6', 'Test6', p=1)
-msg.headers = [
+msg.header = [
     Header('X-Test7', 'Test7', p=1),
     Header('X-Test8', 'Test8', p=1)
 ]
@@ -228,7 +228,7 @@ msg.attachment = [
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 
 msg.global_header = Header('X-Day', 'Monday')
-msg.global_headers = [
+msg.global_header = [
     Header('X-Month', 'January'),
     Header('X-Year': '2017')
 ]
