@@ -260,14 +260,16 @@ class Mail(object):
 class Email(object):
 
     def __init__(self, email=None, name=None):
+        self._name(None)
+        self._email(None)
         if not name:
             # allows passing emails as "dude Fella <example@example.com>"
             self.parse_email(email)
         else:
             #allows backwards compatibility for Email(email, name)
             if email is not None:
-                self.email = email
-            self.name = name
+                self.email(email)
+            self.name(name)
 
     @property
     def name(self):
@@ -287,11 +289,11 @@ class Email(object):
 
     def get(self):
         email = {}
-        if self.name is not None:
-            email["name"] = self.name
+        if self.name() is not None:
+            email["name"] = self.name()
 
-        if self.email is not None:
-            email["email"] = self.email
+        if self.email() is not None:
+            email["email"] = self.email()
         return email
 
     def parse_email(self, email_info):
