@@ -137,6 +137,7 @@ The above local "Initial setup" is complete
 
 * [pyenv](https://github.com/yyuu/pyenv)
 * [tox](https://pypi.python.org/pypi/tox)
+* [prism](https://github.com/stoplightio/prism) v0.6 - you can also install it locally by using `test/prism.sh` script
 
 #### Initial setup: ####
 
