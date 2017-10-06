@@ -4,7 +4,7 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 * [Transactional Templates](#transactional_templates)
 * [Attachment](#attachment)
-* [Asynchronous Mail Send](#asynchronous_mail_send)
+* [Asynchronous Mail Send](#asynchronous-mail-send)
 
 <a name="transactional_templates"></a>
 # Transactional Templates
