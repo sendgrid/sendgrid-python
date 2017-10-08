@@ -218,10 +218,11 @@ For the rest of the tutorial, we'll be working out of the git repository we clon
 ```
 $ cd hello-email
 ```
-(note: this assumes you cloned the git repo inside your current directory. My directory is: 
+note: this assumes you cloned the git repo inside your current directory. My directory is: 
+
 ```
 ~/projects/hello-email
-```)
+```
 
 The directory contents should be as follows:
 
