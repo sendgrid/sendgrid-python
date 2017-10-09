@@ -405,7 +405,7 @@ print response.headers
 ```
 ## Delete API keys
 
-**This endpoint allows you to revoke an existing API Key**
+**This endpoint allows you to revoke an existing API Key.**
 
 Authentications using this API Key will fail after this request is made, with some small propogation delay.If the API Key ID does not exist an HTTP 404 will be returned.
 
