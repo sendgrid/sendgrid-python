@@ -21,7 +21,6 @@ available_permissions = [
     "webhook",
     "whitelabel",
     "whitelist",
-    "admin_api_key_scopes"
 ]
 
 alerts = [
