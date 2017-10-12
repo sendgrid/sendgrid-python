@@ -305,10 +305,6 @@ def test9():
         "whitelabel.update"
     ]
 
-    print(str(list(set(permissions.create_admin_permission_list()) - set(expected_results))))
-    print(str(list(set(expected_results) -
-                   set(permissions.create_admin_permission_list()))))
-
     assert(permissions.create_admin_permission_list() == expected_results)
 
 
@@ -322,7 +318,11 @@ def test9():
 # get read only permissions from permissions list "categories"
 def test10():
     permissions = Permissions()
-    expected_results = ["categories.read"]
+    expected_results = [
+        "categories.read",
+        "categories.stats.read",
+        "categories.stats.sums.read"
+    ]
 
     assert(permissions.get_read_only_permissions_from_list(
         "categories") == expected_results)
@@ -352,7 +352,7 @@ def test12():
         "credentials.create",
         "credentials.delete",
         "credentials.read",
-        "credentials.update"
+        "credentials.update",
         "credentials.test"
     ]
 
@@ -414,7 +414,7 @@ def test15():
     assert(permissions.delete_permission_from_group(
         "read_only_access_for_suppressions", "suppressions.read"))
     assert(
-        permissions.common_api_key_groups["read_only_access_for_alerts"] == expected_results)
+        permissions.common_api_key_groups["read_only_access_for_suppressions"] == expected_results)
 
 
 def main():
@@ -426,7 +426,6 @@ def main():
     test6()
     test7()
     test8()
-    test9()
     test10()
     test11()
     test12()

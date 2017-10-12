@@ -126,8 +126,8 @@ class Permissions(object):
     def get_read_only_permissions_from_list(self, group):
         if (group in self.available_api_key_permissions):
             read_only_permissions = []
-            for permission in api_key_permissions[group]:
-                if (".read" in permission):
+            for permission in self.api_key_permissions[group]:
+                if ("read" in permission):
                     read_only_permissions.append(permission)
             return read_only_permissions
         else:
