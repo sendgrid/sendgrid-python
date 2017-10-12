@@ -131,7 +131,7 @@ For Python 2.7.* and up:
 
 All PRs require passing tests before the PR will be reviewed.
 
-#### Prequisites: ####
+#### Prerequisites: ####
 
 The above local "Initial setup" is complete
 
