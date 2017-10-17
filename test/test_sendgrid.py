@@ -664,7 +664,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_contactdb_lists__list_id__recipients_get(self):
-        params = {'page': 1, 'page_size': 1, 'list_id': 1}
+        params = {'page': 1, 'page_size': 1}
         list_id = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.contactdb.lists._(list_id).recipients.get(
