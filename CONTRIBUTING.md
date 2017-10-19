@@ -61,7 +61,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 ### Development Environment ###
 
 #### Using Docker ####
-You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/docker/USAGE.md).
+You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
 #### Install and Run Locally ####
 
@@ -131,7 +131,7 @@ For Python 2.7.* and up:
 
 All PRs require passing tests before the PR will be reviewed.
 
-#### Prequisites: ####
+#### Prerequisites: ####
 
 The above local "Initial setup" is complete
 

@@ -155,7 +155,7 @@ msg.send_at = SendAt(1461775051)
 
 # If you need to add more [Personalizations](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html), here is an example of adding another Personalization by passing in a personalization index.
 
-msg.to = To('test10@example.com', 'Example User10', p=p=1)
+msg.to = To('test10@example.com', 'Example User10', p=1)
 msg.to = [ 
     To('test11@example.com', 'Example User11', p=1),
     To('test12@example.com', 'Example User12', p=1)
