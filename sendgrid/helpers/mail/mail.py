@@ -1,5 +1,8 @@
 """v3/mail/send response body builder"""
-
+import io
+import sys
+import base64
+import mimetypes
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -646,6 +649,39 @@ class Attachment(object):
     @filename.setter
     def filename(self, value):
         self._filename = value
+
+    def _reopen_binary(self, f):
+        mode = f.mode
+        if 'b' not in mode:
+            mode += 'b'
+        return open(f.name, mode)
+
+    @property
+    def file(self):
+        return None
+
+    @file.setter
+    def file(self, value):
+        is_string = isinstance(value, str)
+        is_file2 = (sys.version_info < (3, 0) and type(value) is file)
+        is_file3 = (sys.version_info >= (3, 0) and isinstance(value, io.IOBase))
+        is_file = is_file2 or is_file3
+
+        if is_string:
+            f = open(value, 'rb')
+        elif is_file:
+            f = self._reopen_binary(value)
+        else:
+            raise Exception("Invalid value type. Must be string with filename or file-like object")
+
+        data = f.read()
+        self.content = base64.b64encode(data).decode()
+        self.filename = f.name
+        mimetype, _ = mimetypes.guess_type(self.filename)
+        if mimetype:
+            print('type is {}'.format(mimetype))
+            self.type = mimetype
+        f.close()
 
     @property
     def disposition(self):
