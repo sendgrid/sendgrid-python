@@ -2,7 +2,7 @@
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 
-**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.  
+**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
      Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
@@ -18,10 +18,10 @@ We appreciate your continued support, thank you!
 # Table of Contents
 
 * [Installation](#installation)
-* [Quick Start](#quick_start)
+* [Quick Start](#quick-start)
 * [Processing Inbound Email](#inbound)
 * [Usage](#usage)
-* [Use Cases](#use_cases)
+* [Use Cases](#use-cases)
 * [Announcements](#announcements)
 * [Roadmap](#roadmap)
 * [How to Contribute](#contribute)
@@ -56,7 +56,7 @@ pip install sendgrid
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
-<a name="quick_start"></a>
+<a name="quick-start"></a>
 # Quick Start
 
 ## Hello Email
@@ -161,7 +161,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 - [Processing Inbound Email](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound)
 
-<a name="use_cases"></a>
+<a name="use-cases"></a>
 # Use Cases
 
 [Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
