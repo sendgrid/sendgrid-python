@@ -15,4 +15,4 @@ venv/
 .tox/
 profile*
 README.txt
-temp*.py
+temp*.pysendgrid.env
