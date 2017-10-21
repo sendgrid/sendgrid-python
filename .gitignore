@@ -19,3 +19,5 @@ temp*.py
 .coverage
 coverage.xml
 htmlcov
+temp*.py
+sendgrid.env

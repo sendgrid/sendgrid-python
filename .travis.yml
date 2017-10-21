@@ -8,6 +8,7 @@ python:
 - '3.5'
 - '3.6'
 install:
+- if [[ $TRAVIS_PYTHON_VERSION == 2.6* ]]; then pip install unittest2; fi
 - python setup.py install
 - pip install pyyaml
 - pip install flask
@@ -25,8 +26,7 @@ before_script:
 - export PATH=$PATH:$PWD/prism/bin/
 - ./test/prism.sh
 script:
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run unit2 discover; else coverage run -m unittest
-  discover; fi
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run unit2 discover; else coverage run -m unittest discover; fi
 after_script:
 - codecov
 before_deploy:
