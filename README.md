@@ -1,6 +1,11 @@
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
+[![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
+[![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
 
 **NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.  
      Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
@@ -27,6 +32,7 @@ We appreciate your continued support, thank you!
 * [How to Contribute](#contribute)
 * [Troubleshooting](#troubleshooting)
 * [About](#about)
+* [License](#license)
 
 <a name="installation"></a>
 # Installation
@@ -202,4 +208,6 @@ sendgrid-python is guided and supported by the SendGrid [Developer Experience Te
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
 
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+<a name="license"></a>
+# License
+[The MIT License (MIT)](LICENSE.txt)
