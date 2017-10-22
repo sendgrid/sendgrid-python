@@ -24,7 +24,7 @@ before_script:
 - . ./test/prism.sh
 - prism version
 script:
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run unit2 discover; else coverage run -m unittest discover; fi
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run unittest2 discover; else coverage run -m unittest discover; fi
 after_script:
 - codecov
 before_deploy:
