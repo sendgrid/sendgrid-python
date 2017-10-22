@@ -1,4 +1,5 @@
 bin/
+env/
 include/
 lib/
 .Python
