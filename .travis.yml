@@ -8,23 +8,25 @@ python:
 - '3.5'
 - '3.6'
 install:
+- if [[ $TRAVIS_PYTHON_VERSION == 2.6* ]]; then pip install unittest2; fi
 - python setup.py install
 - pip install pyyaml
 - pip install flask
 - pip install six
 - pip install pypandoc
+- pip install coverage
+- pip install codecov
 # - sudo apt-get install -y pandoc
 addons:
   apt_packages:
     - pandoc
 before_script:
-- mkdir prism
-- mkdir prism/bin
-- export PATH=$PATH:$PWD/prism/bin/
-- ./test/prism.sh
+- . ./test/prism.sh
+- prism version
 script:
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest
-  discover; fi
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run -m unittest2 discover; else coverage run -m unittest discover; fi
+after_script:
+- codecov
 before_deploy:
 - python ./register.py
 deploy:
