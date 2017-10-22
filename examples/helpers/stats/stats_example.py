@@ -37,10 +37,9 @@ def build_category_stats_sums():
 def get_global_stats():
     stats_params = build_global_stats()
     response = sg.client.stats.get(query_params=stats_params)
-    response_body = json.loads(response.body)[0]['date']
     print(response.status_code)
     print(response.headers)
-    print(json.dumps(response_body, indent=4, sort_keys=True))
+    print(json.dumps(json.loads(response.body), indent=4, sort_keys=True))
 
 
 def get_category_stats():
