@@ -1,7 +1,6 @@
 import json
 import csv
 
-
 class Stats(object):
     def __init__(
             self, start_date=None):
@@ -96,3 +95,66 @@ class Stats(object):
     @offset.setter
     def offset(self, value):
         self._offset = value
+
+
+class CategoryStats(Stats):
+    def __init__(self, start_date=None, categories=None):
+        self._categories = None
+        super(CategoryStats, self).__init__()
+
+        # Minimum required for category stats
+        if start_date and categories:
+            self.start_date = start_date
+            self.categories = categories
+
+    def get(self):
+        """
+        :return: response stats dict
+        """
+        stats = {}
+        if self.start_date is not None:
+            stats["start_date"] = self.start_date
+        if self.end_date is not None:
+            stats["end_date"] = self.end_date
+        if self.aggregated_by is not None:
+            stats["aggregated_by"] = self.aggregated_by
+        if self.sort_by_metric is not None:
+            stats["sort_by_metric"] = self.sort_by_metric
+        if self.sort_by_direction is not None:
+            stats["sort_by_direction"] = self.sort_by_direction
+        if self.limit is not None:
+            stats["limit"] = self.limit
+        if self.offset is not None:
+            stats["offset"] = self.offset
+        if self.categories is not None:
+            stats['categories'] = [category.get() for category in
+                                   self.categories]
+        return stats
+
+    @property
+    def categories(self):
+        return self._categories
+
+    def add_category(self, category):
+        if self._categories is None:
+            self._categories = []
+        self._categories.append(category)
+
+
+class Category(object):
+
+    def __init__(self, name=None):
+        self._name = None
+        if name is not None:
+            self._name = name
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+
+    def get(self):
+        return self.name
