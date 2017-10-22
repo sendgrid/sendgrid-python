@@ -19,10 +19,8 @@ addons:
   apt_packages:
     - pandoc
 before_script:
-- mkdir prism
-- mkdir prism/bin
-- export PATH=$PATH:$PWD/prism/bin/
-- ./test/prism.sh
+- . ./test/prism.sh
+- prism version
 script:
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest discover; fi
 before_deploy:
