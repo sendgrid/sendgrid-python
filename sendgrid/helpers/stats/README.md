@@ -1,0 +1,1 @@
+**This helper allows you to quickly and easily build a Stats object for sending your email stats to a database.**
