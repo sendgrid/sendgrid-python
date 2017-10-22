@@ -105,7 +105,8 @@ class CategoryStats(Stats):
         # Minimum required for category stats
         if start_date and categories:
             self.start_date = start_date
-            self.categories = categories
+            for cat in categories:
+                self.add_category(Category(cat))
 
     def get(self):
         """
