@@ -14,6 +14,8 @@ install:
 - pip install flask
 - pip install six
 - pip install pypandoc
+- pip install coverage
+- pip install codecov
 # - sudo apt-get install -y pandoc
 addons:
   apt_packages:
@@ -22,7 +24,9 @@ before_script:
 - . ./test/prism.sh
 - prism version
 script:
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then unit2 discover; else python -m unittest discover; fi
+- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run unit2 discover; else coverage run -m unittest discover; fi
+after_script:
+- codecov
 before_deploy:
 - python ./register.py
 deploy:

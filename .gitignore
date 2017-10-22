@@ -15,4 +15,9 @@ venv/
 .tox/
 profile*
 README.txt
-temp*.pysendgrid.env
+temp*.py
+.coverage
+coverage.xml
+htmlcov
+temp*.py
+sendgrid.env
