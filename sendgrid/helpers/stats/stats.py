@@ -1,6 +1,3 @@
-import json
-import csv
-
 class Stats(object):
     def __init__(
             self, start_date=None):
@@ -105,8 +102,8 @@ class CategoryStats(Stats):
         # Minimum required for category stats
         if start_date and categories:
             self.start_date = start_date
-            for cat in categories:
-                self.add_category(Category(cat))
+            for cat_name in categories:
+                self.add_category(Category(cat_name))
 
     def get(self):
         """
@@ -142,7 +139,70 @@ class CategoryStats(Stats):
         self._categories.append(category)
 
 
+class SubuserStats(Stats):
+    def __init__(self, start_date=None, subusers=None):
+        self._subusers = None
+        super(SubuserStats, self).__init__()
+
+        # Minimum required for subusers stats
+        if start_date and subusers:
+            self.start_date = start_date
+            for subuser_name in subusers:
+                self.add_subuser(Subuser(subuser_name))
+
+    def get(self):
+        """
+        :return: response stats dict
+        """
+        stats = {}
+        if self.start_date is not None:
+            stats["start_date"] = self.start_date
+        if self.end_date is not None:
+            stats["end_date"] = self.end_date
+        if self.aggregated_by is not None:
+            stats["aggregated_by"] = self.aggregated_by
+        if self.sort_by_metric is not None:
+            stats["sort_by_metric"] = self.sort_by_metric
+        if self.sort_by_direction is not None:
+            stats["sort_by_direction"] = self.sort_by_direction
+        if self.limit is not None:
+            stats["limit"] = self.limit
+        if self.offset is not None:
+            stats["offset"] = self.offset
+        if self.subusers is not None:
+            stats['subusers'] = [subuser.get() for subuser in
+                                 self.subusers]
+        return stats
+
+    @property
+    def subusers(self):
+        return self._subusers
+
+    def add_subuser(self, subuser):
+        if self._subusers is None:
+            self._subusers = []
+        self._subusers.append(subuser)
+
+
 class Category(object):
+
+    def __init__(self, name=None):
+        self._name = None
+        if name is not None:
+            self._name = name
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+
+    def get(self):
+        return self.name
+
+class Subuser(object):
 
     def __init__(self, name=None):
         self._name = None

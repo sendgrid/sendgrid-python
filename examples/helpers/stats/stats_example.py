@@ -11,7 +11,7 @@ sg = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 
 def pprint_json(json_raw):
-    print(json.dumps(json.loads(json_raw), indent=4, sort_keys=True))
+    print(json.dumps(json.loads(json_raw), indent=2, sort_keys=True))
 
 
 def build_global_stats():
@@ -38,6 +38,21 @@ def build_category_stats_sums():
     return category_stats.get()
 
 
+def build_subuser_stats():
+    subuser_stats = SubuserStats('2017-10-20', ['aaronmakks','foo'])
+    # subuser_stats.start_date = '2017-10-15'
+    # subuser_stats.add_subuser(Subuser("foo"))
+    # subuser_stats.add_subuser(Subuser("bar"))
+    return subuser_stats.get()
+
+def build_subuser_stats_sums():
+    subuser_stats = SubuserStats()
+    subuser_stats.start_date = '2017-10-15'
+    subuser_stats.limit = 5
+    subuser_stats.offset = 1
+    return subuser_stats.get()
+
+
 def get_global_stats():
     stats_params = build_global_stats()
     response = sg.client.stats.get(query_params=stats_params)
@@ -48,7 +63,6 @@ def get_global_stats():
 
 def get_category_stats():
     stats_params = build_category_stats()
-    print(stats_params)
     response = sg.client.categories.stats.get(query_params=stats_params)
     print(response.status_code)
     print(response.headers)
@@ -62,6 +76,24 @@ def get_category_stats_sums():
     print(response.headers)
     pprint_json(response.body)
 
-get_global_stats()
-get_category_stats()
-get_category_stats_sums()
+
+def get_subuser_stats():
+    stats_params = build_subuser_stats()
+    response = sg.client.subusers.stats.get(query_params=stats_params)
+    print(response.status_code)
+    print(response.headers)
+    pprint_json(response.body)
+
+
+def get_subuser_stats_sums():
+    stats_params = build_subuser_stats_sums()
+    response = sg.client.subusers.stats.sums.get(query_params=stats_params)
+    print(response.status_code)
+    print(response.headers)
+    pprint_json(response.body)
+
+# get_global_stats()
+# get_category_stats()
+# get_category_stats_sums()
+# get_subuser_stats()
+# get_subuser_stats_sums()
