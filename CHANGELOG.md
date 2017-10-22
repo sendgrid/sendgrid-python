@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.2.1] - 2017-10-21 ##
+### Fixed
+- Pull #364: Install prism with non superuser account 
+- Big thanks to [meahow](https://github.com/meahow) for the pull request!
+
 ## [5.2.0] - 2017-08-31 ##
 ### Added
 - Pull #335: Permit unicode string values with Substitution helper
