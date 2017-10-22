@@ -87,7 +87,7 @@ In most cases we recommend you download the latest version of the library, but i
 
 `pip install sendgrid==X.X.X`
 
-If you are usring a [requirements file](https://pip.readthedocs.io/en/1.1/requirements.html), please use:
+If you are using a [requirements file](https://pip.readthedocs.io/en/1.1/requirements.html), please use:
 
 `sendgrid==X.X.X`
 

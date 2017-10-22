@@ -41,7 +41,7 @@ All notable changes to this project will be documented in this file.
 ### BREAKING CHANGE
 - Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
 - Big thanks to [Denis Vlasov](https://github.com/denis90) for the pull request!
-- The changes break the impelmentation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
+- The changes break the implementation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
 - `set_from()` is now the property `from_email`
 - `set_subject()` is now the property `subject`
 - `set_template_id()` is now the property `template_id`
@@ -299,7 +299,7 @@ All notable changes to this project will be documented in this file.
 ## [1.5.9] - 2015-10-26 ##
 
 ### Added ###
-- Supression Unsubscribes [GET]
+- Suppression Unsubscribes [GET]
 
 ## [1.5.8] - 2015-10-21 ##
 
@@ -332,7 +332,7 @@ All notable changes to this project will be documented in this file.
 ### Added ###
 - Refactored tests and added Tox support
 - Framework for Web API v3 endpoints
-- Web API v3 endpionts: apikeys, ASM groups and ASM suppressions
+- Web API v3 endpoints: apikeys, ASM groups and ASM suppressions
 
 ### Fixed  ###
 - Python 3 Fix [#126](https://github.com/sendgrid/sendgrid-python/issues/126)
