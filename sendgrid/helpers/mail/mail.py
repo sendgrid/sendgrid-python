@@ -703,15 +703,9 @@ class Category(object):
 
 class ASM(object):
 
-    def __init__(self, group_id=None, groups_to_display=None):
-        self._group_id = None
-        self._groups_to_display = None
-
-        if group_id is not None:
-            self._group_id = group_id
-
-        if groups_to_display is not None:
-            self._groups_to_display = groups_to_display
+    def __init__(self, group_id, groups_to_display=None):
+        self._group_id = group_id
+        self._groups_to_display = groups_to_display
 
     @property
     def group_id(self):
