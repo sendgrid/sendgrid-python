@@ -20,7 +20,10 @@ https://sendgrid.com/docs/API_Reference/api_v3.html
 
 
 class Mail(object):
-    """Creates the response body for v3/mail/send"""
+    """A request to be sent with the SendGrid v3 Mail Send API (v3/mail/send).
+
+    Use get() to get the request body.
+    """
     def __init__(
             self, from_email=None, subject=None, to_email=None, content=None):
         self._from_email = None
@@ -51,11 +54,16 @@ class Mail(object):
             self.add_content(content)
 
     def __str__(self):
+        """Get a JSON representation of this Mail request.
+
+        :rtype: string
+        """
         return str(self.get())
 
     def get(self):
-        """
-        :return: response body dict
+        """Get a response body for this Mail.
+
+        :rtype: dict
         """
         mail = {}
         if self.from_email is not None:
@@ -124,6 +132,10 @@ class Mail(object):
 
     @property
     def from_email(self):
+        """The email from which this Mail will be sent.
+
+        :rtype: string
+        """
         return self._from_email
 
     @from_email.setter
@@ -132,6 +144,11 @@ class Mail(object):
 
     @property
     def subject(self):
+        """The global, or “message level”, subject of this Mail.
+
+        This may be overridden by personalizations[x].subject.
+        :rtype: string
+        """
         return self._subject
 
     @subject.setter
@@ -140,6 +157,15 @@ class Mail(object):
 
     @property
     def template_id(self):
+        """The id of a template that you would like to use.
+
+        If you use a template that contains a subject and content (either text
+        or html), you do not need to specify those at the personalizations nor
+        message level.
+
+        :rtype: int
+        """
+
         return self._template_id
 
     @template_id.setter
@@ -148,6 +174,12 @@ class Mail(object):
 
     @property
     def send_at(self):
+        """A unix timestamp allowing you to specify when you want your email to
+        be delivered. This may be overridden by the personalizations[x].send_at
+        parameter. Scheduling more that 72 hours in advance is forbidden.
+
+        :rtype: int
+        """
         return self._send_at
 
     @send_at.setter
@@ -156,6 +188,15 @@ class Mail(object):
 
     @property
     def batch_id(self):
+        """An ID for this batch of emails.
+
+        This represents a batch of emails sent at the same time. Including a
+        batch_id in your request allows you include this email in that batch,
+        and also enables you to cancel or pause the delivery of that batch.
+        For more information, see https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
+
+        :rtype: int
+        """
         return self._batch_id
 
     @batch_id.setter
@@ -164,6 +205,10 @@ class Mail(object):
 
     @property
     def asm(self):
+        """The ASM for this Mail.
+
+        :rtype: ASM
+        """
         return self._asm
 
     @asm.setter
@@ -172,6 +217,10 @@ class Mail(object):
 
     @property
     def mail_settings(self):
+        """The MailSettings for this Mail.
+
+        :rtype: MailSettings
+        """
         return self._mail_settings
 
     @mail_settings.setter
@@ -180,6 +229,10 @@ class Mail(object):
 
     @property
     def tracking_settings(self):
+        """The TrackingSettings for this Mail.
+
+        :rtype: TrackingSettings
+        """
         return self._tracking_settings
 
     @tracking_settings.setter
@@ -188,6 +241,10 @@ class Mail(object):
 
     @property
     def ip_pool_name(self):
+        """The IP Pool that you would like to send this Mail email from.
+
+        :rtype: string
+        """
         return self._ip_pool_name
 
     @ip_pool_name.setter
@@ -196,6 +253,10 @@ class Mail(object):
 
     @property
     def reply_to(self):
+        """The email address to use in the Reply-To header.
+
+        :rtype: Email
+        """
         return self._reply_to
 
     @reply_to.setter
@@ -204,45 +265,96 @@ class Mail(object):
 
     @property
     def personalizations(self):
+        """The Personalizations applied to this Mail.
+
+        Each object within personalizations can be thought of as an envelope -
+        it defines who should receive an individual message and how that
+        message should be handled. A maximum of 1000 personalizations can be
+        included.
+
+        :rtype: list
+        """
         return self._personalizations
 
     def add_personalization(self, personalizations):
+        """Add a new Personalization to this Mail.
+
+        :type personalizations: Personalization
+        """
         if self._personalizations is None:
             self._personalizations = []
         self._personalizations.append(personalizations)
 
     @property
     def contents(self):
+        """The Contents of this Mail. Must include at least one MIME type.
+
+        :rtype: list
+        """
         return self._contents
 
     def add_content(self, content):
+        """Add a new Content to this Mail.  Usually the plaintext or HTML
+        message contents.
+
+        :type content: Content
+        """
         if self._contents is None:
             self._contents = []
         self._contents.append(content)
 
     @property
     def attachments(self):
+        """The attachments included with this Mail.
+
+        :returns: List of Attachment objects.
+        :rtype: list
+        """
         return self._attachments
 
     def add_attachment(self, attachment):
+        """Add an Attachment to this Mail.
+
+        :type attachment: Attachment
+        """
         if self._attachments is None:
             self._attachments = []
         self._attachments.append(attachment)
 
     @property
     def sections(self):
+        """The sections included with this Mail.
+
+        :returns: List of Section objects.
+        :rtype: list
+        """
         return self._sections
 
     def add_section(self, section):
+        """Add a Section to this Mail.
+
+        :type attachment: Section
+        """
         if self._sections is None:
             self._sections = []
         self._sections.append(section)
 
     @property
     def headers(self):
+        """The Headers included with this Mail.
+
+        :returns: List of Header objects.
+        :rtype: list
+        """
         return self._headers
 
     def add_header(self, header):
+        """Add a Header to this Mail.
+
+        The header provided can be a Header or a dictionary with a single
+        key-value pair.
+        :type header: object
+        """
         if self._headers is None:
             self._headers = []
         if isinstance(header, dict):
@@ -253,18 +365,35 @@ class Mail(object):
 
     @property
     def categories(self):
+        """The Categories applied to this Mail.  Must not exceed 10 items
+
+        :rtype: list
+        """
         return self._categories
 
     def add_category(self, category):
+        """Add a Category to this Mail.  Must be less than 255 characters.
+
+        :type category: string
+        """
         if self._categories is None:
             self._categories = []
         self._categories.append(category)
 
     @property
     def custom_args(self):
+        """The CustomArgs attached to this Mail.
+        
+        Must not exceed 10,000 characters.
+        :rtype: list
+        """
         return self._custom_args
 
     def add_custom_arg(self, custom_arg):
+        """Add a CustomArg to this Mail.
+
+        :type custom_arg: CustomArg
+        """
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
@@ -361,6 +490,10 @@ class Content(object):
 
     @property
     def value(self):
+        """The actual content (of the specified mime type).
+
+        :rtype: string
+        """
         return self._value
 
     @value.setter
@@ -403,6 +536,10 @@ class Header(object):
 
     @property
     def key(self):
+        """The name of the header.
+
+        :rtype: string
+        """
         return self._key
 
     @key.setter
@@ -411,7 +548,7 @@ class Header(object):
 
     @property
     def value(self):
-        """The actual content (of the specified mime type).
+        """The value of the header.
 
         :rtype: string
         """
@@ -490,10 +627,6 @@ class Section(object):
 
     @property
     def key(self):
-        """The name of the header.
-
-        :rtype: string
-        """
         return self._key
 
     @key.setter
@@ -502,10 +635,6 @@ class Section(object):
 
     @property
     def value(self):
-        """The value of the header.
-
-        :rtype: string
-        """
         return self._value
 
     @value.setter
@@ -863,6 +992,7 @@ class Category(object):
 
 
 class ASM(object):
+    """An object specifying unsubscribe behavior."""
 
     def __init__(self, group_id=None, groups_to_display=None):
         """Create an ASM with the given group_id and groups_to_display.
@@ -1356,10 +1486,10 @@ class OpenTracking(object):
 
     @property
     def substitution_tag(self):
-        """"A tag that will be replaced with the unsubscribe URL. for example:
-        [unsubscribe_url]. If this parameter is used, it will override both the
-        `text` and `html` parameters. The URL of the link will be placed at the
-        substitution tag’s location, with no additional formatting.
+        """Allows you to specify a substitution tag that you can insert in the
+        body of your email at a location that you desire. This tag will be
+        replaced by the open tracking pixel.
+
         :rtype: string
         """
         return self._substitution_tag
@@ -1442,10 +1572,10 @@ class SubscriptionTracking(object):
 
     @property
     def substitution_tag(self):
-        """Allows you to specify a substitution tag that you can insert in the
-        body of your email at a location that you desire. This tag will be
-        replaced by the open tracking pixel.
-
+        """"A tag that will be replaced with the unsubscribe URL. for example:
+        [unsubscribe_url]. If this parameter is used, it will override both the
+        `text` and `html` parameters. The URL of the link will be placed at the
+        substitution tag’s location, with no additional formatting.
         :rtype: string
         """
         return self._substitution_tag
