@@ -276,6 +276,7 @@ class Mail(object):
 
 
 class Email(object):
+    """An email address with an optional name."""
 
     def __init__(self, email=None, name=None):
         self._name = None
@@ -288,6 +289,10 @@ class Email(object):
 
     @property
     def name(self):
+        """Name associated with this email.
+
+        :rtype: string
+        """
         return self._name
 
     @name.setter
@@ -296,6 +301,12 @@ class Email(object):
 
     @property
     def email(self):
+        """Email address.
+
+        See http://tools.ietf.org/html/rfc3696#section-3 and its errata
+        http://www.rfc-editor.org/errata_search.php?rfc=3696 for information
+        on valid email addresses.
+        """
         return self._email
 
     @email.setter
@@ -303,6 +314,12 @@ class Email(object):
         self._email = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Email.
+
+        :returns: This Email, ready for use in a request body.
+        :rtype: dict
+        """
         email = {}
         if self.name is not None:
             email["name"] = self.name
@@ -313,6 +330,10 @@ class Email(object):
 
 
 class Content(object):
+    """Content to be included in your email.
+
+    You must specify at least one mime type in the Contents of your email.
+    """
 
     def __init__(self, type_=None, value=None):
         self._type = None
@@ -326,6 +347,12 @@ class Content(object):
 
     @property
     def type(self):
+        """The MIME type of the content you are including in your email.
+
+        For example, "text/plain" or "text/html".
+
+        :rtype: string
+        """
         return self._type
 
     @type.setter
@@ -341,6 +368,12 @@ class Content(object):
         self._value = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Content.
+
+        :returns: This Content, ready for use in a request body.
+        :rtype: dict
+        """
         content = {}
         if self.type is not None:
             content["type"] = self.type
@@ -351,6 +384,13 @@ class Content(object):
 
 
 class Header(object):
+    """A header to specify specific handling instructions for your email.
+
+    If the name or value contain Unicode characters, they must be properly
+    encoded. You may not overwrite the following reserved headers:
+    x-sg-id, x-sg-eid, received, dkim-signature, Content-Type,
+    Content-Transfer-Encoding, To, From, Subject, Reply-To, CC, BCC
+    """
 
     def __init__(self, key=None, value=None):
         self._key = None
@@ -371,6 +411,10 @@ class Header(object):
 
     @property
     def value(self):
+        """The actual content (of the specified mime type).
+
+        :rtype: string
+        """
         return self._value
 
     @value.setter
@@ -378,6 +422,12 @@ class Header(object):
         self._value = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Header.
+
+        :returns: This Header, ready for use in a request body.
+        :rtype: dict
+        """
         header = {}
         if self.key is not None and self.value is not None:
             header[self.key] = self.value
@@ -413,6 +463,12 @@ class Substitution(object):
         self._value = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Substitution.
+
+        :returns: This Substitution, ready for use in a request body.
+        :rtype: dict
+        """
         substitution = {}
         if self.key is not None and self.value is not None:
             substitution[self.key] = self.value
@@ -420,6 +476,7 @@ class Substitution(object):
 
 
 class Section(object):
+    """A block section of code to be used as a substitution."""
 
     def __init__(self, key=None, value=None):
         self._key = None
@@ -433,6 +490,10 @@ class Section(object):
 
     @property
     def key(self):
+        """The name of the header.
+
+        :rtype: string
+        """
         return self._key
 
     @key.setter
@@ -441,6 +502,10 @@ class Section(object):
 
     @property
     def value(self):
+        """The value of the header.
+
+        :rtype: string
+        """
         return self._value
 
     @value.setter
@@ -448,6 +513,12 @@ class Section(object):
         self._value = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Section.
+
+        :returns: This Section, ready for use in a request body.
+        :rtype: dict
+        """
         section = {}
         if self.key is not None and self.value is not None:
             section[self.key] = self.value
@@ -455,6 +526,13 @@ class Section(object):
 
 
 class CustomArg(object):
+    """Values specific to a personalization that will be carried along with the
+    email and its activity data.
+
+    Substitutions will not be made on custom arguments, so any string entered
+    into this parameter will be assumed to be the custom argument that you
+    would like to be used. May not exceed 10,000 bytes.
+    """
 
     def __init__(self, key=None, value=None):
         self._key = None
@@ -468,6 +546,10 @@ class CustomArg(object):
 
     @property
     def key(self):
+        """Key for this CustomArg.
+
+        :rtype: string
+        """
         return self._key
 
     @key.setter
@@ -476,6 +558,7 @@ class CustomArg(object):
 
     @property
     def value(self):
+        """Value of this CustomArg."""
         return self._value
 
     @value.setter
@@ -483,6 +566,12 @@ class CustomArg(object):
         self._value = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this CustomArg.
+
+        :returns: This CustomArg, ready for use in a request body.
+        :rtype: dict
+        """
         custom_arg = {}
         if self.key is not None and self.value is not None:
             custom_arg[self.key] = self.value
@@ -596,6 +685,12 @@ class Personalization(object):
         self._send_at = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Personalization.
+
+        :returns: This Personalization, ready for use in a request body.
+        :rtype: dict
+        """
         personalization = {}
         if self.tos is not None:
             personalization["to"] = self.tos
@@ -633,6 +728,7 @@ class Personalization(object):
 
 
 class Attachment(object):
+    """An attachment to be included with an email."""
 
     def __init__(self):
         self._content = None
@@ -643,6 +739,10 @@ class Attachment(object):
 
     @property
     def content(self):
+        """The Base64 encoded content of the attachment.
+
+        :rtype: string
+        """
         return self._content
 
     @content.setter
@@ -651,6 +751,10 @@ class Attachment(object):
 
     @property
     def type(self):
+        """The MIME type of the content you are attaching.
+
+        :rtype: string
+        """
         return self._type
 
     @type.setter
@@ -659,6 +763,10 @@ class Attachment(object):
 
     @property
     def filename(self):
+        """The filename of the attachment.
+
+        :rtype: string
+        """
         return self._filename
 
     @filename.setter
@@ -667,6 +775,17 @@ class Attachment(object):
 
     @property
     def disposition(self):
+        """The content-disposition of the attachment, specifying display style.
+
+        Specifies how you would like the attachment to be displayed.
+         - "inline" results in the attached file being displayed automatically
+            within the message.
+         - "attachment" results in the attached file requiring some action to
+            be taken before it is displayed (e.g. opening or downloading the file).
+        If unspecified, "attachment" is used. Must be one of the two choices.
+        
+        :rtype: string
+        """
         return self._disposition
 
     @disposition.setter
@@ -675,6 +794,13 @@ class Attachment(object):
 
     @property
     def content_id(self):
+        """The content id for the attachment.
+
+        This is used when the disposition is set to “inline” and the attachment
+        is an image, allowing the file to be displayed within the email body.
+
+        :rtype: string
+        """
         return self._content_id
 
     @content_id.setter
@@ -682,6 +808,12 @@ class Attachment(object):
         self._content_id = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Attachment.
+
+        :returns: This Attachment, ready for use in a request body.
+        :rtype: dict
+        """
         attachment = {}
         if self.content is not None:
             attachment["content"] = self.content
@@ -701,6 +833,7 @@ class Attachment(object):
 
 
 class Category(object):
+    """A category name for this message."""
 
     def __init__(self, name=None):
         self._name = None
@@ -709,6 +842,10 @@ class Category(object):
 
     @property
     def name(self):
+        """The name of this Category. Must be less than 255 characters.
+        
+        :rtype: string
+        """
         return self._name
 
     @name.setter
@@ -716,12 +853,25 @@ class Category(object):
         self._name = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Category.
+
+        :returns: This Category, ready for use in a request body.
+        :rtype: string
+        """
         return self.name
 
 
 class ASM(object):
 
     def __init__(self, group_id=None, groups_to_display=None):
+        """Create an ASM with the given group_id and groups_to_display.
+
+        :param group_id: ID of an unsubscribe group, defaults to None
+        :type group_id: int, optional
+        :param groups_to_display: Unsubscribe groups to display, defaults to None
+        :type groups_to_display: list(int), optional
+        """
         self._group_id = None
         self._groups_to_display = None
 
@@ -733,6 +883,10 @@ class ASM(object):
 
     @property
     def group_id(self):
+        """The unsubscribe group to associate with this email.
+
+        :rtype: integer
+        """
         return self._group_id
 
     @group_id.setter
@@ -741,6 +895,11 @@ class ASM(object):
 
     @property
     def groups_to_display(self):
+        """The unsubscribe groups that you would like to be displayed on the
+        unsubscribe preferences page. Max of 25 groups.
+
+        :rtype: list(int)
+        """
         return self._groups_to_display
 
     @groups_to_display.setter
@@ -748,6 +907,12 @@ class ASM(object):
         self._groups_to_display = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this ASM.
+
+        :returns: This ASM, ready for use in a request body.
+        :rtype: dict
+        """
         asm = {}
         if self.group_id is not None:
             asm["group_id"] = self.group_id
@@ -758,6 +923,11 @@ class ASM(object):
 
 
 class BCCSettings(object):
+    """Settings object for automatic BCC.
+
+    This allows you to have a blind carbon copy automatically sent to the
+    specified email address for every email that is sent.
+    """
 
     def __init__(self, enable=None, email=None):
         self._enable = None
@@ -771,6 +941,10 @@ class BCCSettings(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -779,6 +953,10 @@ class BCCSettings(object):
 
     @property
     def email(self):
+        """The email address that you would like to receive the BCC.
+
+        :rtype: Email
+        """
         return self._email
 
     @email.setter
@@ -786,6 +964,12 @@ class BCCSettings(object):
         self._email = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this BCCSettings.
+
+        :returns: This BCCSettings, ready for use in a request body.
+        :rtype: dict
+        """
         bcc_settings = {}
         if self.enable is not None:
             bcc_settings["enable"] = self.enable
@@ -797,6 +981,13 @@ class BCCSettings(object):
 
 
 class BypassListManagement(object):
+    """Setting for Bypass List Management
+
+    Allows you to bypass all unsubscribe groups and suppressions to ensure that
+    the email is delivered to every single recipient. This should only be used
+    in emergencies when it is absolutely necessary that every recipient
+    receives your email.
+    """
 
     def __init__(self, enable=None):
         self._enable = None
@@ -806,6 +997,10 @@ class BypassListManagement(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -813,6 +1008,12 @@ class BypassListManagement(object):
         self._enable = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this BypassListManagement.
+
+        :returns: This BypassListManagement, ready for use in a request body.
+        :rtype: dict
+        """
         bypass_list_management = {}
         if self.enable is not None:
             bypass_list_management["enable"] = self.enable
@@ -820,6 +1021,7 @@ class BypassListManagement(object):
 
 
 class FooterSettings(object):
+    """The default footer that you would like included on every email."""
 
     def __init__(self, enable=None, text=None, html=None):
         self._enable = None
@@ -837,6 +1039,10 @@ class FooterSettings(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -845,6 +1051,10 @@ class FooterSettings(object):
 
     @property
     def text(self):
+        """The plain text content of your footer.
+
+        :rtype: string
+        """
         return self._text
 
     @text.setter
@@ -853,6 +1063,10 @@ class FooterSettings(object):
 
     @property
     def html(self):
+        """The HTML content of your footer.
+
+        :rtype: string
+        """
         return self._html
 
     @html.setter
@@ -860,6 +1074,12 @@ class FooterSettings(object):
         self._html = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this FooterSettings.
+
+        :returns: This FooterSettings, ready for use in a request body.
+        :rtype: dict
+        """
         footer_settings = {}
         if self.enable is not None:
             footer_settings["enable"] = self.enable
@@ -873,7 +1093,11 @@ class FooterSettings(object):
 
 
 class SandBoxMode(object):
+    """Setting for sandbox mode.
 
+    This allows you to send a test email to ensure that your request body is
+    valid and formatted correctly.
+    """
     def __init__(self, enable=None):
         self._enable = None
 
@@ -882,6 +1106,10 @@ class SandBoxMode(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -889,6 +1117,12 @@ class SandBoxMode(object):
         self._enable = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this SandBoxMode.
+
+        :returns: This SandBoxMode, ready for use in a request body.
+        :rtype: dict
+        """
         sandbox_mode = {}
         if self.enable is not None:
             sandbox_mode["enable"] = self.enable
@@ -896,6 +1130,7 @@ class SandBoxMode(object):
 
 
 class SpamCheck(object):
+    """This allows you to test the content of your email for spam."""
 
     def __init__(self, enable=None, threshold=None, post_to_url=None):
         self._enable = None
@@ -913,6 +1148,10 @@ class SpamCheck(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -921,6 +1160,12 @@ class SpamCheck(object):
 
     @property
     def threshold(self):
+        """Threshold used to determine if your content qualifies as spam.
+
+        On a scale from 1 to 10, with 10 being most strict, or most likely to
+        be considered as spam.
+        :rtype: int
+        """
         return self._threshold
 
     @threshold.setter
@@ -936,6 +1181,12 @@ class SpamCheck(object):
         self._post_to_url = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this SpamCheck.
+
+        :returns: This SpamCheck, ready for use in a request body.
+        :rtype: dict
+        """
         spam_check = {}
         if self.enable is not None:
             spam_check["enable"] = self.enable
@@ -949,6 +1200,7 @@ class SpamCheck(object):
 
 
 class MailSettings(object):
+    """A collection of mail settings that specify how to handle this email."""
 
     def __init__(self):
         self._bcc_settings = None
@@ -998,6 +1250,12 @@ class MailSettings(object):
         self._spam_check = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this MailSettings.
+
+        :returns: This MailSettings, ready for use in a request body.
+        :rtype: dict
+        """
         mail_settings = {}
         if self.bcc_settings is not None:
             mail_settings["bcc"] = self.bcc_settings.get()
@@ -1018,6 +1276,7 @@ class MailSettings(object):
 
 
 class ClickTracking(object):
+    """Allows you to track whether a recipient clicked a link in your email."""
 
     def __init__(self, enable=None, enable_text=None):
         self._enable = None
@@ -1031,6 +1290,10 @@ class ClickTracking(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -1039,6 +1302,8 @@ class ClickTracking(object):
 
     @property
     def enable_text(self):
+        """Indicates if this setting should be included in the text/plain
+        portion of your email."""
         return self._enable_text
 
     @enable_text.setter
@@ -1046,6 +1311,12 @@ class ClickTracking(object):
         self._enable_text = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this ClickTracking.
+
+        :returns: This ClickTracking, ready for use in a request body.
+        :rtype: dict
+        """
         click_tracking = {}
         if self.enable is not None:
             click_tracking["enable"] = self.enable
@@ -1056,6 +1327,11 @@ class ClickTracking(object):
 
 
 class OpenTracking(object):
+    """
+    Allows you to track whether the email was opened or not, by including a
+    single pixel image in the body of the content. When the pixel is loaded,
+    we log that the email was opened.
+    """
 
     def __init__(self, enable=None, substitution_tag=None):
         self._enable = None
@@ -1068,6 +1344,10 @@ class OpenTracking(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -1076,6 +1356,12 @@ class OpenTracking(object):
 
     @property
     def substitution_tag(self):
+        """"A tag that will be replaced with the unsubscribe URL. for example:
+        [unsubscribe_url]. If this parameter is used, it will override both the
+        `text` and `html` parameters. The URL of the link will be placed at the
+        substitution tag’s location, with no additional formatting.
+        :rtype: string
+        """
         return self._substitution_tag
 
     @substitution_tag.setter
@@ -1083,6 +1369,12 @@ class OpenTracking(object):
         self._substitution_tag = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this OpenTracking.
+
+        :returns: This OpenTracking, ready for use in a request body.
+        :rtype: dict
+        """
         open_tracking = {}
         if self.enable is not None:
             open_tracking["enable"] = self.enable
@@ -1093,7 +1385,10 @@ class OpenTracking(object):
 
 
 class SubscriptionTracking(object):
-
+    """Allows you to insert a subscription management link at the bottom of the
+    text and html bodies of your email. If you would like to specify the
+    location of the link within your email, you may use the substitution_tag.
+    """
     def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
         self._enable = None
         self._text = None
@@ -1111,6 +1406,10 @@ class SubscriptionTracking(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -1119,6 +1418,10 @@ class SubscriptionTracking(object):
 
     @property
     def text(self):
+        """Text to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+        :rtype: string
+        """
         return self._text
 
     @text.setter
@@ -1127,6 +1430,10 @@ class SubscriptionTracking(object):
 
     @property
     def html(self):
+        """HTML to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+        :rtype: string
+        """
         return self._html
 
     @html.setter
@@ -1135,6 +1442,12 @@ class SubscriptionTracking(object):
 
     @property
     def substitution_tag(self):
+        """Allows you to specify a substitution tag that you can insert in the
+        body of your email at a location that you desire. This tag will be
+        replaced by the open tracking pixel.
+
+        :rtype: string
+        """
         return self._substitution_tag
 
     @substitution_tag.setter
@@ -1142,6 +1455,12 @@ class SubscriptionTracking(object):
         self._substitution_tag = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this SubscriptionTracking.
+
+        :returns: This SubscriptionTracking, ready for use in a request body.
+        :rtype: dict
+        """
         subscription_tracking = {}
         if self.enable is not None:
             subscription_tracking["enable"] = self.enable
@@ -1158,6 +1477,7 @@ class SubscriptionTracking(object):
 
 
 class Ganalytics(object):
+    """Allows you to enable tracking provided by Google Analytics."""
 
     def __init__(self,
                  enable=None,
@@ -1188,6 +1508,10 @@ class Ganalytics(object):
 
     @property
     def enable(self):
+        """Indicates if this setting is enabled.
+
+        :rtype: boolean
+        """
         return self._enable
 
     @enable.setter
@@ -1196,6 +1520,11 @@ class Ganalytics(object):
 
     @property
     def utm_source(self):
+        """Name of the referrer source.
+
+        e.g. Google, SomeDomain.com, or Marketing Email
+        :rtype: string
+        """
         return self._utm_source
 
     @utm_source.setter
@@ -1204,6 +1533,10 @@ class Ganalytics(object):
 
     @property
     def utm_medium(self):
+        """Name of the marketing medium (e.g. Email).
+
+        :rtype: string
+        """
         return self._utm_medium
 
     @utm_medium.setter
@@ -1212,6 +1545,10 @@ class Ganalytics(object):
 
     @property
     def utm_term(self):
+        """Used to identify any paid keywords.
+
+        :rtype: string
+        """
         return self._utm_term
 
     @utm_term.setter
@@ -1220,6 +1557,10 @@ class Ganalytics(object):
 
     @property
     def utm_content(self):
+        """Used to differentiate your campaign from advertisements.
+
+        :rtype: string
+        """
         return self._utm_content
 
     @utm_content.setter
@@ -1228,6 +1569,10 @@ class Ganalytics(object):
 
     @property
     def utm_campaign(self):
+        """The name of the campaign.
+
+        :rtype: string
+        """
         return self._utm_campaign
 
     @utm_campaign.setter
@@ -1235,6 +1580,12 @@ class Ganalytics(object):
         self._utm_campaign = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Ganalytics.
+
+        :returns: This Ganalytics, ready for use in a request body.
+        :rtype: dict
+        """
         ganalytics = {}
         if self.enable is not None:
             ganalytics["enable"] = self.enable
@@ -1252,7 +1603,7 @@ class Ganalytics(object):
 
 
 class TrackingSettings(object):
-
+    """Settings to track how recipients interact with your email."""
     def __init__(self):
         self._click_tracking = None
         self._open_tracking = None
@@ -1292,6 +1643,12 @@ class TrackingSettings(object):
         self._ganalytics = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this TrackingSettings.
+
+        :returns: This TrackingSettings, ready for use in a request body.
+        :rtype: dict
+        """
         tracking_settings = {}
         if self.click_tracking is not None:
             tracking_settings["click_tracking"] = self.click_tracking.get()
