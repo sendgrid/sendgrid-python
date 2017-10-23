@@ -467,3 +467,12 @@ class UnitTests(unittest.TestCase):
             json.dumps(mail.get(), sort_keys=True),
             json.dumps(expected_result, sort_keys=True)
         )
+
+    def test_disable_tracking(self):
+        tracking_settings = TrackingSettings()
+        tracking_settings.click_tracking = ClickTracking(False, False)
+
+        self.assertEqual(
+            tracking_settings.get(),
+            {'click_tracking': {'enable': False, 'enable_text': False}}
+        )
