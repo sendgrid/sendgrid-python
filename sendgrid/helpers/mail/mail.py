@@ -704,6 +704,8 @@ class Category(object):
 class ASM(object):
 
     def __init__(self, group_id, groups_to_display=None):
+        if groups_to_display is not None and len(groups_to_display) > 25:
+            raise ValueError("groups_to_display exceeds max length of 25")
         self._group_id = group_id
         self._groups_to_display = groups_to_display
 
