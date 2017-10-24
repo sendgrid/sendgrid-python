@@ -18,6 +18,7 @@ class Config(object):
             config = yaml.load(stream)
             self._debug_mode = config['debug_mode']
             self._endpoint = config['endpoint']
+            self._s3_endpoint = config['s3_endpoint']
             self._host = config['host']
             self._keys = config['keys']
             self._port = config['port']
@@ -40,6 +41,10 @@ class Config(object):
     @property
     def endpoint(self):
         return self._endpoint
+
+    @property
+    def s3_endpoint(self):
+        return self._s3_endpoint
 
     @property
     def host(self):

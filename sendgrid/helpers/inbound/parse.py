@@ -4,7 +4,7 @@ import email
 import mimetypes
 from six import iteritems
 from werkzeug.utils import secure_filename
-
+import datetime
 
 class Parse(object):
     def __init__(self, config, request):
@@ -49,6 +49,27 @@ class Parse(object):
         if raw_email is not None:
             attachments = self._get_attachments_raw(raw_email)
         return attachments
+
+    def save_attachments_to_s3(self, bucket_name, acl='private'):
+        attachments = self.attachments()
+        if attachments is None:
+            return []
+
+
+        try:
+            import boto3
+        except ImportError:
+            raise ImportError("You need to install 'boto3'")
+        s3 = boto3.resource('s3')
+
+        filenames = []
+        for attachment in attachments:
+            filename = "%s - %s" % (datetime.datetime.now(), attachment['file_name'])
+            filenames.append(filename)
+            dec = base64.b64decode(attachment['contents'])
+            s3.Bucket(bucket_name).put_object(Key=filename, Body=dec, ContentType=attachment['type'], ACL=acl)
+
+        return filenames
 
     def _get_attachments(self, request):
         attachments = []

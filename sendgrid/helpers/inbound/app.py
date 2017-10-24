@@ -33,6 +33,14 @@ def inbound_parse():
     return "OK"
 
 
+@app.route(config.s3_endpoint, methods=['POST'])
+def inbound_parse_and_save_attachments_to_s3():
+    parse = Parse(config, request)
+
+    parse.save_attachments_to_s3('test_bucket')
+
+    return "OK"
+
 if __name__ == '__main__':
     # Be sure to set config.debug_mode to False in production
     port = int(os.environ.get("PORT", config.port))

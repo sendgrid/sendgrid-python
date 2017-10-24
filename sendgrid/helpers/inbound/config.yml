@@ -1,5 +1,6 @@
 # Incoming Parse endpoint
 endpoint: '/inbound'
+s3_endpoint: '/s3_inbound'
 
 # Port to listen on
 port: 5000

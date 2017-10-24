@@ -17,3 +17,8 @@ class UnitTests(unittest.TestCase):
         response = self.tester.post(self.config.endpoint,
                                     data='{"Message:", "Success"}')
         self.assertEqual(response.status_code, 200)
+
+    def test_save_to_s3(self):
+        response = self.tester.post(self.config.s3_endpoint,
+                                    data='{"Message:", "Success"}')
+        self.assertEqual(response.status_code, 200)
