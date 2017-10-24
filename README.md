@@ -158,7 +158,7 @@ print(response.headers)
 <a name="inbound"></a>
 # Processing Inbound Email
 
-Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound) for utilizing our Inbound Parse webhook.
+Please see our [helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound) for utilizing our Inbound Parse webhook.
 
 <a name="usage"></a>
 # Usage
