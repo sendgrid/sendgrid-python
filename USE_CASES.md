@@ -4,7 +4,8 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 * [Transactional Templates](#transactional_templates)
 * [Attachment](#attachment)
-* [Deploy a Simple Hello Email Django App on Heroku](#hello_email_django_on_heroku)
+* [Create a Django app to send email with SendGrid](#create-a-django-app-to-send-email-with-sendgrid)
+  * [Deploy to Heroku](#deploy-to-heroku)
 * [Asynchronous Mail Send](#asynchronous-mail-send)
 
 <a name="transactional_templates"></a>
@@ -172,8 +173,8 @@ print(response.body)
 print(response.headers)
 ```
 
-<a name="hello_email_django_on_heroku"></a>
-# Deploy a Simple Hello Email Django App on Heroku
+<a name="create-a-django-app-to-send-email-with-sendgrid"></a>
+# Create a Django app to send email with SendGrid
 
 This tutorial explains how we set up a simple Django app to send an email with the SendGrid Python SDK and how we deploy our app to Heroku.
 
@@ -181,7 +182,7 @@ This tutorial explains how we set up a simple Django app to send an email with t
 
 We first create a project folder.
 
-```
+```bash
 $ mkdir hello-sendgrid
 $ cd hello-sendgrid
 ```
@@ -190,19 +191,19 @@ We assume you have created and activated a [virtual environment](https://virtual
 
 Run the command below to install Django, Gunicorn (a Python WSGI HTTP server), and SendGrid Python SDK.
 
-```
+```bash
 $ pip install django gunicorn sendgrid
 ```
 
-It is a good practice for Python dependency management. We will pin the requirements with a file `requirements.txt`.
+It's a good practice for Python dependency management. We'll pin the requirements with a file `requirements.txt`.
 
-```
-$ pip freeze > requirements.text
+```bash
+$ pip freeze > requirements.txt
 ```
 
 Run the command below to initialize a Django project.
 
-```
+```bash
 $ django-admin startproject hello_sendgrid
 ```
 
@@ -250,6 +251,8 @@ def index(request):
     return HttpResponse('Email Sent!')
 ```
 
+**Note:** It would be best to change your to email from `test@example.com` to your own email, so that you can see the email you receive.
+
 Now the folder structure should look like this:
 
 ```
@@ -276,29 +279,60 @@ from .views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index, name='sendgrid'),
+]
+```
+
+These paths allow the root URL to send the email. For a true Django app, you may want to move this code to another URL like so:
+
+```python
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
     url(r'^sendgrid/', index, name='sendgrid'),
 ]
 ```
 
 We also assume that you have set up your development environment with your `SENDGRID_API_KEY`. If you have not done it yet, please do so. See the section [Setup Environment Variables](https://github.com/sendgrid/sendgrid-python#setup-environment-variables).
 
-Now we should be able to send an email. Let's run our Django development server to test it. Find the file `manage.py` then run:
+Now we should be able to send an email. Let's run our Django development server to test it.
 
 ```
+$ cd hello_sengrid
+$ python manage.py migrate
 $ python manage.py runserver
 ```
 
 By default, it starts the development server at `http://127.0.0.1:8000/`. To test if we can send email or not, go to `http://127.0.0.1:8000/sendgrid/`. If it works, we should see the page says "Email Sent!".
 
+**Note:** If you use `test@example.com` as your from email, it's likely to go to your spam folder. To have the emails show up in your inbox, try using an email address at the domain you registered your SendGrid account.
+
+<a href="#deploy-to-heroku"></a>
 ## Deploy to Heroku
 
-Before we start the deployment, let's log in to your Heroku account and create a Heroku app. This tutorial uses `hello-sendgrid`.
+There are different deployment methods we can choose. In this tutorial, we choose to deploy our app using the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). Therefore, let's install it before we go further.
+
+Once you have the Heroku CLI installed, run the command below to log in to your Heroku account if you haven't already.
+
+```
+$ heroku login
+```
+
+Before we start the deployment, let's create a Heroku app by running the command below. This tutorial names the Heroku app `hello-sendgrid`.
+
+```bash
+$ heroku create hello-sendgrid
+```
+
+**Note:** If you see Heroku reply with "Name is already taken", please add a random string to the end of the name.
 
 We also need to do a couple things:
 
-1. Add `'*'` or your Heroku app domain to `ALLOWED_HOSTS` in the file `settings.py`.
-2. Add `Procfile` with the code below to declare what commands are run by your application's dynos on the Heroku platform.
+1. Add `'*'` or your Heroku app domain to `ALLOWED_HOSTS` in the file `settings.py`. It will look like this:
+```python
+ALLOWED_HOSTS = ['*']
+```
 
+2. Add `Procfile` with the code below to declare what commands are run by your application's dynos on the Heroku platform.
 ```
 web: cd hello_sendgrid && gunicorn hello_sendgrid.wsgi --log-file -
 ```
@@ -319,19 +353,19 @@ hello-sendgrid
 └── requirements.txt
 ```
 
-There are different deployment methods we can choose. In this tutorial, we choose to deploy our app using the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). Therefore, let's install it before we go further.
-
-Once you have the Heroku CLI installed, run the command below to log in to your Heroku account if you haven't already.
-
-```
-$ heroku login
-```
-
 Go to the root folder then initialize a Git repository.
 
 ```
 $ git init
 $ heroku git:remote -a hello-sendgrid
+```
+
+**Note:** Change `hello-sendgrid` to your new Heroku app name you created earlier.
+
+Add your `SENDGRID_API_KEY` as one of the Heroku environment variables.
+
+```
+$ heroku config:set SENDGRID_API_KEY=<YOUR_SENDGRID_API_KEY>
 ```
 
 Since we do not use any static files, we will disable `collectstatic` for this project.
@@ -348,9 +382,7 @@ $ git commit -am "Create simple Hello Email Django app using SendGrid"
 $ git push heroku master
 ```
 
-We have not finished yet. We need to go to the Heroku settings and add your `SENDGRID_API_KEY` as one of the Heroku environment variables in the Config Variables section.
-
-After that, let's verify if our app is working or not by accessing the Heroku app domain and going to `/sendgrid/`. You should see the page says "Email Sent!" and on the Activity Feed page in the SendGrid dashboard, you should see a new feed with the email `test@example.com`.
+After that, let's verify if our app is working or not by accessing the root domain of your Heroku app. You should see the page says "Email Sent!" and on the Activity Feed page in the SendGrid dashboard, you should see a new feed with the email you set in the code.
 
 <a name="asynchronous-mail-send"></a>
 # Asynchronous Mail Send
