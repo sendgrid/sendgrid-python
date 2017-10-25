@@ -176,7 +176,7 @@ class Mail(object):
     def send_at(self):
         """A unix timestamp allowing you to specify when you want your email to
         be delivered. This may be overridden by the personalizations[x].send_at
-        parameter. Scheduling more that 72 hours in advance is forbidden.
+        parameter. Scheduling more than 72 hours in advance is forbidden.
 
         :rtype: int
         """
@@ -708,6 +708,9 @@ class CustomArg(object):
 
 
 class Personalization(object):
+    """A Personalization defines who should receive an individual message and
+    how that message should be handled.
+    """
 
     def __init__(self):
         self._tos = None
@@ -721,6 +724,10 @@ class Personalization(object):
 
     @property
     def tos(self):
+        """A list of recipients for this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._tos
 
     @tos.setter
@@ -728,12 +735,20 @@ class Personalization(object):
         self._tos = value
 
     def add_to(self, email):
+        """Add a single recipient to this Personalization.
+
+        :type email: Email
+        """
         if self._tos is None:
             self._tos = []
         self._tos.append(email.get())
 
     @property
     def ccs(self):
+        """A list of recipients who will receive copies of this email.
+
+        :rtype: list(dict)
+        """
         return self._ccs
 
     @ccs.setter
@@ -741,12 +756,21 @@ class Personalization(object):
         self._ccs = value
 
     def add_cc(self, email):
+        """Add a single recipient to receive a copy of this email.
+
+        :param email: new recipient to be CCed
+        :type email: Email
+        """
         if self._ccs is None:
             self._ccs = []
         self._ccs.append(email.get())
 
     @property
     def bccs(self):
+        """A list of recipients who will receive blind carbon copies of this email.
+
+        :rtype: list(dict)
+        """
         return self._bccs
 
     @bccs.setter
@@ -754,12 +778,23 @@ class Personalization(object):
         self._bccs = value
 
     def add_bcc(self, email):
+        """Add a single recipient to receive a blind carbon copy of this email.
+
+        :param email: new recipient to be BCCed
+        :type email: Email
+        """
         if self._bccs is None:
             self._bccs = []
         self._bccs.append(email.get())
 
     @property
     def subject(self):
+        """The subject of your email (within this Personalization).
+
+        Char length requirements, according to the RFC:
+        https://stackoverflow.com/a/1592310
+        :rtype: string
+        """
         return self._subject
 
     @subject.setter
@@ -768,6 +803,10 @@ class Personalization(object):
 
     @property
     def headers(self):
+        """The headers for emails in this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._headers
 
     @headers.setter
@@ -775,12 +814,20 @@ class Personalization(object):
         self._headers = value
 
     def add_header(self, header):
+        """Add a single Header to this Personalization.
+
+        :type header: Header
+        """
         if self._headers is None:
             self._headers = []
         self._headers.append(header.get())
 
     @property
     def substitutions(self):
+        """Substitutions to be applied within this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._substitutions
 
     @substitutions.setter
@@ -788,12 +835,20 @@ class Personalization(object):
         self.substitutions = value
 
     def add_substitution(self, substitution):
+        """Add a new Substitution to this Personalization.
+
+        :type substitution: Substitution
+        """
         if self._substitutions is None:
             self._substitutions = []
         self._substitutions.append(substitution.get())
 
     @property
     def custom_args(self):
+        """The CustomArgs that will be carried along with this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._custom_args
 
     @custom_args.setter
@@ -801,12 +856,22 @@ class Personalization(object):
         self._custom_args = value
 
     def add_custom_arg(self, custom_arg):
+        """Add a CustomArg to this Personalization.
+
+        :type custom_arg: CustomArg
+        """
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg.get())
 
     @property
     def send_at(self):
+        """A unix timestamp allowing you to specify when you want emails from
+        this Personalization to be delivered. Scheduling more than 72 hours in
+        advance is forbidden.
+
+        :rtype: int
+        """
         return self._send_at
 
     @send_at.setter
@@ -1304,6 +1369,11 @@ class SpamCheck(object):
 
     @property
     def post_to_url(self):
+        """An Inbound Parse URL to send a copy of your email.
+
+        If defined, a copy of your email and its spam report will be sent here.
+        :rtype: string
+        """
         return self._post_to_url
 
     @post_to_url.setter
@@ -1341,6 +1411,10 @@ class MailSettings(object):
 
     @property
     def bcc_settings(self):
+        """The BCC Settings of this MailSettings.
+
+        :rtype: BCCSettings
+        """
         return self._bcc_settings
 
     @bcc_settings.setter
@@ -1349,6 +1423,10 @@ class MailSettings(object):
 
     @property
     def bypass_list_management(self):
+        """Whether this MailSettings bypasses list management.
+
+        :rtype: BypassListManagement
+        """
         return self._bypass_list_management
 
     @bypass_list_management.setter
@@ -1357,6 +1435,10 @@ class MailSettings(object):
 
     @property
     def footer_settings(self):
+        """The default footer specified by this MailSettings.
+
+        :rtype: FooterSettings
+        """
         return self._footer_settings
 
     @footer_settings.setter
@@ -1365,6 +1447,10 @@ class MailSettings(object):
 
     @property
     def sandbox_mode(self):
+        """Whether this MailSettings enables sandbox mode.
+
+        :rtype: SandBoxMode
+        """
         return self._sandbox_mode
 
     @sandbox_mode.setter
@@ -1373,6 +1459,10 @@ class MailSettings(object):
 
     @property
     def spam_check(self):
+        """How this MailSettings requests email to be checked for spam.
+
+        :rtype: SpamCheck
+        """
         return self._spam_check
 
     @spam_check.setter
@@ -1742,6 +1832,10 @@ class TrackingSettings(object):
 
     @property
     def click_tracking(self):
+        """Allows you to track whether a recipient clicked a link in your email.
+
+        :rtype: ClickTracking
+        """
         return self._click_tracking
 
     @click_tracking.setter
@@ -1750,6 +1844,10 @@ class TrackingSettings(object):
 
     @property
     def open_tracking(self):
+        """Allows you to track whether a recipient opened your email.
+
+        :rtype: OpenTracking
+        """
         return self._open_tracking
 
     @open_tracking.setter
@@ -1758,6 +1856,10 @@ class TrackingSettings(object):
 
     @property
     def subscription_tracking(self):
+        """Settings for the subscription management link.
+
+        :rtype: SubscriptionTracking
+        """
         return self._subscription_tracking
 
     @subscription_tracking.setter
@@ -1766,6 +1868,10 @@ class TrackingSettings(object):
 
     @property
     def ganalytics(self):
+        """Settings for Google Analytics.
+
+        :rtype: Ganalytics
+        """
         return self._ganalytics
 
     @ganalytics.setter
