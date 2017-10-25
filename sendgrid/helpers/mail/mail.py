@@ -289,7 +289,7 @@ class Mail(object):
     def contents(self):
         """The Contents of this Mail. Must include at least one MIME type.
 
-        :rtype: list
+        :rtype: list(Content)
         """
         return self._contents
 
@@ -308,7 +308,7 @@ class Mail(object):
         """The attachments included with this Mail.
 
         :returns: List of Attachment objects.
-        :rtype: list
+        :rtype: list(Attachment)
         """
         return self._attachments
 
@@ -326,7 +326,7 @@ class Mail(object):
         """The sections included with this Mail.
 
         :returns: List of Section objects.
-        :rtype: list
+        :rtype: list(Section)
         """
         return self._sections
 
@@ -344,7 +344,7 @@ class Mail(object):
         """The Headers included with this Mail.
 
         :returns: List of Header objects.
-        :rtype: list
+        :rtype: list(Header)
         """
         return self._headers
 
@@ -367,7 +367,7 @@ class Mail(object):
     def categories(self):
         """The Categories applied to this Mail.  Must not exceed 10 items
 
-        :rtype: list
+        :rtype: list(Category)
         """
         return self._categories
 
@@ -383,9 +383,9 @@ class Mail(object):
     @property
     def custom_args(self):
         """The CustomArgs attached to this Mail.
-        
+
         Must not exceed 10,000 characters.
-        :rtype: list
+        :rtype: list(CustomArg)
         """
         return self._custom_args
 
