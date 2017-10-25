@@ -26,6 +26,18 @@ class Mail(object):
     """
     def __init__(
             self, from_email=None, subject=None, to_email=None, content=None):
+        """Create a Mail object.
+
+        If parameters are supplied, all parameters must be present.
+        :param from_email: Email address to send from.
+        :type from_email: Email, optional
+        :param subject: Subject line of emails.
+        :type subject: string, optional
+        :param to_email: Email address to send to.
+        :type to_email: Email, optional
+        :param content: Content of the message.
+        :type content: Content, optional
+        """
         self._from_email = None
         self._subject = None
         self._template_id = None
@@ -408,6 +420,15 @@ class Email(object):
     """An email address with an optional name."""
 
     def __init__(self, email=None, name=None):
+        """Create an Email with the given address and name.
+
+        Either fill the separate name and email fields, or pass all information
+        in the email parameter (e.g. email="dude Fella <example@example.com>").
+        :param email: Email address, or name and address in standard format.
+        :type email: string
+        :param name: Name for this sender or recipient.
+        :type name: string
+        """
         self._name = None
         self._email = None
         if name or email:
@@ -491,6 +512,13 @@ class Content(object):
     """
 
     def __init__(self, type_=None, value=None):
+        """Create a Content with the specified MIME type and value.
+
+        :param type_: MIME type of this Content (e.g. "text/plain").
+        :type type_: string, optional
+        :param value: The actual content.
+        :type value: string, optional
+        """
         self._type = None
         self._value = None
 
@@ -552,6 +580,13 @@ class Header(object):
     """
 
     def __init__(self, key=None, value=None):
+        """Create a Header.
+
+        :param key: The name of the header (e.g. "Date")
+        :type key: string, optional
+        :param value: The header's value (e.g. "2013-02-27 1:23:45 PM PDT")
+        :type value: string, optional
+        """
         self._key = None
         self._value = None
 
@@ -598,8 +633,17 @@ class Header(object):
 
 
 class Substitution(object):
-
+    """A string substitution to be applied to the text and HTML contents of
+    the body of your email, as well as in the Subject and Reply-To parameters.
+    """
     def __init__(self, key=None, value=None):
+        """Create a Substitution with the given key and value.
+
+        :param key: Text to be replaced with "value" param
+        :type key: string, optional
+        :param value: Value to substitute into email
+        :type value: string, optional
+        """
         self._key = None
         self._value = None
 
@@ -642,6 +686,7 @@ class Section(object):
     """A block section of code to be used as a substitution."""
 
     def __init__(self, key=None, value=None):
+        """Create a section with the given key and value."""
         self._key = None
         self._value = None
 
@@ -681,15 +726,16 @@ class Section(object):
 
 
 class CustomArg(object):
-    """Values specific to a personalization that will be carried along with the
-    email and its activity data.
+    """Values that will be carried along with the email and its activity data.
 
     Substitutions will not be made on custom arguments, so any string entered
     into this parameter will be assumed to be the custom argument that you
-    would like to be used. May not exceed 10,000 bytes.
+    would like to be used. Top-level CustomArgs may be overridden by ones in a
+    Personalization. May not exceed 10,000 bytes.
     """
 
     def __init__(self, key=None, value=None):
+        """Create a CustomArg with the given key and value."""
         self._key = None
         self._value = None
 
@@ -739,6 +785,7 @@ class Personalization(object):
     """
 
     def __init__(self):
+        """Create an empty Personalization."""
         self._tos = None
         self._ccs = None
         self._bccs = None
@@ -951,6 +998,7 @@ class Attachment(object):
     """An attachment to be included with an email."""
 
     def __init__(self):
+        """Create an empty Attachment."""
         self._content = None
         self._type = None
         self._filename = None
@@ -1056,6 +1104,11 @@ class Category(object):
     """A category name for this message."""
 
     def __init__(self, name=None):
+        """Create a Category.
+
+        :param name: The name of this category
+        :type name: string, optional
+        """
         self._name = None
         if name is not None:
             self._name = name
@@ -1088,9 +1141,9 @@ class ASM(object):
     def __init__(self, group_id=None, groups_to_display=None):
         """Create an ASM with the given group_id and groups_to_display.
 
-        :param group_id: ID of an unsubscribe group, defaults to None
+        :param group_id: ID of an unsubscribe group
         :type group_id: int, optional
-        :param groups_to_display: Unsubscribe groups to display, defaults to None
+        :param groups_to_display: Unsubscribe groups to display
         :type groups_to_display: list(int), optional
         """
         self._group_id = None
@@ -1151,6 +1204,13 @@ class BCCSettings(object):
     """
 
     def __init__(self, enable=None, email=None):
+        """Create a BCCSettings.
+
+        :param enable: Whether this BCCSettings is applied to sent emails.
+        :type enable: boolean, optional
+        :param email: Who should be BCCed.
+        :type email: Email, optional
+        """
         self._enable = None
         self._email = None
 
@@ -1211,6 +1271,11 @@ class BypassListManagement(object):
     """
 
     def __init__(self, enable=None):
+        """Create a BypassListManagement.
+
+        :param enable: Whether emails should bypass list management.
+        :type enable: boolean, optional
+        """
         self._enable = None
 
         if enable is not None:
@@ -1245,6 +1310,15 @@ class FooterSettings(object):
     """The default footer that you would like included on every email."""
 
     def __init__(self, enable=None, text=None, html=None):
+        """Create a default footer.
+
+        :param enable: Whether this footer should be applied.
+        :type enable: boolean, optional
+        :param text: Text content of this footer
+        :type text: string, optional
+        :param html: HTML content of this footer
+        :type html: string, optional
+        """
         self._enable = None
         self._text = None
         self._html = None
@@ -1320,6 +1394,11 @@ class SandBoxMode(object):
     valid and formatted correctly.
     """
     def __init__(self, enable=None):
+        """Create an enabled or disabled SandBoxMode.
+
+        :param enable: Whether this is a test request.
+        :type enable: boolean, optional
+        """
         self._enable = None
 
         if enable is not None:
@@ -1354,6 +1433,15 @@ class SpamCheck(object):
     """This allows you to test the content of your email for spam."""
 
     def __init__(self, enable=None, threshold=None, post_to_url=None):
+        """Create a SpamCheck to test the content of your email for spam.
+
+        :param enable: If this setting is applied.
+        :type enable: boolean, optional
+        :param threshold: Spam qualification threshold, from 1 to 10 (strict).
+        :type threshold: int, optional
+        :param post_to_url: Inbound Parse URL to send a copy of your email.
+        :type post_to_url: string, optional
+        """
         self._enable = None
         self._threshold = None
         self._post_to_url = None
@@ -1429,6 +1517,7 @@ class MailSettings(object):
     """A collection of mail settings that specify how to handle this email."""
 
     def __init__(self):
+        """Create an empty MailSettings."""
         self._bcc_settings = None
         self._bypass_list_management = None
         self._footer_settings = None
@@ -1525,6 +1614,13 @@ class ClickTracking(object):
     """Allows you to track whether a recipient clicked a link in your email."""
 
     def __init__(self, enable=None, enable_text=None):
+        """Create a ClickTracking to track clicked links in your email.
+
+        :param enable: Whether click tracking is enabled
+        :type enable: boolean, optional
+        :param enable_text: If click tracking is on in your email's text/plain.
+        :type enable_text: boolean, optional
+        """
         self._enable = None
         self._enable_text = None
 
@@ -1580,6 +1676,13 @@ class OpenTracking(object):
     """
 
     def __init__(self, enable=None, substitution_tag=None):
+        """Create an OpenTracking to track when your email is opened.
+
+        :param enable: If open tracking is enabled.
+        :type enable: boolean, optional
+        :param substitution_tag: Tag in body to be replaced by tracking pixel.
+        :type substitution_tag: string, optional
+        """
         self._enable = None
         self._substitution_tag = None
 
@@ -1636,6 +1739,17 @@ class SubscriptionTracking(object):
     location of the link within your email, you may use the substitution_tag.
     """
     def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
+        """Create a SubscriptionTracking to customize subscription management.
+
+        :param enable: Whether this setting is enabled.
+        :type enable: boolean, optional
+        :param text: Text to be appended to the email with the link as "<% %>".
+        :type text: string, optional
+        :param html: HTML to be appended to the email with the link as "<% %>".
+        :type html: string, optional
+        :param substitution_tag: Tag replaced with URL. Overrides text, html params.
+        :type substitution_tag: string, optional
+        """
         self._enable = None
         self._text = None
         self._html = None
@@ -1732,6 +1846,21 @@ class Ganalytics(object):
                  utm_term=None,
                  utm_content=None,
                  utm_campaign=None):
+        """Create a GAnalytics to enable, customize Google Analytics tracking.
+
+        :param enable: If this setting is enabled.
+        :type enable: boolean, optional
+        :param utm_source: Name of the referrer source.
+        :type utm_source: string, optional
+        :param utm_medium: Name of the marketing medium (e.g. "Email").
+        :type utm_medium: string, optional
+        :param utm_term: Used to identify paid keywords.
+        :type utm_term: string, optional
+        :param utm_content: Used to differentiate your campaign from ads.
+        :type utm_content: string, optional
+        :param utm_campaign: The name of the campaign.
+        :type utm_campaign: string, optional
+        """
         self._enable = None
         self._utm_source = None
         self._utm_medium = None
@@ -1851,6 +1980,7 @@ class Ganalytics(object):
 class TrackingSettings(object):
     """Settings to track how recipients interact with your email."""
     def __init__(self):
+        """Create an empty TrackingSettings."""
         self._click_tracking = None
         self._open_tracking = None
         self._subscription_tracking = None
