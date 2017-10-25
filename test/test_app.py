@@ -33,6 +33,3 @@ class AppTest(unittest.TestCase):
     def test_get_home(self):
         response = App.app.get('/')
         self.assertEqual(response.status_code, 200)
-
-
-
