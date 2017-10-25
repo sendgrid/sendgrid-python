@@ -156,7 +156,7 @@ class Mail(object):
 
     @property
     def subject(self):
-        """The global, or “message level”, subject of this Mail.
+        """The global, or "message level", subject of this Mail.
 
         This may be overridden by personalizations[x].subject.
         :rtype: string
@@ -1064,7 +1064,7 @@ class Attachment(object):
     def content_id(self):
         """The content id for the attachment.
 
-        This is used when the disposition is set to “inline” and the attachment
+        This is used when the disposition is set to "inline" and the attachment
         is an image, allowing the file to be displayed within the email body.
 
         :rtype: string
@@ -1805,7 +1805,7 @@ class SubscriptionTracking(object):
         """"A tag that will be replaced with the unsubscribe URL. for example:
         [unsubscribe_url]. If this parameter is used, it will override both the
         `text` and `html` parameters. The URL of the link will be placed at the
-        substitution tag’s location, with no additional formatting.
+        substitution tag's location, with no additional formatting.
         :rtype: string
         """
         return self._substitution_tag
