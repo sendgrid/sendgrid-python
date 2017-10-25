@@ -7,6 +7,8 @@ This documentation provides examples for specific use cases. Please [open an iss
 * [How to Setup a Domain Whitelabel](#domain_whitelabel)
 * [How to View Email Statistics](#email_stats)
 * [Asynchronous Mail Send](#asynchronous-mail-send)
+* [Deployments](#deployments)
+    * [Google App Engine](#deployments-gae)  
 
 <a name="transactional-templates"></a>
 # Transactional Templates
@@ -271,4 +273,102 @@ if __name__ == "__main__":
     task = asyncio.async(send_many(ems, sample_cb))
     loop.run_until_complete(task)
 ```
+<a name="deployments"></a>
+# Deployments
+
+<a name="deployments-gae"></a>
+## Google App Engine
+
+### Setup
+#### Create a project
+To deploy your application to Google App Engine, you must first create a Cloud Platform project and App Engine application using the Cloud Platform Console.
+
+For this goto [App Engine](https://console.cloud.google.com/projectselector/appengine/create) and either select or create an application. After creating a project, select a region. After Google App Engine initializes the backend services for your app, proceed further.
+
+#### Install the SDK
+Google cloud SDK is needed for Google App Engine. If you have already configured the SDK you may skip this step, otherwise you will need to install the SDK to deploy your app to Google App Engine.
+
+Follow the [steps](https://cloud.google.com/appengine/docs/standard/go/download) to Download the SDK.
+Once you have the gcloud tool installed, make sure it is correctly configured for the project.For assistance, take a look at the [gcloud reference](https://cloud.google.com/sdk/gcloud/reference/)
+
+### Example app
+Before proceeding, add [this](https://github.com/sendgrid/sendgrid-python) SendGrid python library to the ```lib``` directory. Fot assistance check [this](https://cloud.google.com/appengine/docs/standard/python/tools/using-libraries-python-27#installing_a_third-party_library). 
+
+Also create a SendGridAPI key for your application at [SendGrid](https://app.sendgrid.com/settings/api_keys). This will be needed for authentication.
+
+The following is a simple Python app which allows you to send a "Hello World" email.
+```python
+import sendgrid
+import os
+from sendgrid.helpers import mail
+
+send_grid = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+
+recipient_email = mail.Email("RECIPIENT_EMAIL_ID")
+sender_email = mail.Email("SENDER_EMAIL_ID")
+subject = 'HELLO WORLD!'
+body = mail.Content('text/plain', 'HELLO! HOLA! ')
+message = mail.Mail(sender_email, subject, recipient_email, body)
+
+response = send_grid.client.mail.send.post(request_body=message.get())
+
+print(response.status_code)
+print(response.body)
+print(response.headers)
+```
+
+#### App settings
+In order to run you app on Google App Engine, you must have a ```app.yaml``` file in the application's root directory.
+This file contains information about your application code.
+For more information about the ```app.yaml``` file, please view the ```app.yaml```[ reference](https://cloud.google.com/appengine/docs/standard/go/config/appref).
+```yaml
+runtime: python27
+api_version: 1
+threadsafe: true
+
+env_variables:
+  SENDGRID_API_KEY: 'YOUR_API_KEY'
+
+handlers:
+- url: /.*
+  script: python_app_name #can be either module or script.
+```
+**NOTE**
+Your API Key should be kept secret. If your ```app.yaml``` file contains your key, don't include it in version control.
+
+Refer to [this](https://cloud.google.com/appengine/docs/standard/python/config/appref) for help regarding the ```app.yaml``` file.
+
+### Testing your app
+For local testing, you can run your app normally with the native development tools.
+
+For eg. 
+```python app_name.py```
+
+
+If you want to run a WSGI server locally you can use the ```gunicorn -b :$PORT main:app``` and refer to [this](https://cloud.google.com/appengine/docs/flexible/python/runtime) for runtime assistance. Specify ```PORT``` also as a environment variable in ```app.yaml```
+
+### Deployment
+After successfully testing the app, you are now ready to deploy!
+To deploy, run the following command from the root of your app directory, ```gcloud app deploy app.yaml```. After running the command you should see something like the following.
+```
+Services to deploy:
+
+descriptor:      [/path/to/yourApp/app.yaml]
+source:          [/path/to/yourApp]
+target project:  [YourProjectId]
+target service:  [default]
+target version:  [VersionId]
+target url:      [https://YourProjectId.appspot.com]
+
+
+Do you want to continue (Y/n)?
+```
+**NOTE**
+Keep note of the target url, that is where the app will be located.
+
+Once you continue, the app will be uploaded and deployed to Google App Engine!
+
+### Notes
+* Google App Engine does not allow the use of the ```net/http``` package, you must use [urlfetch](https://cloud.google.com/appengine/docs/standard/python/issue-requests) to issue HTTP(S) requests.
+* In general it is bad practice to store keys in your code base. The best way would be to use [Cloud Key Management Service](https://cloud.google.com/kms/) which is a cloud-hosted key management service for Google Cloud Platform.
 
