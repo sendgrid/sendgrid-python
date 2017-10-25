@@ -33,9 +33,13 @@ def inbound_parse():
     return "OK"
 
 
-if __name__ == '__main__':
+def main():
     # Be sure to set config.debug_mode to False in production
     port = int(os.environ.get("PORT", config.port))
     if port != config.port:
         config.debug = False
     app.run(host='0.0.0.0', debug=config.debug_mode, port=port)
+
+
+if __name__ == '__main__':
+    main()
