@@ -200,7 +200,12 @@ class Mail(object):
     def add_content(self, content):
         if self._contents is None:
             self._contents = []
-        self._contents.append(content)
+        
+        #Fix for issue-451: text content should be before html content
+        if content._type == "text/plain":
+            self._contents.insert(0, content)
+        else:
+            self._contents.append(content)
 
     @property
     def attachments(self):
