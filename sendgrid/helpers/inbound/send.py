@@ -11,6 +11,7 @@ from python_http_client import Client
 
 
 class Send(object):
+
     def __init__(self, url):
         self._url = url
 

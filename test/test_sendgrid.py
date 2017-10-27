@@ -45,10 +45,13 @@ class UnitTests(unittest.TestCase):
             if sys.platform != 'win32':
                 # try to install with prism.sh
                 try:
-                    print("Warning: no prism detected, I will try to install it locally")
-                    prism_sh = os.path.abspath(os.path.join(cls.path, 'test', 'prism.sh'))
+                    print(
+                        "Warning: no prism detected, I will try to install it locally")
+                    prism_sh = os.path.abspath(
+                        os.path.join(cls.path, 'test', 'prism.sh'))
                     if subprocess.call(prism_sh) == 0:
-                        prism_cmd = os.path.expanduser(os.path.join('~', 'bin', 'prism'))
+                        prism_cmd = os.path.expanduser(
+                            os.path.join('~', 'bin', 'prism'))
                     else:
                         raise RuntimeError()
                 except Exception as e:
@@ -121,16 +124,18 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._get_default_headers().items():
+        for k, v in self.sg._get_default_headers().items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
         from_email = Email("test@example.com")
         to_email = Email("test@example.com")
         subject = "Sending with SendGrid is Fun"
-        content = Content("text/plain", "and easy to do anywhere, even with Python")
+        content = Content(
+            "text/plain", "and easy to do anywhere, even with Python")
         mail = Mail(from_email, subject, to_email, content)
-        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
+        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [
+                        {'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}

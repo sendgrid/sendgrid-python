@@ -5,6 +5,7 @@ import yaml
 
 class Config(object):
     """All configuration for this app is loaded here"""
+
     def __init__(self, **opts):
         if os.environ.get('ENV') != 'prod':  # We are not in Heroku
             self.init_environment()
@@ -34,8 +35,6 @@ class Config(object):
                     var = line.strip().split('=')
                     if len(var) == 2:
                         os.environ[var[0]] = var[1]
-
-
 
     @property
     def debug_mode(self):

@@ -4,7 +4,9 @@ import urllib2
 from sendgrid.helpers.mail import *
 from sendgrid import *
 
-# NOTE: you will need move this file to the root directory of this project to execute properly.
+# NOTE: you will need move this file to the root directory of this project
+# to execute properly.
+
 
 def build_hello_email():
     """Minimum required to send an email"""
@@ -16,6 +18,7 @@ def build_hello_email():
     mail.personalizations[0].add_to(Email("test2@example.com"))
 
     return mail.get()
+
 
 def build_kitchen_sink():
     """All settings set"""
@@ -60,7 +63,8 @@ def build_kitchen_sink():
     mail.add_personalization(personalization2)
 
     mail.add_content(Content("text/plain", "some text here"))
-    mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+    mail.add_content(
+        Content("text/html", "<html><body>some text here</body></html>"))
 
     attachment = Attachment()
     attachment.content = "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12"
@@ -104,21 +108,27 @@ def build_kitchen_sink():
     mail_settings = MailSettings()
     mail_settings.bcc_settings = BCCSettings(True, Email("test@example.com"))
     mail_settings.bypass_list_management = BypassListManagement(True)
-    mail_settings.footer_settings = FooterSettings(True, "Footer Text", "<html><body>Footer Text</body></html>")
+    mail_settings.footer_settings = FooterSettings(
+        True, "Footer Text", "<html><body>Footer Text</body></html>")
     mail_settings.sandbox_mode = SandBoxMode(True)
-    mail_settings.spam_check = SpamCheck(True, 1, "https://spamcatcher.sendgrid.com")
+    mail_settings.spam_check = SpamCheck(
+        True, 1, "https://spamcatcher.sendgrid.com")
     mail.mail_settings = mail_settings
 
     tracking_settings = TrackingSettings()
     tracking_settings.click_tracking = ClickTracking(True, True)
-    tracking_settings.open_tracking = OpenTracking(True, "Optional tag to replace with the open image in the body of the message")
-    tracking_settings.subscription_tracking = SubscriptionTracking(True, "text to insert into the text/plain portion of the message", "<html><body>html to insert into the text/html portion of the message</body></html>", "Optional tag to replace with the open image in the body of the message")
-    tracking_settings.ganalytics = Ganalytics(True, "some source", "some medium", "some term", "some_content", "some_campaign")
+    tracking_settings.open_tracking = OpenTracking(
+        True, "Optional tag to replace with the open image in the body of the message")
+    tracking_settings.subscription_tracking = SubscriptionTracking(True, "text to insert into the text/plain portion of the message",
+                                                                   "<html><body>html to insert into the text/html portion of the message</body></html>", "Optional tag to replace with the open image in the body of the message")
+    tracking_settings.ganalytics = Ganalytics(
+        True, "some source", "some medium", "some term", "some_content", "some_campaign")
     mail.tracking_settings = tracking_settings
 
     mail.reply_to = Email("test@example.com")
 
     return mail.get()
+
 
 def send_hello_email():
     # Assumes you set your environment variable:
@@ -130,6 +140,7 @@ def send_hello_email():
     print(response.headers)
     print(response.body)
 
+
 def send_kitchen_sink():
     # Assumes you set your environment variable:
     # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
@@ -140,5 +151,5 @@ def send_kitchen_sink():
     print(response.headers)
     print(response.body)
 
-send_hello_email() # this will actually send an email
-send_kitchen_sink() # this will only send an email if you set SandBox Mode to False
+send_hello_email()  # this will actually send an email
+send_kitchen_sink()  # this will only send an email if you set SandBox Mode to False
