@@ -3020,7 +3020,7 @@ print response.headers
 ```
 ## Delete a subuser
 
-This endpoint allows you to delete a subuser. This is a permanent action, once deleted a subuser cannot be retrieved.
+This endpoint allows you to delete a subuser. This is a permanent action, once you delete a subuser it cannot be retrieved.
 
 For more information about Subusers:
 
