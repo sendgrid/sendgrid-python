@@ -30,6 +30,7 @@ class UnitTests(unittest.TestCase):
         all_stats.end_date = '12-10-2017'
         all_stats.aggregated_by = 'day'
         all_stats._sort_by_direction = 'asc'
+        all_stats.sort_by_metric = 'clicks'
         all_stats._limit = 100
         all_stats._offset = 2
 
@@ -39,7 +40,7 @@ class UnitTests(unittest.TestCase):
                 sort_keys=True),
             '{"aggregated_by": "day", "end_date": "12-10-2017", '
             '"limit": 100, "offset": 2, "sort_by_direction": "asc", '
-            '"start_date": "12-09-2017"}'
+            '"sort_by_metric": "clicks", "start_date": "12-09-2017"}'
         )
 
     def test_categoryStats(self):
@@ -49,6 +50,7 @@ class UnitTests(unittest.TestCase):
         category_stats.end_date = '12-10-2017'
         category_stats.aggregated_by = 'day'
         category_stats._sort_by_direction = 'asc'
+        category_stats.sort_by_metric = 'clicks'
         category_stats._limit = 100
         category_stats._offset = 2
 
@@ -58,7 +60,8 @@ class UnitTests(unittest.TestCase):
                 sort_keys=True),
             '{"aggregated_by": "day", "categories": ["foo", "bar", "woo"], '
             '"end_date": "12-10-2017", "limit": 100, "offset": 2, '
-            '"sort_by_direction": "asc", "start_date": "12-09-2017"}'
+            '"sort_by_direction": "asc", "sort_by_metric": "clicks", '
+            '"start_date": "12-09-2017"}'
         )
 
     def test_subuserStats(self):
@@ -68,6 +71,7 @@ class UnitTests(unittest.TestCase):
         subuser_stats.end_date = '12-10-2017'
         subuser_stats.aggregated_by = 'day'
         subuser_stats._sort_by_direction = 'asc'
+        subuser_stats.sort_by_metric = 'clicks'
         subuser_stats._limit = 100
         subuser_stats._offset = 2
 
@@ -77,5 +81,6 @@ class UnitTests(unittest.TestCase):
                 sort_keys=True),
             '{"aggregated_by": "day", "end_date": "12-10-2017", '
             '"limit": 100, "offset": 2, "sort_by_direction": "asc", '
-            '"start_date": "12-09-2017", "subusers": ["foo", "bar", "blah"]}'
+            '"sort_by_metric": "clicks", "start_date": "12-09-2017", '
+            '"subusers": ["foo", "bar", "blah"]}'
         )
