@@ -92,8 +92,8 @@ def get_subuser_stats_sums():
     print(response.headers)
     pprint_json(response.body)
 
-# get_global_stats()
-# get_category_stats()
-# get_category_stats_sums()
-# get_subuser_stats()
-# get_subuser_stats_sums()
+get_global_stats()
+get_category_stats()
+get_category_stats_sums()
+get_subuser_stats()
+get_subuser_stats_sums()
