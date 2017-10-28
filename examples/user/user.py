@@ -49,7 +49,7 @@ print(response.headers)
 # PUT /user/password #
 
 data = {
-  "new_password": "new_password", 
+  "new_password": "new_password",
   "old_password": "old_password"
 }
 response = sg.client.user.password.put(request_body=data)
