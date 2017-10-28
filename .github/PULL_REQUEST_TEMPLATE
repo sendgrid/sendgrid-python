@@ -1,22 +1,24 @@
 <!--
-(We appreciate the effort for this pull request but before that please make sure you read the contribution guidelines given above, then fill out the blanks below.)
--->
+We appreciate the effort for this pull request but before that please make sure you read the contribution guidelines given above, then fill out the blanks below.
 
-# Fixes #<!--Enter Issue number you have referenced(please refer only one issue at once)-->
+
+Please enter each Issue number you are resolving in your PR after one of the following words [Fixes, Closes, Resolves]. This will auto-link these issues and close them when this PR is merged!
+e.g. 
+Fixes #1
+Closes #2
+-->
+# Fixes # 
 
 ### Checklist
-<!-- Please, do Star this repository and follow this template for your PR to be considered-->
+- [ ] I have made a material change to the repo (functionality, testing, spelling, grammar)
 - [ ] I have read the [Contribution Guide] and my PR follows them.
-- [ ] My branch is up-to-date with the master branch.
+- [ ] I updated my branch with the master branch.
 - [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] I have added necessary documentation (if appropriate)
-<!-- If an existing function does not have a docstring, please add one -->
-- [ ] All the functions created/modified in this PR contain relevant docstrings.
+- [ ] I have added necessary documentation about the functionality in the appropriate .md file
+- [ ] I have added in line documentation to the code I modified
 
-### Short description of what this resolves:
-
-### Changes proposed in this pull request:
-* <!--Fill These Bullet Points-->
-* 
+### Short description of what this PR does:
+- 
+- 
 
 If you have questions, please send an email to [Sendgrid](mailto:dx@sendgrid.com), or file a Github Issue in this repository.
