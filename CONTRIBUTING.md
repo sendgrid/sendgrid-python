@@ -11,7 +11,7 @@ Hello! Thank you for choosing to help contribute to one of the SendGrid open sou
 - [Creating a Pull Request](#creating-a-pull-request)
 
 <a name="roadmap"></a>
-We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions and additional PRs are welcomed and encouraged.
+We use [Milestones](https://github.com/sendgrid/email-templates/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions and additional PRs are welcomed and encouraged.
 
 <a name="cla"></a>
 ## CLAs and CCLAs
@@ -51,52 +51,15 @@ Before you decide to create a new issue, please try the following:
 
 ### Please use our Bug Report Template
 
-In order to make the process easier, we've included a [sample bug report template]((https://github.com/sendgrid/sendgrid-python/.github/ISSUE_TEMPLATE)) (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
+In order to make the process easier, we've included a [sample bug report template]((https://github.com/sendgrid/email-templates/.github/ISSUE_TEMPLATE)) (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
 
 <a name="improvements-to-the-codebase"></a>
 ## Improvements to the Codebase
 
-We welcome direct contributions to the sendgrid-python code base. Thank you!
+We welcome direct contributions to the email-templates code base. Thank you!
 
-### Development Environment ###
-
-#### Using Docker ####
-You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
-
-#### Install and Run Locally ####
-
-##### Prerequisites #####
-
-- Python 2.6 through 3.6
-- [python_http_client](https://github.com/sendgrid/python-http-client)
-
-##### Initial setup: #####
-
-```bash
-git clone https://github.com/sendgrid/sendgrid-python.git
-cd sendgrid-python
-```
-
-## Environment Variables
-
-First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
-
-Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
-
-```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
-```
-
-##### Execute: #####
-
-See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/master/examples) to get started quickly.
-
-If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
-
-<a name="understanding-the-codebase"></a>
 ## Understanding the Code Base
+
 
 **/examples**
 
@@ -115,9 +78,9 @@ The Web API v3 client is `sendgrid.py`, the other files are legacy code for our 
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory.
+All test files are in the [`test`](https://github.com/sendgrid/email-templates/test) directory.
 
-For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/email-templates/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
 For Python 2.6.*:
 
@@ -127,42 +90,6 @@ For Python 2.7.* and up:
 
 `python -m unittest discover -v`
 
-### Testing Multiple Versions of Python
-
-All PRs require passing tests before the PR will be reviewed.
-
-#### Prerequisites: ####
-
-The above local "Initial setup" is complete
-
-* [pyenv](https://github.com/yyuu/pyenv)
-* [tox](https://pypi.python.org/pypi/tox)
-* [prism](https://github.com/stoplightio/prism) v0.6 - It should be available in your PATH, but unittest script
-will try to install it locally if not found. Apart from PATH env variable it will check in `~/bin` and `/usr/local/bin`.
-You can install by yourself it in user dir by calling `source test/prism.sh`.
-
-#### Initial setup: ####
-
-Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, etc) after installing tox, you only need to do this once.
-
-```
-pyenv install 2.6.9
-pyenv install 2.7.11
-pyenv install 3.4.3
-pyenv install 3.5.0
-python setup.py install
-pyenv local 3.5.0 3.4.3 2.7.8 2.6.9
-pyenv rehash
-```
-
-#### Execute: ####
-
-```
-source venv/bin/activate
-tox
-```
-
-<a name="style-guidelines-and-naming-conventions"></a>
 ## Style Guidelines & Naming Conventions
 
 Generally, we follow the style guidelines as suggested by the official language. However, we ask that you conform to the styles that already exist in the library. If you wish to deviate, please explain your reasoning.
@@ -182,11 +109,11 @@ Please run your code through:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/sendgrid/sendgrid-python
+   git clone https://github.com/sendgrid/email-templates
    # Navigate to the newly cloned directory
-   cd sendgrid-python
+   cd email-templates
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/sendgrid/sendgrid-python
+   git remote add upstream https://github.com/sendgrid/email-templates
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
