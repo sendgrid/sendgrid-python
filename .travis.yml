@@ -9,7 +9,7 @@ python:
 - '3.6'
 env:
   global:
-    - CC_TEST_REPORTER_ID=token
+    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
 install:
 - if [[ $TRAVIS_PYTHON_VERSION == 2.6* ]]; then pip install unittest2; fi
 - python setup.py install
