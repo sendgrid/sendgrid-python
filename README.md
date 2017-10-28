@@ -1,7 +1,7 @@
 ![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
 
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
-[![codecov](https://codecov.io/gh/meahow/sendgrid-python/branch/issue_251_coverage/graph/badge.svg)](https://codecov.io/gh/meahow/sendgrid-python)
+[![codecov](https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/sendgrid/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
@@ -54,6 +54,8 @@ echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
+
+Sengrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
 ## Install Package
 
