@@ -18,7 +18,7 @@ WORKDIR /root
 
 # install Prism
 ADD https://raw.githubusercontent.com/stoplightio/prism/master/install.sh install.sh
-RUN chmod +x ./install.sh && \
+RUN chmod +x ./install.sh && sync && \
     ./install.sh && \
     rm ./install.sh
 
