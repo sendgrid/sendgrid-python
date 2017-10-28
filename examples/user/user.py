@@ -62,8 +62,8 @@ print(response.headers)
 # PATCH /user/profile #
 
 data = {
-  "city": "Orange", 
-  "first_name": "Example", 
+  "city": "Orange",
+  "first_name": "Example",
   "last_name": "User"
 }
 response = sg.client.user.profile.patch(request_body=data)
@@ -85,7 +85,7 @@ print(response.headers)
 # POST /user/scheduled_sends #
 
 data = {
-  "batch_id": "YOUR_BATCH_ID", 
+  "batch_id": "YOUR_BATCH_ID",
   "status": "pause"
 }
 response = sg.client.user.scheduled_sends.post(request_body=data)
@@ -140,7 +140,7 @@ print(response.headers)
 # PATCH /user/settings/enforced_tls #
 
 data = {
-  "require_tls": True, 
+  "require_tls": True,
   "require_valid_cert": False
 }
 response = sg.client.user.settings.enforced_tls.patch(request_body=data)
@@ -183,18 +183,18 @@ print(response.headers)
 # PATCH /user/webhooks/event/settings #
 
 data = {
-  "bounce": True, 
-  "click": True, 
-  "deferred": True, 
-  "delivered": True, 
-  "dropped": True, 
-  "enabled": True, 
-  "group_resubscribe": True, 
-  "group_unsubscribe": True, 
-  "open": True, 
-  "processed": True, 
-  "spam_report": True, 
-  "unsubscribe": True, 
+  "bounce": True,
+  "click": True,
+  "deferred": True,
+  "delivered": True,
+  "dropped": True,
+  "enabled": True,
+  "group_resubscribe": True,
+  "group_unsubscribe": True,
+  "open": True,
+  "processed": True,
+  "spam_report": True,
+  "unsubscribe": True,
   "url": "url"
 }
 response = sg.client.user.webhooks.event.settings.patch(request_body=data)
