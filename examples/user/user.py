@@ -252,7 +252,7 @@ print(response.headers)
 # PATCH /user/webhooks/parse/settings/{hostname} #
 
 data = {
-  "send_raw": True, 
+  "send_raw": True,
   "spam_check": False, 
   "url": "http://newdomain.com/parse"
 }
