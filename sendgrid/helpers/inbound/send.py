@@ -15,6 +15,12 @@ class Send(object):
         self._url = url
 
     def test_payload(self, payload_filepath):
+        """
+        Send test SendGrid Inbound Parse message
+
+        :param payload_filepath: Path for payload file
+        :return: Server response
+        """
         headers = {
             "User-Agent": "SendGrid-Test",
             "Content-Type": "multipart/form-data; boundary=xYzZY"
