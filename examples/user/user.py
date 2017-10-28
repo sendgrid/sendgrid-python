@@ -287,8 +287,11 @@ print(response.headers)
 # Retrieves Inbound Parse Webhook statistics. #
 # GET /user/webhooks/parse/stats #
 
-params = {'aggregated_by': 'day', 'limit': 'test_string',
-          'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
+params = {'aggregated_by': 'day',
+          'limit': 'test_string',
+          'start_date': '2016-01-01',
+          'end_date': '2016-04-01',
+          'offset': 'test_string'}
 response = sg.client.user.webhooks.parse.stats.get(query_params=params)
 print(response.status_code)
 print(response.body)

@@ -47,8 +47,12 @@ print(response.headers)
 # Retrieve email statistics for your subusers. #
 # GET /subusers/stats #
 
-params = {'end_date': '2016-04-01', 'aggregated_by': 'day', 'limit': 1,
-          'offset': 1, 'start_date': '2016-01-01', 'subusers': 'test_string'}
+params = {'end_date': '2016-04-01',
+          'aggregated_by': 'day',
+          'limit': 1,
+          'offset': 1,
+          'start_date': '2016-01-01',
+          'subusers': 'test_string'}
 response = sg.client.subusers.stats.get(query_params=params)
 print(response.status_code)
 print(response.body)
@@ -58,8 +62,12 @@ print(response.headers)
 # Retrieve monthly stats for all subusers #
 # GET /subusers/stats/monthly #
 
-params = {'subuser': 'test_string', 'limit': 1, 'sort_by_metric': 'test_string',
-          'offset': 1, 'date': 'test_string', 'sort_by_direction': 'asc'}
+params = {'subuser': 'test_string',
+          'limit': 1,
+          'sort_by_metric': 'test_string',
+          'offset': 1,
+          'date': 'test_string',
+          'sort_by_direction': 'asc'}
 response = sg.client.subusers.stats.monthly.get(query_params=params)
 print(response.status_code)
 print(response.body)
