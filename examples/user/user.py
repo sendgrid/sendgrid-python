@@ -228,9 +228,9 @@ print(response.headers)
 # POST /user/webhooks/parse/settings #
 
 data = {
-  "hostname": "myhostname.com", 
-  "send_raw": False, 
-  "spam_check": True, 
+  "hostname": "myhostname.com",
+  "send_raw": False,
+  "spam_check": True,
   "url": "http://email.myhosthame.com"
 }
 response = sg.client.user.webhooks.parse.settings.post(request_body=data)
