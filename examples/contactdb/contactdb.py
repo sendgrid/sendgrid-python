@@ -93,7 +93,8 @@ data = {
 params = {'list_id': 1}
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(
-    request_body=data, query_params=params)
+    request_body=data,
+    query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -362,7 +363,8 @@ data = {
 params = {'segment_id': 'test_string'}
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).patch(
-    request_body=data, query_params=params)
+    request_body=data,
+    query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)

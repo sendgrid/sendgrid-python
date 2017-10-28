@@ -109,7 +109,9 @@ def build_kitchen_sink():
     mail_settings.bcc_settings = BCCSettings(True, Email("test@example.com"))
     mail_settings.bypass_list_management = BypassListManagement(True)
     mail_settings.footer_settings = FooterSettings(
-        True, "Footer Text", "<html><body>Footer Text</body></html>")
+        True,
+        "Footer Text",
+        "<html><body>Footer Text</body></html>")
     mail_settings.sandbox_mode = SandBoxMode(True)
     mail_settings.spam_check = SpamCheck(
         True, 1, "https://spamcatcher.sendgrid.com")
@@ -118,11 +120,20 @@ def build_kitchen_sink():
     tracking_settings = TrackingSettings()
     tracking_settings.click_tracking = ClickTracking(True, True)
     tracking_settings.open_tracking = OpenTracking(
-        True, "Optional tag to replace with the open image in the body of the message")
-    tracking_settings.subscription_tracking = SubscriptionTracking(True, "text to insert into the text/plain portion of the message",
-                                                                   "<html><body>html to insert into the text/html portion of the message</body></html>", "Optional tag to replace with the open image in the body of the message")
+        True,
+        "Optional tag to replace with the open image in the body of the message")
+    tracking_settings.subscription_tracking = SubscriptionTracking(
+        True,
+        "text to insert into the text/plain portion of the message",
+        "<html><body>html to insert into the text/html portion of the message</body></html>",
+        "Optional tag to replace with the open image in the body of the message")
     tracking_settings.ganalytics = Ganalytics(
-        True, "some source", "some medium", "some term", "some_content", "some_campaign")
+        True,
+        "some source",
+        "some medium",
+        "some term",
+        "some_content",
+        "some_campaign")
     mail.tracking_settings = tracking_settings
 
     mail.reply_to = Email("test@example.com")
