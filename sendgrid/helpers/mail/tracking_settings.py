@@ -72,4 +72,4 @@ class TrackingSettings(object):
                 "subscription_tracking"] = self.subscription_tracking.get()
         if self.ganalytics is not None:
             tracking_settings["ganalytics"] = self.ganalytics.get()
-        return
+        return tracking_settings
