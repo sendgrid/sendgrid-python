@@ -1,3 +1,6 @@
+import argparse
+from sendgrid.helpers.inbound import send
+
 try:
     import unittest2 as unittest
 except ImportError:
@@ -22,7 +25,6 @@ class UnitTests(unittest.TestCase):
         self.open_mock.stop()
 
     def test_send(self):
-        from sendgrid.helpers.inbound import send
 
         fake_url = 'https://fake_url'
         x = send.Send(fake_url)
@@ -30,3 +32,12 @@ class UnitTests(unittest.TestCase):
 
         send.Client.assert_called_once_with(host=fake_url, request_headers={'User-Agent': 'SendGrid-Test',
                                                                        'Content-Type': 'multipart/form-data; boundary=xYzZY'})
+
+    def test_main_call(self):
+        fake_url = 'https://fake_url'
+
+        with mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(host=fake_url, data='test_file.txt')):
+                send.main()
+                send.Client.assert_called_once_with(host=fake_url, request_headers={'User-Agent': 'SendGrid-Test',
+                                                                       'Content-Type': 'multipart/form-data; boundary=xYzZY'})
+

@@ -34,7 +34,7 @@ class Send(object):
     def url(self):
         return self._url
 
-if __name__ == '__main__':
+def main():
     config = Config()
     parser = argparse.ArgumentParser(description='Test data and optional host.')
     parser.add_argument('data',
@@ -50,3 +50,6 @@ if __name__ == '__main__':
     print(response.status_code)
     print(response.headers)
     print(response.body)
+
+if __name__ == '__main__':
+    main()
