@@ -61,7 +61,7 @@ class Mail(object):
         }
 
         return dict((key, value) for key, value in mail.items()
-                if value is not None and value != [] and value != {})
+                    if value is not None and value != [] and value != {})
 
     def _get_or_none(self, from_obj):
         return from_obj.get() if from_obj is not None else None
