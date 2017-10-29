@@ -106,7 +106,7 @@ class Personalization(object):
 
         if self.subject:
             personalization["subject"] = self.subject
-            
+
         for prop_name in ['headers', 'substitutions', 'custom_args']:
             prop = getattr(self, prop_name)
             if prop:
@@ -118,6 +118,6 @@ class Personalization(object):
         for key in ["send_at", "subject"]:
             value = getattr(self, key, None)
             if value:
-             mail[key] = value
+                mail[key] = value
 
         return personalization
