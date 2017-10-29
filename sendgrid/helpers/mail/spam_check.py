@@ -1,18 +1,9 @@
 class SpamCheck(object):
 
     def __init__(self, enable=None, threshold=None, post_to_url=None):
-        self._enable = None
-        self._threshold = None
-        self._post_to_url = None
-
-        if enable is not None:
-            self.enable = enable
-
-        if threshold is not None:
-            self.threshold = threshold
-
-        if post_to_url is not None:
-            self.post_to_url = post_to_url
+        self.enable = enable
+        self.threshold = threshold
+        self.post_to_url = post_to_url
 
     @property
     def enable(self):

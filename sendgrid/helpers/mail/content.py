@@ -1,14 +1,8 @@
 class Content(object):
 
     def __init__(self, type_=None, value=None):
-        self._type = None
-        self._value = None
-
-        if type_ is not None:
-            self.type = type_
-
-        if value is not None:
-            self.value = value
+        self.type = type_
+        self.value = value
 
     @property
     def type(self):

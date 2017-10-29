@@ -1,13 +1,8 @@
 class OpenTracking(object):
 
     def __init__(self, enable=None, substitution_tag=None):
-        self._enable = None
-        self._substitution_tag = None
-
-        if enable is not None:
-            self.enable = enable
-        if substitution_tag is not None:
-            self.substitution_tag = substitution_tag
+        self.enable = enable
+        self.substitution_tag = substitution_tag
 
     @property
     def enable(self):

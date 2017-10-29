@@ -1,19 +1,10 @@
 class SubscriptionTracking(object):
 
     def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
-        self._enable = None
-        self._text = None
-        self._html = None
-        self._substitution_tag = None
-
-        if enable is not None:
-            self.enable = enable
-        if text is not None:
-            self.text = text
-        if html is not None:
-            self.html = html
-        if substitution_tag is not None:
-            self.substitution_tag = substitution_tag
+        self.enable = enable
+        self.text = text
+        self.html = html
+        self.substitution_tag = substitution_tag
 
     @property
     def enable(self):

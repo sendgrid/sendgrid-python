@@ -1,14 +1,8 @@
 class CustomArg(object):
 
     def __init__(self, key=None, value=None):
-        self._key = None
-        self._value = None
-
-        if key is not None:
-            self.key = key
-
-        if value is not None:
-            self.value = value
+        self.key = key
+        self.value = value
 
     @property
     def key(self):

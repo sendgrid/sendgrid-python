@@ -1,9 +1,7 @@
 class Category(object):
 
     def __init__(self, name=None):
-        self._name = None
-        if name is not None:
-            self._name = name
+        self._name = name
 
     @property
     def name(self):
