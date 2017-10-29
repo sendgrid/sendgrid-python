@@ -275,7 +275,9 @@ if __name__ == "__main__":
 
 <a name="error-handling"></a>
 # Error Handling
-Custom exceptions for `python_http_client` are now supported which can be imported by consuming libraries.
+[Custom exceptions](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for `python_http_client` are now supported, which can be imported by consuming libraries.
+
+Please see [here](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for a list of supported exceptions.
 
 ```python
   import sendgrid
