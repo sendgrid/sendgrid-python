@@ -16,13 +16,13 @@ class Mail(object):
         self._mail_settings = None
         self._tracking_settings = None
         self._reply_to = None
-        self._personalizations = None
-        self._contents = None
-        self._attachments = None
-        self._sections = None
-        self._headers = None
-        self._categories = None
-        self._custom_args = None
+        self._personalizations = []
+        self._contents = []
+        self._attachments = []
+        self._sections = []
+        self._headers = []
+        self._categories = []
+        self._custom_args = []
 
         # Minimum required to send an email
         if from_email and subject and to_email and content:
@@ -46,38 +46,38 @@ class Mail(object):
         if self.subject is not None:
             mail["subject"] = self.subject
 
-        if self.personalizations is not None:
+        if self.personalizations:
             mail["personalizations"] = [
                 personalization.get()
                 for personalization in self.personalizations
             ]
 
-        if self.contents is not None:
+        if self.contents:
             mail["content"] = [ob.get() for ob in self.contents]
 
-        if self.attachments is not None:
+        if self.attachments:
             mail["attachments"] = [ob.get() for ob in self.attachments]
 
         if self.template_id is not None:
             mail["template_id"] = self.template_id
 
-        if self.sections is not None:
+        if self.sections:
             sections = {}
             for key in self.sections:
                 sections.update(key.get())
             mail["sections"] = sections
 
-        if self.headers is not None:
+        if self.headers:
             headers = {}
             for key in self.headers:
                 headers.update(key.get())
             mail["headers"] = headers
 
-        if self.categories is not None:
+        if self.categories:
             mail["categories"] = [category.get() for category in
                                   self.categories]
 
-        if self.custom_args is not None:
+        if self.custom_args:
             custom_args = {}
             for key in self.custom_args:
                 custom_args.update(key.get())
@@ -190,8 +190,6 @@ class Mail(object):
         return self._personalizations
 
     def add_personalization(self, personalizations):
-        if self._personalizations is None:
-            self._personalizations = []
         self._personalizations.append(personalizations)
 
     @property
@@ -199,8 +197,6 @@ class Mail(object):
         return self._contents
 
     def add_content(self, content):
-        if self._contents is None:
-            self._contents = []
         self._contents.append(content)
 
     @property
@@ -208,8 +204,6 @@ class Mail(object):
         return self._attachments
 
     def add_attachment(self, attachment):
-        if self._attachments is None:
-            self._attachments = []
         self._attachments.append(attachment)
 
     @property
@@ -217,8 +211,6 @@ class Mail(object):
         return self._sections
 
     def add_section(self, section):
-        if self._sections is None:
-            self._sections = []
         self._sections.append(section)
 
     @property
@@ -226,8 +218,6 @@ class Mail(object):
         return self._headers
 
     def add_header(self, header):
-        if self._headers is None:
-            self._headers = []
         if isinstance(header, dict):
             (k, v) = list(header.items())[0]
             self._headers.append(Header(k, v))
@@ -239,8 +229,6 @@ class Mail(object):
         return self._categories
 
     def add_category(self, category):
-        if self._categories is None:
-            self._categories = []
         self._categories.append(category)
 
     @property
@@ -248,6 +236,4 @@ class Mail(object):
         return self._custom_args
 
     def add_custom_arg(self, custom_arg):
-        if self._custom_args is None:
-            self._custom_args = []
         self._custom_args.append(custom_arg)
