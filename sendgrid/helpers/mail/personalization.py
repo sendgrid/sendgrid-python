@@ -112,10 +112,10 @@ class Personalization(object):
             if prop:
                 obj = {}
                 for key in prop:
-                    obj.update(key.get())
+                    obj.update(key)
                     personalization[prop_name] = obj
 
-        for key in ["send_at", "subject"]:
+        for key in ['send_at', 'subject']:
             value = getattr(self, key, None)
             if value:
                 mail[key] = value
