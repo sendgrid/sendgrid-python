@@ -60,15 +60,15 @@ class Mail(object):
             'reply_to': self._get_or_none(self.reply_to),
         }
 
-        return {key: value for key, value in mail.items()
-                if value is not None and value != [] and value != {}}
+        return dict((key, value) for key, value in mail.items()
+                if value is not None and value != [] and value != {})
 
     def _get_or_none(self, from_obj):
         return from_obj.get() if from_obj is not None else None
 
     def _flatten_dictionaries(self, dicts):
         list_of_dicts = [d.get() for d in dicts or []]
-        return {k: v for d in list_of_dicts for k, v in d.items()}
+        return dict((k, v) for d in list_of_dicts for k, v in d.items())
 
     @property
     def personalizations(self):
