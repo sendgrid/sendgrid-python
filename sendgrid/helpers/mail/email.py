@@ -1,17 +1,19 @@
+try:
+    import rfc822
+except ImportError:
+    import email.utils as rfc822
+
+
 class Email(object):
 
     def __init__(self, email=None, name=None):
-        self._name = None
-        self._email = None
-        if name or email:
-            if not name:
-                # allows passing emails as "dude Fella <example@example.com>"
-                self.parse_email(email)
-            else:
-                #allows backwards compatibility for Email(email, name)
-                if email is not None:
-                    self.email = email
-                self.name = name
+        if email and not name:
+            # allows passing emails as "dude Fella <example@example.com>"
+            self.parse_email(email)
+        else:
+            # allows backwards compatibility for Email(email, name)
+            self.email = email
+            self.name = name
 
     @property
     def name(self):
@@ -39,11 +41,6 @@ class Email(object):
         return email
 
     def parse_email(self, email_info):
-        try:
-            import rfc822
-        except ImportError:
-            import email.utils as rfc822
-
         name, email = rfc822.parseaddr(email_info)
 
         # more than likely a string was passed here instead of an email address
