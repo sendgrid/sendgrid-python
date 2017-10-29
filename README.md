@@ -55,6 +55,8 @@ echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
 
+Sengrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+
 ## Install Package
 
 ```bash

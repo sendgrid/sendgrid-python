@@ -28,10 +28,14 @@ class Config(object):
            os.environ.get('VAR_NAME')"""
         base_path = os.path.abspath(os.path.dirname(__file__))
         if os.path.exists(base_path + '/.env'):
-            for line in open(base_path + '/.env'):
-                var = line.strip().split('=')
-                if len(var) == 2:
-                    os.environ[var[0]] = var[1]
+            with open(base_path + '/.env') as f:
+                lines = f.readlines()
+                for line in lines:
+                    var = line.strip().split('=')
+                    if len(var) == 2:
+                        os.environ[var[0]] = var[1]
+
+
 
     @property
     def debug_mode(self):
