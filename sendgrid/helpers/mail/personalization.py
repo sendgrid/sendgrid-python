@@ -116,8 +116,8 @@ class Personalization(object):
                     personalization[prop_name] = obj
 
         for key in ['send_at', 'subject']:
-            value = getattr(self, key, None)
+            value = getattr(self, key)
             if value:
-                mail[key] = value
+                personalization[key] = value
 
         return personalization
