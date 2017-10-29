@@ -53,9 +53,9 @@ class Attachment(object):
          - "inline" results in the attached file being displayed automatically
             within the message.
          - "attachment" results in the attached file requiring some action to
-            be taken before it is displayed (e.g. opening or downloading the file).
+            display (e.g. opening or downloading the file).
         If unspecified, "attachment" is used. Must be one of the two choices.
-        
+
         :rtype: string
         """
         return self._disposition

@@ -14,7 +14,7 @@ class Category(object):
     @property
     def name(self):
         """The name of this Category. Must be less than 255 characters.
-        
+
         :rtype: string
         """
         return self._name
