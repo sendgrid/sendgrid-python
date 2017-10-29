@@ -79,6 +79,20 @@ class UnitTests(unittest.TestCase):
         my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
         self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
 
+    def test_apikey_setter(self):
+        sg_apikey_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
+        self.assertEqual(sg_apikey_setter.apikey, "THISISMYKEY")
+        # Use apikey setter to change api key
+        sg_apikey_setter.apikey = "THISISMYNEWAPIKEY"
+        self.assertEqual(sg_apikey_setter.apikey, "THISISMYNEWAPIKEY")
+
+    def test_api_key_setter(self):
+        sg_api_key_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
+        self.assertEqual(sg_api_key_setter.apikey, "THISISMYKEY")
+        # Use api_key setter to change api key
+        sg_api_key_setter.api_key = "THISISMYNEWAPI_KEY"
+        self.assertEqual(sg_api_key_setter.apikey, "THISISMYNEWAPI_KEY")
+
     def test_impersonate_subuser_init(self):
         temp_subuser = 'abcxyz@this.is.a.test.subuser'
         sg_impersonate = sendgrid.SendGridAPIClient(
