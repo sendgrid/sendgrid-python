@@ -1,5 +1,4 @@
 class Ganalytics(object):
-
     def __init__(self,
                  enable=None,
                  utm_source=None,

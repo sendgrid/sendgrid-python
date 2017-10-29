@@ -2,7 +2,6 @@ import sendgrid
 import json
 import os
 
-
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
@@ -13,4 +12,3 @@ response = sg.client.scopes.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

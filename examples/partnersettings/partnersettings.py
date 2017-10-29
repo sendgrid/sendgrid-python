@@ -2,7 +2,6 @@ import sendgrid
 import json
 import os
 
-
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
@@ -19,11 +18,7 @@ print(response.headers)
 # Updates New Relic partner settings. #
 # PATCH /partner_settings/new_relic #
 
-data = {
-  "enable_subuser_statistics": True, 
-  "enabled": True, 
-  "license_key": ""
-}
+data = {"enable_subuser_statistics": True, "enabled": True, "license_key": ""}
 response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print(response.status_code)
 print(response.body)
@@ -37,4 +32,3 @@ response = sg.client.partner_settings.new_relic.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

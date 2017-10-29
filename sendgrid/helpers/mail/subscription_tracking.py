@@ -1,6 +1,9 @@
 class SubscriptionTracking(object):
-
-    def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
+    def __init__(self,
+                 enable=None,
+                 text=None,
+                 html=None,
+                 substitution_tag=None):
         self._enable = None
         self._text = None
         self._html = None

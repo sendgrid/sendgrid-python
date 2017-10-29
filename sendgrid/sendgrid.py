@@ -14,8 +14,8 @@ class SendGridAPIClient(object):
         :params host: Base URL for the API call
         :type host: string
         """
-        self.path = opts.get(
-            'path', os.path.abspath(os.path.dirname(__file__)))
+        self.path = opts.get('path', os.path.abspath(
+            os.path.dirname(__file__)))
         self._apikey = opts.get('apikey', os.environ.get('SENDGRID_API_KEY'))
         # Support v2 api_key naming
         self._apikey = opts.get('api_key', self._apikey)
@@ -28,9 +28,8 @@ class SendGridAPIClient(object):
 
         headers = self._get_default_headers()
 
-        self.client = python_http_client.Client(host=self.host,
-                                                request_headers=headers,
-                                                version=3)
+        self.client = python_http_client.Client(
+            host=self.host, request_headers=headers, version=3)
 
     def _get_default_headers(self):
         headers = {

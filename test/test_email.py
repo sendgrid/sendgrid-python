@@ -15,13 +15,13 @@ class TestEmailObject(unittest.TestCase):
         email = Email(address)
 
         self.assertEqual(email.email, "test@example.com")
-    
+
     def test_add_name(self):
         name = "SomeName"
         email = Email(name=name)
 
         self.assertEqual(email.name, name)
-    
+
     def test_add_name_email(self):
         name = "SomeName"
         address = "test@example.com"
@@ -43,7 +43,7 @@ class TestEmailObject(unittest.TestCase):
         email = Email(name_address)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")
-    
+
     def test_empty_obj_add_name(self):
         email = Email()
         name = "SomeName"

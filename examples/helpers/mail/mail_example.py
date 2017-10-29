@@ -1,6 +1,3 @@
-import json
-import os
-import urllib2
 from sendgrid.helpers.mail import *
 from sendgrid import *
 
@@ -50,30 +47,36 @@ def get_mock_personalization_dict():
     """Get a dict of personalization mock."""
     mock_pers = dict()
 
-    mock_pers['to_list'] = [Email("test1@example.com",
-                                  "Example User"),
-                            Email("test2@example.com",
-                                  "Example User")]
+    mock_pers['to_list'] = [
+        Email("test1@example.com", "Example User"),
+        Email("test2@example.com", "Example User")
+    ]
 
-    mock_pers['cc_list'] = [Email("test3@example.com",
-                                  "Example User"),
-                            Email("test4@example.com",
-                                  "Example User")]
+    mock_pers['cc_list'] = [
+        Email("test3@example.com", "Example User"),
+        Email("test4@example.com", "Example User")
+    ]
 
-    mock_pers['bcc_list'] = [Email("test5@example.com"),
-                             Email("test6@example.com")]
+    mock_pers['bcc_list'] = [
+        Email("test5@example.com"),
+        Email("test6@example.com")
+    ]
 
     mock_pers['subject'] = ("Hello World from the Personalized "
                             "SendGrid Python Library")
 
-    mock_pers['headers'] = [Header("X-Test", "test"),
-                            Header("X-Mock", "true")]
+    mock_pers['headers'] = [Header("X-Test", "test"), Header(
+             "X-Mock", "true")]
 
-    mock_pers['substitutions'] = [Substitution("%name%", "Example User"),
-                                  Substitution("%city%", "Denver")]
+    mock_pers['substitutions'] = [
+        Substitution("%name%", "Example User"),
+        Substitution("%city%", "Denver")
+    ]
 
-    mock_pers['custom_args'] = [CustomArg("user_id", "343"),
-                                CustomArg("type", "marketing")]
+    mock_pers['custom_args'] = [
+        CustomArg("user_id", "343"),
+        CustomArg("type", "marketing")
+    ]
 
     mock_pers['send_at'] = 1443636843
     return mock_pers
@@ -126,10 +129,9 @@ def build_tracking_settings():
                                                     "open image in the "
                                                     "body of the message"))
 
-    subs_track = SubscriptionTracking(True,
-                                      ("text to insert into the "
-                                       "text/plain portion of the"
-                                       " message"),
+    subs_track = SubscriptionTracking(True, ("text to insert into the "
+                                             "text/plain portion of the"
+                                             " message"),
                                       ("<html><body>html to insert "
                                        "into the text/html portion of "
                                        "the message</body></html>"),
@@ -156,8 +158,9 @@ def build_kitchen_sink():
     mail.add_personalization(build_personalization(personalization))
 
     mail.add_content(Content("text/plain", "some text here"))
-    mail.add_content(Content("text/html", ("<html><body>some text "
-                             "here</body></html>")))
+    mail.add_content(
+        Content("text/html", ("<html><body>some text "
+                              "here</body></html>")))
 
     mail.add_attachment(build_attachment1())
     mail.add_attachment(build_attachment2())
@@ -179,7 +182,8 @@ def build_kitchen_sink():
     mail.send_at = 1443636842
 
     # This must be a valid [batch ID]
-    # (https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
+    # https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters
+    # to work
     # mail.set_batch_id("N2VkYjBjYWItMGU4OC0xMWU2LWJhMzYtZjQ1Yzg5OTBkNzkxLWM5ZTUyZjNhOA")
     mail.asm = ASM(99, [4, 5, 6, 7, 8])
     mail.ip_pool_name = "24"

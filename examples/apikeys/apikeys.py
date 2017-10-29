@@ -1,7 +1,5 @@
 import sendgrid
-import json
 import os
-
 
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
@@ -10,13 +8,9 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /api_keys #
 
 data = {
-  "name": "My API Key", 
-  "sample": "data", 
-  "scopes": [
-    "mail.send", 
-    "alerts.create", 
-    "alerts.read"
-  ]
+    "name": "My API Key",
+    "sample": "data",
+    "scopes": ["mail.send", "alerts.create", "alerts.read"]
 }
 response = sg.client.api_keys.post(request_body=data)
 print(response.status_code)
@@ -38,11 +32,8 @@ print(response.headers)
 # PUT /api_keys/{api_key_id} #
 
 data = {
-  "name": "A New Hope", 
-  "scopes": [
-    "user.profile.read", 
-    "user.profile.update"
-  ]
+    "name": "A New Hope",
+    "scopes": ["user.profile.read", "user.profile.update"]
 }
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).put(request_body=data)
@@ -54,9 +45,7 @@ print(response.headers)
 # Update API keys #
 # PATCH /api_keys/{api_key_id} #
 
-data = {
-  "name": "A New Hope"
-}
+data = {"name": "A New Hope"}
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).patch(request_body=data)
 print(response.status_code)
@@ -82,4 +71,3 @@ response = sg.client.api_keys._(api_key_id).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

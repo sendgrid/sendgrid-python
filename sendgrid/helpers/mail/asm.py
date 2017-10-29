@@ -1,5 +1,4 @@
 class ASM(object):
-
     def __init__(self, group_id=None, groups_to_display=None):
         self._group_id = None
         self._groups_to_display = None

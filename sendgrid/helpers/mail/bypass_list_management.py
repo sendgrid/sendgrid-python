@@ -1,5 +1,4 @@
 class BypassListManagement(object):
-
     def __init__(self, enable=None):
         self._enable = None
 

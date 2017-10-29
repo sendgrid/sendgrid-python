@@ -1,5 +1,4 @@
 class BCCSettings(object):
-
     def __init__(self, enable=None, email=None):
         self._enable = None
         self._email = None

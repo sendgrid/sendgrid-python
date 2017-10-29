@@ -1,5 +1,4 @@
 class MailSettings(object):
-
     def __init__(self):
         self._bcc_settings = None
         self._bypass_list_management = None

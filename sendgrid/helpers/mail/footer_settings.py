@@ -1,5 +1,4 @@
 class FooterSettings(object):
-
     def __init__(self, enable=None, text=None, html=None):
         self._enable = None
         self._text = None

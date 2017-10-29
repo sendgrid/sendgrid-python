@@ -8,7 +8,6 @@ except ImportError:
 
 
 class UnitTests(unittest.TestCase):
-
     def setUp(self):
         self.config = Config()
 
@@ -16,23 +15,11 @@ class UnitTests(unittest.TestCase):
         endpoint = '/inbound'
         port = 5000
         debug_mode = True
-        keys = ['from',
-                'attachments',
-                'headers',
-                'text',
-                'envelope',
-                'to',
-                'html',
-                'sender_ip',
-                'attachment-info',
-                'subject',
-                'dkim',
-                'SPF',
-                'charsets',
-                'content-ids',
-                'spam_report',
-                'spam_score',
-                'email']
+        keys = [
+            'from', 'attachments', 'headers', 'text', 'envelope', 'to', 'html',
+            'sender_ip', 'attachment-info', 'subject', 'dkim', 'SPF',
+            'charsets', 'content-ids', 'spam_report', 'spam_score', 'email'
+        ]
         host = 'http://127.0.0.1:5000/inbound'
         self.assertTrue(debug_mode, self.config.debug_mode)
         self.assertTrue(endpoint, self.config.endpoint)
