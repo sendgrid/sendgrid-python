@@ -210,7 +210,15 @@ class Mail(object):
     def add_attachment(self, attachment):
         if self._attachments is None:
             self._attachments = []
+        if isinstance(attachment, S3Attachment):
+            self.download_s3_attachment(attachment)
         self._attachments.append(attachment)
+
+    def download_s3_attachment(self, s3_attachment):
+        import boto3
+        s3 = boto3.resource('s3') if s3_attachment.session is None else s3_attachment.session.resource('s3')
+        s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
+
 
     @property
     def sections(self):

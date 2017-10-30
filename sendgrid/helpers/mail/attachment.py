@@ -64,3 +64,27 @@ class Attachment(object):
         if self.content_id is not None:
             attachment["content_id"] = self.content_id
         return attachment
+
+class S3Attachment(Attachment):
+    def __init__(self):
+        self._bucket = None
+        self._session = None
+        Attachment.__init__(self)
+
+    @property
+    def bucket(self):
+        return self._bucket
+
+    @bucket.setter
+    def bucket(self, value):
+        self._bucket = value
+
+    @property
+    def session(self):
+        return self._session
+
+    @session.setter
+    def session(self, value):
+        self._session = value
+
+
