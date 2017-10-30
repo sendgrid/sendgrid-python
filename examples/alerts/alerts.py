@@ -1,7 +1,5 @@
 import sendgrid
-import json
 import os
-
 
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
@@ -10,9 +8,9 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /alerts #
 
 data = {
-  "email_to": "example@example.com", 
-  "frequency": "daily", 
-  "type": "stats_notification"
+    "email_to": "example@example.com",
+    "frequency": "daily",
+    "type": "stats_notification"
 }
 response = sg.client.alerts.post(request_body=data)
 print(response.status_code)
@@ -32,9 +30,7 @@ print(response.headers)
 # Update an alert #
 # PATCH /alerts/{alert_id} #
 
-data = {
-  "email_to": "example@example.com"
-}
+data = {"email_to": "example@example.com"}
 alert_id = "test_url_param"
 response = sg.client.alerts._(alert_id).patch(request_body=data)
 print(response.status_code)
@@ -60,4 +56,3 @@ response = sg.client.alerts._(alert_id).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

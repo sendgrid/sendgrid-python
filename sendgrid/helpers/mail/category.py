@@ -1,5 +1,4 @@
 class Category(object):
-
     def __init__(self, name=None):
         self._name = None
         if name is not None:

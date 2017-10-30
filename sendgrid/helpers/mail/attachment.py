@@ -1,5 +1,4 @@
 class Attachment(object):
-
     def __init__(self):
         self._content = None
         self._type = None

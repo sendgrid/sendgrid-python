@@ -1,5 +1,4 @@
 class OpenTracking(object):
-
     def __init__(self, enable=None, substitution_tag=None):
         self._enable = None
         self._substitution_tag = None

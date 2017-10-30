@@ -1,5 +1,4 @@
 class Content(object):
-
     def __init__(self, type_=None, value=None):
         self._type = None
         self._value = None

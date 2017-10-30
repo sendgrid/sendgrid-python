@@ -2,10 +2,15 @@
 from .personalization import Personalization
 from .header import Header
 
+
 class Mail(object):
     """Creates the response body for v3/mail/send"""
-    def __init__(
-            self, from_email=None, subject=None, to_email=None, content=None):
+
+    def __init__(self,
+                 from_email=None,
+                 subject=None,
+                 to_email=None,
+                 content=None):
         self._from_email = None
         self._subject = None
         self._template_id = None
@@ -74,8 +79,9 @@ class Mail(object):
             mail["headers"] = headers
 
         if self.categories is not None:
-            mail["categories"] = [category.get() for category in
-                                  self.categories]
+            mail["categories"] = [
+                category.get() for category in self.categories
+            ]
 
         if self.custom_args is not None:
             custom_args = {}

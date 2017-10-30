@@ -1,5 +1,4 @@
 class SpamCheck(object):
-
     def __init__(self, enable=None, threshold=None, post_to_url=None):
         self._enable = None
         self._threshold = None

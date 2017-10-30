@@ -1,5 +1,4 @@
 class ClickTracking(object):
-
     def __init__(self, enable=None, enable_text=None):
         self._enable = None
         self._enable_text = None

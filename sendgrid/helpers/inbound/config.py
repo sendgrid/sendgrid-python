@@ -5,15 +5,14 @@ import yaml
 
 class Config(object):
     """All configuration for this app is loaded here"""
+
     def __init__(self, **opts):
         if os.environ.get('ENV') != 'prod':  # We are not in Heroku
             self.init_environment()
-
         """Allow variables assigned in config.yml available the following variables
            via properties"""
-        self.path = opts.get(
-            'path', os.path.abspath(os.path.dirname(__file__))
-        )
+        self.path = opts.get('path', os.path.abspath(
+            os.path.dirname(__file__)))
         with open(self.path + '/config.yml') as stream:
             config = yaml.load(stream)
             self._debug_mode = config['debug_mode']
@@ -34,8 +33,6 @@ class Config(object):
                     var = line.strip().split('=')
                     if len(var) == 2:
                         os.environ[var[0]] = var[1]
-
-
 
     @property
     def debug_mode(self):

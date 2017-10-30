@@ -1,5 +1,4 @@
 class Email(object):
-
     def __init__(self, email=None, name=None):
         self._name = None
         self._email = None
@@ -8,7 +7,7 @@ class Email(object):
                 # allows passing emails as "dude Fella <example@example.com>"
                 self.parse_email(email)
             else:
-                #allows backwards compatibility for Email(email, name)
+                # allows backwards compatibility for Email(email, name)
                 if email is not None:
                     self.email = email
                 self.name = name

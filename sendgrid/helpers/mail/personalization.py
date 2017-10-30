@@ -1,5 +1,4 @@
 class Personalization(object):
-
     def __init__(self):
         self._tos = None
         self._ccs = None

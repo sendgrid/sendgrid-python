@@ -1,5 +1,4 @@
 class TrackingSettings(object):
-
     def __init__(self):
         self._click_tracking = None
         self._open_tracking = None

@@ -2,7 +2,6 @@ import sendgrid
 import json
 import os
 
-
 sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
@@ -20,11 +19,8 @@ print(response.headers)
 # DELETE /suppression/blocks #
 
 data = {
-  "delete_all": False, 
-  "emails": [
-    "example1@example.com", 
-    "example2@example.com"
-  ]
+    "delete_all": False,
+    "emails": ["example1@example.com", "example2@example.com"]
 }
 response = sg.client.suppression.blocks.delete(request_body=data)
 print(response.status_code)
@@ -66,11 +62,8 @@ print(response.headers)
 # DELETE /suppression/bounces #
 
 data = {
-  "delete_all": True, 
-  "emails": [
-    "example@example.com", 
-    "example2@example.com"
-  ]
+    "delete_all": True,
+    "emails": ["example@example.com", "example2@example.com"]
 }
 response = sg.client.suppression.bounces.delete(request_body=data)
 print(response.status_code)
@@ -113,11 +106,8 @@ print(response.headers)
 # DELETE /suppression/invalid_emails #
 
 data = {
-  "delete_all": False, 
-  "emails": [
-    "example1@example.com", 
-    "example2@example.com"
-  ]
+    "delete_all": False,
+    "emails": ["example1@example.com", "example2@example.com"]
 }
 response = sg.client.suppression.invalid_emails.delete(request_body=data)
 print(response.status_code)
@@ -179,11 +169,8 @@ print(response.headers)
 # DELETE /suppression/spam_reports #
 
 data = {
-  "delete_all": False, 
-  "emails": [
-    "example1@example.com", 
-    "example2@example.com"
-  ]
+    "delete_all": False,
+    "emails": ["example1@example.com", "example2@example.com"]
 }
 response = sg.client.suppression.spam_reports.delete(request_body=data)
 print(response.status_code)
@@ -199,4 +186,3 @@ response = sg.client.suppression.unsubscribes.get(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
-
