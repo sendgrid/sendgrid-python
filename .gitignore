@@ -1,4 +1,5 @@
 bin/
+env/
 include/
 lib/
 .Python
@@ -15,9 +16,9 @@ venv/
 .tox/
 profile*
 README.txt
-temp*.py
 .coverage
 coverage.xml
 htmlcov
 temp*.py
 sendgrid.env
+

@@ -1,4 +1,4 @@
-"""A module for sending test SendGrid Inbound Parse messages
+"""A module for sending test SendGrid Inbound Parse messages.
 Usage: ./send.py [path to file containing test data]"""
 import argparse
 import sys
@@ -12,14 +12,14 @@ from python_http_client import Client
 
 class Send(object):
     def __init__(self, url):
+        """Create a Send object with target `url`."""
         self._url = url
 
     def test_payload(self, payload_filepath):
-        """
-        Send test SendGrid Inbound Parse message
+        """Send a test payload.
 
-        :param payload_filepath: Path for payload file
-        :return: Server response
+        Load a payload from payload_filepath, apply headers, and POST self.url.
+        Return the response object.
         """
         headers = {
             "User-Agent": "SendGrid-Test",
@@ -32,6 +32,7 @@ class Send(object):
 
     @property
     def url(self):
+        """URL to send to."""
         return self._url
 
 def main():
