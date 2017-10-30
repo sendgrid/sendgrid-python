@@ -61,28 +61,17 @@ class Mail(object):
         if self.template_id is not None:
             mail["template_id"] = self.template_id
 
-        if self.sections is not None:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
-            mail["sections"] = sections
-
-        if self.headers is not None:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
-            mail["headers"] = headers
+        for attribute in [(self.sections, "sections"), (self.headers, "headers"), (self.custom_args, "custom_args")]:
+        	if attribute[0] is not None:
+        		tmp = {}
+        		for key in attribute[0]:
+        			tmp.update(key.get())
+        		mail[attribute[1]] = tmp
 
         if self.categories is not None:
             mail["categories"] = [category.get() for category in
                                   self.categories]
-
-        if self.custom_args is not None:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
-            mail["custom_args"] = custom_args
-
+        
         if self.send_at is not None:
             mail["send_at"] = self.send_at
 
