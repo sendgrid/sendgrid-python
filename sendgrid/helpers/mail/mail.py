@@ -74,35 +74,25 @@ class Mail(object):
             ]
 
         if self.contents is not None:
-            mail["content"] = [ob.get() for ob in self.contents]
+            mail["content"] = self._get_list(self.contents)
 
         if self.attachments is not None:
-            mail["attachments"] = [ob.get() for ob in self.attachments]
+            mail["attachments"] = self._get_list(self.attachments)
 
         if self.template_id is not None:
             mail["template_id"] = self.template_id
 
         if self.sections is not None:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
-            mail["sections"] = sections
+            mail["sections"] = self._merge_dicts(self.sections)
 
         if self.headers is not None:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
-            mail["headers"] = headers
+            mail["headers"] = self._merge_dicts(self.headers)
 
         if self.categories is not None:
-            mail["categories"] = [category.get() for category in
-                                  self.categories]
+            mail["categories"] = self._get_list(self.categories)
 
         if self.custom_args is not None:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
-            mail["custom_args"] = custom_args
+            mail["custom_args"] = self._merge_dicts(self.custom_args)
 
         if self.send_at is not None:
             mail["send_at"] = self.send_at
@@ -124,6 +114,7 @@ class Mail(object):
 
         if self.reply_to is not None:
             mail["reply_to"] = self.reply_to.get()
+
         return mail
 
     @property
@@ -393,3 +384,12 @@ class Mail(object):
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
+
+    def _get_list(self, getters):
+        return [x.get for x in getters]
+
+    def _merge_dicts(self, getters):
+        out = {}
+        for key in getters:
+            out.update(key.get())
+        return out
