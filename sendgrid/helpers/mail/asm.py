@@ -41,6 +41,8 @@ class ASM(object):
 
     @groups_to_display.setter
     def groups_to_display(self, value):
+        if value is not None and len(value) > 25:
+            raise ValueError("New groups_to_display exceeds max length of 25.")
         self._groups_to_display = value
 
     def get(self):

@@ -468,6 +468,9 @@ class UnitTests(unittest.TestCase):
             json.dumps(expected_result, sort_keys=True)
         )
 
+    def test_asm_display_group_limit(self):
+        self.assertRaises(ValueError, ASM, 1, list(range(26)))
+
     def test_disable_tracking(self):
         tracking_settings = TrackingSettings()
         tracking_settings.click_tracking = ClickTracking(False, False)
