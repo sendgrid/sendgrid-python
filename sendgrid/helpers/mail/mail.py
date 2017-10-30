@@ -345,7 +345,7 @@ class Mail(object):
         if self._headers is None:
             self._headers = []
         if isinstance(header, dict):
-            (k, v) = list(header.items())[0]
+            k, v = list(header.items())[0]
             self._headers.append(Header(k, v))
         else:
             self._headers.append(header)
