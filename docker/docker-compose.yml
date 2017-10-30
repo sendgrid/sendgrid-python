@@ -5,20 +5,31 @@ services:
    image: sendgrid/sendgrid-python:${TAG}
    restart: unless-stopped
    container_name: sendgrid-prod
-   volumes:
-     -  ${PATH_TO_SENDGRID-PYTHON_PROD}:/mnt/sendgrid-python
-     -  ${PATH_TO_HTTP-CLIENT_PROD}:/mnt/python-http-client
-   env_file: .env
+   tty: true
+   env_file:
+     - .env
 
   sendgrid-dev:
     build:
       context: .
       args:
-        - SENDGRID-PYTHON_VERSION: {SENDGRID-PYTHON_VERSION}
-        - HTTP-CLIENT_VERSION: {HTTP-CLIENT_VERSION}
+        - SENDGRID-PYTHON_VERSION=${SENDGRID_PYTHON_VERSION}
+        - HTTP-CLIENT_VERSION=${HTTP_CLIENT_VERSION}
     restart: unless-stopped
     container_name: sendgrid-dev
-    env_file: .env
+    tty: true
+    env_file:
+      - .env
     volumes:
-      -  ${PATH_TO_SENDGRID-PYTHON_DEV}:/mnt/sendgrid-python
-      -  ${PATH_TO_HTTP-CLIENT_DEV}:/mnt/python-http-client
+      -  ${PATH_TO_SENDGRID_PYTHON_DEV}:/mnt/sendgrid-python
+      -  ${PATH_TO_HTTP_CLIENT_DEV}:/mnt/python-http-client
+
+  sendgrid-beta:
+   image: sendgrid/sendgrid-python:${TAG}
+   restart: unless-stopped
+   container_name: sendgrid-beta
+   tty: true
+   env_file:
+     - .env
+   volumes:
+     -  ${PATH_TO_SENDGRID_PYTHON_FORK}:/root/sources/sendgrid-python/sendgrid

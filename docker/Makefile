@@ -17,4 +17,4 @@ build-build:
 	docker-compose up --build -d
 
 up: rm clean build-build
-	echo "Sendgrid dev environment is alive :D"
+	echo "Sendgrid-python environment is alive :D"
