@@ -1,11 +1,3 @@
-# import deploy config
-deployfile=deploy.env
-ifdef dpl
-deployfile=$(dpl)
-endif
-include $(deployfile)
-export $(shell sed 's/=.*//' $(deployfile))
-
 stop:
 	docker-compose stop
 
