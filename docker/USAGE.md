@@ -70,6 +70,24 @@ $ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/
 
 Note that the paths you specify in `-v` must be absolute.
 
+# Docker Compose
+
+## Using tag's for versions - DockerHub
+
+### Edit variable TAG on .env/env_sample file
+
+```sh-session
+$ sed -ie 's/TAG=latest/TAG=choice_a_version/g'
+```
+### Run service using tags
+
+```sh-session
+$ cd /path/to/sendgrid-python/docker
+$ docker-compose up -d
+```
+
+# Specifying specific versions
+
 <a name="Testing"></a>
 # Testing
 Testing is easy!  Run the container, `cd sendgrid`, and run `tox`.
