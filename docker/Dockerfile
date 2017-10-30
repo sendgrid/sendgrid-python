@@ -36,8 +36,8 @@ RUN Python3.6 -m pip install flask
 
 # set up default sendgrid env
 WORKDIR /root/sources
-RUN git clone https://github.com/sendgrid/sendgrid-python.git && \
-    git clone https://github.com/sendgrid/python-http-client.git
+RUN git clone https://github.com/sendgrid/sendgrid-python.git --branch && \
+    git clone https://github.com/sendgrid/python-http-client.git --branch 
 WORKDIR /root
 RUN ln -s /root/sources/sendgrid-python/sendgrid && \
     ln -s /root/sources/python-http-client/python_http_client
