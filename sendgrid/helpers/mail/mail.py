@@ -375,7 +375,7 @@ def _merge_dicts(getters):
 
 
 def _trim_none(dictionary):
-    for key, val in dictionary.items():
-        if val is None:
-            dictionary.pop(key)
+    keys = [key for key, val in dictionary.items() if val is None]
+    for key in keys:
+        del dictionary[key]
     return dictionary
