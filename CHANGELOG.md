@@ -1,6 +1,42 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.3.0] - 2017-10-23 ##
+### Added
+- Pull #348: Allows users to submit rfc822 formatted email addresses
+- Big thanks to [Matt Bernier](https://github.com/mbernier) for the pull request!
+
+## [5.2.1] - 2017-10-21 ##
+### Fixed
+- Pull #364: Install prism with non superuser account 
+- Big thanks to [meahow](https://github.com/meahow) for the pull request!
+
+## [5.2.0] - 2017-08-31 ##
+### Added
+- Pull #335: Permit unicode string values with Substitution helper
+- Big thanks to [Mehron Kugler](https://github.com/mehronkugler) for the pull request!
+
+## [5.1.0] - 2017-08-30 ##
+### Added
+- Pull #338: Allow the `__str__` method for the `Mail` object return an `String` instead of a `NoneType`
+- Solves #292: The `__str__` method of the `Mail` class, doesn't actually return anything
+- Big thanks to [belfazt](https://github.com/belfazt) for the pull request!
+
+## [5.0.1] - 2017-08-29
+### Fix
+- Pull #337, fixes issue #366
+- On install, some experienced: `ValueError: ("Expected ',' or end-of-list in", 'python-http-client ==3.0.*', 'at', '*')`
+
+## [5.0.0] - 2017-08-11
+### BREAKING CHANGE
+- The breaking change actually happened in [version 4.2.1](https://github.com/sendgrid/sendgrid-python/releases/tag/v4.2.1), where I mistakenly applied a patch version bump. See issues #328 and #321 for details.
+- This version (5.0.0) replaces error handling via HTTPError from urllib in favor of custom error handling via the [HTTPError class](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) as was the case in version 4.2.0.
+
+## [4.2.1] - 2017-08-03 ##
+### Fixed
+- Issue #321: Installing 4.2.0 installs the wrong version of python-http-client
+- Big thanks to [w-](https://github.com/w-) for the heads up!
+
 ## [4.2.0] - 2017-06-01 ##
 ### Added
 - Pull #318 Add ability to reset request headers on client attribute
@@ -15,7 +51,7 @@ All notable changes to this project will be documented in this file.
 ### BREAKING CHANGE
 - Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
 - Big thanks to [Denis Vlasov](https://github.com/denis90) for the pull request!
-- The changes break the impelmentation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
+- The changes break the implementation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
 - `set_from()` is now the property `from_email`
 - `set_subject()` is now the property `subject`
 - `set_template_id()` is now the property `template_id`
@@ -273,7 +309,7 @@ All notable changes to this project will be documented in this file.
 ## [1.5.9] - 2015-10-26 ##
 
 ### Added ###
-- Supression Unsubscribes [GET]
+- Suppression Unsubscribes [GET]
 
 ## [1.5.8] - 2015-10-21 ##
 
@@ -306,7 +342,7 @@ All notable changes to this project will be documented in this file.
 ### Added ###
 - Refactored tests and added Tox support
 - Framework for Web API v3 endpoints
-- Web API v3 endpionts: apikeys, ASM groups and ASM suppressions
+- Web API v3 endpoints: apikeys, ASM groups and ASM suppressions
 
 ### Fixed  ###
 - Python 3 Fix [#126](https://github.com/sendgrid/sendgrid-python/issues/126)

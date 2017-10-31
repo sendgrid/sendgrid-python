@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 
 from sendgrid.helpers.mail import (
@@ -64,6 +65,8 @@ class UnitTests(unittest.TestCase):
             '[{"to": [{"email": "test@example.com"}]}], '
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
+
+        self.assertTrue(isinstance(str(mail), str))
 
     def test_kitchenSink(self):
         self.maxDiff = None
@@ -405,4 +408,74 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(
             json.dumps(mail.get(), sort_keys=True),
             json.dumps(expected_result, sort_keys=True)
+        )
+
+    def test_unicode_values_in_substitutions_helper(self):
+
+        """ Test that the Substitutions helper accepts unicode values """
+
+        self.maxDiff = None
+
+        """Minimum required to send an email"""
+        mail = Mail()
+
+        mail.from_email = Email("test@example.com")
+
+        mail.subject = "Testing unicode substitutions with the SendGrid Python Library"
+
+        personalization = Personalization()
+        personalization.add_to(Email("test@example.com"))
+        personalization.add_substitution(Substitution("%city%", u"Αθήνα"))
+        mail.add_personalization(personalization)
+
+        mail.add_content(Content("text/plain", "some text here"))
+        mail.add_content(
+            Content(
+                "text/html",
+                "<html><body>some text here</body></html>"))
+
+        expected_result = {
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": "some text here"
+                },
+                {
+                    "type": "text/html",
+                    "value": "<html><body>some text here</body></html>"
+                }
+            ],
+            "from": {
+                "email": "test@example.com"
+            },
+            "personalizations": [
+                {
+                    "substitutions": {
+                        "%city%": u"Αθήνα"
+                    },
+                    "to": [
+                        {
+                            "email": "test@example.com"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Testing unicode substitutions with the SendGrid Python Library",
+        }
+
+        self.assertEqual(
+            json.dumps(mail.get(), sort_keys=True),
+            json.dumps(expected_result, sort_keys=True)
+        )
+
+    def test_asm_display_group_limit(self):
+        self.assertRaises(ValueError, ASM, 1, list(range(26)))
+
+    def test_disable_tracking(self):
+        tracking_settings = TrackingSettings()
+        tracking_settings.click_tracking = ClickTracking(False, False)
+
+        self.assertEqual(
+            tracking_settings.get(),
+            {'click_tracking': {'enable': False, 'enable_text': False}}
         )
