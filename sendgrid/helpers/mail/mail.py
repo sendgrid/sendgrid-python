@@ -378,3 +378,4 @@ def _trim_none(dictionary):
     for key, val in dictionary.items():
         if val is None:
             dictionary.pop(key)
+    return dictionary
