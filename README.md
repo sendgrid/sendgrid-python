@@ -169,6 +169,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 - [Library Usage Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
+- [Hacktoberfest](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 - [Processing Inbound Email](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound)
 
