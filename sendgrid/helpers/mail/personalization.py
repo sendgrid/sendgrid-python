@@ -4,7 +4,7 @@ class Personalization(object):
     """
 
     def __init__(self):
-        """Create an empty Personalization."""
+        """Create an empty Personalization and initialize member variables."""
         self._tos = []
         self._ccs = []
         self._bccs = []
@@ -13,7 +13,6 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = []
-
 
     @property
     def tos(self):
