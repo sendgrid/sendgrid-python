@@ -65,6 +65,7 @@ class Attachment(object):
             attachment["content_id"] = self.content_id
         return attachment
 
+
 class S3Attachment(Attachment):
     def __init__(self):
         self._bucket = None
@@ -86,5 +87,3 @@ class S3Attachment(Attachment):
     @session.setter
     def session(self, value):
         self._session = value
-
-

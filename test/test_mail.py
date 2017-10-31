@@ -136,6 +136,14 @@ class UnitTests(unittest.TestCase):
         attachment2.content_id = "Banner"
         mail.add_attachment(attachment2)
 
+        attachment3 = S3Attachment()
+        attachment3.content = "s3sampletext"
+        attachment3.type = "application/pdf"
+        attachment3.filename = "sample.pdf"
+        attachment3.disposition = "attachment"
+        attachment3.content_id = "S3AttachmentSample"
+        mail.add_attachment(attachment3)
+
         mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
 
         mail.add_section(
@@ -221,6 +229,13 @@ class UnitTests(unittest.TestCase):
                     "disposition": "inline",
                     "filename": "banner.png",
                     "type": "image/png"
+                },
+                {
+                    "content": "s3sampletext",
+                    "content_id": "application/pdf",
+                    "disposition": "attachment",
+                    "filename": "sample.pdf",
+                    "type": "application/pdf"
                 }
             ],
             "batch_id": "sendgrid_batch_id",

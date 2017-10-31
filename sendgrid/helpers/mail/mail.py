@@ -210,15 +210,21 @@ class Mail(object):
     def add_attachment(self, attachment):
         if self._attachments is None:
             self._attachments = []
-        if isinstance(attachment, S3Attachment):
+        if isinstance(attachment, attachment.S3Attachment):
             self.download_s3_attachment(attachment)
         self._attachments.append(attachment)
 
     def download_s3_attachment(self, s3_attachment):
         import boto3
+        import botocore
         s3 = boto3.resource('s3') if s3_attachment.session is None else s3_attachment.session.resource('s3')
-        s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
-
+        try:
+            s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == "404":
+                print("The S3 attachment object does not exist.")
+            else:
+                raise
 
     @property
     def sections(self):
