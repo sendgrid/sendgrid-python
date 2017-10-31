@@ -101,6 +101,32 @@ def build_attachment2():
     attachment.content_id = "Banner"
     return attachment
 
+def build_attachment3_s3_store_default_session():
+    """Build attachment mock to be stored in s3 with default session."""
+    attachment = S3Attachment()
+    attachment.content = "bG9yZW1pcHN1bWZvb2JhcnNk"
+    attachment.type = "application/pdf"
+    attachment.filename = "sample.pdf"
+    attachment.disposition = "attachment"
+    attachment.content_id = "S3AttachmentSample"
+    return attachment
+
+def build_attachment4_s3_store_custom_session():
+    """Build attachment mock to be stored in s3 with custom session."""
+    attachment = S3Attachment()
+    attachment.content = "bG9yZW1pcHN1bWZvb2JhcnNk"
+    attachment.type = "application/pdf"
+    attachment.filename = "foo.pdf"
+    attachment.disposition = "attachment"
+    attachment.content_id = "S3Session"
+    attachment.bucket = YOUR_BUCKET_NAME
+    attachment.session =    (aws_access_key_id=YOUR_ACCESS_KEY,
+                            aws_secret_access_key=YOUR_SECRET_KEY,
+                            aws_session_token=SESSION_TOKEN,
+                            region_name=REGION_NAME)
+    return attachment
+
+
 
 def build_mail_settings():
     """Build mail settings mock."""
@@ -161,6 +187,7 @@ def build_kitchen_sink():
 
     mail.add_attachment(build_attachment1())
     mail.add_attachment(build_attachment2())
+
 
     mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
 

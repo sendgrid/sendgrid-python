@@ -137,7 +137,7 @@ class UnitTests(unittest.TestCase):
         mail.add_attachment(attachment2)
 
         attachment3 = S3Attachment()
-        attachment3.content = "s3sampletext"
+        attachment3.content = "bG9yZW1pcHN1bWZvb2JhcnNk"
         attachment3.type = "application/pdf"
         attachment3.filename = "sample.pdf"
         attachment3.disposition = "attachment"
@@ -231,8 +231,8 @@ class UnitTests(unittest.TestCase):
                     "type": "image/png"
                 },
                 {
-                    "content": "s3sampletext",
-                    "content_id": "application/pdf",
+                    "content": "bG9yZW1pcHN1bWZvb2JhcnNk",
+                    "content_id": "S3AttachmentSample",
                     "disposition": "attachment",
                     "filename": "sample.pdf",
                     "type": "application/pdf"
