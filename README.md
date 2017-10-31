@@ -180,6 +180,8 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 <a name="announcements"></a>
 # Announcements
 
+Join an experienced and passionate team that focuses on making an impact. Opportunities abound to grow the product - and grow your career! Check out our [Data Platform Engineer role](http://grnh.se/wbx1701)
+
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
 All updates to this library are documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
