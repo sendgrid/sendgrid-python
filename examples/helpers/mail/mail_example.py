@@ -102,8 +102,10 @@ def build_attachment2():
     return attachment
 
 def build_attachment3_s3_store_default_session():
-    """ Build attachment mock to be stored in s3 with default session.
-        Read Boto docs to setup default AWS config
+    """
+    Build attachment mock to be stored in s3
+    with default session.
+    Read Boto docs to setup default AWS config
     """
     attachment = S3Attachment()
     attachment.content = "bG9yZW1pcHN1bWZvb2JhcnNk"
