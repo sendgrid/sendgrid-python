@@ -139,7 +139,7 @@ The above local "Initial setup" is complete
 * [tox](https://pypi.python.org/pypi/tox)
 * [prism](https://github.com/stoplightio/prism) v0.6 - It should be available in your PATH, but unittest script
 will try to install it locally if not found. Apart from PATH env variable it will check in `~/bin` and `/usr/local/bin`.
-You can install by yourself it in user dir by calling `source test/prism.sh`.
+You can install it by yourself in user dir by calling `source test/prism.sh`.
 
 #### Initial setup: ####
 
