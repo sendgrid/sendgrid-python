@@ -19,7 +19,7 @@ Version 3.X.X+ of this library provides full support for all SendGrid [Web API v
 
 This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
-Please browse the rest of this README for further detail.
+Please browse the rest of this README for further details.
 
 We appreciate your continued support, thank you!
 
