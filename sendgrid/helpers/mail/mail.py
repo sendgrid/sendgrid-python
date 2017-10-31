@@ -308,16 +308,16 @@ class Mail(object):
         """
         return self._attachments
 
-    def add_attachment(self, attachment):
+    def add_attachment(self, mail_attachment):
         """Add an Attachment to this Mail.
 
         :type attachment: Attachment
         """
         if self._attachments is None:
             self._attachments = []
-        if isinstance(attachment, attachment.S3Attachment):
-            self.download_s3_attachment(attachment)
-        self._attachments.append(attachment)
+        if isinstance(mail_attachment, attachment.S3Attachment):
+            self.download_s3_attachment(mail_attachment)
+        self._attachments.append(mail_attachment)
 
     def download_s3_attachment(self, s3_attachment):
         """
