@@ -67,6 +67,9 @@ class Attachment(object):
 
 
 class S3Attachment(Attachment):
+    """
+    Attachment type to be stored/downloaded to/from S3
+    """
     def __init__(self):
         self._bucket = None
         self._session = None

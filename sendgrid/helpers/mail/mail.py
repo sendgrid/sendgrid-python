@@ -208,6 +208,10 @@ class Mail(object):
         return self._attachments
 
     def add_attachment(self, attachment):
+        """
+        Attachment type determines attachment
+        to be stored/downloaded from elsewhere
+        """
         if self._attachments is None:
             self._attachments = []
         if isinstance(attachment, attachment.S3Attachment):
