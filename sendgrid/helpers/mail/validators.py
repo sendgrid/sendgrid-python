@@ -7,7 +7,7 @@ class ValidateAPIKey(object):
 
     regexes = None
 
-    def __init__(self, regex_strings=list(), use_default=True):
+    def __init__(self, regex_strings=None, use_default=True):
         """Constructor
         Args:
             regex_strings (list<str>): list of regex strings
@@ -18,8 +18,9 @@ class ValidateAPIKey(object):
         self.regexes = set()
 
         #Compile the regex strings into patterns, add them to our set
-        for regex_string in regex_strings:
-            self.regexes.add(re.compile(regex_string))
+        if regex_strings is not None:
+            for regex_string in regex_strings:
+                self.regexes.add(re.compile(regex_string))
 
         if use_default:
             default_regex_string = 'SG\.[0-9a-zA-Z]+\.[0-9a-zA-Z]+'
