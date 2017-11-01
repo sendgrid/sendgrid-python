@@ -1,6 +1,6 @@
 import sys
 import os
-import io
+from io import open
 from setuptools import setup, find_packages
 
 __version__ = None
@@ -9,7 +9,7 @@ with open('sendgrid/version.py') as f:
 
 long_description = 'Please see our GitHub README'
 if os.path.exists('README.txt'):
-    long_description = io.open('README.txt', 'r', encoding='utf-8').read()
+    long_description = open('README.txt', 'r', encoding='utf-8').read()
 
 
 def getRequires():
