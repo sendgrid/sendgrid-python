@@ -50,6 +50,7 @@ class Mail(object):
         self._headers = None
         self._categories = None
         self._custom_args = None
+        self._validator = ValidateAPIKey()
 
         # Minimum required to send an email
         if from_email and subject and to_email and content:
@@ -146,6 +147,7 @@ class Mail(object):
 
     @subject.setter
     def subject(self, value):
+        self._validator.validate_message_text(value)
         self._subject = value
 
     @property
@@ -285,7 +287,7 @@ class Mail(object):
 ################################################################
 
 class ValidateAPIKey(object):
-    """Valides content to ensure SendGrid API key is not present"""
+    """Validates content to ensure SendGrid API key is not present"""
 
     regexes = None
 
