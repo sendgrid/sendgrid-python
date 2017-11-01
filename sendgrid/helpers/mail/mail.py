@@ -329,7 +329,7 @@ class Mail(object):
     def add_section(self, section):
         """Add a Section to this Mail.
 
-        :type attachment: Section
+        :type section: Section
         """
         if self._sections is None:
             self._sections = []
