@@ -17,7 +17,7 @@ class ValidateAPIKey(object):
         import re
         self.regexes = set()
 
-        #Compile the regex strings into patterns, add them to our set
+        # Compile the regex strings into patterns, add them to our set
         if regex_strings is not None:
             for regex_string in regex_strings:
                 self.regexes.add(re.compile(regex_string))
@@ -37,11 +37,11 @@ class ValidateAPIKey(object):
             APIKeyIncludedException: If any content in request_body matches regex
         """
 
-        #Handle string in edge-case
+        # Handle string in edge-case
         if isinstance(request_body, str):
             self.validate_message_text(request_body)
 
-        #Default param
+        # Default param
         elif isinstance(request_body, dict):
             if "content" in request_body:
                 contents = request_body["content"]
