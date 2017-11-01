@@ -124,11 +124,11 @@ def build_attachment4_s3_store_custom_session():
     attachment.disposition = "attachment"
     attachment.content_id = "S3Session"
     attachment.bucket = YOUR_BUCKET_NAME
-    attachment.session =    boto3.session.Session(
-                                    aws_access_key_id=YOUR_ACCESS_KEY,
-                                    aws_secret_access_key=YOUR_SECRET_KEY,
-                                    aws_session_token=SESSION_TOKEN,
-                                    region_name=REGION_NAME)
+    attachment.session = boto3.session.Session(
+        aws_access_key_id=YOUR_ACCESS_KEY,
+        aws_secret_access_key=YOUR_SECRET_KEY,
+        aws_session_token=SESSION_TOKEN,
+        region_name=REGION_NAME)
     return attachment
 
 
