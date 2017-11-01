@@ -284,7 +284,6 @@ class Mail(object):
 # Various types of Validators
 ################################################################
 
-
 class ValidateAPIKey(object):
     """Valides content to ensure SendGrid API key is not present"""
 
@@ -321,14 +320,20 @@ class ValidateAPIKey(object):
             APIKeyIncludedException: If any content in request_body matches regex
         """
 
-        if "content" in request_body:
-            contents = request_body["content"]
+        #Handle string in edge-case
+        if isinstance(request_body, str):
+            self.validate_message_text(request_body)
 
-            for content in contents:
-                if "value" in content and "type" in content:
-                    if content["type"] == "text/html" or isinstance(content["value"], str):
-                        message_text = content["value"]
-                        self.validate_message_text(message_text)
+        #Default param
+        elif isinstance(request_body, dict):
+            if "content" in request_body:
+                contents = request_body["content"]
+
+                for content in contents:
+                    if "value" in content and "type" in content:
+                        if content["type"] == "text/html" or isinstance(content["value"], str):
+                            message_text = content["value"]
+                            self.validate_message_text(message_text)
 
 
     def validate_message_text(self, message_string):
@@ -342,9 +347,10 @@ class ValidateAPIKey(object):
             APIKeyIncludedException: If message_string matches a regex string
         """
 
-        for regex in self.regexes:
-            if regex_pattern.match(message_string) is not None:
-                raise APIKeyIncludedException()
+        if isinstance(message_string, str):
+            for regex in self.regexes:
+                if regex_pattern.match(message_string) is not None:
+                    raise APIKeyIncludedException()
 
 
 ################################################################
@@ -419,6 +425,7 @@ class Content(object):
     def __init__(self, type_=None, value=None):
         self._type = None
         self._value = None
+        self._validator = ValidateAPIKey()
 
         if type_ is not None:
             self.type = type_
@@ -440,6 +447,7 @@ class Content(object):
 
     @value.setter
     def value(self, value):
+        self._validator.validate_message_dict(value)
         self._value = value
 
     def get(self):
@@ -457,6 +465,7 @@ class Header(object):
     def __init__(self, key=None, value=None):
         self._key = None
         self._value = None
+        self._validator.validate_message_dict(value)
 
         if key is not None:
             self.key = key
@@ -477,6 +486,7 @@ class Header(object):
 
     @value.setter
     def value(self, value):
+        self._validator.validate_message_dict(value)
         self._value = value
 
     def get(self):
