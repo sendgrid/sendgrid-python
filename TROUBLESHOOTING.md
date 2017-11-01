@@ -12,6 +12,7 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 * [Using the Package Manager](#package-manager)
 * [Version Convention](#versions)
 * [Viewing the Request Body](#request-body)
+* [Error Handling](#error-handling)
 
 <a name="environment"></a>
 ## Environment Variables and Your SendGrid API Key
@@ -106,3 +107,8 @@ You can do this right before you call `response = sg.client.mail.send.post(reque
 ```python
 print mail.get()
 ```
+
+<a name="error-handling"></a>
+# Error Handling
+
+Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/USE_CASES.md) for examples of error handling.
