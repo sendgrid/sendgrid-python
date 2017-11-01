@@ -1,10 +1,41 @@
 """v3/mail/send response body builder"""
 
+import re
+
+
+################################################################
+# Various types of extensible SendGrid related exceptions
+################################################################
+
+class SendGridException(Exception):
+    """Wrapper/default SendGrid-related exception"""
+    pass
+
+
+class APIKeyIncludedException(SendGridException):
+    """Exception raised for when SendGrid API Key included in message text
+
+        Attributes:
+            expression -- input expression in which the error occurred
+            message -- explanation of the error
+    """
+
+    def __init__(self, 
+                 expression="Email body", 
+                 message="SendGrid API Key detected"):
+        self.expression = expression
+        self.message = message
+
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
-    def __init__(
-            self, from_email=None, subject=None, to_email=None, content=None):
+
+    def __init__(self, 
+                 from_email=None, 
+                 subject=None, 
+                 to_email=None, 
+                 content=None):
+
         self._from_email = None
         self._subject = None
         self._template_id = None
