@@ -1,7 +1,7 @@
 class Category(object):
 
     def __init__(self, name=None):
-        self._name = name
+        self.name = name
 
     @property
     def name(self):
