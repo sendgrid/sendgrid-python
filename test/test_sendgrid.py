@@ -1178,7 +1178,7 @@ class UnitTests(unittest.TestCase):
                             "receiving these emails <% clickhere %>.",
                     "substitution_tag": "<%click here%>",
                     "text": "If you would like to unsubscribe and stop "
-                            "receiveing these emails <% click here %>."
+                            "receiving these emails <% click here %>."
                 }
             }
         }
