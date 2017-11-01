@@ -40,8 +40,8 @@ class UnitTests(unittest.TestCase):
     def test_sendgridAPIKey(self):
         """Tests if including SendGrid API will throw an Exception"""
 
-        #Minimum required to send an email
-        self.maxDiff = None
+        # Minimum required to send an email
+        self.max_diff = None
         mail = Mail()
 
         mail.from_email = Email("test@example.com")
@@ -82,7 +82,7 @@ class UnitTests(unittest.TestCase):
 
 
     def test_helloEmail(self):
-        self.maxDiff = None
+        self.max_diff = None
 
         """Minimum required to send an email"""
         mail = Mail()
@@ -116,7 +116,7 @@ class UnitTests(unittest.TestCase):
         self.assertTrue(isinstance(str(mail), str))
 
     def test_kitchenSink(self):
-        self.maxDiff = None
+        self.max_diff = None
 
         """All settings set"""
         mail = Mail()
@@ -461,7 +461,7 @@ class UnitTests(unittest.TestCase):
 
         """ Test that the Substitutions helper accepts unicode values """
 
-        self.maxDiff = None
+        self.max_diff = None
 
         """Minimum required to send an email"""
         mail = Mail()
