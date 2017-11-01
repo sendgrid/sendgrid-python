@@ -308,14 +308,42 @@ class Mail(object):
         """
         return self._attachments
 
-    def add_attachment(self, attachment):
+    def add_attachment(self, mail_attachment):
         """Add an Attachment to this Mail.
 
         :type attachment: Attachment
         """
         if self._attachments is None:
             self._attachments = []
-        self._attachments.append(attachment)
+        if isinstance(mail_attachment, attachment.S3Attachment):
+            self.download_s3_attachment(mail_attachment)
+        self._attachments.append(mail_attachment)
+
+    def download_s3_attachment(self, s3_attachment):
+        """
+        Requires boto3, botocore to be installed
+        :param s3_attachment: S3Attachment
+        :return:
+        """
+        import boto3
+        import botocore
+        import base64
+        if s3_attachment.session is None:
+            s3 = boto3.resource('s3')
+        else:
+            s3 = s3_attachment.session.resource('s3')
+        try:
+            s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
+            with open(s3_attachment.filename, 'rb') as f:
+                data = f.read()
+            encoded = base64.b64encode(data).decode()
+            s3_attachment.content = encoded
+
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == "404":
+                print("The S3 attachment object does not exist.")
+            else:
+                raise
 
     @property
     def sections(self):
