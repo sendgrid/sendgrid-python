@@ -7,6 +7,8 @@ from .click_tracking import ClickTracking
 from .content import Content
 from .custom_arg import CustomArg
 from .email import Email
+from .exceptions import SendGridException
+from .exceptions import APIKeyIncludedException
 from .footer_settings import FooterSettings
 from .ganalytics import Ganalytics
 from .header import Header
@@ -20,3 +22,4 @@ from .spam_check import SpamCheck
 from .subscription_tracking import SubscriptionTracking
 from .substitution import Substitution
 from .tracking_settings import TrackingSettings
+from .validators import ValidateAPIKey
