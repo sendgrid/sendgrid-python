@@ -117,8 +117,8 @@ print(response.headers)
 data = {
   "ip": "192.168.0.1"
 }
-id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips.post(request_body=data)
+id_ = "test_url_param"
+response = sg.client.whitelabel.domains._(id_).ips.post(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -127,9 +127,9 @@ print(response.headers)
 # Remove an IP from a domain whitelabel. #
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
-id = "test_url_param"
+id_ = "test_url_param"
 ip = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
+response = sg.client.whitelabel.domains._(id_).ips._(ip).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -138,8 +138,8 @@ print(response.headers)
 # Validate a domain whitelabel. #
 # POST /whitelabel/domains/{id}/validate #
 
-id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post()
+id_ = "test_url_param"
+response = sg.client.whitelabel.domains._(id_).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -172,8 +172,8 @@ print(response.headers)
 # Retrieve an IP whitelabel #
 # GET /whitelabel/ips/{id} #
 
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).get()
+id_ = "test_url_param"
+response = sg.client.whitelabel.ips._(id_).get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -182,8 +182,8 @@ print(response.headers)
 # Delete an IP whitelabel #
 # DELETE /whitelabel/ips/{id} #
 
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete()
+id_ = "test_url_param"
+response = sg.client.whitelabel.ips._(id_).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -192,8 +192,8 @@ print(response.headers)
 # Validate an IP whitelabel #
 # POST /whitelabel/ips/{id}/validate #
 
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post()
+id_ = "test_url_param"
+response = sg.client.whitelabel.ips._(id_).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -260,8 +260,8 @@ print(response.headers)
 data = {
   "default": True
 }
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).patch(request_body=data)
+id_ = "test_url_param"
+response = sg.client.whitelabel.links._(id_).patch(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -270,8 +270,8 @@ print(response.headers)
 # Retrieve a Link Whitelabel #
 # GET /whitelabel/links/{id} #
 
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).get()
+id_ = "test_url_param"
+response = sg.client.whitelabel.links._(id_).get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -280,8 +280,8 @@ print(response.headers)
 # Delete a Link Whitelabel #
 # DELETE /whitelabel/links/{id} #
 
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete()
+id_ = "test_url_param"
+response = sg.client.whitelabel.links._(id_).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -290,8 +290,8 @@ print(response.headers)
 # Validate a Link Whitelabel #
 # POST /whitelabel/links/{id}/validate #
 
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post()
+id_ = "test_url_param"
+response = sg.client.whitelabel.links._(id_).validate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
