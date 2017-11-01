@@ -1,6 +1,10 @@
 class Personalization(object):
+    """A Personalization defines who should receive an individual message and
+    how that message should be handled.
+    """
 
     def __init__(self):
+        """Create an empty Personalization."""
         self._tos = []
         self._ccs = []
         self._bccs = []
@@ -12,6 +16,10 @@ class Personalization(object):
 
     @property
     def tos(self):
+        """A list of recipients for this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._tos
 
     @tos.setter
@@ -19,10 +27,18 @@ class Personalization(object):
         self._tos = value
 
     def add_to(self, email):
+        """Add a single recipient to this Personalization.
+
+        :type email: Email
+        """
         self._tos.append(email.get())
 
     @property
     def ccs(self):
+        """A list of recipients who will receive copies of this email.
+
+        :rtype: list(dict)
+        """
         return self._ccs
 
     @ccs.setter
@@ -30,10 +46,19 @@ class Personalization(object):
         self._ccs = value
 
     def add_cc(self, email):
+        """Add a single recipient to receive a copy of this email.
+
+        :param email: new recipient to be CCed
+        :type email: Email
+        """
         self._ccs.append(email.get())
 
     @property
     def bccs(self):
+        """A list of recipients who will receive blind carbon copies of this email.
+
+        :rtype: list(dict)
+        """
         return self._bccs
 
     @bccs.setter
@@ -41,10 +66,21 @@ class Personalization(object):
         self._bccs = value
 
     def add_bcc(self, email):
+        """Add a single recipient to receive a blind carbon copy of this email.
+
+        :param email: new recipient to be BCCed
+        :type email: Email
+        """
         self._bccs.append(email.get())
 
     @property
     def subject(self):
+        """The subject of your email (within this Personalization).
+
+        Char length requirements, according to the RFC:
+        https://stackoverflow.com/a/1592310
+        :rtype: string
+        """
         return self._subject
 
     @subject.setter
@@ -53,6 +89,10 @@ class Personalization(object):
 
     @property
     def headers(self):
+        """The headers for emails in this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._headers
 
     @headers.setter
@@ -60,10 +100,18 @@ class Personalization(object):
         self._headers = value
 
     def add_header(self, header):
+        """Add a single Header to this Personalization.
+
+        :type header: Header
+        """
         self._headers.append(header.get())
 
     @property
     def substitutions(self):
+        """Substitutions to be applied within this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._substitutions
 
     @substitutions.setter
@@ -71,10 +119,18 @@ class Personalization(object):
         self.substitutions = value
 
     def add_substitution(self, substitution):
+        """Add a new Substitution to this Personalization.
+
+        :type substitution: Substitution
+        """
         self._substitutions.append(substitution.get())
 
     @property
     def custom_args(self):
+        """The CustomArgs that will be carried along with this Personalization.
+
+        :rtype: list(dict)
+        """
         return self._custom_args
 
     @custom_args.setter
@@ -82,10 +138,20 @@ class Personalization(object):
         self._custom_args = value
 
     def add_custom_arg(self, custom_arg):
+        """Add a CustomArg to this Personalization.
+
+        :type custom_arg: CustomArg
+        """
         self._custom_args.append(custom_arg.get())
 
     @property
     def send_at(self):
+        """A unix timestamp allowing you to specify when you want emails from
+        this Personalization to be delivered. Scheduling more than 72 hours in
+        advance is forbidden.
+
+        :rtype: int
+        """
         return self._send_at
 
     @send_at.setter
@@ -93,6 +159,12 @@ class Personalization(object):
         self._send_at = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Personalization.
+
+        :returns: This Personalization, ready for use in a request body.
+        :rtype: dict
+        """
         personalization = {}
         if self.tos:
             personalization["to"] = self.tos

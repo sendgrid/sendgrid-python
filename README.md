@@ -55,7 +55,7 @@ echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
 
-Sengrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+Sendgrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
 ## Install Package
 
@@ -179,6 +179,8 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 
 <a name="announcements"></a>
 # Announcements
+
+Join an experienced and passionate team that focuses on making an impact. Opportunities abound to grow the product - and grow your career! Check out our [Data Platform Engineer role](http://grnh.se/wbx1701)
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
