@@ -7,8 +7,7 @@ from .click_tracking import ClickTracking
 from .content import Content
 from .custom_arg import CustomArg
 from .email import Email
-from .exceptions import SendGridException
-from .exceptions import APIKeyIncludedException
+from .exceptions import SendGridException, APIKeyIncludedException
 from .footer_settings import FooterSettings
 from .ganalytics import Ganalytics
 from .header import Header
