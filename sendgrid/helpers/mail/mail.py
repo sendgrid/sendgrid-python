@@ -8,8 +8,11 @@ class Mail(object):
 
     Use get() to get the request body.
     """
-    def __init__(
-            self, from_email=None, subject=None, to_email=None, content=None):
+    def __init__(self, 
+                 from_email=None, 
+                 subject=None, 
+                 to_email=None, 
+                 content=None):
         """Create a Mail object.
 
         If parameters are supplied, all parameters must be present.
@@ -39,6 +42,7 @@ class Mail(object):
         self._headers = None
         self._categories = None
         self._custom_args = None
+        self._validator = ValidateAPIKey()
 
         # Minimum required to send an email
         if from_email and subject and to_email and content:
@@ -149,6 +153,7 @@ class Mail(object):
 
     @subject.setter
     def subject(self, value):
+        self._validator.validate_message_text(value)
         self._subject = value
 
     @property
