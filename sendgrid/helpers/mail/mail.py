@@ -328,7 +328,10 @@ class Mail(object):
         import boto3
         import botocore
         import base64
-        s3 = boto3.resource('s3') if s3_attachment.session is None else s3_attachment.session.resource('s3')
+        if s3_attachment.session is None:
+            s3 = boto3.resource('s3')
+        else:
+            s3 = s3_attachment.session.resource('s3')
         try:
             s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
             with open(s3_attachment.filename, 'rb') as f:
