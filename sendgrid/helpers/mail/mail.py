@@ -336,7 +336,6 @@ class Mail(object):
             s3.meta.client.download_file(s3_attachment.bucket, s3_attachment.filename, s3_attachment.filename)
             with open(s3_attachment.filename, 'rb') as f:
                 data = f.read()
-                f.close()
             encoded = base64.b64encode(data).decode()
             s3_attachment.content = encoded
 
