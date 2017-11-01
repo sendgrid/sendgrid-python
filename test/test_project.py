@@ -9,7 +9,7 @@ class ProjectTests(unittest.TestCase):
 
     # ./Docker or docker/Docker
     def test_docker_dir(self):
-        self.assertTrue(os.path.isdir("./Docker"))
+        self.assertTrue(os.path.isdir("./docker/Dockerfile"))
 
     # ./docker-compose.yml or ./docker/docker-compose.yml
     def test_docker_compose(self):
@@ -25,7 +25,7 @@ class ProjectTests(unittest.TestCase):
 
     # ./.travis.yml
     def test_travis(self):
-        self.assertTrue(os.path.isfile('./.travis'))
+        self.assertTrue(os.path.isfile('./.travis.yml'))
 
     # ./.codeclimate.yml
     def test_codeclimate(self):
