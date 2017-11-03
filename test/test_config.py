@@ -1,3 +1,5 @@
+import os
+import sendgrid.helpers.inbound.config
 from sendgrid.helpers.inbound.config import Config
 try:
     import unittest2 as unittest
@@ -38,3 +40,12 @@ class UnitTests(unittest.TestCase):
         self.assertTrue(port, self.config.port)
         for key in keys:
             self.assertTrue(key in self.config.keys)
+
+    def test_init_environment(self):
+        config_file = sendgrid.helpers.inbound.config.__file__
+        env_file_path = os.path.abspath(os.path.dirname(config_file)) + '/.env'
+        with open(env_file_path, 'w') as f:
+            f.write('RANDOM_VARIABLE=RANDOM_VALUE')
+        Config()
+        os.remove(env_file_path)
+        self.assertEqual('RANDOM_VALUE', os.environ['RANDOM_VARIABLE'])

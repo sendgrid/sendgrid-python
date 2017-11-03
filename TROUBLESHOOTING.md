@@ -12,6 +12,7 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 * [Using the Package Manager](#package-manager)
 * [Version Convention](#versions)
 * [Viewing the Request Body](#request-body)
+* [Error Handling](#error-handling)
 
 <a name="environment"></a>
 ## Environment Variables and Your SendGrid API Key
@@ -87,22 +88,27 @@ In most cases we recommend you download the latest version of the library, but i
 
 `pip install sendgrid==X.X.X`
 
-If you are usring a [requirements file](https://pip.readthedocs.io/en/1.1/requirements.html), please use:
+If you are using a [requirements file](https://pip.readthedocs.io/en/1.1/requirements.html), please use:
 
 `sendgrid==X.X.X`
 
 <a name="versions"></a>
 ## Versioning Convention
 
-We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guarenteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
+We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
 
 <a name="request-body"></a>
 ## Viewing the Request Body
 
-When debugging or testing, it may be useful to exampine the raw request body to compare against the [documented format](https://sendgrid.com/docs/API_Reference/api_v3.html).
+When debugging or testing, it may be useful to examine the raw request body to compare against the [documented format](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
 You can do this right before you call `response = sg.client.mail.send.post(request_body=mail.get())` like so:
 
 ```python
 print mail.get()
 ```
+
+<a name="error-handling"></a>
+# Error Handling
+
+Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/USE_CASES.md) for examples of error handling.
