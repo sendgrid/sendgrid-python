@@ -1,7 +1,8 @@
 import json
 import pytest
 
-from .unassigned import unassigned
+from sendgrid.helpers.endpoints.ip.unassigned import unassigned
+
 
 ret_json = '''[ {
 	"ip": "167.89.21.3",
