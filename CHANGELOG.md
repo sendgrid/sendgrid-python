@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.3.0] - 2017-10-23 ##
+### Added
+- Pull #348: Allows users to submit rfc822 formatted email addresses
+- Big thanks to [Matt Bernier](https://github.com/mbernier) for the pull request!
+
 ## [5.2.1] - 2017-10-21 ##
 ### Fixed
 - Pull #364: Install prism with non superuser account 

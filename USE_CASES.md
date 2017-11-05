@@ -4,7 +4,10 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 * [Transactional Templates](#transactional-templates)
 * [Attachment](#attachment)
+* [How to Setup a Domain Whitelabel](#domain_whitelabel)
+* [How to View Email Statistics](#email_stats)
 * [Asynchronous Mail Send](#asynchronous-mail-send)
+* [Error Handling](#error-handling)
 
 <a name="transactional-templates"></a>
 # Transactional Templates
@@ -171,6 +174,20 @@ print(response.body)
 print(response.headers)
 ```
 
+<a name="domain_whitelabel"></a>
+# How to Setup a Domain Whitelabel
+
+You can find documentation for how to setup a domain whitelabel via the UI [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/setup_domain_whitelabel.html) and via API [here](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md#whitelabel).
+
+Find more information about all of SendGrid's whitelabeling related documentation [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/index.html).
+
+<a name="email_stats"></a>
+# How to View Email Statistics
+
+You can find documentation for how to view your email statistics via the UI [here](https://app.sendgrid.com/statistics) and via API [here](https://github.com/sendgrid/sendgrid-python/blob/master/USAGE.md#stats).
+
+Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as SendGrid processes your email.
+
 <a name="asynchronous-mail-send"></a>
 # Asynchronous Mail Send
 
@@ -254,4 +271,32 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     task = asyncio.async(send_many(ems, sample_cb))
     loop.run_until_complete(task)
+```
+
+<a name="error-handling"></a>
+# Error Handling
+[Custom exceptions](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for `python_http_client` are now supported, which can be imported by consuming libraries.
+
+Please see [here](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for a list of supported exceptions.
+
+```python
+  import sendgrid
+  import os
+  from sendgrid.helpers.mail import *
+  from python_http_client import exceptions
+
+  sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+  from_email = Email("dx@sendgrid.com")
+  to_email = Email("elmer.thomas@sendgrid.com")
+  subject = "Sending with SendGrid is Fun"
+  content = Content("text/plain", "and easy to do anywhere, even with Python")
+  mail = Mail(from_email, subject, to_email, content)
+  try:
+      response = sg.client.mail.send.post(request_body=mail.get())
+  except exceptions.BadRequestsError as e:
+      print(e.body)
+      exit()
+  print(response.status_code)
+  print(response.body)
+  print(response.headers)
 ```

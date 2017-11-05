@@ -9,6 +9,7 @@ import os
 import subprocess
 import sys
 import time
+import datetime
 
 host = "http://localhost:4010"
 
@@ -78,6 +79,20 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.sg.api_key, self.sg.apikey)
         my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
         self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
+
+    def test_apikey_setter(self):
+        sg_apikey_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
+        self.assertEqual(sg_apikey_setter.apikey, "THISISMYKEY")
+        # Use apikey setter to change api key
+        sg_apikey_setter.apikey = "THISISMYNEWAPIKEY"
+        self.assertEqual(sg_apikey_setter.apikey, "THISISMYNEWAPIKEY")
+
+    def test_api_key_setter(self):
+        sg_api_key_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
+        self.assertEqual(sg_api_key_setter.apikey, "THISISMYKEY")
+        # Use api_key setter to change api key
+        sg_api_key_setter.api_key = "THISISMYNEWAPI_KEY"
+        self.assertEqual(sg_api_key_setter.apikey, "THISISMYNEWAPI_KEY")
 
     def test_impersonate_subuser_init(self):
         temp_subuser = 'abcxyz@this.is.a.test.subuser'
@@ -2353,6 +2368,12 @@ class UnitTests(unittest.TestCase):
         response = self.sg.client.whitelabel.links._(link_id).subuser.post(
             request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
+
+    def test_license_year(self):
+        LICENSE_FILE = 'LICENSE.txt'
+        with open(LICENSE_FILE, 'r') as f:
+            copyright_line = f.readline().rstrip()
+        self.assertEqual('Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year, copyright_line)
 
     @classmethod
     def tearDownClass(cls):
