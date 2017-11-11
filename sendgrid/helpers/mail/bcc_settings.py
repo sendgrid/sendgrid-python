@@ -13,14 +13,8 @@ class BCCSettings(object):
         :param email: Who should be BCCed.
         :type email: Email, optional
         """
-        self._enable = None
-        self._email = None
-
-        if enable is not None:
-            self.enable = enable
-
-        if email is not None:
-            self.email = email
+        self.enable = enable
+        self.email = email
 
     @property
     def enable(self):

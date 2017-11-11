@@ -7,9 +7,7 @@ class Category(object):
         :param name: The name of this category
         :type name: string, optional
         """
-        self._name = None
-        if name is not None:
-            self._name = name
+        self.name = name
 
     @property
     def name(self):

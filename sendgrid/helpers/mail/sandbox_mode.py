@@ -10,10 +10,7 @@ class SandBoxMode(object):
         :param enable: Whether this is a test request.
         :type enable: boolean, optional
         """
-        self._enable = None
-
-        if enable is not None:
-            self.enable = enable
+        self.enable = enable
 
     @property
     def enable(self):

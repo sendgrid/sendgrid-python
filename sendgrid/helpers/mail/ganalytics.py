@@ -23,25 +23,12 @@ class Ganalytics(object):
         :param utm_campaign: The name of the campaign.
         :type utm_campaign: string, optional
         """
-        self._enable = None
-        self._utm_source = None
-        self._utm_medium = None
-        self._utm_term = None
-        self._utm_content = None
-        self._utm_campaign = None
-
-        if enable is not None:
-            self.enable = enable
-        if utm_source is not None:
-            self.utm_source = utm_source
-        if utm_medium is not None:
-            self.utm_medium = utm_medium
-        if utm_term is not None:
-            self.utm_term = utm_term
-        if utm_content is not None:
-            self.utm_content = utm_content
-        if utm_campaign is not None:
-            self.utm_campaign = utm_campaign
+        self.enable = enable
+        self.utm_source = utm_source
+        self.utm_medium = utm_medium
+        self.utm_term = utm_term
+        self.utm_content = utm_content
+        self.utm_campaign = utm_campaign
 
     @property
     def enable(self):

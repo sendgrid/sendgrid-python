@@ -2,6 +2,7 @@ class Substitution(object):
     """A string substitution to be applied to the text and HTML contents of
     the body of your email, as well as in the Subject and Reply-To parameters.
     """
+
     def __init__(self, key=None, value=None):
         """Create a Substitution with the given key and value.
 
@@ -10,14 +11,8 @@ class Substitution(object):
         :param value: Value to substitute into email
         :type value: string, optional
         """
-        self._key = None
-        self._value = None
-
-        if key is not None:
-            self.key = key
-
-        if value is not None:
-            self.value = value
+        self.key = key
+        self.value = value
 
     @property
     def key(self):

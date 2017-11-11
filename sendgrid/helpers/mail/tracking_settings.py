@@ -1,5 +1,6 @@
 class TrackingSettings(object):
     """Settings to track how recipients interact with your email."""
+
     def __init__(self):
         """Create an empty TrackingSettings."""
         self._click_tracking = None
