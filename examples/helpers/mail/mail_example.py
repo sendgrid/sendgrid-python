@@ -24,25 +24,25 @@ def build_personalization(personalization):
     """Build personalization mock instance from a mock dict"""
     mock_personalization = Personalization()
     for to_addr in personalization['to_list']:
-        personalization.add_to(to_addr)
+        mock_personalization.add_to(to_addr)
 
     for cc_addr in personalization['cc_list']:
-        personalization.add_to(cc_addr)
+        mock_personalization.add_to(cc_addr)
 
     for bcc_addr in personalization['bcc_list']:
-        personalization.add_bc(bcc_addr)
+        mock_personalization.add_bc(bcc_addr)
 
     for header in personalization['headers']:
-        personalization.add_header(header)
+        mock_personalization.add_header(header)
 
     for substitution in personalization['substitutions']:
-        personalization.add_substitution(substitution)
+        mock_personalization.add_substitution(substitution)
 
     for arg in personalization['custom_args']:
-        personalization.add_custom_arg(arg)
+        mock_personalization.add_custom_arg(arg)
 
-    personalization.subject = personalization['subject']
-    personalization.send_at = personalization['send_at']
+    mock_personalization.subject = personalization['subject']
+    mock_personalization.send_at = personalization['send_at']
     return mock_personalization
 
 
