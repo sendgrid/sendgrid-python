@@ -12,14 +12,8 @@ class Content(object):
         :param value: The actual content.
         :type value: string, optional
         """
-        self._type = None
-        self._value = None
-
-        if type_ is not None:
-            self.type = type_
-
-        if value is not None:
-            self.value = value
+        self.type = type_
+        self.value = value
 
     @property
     def type(self):
