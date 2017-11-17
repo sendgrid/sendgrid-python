@@ -26,17 +26,16 @@ class Send(object):
             "Content-Type": "multipart/form-data; boundary=xYzZY"
         }
         client = Client(host=self.url, request_headers=headers)
-        f = open(payload_filepath, 'r')
-        data = f.read()
-        return client.post(request_body=data)
+        with open(payload_filepath, 'r') as f:
+            data = f.read()
+            return client.post(request_body=data)
 
     @property
     def url(self):
         """URL to send to."""
         return self._url
 
-
-if __name__ == '__main__':
+def main():
     config = Config()
     parser = argparse.ArgumentParser(description='Test data and optional host.')
     parser.add_argument('data',
@@ -52,3 +51,6 @@ if __name__ == '__main__':
     print(response.status_code)
     print(response.headers)
     print(response.body)
+
+if __name__ == '__main__':
+    main()
