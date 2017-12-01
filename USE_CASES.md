@@ -324,7 +324,7 @@ Before starting this tutorial, you will need to have access to an AWS account in
 ## Getting Started
 
 ### Create AWS CodeStar Project
-Log in to your AWS account and go to the AWS CodeStar service. Click "+ Create a new project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left hand side of the UI to narrow down the available choices. 
+Log in to your AWS account and go to the AWS CodeStar service. Click "Start a project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left hand side of the UI to narrow down the available choices. 
 
 After you've selected the template, you're asked to provide a name for your project. Go ahead and name it "hello-email". Once you've entered a name, click "Create Project" in the lower right hand corner. You can then choose which tools you want to use to interact with the project. For this tutorial, we'll be choosing "Command Line". 
 
@@ -399,6 +399,12 @@ Resources:
             Method: post
 ```
 
+In the root project directory, run the following commands:
+```
+virtualenv venv
+source ./venv/bin/activate
+```
+
 Prior to being able to deploy our Python code, we'll need to install the sendgrid Python module *locally*. One of the idiosyncracies of AWS Lambda is that all library and module dependencies that aren't part of the standard library have to be included with the code/build artifact. Virtual environments do not translate to the Lambda runtime environment. 
 
 In the root project directory, run the following command:
@@ -439,6 +445,8 @@ def handler(event, context):
 ```
 
 Note that for the most part, we've simply copied the intial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
+
+Change the `test@example.com` emails appropriately so that you may receive the test email.
 
 Go ahead and commit/push your code:
 
