@@ -282,18 +282,11 @@ from .views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name='sendgrid'),
-]
-```
-
-These paths allow the root URL to send the email. For a true Django app, you may want to move this code to another URL like so:
-
-```python
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^sendgrid/', index, name='sendgrid'),
 ]
 ```
+
+These paths allow the URL `/sendgrid/` to send the email.
 
 We also assume that you have set up your development environment with your `SENDGRID_API_KEY`. If you have not done it yet, please do so. See the section [Setup Environment Variables](https://github.com/sendgrid/sendgrid-python#setup-environment-variables).
 
