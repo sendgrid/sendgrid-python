@@ -105,7 +105,7 @@ import sendgrid
 from sendgrid.helpers.mail import *
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_emails=To('to@example.com', 'To Name'),
+           to_email=To('to@example.com', 'To Name'),
            subject=Subject('Sending with SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -175,7 +175,7 @@ msg.bcc = [
 
 msg.header = Header('X-Test5', 'Test5', p=1)
 msg.header = Header('X-Test6', 'Test6', p=1)
-msg.header = [
+msg.headers = [
     Header('X-Test7', 'Test7', p=1),
     Header('X-Test8', 'Test8', p=1)
 ]
@@ -228,7 +228,7 @@ msg.attachment = [
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 
 msg.global_header = Header('X-Day', 'Monday')
-msg.global_header = [
+msg.global_headers = [
     Header('X-Month', 'January'),
     Header('X-Year': '2017')
 ]
