@@ -8,6 +8,7 @@ class ProjectTests(unittest.TestCase):
     def test_docker_dir(self):
         self.assertTrue(os.path.isdir("./docker"))
 
+<<<<<<< 93f10c82badbd53b8681ecb601c6532bd7da4655
     # ./docker-test
     def test_docker_test_dir(self):
         self.assertTrue(os.path.isdir("./docker-test"))
@@ -15,6 +16,11 @@ class ProjectTests(unittest.TestCase):
     # # ./docker-compose.yml or ./docker/docker-compose.yml
     # def test_docker_compose(self):
     #     self.assertTrue(os.path.isfile('docker-compose.yml'))
+=======
+    # ./docker-compose.yml or ./docker/docker-compose.yml
+    def test_docker_compose(self):
+        self.assertTrue(os.path.isfile('./docker/docker-compose.yml'))
+>>>>>>> fixed tests for docker files
 
     # ./.env_sample
     def test_env(self):
