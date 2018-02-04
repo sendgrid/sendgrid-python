@@ -14,6 +14,7 @@ This file provides the SendGrid API Client.
 
 
 import os
+import time
 import python_http_client
 
 from .version import __version__
@@ -51,6 +52,10 @@ class SendGridAPIClient(object):
         self._impersonate_subuser = opts.get('impersonate_subuser', None)
         self.useragent = 'sendgrid/{0};python'.format(__version__)
         self.host = opts.get('host', 'https://api.sendgrid.com')
+        self.rate_limit_retry = 5
+        self.rate_limit_sleep = 1100
+        self.RATE_LIMIT_RESPONSE_CODE = 429
+
         self.version = __version__
 
         headers = self._get_default_headers()
@@ -72,6 +77,17 @@ class SendGridAPIClient(object):
 
     def reset_request_headers(self):
         self.client.request_headers = self._get_default_headers()
+
+    def attempt(self, request_obj):
+        for i in range(0, self.rate_limit_retry):
+            # For now assuming that the method is 'GET'
+            response = request_obj.get()
+            if response.status_code == self.RATE_LIMIT_RESPONSE_CODE:
+                print("API limit exceeded")
+                time.sleep(self.rate_limit_sleep)
+            else:
+                print("Not exceeded")
+                return response
 
     @property
     def apikey(self):
