@@ -10,7 +10,13 @@ class UnitTests(unittest.TestCase):
 
     def test_rate_limit(self):
         sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+        query_params = {}
+        data = {}
         request_obj = sg.client.access_settings.activity
-        response = sg.attempt(request_obj)
+        response = sg.make_request(request_obj,
+                              query_params=query_params,
+                              method="get",
+                              request_body=data)
+        print(response.status_code)
         print(response.headers)
         print(response.body)

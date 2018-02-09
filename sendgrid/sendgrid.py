@@ -53,7 +53,6 @@ class SendGridAPIClient(object):
         self.useragent = 'sendgrid/{0};python'.format(__version__)
         self.host = opts.get('host', 'https://api.sendgrid.com')
         self.rate_limit_retry = 5
-        self.rate_limit_sleep = 1100
         self.RATE_LIMIT_RESPONSE_CODE = 429
 
         self.version = __version__
@@ -78,15 +77,25 @@ class SendGridAPIClient(object):
     def reset_request_headers(self):
         self.client.request_headers = self._get_default_headers()
 
-    def attempt(self, request_obj):
+    def make_request(self, request_obj, query_params=None, method="get", request_body=None):
+        """
+        makes request using the given request object
+        If the response status code is 429 it sleeps for 'rate limit reset time - current time' and then makes another request.
+        Number of retries is set to 5
+
+        :param request_obj: Request object
+        :param query_params: Query parameters
+        :param method: get / post / put / patch / delete
+        :param request_body: Can be used if method is not get
+        :return: response of given request object
+        """
         for i in range(0, self.rate_limit_retry):
-            # For now assuming that the method is 'GET'
-            response = request_obj.get()
+            response = getattr(request_obj, method)(request_body=request_body, query_params=query_params)
             if response.status_code == self.RATE_LIMIT_RESPONSE_CODE:
-                print("API limit exceeded")
-                time.sleep(self.rate_limit_sleep)
+                rate_limit_reset = response.headers['X-Ratelimit-Reset']
+                time_to_sleep = int(rate_limit_reset) - int(time.time())
+                time.sleep(time_to_sleep)
             else:
-                print("Not exceeded")
                 return response
 
     @property
