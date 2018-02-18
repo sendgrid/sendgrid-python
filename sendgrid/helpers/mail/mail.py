@@ -41,12 +41,18 @@ class Mail(object):
         self._custom_args = []
 
         # Minimum required to send an email
-        if from_email and subject and to_email and content:
+        if from_email:
             self.from_email = from_email
+
+        if subject:
             self.subject = subject
+
+        if to_email:
             personalization = Personalization()
             personalization.add_to(to_email)
             self.add_personalization(personalization)
+            
+        if content:
             self.add_content(content)
 
     def __str__(self):
