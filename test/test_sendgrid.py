@@ -110,14 +110,14 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.sg.host, self.host)
 
     def test_get_default_headers(self):
-        headers = self.sg._get_default_headers()
+        headers = self.sg._default_headers
         self.assertIn('Authorization', headers)
         self.assertIn('User-agent', headers)
         self.assertIn('Accept', headers)
         self.assertNotIn('On-Behalf-Of', headers)
 
         self.sg._impersonate_subuser = 'ladida@testsubuser.sendgrid'
-        headers = self.sg._get_default_headers()
+        headers = self.sg._default_headers
         self.assertIn('Authorization', headers)
         self.assertIn('User-agent', headers)
         self.assertIn('Accept', headers)
@@ -136,7 +136,7 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._get_default_headers().items():
+        for k,v in self.sg._default_headers.items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):

@@ -32,7 +32,13 @@ class SendGridAPIClient(object):
         https://github.com/sendgrid/sendgrid-python
     """
 
-    def __init__(self, **opts):
+    def __init__(
+            self,
+            apikey=None,
+            api_key=None,
+            impersonate_subuser=None,
+            host='https://api.sendgrid.com',
+            **opts):
         """
         Construct SendGrid v3 API object.
 
@@ -41,25 +47,18 @@ class SendGridAPIClient(object):
         :params apikey: SendGrid API key to use.  Defaults to environment var.
         :type apikey: string
         """
-        self.path = opts.get(
-            'path', os.path.abspath(os.path.dirname(__file__)))
-        self._apikey = opts.get('apikey', os.environ.get('SENDGRID_API_KEY'))
-        # Support v2 api_key naming
-        self._apikey = opts.get('api_key', self._apikey)
-        self._api_key = self._apikey
-        # Support impersonation of subusers
-        self._impersonate_subuser = opts.get('impersonate_subuser', None)
+        self._apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
+        self._impersonate_subuser = impersonate_subuser
+        self.host = host
         self.useragent = 'sendgrid/{0};python'.format(__version__)
-        self.host = opts.get('host', 'https://api.sendgrid.com')
         self.version = __version__
 
-        headers = self._get_default_headers()
-
         self.client = python_http_client.Client(host=self.host,
-                                                request_headers=headers,
+                                                request_headers=self._default_headers,
                                                 version=3)
 
-    def _get_default_headers(self):
+    @property
+    def _default_headers(self):
         headers = {
             "Authorization": 'Bearer {0}'.format(self._apikey),
             "User-agent": self.useragent,
@@ -71,7 +70,7 @@ class SendGridAPIClient(object):
         return headers
 
     def reset_request_headers(self):
-        self.client.request_headers = self._get_default_headers()
+        self.client.request_headers = self._default_headers
 
     @property
     def apikey(self):
