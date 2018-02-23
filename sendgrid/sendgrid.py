@@ -40,6 +40,8 @@ class SendGridAPIClient(object):
             host='https://api.sendgrid.com'):
         """
         Construct SendGrid v3 API object.
+        Note that underlying client being set up during initialization, therefore changing
+            attributes in runtime will not affect HTTP client behaviour.
 
         :param apikey: SendGrid API key to use. If not provided, key will be read from
             environment variable "SENDGRID_API_KEY"
@@ -55,8 +57,8 @@ class SendGridAPIClient(object):
         :param host: base URL for API calls
         :type host: basestring
         """
-        self._apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
-        self._impersonate_subuser = impersonate_subuser
+        self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
+        self.impersonate_subuser = impersonate_subuser
         self.host = host
         self.useragent = 'sendgrid/{0};python'.format(__version__)
         self.version = __version__
@@ -68,12 +70,12 @@ class SendGridAPIClient(object):
     @property
     def _default_headers(self):
         headers = {
-            "Authorization": 'Bearer {0}'.format(self._apikey),
+            "Authorization": 'Bearer {0}'.format(self.apikey),
             "User-agent": self.useragent,
             "Accept": 'application/json'
         }
-        if self._impersonate_subuser:
-            headers['On-Behalf-Of'] = self._impersonate_subuser
+        if self.impersonate_subuser:
+            headers['On-Behalf-Of'] = self.impersonate_subuser
 
         return headers
 
@@ -81,28 +83,14 @@ class SendGridAPIClient(object):
         self.client.request_headers = self._default_headers
 
     @property
-    def apikey(self):
-        """The API key (also accessible as api_key)."""
-        return self._apikey
-
-    @apikey.setter
-    def apikey(self, value):
-        self._apikey = value
-
-    @property
     def api_key(self):
-        """The API key (also accessible as apikey)."""
-        return self._apikey
+        """
+        Alias for reading API key
+        .. deprecated:: 5.3
+            Use apikey instead
+        """
+        return self.apikey
 
     @api_key.setter
     def api_key(self, value):
-        self._apikey = value
-
-    @property
-    def impersonate_subuser(self):
-        """
-        The subuser you are impersonating.
-
-        If present, this is the value of the "On-Behalf-Of" header.
-        """
-        return self._impersonate_subuser
+        self.apikey = value
