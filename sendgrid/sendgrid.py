@@ -37,15 +37,23 @@ class SendGridAPIClient(object):
             apikey=None,
             api_key=None,
             impersonate_subuser=None,
-            host='https://api.sendgrid.com',
-            **opts):
+            host='https://api.sendgrid.com'):
         """
         Construct SendGrid v3 API object.
 
-        :params host: Base URL for the API call
-        :type host: string
-        :params apikey: SendGrid API key to use.  Defaults to environment var.
-        :type apikey: string
+        :param apikey: SendGrid API key to use. If not provided, key will be read from
+            environment variable "SENDGRID_API_KEY"
+        :type apikey: basestring
+        :param api_key: SendGrid API key to use. Provides backward compatibility
+            .. deprecated:: 5.3
+                Use apikey instead
+        :type api_key: basestring
+        :param impersonate_subuser: the subuser to impersonate. Will be passed by
+            "On-Behalf-Of" header by underlying client.
+            See https://sendgrid.com/docs/User_Guide/Settings/subusers.html for more details
+        :type impersonate_subuser: basestring
+        :param host: base URL for API calls
+        :type host: basestring
         """
         self._apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
         self._impersonate_subuser = impersonate_subuser
