@@ -1,4 +1,6 @@
 """v3/mail/send response body builder"""
+import logging
+
 from .personalization import Personalization
 from .header import Header
 
@@ -48,6 +50,8 @@ class Mail(object):
             personalization.add_to(to_email)
             self.add_personalization(personalization)
             self.add_content(content)
+        elif from_email or subject or to_email or content:
+            logging.warn('sendgrid.helpers.mail.Mail(): not initialized with all four parameters, init-discarding values')
 
     def __str__(self):
         """Get a JSON representation of this Mail request.
