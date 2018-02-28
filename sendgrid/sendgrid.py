@@ -14,6 +14,8 @@ This file provides the SendGrid API Client.
 
 
 import os
+import warnings
+
 import python_http_client
 
 from .version import __version__
@@ -37,7 +39,8 @@ class SendGridAPIClient(object):
             apikey=None,
             api_key=None,
             impersonate_subuser=None,
-            host='https://api.sendgrid.com'):
+            host='https://api.sendgrid.com',
+            **opts):  # TODO: remove **opts for 6.x release
         """
         Construct SendGrid v3 API object.
         Note that underlying client being set up during initialization, therefore changing
@@ -56,7 +59,13 @@ class SendGridAPIClient(object):
         :type impersonate_subuser: basestring
         :param host: base URL for API calls
         :type host: basestring
+        :param opts: dispatcher for deprecated arguments. Added for backward-compatibility
+            with `path` parameter. Should be removed during 6.x release
         """
+        if opts:
+            warnings.warn(
+                'Unsupported argument(s) provided: {}'.format(list(opts.keys())),
+                DeprecationWarning)
         self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
