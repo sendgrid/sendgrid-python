@@ -12,7 +12,7 @@ class Mail(object):
             self, from_email=None, subject=None, to_email=None, content=None):
         """Create a Mail object.
 
-        If parameters are supplied, all parameters must be present.
+        If any parameters are not supplied, they must be set after initialization.
         :param from_email: Email address to send from.
         :type from_email: Email, optional
         :param subject: Subject line of emails.
@@ -40,13 +40,15 @@ class Mail(object):
         self._categories = []
         self._custom_args = []
 
-        # Minimum required to send an email
-        if from_email and subject and to_email and content:
+        if from_email:
             self.from_email = from_email
+        if subject:
             self.subject = subject
+        if to_email:
             personalization = Personalization()
             personalization.add_to(to_email)
             self.add_personalization(personalization)
+        if content:
             self.add_content(content)
 
     def __str__(self):
