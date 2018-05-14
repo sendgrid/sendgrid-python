@@ -541,7 +541,7 @@ Go ahead and clone the Git repository link after it is created. You may need to 
 Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, change log, build pipeline, and application endpoint. 
 
 ### Create SendGrid API Key
-Log in to your SendGrid account. Click on your user name on the left hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.
+Log in to your SendGrid account. Click on your user name on the left hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
 
 On the next menu, you have the option to choose what programming language you'll be using. The obvious choice for this tutorial will be Python.
 
