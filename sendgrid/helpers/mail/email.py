@@ -1,20 +1,36 @@
+try:
+    import rfc822
+except ImportError:
+    import email.utils as rfc822
+
+
 class Email(object):
+    """An email address with an optional name."""
 
     def __init__(self, email=None, name=None):
-        self._name = None
-        self._email = None
-        if name or email:
-            if not name:
-                # allows passing emails as "dude Fella <example@example.com>"
-                self.parse_email(email)
-            else:
-                #allows backwards compatibility for Email(email, name)
-                if email is not None:
-                    self.email = email
-                self.name = name
+        """Create an Email with the given address and name.
+
+        Either fill the separate name and email fields, or pass all information
+        in the email parameter (e.g. email="dude Fella <example@example.com>").
+        :param email: Email address, or name and address in standard format.
+        :type email: string
+        :param name: Name for this sender or recipient.
+        :type name: string
+        """
+        if email and not name:
+            # allows passing emails as "dude Fella <example@example.com>"
+            self.parse_email(email)
+        else:
+            # allows backwards compatibility for Email(email, name)
+            self.email = email
+            self.name = name
 
     @property
     def name(self):
+        """Name associated with this email.
+
+        :rtype: string
+        """
         return self._name
 
     @name.setter
@@ -23,6 +39,12 @@ class Email(object):
 
     @property
     def email(self):
+        """Email address.
+
+        See http://tools.ietf.org/html/rfc3696#section-3 and its errata
+        http://www.rfc-editor.org/errata_search.php?rfc=3696 for information
+        on valid email addresses.
+        """
         return self._email
 
     @email.setter
@@ -30,6 +52,12 @@ class Email(object):
         self._email = value
 
     def get(self):
+        """
+        Get a JSON-ready representation of this Email.
+
+        :returns: This Email, ready for use in a request body.
+        :rtype: dict
+        """
         email = {}
         if self.name is not None:
             email["name"] = self.name
@@ -39,11 +67,6 @@ class Email(object):
         return email
 
     def parse_email(self, email_info):
-        try:
-            import rfc822
-        except ImportError:
-            import email.utils as rfc822
-
         name, email = rfc822.parseaddr(email_info)
 
         # more than likely a string was passed here instead of an email address

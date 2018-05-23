@@ -1,6 +1,3 @@
-engines:
+plugins:
   pep8:
     enabled: true
-ratings:
-   paths:
-   - "**.py"
