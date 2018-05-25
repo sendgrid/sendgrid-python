@@ -21,8 +21,8 @@ addons:
   apt_packages:
     - pandoc
 before_script:
-- "./test/prism.sh &"
-- sleep 20
+- . ./test/prism.sh
+- prism version
 script:
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run -m unittest2 discover; else coverage run -m unittest discover; fi
 after_script:
@@ -46,7 +46,7 @@ notifications:
     template:
     - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on
+      <a href="https://github.com/%{repository}/commits/%{commit}">View on
       GitHub</a>'
     format: html
     notify: false
