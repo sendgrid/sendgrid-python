@@ -21,8 +21,8 @@ addons:
   apt_packages:
     - pandoc
 before_script:
-- . ./test/prism.sh
-- prism version
+- "./test/prism.sh &"
+- sleep 20
 script:
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run -m unittest2 discover; else coverage run -m unittest discover; fi
 after_script:
