@@ -68,6 +68,39 @@ class UnitTests(unittest.TestCase):
 
         self.assertTrue(isinstance(str(mail), str))
 
+    def test_helloEmailAdditionalContent(self):
+        """Tests bug found in Issue-451 with Content ordering causing a crash"""
+
+        self.maxDiff = None
+
+        """Minimum required to send an email"""
+        mail = Mail()
+
+        mail.from_email = Email("test@example.com")
+
+        mail.subject = "Hello World from the SendGrid Python Library"
+
+        personalization = Personalization()
+        personalization.add_to(Email("test@example.com"))
+        mail.add_personalization(personalization)
+        
+        mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+        mail.add_content(Content("text/plain", "some text here"))
+
+        self.assertEqual(
+            json.dumps(
+                mail.get(),
+                sort_keys=True),
+            '{"content": [{"type": "text/plain", "value": "some text here"}, '
+            '{"type": "text/html", '
+            '"value": "<html><body>some text here</body></html>"}], '
+            '"from": {"email": "test@example.com"}, "personalizations": '
+            '[{"to": [{"email": "test@example.com"}]}], '
+            '"subject": "Hello World from the SendGrid Python Library"}'
+        )
+
+        self.assertTrue(isinstance(str(mail), str))
+
     def test_kitchenSink(self):
         self.maxDiff = None
 
@@ -411,7 +444,6 @@ class UnitTests(unittest.TestCase):
         )
 
     def test_unicode_values_in_substitutions_helper(self):
-
         """ Test that the Substitutions helper accepts unicode values """
 
         self.maxDiff = None

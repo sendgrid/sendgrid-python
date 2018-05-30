@@ -20,7 +20,7 @@ print(response.headers)
 # PATCH /tracking_settings/click #
 
 data = {
-  "enabled": True
+    "enabled": True
 }
 response = sg.client.tracking_settings.click.patch(request_body=data)
 print(response.status_code)
@@ -41,14 +41,15 @@ print(response.headers)
 # PATCH /tracking_settings/google_analytics #
 
 data = {
-  "enabled": True, 
-  "utm_campaign": "website", 
-  "utm_content": "", 
-  "utm_medium": "email", 
-  "utm_source": "sendgrid.com", 
-  "utm_term": ""
+    "enabled": True,
+    "utm_campaign": "website",
+    "utm_content": "",
+    "utm_medium": "email",
+    "utm_source": "sendgrid.com",
+    "utm_term": ""
 }
-response = sg.client.tracking_settings.google_analytics.patch(request_body=data)
+response = sg.client.tracking_settings.google_analytics.patch(
+    request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -67,7 +68,7 @@ print(response.headers)
 # PATCH /tracking_settings/open #
 
 data = {
-  "enabled": True
+    "enabled": True
 }
 response = sg.client.tracking_settings.open.patch(request_body=data)
 print(response.status_code)
@@ -88,12 +89,12 @@ print(response.headers)
 # PATCH /tracking_settings/subscription #
 
 data = {
-  "enabled": True, 
-  "html_content": "html content", 
-  "landing": "landing page html", 
-  "plain_content": "text content", 
-  "replace": "replacement tag", 
-  "url": "url"
+    "enabled": True,
+    "html_content": "html content",
+    "landing": "landing page html",
+    "plain_content": "text content",
+    "replace": "replacement tag",
+    "url": "url"
 }
 response = sg.client.tracking_settings.subscription.patch(request_body=data)
 print(response.status_code)
@@ -108,4 +109,3 @@ response = sg.client.tracking_settings.subscription.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-
