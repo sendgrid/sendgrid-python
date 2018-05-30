@@ -27,10 +27,10 @@ def build_personalization(personalization):
         personalization.add_to(to_addr)
 
     for cc_addr in personalization['cc_list']:
-        personalization.add_to(cc_addr)
+        personalization.add_cc(cc_addr)
 
     for bcc_addr in personalization['bcc_list']:
-        personalization.add_bc(bcc_addr)
+        personalization.add_bcc(bcc_addr)
 
     for header in personalization['headers']:
         personalization.add_header(header)

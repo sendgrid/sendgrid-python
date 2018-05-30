@@ -1,4 +1,4 @@
-"""Setup credentials (.env) and application variables (config.yml)"""
+"""Set up credentials (.env) and application variables (config.yml)"""
 import os
 import yaml
 
@@ -38,20 +38,27 @@ class Config(object):
 
     @property
     def debug_mode(self):
+        """Flask debug mode - set to False in production."""
         return self._debug_mode
 
     @property
     def endpoint(self):
+        """Endpoint to receive Inbound Parse POSTs."""
         return self._endpoint
 
     @property
     def host(self):
+        """URL that the sender will POST to."""
         return self._host
 
     @property
     def keys(self):
+        """Incoming Parse fields to parse. For reference, see
+        https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html
+        """
         return self._keys
 
     @property
     def port(self):
+        """Port to listen on."""
         return self._port
