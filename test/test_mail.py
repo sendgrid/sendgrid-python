@@ -444,7 +444,6 @@ class UnitTests(unittest.TestCase):
         )
 
     def test_unicode_values_in_substitutions_helper(self):
-
         """ Test that the Substitutions helper accepts unicode values """
 
         self.maxDiff = None

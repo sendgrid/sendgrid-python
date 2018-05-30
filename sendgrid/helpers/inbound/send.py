@@ -12,6 +12,7 @@ from python_http_client import Client
 
 
 class Send(object):
+
     def __init__(self, url):
         """Create a Send object with target `url`."""
         self._url = url

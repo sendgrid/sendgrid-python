@@ -27,6 +27,7 @@ class UnitTests(unittest.TestCase):
             api_key=os.environ.get('SENDGRID_API_KEY'))
         cls.devnull = open(os.devnull, 'w')
         prism_cmd = None
+        
         # try:
         #     # check for prism in the PATH
         #     if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
@@ -136,16 +137,18 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._get_default_headers().items():
+        for k, v in self.sg._get_default_headers().items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
         from_email = Email("test@example.com")
         to_email = Email("test@example.com")
         subject = "Sending with SendGrid is Fun"
-        content = Content("text/plain", "and easy to do anywhere, even with Python")
+        content = Content(
+            "text/plain", "and easy to do anywhere, even with Python")
         mail = Mail(from_email, subject, to_email, content)
-        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
+        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [
+                        {'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}

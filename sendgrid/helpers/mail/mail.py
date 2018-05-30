@@ -381,8 +381,6 @@ class Mail(object):
         return self._custom_args
 
     def add_custom_arg(self, custom_arg):
-        """Add a CustomArg to this Mail.
-
-        :type custom_arg: CustomArg
-        """
+        if self._custom_args is None:
+            self._custom_args = []
         self._custom_args.append(custom_arg)
