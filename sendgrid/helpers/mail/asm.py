@@ -13,10 +13,10 @@ class ASM(object):
         self._groups_to_display = None
 
         if group_id is not None:
-            self._group_id = group_id
+            self.group_id = group_id
 
         if groups_to_display is not None:
-            self._groups_to_display = groups_to_display
+            self.groups_to_display = groups_to_display
 
     @property
     def group_id(self):
@@ -41,6 +41,8 @@ class ASM(object):
 
     @groups_to_display.setter
     def groups_to_display(self, value):
+        if value is not None and len(value) > 25:
+            raise ValueError("New groups_to_display exceeds max length of 25.")
         self._groups_to_display = value
 
     def get(self):

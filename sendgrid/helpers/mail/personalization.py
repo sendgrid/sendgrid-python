@@ -8,11 +8,11 @@ class Personalization(object):
         self._tos = []
         self._ccs = []
         self._bccs = []
-        self._subject = []
+        self._subject = None
         self._headers = []
         self._substitutions = []
         self._custom_args = []
-        self._send_at = []
+        self._send_at = None
 
     @property
     def tos(self):

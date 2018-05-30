@@ -80,7 +80,7 @@ global_substitutions = {
     '-time-': strftime("%Y-%m-%d %H:%M:%S", gmtime())
 }
 msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_emails=tos,
+           to_emails=to_emails,
            subject=Subject('Hi -name-'),
            plain_text_content=PlainTextContent('Hello -name-, your github is -github-, email sent at -time-'),
            html_content=HtmlContent('<strong>Hello -name-, your github is <a href=\"-github-\">here</a></strong> email sent at -time-'),

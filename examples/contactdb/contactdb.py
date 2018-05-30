@@ -10,8 +10,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /contactdb/custom_fields #
 
 data = {
-  "name": "pet", 
-  "type": "text"
+    "name": "pet",
+    "type": "text"
 }
 response = sg.client.contactdb.custom_fields.post(request_body=data)
 print(response.status_code)
@@ -52,7 +52,7 @@ print(response.headers)
 # POST /contactdb/lists #
 
 data = {
-  "name": "your list name"
+    "name": "your list name"
 }
 response = sg.client.contactdb.lists.post(request_body=data)
 print(response.status_code)
@@ -73,10 +73,10 @@ print(response.headers)
 # DELETE /contactdb/lists #
 
 data = [
-  1, 
-  2, 
-  3, 
-  4
+    1,
+    2,
+    3,
+    4
 ]
 response = sg.client.contactdb.lists.delete(request_body=data)
 print(response.status_code)
@@ -88,11 +88,13 @@ print(response.headers)
 # PATCH /contactdb/lists/{list_id} #
 
 data = {
-  "name": "newlistname"
+    "name": "newlistname"
 }
 params = {'list_id': 1}
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).patch(request_body=data, query_params=params)
+response = sg.client.contactdb.lists._(list_id).patch(
+    request_body=data,
+    query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -124,11 +126,12 @@ print(response.headers)
 # POST /contactdb/lists/{list_id}/recipients #
 
 data = [
-  "recipient_id1", 
-  "recipient_id2"
+    "recipient_id1",
+    "recipient_id2"
 ]
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients.post(request_body=data)
+response = sg.client.contactdb.lists._(
+    list_id).recipients.post(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -139,7 +142,8 @@ print(response.headers)
 
 params = {'page': 1, 'page_size': 1}
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients.get(query_params=params)
+response = sg.client.contactdb.lists._(
+    list_id).recipients.get(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -150,7 +154,8 @@ print(response.headers)
 
 list_id = "test_url_param"
 recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
+response = sg.client.contactdb.lists._(
+    list_id).recipients._(recipient_id).post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -162,7 +167,8 @@ print(response.headers)
 params = {'recipient_id': 1, 'list_id': 1}
 list_id = "test_url_param"
 recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params=params)
+response = sg.client.contactdb.lists._(list_id).recipients._(
+    recipient_id).delete(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -172,11 +178,11 @@ print(response.headers)
 # PATCH /contactdb/recipients #
 
 data = [
-  {
-    "email": "jones@example.com", 
-    "first_name": "Guy", 
-    "last_name": "Jones"
-  }
+    {
+        "email": "jones@example.com",
+        "first_name": "Guy",
+        "last_name": "Jones"
+    }
 ]
 response = sg.client.contactdb.recipients.patch(request_body=data)
 print(response.status_code)
@@ -188,18 +194,18 @@ print(response.headers)
 # POST /contactdb/recipients #
 
 data = [
-  {
-    "age": 25, 
-    "email": "example@example.com", 
-    "first_name": "", 
-    "last_name": "User"
-  }, 
-  {
-    "age": 25, 
-    "email": "example2@example.com", 
-    "first_name": "Example", 
-    "last_name": "User"
-  }
+    {
+        "age": 25,
+        "email": "example@example.com",
+        "first_name": "",
+        "last_name": "User"
+    },
+    {
+        "age": 25,
+        "email": "example2@example.com",
+        "first_name": "Example",
+        "last_name": "User"
+    }
 ]
 response = sg.client.contactdb.recipients.post(request_body=data)
 print(response.status_code)
@@ -221,8 +227,8 @@ print(response.headers)
 # DELETE /contactdb/recipients #
 
 data = [
-  "recipient_id1", 
-  "recipient_id2"
+    "recipient_id1",
+    "recipient_id2"
 ]
 response = sg.client.contactdb.recipients.delete(request_body=data)
 print(response.status_code)
@@ -301,28 +307,28 @@ print(response.headers)
 # POST /contactdb/segments #
 
 data = {
-  "conditions": [
-    {
-      "and_or": "", 
-      "field": "last_name", 
-      "operator": "eq", 
-      "value": "Miller"
-    }, 
-    {
-      "and_or": "and", 
-      "field": "last_clicked", 
-      "operator": "gt", 
-      "value": "01/02/2015"
-    }, 
-    {
-      "and_or": "or", 
-      "field": "clicks.campaign_identifier", 
-      "operator": "eq", 
-      "value": "513"
-    }
-  ], 
-  "list_id": 4, 
-  "name": "Last Name Miller"
+    "conditions": [
+        {
+            "and_or": "",
+            "field": "last_name",
+            "operator": "eq",
+            "value": "Miller"
+        },
+        {
+            "and_or": "and",
+            "field": "last_clicked",
+            "operator": "gt",
+            "value": "01/02/2015"
+        },
+        {
+            "and_or": "or",
+            "field": "clicks.campaign_identifier",
+            "operator": "eq",
+            "value": "513"
+        }
+    ],
+    "list_id": 4,
+    "name": "Last Name Miller"
 }
 response = sg.client.contactdb.segments.post(request_body=data)
 print(response.status_code)
@@ -343,20 +349,22 @@ print(response.headers)
 # PATCH /contactdb/segments/{segment_id} #
 
 data = {
-  "conditions": [
-    {
-      "and_or": "", 
-      "field": "last_name", 
-      "operator": "eq", 
-      "value": "Miller"
-    }
-  ], 
-  "list_id": 5, 
-  "name": "The Millers"
+    "conditions": [
+        {
+            "and_or": "",
+            "field": "last_name",
+            "operator": "eq",
+            "value": "Miller"
+        }
+    ],
+    "list_id": 5,
+    "name": "The Millers"
 }
 params = {'segment_id': 'test_string'}
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).patch(request_body=data, query_params=params)
+response = sg.client.contactdb.segments._(segment_id).patch(
+    request_body=data,
+    query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -378,7 +386,8 @@ print(response.headers)
 
 params = {'delete_contacts': 'true'}
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).delete(query_params=params)
+response = sg.client.contactdb.segments._(
+    segment_id).delete(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -389,8 +398,8 @@ print(response.headers)
 
 params = {'page': 1, 'page_size': 1}
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).recipients.get(query_params=params)
+response = sg.client.contactdb.segments._(
+    segment_id).recipients.get(query_params=params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
-
