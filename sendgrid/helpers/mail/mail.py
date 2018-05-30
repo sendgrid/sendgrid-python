@@ -293,7 +293,14 @@ class Mail(object):
 
         :type content: Content
         """
-        self._contents.append(content)
+        if self._contents is None:
+            self._contents = []
+        
+        # Text content should be before HTML content
+        if content._type == "text/plain":
+            self._contents.insert(0, content)
+        else:
+            self._contents.append(content)
 
     @property
     def attachments(self):
