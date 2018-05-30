@@ -10,7 +10,7 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /templates #
 
 data = {
-  "name": "example_name"
+    "name": "example_name"
 }
 response = sg.client.templates.post(request_body=data)
 print(response.status_code)
@@ -31,7 +31,7 @@ print(response.headers)
 # PATCH /templates/{template_id} #
 
 data = {
-  "name": "new_example_name"
+    "name": "new_example_name"
 }
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).patch(request_body=data)
@@ -64,12 +64,12 @@ print(response.headers)
 # POST /templates/{template_id}/versions #
 
 data = {
-  "active": 1, 
-  "html_content": "<%body%>", 
-  "name": "example_version_name", 
-  "plain_content": "<%body%>", 
-  "subject": "<%subject%>", 
-  "template_id": "ddb96bbc-9b92-425e-8979-99464621b543"
+    "active": 1,
+    "html_content": "<%body%>",
+    "name": "example_version_name",
+    "plain_content": "<%body%>",
+    "subject": "<%subject%>",
+    "template_id": "ddb96bbc-9b92-425e-8979-99464621b543"
 }
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).versions.post(request_body=data)
@@ -82,15 +82,16 @@ print(response.headers)
 # PATCH /templates/{template_id}/versions/{version_id} #
 
 data = {
-  "active": 1, 
-  "html_content": "<%body%>", 
-  "name": "updated_example_name", 
-  "plain_content": "<%body%>", 
-  "subject": "<%subject%>"
+    "active": 1,
+    "html_content": "<%body%>",
+    "name": "updated_example_name",
+    "plain_content": "<%body%>",
+    "subject": "<%subject%>"
 }
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).patch(request_body=data)
+response = sg.client.templates._(template_id).versions._(
+    version_id).patch(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -123,8 +124,8 @@ print(response.headers)
 
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(
+    template_id).versions._(version_id).activate.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

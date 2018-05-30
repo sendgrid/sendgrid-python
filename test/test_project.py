@@ -7,17 +7,21 @@ except ImportError:
 
 class ProjectTests(unittest.TestCase):
 
-    # ./Docker or docker/Docker
+    # ./docker
     def test_docker_dir(self):
-        self.assertTrue(os.path.isdir("./docker/Dockerfile"))
+        self.assertTrue(os.path.isdir("./docker"))
 
-    # ./docker-compose.yml or ./docker/docker-compose.yml
-    def test_docker_compose(self):
-        self.assertTrue(os.path.isfile('docker-compose.yml'))
+    # ./docker-test
+    def test_docker_test_dir(self):
+        self.assertTrue(os.path.isdir("./docker-test"))
+
+    # # ./docker-compose.yml or ./docker/docker-compose.yml
+    # def test_docker_compose(self):
+    #     self.assertTrue(os.path.isfile('docker-compose.yml'))
 
     # ./.env_sample
     def test_env(self):
-        self.assertTrue(os.path.isfile('./env_sample'))
+        self.assertTrue(os.path.isfile('./.env_sample'))
 
     # ./.gitignore
     def test_gitignore(self):

@@ -28,6 +28,12 @@ RUN python2.7 get-pip.py && \
     pip install tox && \
     rm get-pip.py
 
+#install pyyaml, six, werkzeug
+RUN python3.6 -m pip install pyyaml
+RUN python3.6 -m pip install six
+RUN Python3.6 -m pip install werkzeug
+RUN Python3.6 -m pip install flask
+
 # set up default sendgrid env
 WORKDIR /root/sources
 RUN git clone https://github.com/sendgrid/sendgrid-python.git && \

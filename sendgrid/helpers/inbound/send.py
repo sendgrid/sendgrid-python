@@ -2,6 +2,7 @@
 Usage: ./send.py [path to file containing test data]"""
 import argparse
 import sys
+from io import open
 try:
     from config import Config
 except ImportError:
@@ -11,6 +12,7 @@ from python_http_client import Client
 
 
 class Send(object):
+
     def __init__(self, url):
         """Create a Send object with target `url`."""
         self._url = url
@@ -26,7 +28,7 @@ class Send(object):
             "Content-Type": "multipart/form-data; boundary=xYzZY"
         }
         client = Client(host=self.url, request_headers=headers)
-        f = open(payload_filepath, 'r')
+        f = open(payload_filepath, 'r', encoding='utf-8')
         data = f.read()
         return client.post(request_body=data)
 
@@ -35,8 +37,7 @@ class Send(object):
         """URL to send to."""
         return self._url
 
-
-if __name__ == '__main__':
+def main():
     config = Config()
     parser = argparse.ArgumentParser(description='Test data and optional host.')
     parser.add_argument('data',
@@ -52,3 +53,6 @@ if __name__ == '__main__':
     print(response.status_code)
     print(response.headers)
     print(response.body)
+
+if __name__ == '__main__':
+    main()
