@@ -330,7 +330,7 @@ class Mail(object):
     def add_section(self, section):
         """Add a Section to this Mail.
 
-        :type attachment: Section
+        :type section: Section
         """
         self._sections.append(section)
 
