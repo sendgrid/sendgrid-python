@@ -15,13 +15,8 @@ class Header(object):
         :param value: The header's value (e.g. "2013-02-27 1:23:45 PM PDT")
         :type value: string, optional
         """
-        self._key = None
-        self._value = None
-
-        if key is not None:
-            self.key = key
-        if value is not None:
-            self.value = value
+        self.key = key
+        self.value = value
 
     @property
     def key(self):
