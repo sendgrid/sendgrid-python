@@ -73,7 +73,7 @@ class ProjectTests(unittest.TestCase):
 
     # ./use-cases/README.md
     def test_use_cases(self):
-        self.assertTrue(os.path.isfile('./use-cases/README.md'))
+        self.assertTrue(os.path.isfile('./use_cases/README.md'))
 
 if __name__ == '__main__':
     unittest.main()
