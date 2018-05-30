@@ -60,11 +60,13 @@ In order to make the process easier, we've included a [sample bug report templat
 We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 ### Development Environment ###
-
-#### Using Docker ####
+#### There are two ways to get set up: ####
+#### 1. Using Docker ####
+This is usually the easiest and fastest way to get set up. 
 You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
-#### Install and Run Locally ####
+#### - OR - ####
+#### 2. Install and Run Locally ####
 
 ##### Prerequisites #####
 
@@ -151,8 +153,13 @@ pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
+```
+Make sure to change the current working directory to your local version of the repo before running the following command:
+```
 python setup.py install
-pyenv local 3.5.0 3.4.3 2.7.8 2.6.9
+```
+```
+pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
 pyenv rehash
 ```
 
