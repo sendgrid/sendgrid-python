@@ -293,7 +293,14 @@ class Mail(object):
 
         :type content: Content
         """
-        self._contents.append(content)
+        if self._contents is None:
+            self._contents = []
+        
+        # Text content should be before HTML content
+        if content._type == "text/plain":
+            self._contents.insert(0, content)
+        else:
+            self._contents.append(content)
 
     @property
     def attachments(self):
@@ -374,8 +381,6 @@ class Mail(object):
         return self._custom_args
 
     def add_custom_arg(self, custom_arg):
-        """Add a CustomArg to this Mail.
-
-        :type custom_arg: CustomArg
-        """
+        if self._custom_args is None:
+            self._custom_args = []
         self._custom_args.append(custom_arg)
