@@ -9,6 +9,7 @@ import os
 import subprocess
 import sys
 import time
+import datetime
 
 host = "http://localhost:4010"
 
@@ -26,51 +27,52 @@ class UnitTests(unittest.TestCase):
             api_key=os.environ.get('SENDGRID_API_KEY'))
         cls.devnull = open(os.devnull, 'w')
         prism_cmd = None
-        try:
-            # check for prism in the PATH
-            if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
-                prism_cmd = 'prism'
-        except OSError:
-            prism_cmd = None
+        
+        # try:
+        #     # check for prism in the PATH
+        #     if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
+        #         prism_cmd = 'prism'
+        # except OSError:
+        #     prism_cmd = None
 
-        if not prism_cmd:
-            # check for known prism locations
-            for path in ('/usr/local/bin/prism', os.path.expanduser(os.path.join('~', 'bin', 'prism')),
-                         os.path.abspath(os.path.join(os.getcwd(), 'prism', 'bin', 'prism'))):
-                prism_cmd = path if os.path.isfile(path) else None
-                if prism_cmd:
-                    break
+        # if not prism_cmd:
+        #     # check for known prism locations
+        #     for path in ('/usr/local/bin/prism', os.path.expanduser(os.path.join('~', 'bin', 'prism')),
+        #                  os.path.abspath(os.path.join(os.getcwd(), 'prism', 'bin', 'prism'))):
+        #         prism_cmd = path if os.path.isfile(path) else None
+        #         if prism_cmd:
+        #             break
 
-        if not prism_cmd:
-            if sys.platform != 'win32':
-                # try to install with prism.sh
-                try:
-                    print("Warning: no prism detected, I will try to install it locally")
-                    prism_sh = os.path.abspath(os.path.join(cls.path, 'test', 'prism.sh'))
-                    if subprocess.call(prism_sh) == 0:
-                        prism_cmd = os.path.expanduser(os.path.join('~', 'bin', 'prism'))
-                    else:
-                        raise RuntimeError()
-                except Exception as e:
-                    print(
-                        "Error installing the prism binary, you can try "
-                        "downloading directly here "
-                        "(https://github.com/stoplightio/prism/releases) "
-                        "and place in your $PATH", e)
-                    sys.exit()
-            else:
-                print("Please download the Windows binary "
-                      "(https://github.com/stoplightio/prism/releases) "
-                      "and place it in your %PATH% ")
-                sys.exit()
+        # if not prism_cmd:
+        #     if sys.platform != 'win32':
+        #         # try to install with prism.sh
+        #         try:
+        #             print("Warning: no prism detected, I will try to install it locally")
+        #             prism_sh = os.path.abspath(os.path.join(cls.path, 'test', 'prism.sh'))
+        #             if subprocess.call(prism_sh) == 0:
+        #                 prism_cmd = os.path.expanduser(os.path.join('~', 'bin', 'prism'))
+        #             else:
+        #                 raise RuntimeError()
+        #         except Exception as e:
+        #             print(
+        #                 "Error installing the prism binary, you can try "
+        #                 "downloading directly here "
+        #                 "(https://github.com/stoplightio/prism/releases) "
+        #                 "and place in your $PATH", e)
+        #             sys.exit()
+        #     else:
+        #         print("Please download the Windows binary "
+        #               "(https://github.com/stoplightio/prism/releases) "
+        #               "and place it in your %PATH% ")
+        #         sys.exit()
 
-        print("Activating Prism (~20 seconds)")
-        cls.p = subprocess.Popen([
-            prism_cmd, "run", "-s",
-            "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/"
-            "oai_stoplight.json"], stdout=cls.devnull, stderr=subprocess.STDOUT)
-        time.sleep(15)
-        print("Prism Started")
+        # print("Activating Prism (~20 seconds)")
+        # cls.p = subprocess.Popen([
+        #     prism_cmd, "run", "-s",
+        #     "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/"
+        #     "oai_stoplight.json"], stdout=cls.devnull, stderr=subprocess.STDOUT)
+        # time.sleep(15)
+        # print("Prism Started")
 
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
@@ -135,16 +137,18 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._get_default_headers().items():
+        for k, v in self.sg._get_default_headers().items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
         from_email = Email("test@example.com")
         to_email = Email("test@example.com")
         subject = "Sending with SendGrid is Fun"
-        content = Content("text/plain", "and easy to do anywhere, even with Python")
+        content = Content(
+            "text/plain", "and easy to do anywhere, even with Python")
         mail = Mail(from_email, subject, to_email, content)
-        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [{'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
+        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [
+                        {'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}
@@ -2227,25 +2231,25 @@ class UnitTests(unittest.TestCase):
         data = {
             "ip": "192.168.0.1"
         }
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).ips.post(request_body=data, request_headers=headers)
+            id_).ips.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_domains__id__ips__ip__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         ip = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).ips._(ip).delete(request_headers=headers)
+            id_).ips._(ip).delete(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_domains__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips_post(self):
@@ -2267,24 +2271,24 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips__id__get(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.ips._(
-            id).get(request_headers=headers)
+            id_).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips__id__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 204}
         response = self.sg.client.whitelabel.ips._(
-            id).delete(request_headers=headers)
+            id_).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_ips__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.ips._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links_post(self):
@@ -2331,31 +2335,31 @@ class UnitTests(unittest.TestCase):
         data = {
             "default": True
         }
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
-        response = self.sg.client.whitelabel.links._(id).patch(
+        response = self.sg.client.whitelabel.links._(id_).patch(
             request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__id__get(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links._(
-            id).get(request_headers=headers)
+            id_).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__id__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 204}
         response = self.sg.client.whitelabel.links._(
-            id).delete(request_headers=headers)
+            id_).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_links__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__link_id__subuser_post(self):
@@ -2368,7 +2372,13 @@ class UnitTests(unittest.TestCase):
             request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.p.kill()
-        print("Prism Shut Down")
+    def test_license_year(self):
+        LICENSE_FILE = 'LICENSE.txt'
+        with open(LICENSE_FILE, 'r') as f:
+            copyright_line = f.readline().rstrip()
+        self.assertEqual('Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year, copyright_line)
+
+    # @classmethod
+    # def tearDownClass(cls):
+    #     cls.p.kill()
+    #     print("Prism Shut Down")

@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 
 
 class Parse(object):
+
     def __init__(self, config, request):
         self._keys = config.keys
         self._request = request

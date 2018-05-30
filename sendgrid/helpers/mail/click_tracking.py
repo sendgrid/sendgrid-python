@@ -9,14 +9,8 @@ class ClickTracking(object):
         :param enable_text: If click tracking is on in your email's text/plain.
         :type enable_text: boolean, optional
         """
-        self._enable = None
-        self._enable_text = None
-
-        if enable is not None:
-            self.enable = enable
-
-        if enable_text is not None:
-            self.enable_text = enable_text
+        self.enable = enable
+        self.enable_text = enable_text
 
     @property
     def enable(self):
