@@ -71,9 +71,9 @@ class ProjectTests(unittest.TestCase):
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
 
-    # ./USE_CASES.md
+    # ./use-cases/README.md
     def test_use_cases(self):
-        self.assertTrue(os.path.isfile('./USE_CASES.md'))
+        self.assertTrue(os.path.isfile('./use-cases/README.md'))
 
 if __name__ == '__main__':
     unittest.main()
