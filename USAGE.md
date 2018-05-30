@@ -389,7 +389,7 @@ print response.headers
 ```
 ## Retrieve an existing API Key
 
-**This endpoint allows you to retrieve a single api key.**
+**This endpoint allows you to retrieve a single API key.**
 
 If the API Key ID does not exist an HTTP 404 will be returned.
 
@@ -3020,7 +3020,7 @@ print response.headers
 ```
 ## Delete a subuser
 
-This endpoint allows you to delete a subuser. This is a permanent action, once deleted a subuser cannot be retrieved.
+This endpoint allows you to delete a subuser. This is a permanent action, once you delete a subuser it cannot be retrieved.
 
 For more information about Subusers:
 
@@ -3308,7 +3308,7 @@ print response.headers
 
 **This endpoint allows you to remove an email address from your bounce list.**
 
-Bounces are messages that are returned to the server that sent it. This endpoint allows you to delete a single email addresses from your bounce list.
+Bounces are messages that are returned to the server that sent it. This endpoint allows you to delete a single email address from your bounce list.
 
 For more information see:
 
