@@ -2231,25 +2231,25 @@ class UnitTests(unittest.TestCase):
         data = {
             "ip": "192.168.0.1"
         }
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).ips.post(request_body=data, request_headers=headers)
+            id_).ips.post(request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_domains__id__ips__ip__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         ip = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).ips._(ip).delete(request_headers=headers)
+            id_).ips._(ip).delete(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_domains__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.domains._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips_post(self):
@@ -2271,24 +2271,24 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips__id__get(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.ips._(
-            id).get(request_headers=headers)
+            id_).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_ips__id__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 204}
         response = self.sg.client.whitelabel.ips._(
-            id).delete(request_headers=headers)
+            id_).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_ips__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.ips._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links_post(self):
@@ -2335,31 +2335,31 @@ class UnitTests(unittest.TestCase):
         data = {
             "default": True
         }
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
-        response = self.sg.client.whitelabel.links._(id).patch(
+        response = self.sg.client.whitelabel.links._(id_).patch(
             request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__id__get(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links._(
-            id).get(request_headers=headers)
+            id_).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__id__delete(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 204}
         response = self.sg.client.whitelabel.links._(
-            id).delete(request_headers=headers)
+            id_).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
     def test_whitelabel_links__id__validate_post(self):
-        id = "test_url_param"
+        id_ = "test_url_param"
         headers = {'X-Mock': 200}
         response = self.sg.client.whitelabel.links._(
-            id).validate.post(request_headers=headers)
+            id_).validate.post(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_whitelabel_links__link_id__subuser_post(self):
