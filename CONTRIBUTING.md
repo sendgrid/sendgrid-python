@@ -116,7 +116,7 @@ The Web API v3 client is `sendgrid.py`, the other files are legacy code for our 
 <a name="testing"></a>
 ## Testing
 
-All PRs require passing tests before the PR will be reviewed.
+The PR must pass all the tests before it is reviewed.
 
 All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory.
 
@@ -132,7 +132,7 @@ For Python 2.7.* and up:
 
 ### Testing Multiple Versions of Python
 
-All PRs require passing tests before the PR will be reviewed.
+The PR must pass all the tests before it is reviewed.
 
 #### Prerequisites: ####
 
