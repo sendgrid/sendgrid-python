@@ -2,6 +2,7 @@
 Usage: ./send.py [path to file containing test data]"""
 import argparse
 import sys
+from io import open
 try:
     from config import Config
 except ImportError:
@@ -26,9 +27,9 @@ class Send(object):
             "Content-Type": "multipart/form-data; boundary=xYzZY"
         }
         client = Client(host=self.url, request_headers=headers)
-        with open(payload_filepath, 'r') as f:
-            data = f.read()
-            return client.post(request_body=data)
+        f = open(payload_filepath, 'r', encoding='utf-8')
+        data = f.read()
+        return client.post(request_body=data)
 
     @property
     def url(self):
