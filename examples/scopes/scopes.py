@@ -13,4 +13,3 @@ response = sg.client.scopes.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

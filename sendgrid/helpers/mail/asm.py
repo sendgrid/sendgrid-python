@@ -13,10 +13,10 @@ class ASM(object):
         self._groups_to_display = None
 
         if group_id is not None:
-            self._group_id = group_id
+            self.group_id = group_id
 
         if groups_to_display is not None:
-            self._groups_to_display = groups_to_display
+            self.groups_to_display = groups_to_display
 
     @property
     def group_id(self):

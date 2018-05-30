@@ -32,13 +32,13 @@ class Mail(object):
         self._mail_settings = None
         self._tracking_settings = None
         self._reply_to = None
-        self._personalizations = None
-        self._contents = None
-        self._attachments = None
-        self._sections = None
-        self._headers = None
-        self._categories = None
-        self._custom_args = None
+        self._personalizations = []
+        self._contents = []
+        self._attachments = []
+        self._sections = []
+        self._headers = []
+        self._categories = []
+        self._custom_args = []
 
         # Minimum required to send an email
         if from_email and subject and to_email and content:
@@ -235,8 +235,6 @@ class Mail(object):
 
         :type personalizations: Personalization
         """
-        if self._personalizations is None:
-            self._personalizations = []
         self._personalizations.append(personalizations)
 
     @property
@@ -255,7 +253,12 @@ class Mail(object):
         """
         if self._contents is None:
             self._contents = []
-        self._contents.append(content)
+        
+        # Text content should be before HTML content
+        if content._type == "text/plain":
+            self._contents.insert(0, content)
+        else:
+            self._contents.append(content)
 
     @property
     def attachments(self):
@@ -271,8 +274,6 @@ class Mail(object):
 
         :type attachment: Attachment
         """
-        if self._attachments is None:
-            self._attachments = []
         self._attachments.append(attachment)
 
     @property
@@ -289,8 +290,6 @@ class Mail(object):
 
         :type attachment: Section
         """
-        if self._sections is None:
-            self._sections = []
         self._sections.append(section)
 
     @property
@@ -309,8 +308,6 @@ class Mail(object):
         key-value pair.
         :type header: object
         """
-        if self._headers is None:
-            self._headers = []
         if isinstance(header, dict):
             key, val = list(header.items())[0]
             self._headers.append(Header(key, val))
@@ -330,8 +327,6 @@ class Mail(object):
 
         :type category: string
         """
-        if self._categories is None:
-            self._categories = []
         self._categories.append(category)
 
     @property
@@ -344,10 +339,6 @@ class Mail(object):
         return self._custom_args
 
     def add_custom_arg(self, custom_arg):
-        """Add a CustomArg to this Mail.
-
-        :type custom_arg: CustomArg
-        """
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
