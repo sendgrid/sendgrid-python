@@ -35,7 +35,6 @@ class Mail(object):
         self._mail_settings = None
         self._tracking_settings = None
         self._reply_to = None
-        self._validator = ValidateAPIKey()
         self._personalizations = []
         self._contents = []
         self._attachments = []
@@ -153,7 +152,6 @@ class Mail(object):
 
     @subject.setter
     def subject(self, value):
-        self._validator.validate_message_text(value)
         self._subject = value
 
     @property

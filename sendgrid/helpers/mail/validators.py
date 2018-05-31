@@ -1,3 +1,4 @@
+from .exceptions import APIKeyIncludedException
 ################################################################
 # Various types of Validators
 ################################################################
@@ -65,6 +66,6 @@ class ValidateAPIKey(object):
 
         if isinstance(message_string, str):
             for regex in self.regexes:
-                if regex_pattern.match(message_string) is not None:
+                if regex.match(message_string) is not None:
                     raise APIKeyIncludedException()
 

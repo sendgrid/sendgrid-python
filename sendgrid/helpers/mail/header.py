@@ -17,7 +17,6 @@ class Header(object):
         """
         self._key = None
         self._value = None
-        self._validator.validate_message_dict(value)
 
         if key is not None:
             self.key = key
@@ -46,7 +45,6 @@ class Header(object):
 
     @value.setter
     def value(self, value):
-        self._validator.validate_message_dict(value)
         self._value = value
 
     def get(self):
