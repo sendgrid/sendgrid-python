@@ -8,8 +8,11 @@ class Mail(object):
 
     Use get() to get the request body.
     """
-    def __init__(
-            self, from_email=None, subject=None, to_email=None, content=None):
+    def __init__(self, 
+                 from_email=None, 
+                 subject=None, 
+                 to_email=None, 
+                 content=None):
         """Create a Mail object.
 
         If parameters are supplied, all parameters must be present.
