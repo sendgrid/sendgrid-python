@@ -15,8 +15,14 @@ class Header(object):
         :param value: The header's value (e.g. "2013-02-27 1:23:45 PM PDT")
         :type value: string, optional
         """
-        self.key = key
-        self.value = value
+        self._key = None
+        self._value = None
+        self._validator.validate_message_dict(value)
+
+        if key is not None:
+            self.key = key
+        if value is not None:
+            self.value = value
 
     @property
     def key(self):
@@ -40,6 +46,7 @@ class Header(object):
 
     @value.setter
     def value(self, value):
+        self._validator.validate_message_dict(value)
         self._value = value
 
     def get(self):
