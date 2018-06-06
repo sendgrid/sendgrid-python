@@ -64,70 +64,27 @@ class Mail(object):
 
         :rtype: dict
         """
-        mail = {}
-        if self.from_email is not None:
-            mail["from"] = self.from_email.get()
-        if self.subject is not None:
-            mail["subject"] = self.subject
+        mail = {
+            'from': _get(self.from_email),
+            'subject': self.subject,
+            'personalizations': _get_list(self.personalizations),
+            'content': _get_list(self.contents),
+            'attachments': _get_list(self.attachments),
+            'template_id': self.template_id,
+            'sections': _merge_dicts(self.sections),
+            'headers': _merge_dicts(self.headers),
+            'categories': _get_list(self.categories),
+            'custom_args': _merge_dicts(self.custom_args),
+            'send_at': self.send_at,
+            'batch_id': self.batch_id,
+            'asm': _get(self.asm),
+            'ip_pool_name': self.ip_pool_name,
+            'mail_settings': _get(self.mail_settings),
+            'tracking_settings': _get(self.tracking_settings),
+            'reply_to': _get(self.reply_to),
+        }
 
-        if self.personalizations:
-            mail["personalizations"] = [
-                personalization.get()
-                for personalization in self.personalizations
-            ]
-
-        if self.contents:
-            mail["content"] = [ob.get() for ob in self.contents]
-
-        if self.attachments:
-            mail["attachments"] = [ob.get() for ob in self.attachments]
-
-        if self.template_id is not None:
-            mail["template_id"] = self.template_id
-
-        if self.sections:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
-            mail["sections"] = sections
-
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
-            mail["headers"] = headers
-
-        if self.categories:
-            mail["categories"] = [category.get() for category in
-                                  self.categories]
-
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
-            mail["custom_args"] = custom_args
-
-        if self.send_at is not None:
-            mail["send_at"] = self.send_at
-
-        if self.batch_id is not None:
-            mail["batch_id"] = self.batch_id
-
-        if self.asm is not None:
-            mail["asm"] = self.asm.get()
-
-        if self.ip_pool_name is not None:
-            mail["ip_pool_name"] = self.ip_pool_name
-
-        if self.mail_settings is not None:
-            mail["mail_settings"] = self.mail_settings.get()
-
-        if self.tracking_settings is not None:
-            mail["tracking_settings"] = self.tracking_settings.get()
-
-        if self.reply_to is not None:
-            mail["reply_to"] = self.reply_to.get()
-        return mail
+        return _trim_none(mail)
 
     @property
     def from_email(self):
@@ -192,7 +149,8 @@ class Mail(object):
         This represents a batch of emails sent at the same time. Including a
         batch_id in your request allows you include this email in that batch,
         and also enables you to cancel or pause the delivery of that batch.
-        For more information, see https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
+        For more information, see:
+        https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
 
         :rtype: int
         """
@@ -354,8 +312,8 @@ class Mail(object):
         :type header: object
         """
         if isinstance(header, dict):
-            (k, v) = list(header.items())[0]
-            self._headers.append(Header(k, v))
+            key, val = list(header.items())[0]
+            self._headers.append(Header(key, val))
         else:
             self._headers.append(header)
 
@@ -387,3 +345,31 @@ class Mail(object):
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
+
+
+def _get(getter):
+    if getter is None:
+        return None
+    return getter.get()
+
+
+def _get_list(getters):
+    if getters is None:
+        return None
+    return [x.get() for x in getters]
+
+
+def _merge_dicts(getters):
+    if getters is None:
+        return None
+    out = {}
+    for key in getters:
+        out.update(key.get())
+    return out
+
+
+def _trim_none(dictionary):
+    keys = [key for key, val in dictionary.items() if val is None]
+    for key in keys:
+        del dictionary[key]
+    return dictionary
