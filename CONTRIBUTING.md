@@ -80,7 +80,7 @@ git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
 ```
 
-## Environment Variables
+### Environment Variables
 
 First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
 
