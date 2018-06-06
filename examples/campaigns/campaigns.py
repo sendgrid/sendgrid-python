@@ -10,24 +10,24 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /campaigns #
 
 data = {
-  "categories": [
-    "spring line"
-  ], 
-  "custom_unsubscribe_url": "", 
-  "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>", 
-  "ip_pool": "marketing", 
-  "list_ids": [
-    110, 
-    124
-  ], 
-  "plain_content": "Check out our spring line!", 
-  "segment_ids": [
-    110
-  ], 
-  "sender_id": 124451, 
-  "subject": "New Products for Spring!", 
-  "suppression_group_id": 42, 
-  "title": "March Newsletter"
+    "categories": [
+        "spring line"
+    ],
+    "custom_unsubscribe_url": "",
+    "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>",
+    "ip_pool": "marketing",
+    "list_ids": [
+        110,
+        124
+    ],
+    "plain_content": "Check out our spring line!",
+    "segment_ids": [
+        110
+    ],
+    "sender_id": 124451,
+    "subject": "New Products for Spring!",
+    "suppression_group_id": 42,
+    "title": "March Newsletter"
 }
 response = sg.client.campaigns.post(request_body=data)
 print(response.status_code)
@@ -49,13 +49,13 @@ print(response.headers)
 # PATCH /campaigns/{campaign_id} #
 
 data = {
-  "categories": [
-    "summer line"
-  ], 
-  "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>", 
-  "plain_content": "Check out our summer line!", 
-  "subject": "New Products for Summer!", 
-  "title": "May Newsletter"
+    "categories": [
+        "summer line"
+    ],
+    "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+    "plain_content": "Check out our summer line!",
+    "subject": "New Products for Summer!",
+    "title": "May Newsletter"
 }
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).patch(request_body=data)
@@ -88,10 +88,11 @@ print(response.headers)
 # PATCH /campaigns/{campaign_id}/schedules #
 
 data = {
-  "send_at": 1489451436
+    "send_at": 1489451436
 }
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.patch(request_body=data)
+response = sg.client.campaigns._(
+    campaign_id).schedules.patch(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -101,7 +102,7 @@ print(response.headers)
 # POST /campaigns/{campaign_id}/schedules #
 
 data = {
-  "send_at": 1489771528
+    "send_at": 1489771528
 }
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.post(request_body=data)
@@ -144,11 +145,11 @@ print(response.headers)
 # POST /campaigns/{campaign_id}/schedules/test #
 
 data = {
-  "to": "your.email@example.com"
+    "to": "your.email@example.com"
 }
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body=data)
+response = sg.client.campaigns._(
+    campaign_id).schedules.test.post(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

@@ -8,7 +8,7 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
 
-**NEW:** 
+**NEW:**
 
 * Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
 * Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
@@ -55,7 +55,7 @@ echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
 
-Sendgrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
 ## Install Package
 
@@ -93,7 +93,7 @@ print(response.body)
 print(response.headers)
 ```
 
-The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it.
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add it.
 
 ### Without Mail Helper Class
 
@@ -175,7 +175,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 <a name="use-cases"></a>
 # Use Cases
 
-[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
+[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md), such as how to send an email with a transactional template.
 
 <a name="announcements"></a>
 # Announcements
@@ -202,6 +202,7 @@ Quick links:
 - [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report)
 - [Sign the CLA to Create a Pull Request](https://cla.sendgrid.com/sendgrid/sendgrid-python)
 - [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
+- [Review Pull Requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews)
 
 <a name="troubleshooting"></a>
 # Troubleshooting

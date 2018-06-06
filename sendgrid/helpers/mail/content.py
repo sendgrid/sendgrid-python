@@ -1,3 +1,5 @@
+from .validators import ValidateAPIKey
+
 class Content(object):
     """Content to be included in your email.
 
@@ -12,8 +14,15 @@ class Content(object):
         :param value: The actual content.
         :type value: string, optional
         """
-        self.type = type_
-        self.value = value
+        self._type = None
+        self._value = None
+        self._validator = ValidateAPIKey()
+
+        if type_ is not None:
+            self.type = type_
+
+        if value is not None:
+            self.value = value
 
     @property
     def type(self):
@@ -39,6 +48,7 @@ class Content(object):
 
     @value.setter
     def value(self, value):
+        self._validator.validate_message_dict(value)
         self._value = value
 
     def get(self):

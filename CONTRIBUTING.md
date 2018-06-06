@@ -9,9 +9,10 @@ Hello! Thank you for choosing to help contribute to one of the SendGrid open sou
 - [Testing](#testing)
 - [Style Guidelines & Naming Conventions](#style-guidelines-and-naming-conventions)
 - [Creating a Pull Request](#creating-a-pull-request)
+- [Code Reviews](#code-reviews)
 
 <a name="roadmap"></a>
-We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions and additional PRs are welcomed and encouraged.
+We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community reviews, comments, suggestions and additional PRs are welcomed and encouraged.
 
 <a name="cla"></a>
 ## CLAs and CCLAs
@@ -59,11 +60,13 @@ In order to make the process easier, we've included a [sample bug report templat
 We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 ### Development Environment ###
-
-#### Using Docker ####
+#### There are two ways to get set up: ####
+#### 1. Using Docker ####
+This is usually the easiest and fastest way to get set up. 
 You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
-#### Install and Run Locally ####
+#### - OR - ####
+#### 2. Install and Run Locally ####
 
 ##### Prerequisites #####
 
@@ -77,7 +80,7 @@ git clone https://github.com/sendgrid/sendgrid-python.git
 cd sendgrid-python
 ```
 
-## Environment Variables
+### Environment Variables
 
 First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
 
@@ -113,7 +116,7 @@ The Web API v3 client is `sendgrid.py`, the other files are legacy code for our 
 <a name="testing"></a>
 ## Testing
 
-All PRs require passing tests before the PR will be reviewed.
+The PR must pass all the tests before it is reviewed.
 
 All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory.
 
@@ -129,7 +132,7 @@ For Python 2.7.* and up:
 
 ### Testing Multiple Versions of Python
 
-All PRs require passing tests before the PR will be reviewed.
+The PR must pass all the tests before it is reviewed.
 
 #### Prerequisites: ####
 
@@ -139,7 +142,7 @@ The above local "Initial setup" is complete
 * [tox](https://pypi.python.org/pypi/tox)
 * [prism](https://github.com/stoplightio/prism) v0.6 - It should be available in your PATH, but unittest script
 will try to install it locally if not found. Apart from PATH env variable it will check in `~/bin` and `/usr/local/bin`.
-You can install by yourself it in user dir by calling `source test/prism.sh`.
+You can install it by yourself in user dir by calling `source test/prism.sh`.
 
 #### Initial setup: ####
 
@@ -150,8 +153,13 @@ pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
+```
+Make sure to change the current working directory to your local version of the repo before running the following command:
+```
 python setup.py install
-pyenv local 3.5.0 3.4.3 2.7.8 2.6.9
+```
+```
+pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
 pyenv rehash
 ```
 
@@ -229,3 +237,7 @@ Please run your code through:
     with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
 
 If you have any additional questions, please feel free to [email](mailto:dx@sendgrid.com) us or create an issue in this repo.
+
+<a name="code-reviews"></a>
+## Code Reviews
+If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, Github has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).
