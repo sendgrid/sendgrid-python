@@ -65,59 +65,26 @@ class Mail(object):
         :rtype: dict
         """
         mail = {}
+
+        KEYS_TO_BE_SENT = [
+            'subject', 'personalizations','attachments', 'template_id',
+            'sections', 'headers', 'categories', 'custom_args',
+            'send_at', 'batch_id', 'ip_pool_name'
+        ]
+
+        for key in KEYS_TO_BE_SENT:
+            value = getattr(self, key, None)
+            if value is not None:
+                mail[key] = value
+
+        if self.contents is not None:
+            mail["content"] = self.contents
+
         if self.from_email is not None:
             mail["from"] = self.from_email.get()
-        if self.subject is not None:
-            mail["subject"] = self.subject
-
-        if self.personalizations:
-            mail["personalizations"] = [
-                personalization.get()
-                for personalization in self.personalizations
-            ]
-
-        if self.contents:
-            mail["content"] = [ob.get() for ob in self.contents]
-
-        if self.attachments:
-            mail["attachments"] = [ob.get() for ob in self.attachments]
-
-        if self.template_id is not None:
-            mail["template_id"] = self.template_id
-
-        if self.sections:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
-            mail["sections"] = sections
-
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
-            mail["headers"] = headers
-
-        if self.categories:
-            mail["categories"] = [category.get() for category in
-                                  self.categories]
-
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
-            mail["custom_args"] = custom_args
-
-        if self.send_at is not None:
-            mail["send_at"] = self.send_at
-
-        if self.batch_id is not None:
-            mail["batch_id"] = self.batch_id
 
         if self.asm is not None:
             mail["asm"] = self.asm.get()
-
-        if self.ip_pool_name is not None:
-            mail["ip_pool_name"] = self.ip_pool_name
 
         if self.mail_settings is not None:
             mail["mail_settings"] = self.mail_settings.get()
@@ -127,6 +94,7 @@ class Mail(object):
 
         if self.reply_to is not None:
             mail["reply_to"] = self.reply_to.get()
+
         return mail
 
     @property
@@ -271,9 +239,15 @@ class Mail(object):
         message should be handled. A maximum of 1000 personalizations can be
         included.
 
-        :rtype: list
+        :returns: List of dictionaries each dictionary is obtained by
+        Personalization.get
+        :rtype: list(dictionaries)
         """
-        return self._personalizations
+        if self._personalizations is not None:
+            return [
+                personalization.get()
+                for personalization in self._personalizations
+            ]
 
     def add_personalization(self, personalizations):
         """Add a new Personalization to this Mail.
@@ -285,10 +259,12 @@ class Mail(object):
     @property
     def contents(self):
         """The Contents of this Mail. Must include at least one MIME type.
+        Returns list of dictionaries as returned by content.get
 
         :rtype: list(Content)
         """
-        return self._contents
+        if self._contents is not None:
+            return [ob.get() for ob in self._contents]
 
     def add_content(self, content):
         """Add a new Content to this Mail.  Usually the plaintext or HTML
@@ -309,10 +285,13 @@ class Mail(object):
     def attachments(self):
         """The attachments included with this Mail.
 
-        :returns: List of Attachment objects.
-        :rtype: list(Attachment)
+        :returns: List of dictionaries each dictionary is obtained by
+        Attachment.get
+        :rtype: list(dictionaries)
         """
-        return self._attachments
+        if self._attachments is not None:
+            return [ob.get() for ob in self._attachments]
+        return None
 
     def add_attachment(self, attachment):
         """Add an Attachment to this Mail.
@@ -325,10 +304,16 @@ class Mail(object):
     def sections(self):
         """The sections included with this Mail.
 
-        :returns: List of Section objects.
-        :rtype: list(Section)
+        :returns: List of dictionaries each dictionary is obtained by
+        Section.get
+        :rtype: list(dictionaries)
         """
-        return self._sections
+        if self._sections is not None:
+            sections = {}
+            for key in self._sections:
+                sections.update(key.get())
+            return sections
+        return None
 
     def add_section(self, section):
         """Add a Section to this Mail.
@@ -341,10 +326,16 @@ class Mail(object):
     def headers(self):
         """The Headers included with this Mail.
 
-        :returns: List of Header objects.
-        :rtype: list(Header)
+        :returns: List of dictionaries each dictionary is obtained by
+        Header.get
+        :rtype: list(dictionaries (Header.get))
         """
-        return self._headers
+        if self._headers is not None:
+            headers = {}
+            for key in self._headers:
+                headers.update(key.get())
+            return headers
+        return None
 
     def add_header(self, header):
         """Add a Header to this Mail.
@@ -362,10 +353,14 @@ class Mail(object):
     @property
     def categories(self):
         """The Categories applied to this Mail.  Must not exceed 10 items
-
-        :rtype: list(Category)
+        :returns list of dictionaries each dictionary is obtained by
+        Category.get
+        :rtype: list(dictionaries)
         """
-        return self._categories
+        if self._categories is not None:
+            return [category.get() for category in
+                                  self._categories]
+        return None
 
     def add_category(self, category):
         """Add a Category to this Mail.  Must be less than 255 characters.
@@ -381,7 +376,12 @@ class Mail(object):
         Must not exceed 10,000 characters.
         :rtype: list(CustomArg)
         """
-        return self._custom_args
+        if self._custom_args is not None:
+            custom_args = {}
+            for key in self._custom_args:
+                custom_args.update(key.get())
+            return custom_args
+        return None
 
     def add_custom_arg(self, custom_arg):
         if self._custom_args is None:
