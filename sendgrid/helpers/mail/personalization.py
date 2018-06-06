@@ -5,13 +5,13 @@ class Personalization(object):
 
     def __init__(self):
         """Create an empty Personalization."""
-        self._tos = None
-        self._ccs = None
-        self._bccs = None
+        self._tos = []
+        self._ccs = []
+        self._bccs = []
         self._subject = None
-        self._headers = None
-        self._substitutions = None
-        self._custom_args = None
+        self._headers = []
+        self._substitutions = []
+        self._custom_args = []
         self._send_at = None
 
     @property
@@ -31,8 +31,6 @@ class Personalization(object):
 
         :type email: Email
         """
-        if self._tos is None:
-            self._tos = []
         self._tos.append(email.get())
 
     @property
@@ -53,8 +51,6 @@ class Personalization(object):
         :param email: new recipient to be CCed
         :type email: Email
         """
-        if self._ccs is None:
-            self._ccs = []
         self._ccs.append(email.get())
 
     @property
@@ -75,8 +71,6 @@ class Personalization(object):
         :param email: new recipient to be BCCed
         :type email: Email
         """
-        if self._bccs is None:
-            self._bccs = []
         self._bccs.append(email.get())
 
     @property
@@ -110,8 +104,6 @@ class Personalization(object):
 
         :type header: Header
         """
-        if self._headers is None:
-            self._headers = []
         self._headers.append(header.get())
 
     @property
@@ -131,8 +123,6 @@ class Personalization(object):
 
         :type substitution: Substitution
         """
-        if self._substitutions is None:
-            self._substitutions = []
         self._substitutions.append(substitution.get())
 
     @property
@@ -152,8 +142,6 @@ class Personalization(object):
 
         :type custom_arg: CustomArg
         """
-        if self._custom_args is None:
-            self._custom_args = []
         self._custom_args.append(custom_arg.get())
 
     @property
@@ -178,31 +166,31 @@ class Personalization(object):
         :rtype: dict
         """
         personalization = {}
-        if self.tos is not None:
+        if self.tos:
             personalization["to"] = self.tos
 
-        if self.ccs is not None:
+        if self.ccs:
             personalization["cc"] = self.ccs
 
-        if self.bccs is not None:
+        if self.bccs:
             personalization["bcc"] = self.bccs
 
         if self.subject is not None:
             personalization["subject"] = self.subject
 
-        if self.headers is not None:
+        if self.headers:
             headers = {}
             for key in self.headers:
                 headers.update(key)
             personalization["headers"] = headers
 
-        if self.substitutions is not None:
+        if self.substitutions:
             substitutions = {}
             for key in self.substitutions:
                 substitutions.update(key)
             personalization["substitutions"] = substitutions
 
-        if self.custom_args is not None:
+        if self.custom_args:
             custom_args = {}
             for key in self.custom_args:
                 custom_args.update(key)

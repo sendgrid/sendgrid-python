@@ -30,7 +30,7 @@ def index():
 def inbound_parse():
     """Process POST from Inbound Parse and print received data."""
     parse = Parse(config, request)
-    # Sample proccessing action
+    # Sample processing action
     print(parse.key_values())
     # Tell SendGrid's Inbound Parse to stop sending POSTs
     # Everything is 200 OK :)

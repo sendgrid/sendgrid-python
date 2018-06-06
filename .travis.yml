@@ -24,8 +24,8 @@ addons:
   apt_packages:
     - pandoc
 before_script:
-- . ./test/prism.sh
-- prism version
+- "./test/prism.sh &"
+- sleep 20
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
@@ -53,7 +53,7 @@ notifications:
     template:
     - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on
+      <a href="https://github.com/%{repository}/commits/%{commit}">View on
       GitHub</a>'
     format: html
     notify: false

@@ -11,18 +11,9 @@ class FooterSettings(object):
         :param html: HTML content of this footer
         :type html: string, optional
         """
-        self._enable = None
-        self._text = None
-        self._html = None
-
-        if enable is not None:
-            self.enable = enable
-
-        if text is not None:
-            self.text = text
-
-        if html is not None:
-            self.html = html
+        self.enable = enable
+        self.text = text
+        self.html = html
 
     @property
     def enable(self):

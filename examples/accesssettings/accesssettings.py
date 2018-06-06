@@ -20,17 +20,17 @@ print(response.headers)
 # POST /access_settings/whitelist #
 
 data = {
-  "ips": [
-    {
-      "ip": "192.168.1.1"
-    }, 
-    {
-      "ip": "192.*.*.*"
-    }, 
-    {
-      "ip": "192.168.1.3/32"
-    }
-  ]
+    "ips": [
+        {
+            "ip": "192.168.1.1"
+        },
+        {
+            "ip": "192.*.*.*"
+        },
+        {
+            "ip": "192.168.1.3/32"
+        }
+    ]
 }
 response = sg.client.access_settings.whitelist.post(request_body=data)
 print(response.status_code)
@@ -51,11 +51,11 @@ print(response.headers)
 # DELETE /access_settings/whitelist #
 
 data = {
-  "ids": [
-    1, 
-    2, 
-    3
-  ]
+    "ids": [
+        1,
+        2,
+        3
+    ]
 }
 response = sg.client.access_settings.whitelist.delete(request_body=data)
 print(response.status_code)
@@ -81,4 +81,3 @@ response = sg.client.access_settings.whitelist._(rule_id).delete()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-
