@@ -7,17 +7,21 @@ except ImportError:
 
 class ProjectTests(unittest.TestCase):
 
-    # ./Docker or docker/Docker
+    # ./docker
     def test_docker_dir(self):
-        self.assertTrue(os.path.isdir("./docker/Dockerfile"))
+        self.assertTrue(os.path.isdir("./docker"))
 
-    # ./docker-compose.yml or ./docker/docker-compose.yml
-    def test_docker_compose(self):
-        self.assertTrue(os.path.isfile('docker-compose.yml'))
+    # ./docker-test
+    def test_docker_test_dir(self):
+        self.assertTrue(os.path.isdir("./docker-test"))
+
+    # # ./docker-compose.yml or ./docker/docker-compose.yml
+    # def test_docker_compose(self):
+    #     self.assertTrue(os.path.isfile('docker-compose.yml'))
 
     # ./.env_sample
     def test_env(self):
-        self.assertTrue(os.path.isfile('./env_sample'))
+        self.assertTrue(os.path.isfile('./.env_sample'))
 
     # ./.gitignore
     def test_gitignore(self):
@@ -67,9 +71,9 @@ class ProjectTests(unittest.TestCase):
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
 
-    # ./USE_CASES.md
+    # ./use-cases/README.md
     def test_use_cases(self):
-        self.assertTrue(os.path.isfile('./USE_CASES.md'))
+        self.assertTrue(os.path.isfile('./use_cases/README.md'))
 
 if __name__ == '__main__':
     unittest.main()

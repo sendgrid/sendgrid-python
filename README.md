@@ -8,7 +8,7 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
 
-**NEW:** 
+**NEW:**
 
 * Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
 * Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
@@ -55,7 +55,7 @@ echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
 
-Sendgrid also supports local enviroment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
 ## Install Package
 
@@ -175,7 +175,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 <a name="use-cases"></a>
 # Use Cases
 
-[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
+[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md), such as how to send an email with a transactional template.
 
 <a name="announcements"></a>
 # Announcements
