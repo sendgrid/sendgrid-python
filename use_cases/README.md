@@ -5,6 +5,9 @@ This directory provides examples for specific use cases of this library. Please 
 ## Table of Contents
 
 ### How-Tos
+
+* [How to Create a Django app, Deployed on Heroku, to Send Email with SendGrid](django.md)
+* [How to Deploy A Simple Hello Email App on AWS](aws.md)
 * [How to Setup a Domain Whitelabel](domain_whitelabel.md)
 * [How to View Email Statistics](email_stats.md)
 
