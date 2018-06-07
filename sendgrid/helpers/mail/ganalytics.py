@@ -23,12 +23,30 @@ class Ganalytics(object):
         :param utm_campaign: The name of the campaign.
         :type utm_campaign: string, optional
         """
-        self.enable = enable
-        self.utm_source = utm_source
-        self.utm_medium = utm_medium
-        self.utm_term = utm_term
-        self.utm_content = utm_content
-        self.utm_campaign = utm_campaign
+        self._enable = None
+        self._utm_source = None
+        self._utm_medium = None
+        self._utm_term = None
+        self._utm_content = None
+        self._utm_campaign = None
+
+        self.__set_field("enable", enable)
+        self.__set_field("utm_source", utm_source)
+        self.__set_field("utm_medium", utm_medium)
+        self.__set_field("utm_term", utm_term)
+        self.__set_field("utm_content", utm_content)
+        self.__set_field("utm_campaign", utm_campaign)
+
+    def __set_field(self, field, value):
+        """ Sets a field to the provided value if value is not None
+
+        :param field: Name of the field
+        :type field: String
+        :param value: value to be set, ignored if None
+        :type value: Any
+        """
+        if value is not None:
+            setattr(self, field, value)
 
     @property
     def enable(self):
@@ -110,17 +128,14 @@ class Ganalytics(object):
         :returns: This Ganalytics, ready for use in a request body.
         :rtype: dict
         """
+        keys = ["enable", "utm_source", "utm_medium", "utm_term",
+                "utm_content", "utm_campaign"]
+
         ganalytics = {}
-        if self.enable is not None:
-            ganalytics["enable"] = self.enable
-        if self.utm_source is not None:
-            ganalytics["utm_source"] = self.utm_source
-        if self.utm_medium is not None:
-            ganalytics["utm_medium"] = self.utm_medium
-        if self.utm_term is not None:
-            ganalytics["utm_term"] = self.utm_term
-        if self.utm_content is not None:
-            ganalytics["utm_content"] = self.utm_content
-        if self.utm_campaign is not None:
-            ganalytics["utm_campaign"] = self.utm_campaign
+
+        for key in keys:
+            value = getattr(self, key, None)
+            if value is not None:
+                ganalytics[key] = value
+
         return ganalytics

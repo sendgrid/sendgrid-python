@@ -21,4 +21,5 @@ coverage.xml
 htmlcov
 temp*.py
 sendgrid.env
+.vscode
 
