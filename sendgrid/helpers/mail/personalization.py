@@ -116,7 +116,7 @@ class Personalization(object):
 
     @substitutions.setter
     def substitutions(self, value):
-        self.substitutions = value
+        self._substitutions = value
 
     def add_substitution(self, substitution):
         """Add a new Substitution to this Personalization.
