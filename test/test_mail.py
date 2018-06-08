@@ -558,3 +558,7 @@ class UnitTests(unittest.TestCase):
             tracking_settings.get(),
             {'click_tracking': {'enable': False, 'enable_text': False}}
         )
+
+    def test_directly_setting_substitutions(self):
+        personalization = Personalization()
+        personalization.substitutions = [{'a': 0}]
