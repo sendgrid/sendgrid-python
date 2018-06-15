@@ -30,7 +30,7 @@ def build_personalization(personalization):
         mock_personalization.add_to(cc_addr)
 
     for bcc_addr in personalization['bcc_list']:
-        mock_personalization.add_bc(bcc_addr)
+        mock_personalization.add_bcc(bcc_addr)
 
     for header in personalization['headers']:
         mock_personalization.add_header(header)
