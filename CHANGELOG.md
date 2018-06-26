@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.4.1] - 2018-06-26 ##
+### Fixed
+- [PR #585](https://github.com/sendgrid/sendgrid-python/pull/585): Fix typo in `mail_example.py`. Big thanks to [Anurag Anand](https://github.com/theanuraganand) for the PR!
+- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/585): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
+
 ## [5.4.0] - 2018-06-07 ##
 ### Added
 - [PR #384](https://github.com/sendgrid/sendgrid-python/pull/384): Adds how to set up domain whitelabel and how to view email statistics. Big thanks to [Aditya Tandon](https://github.com/adityatandon007) for the PR!

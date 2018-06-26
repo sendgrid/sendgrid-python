@@ -2,8 +2,8 @@ import pypandoc
 from io import open
 
 output = pypandoc.convert('README.md', 'rst')
-with open('README.txt' 'w+') as f:
-    f.write(str(output.encode('utf-8')))
+with open('README.txt', 'w+') as f:
+    f.write(output)
 
 readme_rst = open('./README.txt', 'r', encoding='utf-8').read()
 replace = '''
