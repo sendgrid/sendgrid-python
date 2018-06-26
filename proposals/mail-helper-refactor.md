@@ -16,7 +16,8 @@ msg = Mail(from_email=From('from@example.com', 'From Name'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    sg_client = SendGridAPIClient()
+    response = sg_client.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)

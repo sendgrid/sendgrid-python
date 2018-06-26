@@ -2,7 +2,6 @@
 from .personalization import Personalization
 from .header import Header
 
-
 class Mail(object):
     """A request to be sent with the SendGrid v3 Mail Send API (v3/mail/send).
 
@@ -10,9 +9,10 @@ class Mail(object):
     """
     def __init__(self, 
                  from_email=None, 
+                 to_emails=None,
                  subject=None, 
-                 to_email=None, 
-                 content=None):
+                 plain_text_content=None,
+                 html_content=None):
         """Create a Mail object.
 
         If any parameters are not supplied, they must be set after initialization.
@@ -47,15 +47,18 @@ class Mail(object):
             self.from_email = from_email
 
         if subject:
-            self.subject = subject
+            self.subject = subject.get()
 
-        if to_email:
+        if to_emails:
             personalization = Personalization()
-            personalization.add_to(to_email)
+            personalization.add_to(to_emails)
             self.add_personalization(personalization)
 
-        if content:
-            self.add_content(content)
+        if plain_text_content:
+            self.add_content(plain_text_content)
+        
+        if html_content:
+            self.add_content(html_content)
 
     def __str__(self):
         """Get a JSON representation of this Mail request.
@@ -395,3 +398,4 @@ class Mail(object):
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
+
