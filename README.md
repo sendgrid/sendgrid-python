@@ -46,19 +46,26 @@ We appreciate your continued support, thank you!
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 
 ## Setup Environment Variables
-
 Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys), for example:
-
+### Mac
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
-
 Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
-## Install Package
+### Windows 
+Temporarily set the environment variable(accesible only during the current cli session):
+```bash
+set SENDGRID_API_KEY=YOUR_API_KEY
+```
+Permanently set the environment variable:
+```bash
+setx SENDGRID_API_KEY "YOUR_API_KEY"
+```
 
+## Install Package
 ```bash
 pip install sendgrid
 ```
