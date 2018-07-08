@@ -60,7 +60,7 @@ Temporarily set the environment variable(accesible only during the current cli s
 ```bash
 set SENDGRID_API_KEY=YOUR_API_KEY
 ```
-Permanently set the environment variable:
+Permanently set the environment variable(accessible in all subsequent cli sessions):
 ```bash
 setx SENDGRID_API_KEY "YOUR_API_KEY"
 ```
