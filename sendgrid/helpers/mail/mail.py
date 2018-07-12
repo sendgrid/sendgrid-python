@@ -333,10 +333,7 @@ class Mail(object):
         :rtype: list(dictionaries)
         """
         if self._sections:
-            sections = {}
-            for key in self._sections:
-                sections.update(key.get())
-            return sections
+            return self.update_objects(self._sections)
         return None
 
     def add_section(self, section):
@@ -355,10 +352,7 @@ class Mail(object):
         :rtype: list(dictionaries)
         """
         if self._headers:
-            headers = {}
-            for key in self._headers:
-                headers.update(key.get())
-            return headers
+            return self.update_objects(self._headers)
         return None
 
     def add_header(self, header):
@@ -402,10 +396,20 @@ class Mail(object):
         Must not exceed 10,000 characters.
         :rtype: list(CustomArg)
         """
-        return self._custom_args
+        if self._custom_args:
+            return self.update_objects(self._custom_args)
+        return None
 
     def add_custom_arg(self, custom_arg):
         if self._custom_args is None:
             self._custom_args = []
         self._custom_args.append(custom_arg)
+    
+    def update_objects(self, property):
+        objects = {}
+        for key in property:
+            objects.update(key.get())
+        return objects
+
+        
 
