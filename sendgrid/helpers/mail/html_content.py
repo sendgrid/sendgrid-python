@@ -2,18 +2,17 @@ from .content import Content
 from .validators import ValidateAPIKey
 
 class HtmlContent(Content):
-    """HTML content to be included in your email.
-    """
+    """HTML content to be included in your email."""
 
     def __init__(self, value):
-        """Create a HtmlContent with the specified MIME type and value.
+        """Create an HtmlContent with the specified MIME type and value.
 
-        :param value: The actual HTML content.
+        :param value: The HTML content.
         :type value: string, optional
         """
-        self._type = "text/html"
-        self._value = value
         self._validator = ValidateAPIKey()
+        self.type = "text/html"
+        self.value = value
 
     @property
     def value(self):

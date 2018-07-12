@@ -11,9 +11,9 @@ class PlainTextContent(Content):
         :param value: The actual text content.
         :type value: string, optional
         """
-        self._type = "text/plain"
-        self._value = value
         self._validator = ValidateAPIKey()
+        self.type = "text/plain"
+        self.value = value
 
     @property
     def value(self):

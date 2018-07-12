@@ -7,7 +7,7 @@ class Subject(object):
         :param subject: The subject for an email
         :type subject: string
         """
-        self._subject = subject
+        self.subject = subject
 
     @property
     def subject(self):

@@ -6,22 +6,22 @@ This is the minimum code needed to send an email.
 
 ```python
 import os
-import sendgrid
-from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
 
-msg = Mail(from_email=From('from@example.com', 'From Name'),
-           to_emails=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
-           plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
-           html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
+message = Mail(from_email=From('from@example.com', 'From Name'),
+               to_emails=To('to@example.com', 'To Name'),
+               subject=Subject('Sending with SendGrid is Fun'),
+               plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
+               html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    sg_client = SendGridAPIClient()
-    response = sg_client.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
     print(response.headers)
-except Exception as e:
+except SendGridException as e:
     print(e.read())
 ```
 

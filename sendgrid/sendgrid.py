@@ -104,6 +104,6 @@ class SendGridAPIClient(object):
     def api_key(self, value):
         self.apikey = value
 
-    def send(self, request_body):
-        response = self.client.mail.send.post(request_body=request_body.get())
+    def send(self, message):
+        response = self.client.mail.send.post(request_body=message.get())
         return response
