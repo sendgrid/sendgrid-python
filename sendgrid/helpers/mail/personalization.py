@@ -4,7 +4,7 @@ class Personalization(object):
     """
 
     def __init__(self):
-        """Create an empty Personalization."""
+        """Create an empty Personalization and initialize member variables."""
         self._tos = []
         self._ccs = []
         self._bccs = []
@@ -166,36 +166,23 @@ class Personalization(object):
         :rtype: dict
         """
         personalization = {}
-        if self.tos:
-            personalization["to"] = self.tos
 
-        if self.ccs:
-            personalization["cc"] = self.ccs
+        for key in ['tos', 'ccs', 'bccs']:
+            value = getattr(self, key)
+            if value:
+                personalization[key[:-1]] = value
 
-        if self.bccs:
-            personalization["bcc"] = self.bccs
+        for key in ['subject', 'send_at']:
+            value = getattr(self, key)
+            if value:
+                personalization[key] = value
 
-        if self.subject is not None:
-            personalization["subject"] = self.subject
+        for prop_name in ['headers', 'substitutions', 'custom_args']:
+            prop = getattr(self, prop_name)
+            if prop:
+                obj = {}
+                for key in prop:
+                    obj.update(key)
+                    personalization[prop_name] = obj
 
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key)
-            personalization["headers"] = headers
-
-        if self.substitutions:
-            substitutions = {}
-            for key in self.substitutions:
-                substitutions.update(key)
-            personalization["substitutions"] = substitutions
-
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key)
-            personalization["custom_args"] = custom_args
-
-        if self.send_at is not None:
-            personalization["send_at"] = self.send_at
         return personalization
