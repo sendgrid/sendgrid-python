@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [6.0.0] - TBD
+
+- https://github.com/sendgrid/sendgrid-python/pull/486
+- https://github.com/sendgrid/sendgrid-python/pull/488
+- https://github.com/sendgrid/sendgrid-python/pull/493 
+- https://github.com/sendgrid/sendgrid-python/pull/496
+- https://github.com/sendgrid/sendgrid-python/pull/509 
+- https://github.com/sendgrid/sendgrid-python/pull/510
+- https://github.com/sendgrid/sendgrid-python/pull/512
+- https://github.com/sendgrid/sendgrid-python/pull/524
+
 ## [5.4.1] - 2018-06-26 ##
 ### Fixed
 - [PR #585](https://github.com/sendgrid/sendgrid-python/pull/585): Fix typo in `mail_example.py`. Big thanks to [Anurag Anand](https://github.com/theanuraganand) for the PR!
