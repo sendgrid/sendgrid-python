@@ -1,8 +1,6 @@
-import json
-import os
-import urllib2
+from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import *
-from sendgrid import *
+
 
 # NOTE: you will need move this file to the root
 # directory of this project to execute properly.
@@ -217,3 +215,23 @@ send_hello_email()
 
 # this will only send an email if you set SandBox Mode to False
 send_kitchen_sink()
+
+
+def dynamic_template_usage():
+    """
+    Sample usage of dynamic (handlebars) transactional templates.
+    To make this work, you should have dynamic template created within your
+    SendGrid account. For this particular example, template may be like::
+
+        <p>Hello, {{name}}! Your current balance is {{balance}}<p>
+
+    """
+    mail = Mail(from_email='templates@sendgrid.com')
+    mail.template_id = 'd-your-dynamic-template-uid'
+    p = Personalization()
+    p.add_to(Email('user@example.com'))
+    p.dynamic_template_data = {'name': 'Bob', 'balance': 42}
+    mail.add_personalization(p)
+
+    sg = SendGridAPIClient(apikey='SG.your-api-key')
+    sg.client.mail.send.post(request_body=mail.get())

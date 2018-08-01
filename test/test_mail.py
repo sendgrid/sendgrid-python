@@ -557,3 +557,14 @@ class UnitTests(unittest.TestCase):
     def test_directly_setting_substitutions(self):
         personalization = Personalization()
         personalization.substitutions = [{'a': 0}]
+
+    def test_dynamic_template_data(self):
+        p = Personalization()
+        p.add_to(Email('test@sendgrid.com'))
+        p.dynamic_template_data = {'customer': {'name': 'Bob', 'returning': True}, 'total': 42}
+
+        expected = {
+            'to': [{'email': 'test@sendgrid.com'}],
+            'dynamic_template_data': {'customer': {'name': 'Bob', 'returning': True}, 'total': 42}
+        }
+        self.assertDictEqual(p.get(), expected)

@@ -1,6 +1,10 @@
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
+
+    :var dynamic_template_data: data for dynamic transactional template.
+        Should be JSON-serializeable structure. No pre-processing sill be done
+        prior to sending this via http client.
     """
 
     def __init__(self):
@@ -13,6 +17,7 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
+        self.dynamic_template_data = None
 
     @property
     def tos(self):
@@ -166,6 +171,7 @@ class Personalization(object):
         :rtype: dict
         """
         personalization = {}
+<<<<<<< 02c168b6f2ad741dcc992ca9f15d8091b26568a7
 
         for key in ['tos', 'ccs', 'bccs']:
             value = getattr(self, key)
@@ -184,5 +190,42 @@ class Personalization(object):
                 for key in prop:
                     obj.update(key)
                     personalization[prop_name] = obj
+=======
+        if self.tos:
+            personalization["to"] = self.tos
+
+        if self.ccs:
+            personalization["cc"] = self.ccs
+
+        if self.bccs:
+            personalization["bcc"] = self.bccs
+
+        if self.subject is not None:
+            personalization["subject"] = self.subject
+
+        if self.headers:
+            headers = {}
+            for key in self.headers:
+                headers.update(key)
+            personalization["headers"] = headers
+
+        if self.substitutions:
+            substitutions = {}
+            for key in self.substitutions:
+                substitutions.update(key)
+            personalization["substitutions"] = substitutions
+
+        if self.custom_args:
+            custom_args = {}
+            for key in self.custom_args:
+                custom_args.update(key)
+            personalization["custom_args"] = custom_args
+
+        if self.send_at is not None:
+            personalization["send_at"] = self.send_at
+
+        if self.dynamic_template_data is not None:
+            personalization['dynamic_template_data'] = self.dynamic_template_data
+>>>>>>> Adds support for dynamic template data in personalizations
 
         return personalization
