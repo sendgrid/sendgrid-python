@@ -71,7 +71,8 @@ print(response.headers)
 Sendgrid dynamic templates let you leverage power of [handlebars](https://handlebarsjs.com/)
 syntax to easily manage complex dynamic content in transactional emails.
 
-To check this example snippet, create transactional email with code like
+To check this example snippet, create
+[transactional email template](https://sendgrid.com/dynamic_templates) with code like
 ```html
 <p>Hello, {{name}}! Your current balance is {{balance}}<p>
 ```
