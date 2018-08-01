@@ -66,6 +66,36 @@ print(response.body)
 print(response.headers)
 ```
 
+### With dynamic templates
+
+Sendgrid dynamic templates let you leverage power of [handlebars](https://handlebarsjs.com/)
+syntax to easily manage complex dynamic content in transactional emails.
+
+To check this example snippet, create transactional email with code like
+```html
+<p>Hello, {{name}}! Your current balance is {{balance}}<p>
+```
+
+Than send email based on it, providing context for substitutions:
+```python
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Email, Personalization
+
+
+sg = SendGridAPIClient(apikey='SG.your-api-key')
+
+mail = Mail(from_email='templates@example.com')
+mail.template_id = 'd-your-dynamic-template-uid'
+p = Personalization()
+p.add_to(Email('user@example.com'))
+p.dynamic_template_data = {'name': 'Bob', 'balance': 42}
+mail.add_personalization(p)
+
+sg.client.mail.send.post(request_body=mail.get())
+```
+
+Read more about dynamic templates in [docs](https://sendgrid.com/docs/User_Guide/Transactional_Templates/how_to_send_an_email_with_transactional_templates.html)
+
 ## Without Mail Helper Class
 
 ```python
