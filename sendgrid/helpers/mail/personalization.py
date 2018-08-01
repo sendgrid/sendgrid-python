@@ -1,6 +1,10 @@
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
+
+    :var dynamic_template_data: data for dynamic transactional template.
+        Should be JSON-serializeable structure. No pre-processing sill be done
+        prior to sending this via http client.
     """
 
     def __init__(self):
@@ -13,6 +17,7 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
+        self.dynamic_template_data = None
 
     @property
     def tos(self):
@@ -198,4 +203,8 @@ class Personalization(object):
 
         if self.send_at is not None:
             personalization["send_at"] = self.send_at
+
+        if self.dynamic_template_data is not None:
+            personalization['dynamic_template_data'] = self.dynamic_template_data
+
         return personalization
