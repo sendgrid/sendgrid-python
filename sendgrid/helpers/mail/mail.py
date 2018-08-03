@@ -8,10 +8,10 @@ class Mail(object):
 
     Use get() to get the request body.
     """
-    def __init__(self, 
-                 from_email=None, 
-                 subject=None, 
-                 to_email=None, 
+    def __init__(self,
+                 from_email=None,
+                 subject=None,
+                 to_email=None,
                  content=None):
         """Create a Mail object.
 
@@ -73,7 +73,7 @@ class Mail(object):
 
         if self.from_email is not None:
             mail["from"] = self.from_email.get()
-  
+
         if self.subject is not None:
             mail["subject"] = self.subject
 
@@ -306,7 +306,7 @@ class Mail(object):
         """
         if self._contents is None:
             self._contents = []
-        
+
         # Text content should be before HTML content
         if content._type == "text/plain":
             self._contents.insert(0, content)
@@ -376,9 +376,9 @@ class Mail(object):
         return self._categories
 
     def add_category(self, category):
-        """Add a Category to this Mail.  Must be less than 255 characters.
+        """Add a Category to this Mail.
 
-        :type category: string
+        :type category: Category
         """
         self._categories.append(category)
 
