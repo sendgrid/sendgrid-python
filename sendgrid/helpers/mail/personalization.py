@@ -174,9 +174,9 @@ class Personalization(object):
     def add_dynamic_template_data(self, dynamic_template_data):
         """Append item to DynamicTemplateData
 
-        :type dynamic_template_data: dict
+        :type dynamic_template_data: DynamicTemplateTag
         """
-        self._dynamic_template_data.append(dynamic_template_data)
+        self._dynamic_template_data.append(dynamic_template_data.get())
 
     def get(self):
         """

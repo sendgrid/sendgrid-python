@@ -26,8 +26,8 @@ from sendgrid.helpers.mail import (
     SubscriptionTracking,
     Substitution,
     TrackingSettings,
-    ValidateAPIKey
-)
+    ValidateAPIKey,
+    DynamicTemplateTag)
 
 try:
     import unittest2 as unittest
@@ -573,7 +573,7 @@ class UnitTests(unittest.TestCase):
 
         personalization = Personalization()
         personalization.add_to(Email("test@example.com"))
-        personalization.add_dynamic_template_data({'foo': 'bar'})
+        personalization.add_dynamic_template_data(DynamicTemplateTag('foo', 'bar'))
         mail.add_personalization(personalization)
 
         mail.add_content(Content("text/plain", "some text here"))
