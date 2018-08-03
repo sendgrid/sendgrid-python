@@ -13,6 +13,7 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
+        self._dynamic_template_data = list()
 
     @property
     def tos(self):
@@ -158,6 +159,25 @@ class Personalization(object):
     def send_at(self, value):
         self._send_at = value
 
+    @property
+    def dynamic_template_data(self):
+        """The DynamicTemplateData that will be carried along with this Personalization.
+
+        :rtype: dict
+        """
+        return self._dynamic_template_data
+
+    @dynamic_template_data.setter
+    def dynamic_template_data(self, value):
+        self._dynamic_template_data = value
+
+    def add_dynamic_template_data(self, dynamic_template_data):
+        """Append item to DynamicTemplateData
+
+        :type dynamic_template_data: dict
+        """
+        self._dynamic_template_data.append(dynamic_template_data)
+
     def get(self):
         """
         Get a JSON-ready representation of this Personalization.
@@ -198,4 +218,10 @@ class Personalization(object):
 
         if self.send_at is not None:
             personalization["send_at"] = self.send_at
+
+        if self.dynamic_template_data:
+            dynamic_template_data = dict()
+            for item in self.dynamic_template_data:
+                dynamic_template_data.update(item)
+            personalization['dynamic_template_data'] = dynamic_template_data
         return personalization
