@@ -4,6 +4,7 @@ from .header import Header
 
 
 class Mail(object):
+<<<<<<< eb542a51c5660e89b85814e1a66bb7c7eec49384
     """Creates the response body for v3/mail/send"""
     def __init__(
             self, from_email=None, subject=None, to_email=None, content=None):
@@ -26,6 +27,47 @@ class Mail(object):
         self.tracking_settings = None
 
         # Minimum required to send a single email
+=======
+    """A request to be sent with the SendGrid v3 Mail Send API (v3/mail/send).
+
+    Use get() to get the request body.
+    """
+    def __init__(self,
+                 from_email=None,
+                 subject=None,
+                 to_email=None,
+                 content=None):
+        """Create a Mail object.
+
+        If any parameters are not supplied, they must be set after initialization.
+        :param from_email: Email address to send from.
+        :type from_email: Email, optional
+        :param subject: Subject line of emails.
+        :type subject: string, optional
+        :param to_email: Email address to send to.
+        :type to_email: Email, optional
+        :param content: Content of the message.
+        :type content: Content, optional
+        """
+        self._from_email = None
+        self._subject = None
+        self._template_id = None
+        self._send_at = None
+        self._batch_id = None
+        self._asm = None
+        self._ip_pool_name = None
+        self._mail_settings = None
+        self._tracking_settings = None
+        self._reply_to = None
+        self._personalizations = []
+        self._contents = []
+        self._attachments = []
+        self._sections = []
+        self._headers = []
+        self._categories = []
+        self._custom_args = []
+
+>>>>>>> Change type of category in Mail.add_category from string to Category
         if from_email:
             self.from_email = from_email
         if subject:
@@ -40,10 +82,46 @@ class Mail(object):
     def __str__(self):
         return str(self.get())
 
+<<<<<<< eb542a51c5660e89b85814e1a66bb7c7eec49384
     def _ensure_append(self, new_items, append_to):
         append_to = append_to or []
         append_to.append(new_items)
         return append_to
+=======
+    def get(self):
+        """Get a response body for this Mail.
+
+        :rtype: dict
+        """
+        mail = {}
+
+        if self.from_email is not None:
+            mail["from"] = self.from_email.get()
+
+        if self.subject is not None:
+            mail["subject"] = self.subject
+
+        if self.personalizations:
+            mail["personalizations"] = [
+                personalization.get()
+                for personalization in self.personalizations
+            ]
+
+        if self.contents:
+            mail["content"] = [ob.get() for ob in self.contents]
+
+        if self.attachments:
+            mail["attachments"] = [ob.get() for ob in self.attachments]
+
+        if self.template_id is not None:
+            mail["template_id"] = self.template_id
+
+        if self.sections:
+            sections = {}
+            for key in self.sections:
+                sections.update(key.get())
+            mail["sections"] = sections
+>>>>>>> Change type of category in Mail.add_category from string to Category
 
     def _ensure_insert(self, new_items, insert_to):
         insert_to = insert_to or []
@@ -83,6 +161,17 @@ class Mail(object):
         return self._contents
 
     def add_content(self, content):
+<<<<<<< eb542a51c5660e89b85814e1a66bb7c7eec49384
+=======
+        """Add a new Content to this Mail.  Usually the plaintext or HTML
+        message contents.
+
+        :type content: Content
+        """
+        if self._contents is None:
+            self._contents = []
+
+>>>>>>> Change type of category in Mail.add_category from string to Category
         # Text content should be before HTML content
         if content._type == "text/plain":
             self._contents = self._ensure_insert(content, self._contents)
@@ -101,12 +190,28 @@ class Mail(object):
             self._headers = self._ensure_append(header, self._headers)
 
     @property
+<<<<<<< eb542a51c5660e89b85814e1a66bb7c7eec49384
     def personalizations(self):
         return self._personalizations
 
     def add_personalization(self, personalizations):
         self._personalizations = self._ensure_append(
             personalizations, self._personalizations)
+=======
+    def categories(self):
+        """The Categories applied to this Mail.  Must not exceed 10 items
+
+        :rtype: list(Category)
+        """
+        return self._categories
+
+    def add_category(self, category):
+        """Add a Category to this Mail.
+
+        :type category: Category
+        """
+        self._categories.append(category)
+>>>>>>> Change type of category in Mail.add_category from string to Category
 
     @property
     def sections(self):
