@@ -102,10 +102,7 @@ data = {
           "email": "test@example.com"
         }
       ],
-      "substitutions": {
-        "-name-": "Example User",
-        "-city-": "Denver"
-      },
+      "dynamic_template_data": {"extra": "SG rocks!", "foo": "bar", "name": "Example User"},
       "subject": "I'm replacing the subject tag"
     },
   ],
