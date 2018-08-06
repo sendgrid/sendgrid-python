@@ -38,6 +38,7 @@ We appreciate your continued support, thank you!
 * [License](#license)
 
 <a name="installation"></a>
+
 # Installation
 
 ## Prerequisites
@@ -73,6 +74,7 @@ pip install sendgrid
 ## Dependencies
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
+
 
 <a name="quick-start"></a>
 # Quick Start
