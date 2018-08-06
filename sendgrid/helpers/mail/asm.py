@@ -9,8 +9,14 @@ class ASM(object):
         :param groups_to_display: Unsubscribe groups to display
         :type groups_to_display: list(int), optional
         """
-        self.group_id = group_id
-        self.groups_to_display = groups_to_display
+        self._group_id = None
+        self._groups_to_display = None
+
+        if group_id is not None:
+            self.group_id = group_id
+
+        if groups_to_display is not None:
+            self.groups_to_display = groups_to_display
 
     @property
     def group_id(self):

@@ -10,21 +10,21 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # POST /senders #
 
 data = {
-  "address": "123 Elm St.", 
-  "address_2": "Apt. 456", 
-  "city": "Denver", 
-  "country": "United States", 
-  "from": {
-    "email": "from@example.com", 
-    "name": "Example INC"
-  }, 
-  "nickname": "My Sender ID", 
-  "reply_to": {
-    "email": "replyto@example.com", 
-    "name": "Example INC"
-  }, 
-  "state": "Colorado", 
-  "zip": "80202"
+    "address": "123 Elm St.",
+    "address_2": "Apt. 456",
+    "city": "Denver",
+    "country": "United States",
+    "from": {
+        "email": "from@example.com",
+        "name": "Example INC"
+    },
+    "nickname": "My Sender ID",
+    "reply_to": {
+        "email": "replyto@example.com",
+        "name": "Example INC"
+    },
+    "state": "Colorado",
+    "zip": "80202"
 }
 response = sg.client.senders.post(request_body=data)
 print(response.status_code)
@@ -45,21 +45,21 @@ print(response.headers)
 # PATCH /senders/{sender_id} #
 
 data = {
-  "address": "123 Elm St.", 
-  "address_2": "Apt. 456", 
-  "city": "Denver", 
-  "country": "United States", 
-  "from": {
-    "email": "from@example.com", 
-    "name": "Example INC"
-  }, 
-  "nickname": "My Sender ID", 
-  "reply_to": {
-    "email": "replyto@example.com", 
-    "name": "Example INC"
-  }, 
-  "state": "Colorado", 
-  "zip": "80202"
+    "address": "123 Elm St.",
+    "address_2": "Apt. 456",
+    "city": "Denver",
+    "country": "United States",
+    "from": {
+        "email": "from@example.com",
+        "name": "Example INC"
+    },
+    "nickname": "My Sender ID",
+    "reply_to": {
+        "email": "replyto@example.com",
+        "name": "Example INC"
+    },
+    "state": "Colorado",
+    "zip": "80202"
 }
 sender_id = "test_url_param"
 response = sg.client.senders._(sender_id).patch(request_body=data)
@@ -96,4 +96,3 @@ response = sg.client.senders._(sender_id).resend_verification.post()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

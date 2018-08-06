@@ -1,6 +1,73 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.4.1] - 2018-06-26 ##
+### Fixed
+- [PR #585](https://github.com/sendgrid/sendgrid-python/pull/585): Fix typo in `mail_example.py`. Big thanks to [Anurag Anand](https://github.com/theanuraganand) for the PR!
+- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/585): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
+
+## [5.4.0] - 2018-06-07 ##
+### Added
+- [PR #384](https://github.com/sendgrid/sendgrid-python/pull/384): Adds how to set up domain whitelabel and how to view email statistics. Big thanks to [Aditya Tandon](https://github.com/adityatandon007) for the PR!
+- [PR #427](https://github.com/sendgrid/sendgrid-python/pull/427): Increase config.py coverage. Big thanks to [Jeferson Daniel](https://github.com/jefersondaniel) for the PR!
+- [PR #423](https://github.com/sendgrid/sendgrid-python/pull/423): Update config.py with better file handling. Big thanks to [Ajitesh Rai](https://github.com/ajiteshr7) for the PR!
+- [PR #449](https://github.com/sendgrid/sendgrid-python/pull/449): Add a .env_sample file and Update README.md. Big thanks to [trangttt](https://github.com/trangttt) for the PR!
+- [PR #463](https://github.com/sendgrid/sendgrid-python/pull/449): Add code climate.
+- [PR #455](https://github.com/sendgrid/sendgrid-python/pull/455): Use with context manager and a few PEP8 changes. Big thanks to [Tim](https://github.com/The-White-Wolf) for the PR!
+- [PR #470](https://github.com/sendgrid/sendgrid-python/pull/470): Modularize lengthy method. Big thanks to [Suprith Kumar Suvarneshwar](https://github.com/suprithIUB) for the PR!
+- [PR #425](https://github.com/sendgrid/sendgrid-python/pull/425): Add tests for sendgrid.py apikey and api_key setters. Big thanks to [Krista LaFentres](https://github.com/lafentres) for the PR!
+- [PR #446](https://github.com/sendgrid/sendgrid-python/pull/446): Added PULL_REQUEST_TEMPLATE. Big thanks to [Aleksandr Sobolev](https://github.com/s0b0lev) for the PR!
+- [PR #472](https://github.com/sendgrid/sendgrid-python/pull/472): Moved mail helper classes into separate files. Big thanks to [Milos Pejanovic](https://github.com/runz0rd) for the PR!
+- [PR #481](https://github.com/sendgrid/sendgrid-python/pull/481): Documented the new error handling functionality from python-http-client. Big thanks to [Manjiri Tapaswi](https://github.com/mptap) for the PR!
+- [PR #418](https://github.com/sendgrid/sendgrid-python/pull/418): Add test for apps.py. Big thanks to [Sinan Comert](https://github.com/scomert) for the PR!
+- [PR #438](https://github.com/sendgrid/sendgrid-python/pull/438): Update docstrings/pydoc/help. Big thanks to [Gabriel Krell](https://github.com/gabrielkrell) for the PR!
+- [PR #413](https://github.com/sendgrid/sendgrid-python/pull/413): Error-checking in Mail helper/ASM. Big thanks to [Gabriel Krell](https://github.com/gabrielkrell) for the PR!
+- [PR #518](https://github.com/sendgrid/sendgrid-python/pull/518): Announcement about Data Platform Engineer posting. Big thanks to [Marghodk](https://github.com/Marghodk) for the PR!
+- [PR #479](https://github.com/sendgrid/sendgrid-python/pull/479): Add Project tests. Big thanks to [Peter Hampton](https://github.com/pjhampton) for the PR!
+- [PR #480](https://github.com/sendgrid/sendgrid-python/pull/480): Test to check year in LICENSE.txt. Big thanks to [Navin Pai](https://github.com/navinpai) for the PR!
+- [PR #476](https://github.com/sendgrid/sendgrid-python/pull/476): Add tests for Send.py. Big thanks to [Artiem K.](https://github.com/artiemq) for the PR!
+- [PR #366](https://github.com/sendgrid/sendgrid-python/pull/366): Add AWS app tutorial to USE_CASES.md. Big thanks to [Mike Vanbuskirk](https://github.com/codevbus) for the PR!
+- [PR #365](https://github.com/sendgrid/sendgrid-python/pull/365): Write tutorial to deploy simple Django app on Heroku. Big thanks to [Kan Ouivirach](https://github.com/zkan) for the PR!
+- [PR #526](https://github.com/sendgrid/sendgrid-python/pull/526): Include code reviews section. Big thanks to [Jared Scott](https://github.com/jlax47) for the PR!
+- [PR #414](https://github.com/sendgrid/sendgrid-python/pull/414): Provide utf-8 as encoding explicitly when opening text files. Big thanks to [Ruslan Shestopalyuk](https://github.com/rshest) for the PR!
+- [PR #537](https://github.com/sendgrid/sendgrid-python/pull/537): Add unittesting support to .codeclimate.yml. Big thanks to [Prashu Chaudhary](https://github.com/prashuchaudhary) for the PR!
+- [PR #554](https://github.com/sendgrid/sendgrid-python/pull/554): Ensure params are applied independently. Big thanks to [Nino Milenovic](https://github.com/rubyengineer) for the PR!
+- [PR #557](https://github.com/sendgrid/sendgrid-python/pull/557): Client cleanup. Big thanks to [Slam](https://github.com/3lnc) for the PR!
+- [PR #569](https://github.com/sendgrid/sendgrid-python/pull/569): Make Mail helper parameters truly optional. Big thanks to [Ian Beck](https://github.com/onecrayon) for the PR!
+
+### Fixed
+- [PR #415](https://github.com/sendgrid/sendgrid-python/pull/415): Typos. Big thanks to [Mohd Huzaifa Faruqui](https://github.com/huzaifafaruqui) for the PR!
+- [PR #421](https://github.com/sendgrid/sendgrid-python/pull/421): Typos. Big thanks to [Abhishek Bhatt](https://github.com/ab-bh) for the PR!
+- [PR #432](https://github.com/sendgrid/sendgrid-python/pull/432): Typos. Big thanks to [Gaurav Arora](https://github.com/gaurav61) for the PR!
+- [PR #431](https://github.com/sendgrid/sendgrid-python/pull/431): Typos. Big thanks to [Gaurav Arora](https://github.com/gaurav61) for the PR!
+- [PR #430](https://github.com/sendgrid/sendgrid-python/pull/430): Attempt to sync before executing shell command. Big thanks to [Aditya Narayan](https://github.com/aditnryn) for the PR!
+- [PR #429](https://github.com/sendgrid/sendgrid-python/pull/429): Typos. Big thanks to [daluntw](https://github.com/daluntw) for the PR!
+- [PR #492](https://github.com/sendgrid/sendgrid-python/pull/492): 
+Updated date-range in LICENSE file. Big thanks to [Dhruv Srivastava](https://github.com/dhruvhacks) for the PR!
+- [PR #482](https://github.com/sendgrid/sendgrid-python/pull/482): Typos. Big thanks to [Karan Samani](https://github.com/Kimi450) for the PR!
+- [PR #504](https://github.com/sendgrid/sendgrid-python/pull/504): Fix .codeclimate.yml. Big thanks to [Matt Bernier](https://github.com/mbernier) for the PR!
+- [PR #505](https://github.com/sendgrid/sendgrid-python/pull/505): Remove unnecessary github PR templates. Big thanks to [Alex](https://github.com/pushkyn) for the PR!
+- [PR #494](https://github.com/sendgrid/sendgrid-python/pull/494): Remove unused import in register.py. Big thanks to [Alexis Rivera De La Torre](https://github.com/gardlt) for the PR!
+- [PR #469](https://github.com/sendgrid/sendgrid-python/pull/469): 
+Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github.com/SidduH) for the PR!
+- [PR #484](https://github.com/sendgrid/sendgrid-python/pull/484): Python style fixes. Big thanks to [Gabriel Krell](https://github.com/gabrielkrell) for the PR!
+- [PR #508](https://github.com/sendgrid/sendgrid-python/pull/508): Typos. Big thanks to [Saksham Gupta](https://github.com/shucon) for the PR!
+- [PR #353](https://github.com/sendgrid/sendgrid-python/pull/353): Typos. Big thanks to [Yothin M](https://github.com/yothinix) for the PR!
+- [PR #564](https://github.com/sendgrid/sendgrid-python/pull/564): Typos. Big thanks to [Chao](https://github.com/chaoranxie) for the PR!
+- [PR #424](https://github.com/sendgrid/sendgrid-python/pull/424): Updating version 2.7.8 to 2.7.11 to match version in pyenv install instruction. Big thanks to [Krista LaFentres](https://github.com/lafentres) for the PR!
+- [PR #454](https://github.com/sendgrid/sendgrid-python/pull/454): Requests to send mail with both plain text and HTML content fail if the HTML content is specified first. Big thanks to [Ryan D'souza](https://github.com/dsouzarc) for the PR!
+- [PR #466](https://github.com/sendgrid/sendgrid-python/pull/466): Fixed PEP8 issues. Big thanks to [Piotr Szwarc](https://github.com/blackpioter) for the PR!
+- [PR #522](https://github.com/sendgrid/sendgrid-python/pull/522): Typos. Big thanks to [Abhishek J](https://github.com/slashstar) for the PR!
+- [PR #514](https://github.com/sendgrid/sendgrid-python/pull/514): Fix method_complexity issue in sendgrid/helpers/mail/ganalytics.py. Big thanks to [Chetan Kumar](https://github.com/chetankm-cs) for the PR!
+- [PR #515](https://github.com/sendgrid/sendgrid-python/pull/515): Typos. Big thanks to [Mohd Ali Rizwi](https://github.com/alirizwi) for the PR!
+- [PR #519](https://github.com/sendgrid/sendgrid-python/pull/519): Typos. Big thanks to [Aashish Gaba](https://github.com/ishucr7) for the PR!
+- [PR #532](https://github.com/sendgrid/sendgrid-python/pull/532): Typos. Big thanks to [~](https://github.com/delirious-lettuce) for the PR!
+- [PR #533](https://github.com/sendgrid/sendgrid-python/pull/533): Fix shadowed builtins, `id` -> `id_`. Big thanks to [~](https://github.com/delirious-lettuce) for the PR!
+- [PR #581](https://github.com/sendgrid/sendgrid-python/pull/581): Typos. Big thanks to [Silvia Botros](https://github.com/silviabotros) for the PR!
+- [PR #513](https://github.com/sendgrid/sendgrid-python/pull/513): Typos. Big thanks to [thepriefy](https://github.com/thepriefy) for the PR!
+- [PR #538](https://github.com/sendgrid/sendgrid-python/pull/538): Fix bug in get_mock_personalization_dict(). Big thanks to [PierreMonico](https://github.com/PierreMonico) for the PR!
+- [PR #543](https://github.com/sendgrid/sendgrid-python/pull/543): Typos. Big thanks to [Matthieu Bonnefoy](https://github.com/mbonnefoy) for the PR!
+
 ## [5.3.0] - 2017-10-23 ##
 ### Added
 - Pull #348: Allows users to submit rfc822 formatted email addresses
@@ -23,7 +90,7 @@ All notable changes to this project will be documented in this file.
 - Big thanks to [belfazt](https://github.com/belfazt) for the pull request!
 
 ## [5.0.1] - 2017-08-29
-### Fix
+### Fixed
 - Pull #337, fixes issue #366
 - On install, some experienced: `ValueError: ("Expected ',' or end-of-list in", 'python-http-client ==3.0.*', 'at', '*')`
 

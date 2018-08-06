@@ -7,7 +7,7 @@ except ImportError:
 
 class ProjectTests(unittest.TestCase):
 
-    # ./Docker or docker/Docker
+    # ./docker
     def test_docker_dir(self):
         self.assertTrue(os.path.isfile("./docker/Dockerfile"))
 
@@ -67,9 +67,9 @@ class ProjectTests(unittest.TestCase):
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
 
-    # ./USE_CASES.md
+    # ./use-cases/README.md
     def test_use_cases(self):
-        self.assertTrue(os.path.isfile('./USE_CASES.md'))
+        self.assertTrue(os.path.isfile('./use_cases/README.md'))
 
 if __name__ == '__main__':
     unittest.main()
