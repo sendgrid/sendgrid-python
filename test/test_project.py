@@ -6,7 +6,11 @@ class ProjectTests(unittest.TestCase):
 
     # ./docker
     def test_docker_dir(self):
+<<<<<<< 1eea7e7fd10386873ec58027fbccd37246b8c525
         self.assertTrue(os.path.isdir("./docker"))
+=======
+        self.assertTrue(os.path.isfile("./docker/Dockerfile"))
+>>>>>>> fixed assertion error
 
 <<<<<<< 93f10c82badbd53b8681ecb601c6532bd7da4655
     # ./docker-test
