@@ -38,6 +38,7 @@ We appreciate your continued support, thank you!
 * [License](#license)
 
 <a name="installation"></a>
+
 # Installation
 
 ## Prerequisites
@@ -46,8 +47,14 @@ We appreciate your continued support, thank you!
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 
 ## Setup Environment Variables
+<<<<<<< 68da263de3f96b9cbb7fd50c7b392cd88015454f
 Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys), for example:
 ### Mac
+=======
+
+Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) (more info [here](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html)), for example:
+
+>>>>>>> Updated README for more info
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
@@ -73,6 +80,7 @@ pip install sendgrid
 ## Dependencies
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
+
 
 <a name="quick-start"></a>
 # Quick Start
