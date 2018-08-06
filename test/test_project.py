@@ -9,7 +9,7 @@ class ProjectTests(unittest.TestCase):
 
     # ./Docker or docker/Docker
     def test_docker_dir(self):
-        self.assertTrue(os.path.isdir("./docker/Dockerfile"))
+        self.assertTrue(os.path.isfile("./docker/Dockerfile"))
 
     # ./docker-compose.yml or ./docker/docker-compose.yml
     def test_docker_compose(self):
