@@ -7,6 +7,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
+[![Open Source Helpers](https://www.codetriage.com/sendgrid/sendgrid-python/badges/users.svg)](https://www.codetriage.com/sendgrid/sendgrid-python)
 
 **NEW:**
 
@@ -38,6 +39,7 @@ We appreciate your continued support, thank you!
 * [License](#license)
 
 <a name="installation"></a>
+
 # Installation
 
 ## Prerequisites
@@ -46,8 +48,10 @@ We appreciate your continued support, thank you!
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 
 ## Setup Environment Variables
-Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys), for example:
 ### Mac
+
+Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) (more info [here](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html)), for example:
+
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
@@ -73,6 +77,7 @@ pip install sendgrid
 ## Dependencies
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
+
 
 <a name="quick-start"></a>
 # Quick Start
