@@ -85,7 +85,8 @@ from sendgrid.helpers.mail import Email, Personalization
 
 sg = SendGridAPIClient(apikey='SG.your-api-key')
 
-mail = Mail(from_email='templates@example.com')
+mail = Mail()
+mail.from_email='templates@example.com'
 mail.template_id = 'd-your-dynamic-template-uid'
 p = Personalization()
 p.add_to(Email('user@example.com'))
