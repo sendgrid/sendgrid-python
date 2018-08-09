@@ -226,11 +226,15 @@ def dynamic_template_usage():
         <p>Hello, {{name}}! Your current balance is {{balance}}<p>
 
     """
-    mail = Mail(from_email='templates@sendgrid.com')
+    mail = Mail()
+    mail.from_email = 'templates@sendgrid.com'
     mail.template_id = 'd-your-dynamic-template-uid'
     p = Personalization()
     p.add_to(Email('user@example.com'))
-    p.dynamic_template_data = {'name': 'Bob', 'balance': 42}
+    p.dynamic_template_data = {
+        'name': 'Bob',
+        'balance': 42
+    }
     mail.add_personalization(p)
 
     sg = SendGridAPIClient(apikey='SG.your-api-key')
