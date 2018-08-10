@@ -73,7 +73,7 @@ class UnitTests(unittest.TestCase):
             )
 
         #Exception should be thrown
-        except Exception as e:
+        except Exception:
             pass
 
         #Exception not thrown
@@ -563,8 +563,8 @@ class UnitTests(unittest.TestCase):
         personalization = Personalization()
         personalization.substitutions = [{'a': 0}]
 
-    def test_simple_dynamic_template_data(self):
-        """Minimum required to send an email"""
+    def test_dynamic_template_data(self):
+        """Test for minimum requirements, redundancy and nested items"""
         mail = Mail()
 
         mail.from_email = Email("test@example.com")
@@ -574,6 +574,9 @@ class UnitTests(unittest.TestCase):
         personalization = Personalization()
         personalization.add_to(Email("test@example.com"))
         personalization.add_dynamic_template_data(DynamicTemplateTag('foo', 'bar'))
+        personalization.add_dynamic_template_data(DynamicTemplateTag('one', 'more'))
+        personalization.add_dynamic_template_data(DynamicTemplateTag('foo', 'bar1'))
+        personalization.add_dynamic_template_data(DynamicTemplateTag('items', [{"total": "100"}, {"more": "things"}]))
         mail.add_personalization(personalization)
 
         mail.add_content(Content("text/plain", "some text here"))
@@ -591,7 +594,7 @@ class UnitTests(unittest.TestCase):
             '"value": "<html><body>some text here</body></html>"}], '
             '"from": {"email": "test@example.com"}, '
             '"personalizations": [{'
-                '"dynamic_template_data": {"foo": "bar"}, '
+                '"dynamic_template_data": {"foo": "bar1", "items": [{"total": "100"}, {"more": "things"}], "one": "more"}, '
                 '"to": [{"email": "test@example.com"}]'
             '}], '
             '"subject": "Hello World from the SendGrid Python Library"'

@@ -1,3 +1,5 @@
+from copy import deepcopy 
+
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
@@ -13,7 +15,7 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
-        self._dynamic_template_data = list()
+        self._dynamic_template_data = dict()
 
     @property
     def tos(self):
@@ -176,7 +178,7 @@ class Personalization(object):
 
         :type dynamic_template_data: DynamicTemplateTag
         """
-        self._dynamic_template_data.append(dynamic_template_data.get())
+        self._dynamic_template_data.update(dynamic_template_data.get())
 
     def get(self):
         """
@@ -220,8 +222,6 @@ class Personalization(object):
             personalization["send_at"] = self.send_at
 
         if self.dynamic_template_data:
-            dynamic_template_data = dict()
-            for item in self.dynamic_template_data:
-                dynamic_template_data.update(item)
-            personalization['dynamic_template_data'] = dynamic_template_data
+            personalization['dynamic_template_data'] = deepcopy(self.dynamic_template_data)
+            
         return personalization

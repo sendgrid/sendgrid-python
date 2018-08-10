@@ -37,7 +37,7 @@ class DynamicTemplateTag(object):
         :returns: This DynamicTemplateTag, ready for use in a request body.
         :rtype: dict
         """
-        dynamic_template_tag = {}
+        dynamic_template_tag = dict()
         if self.key is not None and self.value is not None:
             dynamic_template_tag[self.key] = self.value
         return dynamic_template_tag
