@@ -212,6 +212,34 @@ def send_kitchen_sink():
     print(response.body)
 
 
+def dynamic_template_usage():
+    """
+    Sample usage of dynamic (handlebars) transactional templates.
+    To make this work, you should have dynamic template created within your
+    SendGrid account. 
+    In this example the template may look like:
+         <p>Hello {{name}}! Here is {{foo}} and also {{extra}}!<p>
+     """
+    sg = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    from_email = Email("test@example.com")
+    subject = "I'm replacing the subject tag"
+    to_email = Email("test@example.com")
+    content = Content("text/html", "I'm replacing the <strong>body tag</strong>")
+    mail = Mail(from_email, subject, to_email, content)
+    
+    p = Personalization()
+    p.add_dynamic_template_data(DynamicTemplateTag("name", "Example User"))
+    p.add_dynamic_template_data(DynamicTemplateTag("foo", "bar"))
+    p.add_dynamic_template_data(DynamicTemplateTag("extra", "SG rocks!"))
+    mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
+    mail.add_personalization(p)
+    
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+
 # this will actually send an email
 send_hello_email()
 

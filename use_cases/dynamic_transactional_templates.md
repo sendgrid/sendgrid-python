@@ -67,10 +67,14 @@ subject = "I'm replacing the subject tag"
 to_email = Email("test@example.com")
 content = Content("text/html", "I'm replacing the <strong>body tag</strong>")
 mail = Mail(from_email, subject, to_email, content)
-mail.personalizations[0].add_dynamic_template_data(DynamicTemplateTag("name", "Example User"))
-mail.personalizations[0].add_dynamic_template_data(DynamicTemplateTag("foo", "bar"))
-mail.personalizations[0].add_dynamic_template_data(DynamicTemplateTag("extra", "SG rocks!"))
+
+p = Personalization()
+p.add_dynamic_template_data(DynamicTemplateTag("name", "Example User"))
+p.add_dynamic_template_data(DynamicTemplateTag("foo", "bar"))
+p.add_dynamic_template_data(DynamicTemplateTag("extra", "SG rocks!"))
 mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
+mail.add_personalization(p)
+
 try:
     response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.HTTPError as e:
