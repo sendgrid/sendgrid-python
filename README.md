@@ -1,9 +1,18 @@
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
+[![codecov](https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/sendgrid/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
+[![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
+[![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
+[![Open Source Helpers](https://www.codetriage.com/sendgrid/sendgrid-python/badges/users.svg)](https://www.codetriage.com/sendgrid/sendgrid-python)
 
-**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.  
-     Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
+**NEW:**
+
+* Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/python) for releases and breaking changes.
+* Quickly get started with [Docker](https://github.com/sendgrid/sendgrid-python/tree/master/docker).
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
 
@@ -18,17 +27,19 @@ We appreciate your continued support, thank you!
 # Table of Contents
 
 * [Installation](#installation)
-* [Quick Start](#quick_start)
+* [Quick Start](#quick-start)
 * [Processing Inbound Email](#inbound)
 * [Usage](#usage)
-* [Use Cases](#use_cases)
+* [Use Cases](#use-cases)
 * [Announcements](#announcements)
 * [Roadmap](#roadmap)
 * [How to Contribute](#contribute)
 * [Troubleshooting](#troubleshooting)
 * [About](#about)
+* [License](#license)
 
 <a name="installation"></a>
+
 # Installation
 
 ## Prerequisites
@@ -37,17 +48,28 @@ We appreciate your continued support, thank you!
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 
 ## Setup Environment Variables
+### Mac
 
-Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys), for example:
+Update the development environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) (more info [here](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html)), for example:
 
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
+Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+
+### Windows 
+Temporarily set the environment variable(accesible only during the current cli session):
+```bash
+set SENDGRID_API_KEY=YOUR_API_KEY
+```
+Permanently set the environment variable(accessible in all subsequent cli sessions):
+```bash
+setx SENDGRID_API_KEY "YOUR_API_KEY"
+```
 
 ## Install Package
-
 ```bash
 pip install sendgrid
 ```
@@ -56,7 +78,8 @@ pip install sendgrid
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
 
-<a name="quick_start"></a>
+
+<a name="quick-start"></a>
 # Quick Start
 
 ## Hello Email
@@ -82,7 +105,7 @@ print(response.body)
 print(response.headers)
 ```
 
-The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add to it.
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add it.
 
 ### Without Mail Helper Class
 
@@ -161,13 +184,15 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 - [Processing Inbound Email](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound)
 
-<a name="use_cases"></a>
+<a name="use-cases"></a>
 # Use Cases
 
-[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
+[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md), such as how to send an email with a transactional template.
 
 <a name="announcements"></a>
 # Announcements
+
+Join an experienced and passionate team that focuses on making an impact. Opportunities abound to grow the product - and grow your career! Check out our [Data Platform Engineer role](http://grnh.se/wbx1701)
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
@@ -185,10 +210,11 @@ We encourage contribution to our libraries (you might even score some nifty swag
 
 Quick links:
 
-- [Feature Request](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature_request)
-- [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit_a_bug_report)
+- [Feature Request](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature-request)
+- [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report)
 - [Sign the CLA to Create a Pull Request](https://cla.sendgrid.com/sendgrid/sendgrid-python)
-- [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements_to_the_codebase)
+- [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
+- [Review Pull Requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews)
 
 <a name="troubleshooting"></a>
 # Troubleshooting
@@ -202,4 +228,6 @@ sendgrid-python is guided and supported by the SendGrid [Developer Experience Te
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
 
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+<a name="license"></a>
+# License
+[The MIT License (MIT)](LICENSE.txt)

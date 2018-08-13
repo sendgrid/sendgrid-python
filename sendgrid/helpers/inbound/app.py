@@ -1,4 +1,6 @@
-"""Receiver module for processing SendGrid Inbound Parse messages"""
+"""Receiver module for processing SendGrid Inbound Parse messages.
+
+See README.txt for usage instructions."""
 try:
     from config import Config
 except:
@@ -20,13 +22,15 @@ config = Config()
 
 @app.route('/', methods=['GET'])
 def index():
+    """Show index page to confirm that server is running."""
     return render_template('index.html')
 
 
 @app.route(config.endpoint, methods=['POST'])
 def inbound_parse():
+    """Process POST from Inbound Parse and print received data."""
     parse = Parse(config, request)
-    # Sample proccessing action
+    # Sample processing action
     print(parse.key_values())
     # Tell SendGrid's Inbound Parse to stop sending POSTs
     # Everything is 200 OK :)

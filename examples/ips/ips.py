@@ -9,7 +9,8 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 # Retrieve all IP addresses #
 # GET /ips #
 
-params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
+params = {'subuser': 'test_string', 'ip': 'test_string',
+          'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
 response = sg.client.ips.get(query_params=params)
 print(response.status_code)
 print(response.body)
@@ -29,7 +30,7 @@ print(response.headers)
 # POST /ips/pools #
 
 data = {
-  "name": "marketing"
+    "name": "marketing"
 }
 response = sg.client.ips.pools.post(request_body=data)
 print(response.status_code)
@@ -50,7 +51,7 @@ print(response.headers)
 # PUT /ips/pools/{pool_name} #
 
 data = {
-  "name": "new_pool_name"
+    "name": "new_pool_name"
 }
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).put(request_body=data)
@@ -83,7 +84,7 @@ print(response.headers)
 # POST /ips/pools/{pool_name}/ips #
 
 data = {
-  "ip": "0.0.0.0"
+    "ip": "0.0.0.0"
 }
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).ips.post(request_body=data)
@@ -107,7 +108,7 @@ print(response.headers)
 # POST /ips/warmup #
 
 data = {
-  "ip": "0.0.0.0"
+    "ip": "0.0.0.0"
 }
 response = sg.client.ips.warmup.post(request_body=data)
 print(response.status_code)
@@ -152,4 +153,3 @@ response = sg.client.ips._(ip_address).get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-

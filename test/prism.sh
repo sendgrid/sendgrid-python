@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -eu
+
 install () {
 
-set -eu
+echo "Installing Prism..."
 
 UNAME=$(uname)
 ARCH=$(uname -m)
@@ -25,10 +27,11 @@ elif [ "$UNAME" = "Linux" ] ; then
   fi
 fi
 
+mkdir -p ../prism/bin
 #LATEST=$(curl -s https://api.github.com/repos/stoplightio/prism/tags | grep -Eo '"name":.*?[^\\]",'  | head -n 1 | sed 's/[," ]//g' | cut -d ':' -f 2)
-LATEST="v0.1.5"
+LATEST="v0.6.21"
 URL="https://github.com/stoplightio/prism/releases/download/$LATEST/prism_$PLATFORM"
-DEST=./prism/bin/prism
+DEST=../prism/bin/prism
 
 if [ -z $LATEST ] ; then
   echo "Error requesting. Download binary from ${URL}"
@@ -39,4 +42,17 @@ else
 fi
 }
 
-install
+run () {
+  echo "Running prism..."
+  cd ../prism/bin
+  ./prism run --mock --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json
+}
+
+if [ -f ../prism/bin/prism ]; then
+   echo "Prism is already installed."
+   run
+else
+   echo "Prism is not installed."
+   install
+   run
+fi
