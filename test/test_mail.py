@@ -3,6 +3,7 @@ import json
 
 from sendgrid.helpers.mail import (
     ASM,
+    APIKeyIncludedException,
     Attachment,
     BCCSettings,
     BypassListManagement,
@@ -20,10 +21,12 @@ from sendgrid.helpers.mail import (
     Personalization,
     SandBoxMode,
     Section,
+    SendGridException,
     SpamCheck,
     SubscriptionTracking,
     Substitution,
-    TrackingSettings
+    TrackingSettings,
+    ValidateAPIKey
 )
 
 try:
@@ -34,8 +37,52 @@ except ImportError:
 
 class UnitTests(unittest.TestCase):
 
+    def test_sendgridAPIKey(self):
+        """Tests if including SendGrid API will throw an Exception"""
+
+        # Minimum required to send an email
+        self.max_diff = None
+        mail = Mail()
+
+        mail.from_email = Email("test@example.com")
+
+        mail.subject = "Hello World from the SendGrid Python Library"
+
+        personalization = Personalization()
+        personalization.add_to(Email("test@example.com"))
+        mail.add_personalization(personalization)
+
+        #Try to include SendGrid API key
+        try:
+            mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
+            mail.add_content(
+                Content(
+                    "text/html",
+                    "<html><body>some SG.Ba2BlJSDba.232Ln2 here</body></html>"))
+
+            self.assertEqual(
+                json.dumps(
+                    mail.get(),
+                    sort_keys=True),
+                '{"content": [{"type": "text/plain", "value": "some text here"}, '
+                '{"type": "text/html", '
+                '"value": "<html><body>some text here</body></html>"}], '
+                '"from": {"email": "test@example.com"}, "personalizations": '
+                '[{"to": [{"email": "test@example.com"}]}], '
+                '"subject": "Hello World from the SendGrid Python Library"}'
+            )
+
+        #Exception should be thrown
+        except Exception as e:
+            pass
+
+        #Exception not thrown
+        else:
+            self.fail("Should have failed as SendGrid API key included")
+
+
     def test_helloEmail(self):
-        self.maxDiff = None
+        self.max_diff = None
 
         """Minimum required to send an email"""
         mail = Mail()
@@ -68,8 +115,41 @@ class UnitTests(unittest.TestCase):
 
         self.assertTrue(isinstance(str(mail), str))
 
-    def test_kitchenSink(self):
+    def test_helloEmailAdditionalContent(self):
+        """Tests bug found in Issue-451 with Content ordering causing a crash"""
+
         self.maxDiff = None
+
+        """Minimum required to send an email"""
+        mail = Mail()
+
+        mail.from_email = Email("test@example.com")
+
+        mail.subject = "Hello World from the SendGrid Python Library"
+
+        personalization = Personalization()
+        personalization.add_to(Email("test@example.com"))
+        mail.add_personalization(personalization)
+        
+        mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+        mail.add_content(Content("text/plain", "some text here"))
+
+        self.assertEqual(
+            json.dumps(
+                mail.get(),
+                sort_keys=True),
+            '{"content": [{"type": "text/plain", "value": "some text here"}, '
+            '{"type": "text/html", '
+            '"value": "<html><body>some text here</body></html>"}], '
+            '"from": {"email": "test@example.com"}, "personalizations": '
+            '[{"to": [{"email": "test@example.com"}]}], '
+            '"subject": "Hello World from the SendGrid Python Library"}'
+        )
+
+        self.assertTrue(isinstance(str(mail), str))
+
+    def test_kitchenSink(self):
+        self.max_diff = None
 
         """All settings set"""
         mail = Mail()
@@ -411,10 +491,9 @@ class UnitTests(unittest.TestCase):
         )
 
     def test_unicode_values_in_substitutions_helper(self):
-
         """ Test that the Substitutions helper accepts unicode values """
 
-        self.maxDiff = None
+        self.max_diff = None
 
         """Minimum required to send an email"""
         mail = Mail()
@@ -468,6 +547,9 @@ class UnitTests(unittest.TestCase):
             json.dumps(expected_result, sort_keys=True)
         )
 
+    def test_asm_display_group_limit(self):
+        self.assertRaises(ValueError, ASM, 1, list(range(26)))
+
     def test_disable_tracking(self):
         tracking_settings = TrackingSettings()
         tracking_settings.click_tracking = ClickTracking(False, False)
@@ -476,3 +558,7 @@ class UnitTests(unittest.TestCase):
             tracking_settings.get(),
             {'click_tracking': {'enable': False, 'enable_text': False}}
         )
+
+    def test_directly_setting_substitutions(self):
+        personalization = Personalization()
+        personalization.substitutions = [{'a': 0}]

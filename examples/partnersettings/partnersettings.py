@@ -20,9 +20,9 @@ print(response.headers)
 # PATCH /partner_settings/new_relic #
 
 data = {
-  "enable_subuser_statistics": True, 
-  "enabled": True, 
-  "license_key": ""
+    "enable_subuser_statistics": True,
+    "enabled": True,
+    "license_key": ""
 }
 response = sg.client.partner_settings.new_relic.patch(request_body=data)
 print(response.status_code)
@@ -37,4 +37,3 @@ response = sg.client.partner_settings.new_relic.get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
-
