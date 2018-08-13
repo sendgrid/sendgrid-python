@@ -111,4 +111,4 @@ print mail.get()
 <a name="error-handling"></a>
 # Error Handling
 
-Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/use_cases/README.md) for examples of error handling.
+Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md#use-cases) for examples of error handling.
