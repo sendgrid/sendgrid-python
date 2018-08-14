@@ -80,7 +80,8 @@ def get_mock_personalization_dict():
 
 
 def build_attachment1():
-    """Build attachment mock."""
+    """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
+    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""
     attachment = Attachment()
     attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
