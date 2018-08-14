@@ -191,8 +191,10 @@ Please run your code through:
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/sendgrid/sendgrid-python
+   
    # Navigate to the newly cloned directory
    cd sendgrid-python
+   
    # Assign the original repo to a remote called "upstream"
    git remote add upstream https://github.com/sendgrid/sendgrid-python
    ```
