@@ -28,14 +28,15 @@ RUN chmod +x ./install.sh && sync && \
 # install pip, tox
 ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
 RUN python2.7 get-pip.py && \
+    python3.6 get-pip.py && \
     pip install tox && \
     rm get-pip.py
 
 #install pyyaml, six, werkzeug
 RUN python3.6 -m pip install pyyaml
 RUN python3.6 -m pip install six
-RUN Python3.6 -m pip install werkzeug
-RUN Python3.6 -m pip install flask
+RUN python3.6 -m pip install werkzeug
+RUN python3.6 -m pip install flask
 
 # set up default sendgrid env
 WORKDIR /root/sources
