@@ -17,13 +17,19 @@ class Email(object):
         :param name: Name for this sender or recipient.
         :type name: string
         """
+        self._name = None
+        self._email = None
+
         if email and not name:
             # allows passing emails as "dude Fella <example@example.com>"
             self.parse_email(email)
         else:
             # allows backwards compatibility for Email(email, name)
-            self.email = email
-            self.name = name
+            if email is not None:
+                self.email = email
+
+            if name is not None:
+                self.name = name
 
     @property
     def name(self):

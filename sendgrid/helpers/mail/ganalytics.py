@@ -41,7 +41,7 @@ class Ganalytics(object):
         """ Sets a field to the provided value if value is not None
 
         :param field: Name of the field
-        :type field: String
+        :type field: string
         :param value: value to be set, ignored if None
         :type value: Any
         """
