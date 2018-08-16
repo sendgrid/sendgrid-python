@@ -50,7 +50,7 @@ import urllib
 try:
   response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.error.HTTPError as e:
-    print e.read()
+    print(e.read())
 ```
 
 <a name="migrating"></a>
