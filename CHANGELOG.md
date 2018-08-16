@@ -1,10 +1,24 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.5.1] - 2018-08-16 ##
+### Added
+- [PR #588](https://github.com/sendgrid/sendgrid-python/pull/588): Updates the Readme to include environment variable setup in windows. Big thanks to [Bhargav Chandaka](https://github.com/bchandaka) for the PR!
+- [PR #599](https://github.com/sendgrid/sendgrid-python/pull/599): Updates the Readme to include additional API Key instruction. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
+- [PR #600](https://github.com/sendgrid/sendgrid-python/pull/600): Add CodeTriage Badge. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
+- [PR #601](https://github.com/sendgrid/sendgrid-python/pull/601): Readability improvements to CONTRIBUTING.md. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
+- [PR #604](https://github.com/sendgrid/sendgrid-python/pull/604): Readability improvements to CONTRIBUTING.md. Big thanks to [agnesjang98](https://github.com/agnesjang98) for the PR!
+
+### Fixed
+- [PR #595](https://github.com/sendgrid/sendgrid-python/pull/595): Change type of category in Mail.add_category from string to Category. Big thanks to [Phawin Khongkhasawan](https://github.com/lifez) for the PR!
+- [PR #596](https://github.com/sendgrid/sendgrid-python/pull/596): Fix Docker build. Big thanks to [Phawin Khongkhasawan](https://github.com/lifez) for the PR!
+- [PR #598](https://github.com/sendgrid/sendgrid-python/pull/598): Fix python3 print example in TROUBLESHOOTING.md. Big thanks to [Ryan Jarvis](https://github.com/Cabalist) for the PR!
+- [PR #603](https://github.com/sendgrid/sendgrid-python/pull/603): Update TROUBLESHOOTING.md to link to correct use cases page. Big thanks to [James Purpura](https://github.com/jpurpura) for the PR!
+
 ## [5.4.1] - 2018-06-26 ##
 ### Fixed
 - [PR #585](https://github.com/sendgrid/sendgrid-python/pull/585): Fix typo in `mail_example.py`. Big thanks to [Anurag Anand](https://github.com/theanuraganand) for the PR!
-- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/585): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
+- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/583): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
 
 ## [5.4.0] - 2018-06-07 ##
 ### Added
