@@ -22,3 +22,4 @@ from .subscription_tracking import SubscriptionTracking
 from .substitution import Substitution
 from .tracking_settings import TrackingSettings
 from .validators import ValidateAPIKey
+from .dynamic_template_tag import DynamicTemplateTag

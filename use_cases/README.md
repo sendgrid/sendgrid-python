@@ -17,6 +17,7 @@ This directory provides examples for specific use cases of this library. Please 
 * [Attachment](attachment.md)
 * [Transactional Templates](transational_templates.md)
 * [Integrate with Slack Events API](slack_event_api_integration.md)
+* [Dynamic Transactional Templates](dynamic_transactional_templates.md)
 
 ### Library Features
 * [Error Handling](error_handling.md)
