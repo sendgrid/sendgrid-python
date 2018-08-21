@@ -1,6 +1,7 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
 
 
 class Mail(object):
@@ -123,10 +124,101 @@ class Mail(object):
             mail["sections"] = sections
 >>>>>>> Change type of category in Mail.add_category from string to Category
 
+<<<<<<< 62c9683ab4460c38fe09cb7771cea15572f7095d
     def _ensure_insert(self, new_items, insert_to):
         insert_to = insert_to or []
         insert_to.insert(0, new_items)
         return insert_to
+=======
+        if self.headers:
+            headers = {}
+            for key in self.headers:
+                headers.update(key.get())
+            mail["headers"] = headers
+
+        if self.categories:
+            mail["categories"] = [category.get() for category in
+                                  self.categories]
+
+        if self.custom_args:
+            custom_args = {}
+            for key in self.custom_args:
+                custom_args.update(key.get())
+            mail["custom_args"] = custom_args
+
+        if self.send_at is not None:
+            mail["send_at"] = self.send_at
+
+        if self.batch_id is not None:
+            mail["batch_id"] = self.batch_id
+
+        if self.asm is not None:
+            mail["asm"] = self.asm.get()
+
+        if self.ip_pool_name is not None:
+            mail["ip_pool_name"] = self.ip_pool_name
+
+        if self.mail_settings is not None:
+            mail["mail_settings"] = self.mail_settings.get()
+
+        if self.tracking_settings is not None:
+            mail["tracking_settings"] = self.tracking_settings.get()
+
+        if self.reply_to is not None:
+            mail["reply_to"] = self.reply_to.get()
+
+        return mail
+
+    @property
+    def from_email(self):
+        """The email from which this Mail will be sent.
+
+        :rtype: string
+        """
+        return self._from_email
+
+    @from_email.setter
+    def from_email(self, value):
+        if isinstance(value, str):
+            value = Email(value)
+        self._from_email = value
+
+    @property
+    def subject(self):
+        """The global, or "message level", subject of this Mail.
+
+        This may be overridden by personalizations[x].subject.
+        :rtype: string
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, value):
+        self._subject = value
+
+    @property
+    def template_id(self):
+        """The id of a template that you would like to use.
+
+        If you use a template that contains a subject and content (either text
+        or html), you do not need to specify those at the personalizations nor
+        message level.
+
+        :rtype: int
+        """
+
+        return self._template_id
+
+    @template_id.setter
+    def template_id(self, value):
+        self._template_id = value
+
+    @property
+    def send_at(self):
+        """A unix timestamp allowing you to specify when you want your email to
+        be delivered. This may be overridden by the personalizations[x].send_at
+        parameter. Scheduling more than 72 hours in advance is forbidden.
+>>>>>>> Merge #593
 
     def _flatten_dicts(self, dicts):
         list_of_dicts = [d.get() for d in dicts or []]
