@@ -218,7 +218,10 @@ send_hello_email()
 send_kitchen_sink()
 
 
-def dynamic_template_usage():
+def transactional_template_usage():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    
     """
     Sample usage of dynamic (handlebars) transactional templates.
     To make this work, you should have dynamic template created within your
@@ -228,7 +231,7 @@ def dynamic_template_usage():
 
     """
     mail = Mail()
-    mail.from_email = 'templates@sendgrid.com'
+    mail.from_email = Email('templates@sendgrid.com')
     mail.template_id = 'd-your-dynamic-template-uid'
     p = Personalization()
     p.add_to(Email('user@example.com'))
@@ -238,5 +241,8 @@ def dynamic_template_usage():
     }
     mail.add_personalization(p)
 
-    sg = SendGridAPIClient(apikey='SG.your-api-key')
-    sg.client.mail.send.post(request_body=mail.get())
+    sg = SendGridAPIClient()
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.headers)
+    print(response.body)

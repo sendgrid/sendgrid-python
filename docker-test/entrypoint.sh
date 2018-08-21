@@ -13,5 +13,5 @@ fi
 
 cd sendgrid-python
 python3.6 setup.py install
-pip install pyyaml six werkzeug flask python-http-client
+pip install pyyaml six werkzeug flask python-http-client pytest
 exec $SHELL
