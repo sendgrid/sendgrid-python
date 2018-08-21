@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [5.6.0] - 2018-08-20 ##
 ### Added
-- [PR #593](https://github.com/sendgrid/sendgrid-python/pull/593): Adds support for dynamic template data. Big thanks to [Wojciech Bartosiak](https://github.com/wojtek-fliposports) for the PR! Also, big thanks to []() for [PR #597](https://github.com/sendgrid/sendgrid-python/pull/597)!
+- [PR #593](https://github.com/sendgrid/sendgrid-python/pull/593): Adds support for dynamic template data. Big thanks to [Slam](https://github.com/3lnc) for the PR! Also, big thanks to [Wojciech Bartosiak](https://github.com/wojtek-fliposports) for [PR #597](https://github.com/sendgrid/sendgrid-python/pull/597)!
 
 ## [5.5.0] - 2018-08-16 ##
 ### Added
