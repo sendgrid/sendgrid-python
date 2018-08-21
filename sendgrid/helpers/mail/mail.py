@@ -1,6 +1,7 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
 
 
 class Mail(object):
@@ -147,6 +148,8 @@ class Mail(object):
 
     @from_email.setter
     def from_email(self, value):
+        if isinstance(value, str):
+            value = Email(value)
         self._from_email = value
 
     @property
