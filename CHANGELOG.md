@@ -1,6 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+<<<<<<< 2c41b49c10148d963e0d7c6a55b24592aadb639b
 <<<<<<< d67136fa051425d89134bc61553dc13a27c4ac93
 ## [6.0.0] - TBD
 
@@ -14,6 +15,13 @@ All notable changes to this project will be documented in this file.
 - https://github.com/sendgrid/sendgrid-python/pull/524
 =======
 ## [5.5.1] - 2018-08-16 ##
+=======
+## [5.6.0] - 2018-08-20 ##
+### Added
+- [PR #593](https://github.com/sendgrid/sendgrid-python/pull/593): Adds support for dynamic template data. Big thanks to [Wojciech Bartosiak](https://github.com/wojtek-fliposports) for the PR! Also, big thanks to []() for [PR #597](https://github.com/sendgrid/sendgrid-python/pull/597)!
+
+## [5.5.0] - 2018-08-16 ##
+>>>>>>> Version Bump v5.6.0: Dynamic Template support
 ### Added
 - [PR #588](https://github.com/sendgrid/sendgrid-python/pull/588): Updates the Readme to include environment variable setup in windows. Big thanks to [Bhargav Chandaka](https://github.com/bchandaka) for the PR!
 - [PR #599](https://github.com/sendgrid/sendgrid-python/pull/599): Updates the Readme to include additional API Key instruction. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
