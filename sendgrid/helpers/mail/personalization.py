@@ -3,7 +3,7 @@ class Personalization(object):
     how that message should be handled.
 
     :var dynamic_template_data: data for dynamic transactional template.
-        Should be JSON-serializeable structure. No pre-processing sill be done
+        Should be JSON-serializeable structure. No pre-processing will be done
         prior to sending this via http client.
     """
 
