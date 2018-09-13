@@ -9,5 +9,9 @@ Flask==0.10.1
 PyYAML==3.11
 python-http-client==2.2.1
 six==1.10.0
+<<<<<<< 298702a83dee640cb017174e4808a9b17f3570cb
 pytest=3.7.1
 >>>>>>> Add missing dependencies
+=======
+pytest==3.7.1
+>>>>>>> Fix format of dependency `pytest`
