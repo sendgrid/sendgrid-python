@@ -58,3 +58,10 @@ class TestEmailObject(unittest.TestCase):
         email.email = address
 
         self.assertEqual(email.email, address)
+
+    def test_add_name_with_comma(self):
+        email = Email()
+        name = "Name, Some"
+        email.name = name
+
+        self.assertEqual(email.name, name)
