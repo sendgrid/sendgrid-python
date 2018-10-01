@@ -32,13 +32,17 @@ setup(
     description='SendGrid library for Python',
     long_description=long_description,
     install_requires=getRequires(),
+    python_requires='>=2.6, !=3.0.*, !=3.1.*',
     classifiers=[
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6'
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ]
 )
