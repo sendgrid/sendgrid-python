@@ -4,7 +4,6 @@ import unittest
 
 from sendgrid.helpers.mail import (
     ASM,
-    APIKeyIncludedException,
     Attachment,
     BCCSettings,
     BypassListManagement,
@@ -22,12 +21,10 @@ from sendgrid.helpers.mail import (
     Personalization,
     SandBoxMode,
     Section,
-    SendGridException,
     SpamCheck,
     SubscriptionTracking,
     Substitution,
     TrackingSettings,
-    ValidateAPIKey
 )
 
 

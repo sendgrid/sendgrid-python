@@ -1,5 +1,4 @@
 import sendgrid
-import json
 import os
 
 
