@@ -108,7 +108,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_helloEmailAdditionalContent(self):
         """Tests bug found in Issue-451 with Content ordering causing a crash"""
@@ -141,7 +141,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_kitchenSink(self):
         self.max_diff = None

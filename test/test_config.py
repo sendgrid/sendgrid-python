@@ -37,7 +37,7 @@ class UnitTests(unittest.TestCase):
         self.assertTrue(host, self.config.host)
         self.assertTrue(port, self.config.port)
         for key in keys:
-            self.assertTrue(key in self.config.keys)
+            self.assertIn(key, self.config.keys)
 
     def test_init_environment(self):
         config_file = sendgrid.helpers.inbound.config.__file__
