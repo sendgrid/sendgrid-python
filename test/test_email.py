@@ -64,4 +64,4 @@ class TestEmailObject(unittest.TestCase):
         name = "Name, Some"
         email.name = name
 
-        self.assertEqual(email.name, name)
+        self.assertEqual(email.name, '"' + name + '"')
