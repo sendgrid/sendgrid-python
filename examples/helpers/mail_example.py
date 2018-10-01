@@ -221,7 +221,7 @@ send_kitchen_sink()
 def transactional_template_usage():
     # Assumes you set your environment variable:
     # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
-    
+
     """
     Sample usage of dynamic (handlebars) transactional templates.
     To make this work, you should have dynamic template created within your

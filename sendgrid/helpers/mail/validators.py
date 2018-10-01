@@ -29,7 +29,7 @@ class ValidateAPIKey(object):
             self.regexes.add(re.compile(default_regex_string))
 
     def validate_message_dict(self, request_body):
-        """With the JSON dict that will be sent to SendGrid's API, 
+        """With the JSON dict that will be sent to SendGrid's API,
             check the content for SendGrid API keys - throw exception if found
         Args:
             request_body (:obj:`dict`): message parameter that is
@@ -44,9 +44,9 @@ class ValidateAPIKey(object):
 
         # Default param
         elif isinstance(request_body, dict):
-            
+
             contents = request_body.get("content", list())
-            
+
             for content in contents:
                 if content is not None:
                     if (content.get("type") == "text/html" or
@@ -67,4 +67,3 @@ class ValidateAPIKey(object):
             for regex in self.regexes:
                 if regex.match(message_string) is not None:
                     raise APIKeyIncludedException()
-

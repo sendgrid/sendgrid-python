@@ -20,11 +20,11 @@ def unassigned(data, as_json=False):
         The /ips rest endpoint returns information about the IP addresses
         and the usernames assigned to an IP
 
-        unassigned returns a listing of the IP addresses that are allocated 
+        unassigned returns a listing of the IP addresses that are allocated
         but have 0 usera assigned
 
-        
-        data (response.body from sg.client.ips.get()) 
+
+        data (response.body from sg.client.ips.get())
         as_json False -> get list of dicts
                 True  -> get json object
 
