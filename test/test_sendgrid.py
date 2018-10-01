@@ -128,7 +128,7 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._default_headers.items():
+        for k, v in self.sg._default_headers.items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):

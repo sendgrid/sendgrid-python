@@ -11,9 +11,10 @@ if os.path.exists('README.txt'):
     long_description = open('README.txt', 'r', encoding='utf-8').read()
 
 
-def getRequires():
+def get_requires():
     deps = ['python_http_client>=3.0']
     return deps
+
 
 setup(
     name='sendgrid',
@@ -26,7 +27,7 @@ setup(
     license='MIT',
     description='SendGrid library for Python',
     long_description=long_description,
-    install_requires=getRequires(),
+    install_requires=get_requires(),
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
         'Programming Language :: Python :: 2',

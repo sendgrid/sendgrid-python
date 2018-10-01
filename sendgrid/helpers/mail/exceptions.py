@@ -2,6 +2,7 @@
 # Various types of extensible SendGrid related exceptions
 ################################################################
 
+
 class SendGridException(Exception):
     """Wrapper/default SendGrid-related exception"""
     pass

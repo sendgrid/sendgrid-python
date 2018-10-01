@@ -3,6 +3,7 @@ Usage: ./send.py [path to file containing test data]"""
 import argparse
 import sys
 from io import open
+
 try:
     from config import Config
 except ImportError:
@@ -37,6 +38,7 @@ class Send(object):
         """URL to send to."""
         return self._url
 
+
 def main():
     config = Config()
     parser = argparse.ArgumentParser(description='Test data and optional host.')
@@ -53,6 +55,7 @@ def main():
     print(response.status_code)
     print(response.headers)
     print(response.body)
+
 
 if __name__ == '__main__':
     main()

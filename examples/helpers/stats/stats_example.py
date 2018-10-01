@@ -39,11 +39,12 @@ def build_category_stats_sums():
 
 
 def build_subuser_stats():
-    subuser_stats = SubuserStats('2017-10-20', ['aaronmakks','foo'])
+    subuser_stats = SubuserStats('2017-10-20', ['aaronmakks', 'foo'])
     # subuser_stats.start_date = '2017-10-15'
     # subuser_stats.add_subuser(Subuser("foo"))
     # subuser_stats.add_subuser(Subuser("bar"))
     return subuser_stats.get()
+
 
 def build_subuser_stats_sums():
     subuser_stats = SubuserStats()
@@ -91,6 +92,7 @@ def get_subuser_stats_sums():
     print(response.status_code)
     print(response.headers)
     pprint_json(response.body)
+
 
 get_global_stats()
 get_category_stats()

@@ -48,7 +48,7 @@ class UnitTests(unittest.TestCase):
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
 
-        #Try to include SendGrid API key
+        # Try to include SendGrid API key
         try:
             mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
             mail.add_content(
@@ -68,11 +68,11 @@ class UnitTests(unittest.TestCase):
                 '"subject": "Hello World from the SendGrid Python Library"}'
             )
 
-        #Exception should be thrown
-        except Exception as e:
+        # Exception should be thrown
+        except Exception:
             pass
 
-        #Exception not thrown
+        # Exception not thrown
         else:
             self.fail("Should have failed as SendGrid API key included")
 
