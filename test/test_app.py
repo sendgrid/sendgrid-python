@@ -1,12 +1,8 @@
 import os
+import unittest
 
 from sendgrid.helpers.inbound.config import Config
 from sendgrid.helpers.inbound.app import app
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class UnitTests(unittest.TestCase):

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import unittest
 
 from sendgrid.helpers.mail import (
     ASM,
@@ -28,11 +29,6 @@ from sendgrid.helpers.mail import (
     TrackingSettings,
     ValidateAPIKey
 )
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class UnitTests(unittest.TestCase):
