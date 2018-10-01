@@ -9,7 +9,7 @@ The neat thing is that CodeStar provides all of this in a pre-configured package
 Once this tutorial is complete, you'll have a basic web service for sending email that can be invoked via a link to your newly created API endpoint.
 
 ### Prerequisites
-Python 2.6, 2.7, 3.4, or 3.5 are supported by the sendgrid Python library, however I was able to utilize 3.6 with no issue.
+Python 2.7 and 3.4 or 3.5 are supported by the sendgrid Python library, however I was able to utilize 3.6 with no issue.
 
 Before starting this tutorial, you will need to have access to an AWS account in which you are allowed to provision resources. This tutorial also assumes you've already created a SendGrid account with free-tier access. Finally, it is highly recommended you utilize [virtualenv](https://virtualenv.pypa.io/en/stable/).
 

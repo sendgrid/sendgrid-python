@@ -70,7 +70,7 @@ You can use our Docker image to avoid setting up the development environment you
 
 ##### Prerequisites #####
 
-- Python 2.6 through 3.6
+- Python 2.7 and 3.4+
 - [python_http_client](https://github.com/sendgrid/python-http-client)
 
 ##### Initial setup: #####
@@ -122,12 +122,6 @@ All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/t
 
 For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
-For Python 2.6.*:
-
-`unit2 discover -v`
-
-For Python 2.7.* and up:
-
 `python -m unittest discover -v`
 
 ### Testing Multiple Versions of Python
@@ -149,7 +143,6 @@ You can install it by yourself in user dir by calling `source test/prism.sh`.
 Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, etc) after installing tox, you only need to do this once.
 
 ```
-pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
@@ -159,7 +152,7 @@ Make sure to change the current working directory to your local version of the r
 python setup.py install
 ```
 ```
-pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
+pyenv local 3.5.0 3.4.3 2.7.11
 pyenv rehash
 ```
 
