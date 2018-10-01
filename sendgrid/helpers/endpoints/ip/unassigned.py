@@ -21,7 +21,7 @@ def unassigned(data, as_json=False):
         and the usernames assigned to an IP
 
         unassigned returns a listing of the IP addresses that are allocated 
-        but have 0 usera assigned
+        but have 0 users assigned
 
         
         data (response.body from sg.client.ips.get()) 

@@ -1,6 +1,6 @@
 ### Transactional Templates
 
-Sendgrid transactional templates let you leverage power of [handlebars](https://handlebarsjs.com/)
+SendGrid transactional templates let you leverage power of [handlebars](https://handlebarsjs.com/)
 syntax to easily manage complex dynamic content in transactional emails.
 
 For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/create_and_edit_transactional_templates.html). Following is the template content we used for testing.
