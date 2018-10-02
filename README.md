@@ -57,10 +57,10 @@ echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
-Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+SendGrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
-### Windows 
-Temporarily set the environment variable(accesible only during the current cli session):
+### Windows
+Temporarily set the environment variable(accessible only during the current cli session):
 ```bash
 set SENDGRID_API_KEY=YOUR_API_KEY
 ```

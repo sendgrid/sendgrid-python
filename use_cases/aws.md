@@ -13,7 +13,7 @@ Python 2.6, 2.7, 3.4, or 3.5 are supported by the sendgrid Python library, howev
 
 Before starting this tutorial, you will need to have access to an AWS account in which you are allowed to provision resources. This tutorial also assumes you've already created a SendGrid account with free-tier access. Finally, it is highly recommended you utilize [virtualenv](https://virtualenv.pypa.io/en/stable/).
 
-*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. Sendgrid is in no way responsible for any billing charges.
+*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. SendGrid is in no way responsible for any billing charges.
 
 
 ## Getting Started
@@ -36,15 +36,15 @@ On the next menu, you have the option to choose what programming language you'll
 
 Follow the steps on the next screen. Choose a name for your API key, such as "hello-email". Follow the remaining steps to create an environment variable, install the sendgrid module, and copy the test code. Once that is complete, check the "I've integrated the code above" box, and click the "Next: Verify Integration" button.
 
-Assuming all the steps were completed correctly, you should be greeted with a success message. If not, go back and verify that everything is correct, including your API key environment varible, and Python code.
+Assuming all the steps were completed correctly, you should be greeted with a success message. If not, go back and verify that everything is correct, including your API key environment variable, and Python code.
 
 ## Deploy hello-world app using CodeStar
 
-For the rest of the tutorial, we'll be working out of the git repository we cloned from AWS earlier:
+For the rest of the tutorial, we'll be working out of the Git repository we cloned from AWS earlier:
 ```
 $ cd hello-email
 ```
-note: this assumes you cloned the git repo inside your current directory. My directory is: 
+note: this assumes you cloned the Git repo inside your current directory. My directory is: 
 
 ```
 ~/projects/hello-email
@@ -139,7 +139,7 @@ def handler(event, context):
             'headers': {'Content-Type': 'application/json'}}
 ```
 
-Note that for the most part, we've simply copied the intial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
+Note that for the most part, we've simply copied the initial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
 
 Change the `test@example.com` emails appropriately so that you may receive the test email.
 
