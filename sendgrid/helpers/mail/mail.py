@@ -16,7 +16,8 @@ class Mail(object):
                  content=None):
         """Create a Mail object.
 
-        If any parameters are not supplied, they must be set after initialization.
+        If any parameters are not supplied,
+        they must be set after initialization.
         :param from_email: Email address to send from.
         :type from_email: Email, optional
         :param subject: Subject line of emails.
@@ -65,6 +66,13 @@ class Mail(object):
         """
         return str(self.get())
 
+    def __update_params(self, given_args, mail, arg_str):
+        if given_args:
+            args = {}
+            for key in given_args:
+                args.update(key.get())
+            mail[arg_str] = args
+
     def get(self):
         """Get a response body for this Mail.
 
@@ -93,27 +101,14 @@ class Mail(object):
         if self.template_id is not None:
             mail["template_id"] = self.template_id
 
-        if self.sections:
-            sections = {}
-            for key in self.sections:
-                sections.update(key.get())
-            mail["sections"] = sections
-
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key.get())
-            mail["headers"] = headers
+        self.__update_params(self.sections, mail, "sections")
+        self.__update_params(self.headers, mail, "headers")
 
         if self.categories:
             mail["categories"] = [category.get() for category in
                                   self.categories]
 
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key.get())
-            mail["custom_args"] = custom_args
+        self.__update_params(self.custom_args, mail, "custom_args")
 
         if self.send_at is not None:
             mail["send_at"] = self.send_at
@@ -203,7 +198,8 @@ class Mail(object):
         This represents a batch of emails sent at the same time. Including a
         batch_id in your request allows you include this email in that batch,
         and also enables you to cancel or pause the delivery of that batch.
-        For more information, see https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
+        For more information, see
+        https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
 
         :rtype: int
         """
