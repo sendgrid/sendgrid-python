@@ -57,10 +57,10 @@ echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
-Sendgrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
+SendGrid also supports local environment file `.env`. Copy or rename `.env_sample` into `.env` and update [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys) with your key.
 
-### Windows 
-Temporarily set the environment variable(accesible only during the current cli session):
+### Windows
+Temporarily set the environment variable(accessible only during the current cli session):
 ```bash
 set SENDGRID_API_KEY=YOUR_API_KEY
 ```
@@ -105,7 +105,7 @@ print(response.body)
 print(response.headers)
 ```
 
-The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16) is an example of how to add it.
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L16) is an example of how to add it.
 
 ### Without Mail Helper Class
 
