@@ -34,7 +34,6 @@ setup(
     install_requires=getRequires(),
     python_requires='>=2.6, !=3.0.*, !=3.1.*',
     classifiers=[
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
