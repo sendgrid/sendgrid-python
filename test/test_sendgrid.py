@@ -13,7 +13,7 @@ class UnitTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.host = host
-        cls.path = '{0}{1}'.format(
+        cls.path = '{}{}'.format(
             os.path.abspath(
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
@@ -95,7 +95,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
     def test_useragent(self):
-        useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
+        useragent = '{}{}{}'.format('sendgrid/', __version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):
