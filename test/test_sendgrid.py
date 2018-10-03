@@ -128,7 +128,7 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._default_headers.items():
+        for k, v in self.sg._default_headers.items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
@@ -152,7 +152,6 @@ class UnitTests(unittest.TestCase):
                 "subject": "Sending with SendGrid is Fun",
             },
         )
-
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}

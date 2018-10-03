@@ -2,6 +2,7 @@
 from .personalization import Personalization
 from .header import Header
 
+
 class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(

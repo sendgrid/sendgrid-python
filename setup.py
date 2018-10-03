@@ -15,6 +15,7 @@ def getRequires():
     deps = ['python_http_client>=3.0']
     return deps
 
+
 setup(
     name='sendgrid',
     version=str(__version__),
