@@ -226,7 +226,7 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-pyth
 
 sendgrid-python is guided and supported by the SendGrid Developer Experience Team.
 
-Email the team [here](mailto:dx@sendgrid.com) in case of any queries.
+Email the Developer Experience Team [here](mailto:dx@sendgrid.com) in case of any queries.
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
 
