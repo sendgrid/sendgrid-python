@@ -69,7 +69,7 @@ class SendGridAPIClient(object):
         self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
-        self.useragent = 'sendgrid/{0};python'.format(__version__)
+        self.useragent = 'sendgrid/{};python'.format(__version__)
         self.version = __version__
 
         self.client = python_http_client.Client(host=self.host,
@@ -79,7 +79,7 @@ class SendGridAPIClient(object):
     @property
     def _default_headers(self):
         headers = {
-            "Authorization": 'Bearer {0}'.format(self.apikey),
+            "Authorization": 'Bearer {}'.format(self.apikey),
             "User-agent": self.useragent,
             "Accept": 'application/json'
         }

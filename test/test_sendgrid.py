@@ -1,15 +1,9 @@
 import sendgrid
 from sendgrid.helpers.mail import *
 from sendgrid.version import __version__
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 import os
-import subprocess
-import sys
-import time
 import datetime
+import unittest
 
 host = "http://localhost:4010"
 
@@ -19,13 +13,13 @@ class UnitTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.host = host
-        cls.path = '{0}{1}'.format(
+        cls.path = '{}{}'.format(
             os.path.abspath(
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
         cls.devnull = open(os.devnull, 'w')
         prism_cmd = None
-        
+
         # try:
         #     # check for prism in the PATH
         #     if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
@@ -101,7 +95,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
     def test_useragent(self):
-        useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
+        useragent = '{}{}{}'.format('sendgrid/', __version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):
@@ -134,7 +128,7 @@ class UnitTests(unittest.TestCase):
         self.assertNotIn('blah', self.sg.client.request_headers)
         self.assertNotIn('blah2x', self.sg.client.request_headers)
 
-        for k,v in self.sg._default_headers.items():
+        for k, v in self.sg._default_headers.items():
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
@@ -144,8 +138,20 @@ class UnitTests(unittest.TestCase):
         content = Content(
             "text/plain", "and easy to do anywhere, even with Python")
         mail = Mail(from_email, subject, to_email, content)
-        self.assertTrue(mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}], 'personalizations': [
-                        {'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'}, 'subject': 'Sending with SendGrid is Fun'})
+        self.assertEqual(
+            mail.get(),
+            {
+                "content": [
+                    {
+                        "type": "text/plain",
+                        "value": "and easy to do anywhere, even with Python"
+                    }
+                ],
+                "personalizations": [{"to": [{"email": "test@example.com"}]}],
+                "from": {"email": "test@example.com"},
+                "subject": "Sending with SendGrid is Fun",
+            },
+        )
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}

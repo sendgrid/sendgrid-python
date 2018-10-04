@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-ENV PYTHON_VERSIONS='python2.6 python2.7 python3.4 python3.5 python3.6' \
+ENV PYTHON_VERSIONS='python2.7 python3.4 python3.5 python3.6' \
     OAI_SPEC_URL="https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"
 
 # install testing versions of python, including old versions, from deadsnakes

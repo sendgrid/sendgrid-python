@@ -1,9 +1,6 @@
 import os
+import unittest
 
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 class ProjectTests(unittest.TestCase):
 
@@ -74,6 +71,7 @@ class ProjectTests(unittest.TestCase):
     # ./use-cases/README.md
     def test_use_cases(self):
         self.assertTrue(os.path.isfile('./use_cases/README.md'))
+
 
 if __name__ == '__main__':
     unittest.main()

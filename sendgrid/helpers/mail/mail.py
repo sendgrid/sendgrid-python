@@ -2,6 +2,7 @@
 from .personalization import Personalization
 from .header import Header
 
+
 class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(
@@ -26,9 +27,9 @@ class Mail(object):
 
         # Minimum required to send a single email
         if from_email:
-            self.from_email = from_email    
+            self.from_email = from_email
         if subject:
-            self.subject = subject    
+            self.subject = subject
         if to_email:
             personalization = Personalization()
             personalization.add_to(to_email)
@@ -51,7 +52,7 @@ class Mail(object):
 
     def _flatten_dicts(self, dicts):
         list_of_dicts = [d.get() for d in dicts or []]
-        return dict((k, v) for d in list_of_dicts for k, v in d.items())
+        return {k: v for d in list_of_dicts for k, v in d.items()}
 
     def _get_or_none(self, from_obj):
         return from_obj.get() if from_obj is not None else None
@@ -138,5 +139,5 @@ class Mail(object):
             'reply_to': self._get_or_none(self.reply_to),
         }
 
-        return dict((key, value) for key, value in mail.items()
-                    if value is not None and value != [] and value != {})
+        return {key: value for key, value in mail.items()
+                if value is not None and value != [] and value != {}}
