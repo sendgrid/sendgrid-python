@@ -2,7 +2,12 @@
 import json
 import unittest
 
-from email.message import EmailMessage
+try:
+    from email.message import EmailMessage
+except ImportError:
+    # Python2
+    from email import message
+    EmailMessage = message.Message
 
 from sendgrid.helpers.mail import (
     ASM,
@@ -562,7 +567,12 @@ class UnitTests(unittest.TestCase):
 
     def test_from_emailmessage(self):
         message = EmailMessage()
-        message.set_content('message that is not urgent')
+        body = 'message that is not urgent'
+        try:
+            message.set_content(body)
+        except AttributeError:
+            # Python2
+            message.set_payload(body)
         message.set_default_type('text/plain')
         message['Subject'] = 'URGENT TITLE'
         message['From'] = 'test@example.com'
@@ -576,4 +586,4 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(len(mail.contents), 1)
         content = mail.contents[0]
         self.assertEqual(content.type, 'text/plain')
-        self.assertEqual(content.value, 'message that is not urgent\n')
+        self.assertEqual(content.value, 'message that is not urgent')

@@ -1,6 +1,8 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
+from .content import Content
 
 
 class Mail(object):
@@ -154,9 +156,14 @@ class Mail(object):
             subject=message.get('Subject'),
             to_email=Email(message.get('To')),
         )
+        try:
+            body = message.get_content()
+        except AttributeError:
+            # Python2
+            body = message.get_payload()
         mail.add_content(Content(
             message.get_content_type(),
-            message.get_content()
+            body.strip()
         ))
         for k, v in message.items():
             mail.add_header(Header(k, v))
