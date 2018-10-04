@@ -250,6 +250,7 @@ About
 =====
 
 **sendgrid-python** is guided and supported by the SendGrid Developer Experience Team.
+
 Email the Developer Experience Team `here <mailto:dx@sendgrid.com>`__ in case of any queries.
 
 **sendgrid-python** is maintained and funded by SendGrid, Inc.
@@ -288,9 +289,9 @@ License
 .. _CONTRIBUTING: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md
 .. _Feature Request: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature-request
 .. _Bug Reports: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report
-.. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
 .. _Improvements to the Codebase: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase
 .. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews
+.. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md
 .. _Developer Experience Team: mailto:dx@sendgrid.com
 .. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.txt
