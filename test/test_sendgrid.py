@@ -1,6 +1,5 @@
 import sendgrid
 from sendgrid.helpers.mail import *
-from sendgrid.version import __version__
 try:
     import unittest2 as unittest
 except ImportError:
@@ -101,7 +100,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
     def test_useragent(self):
-        useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
+        useragent = '{0}{1}{2}'.format('sendgrid/', sendgrid.__version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):

@@ -18,8 +18,6 @@ import warnings
 
 import python_http_client
 
-from .version import __version__
-
 
 class SendGridAPIClient(object):
     """The SendGrid API Client.
@@ -69,8 +67,8 @@ class SendGridAPIClient(object):
         self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
-        self.useragent = 'sendgrid/{0};python'.format(__version__)
-        self.version = __version__
+        self.useragent = 'sendgrid/{0};python'.format(sendgrid.__version__)
+        self.version = sendgrid.__version__
 
         self.client = python_http_client.Client(host=self.host,
                                                 request_headers=self._default_headers,
