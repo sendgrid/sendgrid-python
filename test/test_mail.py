@@ -2,6 +2,8 @@
 import json
 import unittest
 
+from email.message import EmailMessage
+
 from sendgrid.helpers.mail import (
     ASM,
     APIKeyIncludedException,
@@ -557,3 +559,21 @@ class UnitTests(unittest.TestCase):
     def test_directly_setting_substitutions(self):
         personalization = Personalization()
         personalization.substitutions = [{'a': 0}]
+
+    def test_from_emailmessage(self):
+        message = EmailMessage()
+        message.set_content('message that is not urgent')
+        message.set_default_type('text/plain')
+        message['Subject'] = 'URGENT TITLE'
+        message['From'] = 'test@example.com'
+        message['To'] = 'test@sendgrid.com'
+        mail = Mail.from_EmailMessage(message)
+        self.assertEqual(mail.subject, 'URGENT TITLE')
+        self.assertEqual(mail.from_email.email, 'test@example.com')
+        self.assertEqual(len(mail.personalizations), 1)
+        self.assertEqual(len(mail.personalizations[0].tos), 1)
+        self.assertDictEqual(mail.personalizations[0].tos[0], {'email': 'test@sendgrid.com'})
+        self.assertEqual(len(mail.contents), 1)
+        content = mail.contents[0]
+        self.assertEqual(content.type, 'text/plain')
+        self.assertEqual(content.value, 'message that is not urgent\n')
