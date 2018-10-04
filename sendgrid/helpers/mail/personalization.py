@@ -1,14 +1,10 @@
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
-
-    :var dynamic_template_data: data for dynamic transactional template.
-        Should be JSON-serializeable structure. No pre-processing will be done
-        prior to sending this via http client.
     """
 
     def __init__(self):
-        """Create an empty Personalization."""
+        """Create an empty Personalization and initialize member variables."""
         self._tos = []
         self._ccs = []
         self._bccs = []
@@ -17,12 +13,10 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
-        self._dynamic_template_data = None
 
     @property
     def tos(self):
         """A list of recipients for this Personalization.
-
         :rtype: list(dict)
         """
         return self._tos
@@ -33,7 +27,6 @@ class Personalization(object):
 
     def add_to(self, email):
         """Add a single recipient to this Personalization.
-
         :type email: Email
         """
         self._tos.append(email.get())
@@ -41,7 +34,6 @@ class Personalization(object):
     @property
     def ccs(self):
         """A list of recipients who will receive copies of this email.
-
         :rtype: list(dict)
         """
         return self._ccs
@@ -52,7 +44,6 @@ class Personalization(object):
 
     def add_cc(self, email):
         """Add a single recipient to receive a copy of this email.
-
         :param email: new recipient to be CCed
         :type email: Email
         """
@@ -61,7 +52,6 @@ class Personalization(object):
     @property
     def bccs(self):
         """A list of recipients who will receive blind carbon copies of this email.
-
         :rtype: list(dict)
         """
         return self._bccs
@@ -72,7 +62,6 @@ class Personalization(object):
 
     def add_bcc(self, email):
         """Add a single recipient to receive a blind carbon copy of this email.
-
         :param email: new recipient to be BCCed
         :type email: Email
         """
@@ -81,7 +70,6 @@ class Personalization(object):
     @property
     def subject(self):
         """The subject of your email (within this Personalization).
-
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
         :rtype: string
@@ -95,7 +83,6 @@ class Personalization(object):
     @property
     def headers(self):
         """The headers for emails in this Personalization.
-
         :rtype: list(dict)
         """
         return self._headers
@@ -106,7 +93,6 @@ class Personalization(object):
 
     def add_header(self, header):
         """Add a single Header to this Personalization.
-
         :type header: Header
         """
         self._headers.append(header.get())
@@ -114,7 +100,6 @@ class Personalization(object):
     @property
     def substitutions(self):
         """Substitutions to be applied within this Personalization.
-
         :rtype: list(dict)
         """
         return self._substitutions
@@ -125,7 +110,6 @@ class Personalization(object):
 
     def add_substitution(self, substitution):
         """Add a new Substitution to this Personalization.
-
         :type substitution: Substitution
         """
         self._substitutions.append(substitution.get())
@@ -133,7 +117,6 @@ class Personalization(object):
     @property
     def custom_args(self):
         """The CustomArgs that will be carried along with this Personalization.
-
         :rtype: list(dict)
         """
         return self._custom_args
@@ -144,7 +127,6 @@ class Personalization(object):
 
     def add_custom_arg(self, custom_arg):
         """Add a CustomArg to this Personalization.
-
         :type custom_arg: CustomArg
         """
         self._custom_args.append(custom_arg.get())
@@ -154,7 +136,6 @@ class Personalization(object):
         """A unix timestamp allowing you to specify when you want emails from
         this Personalization to be delivered. Scheduling more than 72 hours in
         advance is forbidden.
-
         :rtype: int
         """
         return self._send_at
@@ -163,60 +144,30 @@ class Personalization(object):
     def send_at(self, value):
         self._send_at = value
 
-    @property
-    def dynamic_template_data(self):
-        """Data for dynamic transactional template.
-
-        :rtype: JSON-serializeable structure
-        """
-        return self._dynamic_template_data
-
-    @dynamic_template_data.setter
-    def dynamic_template_data(self, json):
-        self._dynamic_template_data = json
-
     def get(self):
         """
         Get a JSON-ready representation of this Personalization.
-
         :returns: This Personalization, ready for use in a request body.
         :rtype: dict
         """
         personalization = {}
-        if self.tos:
-            personalization["to"] = self.tos
 
-        if self.ccs:
-            personalization["cc"] = self.ccs
+        for key in ['tos', 'ccs', 'bccs']:
+            value = getattr(self, key)
+            if value:
+                personalization[key[:-1]] = value
 
-        if self.bccs:
-            personalization["bcc"] = self.bccs
+        for key in ['subject', 'send_at']:
+            value = getattr(self, key)
+            if value:
+                personalization[key] = value
 
-        if self.subject is not None:
-            personalization["subject"] = self.subject
+        for prop_name in ['headers', 'substitutions', 'custom_args']:
+            prop = getattr(self, prop_name)
+            if prop:
+                obj = {}
+                for key in prop:
+                    obj.update(key)
+                    personalization[prop_name] = obj
 
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key)
-            personalization["headers"] = headers
-
-        if self.substitutions:
-            substitutions = {}
-            for key in self.substitutions:
-                substitutions.update(key)
-            personalization["substitutions"] = substitutions
-
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key)
-            personalization["custom_args"] = custom_args
-
-        if self.send_at is not None:
-            personalization["send_at"] = self.send_at
-
-        if self.dynamic_template_data is not None:
-            personalization['dynamic_template_data'] = self.dynamic_template_data
-
-        return personalization
+return personalization

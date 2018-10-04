@@ -9,16 +9,21 @@ from .custom_arg import CustomArg
 from .email import Email
 from .exceptions import SendGridException, APIKeyIncludedException
 from .footer_settings import FooterSettings
+from .from_email import From
 from .ganalytics import Ganalytics
 from .header import Header
+from .html_content import HtmlContent
 from .mail_settings import MailSettings
 from .mail import Mail
 from .open_tracking import OpenTracking
 from .personalization import Personalization
+from .plain_text_content import PlainTextContent
 from .sandbox_mode import SandBoxMode
 from .section import Section
 from .spam_check import SpamCheck
+from .subject import Subject
 from .subscription_tracking import SubscriptionTracking
 from .substitution import Substitution
 from .tracking_settings import TrackingSettings
+from .to_email import To
 from .validators import ValidateAPIKey
