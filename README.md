@@ -212,9 +212,9 @@ Quick links:
 
 - [Feature Request](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature-request)
 - [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report)
-- [Sign the CLA to Create a Pull Request](https://cla.sendgrid.com/sendgrid/sendgrid-python)
 - [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
 - [Review Pull Requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews)
+- [Sign the CLA to Create a Pull Request](https://cla.sendgrid.com/sendgrid/sendgrid-python)
 
 <a name="troubleshooting"></a>
 # Troubleshooting
@@ -224,7 +224,9 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-pyth
 <a name="about"></a>
 # About
 
-sendgrid-python is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
+sendgrid-python is guided and supported by the SendGrid Developer Experience Team.
+
+Email the Developer Experience Team [here](mailto:dx@sendgrid.com) in case of any queries.
 
 sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
 
