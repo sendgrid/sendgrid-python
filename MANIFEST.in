@@ -5,4 +5,4 @@ include app.json
 include Procfile
 include requirements.txt
 recursive-include sendgrid *.py *.txt
-prune test
+recursive-exclude test *

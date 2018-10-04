@@ -60,6 +60,7 @@ class SendGridAPIClient(object):
         :param opts: dispatcher for deprecated arguments. Added for backward-compatibility
             with `path` parameter. Should be removed during 6.x release
         """
+        from . import __version__
         if opts:
             warnings.warn(
                 'Unsupported argument(s) provided: {}'.format(list(opts.keys())),
@@ -67,8 +68,8 @@ class SendGridAPIClient(object):
         self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
-        self.useragent = 'sendgrid/{0};python'.format(sendgrid.__version__)
-        self.version = sendgrid.__version__
+        self.useragent = 'sendgrid/{0};python'.format(__version__)
+        self.version = __version__
 
         self.client = python_http_client.Client(host=self.host,
                                                 request_headers=self._default_headers,
