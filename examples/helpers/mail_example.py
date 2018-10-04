@@ -1,8 +1,6 @@
-import json
-import os
-import urllib2
+from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import *
-from sendgrid import *
+
 
 # NOTE: you will need move this file to the root
 # directory of this project to execute properly.
@@ -80,7 +78,8 @@ def get_mock_personalization_dict():
 
 
 def build_attachment1():
-    """Build attachment mock."""
+    """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
+    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""
     attachment = Attachment()
     attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
@@ -217,3 +216,33 @@ send_hello_email()
 
 # this will only send an email if you set SandBox Mode to False
 send_kitchen_sink()
+
+
+def transactional_template_usage():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    
+    """
+    Sample usage of dynamic (handlebars) transactional templates.
+    To make this work, you should have dynamic template created within your
+    SendGrid account. For this particular example, template may be like::
+
+        <p>Hello, {{name}}! Your current balance is {{balance}}<p>
+
+    """
+    mail = Mail()
+    mail.from_email = Email('templates@sendgrid.com')
+    mail.template_id = 'd-your-dynamic-template-uid'
+    p = Personalization()
+    p.add_to(Email('user@example.com'))
+    p.dynamic_template_data = {
+        'name': 'Bob',
+        'balance': 42
+    }
+    mail.add_personalization(p)
+
+    sg = SendGridAPIClient()
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.headers)
+    print(response.body)

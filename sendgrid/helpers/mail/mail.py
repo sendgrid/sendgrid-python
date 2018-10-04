@@ -139,4 +139,4 @@ class Mail(object):
         }
 
         return dict((key, value) for key, value in mail.items()
-                    if value is not None and value != [] and value != {})
+if value is not None and value != [] and value != {})

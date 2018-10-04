@@ -17,7 +17,6 @@ class Personalization(object):
     @property
     def tos(self):
         """A list of recipients for this Personalization.
-
         :rtype: list(dict)
         """
         return self._tos
@@ -28,7 +27,6 @@ class Personalization(object):
 
     def add_to(self, email):
         """Add a single recipient to this Personalization.
-
         :type email: Email
         """
         self._tos.append(email.get())
@@ -36,7 +34,6 @@ class Personalization(object):
     @property
     def ccs(self):
         """A list of recipients who will receive copies of this email.
-
         :rtype: list(dict)
         """
         return self._ccs
@@ -47,7 +44,6 @@ class Personalization(object):
 
     def add_cc(self, email):
         """Add a single recipient to receive a copy of this email.
-
         :param email: new recipient to be CCed
         :type email: Email
         """
@@ -56,7 +52,6 @@ class Personalization(object):
     @property
     def bccs(self):
         """A list of recipients who will receive blind carbon copies of this email.
-
         :rtype: list(dict)
         """
         return self._bccs
@@ -67,7 +62,6 @@ class Personalization(object):
 
     def add_bcc(self, email):
         """Add a single recipient to receive a blind carbon copy of this email.
-
         :param email: new recipient to be BCCed
         :type email: Email
         """
@@ -76,7 +70,6 @@ class Personalization(object):
     @property
     def subject(self):
         """The subject of your email (within this Personalization).
-
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
         :rtype: string
@@ -90,7 +83,6 @@ class Personalization(object):
     @property
     def headers(self):
         """The headers for emails in this Personalization.
-
         :rtype: list(dict)
         """
         return self._headers
@@ -101,7 +93,6 @@ class Personalization(object):
 
     def add_header(self, header):
         """Add a single Header to this Personalization.
-
         :type header: Header
         """
         self._headers.append(header.get())
@@ -109,7 +100,6 @@ class Personalization(object):
     @property
     def substitutions(self):
         """Substitutions to be applied within this Personalization.
-
         :rtype: list(dict)
         """
         return self._substitutions
@@ -120,7 +110,6 @@ class Personalization(object):
 
     def add_substitution(self, substitution):
         """Add a new Substitution to this Personalization.
-
         :type substitution: Substitution
         """
         self._substitutions.append(substitution.get())
@@ -128,7 +117,6 @@ class Personalization(object):
     @property
     def custom_args(self):
         """The CustomArgs that will be carried along with this Personalization.
-
         :rtype: list(dict)
         """
         return self._custom_args
@@ -139,7 +127,6 @@ class Personalization(object):
 
     def add_custom_arg(self, custom_arg):
         """Add a CustomArg to this Personalization.
-
         :type custom_arg: CustomArg
         """
         self._custom_args.append(custom_arg.get())
@@ -149,7 +136,6 @@ class Personalization(object):
         """A unix timestamp allowing you to specify when you want emails from
         this Personalization to be delivered. Scheduling more than 72 hours in
         advance is forbidden.
-
         :rtype: int
         """
         return self._send_at
@@ -161,7 +147,6 @@ class Personalization(object):
     def get(self):
         """
         Get a JSON-ready representation of this Personalization.
-
         :returns: This Personalization, ready for use in a request body.
         :rtype: dict
         """
@@ -185,4 +170,4 @@ class Personalization(object):
                     obj.update(key)
                     personalization[prop_name] = obj
 
-        return personalization
+return personalization

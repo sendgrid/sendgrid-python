@@ -80,7 +80,6 @@ class UnitTests(unittest.TestCase):
         else:
             self.fail("Should have failed as SendGrid API key included")
 
-
     def test_helloEmail(self):
         self.max_diff = None
 
@@ -130,7 +129,7 @@ class UnitTests(unittest.TestCase):
         personalization = Personalization()
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
-        
+
         mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
         mail.add_content(Content("text/plain", "some text here"))
 
@@ -562,3 +561,26 @@ class UnitTests(unittest.TestCase):
     def test_directly_setting_substitutions(self):
         personalization = Personalization()
         personalization.substitutions = [{'a': 0}]
+
+    def test_dynamic_template_data(self):
+        p = Personalization()
+        p.add_to(Email('test@sendgrid.com'))
+        p.dynamic_template_data = {
+            'customer': {
+                'name': 'Bob',
+                'returning': True
+                },
+            'total': 42
+            }
+
+        expected = {
+            'to': [{'email': 'test@sendgrid.com'}],
+            'dynamic_template_data': {
+                'customer': {
+                    'name': 'Bob',
+                    'returning': True
+                    },
+                'total': 42
+                }
+        }
+        self.assertDictEqual(p.get(), expected)

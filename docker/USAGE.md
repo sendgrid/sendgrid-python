@@ -70,6 +70,63 @@ $ docker run -it -v /path/to/cool-sendgrid-python:/mnt/sendgrid-python sendgrid/
 
 Note that the paths you specify in `-v` must be absolute.
 
+# Docker Compose
+
+<a name="Quickstart"></a>
+# Quickstart
+
+1. Install docker-compose on your machine.
+2. Must copy sendgrid.env to .env file.
+3. Edit .env file for yours versions and paths.
+4. Must create env folder for clone yours repo.
+5. Have fun! :D
+
+## Using tag's for versions - DockerHub:
+
+### Edit variable TAG on .env/env_sample file
+
+```sh-session
+$ sed -ie 's/TAG=latest/TAG=choice_a_version/g'
+```
+### Run service using tags
+
+```sh-session
+$ cd /path/to/sendgrid-python/docker
+$ docker-compose up -d sendgrid
+```
+
+## Specifying specific versions:
+
+### Edit variable TAG on .env/env_sample file
+
+```sh-session
+$ sed -ie 's/SENDGRID_PYTHON_VERSION=vy.x.z/SENDGRID_PYTHON_VERSION=vx.y.z/g'
+$ sed -ie 's/HTTP_CLIENT_VERSION=vy.x.z/HTTP_CLIENT_VERSION=vx.y.z/g'
+```
+
+### Run service
+
+```sh-session
+$ cd /path/to/sendgrid-python/docker
+$ docker-compose up -d sendgrid-dev
+```
+
+## Specifying your own fork:
+
+### Edit variable TAG on .env/env_sample file
+
+```sh-session
+$ sed -ie 's/TAG=latest/TAG=choice_a_version/g'
+$ sed -ie 's/SENDGRID_PYTHON_VERSION=vy.x.z/SENDGRID_PYTHON_VERSION=vx.y.z/g'
+```
+
+### Run service
+
+```sh-session
+$ cd /path/to/sendgrid-python/docker
+$ docker-compose up -d sendgrid-beta
+```
+
 <a name="Testing"></a>
 # Testing
 Testing is easy!  Run the container, `cd sendgrid`, and run `tox`.
