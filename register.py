@@ -17,4 +17,4 @@ replacement = '''
               '''
 final_text = readme_rst.replace(replace, replacement)
 with open('./README.txt', 'w', encoding='utf-8') as f:
-  f.write(final_text)
+    f.write(final_text)

@@ -19,7 +19,7 @@ to_email = Email("to_email@example.com")
 content = Content("text/html", "I'm a content example")
 
 file_path = "file_path.pdf"
-with open(file_path,'rb') as f:
+with open(file_path, 'rb') as f:
     data = f.read()
     f.close()
 encoded = base64.b64encode(data).decode()

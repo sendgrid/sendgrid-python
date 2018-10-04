@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-from sendgrid.helpers.stats import *
+import unittest
 
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+from sendgrid.helpers.stats import *
 
 
 class UnitTests(unittest.TestCase):
@@ -22,7 +19,7 @@ class UnitTests(unittest.TestCase):
             '{"start_date": "12-09-2017"}'
         )
 
-        self.assertTrue(isinstance(str(global_stats), str))
+        self.assertIsInstance(str(global_stats), str)
 
     def test_Stats(self):
 
@@ -66,7 +63,7 @@ class UnitTests(unittest.TestCase):
 
     def test_subuserStats(self):
 
-        subuser_stats = SubuserStats(start_date = '12-09-2017', subusers=['foo', 'bar'])
+        subuser_stats = SubuserStats(start_date='12-09-2017', subusers=['foo', 'bar'])
         subuser_stats.add_subuser(Subuser('blah'))
         subuser_stats.end_date = '12-10-2017'
         subuser_stats.aggregated_by = 'day'

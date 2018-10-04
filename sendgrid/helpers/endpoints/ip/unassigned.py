@@ -23,8 +23,8 @@ def unassigned(data, as_json=False):
         unassigned returns a listing of the IP addresses that are allocated 
         but have 0 users assigned
 
-        
-        data (response.body from sg.client.ips.get()) 
+
+        data (response.body from sg.client.ips.get())
         as_json False -> get list of dicts
                 True  -> get json object
 

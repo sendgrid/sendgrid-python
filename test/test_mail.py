@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
+import unittest
 
 from sendgrid.helpers.mail import (
     ASM,
-    APIKeyIncludedException,
     Attachment,
     BCCSettings,
     BypassListManagement,
@@ -21,18 +21,11 @@ from sendgrid.helpers.mail import (
     Personalization,
     SandBoxMode,
     Section,
-    SendGridException,
     SpamCheck,
     SubscriptionTracking,
     Substitution,
     TrackingSettings,
-    ValidateAPIKey
 )
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class UnitTests(unittest.TestCase):
@@ -52,7 +45,7 @@ class UnitTests(unittest.TestCase):
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
 
-        #Try to include SendGrid API key
+        # Try to include SendGrid API key
         try:
             mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
             mail.add_content(
@@ -72,11 +65,11 @@ class UnitTests(unittest.TestCase):
                 '"subject": "Hello World from the SendGrid Python Library"}'
             )
 
-        #Exception should be thrown
-        except Exception as e:
+        # Exception should be thrown
+        except Exception:
             pass
 
-        #Exception not thrown
+        # Exception not thrown
         else:
             self.fail("Should have failed as SendGrid API key included")
 
@@ -112,7 +105,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_helloEmailAdditionalContent(self):
         """Tests bug found in Issue-451 with Content ordering causing a crash"""
@@ -145,7 +138,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_kitchenSink(self):
         self.max_diff = None

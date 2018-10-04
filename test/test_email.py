@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+import unittest
 
 from sendgrid.helpers.mail import (Email)
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class TestEmailObject(unittest.TestCase):
@@ -40,7 +35,7 @@ class TestEmailObject(unittest.TestCase):
     def test_add_rfc_email(self):
         name = "SomeName"
         address = "test@example.com"
-        name_address = "{0} <{1}>".format(name, address)
+        name_address = "{} <{}>".format(name, address)
         email = Email(name_address)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")

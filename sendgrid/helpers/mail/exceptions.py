@@ -2,6 +2,7 @@
 # Various types of extensible SendGrid related exceptions
 ################################################################
 
+
 class SendGridException(Exception):
     """Wrapper/default SendGrid-related exception"""
     pass
@@ -14,9 +15,8 @@ class APIKeyIncludedException(SendGridException):
             message -- explanation of the error
     """
 
-    def __init__(self, 
-                 expression="Email body", 
+    def __init__(self,
+                 expression="Email body",
                  message="SendGrid API Key detected"):
         self.expression = expression
         self.message = message
-
