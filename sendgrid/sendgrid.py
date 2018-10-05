@@ -18,7 +18,7 @@ import warnings
 
 import python_http_client
 
-from .version import __version__
+from version import __version__
 
 
 class SendGridAPIClient(object):
