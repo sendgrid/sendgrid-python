@@ -4730,7 +4730,7 @@ print response.headers
 
 **This endpoint allows you to create an IP whitelabel.**
 
-When creating an IP whitelable, you should use the same subdomain that you used when you created a domain whitelabel.
+When creating an IP whitelabel, you should use the same subdomain that you used when you created a domain whitelabel.
 
 A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
 
@@ -4894,7 +4894,7 @@ print response.headers
 
 **This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
@@ -4916,7 +4916,7 @@ print response.headers
 
 **This endpoint allows you to disassociate a link whitelabel from a subuser.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
@@ -5013,7 +5013,7 @@ print response.headers
 
 **This endpoint allows you to associate a link whitelabel with a subuser account.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
