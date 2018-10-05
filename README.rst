@@ -212,8 +212,7 @@ Announcements
 =============
 
 Join an experienced and passionate team that focuses on making an impact.
-Opportunities abound to grow the product - and grow your career!
-Check out our `Data Platform Engineer role`_.
+`Opportunities abound`_ to grow the product - and grow your career!
 
 Please see our announcement regarding `breaking changes`_.
 Your support is appreciated!
@@ -281,7 +280,7 @@ License
 .. _v3 Web API Mail Send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
 .. _Processing Inbound Email: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound
 .. _Examples of common API use cases: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md
-.. _Data Platform Engineer role: http://grnh.se/wbx1701
+.. _Opportunities abound: https://sendgrid.com/careers
 .. _breaking changes: https://github.com/sendgrid/sendgrid-python/issues/217
 .. _CHANGELOG: https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md
 .. _releases: https://github.com/sendgrid/sendgrid-python/releases
