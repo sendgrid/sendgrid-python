@@ -1,6 +1,7 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
 
 
 class Mail(object):
