@@ -77,7 +77,7 @@ Note that the paths you specify in `-v` must be absolute.
 
 1. Install docker-compose on your machine.
 2. Must copy sendgrid.env to .env file.
-3. Edit .env file for yours versions and paths.
+3. Edit .env file for your versions and paths.
 4. Must create env folder for clone yours repo.
 5. Have fun! :D
 

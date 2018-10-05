@@ -1,4 +1,4 @@
-**This helper is a stand alone module to help get you started consuming and processing Inbound Parse data.**
+**This helper is a stand-alone module to help get you started consuming and processing Inbound Parse data.**
 
 ## Table of Contents
 
