@@ -41,7 +41,7 @@ class UnitTests(unittest.TestCase):
         for key in keys:
             self.assertTrue(key in self.config.keys)
 
-    def test_init_environment(self):
+    def test_init_environment_should_set_env_from_dotenv(self):
         config_file = sendgrid.helpers.inbound.config.__file__
         env_file_path = os.path.abspath(os.path.dirname(config_file)) + '/.env'
         with open(env_file_path, 'w') as f:
@@ -49,3 +49,12 @@ class UnitTests(unittest.TestCase):
         Config()
         os.remove(env_file_path)
         self.assertEqual('RANDOM_VALUE', os.environ['RANDOM_VARIABLE'])
+
+    def test_init_environment_should_not_set_env_if_format_is_invalid(self):
+        config_file = sendgrid.helpers.inbound.config.__file__
+        env_file_path = os.path.abspath(os.path.dirname(config_file)) + '/.env'
+        with open(env_file_path, 'w') as f:
+            f.write('RANDOM_VARIABLE=RANDOM_VALUE=ANOTHER_RANDOM_VALUE')
+        Config()
+        os.remove(env_file_path)
+        self.assertIsNone(os.environ.get('RANDOM_VARIABLE'))
