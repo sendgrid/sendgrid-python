@@ -15,29 +15,31 @@ class UnitTests(unittest.TestCase):
     def test_initialization(self):
         endpoint = '/inbound'
         port = 5000
-        debug_mode = True
-        keys = ['from',
-                'attachments',
-                'headers',
-                'text',
-                'envelope',
-                'to',
-                'html',
-                'sender_ip',
-                'attachment-info',
-                'subject',
-                'dkim',
-                'SPF',
-                'charsets',
-                'content-ids',
-                'spam_report',
-                'spam_score',
-                'email']
+        keys = [
+            'from',
+            'attachments',
+            'headers',
+            'text',
+            'envelope',
+            'to',
+            'html',
+            'sender_ip',
+            'attachment-info',
+            'subject',
+            'dkim',
+            'SPF',
+            'charsets',
+            'content-ids',
+            'spam_report',
+            'spam_score',
+            'email',
+        ]
         host = 'http://127.0.0.1:5000/inbound'
-        self.assertTrue(debug_mode, self.config.debug_mode)
-        self.assertTrue(endpoint, self.config.endpoint)
-        self.assertTrue(host, self.config.host)
-        self.assertTrue(port, self.config.port)
+
+        self.assertTrue(self.config.debug_mode)
+        self.assertEqual(self.config.endpoint, endpoint)
+        self.assertEqual(self.config.host, host)
+        self.assertEqual(self.config.port, port)
         for key in keys:
             self.assertTrue(key in self.config.keys)
 
@@ -48,7 +50,7 @@ class UnitTests(unittest.TestCase):
             f.write('RANDOM_VARIABLE=RANDOM_VALUE')
         Config()
         os.remove(env_file_path)
-        self.assertEqual('RANDOM_VALUE', os.environ['RANDOM_VARIABLE'])
+        self.assertEqual(os.environ['RANDOM_VARIABLE'], 'RANDOM_VALUE')
 
     def test_init_environment_should_not_set_env_if_format_is_invalid(self):
         config_file = sendgrid.helpers.inbound.config.__file__
