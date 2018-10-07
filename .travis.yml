@@ -26,7 +26,7 @@ addons:
   apt_packages:
     - pandoc
 before_script:
-- ./test/prism.sh
+- ./test/prism.sh && sleep 5
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
