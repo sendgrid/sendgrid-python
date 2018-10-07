@@ -62,7 +62,8 @@ class Schedule(object):
         :return: Unix timestamp
         :rtype: int
         """
-        return int((dt - datetime(1970, 1, 1)).seconds)
+        t_delta = dt - datetime(1970, 1, 1)
+        return t_delta.seconds + t_delta.days * 86400
 
     def get(self):
         return {"send_at": self._timestamp}
