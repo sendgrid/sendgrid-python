@@ -80,7 +80,8 @@ class TestScheduleObject(unittest.TestCase):
 
     def test_dt_to_timestamp(self):
         schedule = Schedule(datetime(2018, 12, 1, 8, 23))
-        unix_timestamp = (datetime(2018, 12, 1, 8, 23) - datetime(1970, 1, 1)).total_seconds()
+        t_delta = datetime(2018, 12, 1, 8, 23) - datetime(1970, 1, 1)
+        unix_timestamp = t_delta.seconds + t_delta.days * 86400
         self.assertEqual(schedule.timestamp, unix_timestamp)
 
 
