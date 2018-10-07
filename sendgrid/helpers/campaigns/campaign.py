@@ -105,7 +105,7 @@ class Campaign(object):
             self.html_content = kwargs["html_content"]
         if "plain_content" in kwargs:
             self.plain_content = kwargs["plain_content"]
-        self.get()
+        return self.get()
 
     def send_test(self, to):
         return
