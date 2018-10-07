@@ -19,52 +19,6 @@ class UnitTests(unittest.TestCase):
         cls.devnull = open(os.devnull, 'w')
         prism_cmd = None
 
-        # try:
-        #     # check for prism in the PATH
-        #     if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
-        #         prism_cmd = 'prism'
-        # except OSError:
-        #     prism_cmd = None
-
-        # if not prism_cmd:
-        #     # check for known prism locations
-        #     for path in ('/usr/local/bin/prism', os.path.expanduser(os.path.join('~', 'bin', 'prism')),
-        #                  os.path.abspath(os.path.join(os.getcwd(), 'prism', 'bin', 'prism'))):
-        #         prism_cmd = path if os.path.isfile(path) else None
-        #         if prism_cmd:
-        #             break
-
-        # if not prism_cmd:
-        #     if sys.platform != 'win32':
-        #         # try to install with prism.sh
-        #         try:
-        #             print("Warning: no prism detected, I will try to install it locally")
-        #             prism_sh = os.path.abspath(os.path.join(cls.path, 'test', 'prism.sh'))
-        #             if subprocess.call(prism_sh) == 0:
-        #                 prism_cmd = os.path.expanduser(os.path.join('~', 'bin', 'prism'))
-        #             else:
-        #                 raise RuntimeError()
-        #         except Exception as e:
-        #             print(
-        #                 "Error installing the prism binary, you can try "
-        #                 "downloading directly here "
-        #                 "(https://github.com/stoplightio/prism/releases) "
-        #                 "and place in your $PATH", e)
-        #             sys.exit()
-        #     else:
-        #         print("Please download the Windows binary "
-        #               "(https://github.com/stoplightio/prism/releases) "
-        #               "and place it in your %PATH% ")
-        #         sys.exit()
-
-        # print("Activating Prism (~20 seconds)")
-        # cls.p = subprocess.Popen([
-        #     prism_cmd, "run", "-s",
-        #     "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/"
-        #     "oai_stoplight.json"], stdout=cls.devnull, stderr=subprocess.STDOUT)
-        # time.sleep(15)
-        # print("Prism Started")
-
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
         # Support the previous naming convention for API keys
@@ -2379,8 +2333,3 @@ class UnitTests(unittest.TestCase):
         with open(LICENSE_FILE, 'r') as f:
             copyright_line = f.readline().rstrip()
         self.assertEqual('Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year, copyright_line)
-
-    # @classmethod
-    # def tearDownClass(cls):
-    #     cls.p.kill()
-    #     print("Prism Shut Down")
