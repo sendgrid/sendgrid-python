@@ -14,19 +14,17 @@ def campaign_build_scheduled(api_client, campaign, schedule, notify=None):
     :type notify: list,sendgrid.helpers.mail.mail.Mail
     :param schedule: Schedule object to get schedule body
     :type schedule: sendgrid.helpers.campaigns.schedule.Schedule
-    :param kwargs: sendgrid.helpers.campaigns.campaign.get_schedule args
-    :return:
+    :return: ID of created campaign
+    :rtype: int
     """
     c_id = campaign_build(api_client, campaign)
-    print(schedule.get())
-    x = getattr(api_client.client.campaigns, str(c_id)).schedules.post(
+    getattr(api_client.client.campaigns, str(c_id)).schedules.post(
         request_body=schedule.get()
     )
-    print(x)
     if notify is not None:
         if isinstance(notify, list):
             for n in notify:
                 api_client.client.mail.send.post(request_body=n.get())
         else:
             api_client.client.mail.send.post(request_body=notify.get())
-    return
+    return c_id

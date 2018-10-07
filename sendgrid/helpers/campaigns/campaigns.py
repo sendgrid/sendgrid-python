@@ -44,4 +44,3 @@ class Campaigns(object):
     @offset.setter
     def offset(self, value):
         self._offset = int(value)
-

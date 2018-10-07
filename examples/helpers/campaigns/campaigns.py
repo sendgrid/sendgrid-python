@@ -1,4 +1,5 @@
 import json
+import os
 from sendgrid.helpers.campaigns import *
 from sendgrid import *
 
@@ -7,6 +8,7 @@ from sendgrid import *
 # Assumes you set your environment variable:
 # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
 SG = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+
 
 def pprint_json(json_raw):
     print(json.dumps(json.loads(json_raw), indent=4, sort_keys=True))

@@ -10,7 +10,8 @@ def campaign_build_send(api_client, campaign, notify=None):
     :type campaign: sendgrid.helpers.campaigns.Campaign
     :param notify: Mail objects to send on completion
     :type notify: list,sendgrid.helpers.mail.mail.Mail
-    :return:
+    :return: ID of created campaign
+    :rtype: int
     """
     c_id = campaign_build(api_client, campaign)
     getattr(api_client.client.campaigns, str(c_id)).schedules.now.post()
@@ -20,4 +21,4 @@ def campaign_build_send(api_client, campaign, notify=None):
                 api_client.client.mail.send.post(request_body=n.get())
         else:
             api_client.client.mail.send.post(request_body=notify.get())
-    return
+    return c_id

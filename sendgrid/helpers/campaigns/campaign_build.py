@@ -10,7 +10,8 @@ def campaign_build(api_client, campaign, notify=None):
     :type campaign: sendgrid.helpers.campaigns.Campaign
     :param notify: Mail objects to send on completion
     :type notify: list,sendgrid.helpers.mail.mail.Mail
-    :return: Campaid.id for newly created Campaign
+    :return: Campaign.id for newly created Campaign
+    :rtype: int
     """
     response = api_client.client.campaigns.post(request_body=campaign.get())
     camp_id = json.loads(response.body.decode())["id"]

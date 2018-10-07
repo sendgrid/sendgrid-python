@@ -67,11 +67,9 @@ class Schedule(object):
     def get(self):
         return {"send_at": self._timestamp}
 
-    def parse_timestamp(self, timestamp=None):
+    def parse_timestamp(self):
         """Parses the Schedule object's timestamp into year, month, etc.
 
-        :param timestamp: Unix timestamp to parse
-        :type timestamp: int
         :return: Parsed datetime object
         :rtype: datetime.datetime
         """
