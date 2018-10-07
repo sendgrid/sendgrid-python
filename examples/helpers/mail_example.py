@@ -78,8 +78,9 @@ def get_mock_personalization_dict():
 
 
 def build_attachment1():
-    """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
-    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""
+    """Build attachment mock. Make sure your content is base64 encoded before
+    passing into attachment.content.
+    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""  # noqa
     attachment = Attachment()
     attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
@@ -178,8 +179,8 @@ def build_kitchen_sink():
     mail.send_at = 1443636842
 
     # This must be a valid [batch ID]
-    # (https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
-    # mail.set_batch_id("N2VkYjBjYWItMGU4OC0xMWU2LWJhMzYtZjQ1Yzg5OTBkNzkxLWM5ZTUyZjNhOA")
+    # (https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work  # noqa
+    # mail.set_batch_id("N2VkYjBjYWItMGU4OC0xMWU2LWJhMzYtZjQ1Yzg5OTBkNzkxLWM5ZTUyZjNhOA")  # noqa
     mail.asm = ASM(99, [4, 5, 6, 7, 8])
     mail.ip_pool_name = "24"
     mail.mail_settings = build_mail_settings()
@@ -221,7 +222,7 @@ send_kitchen_sink()
 def transactional_template_usage():
     # Assumes you set your environment variable:
     # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
-    
+
     """
     Sample usage of dynamic (handlebars) transactional templates.
     To make this work, you should have dynamic template created within your

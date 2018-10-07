@@ -10,8 +10,8 @@ class Config(object):
         if os.environ.get('ENV') != 'prod':  # We are not in Heroku
             self.init_environment()
 
-        """Allow variables assigned in config.yml available the following variables
-           via properties"""
+        """Allow variables assigned in config.yml available the following
+        variables via properties"""
         self.path = opts.get(
             'path', os.path.abspath(os.path.dirname(__file__))
         )

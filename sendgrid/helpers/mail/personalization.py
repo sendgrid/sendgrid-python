@@ -60,7 +60,8 @@ class Personalization(object):
 
     @property
     def bccs(self):
-        """A list of recipients who will receive blind carbon copies of this email.
+        """A list of recipients who will receive blind carbon copies of
+        this email.
 
         :rtype: list(dict)
         """
@@ -217,6 +218,7 @@ class Personalization(object):
             personalization["send_at"] = self.send_at
 
         if self.dynamic_template_data is not None:
-            personalization['dynamic_template_data'] = self.dynamic_template_data
+            personalization['dynamic_template_data'] = \
+                self.dynamic_template_data
 
         return personalization

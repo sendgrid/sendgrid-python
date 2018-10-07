@@ -37,9 +37,12 @@ class Send(object):
         """URL to send to."""
         return self._url
 
+
 def main():
     config = Config()
-    parser = argparse.ArgumentParser(description='Test data and optional host.')
+    parser = argparse.ArgumentParser(
+        description='Test data and optional host.'
+    )
     parser.add_argument('data',
                         type=str,
                         help='path to the sample data')
@@ -53,6 +56,7 @@ def main():
     print(response.status_code)
     print(response.headers)
     print(response.body)
+
 
 if __name__ == '__main__':
     main()

@@ -52,31 +52,40 @@ class UnitTests(unittest.TestCase):
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
 
-        #Try to include SendGrid API key
+        # Try to include SendGrid API key
         try:
-            mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
+            mail.add_content(
+                Content(
+                    "text/plain",
+                    "some SG.2123b1B.1212lBaC here"
+                )
+            )
             mail.add_content(
                 Content(
                     "text/html",
-                    "<html><body>some SG.Ba2BlJSDba.232Ln2 here</body></html>"))
+                    "<html><body>some SG.Ba2BlJSDba.232Ln2 here</body></html>"
+                )
+            )
 
             self.assertEqual(
                 json.dumps(
                     mail.get(),
                     sort_keys=True),
-                '{"content": [{"type": "text/plain", "value": "some text here"}, '
-                '{"type": "text/html", '
-                '"value": "<html><body>some text here</body></html>"}], '
+                '{"content": ['
+                '{"type": "text/plain", "value": "some text here"'
+                '}, {"type": "text/html", "value": "<html><body>some text '
+                'here</body></html>"'
+                '}], '
                 '"from": {"email": "test@example.com"}, "personalizations": '
                 '[{"to": [{"email": "test@example.com"}]}], '
                 '"subject": "Hello World from the SendGrid Python Library"}'
             )
 
-        #Exception should be thrown
+        # Exception should be thrown
         except Exception as e:
             pass
 
-        #Exception not thrown
+        # Exception not thrown
         else:
             self.fail("Should have failed as SendGrid API key included")
 
@@ -115,7 +124,9 @@ class UnitTests(unittest.TestCase):
         self.assertTrue(isinstance(str(mail), str))
 
     def test_helloEmailAdditionalContent(self):
-        """Tests bug found in Issue-451 with Content ordering causing a crash"""
+        """
+        Tests bug found in Issue-451 with Content ordering causing a crash
+        """
 
         self.maxDiff = None
 
@@ -130,7 +141,8 @@ class UnitTests(unittest.TestCase):
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
 
-        mail.add_content(Content("text/html", "<html><body>some text here</body></html>"))
+        mail.add_content(Content("text/html", "<html><body>some text "
+                                 "here</body></html>"))
         mail.add_content(Content("text/plain", "some text here"))
 
         self.assertEqual(
@@ -164,7 +176,8 @@ class UnitTests(unittest.TestCase):
         personalization.add_cc(Email("test@example.com", "Example User"))
         personalization.add_bcc(Email("test@example.com"))
         personalization.add_bcc(Email("test@example.com"))
-        personalization.subject = "Hello World from the Personalized SendGrid Python Library"
+        personalization.subject = "Hello World from the Personalized " \
+                                  "SendGrid Python Library"
         personalization.add_header(Header("X-Test", "test"))
         personalization.add_header(Header("X-Mock", "true"))
         personalization.add_substitution(
@@ -182,7 +195,8 @@ class UnitTests(unittest.TestCase):
         personalization2.add_cc(Email("test@example.com", "Example User"))
         personalization2.add_bcc(Email("test@example.com"))
         personalization2.add_bcc(Email("test@example.com"))
-        personalization2.subject = "Hello World from the Personalized SendGrid Python Library"
+        personalization2.subject = "Hello World from the Personalized " \
+                                   "SendGrid Python Library"
         personalization2.add_header(Header("X-Test", "test"))
         personalization2.add_header(Header("X-Mock", "true"))
         personalization2.add_substitution(
@@ -200,7 +214,8 @@ class UnitTests(unittest.TestCase):
                 "<html><body>some text here</body></html>"))
 
         attachment = Attachment()
-        attachment.content = "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12"
+        attachment.content = "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY" \
+                             "3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12"
         attachment.type = "application/pdf"
         attachment.filename = "balance_001.pdf"
         attachment.disposition = "attachment"
@@ -263,12 +278,15 @@ class UnitTests(unittest.TestCase):
             True, True)
         tracking_settings.open_tracking = OpenTracking(
             True,
-            "Optional tag to replace with the open image in the body of the message")
+            "Optional tag to replace with the open image in the body "
+            "of the message")
         tracking_settings.subscription_tracking = SubscriptionTracking(
             True,
             "text to insert into the text/plain portion of the message",
-            "<html><body>html to insert into the text/html portion of the message</body></html>",
-            "Optional tag to replace with the open image in the body of the message")
+            "<html><body>html to insert into the text/html portion of "
+            "the message</body></html>",
+            "Optional tag to replace with the open image in the body of "
+            "the message")
         tracking_settings.ganalytics = Ganalytics(
             True,
             "some source",
@@ -499,7 +517,8 @@ class UnitTests(unittest.TestCase):
 
         mail.from_email = Email("test@example.com")
 
-        mail.subject = "Testing unicode substitutions with the SendGrid Python Library"
+        mail.subject = "Testing unicode substitutions with the SendGrid " \
+                       "Python Library"
 
         personalization = Personalization()
         personalization.add_to(Email("test@example.com"))
@@ -538,7 +557,8 @@ class UnitTests(unittest.TestCase):
                     ]
                 }
             ],
-            "subject": "Testing unicode substitutions with the SendGrid Python Library",
+            "subject": "Testing unicode substitutions with the "
+                       "SendGrid Python Library",
         }
 
         self.assertEqual(

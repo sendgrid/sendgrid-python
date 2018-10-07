@@ -57,7 +57,8 @@ data = {
     "content": [
         {
             "type": "text/html",
-            "value": "<html><p>Hello, world!</p><img src=[CID GOES HERE]></img></html>"
+            "value": "<html><p>Hello, world!</p><img src=[CID GOES HERE]>"
+                     "</img></html>"
         }
     ],
     "custom_args": {
@@ -151,7 +152,8 @@ data = {
         "ganalytics": {
             "enable": True,
             "utm_campaign": "[NAME OF YOUR REFERRER SOURCE]",
-            "utm_content": "[USE THIS SPACE TO DIFFERENTIATE YOUR EMAIL FROM ADS]",
+            "utm_content": "[USE THIS SPACE TO DIFFERENTIATE YOUR EMAIL"
+                           " FROM ADS]",
             "utm_medium": "[NAME OF YOUR MARKETING MEDIUM e.g. email]",
             "utm_name": "[NAME OF YOUR CAMPAIGN]",
             "utm_term": "[IDENTIFY PAID KEYWORDS HERE]"
@@ -162,9 +164,11 @@ data = {
         },
         "subscription_tracking": {
             "enable": True,
-            "html": "If you would like to unsubscribe and stop receiving these emails <% clickhere %>.",
+            "html": "If you would like to unsubscribe and stop receiving "
+                    "these emails <% clickhere %>.",
             "substitution_tag": "<%click here%>",
-            "text": "If you would like to unsubscribe and stop receiving these emails <% click here %>."
+            "text": "If you would like to unsubscribe and stop receiving "
+                    "these emails <% click here %>."
         }
     }
 }

@@ -14,7 +14,8 @@ data = {
         "spring line"
     ],
     "custom_unsubscribe_url": "",
-    "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>",
+    "html_content": "<html><head><title></title></head><body><p>Check out our "
+                    "spring line!</p></body></html>",
     "ip_pool": "marketing",
     "list_ids": [
         110,
@@ -52,7 +53,8 @@ data = {
     "categories": [
         "summer line"
     ],
-    "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+    "html_content": "<html><head><title></title></head><body><p>Check out our "
+                    "summer line!</p></body></html>",
     "plain_content": "Check out our summer line!",
     "subject": "New Products for Summer!",
     "title": "May Newsletter"

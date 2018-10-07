@@ -5,11 +5,11 @@ from sendgrid.helpers.endpoints.ip.unassigned import unassigned
 
 
 ret_json = '''[ {
-	"ip": "167.89.21.3",
+  "ip": "167.89.21.3",
         "pools": [
-		"pool1",
-	"pool2"
-	],
+    "pool1",
+  "pool2"
+  ],
         "whitelabeled": false,
         "start_date": 1409616000,
         "subusers": [
@@ -55,6 +55,7 @@ ret_json = '''[ {
       } ]
       '''
 
+
 def get_all_ip():
     ret_val = json.loads(ret_json)
     return ret_val
@@ -67,10 +68,9 @@ def make_data():
     return data
 
 
-
 def test_unassigned_ip_json():
 
-    data =  make_data()
+    data = make_data()
 
     as_json = True
     calculated = unassigned(get_all_ip(), as_json=as_json)
@@ -79,15 +79,17 @@ def test_unassigned_ip_json():
     for item in calculated:
         assert item["ip"] in data
 
+
 def test_unassigned_ip_obj():
 
-    data =  make_data()
+    data = make_data()
 
     as_json = False
     calculated = unassigned(get_all_ip(), as_json=as_json)
 
     for item in calculated:
         assert item["ip"] in data
+
 
 def test_unassigned_baddata():
     as_json = False

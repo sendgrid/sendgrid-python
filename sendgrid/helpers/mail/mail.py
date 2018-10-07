@@ -16,7 +16,8 @@ class Mail(object):
                  content=None):
         """Create a Mail object.
 
-        If any parameters are not supplied, they must be set after initialization.
+        If any parameters are not supplied, they must be set after
+        initialization.
         :param from_email: Email address to send from.
         :type from_email: Email, optional
         :param subject: Subject line of emails.
@@ -203,7 +204,8 @@ class Mail(object):
         This represents a batch of emails sent at the same time. Including a
         batch_id in your request allows you include this email in that batch,
         and also enables you to cancel or pause the delivery of that batch.
-        For more information, see https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html
+        For more information, see 
+        https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html  # noqa
 
         :rtype: int
         """

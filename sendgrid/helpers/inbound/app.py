@@ -3,13 +3,13 @@
 See README.txt for usage instructions."""
 try:
     from config import Config
-except:
+except:  # noqa
     # Python 3+, Travis
     from sendgrid.helpers.inbound.config import Config
 
 try:
     from parse import Parse
-except:
+except:  # noqa
     # Python 3+, Travis
     from sendgrid.helpers.inbound.parse import Parse
 

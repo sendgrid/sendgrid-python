@@ -27,7 +27,8 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve sums of email stats for each category [Needs: Stats object defined, has category ID?] #
+# Retrieve sums of email stats for each category [Needs: Stats object defined,
+# has category ID?] #
 # GET /categories/stats/sums #
 
 params = {'end_date': '2016-04-01',

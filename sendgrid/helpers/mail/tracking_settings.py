@@ -10,7 +10,8 @@ class TrackingSettings(object):
 
     @property
     def click_tracking(self):
-        """Allows you to track whether a recipient clicked a link in your email.
+        """Allows you to track whether a recipient clicked a link in your
+        email.
 
         :rtype: ClickTracking
         """

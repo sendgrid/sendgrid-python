@@ -4,7 +4,8 @@ class SubscriptionTracking(object):
     location of the link within your email, you may use the substitution_tag.
     """
 
-    def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
+    def __init__(self, enable=None, text=None, html=None,
+                 substitution_tag=None):
         """Create a SubscriptionTracking to customize subscription management.
 
         :param enable: Whether this setting is enabled.
@@ -13,7 +14,8 @@ class SubscriptionTracking(object):
         :type text: string, optional
         :param html: HTML to be appended to the email with the link as "<% %>".
         :type html: string, optional
-        :param substitution_tag: Tag replaced with URL. Overrides text, html params.
+        :param substitution_tag: Tag replaced with URL. Overrides text,
+                                 html params.
         :type substitution_tag: string, optional
         """
         self.enable = enable
