@@ -15,6 +15,50 @@ class TestCampaignObject(unittest.TestCase):
         camp = Campaign(title=c_name)
         self.assertEqual(camp.title, "Test Campaign")
 
+    def test_campaign_get(self):
+        data = {
+            "categories": [
+                "summer line"
+            ],
+            "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+            "plain_content": "Check out our summer line!",
+            "subject": "New Products for Summer!",
+            "title": "May Newsletter"
+        }
+        camp = Campaign(**data)
+        self.assertEqual(camp.get(), data)
+
+    def test_campaign_patch(self):
+        data = {
+            "categories": [
+                "summer line"
+            ],
+            "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+            "plain_content": "Check out our summer line!",
+            "subject": "New Products for Summer!",
+            "title": "May Newsletter"
+        }
+        camp = Campaign(**data)
+        new_title = "New Title"
+        camp.patch(title=new_title)
+        self.assertEqual(camp.title, new_title)
+
+
+class TestCampaignsObject(unittest.TestCase):
+
+    def test_campaigns_get(self):
+        lim = 5
+        offset = 20
+        camps = Campaigns(offset=offset, limit=lim)
+        self.assertEqual(camps.get(), {"offset": offset, "limit": lim})
+
+    def test_campaigns_props(self):
+        lim = 5
+        offset = 20
+        camps = Campaigns(offset=offset, limit=lim)
+        self.assertEqual(camps.offset, offset)
+        self.assertEqual(camps.limit, lim)
+
 
 class TestScheduleObject(unittest.TestCase):
 
