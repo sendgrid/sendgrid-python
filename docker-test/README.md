@@ -3,7 +3,6 @@ Use Docker to easily try out or contribute to the sendgrid-python library.
 This Docker image contains:
  - Python 3.6
  - A running instance of [Stoplight.io's Prism](https://stoplight.io/platform/prism/), which lets you try out the SendGrid API without actually sending email
- - A mirrored copy of sendgrid-php so that you may develop locally and then run the tests within the Docker container.
 
 # Table of Contents
 

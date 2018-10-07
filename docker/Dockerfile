@@ -18,8 +18,10 @@ RUN set -x \
     && apt-get purge -y --auto-remove software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Prism
-ADD https://raw.githubusercontent.com/stoplightio/prism/master/install.sh install.sh
+WORKDIR /root
+
+# install Prism
+ADD https://raw.githubusercontent.com/stoplightio/prism/2.x/install.sh install.sh
 RUN sync && bash install.sh
 
 # Install pip, tox
@@ -31,10 +33,8 @@ RUN python3.6 -m pip install pyyaml six werkzeug flask
 
 # Set up default SendGrid env
 WORKDIR /root/sources
-
-RUN git clone https://github.com/sendgrid/sendgrid-python.git \
-    && git clone https://github.com/sendgrid/python-http-client.git
-
+RUN git clone https://github.com/sendgrid/sendgrid-python.git --branch ${SENDGRID_PYTHON_VERSION:-master} && \
+    git clone https://github.com/sendgrid/python-http-client.git --branch ${HTTP_CLIENT_VERSION:-master}
 WORKDIR /root
 
 RUN ln -s /root/sources/sendgrid-python/sendgrid \
