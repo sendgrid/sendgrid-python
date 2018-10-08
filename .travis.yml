@@ -31,7 +31,10 @@ before_script:
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
 script:
-- pycodestyle --ignore=W605 --exclude='build'
+# errors W605 and W504 added to avoid inconsistent errors happening
+# error W605 happening on validators.py:28:40 on a valid Regex
+# error W504 happening on validators.py:54:29 on a valid line break operator
+- pycodestyle --ignore=W605,W504 --exclude='build'
 - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run -m unittest2 discover; else coverage run -m unittest discover; fi
 after_script:
 - codecov

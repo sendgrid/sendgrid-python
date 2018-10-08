@@ -589,9 +589,9 @@ class UnitTests(unittest.TestCase):
             'customer': {
                 'name': 'Bob',
                 'returning': True
-                },
+            },
             'total': 42
-            }
+        }
 
         expected = {
             'to': [{'email': 'test@sendgrid.com'}],
@@ -599,8 +599,8 @@ class UnitTests(unittest.TestCase):
                 'customer': {
                     'name': 'Bob',
                     'returning': True
-                    },
+                },
                 'total': 42
-                }
+            }
         }
         self.assertDictEqual(p.get(), expected)
