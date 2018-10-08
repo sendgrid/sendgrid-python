@@ -33,9 +33,9 @@ class Schedule(object):
 
         if send_at is not None:
             if isinstance(send_at, datetime):
-                self._timestamp = self.convert_datetime(send_at)
+                self.timestamp = self.convert_datetime(send_at)
             else:
-                self._timestamp = int(send_at)
+                self.timestamp = int(send_at)
             self.parse_timestamp()
 
         if send_at is None:
