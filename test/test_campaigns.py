@@ -20,13 +20,20 @@ class TestCampaignObject(unittest.TestCase):
             "categories": [
                 "summer line"
             ],
+            "custom_unsubscribe_url": "test.url",
+            "editor": "code",
             "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+            "ip_pool": "test_ips",
+            "list_ids": [2, 3],
             "plain_content": "Check out our summer line!",
+            "segment_ids": [2, 3],
+            "sender_id": 4324,
             "subject": "New Products for Summer!",
-            "title": "May Newsletter"
+            "title": "May Newsletter",
+            "suppression_group_id": 5123
         }
         camp = Campaign(**data)
-        self.assertEqual(camp.get(), data)
+        self.assertDictEqual(camp.get(), data)
 
     def test_campaign_patch(self):
         data = {
@@ -39,9 +46,28 @@ class TestCampaignObject(unittest.TestCase):
             "title": "May Newsletter"
         }
         camp = Campaign(**data)
-        new_title = "New Title"
-        camp.patch(title=new_title)
-        self.assertEqual(camp.title, new_title)
+        new_data = {
+            "categories": [
+                "fall line"
+            ],
+            "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+            "plain_content": "Check out our summer line!",
+            "subject": "New Products for Fall!",
+            "title": "August Newsletter"
+        }
+        self.assertDictEqual(camp.patch(**new_data), new_data)
+
+    def test_campaign_copy(self):
+        data = {
+            "plain_content": "Check out our summer line!",
+            "subject": "New Products for Summer!",
+            "title": "May Newsletter"
+        }
+        camp = Campaign(**data)
+        camp2 = camp.copy("June Newsletter")
+        self.assertEqual(camp.subject, camp2.subject)
+        self.assertEqual(camp.plain_content, camp2.plain_content)
+        self.assertNotEqual(camp.title, camp2.title)
 
 
 class TestCampaignsObject(unittest.TestCase):
@@ -67,6 +93,7 @@ class TestScheduleObject(unittest.TestCase):
         t_delta = datetime(2018, 12, 1, 8, 23) - datetime(1970, 1, 1)
         unix_timestamp = t_delta.seconds + t_delta.days * 86400
         self.assertEqual(schedule.timestamp, unix_timestamp)
+        self.assertDictEqual(schedule.get(), {"send_at": unix_timestamp})
 
     def test_timestamp_to_dt(self):
         td = datetime(2018, 12, 1, 8, 23) - datetime(1970, 1, 1)
