@@ -40,15 +40,15 @@ class Schedule(object):
 
         if send_at is None:
             if year is not None:
-                self._year = year
+                self.year = year
             if month is not None:
-                self._month = month
+                self.month = month
             if day is not None:
-                self._day = day
+                self.day = day
             if hour is not None:
-                self._hour = hour
+                self.hour = hour
             if minute is not None:
-                self._minute = minute
+                self.minute = minute
             self._timestamp = self.convert_datetime(
                 datetime(self.year, self.month, self.day, self.hour, self.minute)
             )
@@ -75,11 +75,11 @@ class Schedule(object):
         :rtype: datetime.datetime
         """
         dt = datetime(1970, 1, 1) + timedelta(seconds=self._timestamp)
-        self._year = dt.year
-        self._month = dt.month
-        self._day = dt.day
-        self._hour = dt.hour
-        self._minute = dt.minute
+        self.year = dt.year
+        self.month = dt.month
+        self.day = dt.day
+        self.hour = dt.hour
+        self.minute = dt.minute
         return dt
 
     @property
