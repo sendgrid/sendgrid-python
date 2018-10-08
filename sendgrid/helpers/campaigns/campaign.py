@@ -50,36 +50,42 @@ class Campaign(object):
         new_camp.title = new_title
         return new_camp
 
-    def delete(self):
-        return
-
     def get(self):
         """Returns dict suitable for queries"""
-        body = {"title": self._title}
-        if self._categories:
-            body["categories"] = [str(i) for i in self._categories]
-        if self._custom_unsubscribe_url is not None:
-            body["custom_unsubscribe_url"] = self._custom_unsubscribe_url
-        if self._editor is not None:
-            body["editor"] = self._editor
-        if self._html_content is not None:
-            body["html_content"] = self._html_content
-        if self._ip_pool is not None:
-            body["ip_pool"] = self._ip_pool
-        if self._list_ids and all(isinstance(i, int) for i in self._list_ids):
-            body["list_ids"] = self._list_ids
-        if self._plain_content:
-            body["plain_content"] = self._plain_content
-        if self._segment_ids\
-                and all(isinstance(i, int) for i in self._list_ids):
-            body["segment_ids"] = self._segment_ids
-        if self._sender_id is not None:
-            body["sender_id"] = self._sender_id
-        if self._subject is not None:
-            body["subject"] = self._subject
-        if self._suppression_group_id is not None:
-            body["suppression_group_id"] = self._suppression_group_id
+        body = {"title": self.title}
+        if self.categories:
+            body["categories"] = [str(i) for i in self.categories]
+        if self.custom_unsubscribe_url is not None:
+            body["custom_unsubscribe_url"] = self.custom_unsubscribe_url
+        if self.editor is not None:
+            body["editor"] = self.editor
+        if self.html_content is not None:
+            body["html_content"] = self.html_content
+        if self.ip_pool is not None:
+            body["ip_pool"] = self.ip_pool
+        if self.list_ids and all(isinstance(i, int) for i in self.list_ids):
+            body["list_ids"] = self.list_ids
+        if self.plain_content:
+            body["plain_content"] = self.plain_content
+        if self.segment_ids\
+                and all(isinstance(i, int) for i in self.segment_ids):
+            body["segment_ids"] = self.segment_ids
+        if self.sender_id is not None:
+            body["sender_id"] = self.sender_id
+        if self.subject is not None:
+            body["subject"] = self.subject
+        if self.suppression_group_id is not None:
+            body["suppression_group_id"] = self.suppression_group_id
         return body
+
+    def get_patch(self):
+        return {
+            "title": self.title,
+            "subject": self.subject,
+            "categories": self.categories,
+            "html_content": self.html_content,
+            "plain_content": self.plain_content
+        }
 
     def patch(self, **kwargs):
         """Updates the campaign with
@@ -105,13 +111,7 @@ class Campaign(object):
             self.html_content = kwargs["html_content"]
         if "plain_content" in kwargs:
             self.plain_content = kwargs["plain_content"]
-        return self.get()
-
-    def send_test(self, to):
-        return
-
-    def unschedule(self):
-        return
+        return self.get_patch()
 
     @property
     def categories(self):
