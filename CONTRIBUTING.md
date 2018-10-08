@@ -153,13 +153,14 @@ pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
+pyenv install 3.6.7
 ```
 Make sure to change the current working directory to your local version of the repo before running the following command:
 ```
 python setup.py install
 ```
 ```
-pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
+pyenv local 3.6.7 3.5.0 3.4.3 2.7.11 2.6.9
 pyenv rehash
 ```
 
