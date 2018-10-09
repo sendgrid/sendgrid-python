@@ -43,7 +43,7 @@ Installation
 Prerequisites
 -------------
 
--  Python version 2.6, 2.7, 3.4, 3.5 or 3.6
+-  Python version 2.7 and 3.4+
 -  The SendGrid service, starting at the `free level`_
 
 Setup Environment Variables
