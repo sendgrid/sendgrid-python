@@ -1,6 +1,5 @@
 import sendgrid
 from sendgrid.helpers.mail import *
-from sendgrid.version import __version__
 import os
 import datetime
 import unittest
@@ -95,7 +94,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
     def test_useragent(self):
-        useragent = '{}{}{}'.format('sendgrid/', __version__, ';python')
+        useragent = '{}{}{}'.format('sendgrid/', sendgrid.__version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):
