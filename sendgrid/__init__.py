@@ -15,7 +15,12 @@ helpers
     Modules to help with common tasks.
 """
 
-from .version import __version__  # noqa
+import os
 # v3 API
 from .sendgrid import SendGridAPIClient  # noqa
 from .helpers.mail import Email  # noqa
+
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+if os.path.isfile(os.path.join(dir_path, 'VERSION.txt')):
+    __version__ = open(os.path.join(dir_path, 'VERSION.txt')).read().strip()

@@ -22,4 +22,4 @@ htmlcov
 temp*.py
 sendgrid.env
 .vscode
-
+sendgrid/VERSION.txt
