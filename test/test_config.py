@@ -43,7 +43,7 @@ class UnitTests(unittest.TestCase):
 
     def test_init_environment(self):
         config_file = sendgrid.helpers.inbound.config.__file__
-        env_file_path = os.path.abspath(os.path.dirname(config_file)) + '/.env'
+        env_file_path = '{0}/.env'.format(os.path.abspath(os.path.dirname(config_file)))
         with open(env_file_path, 'w') as f:
             f.write('RANDOM_VARIABLE=RANDOM_VALUE')
         Config()
