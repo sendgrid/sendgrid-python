@@ -10,6 +10,7 @@ This directory provides examples for specific use cases of this library. Please 
 * [How to Deploy A Simple Hello Email App on AWS](aws.md)
 * [How to Setup a Domain Whitelabel](domain_whitelabel.md)
 * [How to View Email Statistics](email_stats.md)
+* [How to Deploy A Simple Flask App on Microsoft Azure](flask_azure.md)
 
 ### Working with Mail
 * [Asynchronous Mail Send](asynchronous_mail_send.md)
