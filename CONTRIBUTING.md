@@ -62,7 +62,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 ### Development Environment ###
 #### There are two ways to get set up: ####
 #### 1. Using Docker ####
-This is usually the easiest and fastest way to get set up. 
+This is usually the easiest and fastest way to get set up.
 You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
 #### - OR - ####
@@ -191,10 +191,10 @@ Please run your code through:
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/sendgrid/sendgrid-python
-   
+
    # Navigate to the newly cloned directory
    cd sendgrid-python
-   
+
    # Assign the original repo to a remote called "upstream"
    git remote add upstream https://github.com/sendgrid/sendgrid-python
    ```
@@ -213,7 +213,7 @@ Please run your code through:
    git checkout -b <topic-branch-name>
    ```
 
-4. Commit your changes in logical chunks. Please adhere to these [git commits
+4. Commit your changes in logical chunks. Please adhere to these [git commit
    message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
    or your code is unlikely to be merged into the main project. Use Git's
    [interactive rebase](https://help.github.com/articles/interactive-rebase)

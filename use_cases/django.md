@@ -1,4 +1,4 @@
-# Create a Django app to send an email with SendGrid
+# Create a Django app to send email with SendGrid
 
 This tutorial explains how we set up a simple Django app to send an email with the SendGrid Python SDK and how we deploy our app to Heroku.
 
@@ -119,7 +119,7 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
-By default, it starts the development server at `http://127.0.0.1:8000/`. To test if we can send an email or not, go to `http://127.0.0.1:8000/sendgrid/`. If it works, we should see the page says "Email Sent!".
+By default, it starts the development server at `http://127.0.0.1:8000/`. To test if we can send email or not, go to `http://127.0.0.1:8000/sendgrid/`. If it works, we should see the page says "Email Sent!".
 
 **Note:** If you use `test@example.com` as your from email, it's likely to go to your spam folder. To have the emails show up in your inbox, try using an email address at the domain you registered your SendGrid account.
 

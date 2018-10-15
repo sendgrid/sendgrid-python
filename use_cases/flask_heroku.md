@@ -1,4 +1,4 @@
-# Create a Flask app to send an email with SendGrid
+# Create a Flask app to send email with SendGrid
 
 This tutorial explains how to deploy a simple Flask app, to send an email using the SendGrid Python SDK, on Heroku.
 
