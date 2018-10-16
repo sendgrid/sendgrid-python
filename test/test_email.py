@@ -18,27 +18,27 @@ class TestEmailObject(unittest.TestCase):
         self.assertEqual(email.email, "test@example.com")
 
     def test_add_name(self):
-        name = "SomeName"
+        name = "Luke Skywalker"
         email = Email(name=name)
 
         self.assertEqual(email.name, name)
 
     def test_add_name_email(self):
-        name = "SomeName"
+        name = "Darth Vader"
         address = "test@example.com"
         email = Email(email=address, name=name)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")
 
     def test_add_rfc_function_finds_name_not_email(self):
-        name = "SomeName"
+        name = "Mon Mothma"
         email = Email(name)
 
         self.assertEqual(email.name, name)
         self.assertIsNone(email.email)
 
     def test_add_rfc_email(self):
-        name = "SomeName"
+        name = "Ben Kenobi"
         address = "test@example.com"
         name_address = "{0} <{1}>".format(name, address)
         email = Email(name_address)
@@ -47,7 +47,7 @@ class TestEmailObject(unittest.TestCase):
 
     def test_empty_obj_add_name(self):
         email = Email()
-        name = "SomeName"
+        name = "Sheev Palpatine"
         email.name = name
 
         self.assertEqual(email.name, name)
