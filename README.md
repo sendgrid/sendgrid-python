@@ -84,7 +84,7 @@ pip install sendgrid
 
 ## Hello Email
 
-The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py) is a full example):
+The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L9) is a full example):
 
 ### With Mail Helper Class
 
