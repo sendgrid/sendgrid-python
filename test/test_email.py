@@ -24,7 +24,7 @@ class TestEmailObject(unittest.TestCase):
         self.assertEqual(email.name, name)
 
     def test_add_name_email(self):
-        name = "SomeName"
+        name = "Bob Marley"
         address = "test@example.com"
         email = Email(email=address, name=name)
         self.assertEqual(email.name, name)
