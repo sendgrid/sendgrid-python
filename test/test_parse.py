@@ -15,5 +15,5 @@ class UnitTests(unittest.TestCase):
 
     def test_parse(self):
         response = self.tester.post(self.config.endpoint,
-                                    data='{"Message:", "Success"}')
+                                    data='{"Message:", "Win!!!"}')
         self.assertEqual(response.status_code, 200)
