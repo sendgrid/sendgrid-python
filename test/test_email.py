@@ -31,7 +31,7 @@ class TestEmailObject(unittest.TestCase):
         self.assertEqual(email.email, "test@example.com")
 
     def test_add_rfc_function_finds_name_not_email(self):
-        name = "SomeName"
+        name = "Bob Marley"
         email = Email(name)
 
         self.assertEqual(email.name, name)
