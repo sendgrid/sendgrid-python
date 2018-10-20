@@ -1,6 +1,6 @@
 ## Using helper class to send emails
 You can use helper classes to customize the process of sending emails using SendGrid. Each process (such as sending a mock email,
-building attachments, configuring settings, building personalizations,etc are made easy using helpers. All you need is a file with 
+building attachments, configuring settings, building personalizations, etc.) are made easy using helpers. All you need is a file with 
 all the classes imported and you can start sending emails!
 
 > Note :  you will need move this file to the root directory of this project to execute properly.
