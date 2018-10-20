@@ -18,7 +18,7 @@ You can use `Email` class to define a mail id.
 ```
 content = Content("text/plain", "some text here")
 ```
-The `Content` class takes mainly two parameters - MIME type and the actual content of the email, it then returns the JSON-ready representation of this Content.
+The `Content` class takes mainly two parameters: MIME type and the actual content of the email, it then returns the JSON-ready representation of this content.
 
 ```
  mail = Mail(from_email, subject, to_email, content)
