@@ -47,7 +47,7 @@ source ./sendgrid.env
 
 **Step 1:** Open Azure CLI using bash(preferabbly) or PowerShell
 
-![azure-cli](https://user-images.githubusercontent.com/13948542/46796235-cb3f8d00-cd69-11e8-9eed-120671532b9d.png)
+![azure-cli](images/azure-cli.png)
 
 **Step 2:** Create a deployment user using 
 ```bash
@@ -162,7 +162,7 @@ To <LOCAL_GIT_URL>
 
 **Step 8:** Set the SENDGRID_API_KEY as the Environment variable in Azure Portal. Open the Application Settings of the Web-App.
 
-![api_key](https://user-images.githubusercontent.com/13948542/46796244-d2669b00-cd69-11e8-93bb-d7d0ddcb4081.png)
+![api_key](images/azure-api-key.png)
 
 
 **Step 9:** Browse to the deployed application using your web browser and hit `http://<YOUR_WEBAPP_NAME>.azurewebsites.net`
