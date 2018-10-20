@@ -28,7 +28,7 @@ For more information on parameters and usage, see [here](https://github.com/send
 
 ### Creating Personalizations
 
-To create personalizations, you need a dictionary to store all your email components. see example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L47)
+To create personalizations, you need a dictionary to store all your email components. See example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L47)
 After creating a dictionary, you can go ahead and create a `Personalization` object. 
 ```
  mock_personalization = Personalization()
