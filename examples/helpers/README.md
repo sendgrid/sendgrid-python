@@ -13,7 +13,7 @@ defines minimum requirement to send an email.
  subject = "Hello World from the SendGrid Python Library"
  to_email = Email("test@example.com")
 ```
-you can use `Email` class to define a mail id.
+You can use `Email` class to define a mail id.
 
 ```
 content = Content("text/plain", "some text here")
