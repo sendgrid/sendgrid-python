@@ -2,13 +2,13 @@
 
 ### Setting Up SendGrid & Azure Accounts
 
-**Step 1:** Create a SendGrid Free Account from [here](https://sendgrid.com/free?source=sendgrid-python)
+**Step 1:** Create a SendGrid free account from [here](https://sendgrid.com/free?source=sendgrid-python)
 
-**Step 2:** Create a Microsoft Azure Account: [Free-Tier](https://azure.microsoft.com/en-in/free/) | [Student-Pack](https://azure.microsoft.com/en-in/free/students/)
+**Step 2:** Create a Microsoft Azure account: [Free-Tier](https://azure.microsoft.com/en-in/free/) | [Student-Pack](https://azure.microsoft.com/en-in/free/students/)
 
-**Step 3:** Create your SendGrid API Key from [here](https://app.sendgrid.com/settings/api_keys)
+**Step 3:** Create your SendGrid API key from [here](https://app.sendgrid.com/settings/api_keys)
 
-**Step 4:** Validate your Generated SendGrid API Key using
+**Step 4:** Validate your generated SendGrid API key using:
 ```bash
 curl -i --request POST \
 --url https://api.sendgrid.com/v3/mail/send \
@@ -17,7 +17,7 @@ curl -i --request POST \
 --data '{"personalizations": [{"to": [{"email": "<RECEIPENT_MAIL>"}]}],"from": {"email": "<SENDER_MAIL>"},"subject": "Is API Key Working","content": [{"type": "text/plain", "value": "Yes, It is!"}]}'
 ```
 
-> **If Result gives *HTTP/1.1 202 Accepted*, You're good to move forward.**
+> **If result gives *HTTP/1.1 202 Accepted*, you're good to move forward.**
 
 
 ### Setting up the App
@@ -53,7 +53,7 @@ source ./sendgrid.env
 ```bash
 az webapp deployment user set --user-name <USERNAME> --password <PASSWORD>
 ```
-*Note the Password created at this step, as it is used for further deploys*
+*Note the password created at this step, as it is used for further deploys*
 
 **Step 3:** Create a Resource-group using 
 ```bash 
@@ -116,7 +116,7 @@ Local git is configured with url of '<LOCAL_GIT_URL>'
 
 Copy the <LOCAL_GIT_URL> obtained in the above step.
 
-**Step 6:** In Local Terminal, Add a new remote to the git repo using `git remote add azure <LOCAL_GIT_URL>`
+**Step 6:** In local terminal, add a new remote to the git repo using `git remote add azure <LOCAL_GIT_URL>`
 
 **Step 7:** Push the local webapp to the deployment using `git push azure master`
 ```bash
@@ -165,8 +165,8 @@ To <LOCAL_GIT_URL>
 ![api_key](https://user-images.githubusercontent.com/13948542/46796244-d2669b00-cd69-11e8-93bb-d7d0ddcb4081.png)
 
 
-**Step 9:** Browse to the deployed application using your web browser and Hit `http://<YOUR_WEBAPP_NAME>.azurewebsites.net`
+**Step 9:** Browse to the deployed application using your web browser and hit `http://<YOUR_WEBAPP_NAME>.azurewebsites.net`
 
-Check if the Web-App loads & Mail Sending is Success!
+Check if the web app loads & mail sending is successful!
 
 > **Woohoo! Congratulations. You just got your SendGrid app deployed on Microsoft Azure!.**
