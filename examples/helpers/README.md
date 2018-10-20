@@ -3,7 +3,7 @@ You can use helper classes to customize the process of sending emails using Send
 building attachments, configuring settings, building personalizations, etc.) are made easy using helpers. All you need is a file with 
 all the classes imported and you can start sending emails!
 
-> Note :  you will need move this file to the root directory of this project to execute properly.
+> Note: You will need move this file to the root directory of this project to execute properly.
 
 ### Creating a simple email object and sending it
 The example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L9)
