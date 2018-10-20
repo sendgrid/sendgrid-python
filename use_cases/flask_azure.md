@@ -28,7 +28,7 @@ curl -i --request POST \
 
 **Step 3:** Activate the virtualenv using `source venv/bin/activate`
 
-**Step 4:** Update your environment with SendGrid-API Key generated in Step 3 of Phase 1 using,
+**Step 4:** Update your environment with SendGrid API key generated in step 3 of phase 1 using:
 ```bash
 echo "export SENDGRID_API_KEY=<YOUR_API_KEY>" > sendgrid.env
 source ./sendgrid.env
@@ -40,12 +40,12 @@ source ./sendgrid.env
 
 **Step 7:** Hit: `127.0.0.1:5000/` from browser & check if the simple mail sending is working or not.
 
-> **If the Mail is Sent suceesfully with *Response.code 202*, You're good to move ahead.**
+> **If the mail is sent suceessfully with *Response.code 202*, you're good to move ahead.**
 
 
 ### Deploying the App on Microsoft Azure
 
-**Step 1:** Open Azure CLI using bash(preferabbly) or PowerShell
+**Step 1:** Open Azure CLI using bash (preferably) or PowerShell
 
 ![azure-cli](images/azure-cli.png)
 
