@@ -3,6 +3,7 @@ from .exceptions import APIKeyIncludedException
 # Various types of Validators
 ################################################################
 
+
 class ValidateAPIKey(object):
     """Validates content to ensure SendGrid API key is not present"""
 
@@ -26,7 +27,6 @@ class ValidateAPIKey(object):
         if use_default:
             default_regex_string = 'SG\.[0-9a-zA-Z]+\.[0-9a-zA-Z]+'
             self.regexes.add(re.compile(default_regex_string))
-
 
     def validate_message_dict(self, request_body):
         """With the JSON dict that will be sent to SendGrid's API, 
@@ -54,7 +54,6 @@ class ValidateAPIKey(object):
                         message_text = content.get("value", "")
                         self.validate_message_text(message_text)
 
-                        
     def validate_message_text(self, message_string):
         """With a message string, check to see if it contains a SendGrid API Key
             If a key is found, throw an exception
@@ -68,4 +67,3 @@ class ValidateAPIKey(object):
             for regex in self.regexes:
                 if regex.match(message_string) is not None:
                     raise APIKeyIncludedException()
-
