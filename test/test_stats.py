@@ -22,7 +22,7 @@ class UnitTests(unittest.TestCase):
             '{"start_date": "12-09-2017"}'
         )
 
-        self.assertTrue(isinstance(str(global_stats), str))
+        self.assertIsInstance(str(global_stats), str)
 
     def test_Stats(self):
 
