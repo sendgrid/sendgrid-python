@@ -23,7 +23,7 @@ The `Content` class takes mainly two parameters: MIME type and the actual conten
 ```
  mail = Mail(from_email, subject, to_email, content)
 ```
-After adding the above we create a mail object using `Mail` class, it takes the following parameters - Email address to send from, Subject line of emails, Email address to send to,Content of the message.
+After adding the above we create a mail object using `Mail` class, it takes the following parameters: email address to send from, subject line of emails, email address to send to, content of the message.
 for more information on parameters and usage, see [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/mail.py)
 
 ### Creating Personalizations
