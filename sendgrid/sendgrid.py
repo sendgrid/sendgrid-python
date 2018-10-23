@@ -18,8 +18,6 @@ import warnings
 
 import python_http_client
 
-from .version import __version__
-
 
 class SendGridAPIClient(object):
     """The SendGrid API Client.
@@ -62,6 +60,7 @@ class SendGridAPIClient(object):
         :param opts: dispatcher for deprecated arguments. Added for backward-compatibility
             with `path` parameter. Should be removed during 6.x release
         """
+        from . import __version__
         if opts:
             warnings.warn(
                 'Unsupported argument(s) provided: {}'.format(list(opts.keys())),

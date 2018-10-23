@@ -20,7 +20,6 @@ install:
 - pip install pyyaml
 - pip install flask
 - pip install six
-- pip install pypandoc
 - pip install coverage
 - pip install codecov
 # - sudo apt-get install -y pandoc
@@ -38,8 +37,6 @@ script:
 after_script:
 - codecov
 - ./cc-test-reporter after-build --exit-code $?
-before_deploy:
-- python ./register.py
 deploy:
   provider: pypi
   user: thinkingserious
