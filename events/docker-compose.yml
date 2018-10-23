@@ -1,0 +1,16 @@
+version: '3'
+services:
+    webhook:
+        build: .
+        ports:
+            - "5000:5000"
+        command:
+            - python
+            - app.py
+    test:
+        build: .
+        links:
+            - webhook
+        command:
+            - python
+            - test.py
