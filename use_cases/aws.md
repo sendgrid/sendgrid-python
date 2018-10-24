@@ -13,7 +13,7 @@ Python 2.7 and 3.4 or 3.5 are supported by the sendgrid Python library, however 
 
 Before starting this tutorial, you will need to have access to an AWS account in which you are allowed to provision resources. This tutorial also assumes you've already created a SendGrid account with free-tier access. Finally, it is highly recommended you utilize [virtualenv](https://virtualenv.pypa.io/en/stable/).
 
-*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. Sendgrid is in no way responsible for any billing charges.
+*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. SendGrid is in no way responsible for any billing charges.
 
 
 ## Getting Started
