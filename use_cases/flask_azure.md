@@ -40,7 +40,7 @@ source ./sendgrid.env
 
 **Step 7:** Hit: `127.0.0.1:5000/` from browser & check if the simple mail sending is working or not.
 
-> **If the mail is sent suceessfully with *Response.code 202*, you're good to move ahead.**
+> **If the mail is sent successfully with *Response.code 202*, you're good to move ahead.**
 
 
 ### Deploying the App on Microsoft Azure
