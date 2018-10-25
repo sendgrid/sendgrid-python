@@ -19,15 +19,15 @@ Before starting this tutorial, you will need to have access to an AWS account in
 ## Getting Started
 
 ### Create AWS CodeStar Project
-Log in to your AWS account and go to the AWS CodeStar service. Click "Start a project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left hand side of the UI to narrow down the available choices. 
+Log in to your AWS account and go to the AWS CodeStar service. Click "Start a project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left hand side of the UI to narrow down the available choices.
 
-After you've selected the template, you're asked to provide a name for your project. Go ahead and name it "hello-email". Once you've entered a name, click "Create Project" in the lower right hand corner. You can then choose which tools you want to use to interact with the project. For this tutorial, we'll be choosing "Command Line". 
+After you've selected the template, you're asked to provide a name for your project. Go ahead and name it "hello-email". Once you've entered a name, click "Create Project" in the lower right hand corner. You can then choose which tools you want to use to interact with the project. For this tutorial, we'll be choosing "Command Line".
 
-Once that is completed, you'll be given some basic steps to get Git installed and setup, and instructions for connecting to the AWS CodeCommit(git) repository. You can either use HTTPS, or SSH. Instructions for setting up either are provided. 
+Once that is completed, you'll be given some basic steps to get Git installed and setup, and instructions for connecting to the AWS CodeCommit(git) repository. You can either use HTTPS, or SSH. Instructions for setting up either are provided.
 
 Go ahead and clone the Git repository link after it is created. You may need to click "Skip" in the lower right hand corner to proceed.
 
-Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, change log, build pipeline, and application endpoint. 
+Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, change log, build pipeline, and application endpoint.
 
 ### Create SendGrid API Key
 Log in to your SendGrid account. Click on your user name on the left hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
@@ -44,7 +44,7 @@ For the rest of the tutorial, we'll be working out of the git repository we clon
 ```
 $ cd hello-email
 ```
-note: this assumes you cloned the git repo inside your current directory. My directory is: 
+note: this assumes you cloned the Git repo inside your current directory. My directory is:
 
 ```
 ~/projects/hello-email
@@ -100,7 +100,7 @@ virtualenv venv
 source ./venv/bin/activate
 ```
 
-Prior to being able to deploy our Python code, we'll need to install the sendgrid Python module *locally*. One of the idiosyncracies of AWS Lambda is that all library and module dependencies that aren't part of the standard library have to be included with the code/build artifact. Virtual environments do not translate to the Lambda runtime environment. 
+Prior to being able to deploy our Python code, we'll need to install the sendgrid Python module *locally*. One of the idiosyncracies of AWS Lambda is that all library and module dependencies that aren't part of the standard library have to be included with the code/build artifact. Virtual environments do not translate to the Lambda runtime environment.
 
 In the root project directory, run the following command:
 ```
@@ -157,16 +157,16 @@ $ git commit -m 'hello-email app'
 $ git push
 ```
 
-Once the code is successfully pushed, head back to the AWS CodeStar dashboard for your project. After your commit successfully registers, an automated build and deployment process should kick off. 
+Once the code is successfully pushed, head back to the AWS CodeStar dashboard for your project. After your commit successfully registers, an automated build and deployment process should kick off.
 
 One more step left before our application will work correctly. After your code has bee deployed, head to the AWS Lambda console. Click on your function name, which should start with `awscodestar-hello-email-lambda-`, or similar.
 
-Scroll down to the "Environment Variables" section. Here we need to populate our SendGrid API key. Copy the value from the `sendgrid.env` file you created earlier, ensuring to capture the entire value. Make sure the key is titled:
+Scroll down to the "Environment Variables" section. Here we need to populate our SendGrid API key. Copy the value from the `.env` file you created earlier, ensuring to capture the entire value. Make sure the key is titled:
 
 ```
 SENDGRID_API_KEY
 ```
 
-Now, go back to your project dashboard in CodeStar. Click on the link under "Application endpoints". After a moment, you should be greeted with JSON output indicating an email was successfully sent. 
+Now, go back to your project dashboard in CodeStar. Click on the link under "Application endpoints". After a moment, you should be greeted with JSON output indicating an email was successfully sent.
 
 Congratulations, you've just used serverless technology to create an email sending app in AWS!
