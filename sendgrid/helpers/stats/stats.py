@@ -21,19 +21,19 @@ class Stats(object):
         :return: response stats dict
         """
         stats = {}
-        if self.start_date is not None:
+        if self.start_date:
             stats["start_date"] = self.start_date
-        if self.end_date is not None:
+        if self.end_date:
             stats["end_date"] = self.end_date
-        if self.aggregated_by is not None:
+        if self.aggregated_by:
             stats["aggregated_by"] = self.aggregated_by
-        if self.sort_by_metric is not None:
+        if self.sort_by_metric:
             stats["sort_by_metric"] = self.sort_by_metric
-        if self.sort_by_direction is not None:
+        if self.sort_by_direction:
             stats["sort_by_direction"] = self.sort_by_direction
-        if self.limit is not None:
+        if self.limit:
             stats["limit"] = self.limit
-        if self.offset is not None:
+        if self.offset:
             stats["offset"] = self.offset
         return stats
 
@@ -110,21 +110,21 @@ class CategoryStats(Stats):
         :return: response stats dict
         """
         stats = {}
-        if self.start_date is not None:
+        if self.start_date:
             stats["start_date"] = self.start_date
-        if self.end_date is not None:
+        if self.end_date:
             stats["end_date"] = self.end_date
-        if self.aggregated_by is not None:
+        if self.aggregated_by:
             stats["aggregated_by"] = self.aggregated_by
-        if self.sort_by_metric is not None:
+        if self.sort_by_metric:
             stats["sort_by_metric"] = self.sort_by_metric
-        if self.sort_by_direction is not None:
+        if self.sort_by_direction:
             stats["sort_by_direction"] = self.sort_by_direction
-        if self.limit is not None:
+        if self.limit:
             stats["limit"] = self.limit
-        if self.offset is not None:
+        if self.offset:
             stats["offset"] = self.offset
-        if self.categories is not None:
+        if self.categories:
             stats['categories'] = [category.get() for category in
                                    self.categories]
         return stats
@@ -134,7 +134,7 @@ class CategoryStats(Stats):
         return self._categories
 
     def add_category(self, category):
-        if self._categories is None:
+        if not self._categories:
             self._categories = []
         self._categories.append(category)
 
@@ -155,21 +155,21 @@ class SubuserStats(Stats):
         :return: response stats dict
         """
         stats = {}
-        if self.start_date is not None:
+        if self.start_date:
             stats["start_date"] = self.start_date
-        if self.end_date is not None:
+        if self.end_date:
             stats["end_date"] = self.end_date
-        if self.aggregated_by is not None:
+        if self.aggregated_by:
             stats["aggregated_by"] = self.aggregated_by
-        if self.sort_by_metric is not None:
+        if self.sort_by_metric:
             stats["sort_by_metric"] = self.sort_by_metric
-        if self.sort_by_direction is not None:
+        if self.sort_by_direction:
             stats["sort_by_direction"] = self.sort_by_direction
-        if self.limit is not None:
+        if self.limit:
             stats["limit"] = self.limit
-        if self.offset is not None:
+        if self.offset:
             stats["offset"] = self.offset
-        if self.subusers is not None:
+        if self.subusers:
             stats['subusers'] = [subuser.get() for subuser in
                                  self.subusers]
         return stats
@@ -179,7 +179,7 @@ class SubuserStats(Stats):
         return self._subusers
 
     def add_subuser(self, subuser):
-        if self._subusers is None:
+        if self._subusers:
             self._subusers = []
         self._subusers.append(subuser)
 
@@ -188,7 +188,7 @@ class Category(object):
 
     def __init__(self, name=None):
         self._name = None
-        if name is not None:
+        if name:
             self._name = name
 
     @property
@@ -207,7 +207,7 @@ class Subuser(object):
 
     def __init__(self, name=None):
         self._name = None
-        if name is not None:
+        if name:
             self._name = name
 
     @property
