@@ -191,7 +191,7 @@ msg.custom_arg = CustomArg('marketing3', 'true', p=1)
 msg.custom_arg = CustomArg('transactional3', 'false', p=1)
 msg.custom_arg = [
     CustomArg('marketing4', 'false', p=1),
-    CustomArg('transactional4': 'true', p=1)
+    CustomArg('transactional4', 'true', p=1)
 ]
 
 msg.send_at = SendAt(1461775052, p=1)
@@ -230,13 +230,13 @@ msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 msg.global_header = Header('X-Day', 'Monday')
 msg.global_headers = [
     Header('X-Month', 'January'),
-    Header('X-Year': '2017')
+    Header('X-Year', '2017')
 ]
 
 msg.section = Section('%section1%', 'Substitution for Section 1 Tag')
 msg.section = [
     Section('%section2%', 'Substitution for Section 2 Tag'),
-    Section('%section3%': 'Substitution for Section 3 Tag')    
+    Section('%section3%', 'Substitution for Section 3 Tag')    
 ]
 
 try:

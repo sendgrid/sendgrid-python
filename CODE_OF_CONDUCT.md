@@ -36,6 +36,6 @@
  
  SendGrid thanks the following, on which it draws for content and inspiration:
  
-  [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/)  
-  [Open Source Initiative General Code of Conduct](https://opensource.org/codeofconduct) 
-  [Apache Code of Conduct](https://www.apache.org/foundation/policies/conduct.html) 
+  [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/)<br>
+  [Open Source Initiative General Code of Conduct](https://opensource.org/codeofconduct) <br> 
+  [Apache Code of Conduct](https://www.apache.org/foundation/policies/conduct.html) <br>
