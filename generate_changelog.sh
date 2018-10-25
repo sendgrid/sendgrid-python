@@ -37,7 +37,7 @@ create_changelog() {
       then
         curl_command="curl -H \"Authorization: token $authorization_token\" -s $api_url"
     fi
-    title=$(${curl_command} | grep '"title": ' | cut -d '"' -f4)
+    title=$(eval $curl_command | grep '"title": ' | cut -d '"' -f4)
     content="$content- [PR #$pr]($url): $title\n"
   done
 
