@@ -5,16 +5,20 @@ host="https://github.com"
 api_host="https://api.github.com"
 origin="sendgrid"
 repo="sendgrid-python"
+authorization_token=""
 
 # helpers
 usage() {
   cat << EOF
 Usage:
   generate_changelog [-h]
+  generate_changelog [-t]
   generate_changelog [-v]
 
 Options:
   -h        Print usage information
+  -t        Specify a token to authenticate with the api that gets PR titles
+            May also set the AUTHORIZATION_TOKEN environment variable
   -v        Specify the new version number
 EOF
 }
@@ -28,7 +32,12 @@ create_changelog() {
     echo "Getting title of PR #$pr"
     url="$host/$origin/$repo/pull/$pr"
     api_url="$api_host/repos/$origin/$repo/pulls/$pr"
-    title=$(curl -s $api_url | grep '"title": ' | cut -d '"' -f4)
+    curl_command="curl -s $api_url"
+    if [ "$authorization_token" != "" ]
+      then
+        curl_command="curl -H \"Authorization: token $authorization_token\" -s $api_url"
+    fi
+    title=$(${curl_command} | grep '"title": ' | cut -d '"' -f4)
     content="$content- [PR #$pr]($url): $title\n"
   done
 
@@ -57,6 +66,9 @@ while [ "$1" != "" ]; do
         -h | --help )           usage
                                 exit
                                 ;;
+        -t | --token )          shift
+                                authorization_token=$1
+                                ;;
         -v | --version )        shift
                                 version=$1
                                 ;;
@@ -71,6 +83,10 @@ if [ "$version" == "" ]
   then
     echo "Must supply a version with -v"
     exit 1
+fi
+if [ "$authorization_token" == "" ]
+  then
+    authorization_token="$AUTHORIZATION_TOKEN"
 fi
 
 # Generate changelog from last tag
