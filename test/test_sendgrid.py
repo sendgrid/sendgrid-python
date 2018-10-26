@@ -7,7 +7,6 @@ except ImportError:
     import unittest
 import os
 import subprocess
-import sys
 import time
 import datetime
 
@@ -24,7 +23,6 @@ class UnitTests(unittest.TestCase):
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
         cls.devnull = open(os.devnull, 'w')
-        prism_cmd = None
         
         # try:
         #     # check for prism in the PATH
