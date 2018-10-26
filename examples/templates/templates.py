@@ -18,10 +18,11 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve all transactional templates. #
+# Retrieve all transactional templates (legacy and dynamic). #
 # GET /templates #
 
-response = sg.client.templates.get()
+query_params = {'generations':'legacy,dynamic'}
+response = sg.client.templates.get(params=query_params)
 print(response.status_code)
 print(response.body)
 print(response.headers)
