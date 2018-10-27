@@ -3,9 +3,8 @@ import requests
 
 
 def read_events():
-    with open('sample_data.json', 'r') as f:
-        body = f.read()
-        return json.loads(body)
+    with open('./sample_data.json', 'r') as f:
+        return json.load(f)
 
 
 if __name__ == '__main__':

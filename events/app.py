@@ -65,7 +65,9 @@ def consume_events():
     events = request.get_json()
     with get_db() as db:
         c = db.cursor()
-        event_records = (create_event_record(e) for e in events)
+        event_records = [create_event_record(e) for e in events]
+        for record in event_records:
+            app.logger.info('Received event: %s', record)
         c.executemany('INSERT INTO events (timestamp, email, content) VALUES (?, ?, ?)', event_records)
     return 'OK'
 
