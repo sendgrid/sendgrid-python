@@ -24,7 +24,7 @@ Please browse the rest of this README for further detail.
 
 We appreciate your continued support, thank you!
 
-# Table of Contents
+## Table of Contents
 
 * [Installation](#installation)
 * [Quick Start](#quick-start)
