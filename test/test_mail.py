@@ -582,7 +582,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(mail.from_email.email, 'test@example.com')
         self.assertEqual(len(mail.personalizations), 1)
         self.assertEqual(len(mail.personalizations[0].tos), 1)
-        self.assertDictEqual(mail.personalizations[0].tos[0], {'email': 'test@sendgrid.com'})
+        self.assertEqual(mail.personalizations[0].tos[0], {'email': 'test@sendgrid.com'})
         self.assertEqual(len(mail.contents), 1)
         content = mail.contents[0]
         self.assertEqual(content.type, 'text/plain')
