@@ -436,7 +436,7 @@ print response.headers
 
 Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
-The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
+The **name** and **description** of the unsubscribe group will be visible to recipients when they are managing their subscriptions.
 
 Each user can create up to 25 different suppression groups.
 
@@ -480,7 +480,7 @@ print response.headers
 
 Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
-The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
+The **name** and **description** of the unsubscribe group will be visible to recipients when they are managing their subscriptions.
 
 Each user can create up to 25 different suppression groups.
 
@@ -505,7 +505,7 @@ print response.headers
 
 Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
-The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
+The **name** and **description** of the unsubscribe group will be visible to recipients when they are managing their subscriptions.
 
 Each user can create up to 25 different suppression groups.
 
@@ -527,7 +527,7 @@ You can only delete groups that have not been attached to sent mail in the last 
 
 Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
-The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
+The **name** and **description** of the unsubscribe group will be visible to recipients when they are managing their subscriptions.
 
 Each user can create up to 25 different suppression groups.
 
