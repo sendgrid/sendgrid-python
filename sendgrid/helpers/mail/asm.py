@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class ASM(object):
     """An object specifying unsubscribe behavior."""
 
+    @accepts(int, list)
     def __init__(self, group_id=None, groups_to_display=None):
         """Create an ASM with the given group_id and groups_to_display.
 

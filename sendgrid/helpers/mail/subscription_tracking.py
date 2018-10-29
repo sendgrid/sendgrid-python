@@ -1,9 +1,13 @@
+from .decorators import accepts
+
+
 class SubscriptionTracking(object):
     """Allows you to insert a subscription management link at the bottom of the
     text and html bodies of your email. If you would like to specify the
     location of the link within your email, you may use the substitution_tag.
     """
 
+    @accepts(bool, str, str, str)
     def __init__(self, enable=None, text=None, html=None, substitution_tag=None):
         """Create a SubscriptionTracking to customize subscription management.
 

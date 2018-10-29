@@ -8,6 +8,7 @@ from .content import Content
 from .custom_arg import CustomArg
 from .email import Email
 from .exceptions import SendGridException, APIKeyIncludedException
+from .decorators import accepts
 from .footer_settings import FooterSettings
 from .ganalytics import Ganalytics
 from .header import Header

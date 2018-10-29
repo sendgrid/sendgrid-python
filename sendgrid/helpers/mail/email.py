@@ -1,3 +1,4 @@
+from .decorators import accepts
 try:
     import rfc822
 except ImportError:
@@ -7,6 +8,7 @@ except ImportError:
 class Email(object):
     """An email address with an optional name."""
 
+    @accepts(str, str)
     def __init__(self, email=None, name=None):
         """Create an Email with the given address and name.
 

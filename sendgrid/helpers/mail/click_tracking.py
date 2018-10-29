@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class ClickTracking(object):
     """Allows you to track whether a recipient clicked a link in your email."""
 
+    @accepts(bool, bool)
     def __init__(self, enable=None, enable_text=None):
         """Create a ClickTracking to track clicked links in your email.
 

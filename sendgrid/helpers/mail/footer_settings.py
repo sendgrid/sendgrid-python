@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class FooterSettings(object):
     """The default footer that you would like included on every email."""
 
+    @accepts(bool, str, str)
     def __init__(self, enable=None, text=None, html=None):
         """Create a default footer.
 

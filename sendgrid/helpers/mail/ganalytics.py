@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class Ganalytics(object):
     """Allows you to enable tracking provided by Google Analytics."""
 
+    @accepts(bool, str, str, str, str, str)
     def __init__(self,
                  enable=None,
                  utm_source=None,
@@ -37,6 +41,7 @@ class Ganalytics(object):
         self.__set_field("utm_content", utm_content)
         self.__set_field("utm_campaign", utm_campaign)
 
+    @accepts(str, object)
     def __set_field(self, field, value):
         """ Sets a field to the provided value if value is not None
 

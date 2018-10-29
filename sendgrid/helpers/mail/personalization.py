@@ -1,3 +1,10 @@
+from .decorators import accepts
+from .email import Email
+from .header import Header
+from .substitution import Substitution
+from .custom_arg import CustomArg
+
+
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
@@ -31,6 +38,7 @@ class Personalization(object):
     def tos(self, value):
         self._tos = value
 
+    @accepts(Email)
     def add_to(self, email):
         """Add a single recipient to this Personalization.
 
@@ -50,6 +58,7 @@ class Personalization(object):
     def ccs(self, value):
         self._ccs = value
 
+    @accepts(Email)
     def add_cc(self, email):
         """Add a single recipient to receive a copy of this email.
 
@@ -70,6 +79,7 @@ class Personalization(object):
     def bccs(self, value):
         self._bccs = value
 
+    @accepts(Email)
     def add_bcc(self, email):
         """Add a single recipient to receive a blind carbon copy of this email.
 
@@ -104,6 +114,7 @@ class Personalization(object):
     def headers(self, value):
         self._headers = value
 
+    @accepts(Header)
     def add_header(self, header):
         """Add a single Header to this Personalization.
 
@@ -123,6 +134,7 @@ class Personalization(object):
     def substitutions(self, value):
         self._substitutions = value
 
+    @accepts(Substitution)
     def add_substitution(self, substitution):
         """Add a new Substitution to this Personalization.
 
@@ -142,6 +154,7 @@ class Personalization(object):
     def custom_args(self, value):
         self._custom_args = value
 
+    @accepts(CustomArg)
     def add_custom_arg(self, custom_arg):
         """Add a CustomArg to this Personalization.
 

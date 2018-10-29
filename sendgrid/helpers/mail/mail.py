@@ -2,6 +2,8 @@
 from .personalization import Personalization
 from .header import Header
 from .email import Email
+from .content import Content
+from .decorators import accepts
 
 
 class Mail(object):
@@ -9,6 +11,7 @@ class Mail(object):
 
     Use get() to get the request body.
     """
+    @accepts(Email, str, Email, Content)
     def __init__(self,
                  from_email=None,
                  subject=None,

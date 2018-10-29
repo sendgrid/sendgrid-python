@@ -1,3 +1,7 @@
+from .email import Email
+from .decorators import accepts
+
+
 class BCCSettings(object):
     """Settings object for automatic BCC.
 
@@ -5,6 +9,7 @@ class BCCSettings(object):
     specified email address for every email that is sent.
     """
 
+    @accepts(bool, Email)
     def __init__(self, enable=None, email=None):
         """Create a BCCSettings.
 

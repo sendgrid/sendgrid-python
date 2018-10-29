@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class SpamCheck(object):
     """This allows you to test the content of your email for spam."""
 
+    @accepts(bool, int, str)
     def __init__(self, enable=None, threshold=None, post_to_url=None):
         """Create a SpamCheck to test the content of your email for spam.
 

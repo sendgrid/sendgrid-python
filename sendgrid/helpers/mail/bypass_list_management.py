@@ -1,3 +1,6 @@
+from .decorators import accepts
+
+
 class BypassListManagement(object):
     """Setting for Bypass List Management
 
@@ -7,6 +10,7 @@ class BypassListManagement(object):
     receives your email.
     """
 
+    @accepts(bool)
     def __init__(self, enable=None):
         """Create a BypassListManagement.
 

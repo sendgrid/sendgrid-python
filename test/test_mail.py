@@ -584,3 +584,16 @@ class UnitTests(unittest.TestCase):
                 }
         }
         self.assertDictEqual(p.get(), expected)
+
+    def test_type_checking_decorator(self):
+        with self.assertRaises(TypeError):
+            Email(123)
+
+        with self.assertRaises(TypeError):
+            Content("text/plain", 123.45)
+
+        with self.assertRaises(TypeError):
+            email = Email("test@sendgrid.com")
+            subject = "Testing"
+            not_email = Personalization()
+            Mail(email, subject, not_email)

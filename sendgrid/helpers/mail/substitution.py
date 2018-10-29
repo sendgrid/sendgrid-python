@@ -1,8 +1,12 @@
+from .decorators import accepts
+
+
 class Substitution(object):
     """A string substitution to be applied to the text and HTML contents of
     the body of your email, as well as in the Subject and Reply-To parameters.
     """
 
+    @accepts(str, str)
     def __init__(self, key=None, value=None):
         """Create a Substitution with the given key and value.
 

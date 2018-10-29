@@ -1,9 +1,13 @@
+from .decorators import accepts
+
+
 class SandBoxMode(object):
     """Setting for sandbox mode.
 
     This allows you to send a test email to ensure that your request body is
     valid and formatted correctly.
     """
+    @accepts(bool)
     def __init__(self, enable=None):
         """Create an enabled or disabled SandBoxMode.
 

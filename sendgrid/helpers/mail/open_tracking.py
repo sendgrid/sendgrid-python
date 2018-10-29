@@ -1,3 +1,6 @@
+from .decorators import accepts
+
+
 class OpenTracking(object):
     """
     Allows you to track whether the email was opened or not, by including a
@@ -5,6 +8,7 @@ class OpenTracking(object):
     we log that the email was opened.
     """
 
+    @accepts(bool, str)
     def __init__(self, enable=None, substitution_tag=None):
         """Create an OpenTracking to track when your email is opened.
 

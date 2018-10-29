@@ -1,3 +1,4 @@
+from .decorators import accepts
 from .validators import ValidateAPIKey
 
 class Content(object):
@@ -6,6 +7,7 @@ class Content(object):
     You must specify at least one mime type in the Contents of your email.
     """
 
+    @accepts(str, str)
     def __init__(self, type_=None, value=None):
         """Create a Content with the specified MIME type and value.
 

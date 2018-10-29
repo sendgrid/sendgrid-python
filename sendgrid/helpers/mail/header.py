@@ -1,3 +1,6 @@
+from .decorators import accepts
+
+
 class Header(object):
     """A header to specify specific handling instructions for your email.
 

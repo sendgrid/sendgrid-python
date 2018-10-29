@@ -1,6 +1,10 @@
+from .decorators import accepts
+
+
 class Category(object):
     """A category name for this message."""
 
+    @accepts(str)
     def __init__(self, name=None):
         """Create a Category.
 
