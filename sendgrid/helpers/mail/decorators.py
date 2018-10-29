@@ -1,6 +1,7 @@
 """Contains decorators used in helper."""
 
 import inspect
+import six
 import wrapt
 
 
@@ -13,9 +14,12 @@ def accepts(*types, **kwtypes):
             args_names = args_names[1:]
 
         for (arg_val, expected_type, arg_name) in zip(args, types, args_names):
+            if expected_type is str:
+                expected_type = six.string_types
+
             if not isinstance(arg_val, expected_type):
                 raise TypeError(
-                    "Argument '{}' should be of type {}, got: {}"
+                    "Argument '{0}' should be of type {1}, got: {2}"
                     .format(arg_name, expected_type, type(arg_val))
                     )
 
