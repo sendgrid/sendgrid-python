@@ -19,6 +19,7 @@ install:
 - pip install pypandoc
 - pip install coverage
 - pip install codecov
+- pip install wrapt
 # - sudo apt-get install -y pandoc
 addons:
   apt_packages:

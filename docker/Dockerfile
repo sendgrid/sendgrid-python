@@ -32,11 +32,12 @@ RUN python2.7 get-pip.py && \
     pip install tox && \
     rm get-pip.py
 
-#install pyyaml, six, werkzeug
+#install pyyaml, six, werkzeug, flask, wrapt
 RUN python3.6 -m pip install pyyaml
 RUN python3.6 -m pip install six
 RUN python3.6 -m pip install werkzeug
 RUN python3.6 -m pip install flask
+RUN python3.6 -m pip install wrapt
 
 # set up default sendgrid env
 WORKDIR /root/sources
