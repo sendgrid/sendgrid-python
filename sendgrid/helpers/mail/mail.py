@@ -1,6 +1,8 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
+from .content import Content
 
 
 class Mail(object):
@@ -141,3 +143,28 @@ class Mail(object):
 
         return {key: value for key, value in mail.items()
                 if value is not None and value != [] and value != {}}
+
+    @classmethod
+    def from_EmailMessage(cls, message):
+        """Create a Mail object from an instance of
+        email.message.EmailMessage.
+        :type message: email.message.EmailMessage
+        :rtype: Mail
+        """
+        mail = cls(
+            from_email=Email(message.get('From')),
+            subject=message.get('Subject'),
+            to_email=Email(message.get('To')),
+        )
+        try:
+            body = message.get_content()
+        except AttributeError:
+            # Python2
+            body = message.get_payload()
+        mail.add_content(Content(
+            message.get_content_type(),
+            body.strip()
+        ))
+        for k, v in message.items():
+            mail.add_header(Header(k, v))
+        return mail
