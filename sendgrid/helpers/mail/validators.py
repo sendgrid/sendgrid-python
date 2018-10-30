@@ -25,7 +25,7 @@ class ValidateAPIKey(object):
                 self.regexes.add(re.compile(regex_string))
 
         if use_default:
-            default_regex_string = 'SG\.[0-9a-zA-Z]+\.[0-9a-zA-Z]+'
+            default_regex_string = r'SG\.[0-9a-zA-Z]+\.[0-9a-zA-Z]+'
             self.regexes.add(re.compile(default_regex_string))
 
     def validate_message_dict(self, request_body):
