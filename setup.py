@@ -3,9 +3,6 @@ import os
 from io import open
 from setuptools import setup, find_packages
 
-__version__ = None
-with open('sendgrid/version.py') as f:
-    exec(f.read())
 
 long_description = 'Please see our GitHub README'
 if os.path.exists('README.txt'):
@@ -23,7 +20,7 @@ def getRequires():
 
 setup(
     name='sendgrid',
-    version=str(__version__),
+    version='5.6.0',
     author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
