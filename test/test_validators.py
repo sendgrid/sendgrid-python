@@ -12,25 +12,22 @@ class TestValidateAPIKey(unittest.TestCase):
     def test_basic_validator_initialization(self):
         validator = ValidateAPIKey()
         self.assertIsInstance(validator.regexes, set)
-        self.assertTrue(validator.regexes)
-        assert len(validator.regexes) == 1
+        self.assertEqual(len(validator.regexes), 1)
 
     def test_validator_with_own_regexes(self):
         validator = ValidateAPIKey(regex_strings=['test_one', 'test_two'])
-        self.assertTrue(validator.regexes)
-        assert len(validator.regexes) == 3
+        self.assertEqual(len(validator.regexes), 3)
 
     def test_validator_no_default(self):
         validator = ValidateAPIKey(use_default=False)
-        self.assertFalse(validator.regexes)
-        assert len(validator.regexes) == 0
+        self.assertEqual(len(validator.regexes), 0)
 
     def test_can_add_regexes(self):
         validator = ValidateAPIKey(use_default=False)
         validator.regexes.add('test')
         self.assertIsInstance(validator.regexes, set)
-        self.assertTrue(validator.regexes)
-        assert len(validator.regexes) == 1
+        self.assertEqual(len(validator.regexes), 1)
+
 
     def test_validate_message_text_passes(self):
         validator = ValidateAPIKey(regex_strings=['test_one'])
