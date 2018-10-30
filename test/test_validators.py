@@ -28,7 +28,6 @@ class TestValidateAPIKey(unittest.TestCase):
         self.assertIsInstance(validator.regexes, set)
         self.assertEqual(len(validator.regexes), 1)
 
-
     def test_validate_message_text_passes(self):
         validator = ValidateAPIKey(regex_strings=['test_one'])
         validator.validate_message_text('test_two')
