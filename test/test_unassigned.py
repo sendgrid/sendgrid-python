@@ -55,6 +55,7 @@ ret_json = '''[ {
       } ]
       '''
 
+
 def get_all_ip():
     ret_val = json.loads(ret_json)
     return ret_val
@@ -65,7 +66,6 @@ def make_data():
     data.add("208.115.214.23")
     data.add("208.115.214.22")
     return data
-
 
 
 def test_unassigned_ip_json():
@@ -79,6 +79,7 @@ def test_unassigned_ip_json():
     for item in calculated:
         assert item["ip"] in data
 
+
 def test_unassigned_ip_obj():
 
     data =  make_data()
@@ -88,6 +89,7 @@ def test_unassigned_ip_obj():
 
     for item in calculated:
         assert item["ip"] in data
+
 
 def test_unassigned_baddata():
     as_json = False

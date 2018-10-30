@@ -196,7 +196,7 @@ msg.custom_arg = [
 
 msg.send_at = SendAt(1461775052, p=1)
 
-# The values below this comment are global to entire message
+# The values below this comment are global to the entire message
 
 msg.global_subject = Subject('Sending with SendGrid is Fun')
 

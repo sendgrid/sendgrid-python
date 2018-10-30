@@ -2,6 +2,7 @@
 # Various types of extensible SendGrid related exceptions
 ################################################################
 
+
 class SendGridException(Exception):
     """Wrapper/default SendGrid-related exception"""
     pass
@@ -19,4 +20,3 @@ class APIKeyIncludedException(SendGridException):
                  message="SendGrid API Key detected"):
         self.expression = expression
         self.message = message
-

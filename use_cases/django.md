@@ -75,7 +75,7 @@ def index(request):
     return HttpResponse('Email Sent!')
 ```
 
-**Note:** It would be best to change your to email from `test@example.com` to your own email, so that you can see the email you receive.
+**Note:** It would be best to change your to email from `test@example.com` to your own email so that you can see the email you receive.
 
 Now the folder structure should look like this:
 
@@ -92,7 +92,7 @@ hello-sendgrid
 └── requirements.txt
 ```
 
-Next we open the file `urls.py` in order to add the view we have just created to the Django URL dispatcher.
+Next, we open the file `urls.py` in order to add the view we have just created to the Django URL dispatcher.
 
 ```python
 from django.conf.urls import url
