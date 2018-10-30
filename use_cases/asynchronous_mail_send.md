@@ -2,7 +2,7 @@
 
 ## Using `asyncio` (3.5+)
 
-The built-in `asyncio` library can be used to send email in a non-blocking manner. `asyncio` helps us execute mail sending in a separate context, allowing us to continue execution of business logic without waiting for all our emails to send first.
+The built-in `asyncio` library can be used to send email in a non-blocking manner. `asyncio` helps us execute mail sending in a separate context, allowing us to continue the execution of business logic without waiting for all our emails to send first.
 
 ```python
 import sendgrid
