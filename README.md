@@ -39,7 +39,8 @@ We appreciate your continued support, thank you!
 * [License](#license)
 
 <a name="installation"></a>
-
+# Announce
+  If you're a software engineer who is passionate about #DeveloperExperience and/or #OpenSource, [this is an incredible opportunity to join our #DX team](https://sendgrid.com/careers/role/1421152/?gh_jid=1421152) as a Developer Experience Engineer and work with @thinkingserious and @aroach! Tell your friends :)
 # Installation
 
 ## Prerequisites
