@@ -17,6 +17,7 @@ import os
 import warnings
 
 import python_http_client
+from .helpers.mail import SendGridException
 
 
 class SendGridAPIClient(object):
@@ -26,7 +27,7 @@ class SendGridAPIClient(object):
         sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
         ...
         mail = Mail(from_email, subject, to_email, content)
-        response = sg.client.mail.send.post(request_body=mail.get())
+        response = sg.send(mail)
 
     For examples and detailed use instructions, see
         https://github.com/sendgrid/sendgrid-python
@@ -103,6 +104,16 @@ class SendGridAPIClient(object):
     def api_key(self, value):
         self.apikey = value
 
+    def _get_template(self, template_id):
+        """
+        Get template api response
+        """
+        return self.client.templates._(template_id).get().body
+
     def send(self, message):
-        response = self.client.mail.send.post(request_body=message.get())
-        return response
+        template_id = message.template_id
+        if template_id and not self._get_template(template_id):
+            raise SendGridException(
+                'The template id {0} is invalid.'.format(template_id)
+            )
+        return self.client.mail.send.post(request_body=message.get())

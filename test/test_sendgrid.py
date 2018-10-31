@@ -2380,6 +2380,17 @@ class UnitTests(unittest.TestCase):
             copyright_line = f.readline().rstrip()
         self.assertEqual('Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year, copyright_line)
 
+    def test_send_success(self):
+        mail = Mail(Email('email@email.com'), 'Subject', Email('email@email.com'), Content('text/plain', 'Content'))
+        response = self.sg.send(mail)
+        self.assertTrue(200 <= response.status_code < 300)
+
+    def test_send_fail_with_invalid_template(self):
+        self.sg._get_template = lambda template_id: ''
+        mail = Mail(Email('email@email.com'), 'Subject', Email('email@email.com'), Content('text/plain', 'Content'))
+        mail.template_id = '1'
+        self.assertRaises(SendGridException, self.sg.send, mail)
+
     # @classmethod
     # def tearDownClass(cls):
     #     cls.p.kill()
