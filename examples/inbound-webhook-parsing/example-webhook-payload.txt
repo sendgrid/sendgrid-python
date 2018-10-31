@@ -32,20 +32,20 @@ test@rakinu.com
 ----
 Content For: html
 
-<div dir="ltr"><br><br><div class="gmail_quote"><div dir="ltr">---------- Forwarded message ---------<br>From: <strong class="gmail_sendername" dir="auto">Rakin Uddin</strong> <span dir="ltr">&lt;<a href="mailto:rakinuddin97@gmail.com">rakinuddin97@gmail.com</a>&gt;</span><br>Date: Sun, Oct 28, 2018 at 7:48 PM<br>Subject: Test Subject<br>To:  &lt;<a href="mailto:test@rakinu.com">test@rakinu.com</a>&gt;<br></div><br><br><div dir="ltr">Testing the inbound e-mail parser here<br></div>
+<div dir="ltr"><br><br><div class="gmail_quote"><div dir="ltr">---------- Forwarded message ---------<br>From: <strong class="gmail_sendername" dir="auto">Rakin Uddin</strong> <span dir="ltr">&lt;<a href="mailto:random@gmail.com">random@gmail.com</a>&gt;</span><br>Date: Sun, Oct 28, 2018 at 7:48 PM<br>Subject: Test Subject<br>To:  &lt;<a href="mailto:test@rakinu.com">test@rakinu.com</a>&gt;<br></div><br><br><div dir="ltr">Testing the inbound e-mail parser here<br></div>
 </div></div>
 
 
 ----
 Content For: from
 
-Rakin Uddin <rakinuddin97@gmail.com>
+Rakin Uddin <random@gmail.com>
 
 ----
 Content For: text
 
 ---------- Forwarded message ---------
-From: Rakin Uddin <rakinuddin97@gmail.com>
+From: Rakin Uddin <random@gmail.com>
 Date: Sun, Oct 28, 2018 at 7:48 PM
 Subject: Test Subject
 To: <test@rakinu.com>
@@ -57,12 +57,12 @@ Testing the inbound e-mail parser here
 ----
 Content For: sender_ip
 
-209.85.210.179
+127.0.0.1
 
 ----
 Content For: envelope
 
-{"to":["test@rakinu.com"],"from":"rakinuddin97@gmail.com"}
+{"to":["test@rakinu.com"],"from":"random@gmail.com"}
 
 ----
 Content For: attachments
