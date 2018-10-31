@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # default arguments
 host="https://github.com"
@@ -33,9 +34,9 @@ create_changelog() {
     url="$host/$origin/$repo/pull/$pr"
     api_url="$api_host/repos/$origin/$repo/pulls/$pr"
     curl_command="curl -s $api_url"
-    if [ "$authorization_token" != "" ]
+    if [ -n "$authorization_token" ]
       then
-        curl_command="curl -H \"Authorization: token $authorization_token\" -s $api_url"
+        curl_command="$curl_command -H \"Authorization: token $authorization_token\""
     fi
     title=$(eval $curl_command | grep '"title": ' | cut -d '"' -f4)
     content="$content- [PR #$pr]($url): $title\n"
@@ -47,7 +48,7 @@ create_changelog() {
   -v v_content="$content" \
   '/All notable changes to this project will be documented in this file/{print;print v_header1;print v_header2;print v_content;next}1' CHANGELOG.md \
   > CHANGELOG.md.temp
-  mv CHANGELOG.md.temp CHANGELOG.md
+  mv -f CHANGELOG.md.temp CHANGELOG.md
 }
 
 
@@ -79,12 +80,12 @@ while [ "$1" != "" ]; do
 done
 
 # Validate options
-if [ "$version" == "" ]
+if [ -z "$version" ]
   then
     echo "Must supply a version with -v"
     exit 1
 fi
-if [ "$authorization_token" == "" ]
+if [ -z "$authorization_token" ]
   then
     authorization_token="$AUTHORIZATION_TOKEN"
 fi
