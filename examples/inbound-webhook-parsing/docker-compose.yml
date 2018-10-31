@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  inbound_parser:
+    image: inbound-webhook-parser
+    build: .
+    ports:
+      - 5000:5000

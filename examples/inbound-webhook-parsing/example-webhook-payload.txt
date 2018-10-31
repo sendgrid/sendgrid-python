@@ -1,0 +1,88 @@
+Content For: headers
+
+Received: by mx0004p1las1.sendgrid.net with SMTP id gK11jEqQrQ Sun, 28 Oct 2018 23:57:55 +0000 (UTC)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179]) by mx0004p1las1.sendgrid.net (Postfix) with ESMTPS id 747FD2C4078 for <test@rakinu.com>; Sun, 28 Oct 2018 23:57:55 +0000 (UTC)
+Received: by mail-pf1-f179.google.com with SMTP id a15-v6so3100862pfn.0 for <test@rakinu.com>; Sun, 28 Oct 2018 16:57:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025; h=mime-version:references:in-reply-to:from:date:message-id:subject:to; bh=51n5icMQdyoO44ELkOW/wBx5yqtLMQENLcy1hVc+id8=; b=srSfCN5F+bNplX4kMVPyGUkgZIvwdC71WapElA6ch0ur80/BbHKy+XCikda1fQyhuR AKtj0pBcoPHskLMartiD9l/tFqixUVXZS69mym7WDspJT0n/5zOg4OafozG4eeWFq5Lw qjfP5OuH4/ZPATUm8XSfkMma0oNei3yo7T8XX7vM/KcP/eOLK4kym/p89ynz7Kyqi37Q u4Z6NxLwMbhON8HtjK9DdZ8yYWEPEbuscFeV3Z86OK6z1AYzLD/z4nIz02Q3lAuWrDyi vRSWPWM5bz8TsnR27iiq02ANHEGyK2t/nBwCRuzD9LJxpR7wHGHr9WNhf0DZxLVwlnjA 33hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net; s=20161025; h=x-gm-message-state:mime-version:references:in-reply-to:from:date :message-id:subject:to; bh=51n5icMQdyoO44ELkOW/wBx5yqtLMQENLcy1hVc+id8=; b=OHdk1lTtqDWm0bCYZ+BubTUSByOjiJ1j7DxQ/bFP0G/ig7yfsHvuCc2kjwRYDzpG62 OWvDvwh1qv5mlfmSHvSVcSSg1vQCuH/tRtDoUn/x2lWwdABBQjN8IwJs2UCNXMIRrmfF e6aZ4QZs3PeXst4sdyfifXvNa3Tkp1je/aGLU+3oO96ETlbbgL+f1UHK/BYgWkUwOLv9 TwMZBJ3k9lfvwrX20XwLQHMO/swR4xySx+NaQtI5Vb/P6ROr/QJg3HmPnVvyvW6aMeUC Mg4Jcae6hT176xbqoA8ED9sdVCnfXxdiPPoHwSAIuFPBNTWxJsyas6tJcFCfWJbdTbCP Fyfg==
+X-Gm-Message-State: AGRZ1gKm7xaY2ME2Ki6DyLeVVf77KXXecEtBOJuR1YoHCG9l+Qlcl8Rt jqDnY7stpDWsfs8NWq9+sMvmcLH6mnuOjJo7EhFETw9o
+X-Google-Smtp-Source: AJdET5eKfRS5sqL6309QMKzt4Ro8Rw5fhH2kS3sCk5vBsKSvxPqr8g/XSQe0Ak3aFQbtZ4LyBx7B6cwHv7kzLVOqoYw=
+X-Received: by 2002:a63:ce56:: with SMTP id r22-v6mr11536811pgi.217.1540771074645; Sun, 28 Oct 2018 16:57:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAzJDmJhGrJS9zc00U0EP6-mw+rc2MGX51ZSSUMEoYBiM=et4g@mail.gmail.com>
+In-Reply-To: <CAAzJDmJhGrJS9zc00U0EP6-mw+rc2MGX51ZSSUMEoYBiM=et4g@mail.gmail.com>
+From: Rakin Uddin <rakinuddin97@gmail.com>
+Date: Sun, 28 Oct 2018 19:57:43 -0400
+Message-ID: <CAAzJDmKK=-=RRYtNxwMhg4Z=Qy96H1mZva0GNf1JqhhDyPf-dA@mail.gmail.com>
+Subject: Fwd: Test Subject
+To: test@rakinu.com
+Content-Type: multipart/alternative; boundary="00000000000095a372057952b8ee"
+
+
+----
+Content For: dkim
+
+{@gmail.com : pass}
+
+----
+Content For: to
+
+test@rakinu.com
+
+----
+Content For: html
+
+<div dir="ltr"><br><br><div class="gmail_quote"><div dir="ltr">---------- Forwarded message ---------<br>From: <strong class="gmail_sendername" dir="auto">Rakin Uddin</strong> <span dir="ltr">&lt;<a href="mailto:rakinuddin97@gmail.com">rakinuddin97@gmail.com</a>&gt;</span><br>Date: Sun, Oct 28, 2018 at 7:48 PM<br>Subject: Test Subject<br>To:  &lt;<a href="mailto:test@rakinu.com">test@rakinu.com</a>&gt;<br></div><br><br><div dir="ltr">Testing the inbound e-mail parser here<br></div>
+</div></div>
+
+
+----
+Content For: from
+
+Rakin Uddin <rakinuddin97@gmail.com>
+
+----
+Content For: text
+
+---------- Forwarded message ---------
+From: Rakin Uddin <rakinuddin97@gmail.com>
+Date: Sun, Oct 28, 2018 at 7:48 PM
+Subject: Test Subject
+To: <test@rakinu.com>
+
+
+Testing the inbound e-mail parser here
+
+
+----
+Content For: sender_ip
+
+209.85.210.179
+
+----
+Content For: envelope
+
+{"to":["test@rakinu.com"],"from":"rakinuddin97@gmail.com"}
+
+----
+Content For: attachments
+
+0
+
+----
+Content For: subject
+
+Fwd: Test Subject
+
+----
+Content For: charsets
+
+{"to":"UTF-8","html":"UTF-8","subject":"UTF-8","from":"UTF-8","text":"UTF-8"}
+
+----
+Content For: SPF
+
+pass
+
+----
+127.0.0.1 - - [28/Oct/2018 19:57:55] "POST /parse_inbound HTTP/1.1" 200 -

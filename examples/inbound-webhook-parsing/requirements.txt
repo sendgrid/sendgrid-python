@@ -1,0 +1,13 @@
+Click==7.0
+Flask==1.0.2
+get==1.0.3
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.0
+post==1.0.2
+public==2.0.1
+query-string==1.0.2
+request==1.0.2
+six==1.11.0
+Werkzeug==0.14.1
+simplejson==3.16.0
