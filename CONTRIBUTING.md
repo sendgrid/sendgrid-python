@@ -1,4 +1,4 @@
-Hello! Thank you for choosing to help contribute to one of the SendGrid open source libraries. There are many ways you can contribute and help is always welcome.  We simply ask that you follow the following contribution policies.
+Hello! Thank you for choosing to help contribute to one of the SendGrid open source libraries. There are many ways you can contribute and help is always welcome. We simply ask that you follow the following contribution policies.
 
 - [CLAs and CCLAs](#cla)
 - [Roadmap & Milestones](#roadmap)
@@ -58,6 +58,8 @@ In order to make the process easier, we've included a [sample bug report templat
 ## Improvements to the Codebase
 
 We welcome direct contributions to the sendgrid-python code base. Thank you!
+
+Please note that we utilize the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for Git to help keep project development organized and consistent.
 
 ### Development Environment ###
 #### There are two ways to get set up: ####
@@ -204,10 +206,11 @@ Please run your code through:
    git pull upstream <dev-branch>
    ```
 
-3. Create a new topic branch (off the main project development branch) to
+3. Create a new topic branch off the `development` branch to
    contain your feature, change, or fix:
 
    ```bash
+   git checkout development
    git checkout -b <topic-branch-name>
    ```
 
@@ -221,10 +224,10 @@ Please run your code through:
 
 4b. Create or update the example code that demonstrates the functionality of this change to the code.
 
-5. Locally merge (or rebase) the upstream development branch into your topic branch:
+5. Locally merge (or rebase) the upstream `development` branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream development
    ```
 
 6. Push your topic branch up to your fork:
@@ -234,7 +237,7 @@ Please run your code through:
    ```
 
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
+    with a clear title and description against the `development` branch. All tests must be passing before we will review the PR.
 
 If you have any additional questions, please feel free to [email](mailto:dx@sendgrid.com) us or create an issue in this repo.
 
