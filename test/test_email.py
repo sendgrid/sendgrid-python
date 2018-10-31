@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from sendgrid.helpers.mail import (Email)
 
 try:
