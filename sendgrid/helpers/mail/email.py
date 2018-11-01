@@ -3,6 +3,20 @@ try:
 except ImportError:
     import email.utils as rfc822
 
+import sys
+if sys.version_info[:3] >= (3, 5, 0):
+    import html
+    html_entity_decode = html.unescape
+else:
+    try:
+        # Python 2.6-2.7
+        from HTMLParser import HTMLParser
+    except ImportError:
+        # Python < 3.5
+        from html.parser import HTMLParser
+    __html_parser__ = HTMLParser()
+    html_entity_decode = __html_parser__.unescape
+
 
 class Email(object):
     """An email address with an optional name."""
@@ -35,6 +49,14 @@ class Email(object):
 
     @name.setter
     def name(self, value):
+        if not (value is None or isinstance(value, str)):
+            raise TypeError('name must be of type string.')
+
+        # Escape common CSV delimiters as workaround for
+        # https://github.com/sendgrid/sendgrid-python/issues/578
+        if value is not None and (',' in value or ';' in value):
+            value = html_entity_decode(value)
+            value = '"' + value + '"'
         self._name = value
 
     @property

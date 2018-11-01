@@ -1,10 +1,8 @@
 import os
+import unittest
+
 import sendgrid.helpers.inbound.config
 from sendgrid.helpers.inbound.config import Config
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class UnitTests(unittest.TestCase):
@@ -41,7 +39,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.config.host, host)
         self.assertEqual(self.config.port, port)
         for key in keys:
-            self.assertTrue(key in self.config.keys)
+            self.assertIn(key, self.config.keys)
 
     def test_init_environment_should_set_env_from_dotenv(self):
         config_file = sendgrid.helpers.inbound.config.__file__

@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+import unittest
+
+try:
+    from email.message import EmailMessage
+except ImportError:
+    # Python2
+    from email import message
+    EmailMessage = message.Message
 
 from sendgrid.helpers.mail import (
     ASM,
@@ -29,11 +37,6 @@ from sendgrid.helpers.mail import (
     ValidateAPIKey
 )
 
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-
 
 class UnitTests(unittest.TestCase):
 
@@ -52,7 +55,7 @@ class UnitTests(unittest.TestCase):
         personalization.add_to(Email("test@example.com"))
         mail.add_personalization(personalization)
 
-        #Try to include SendGrid API key
+        # Try to include SendGrid API key
         try:
             mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
             mail.add_content(
@@ -72,11 +75,11 @@ class UnitTests(unittest.TestCase):
                 '"subject": "Hello World from the SendGrid Python Library"}'
             )
 
-        #Exception should be thrown
+        # Exception should be thrown
         except Exception as e:
             pass
 
-        #Exception not thrown
+        # Exception not thrown
         else:
             self.fail("Should have failed as SendGrid API key included")
 
@@ -112,7 +115,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_helloEmailAdditionalContent(self):
         """Tests bug found in Issue-451 with Content ordering causing a crash"""
@@ -145,7 +148,7 @@ class UnitTests(unittest.TestCase):
             '"subject": "Hello World from the SendGrid Python Library"}'
         )
 
-        self.assertTrue(isinstance(str(mail), str))
+        self.assertIsInstance(str(mail), str)
 
     def test_kitchenSink(self):
         self.max_diff = None
@@ -562,25 +565,25 @@ class UnitTests(unittest.TestCase):
         personalization = Personalization()
         personalization.substitutions = [{'a': 0}]
 
-    def test_dynamic_template_data(self):
-        p = Personalization()
-        p.add_to(Email('test@sendgrid.com'))
-        p.dynamic_template_data = {
-            'customer': {
-                'name': 'Bob',
-                'returning': True
-                },
-            'total': 42
-            }
-
-        expected = {
-            'to': [{'email': 'test@sendgrid.com'}],
-            'dynamic_template_data': {
-                'customer': {
-                    'name': 'Bob',
-                    'returning': True
-                    },
-                'total': 42
-                }
-        }
-        self.assertDictEqual(p.get(), expected)
+   def test_from_emailmessage(self):
+        message = EmailMessage()
+        body = 'message that is not urgent'
+        try:
+            message.set_content(body)
+        except AttributeError:
+            # Python2
+            message.set_payload(body)
+        message.set_default_type('text/plain')
+        message['Subject'] = 'URGENT TITLE'
+        message['From'] = 'test@example.com'
+        message['To'] = 'test@sendgrid.com'
+        mail = Mail.from_EmailMessage(message)
+        self.assertEqual(mail.subject, 'URGENT TITLE')
+        self.assertEqual(mail.from_email.email, 'test@example.com')
+        self.assertEqual(len(mail.personalizations), 1)
+        self.assertEqual(len(mail.personalizations[0].tos), 1)
+        self.assertEqual(mail.personalizations[0].tos[0], {'email': 'test@sendgrid.com'})
+        self.assertEqual(len(mail.contents), 1)
+        content = mail.contents[0]
+        self.assertEqual(content.type, 'text/plain')
+        self.assertEqual(content.value, 'message that is not urgent')
