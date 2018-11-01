@@ -3540,7 +3540,7 @@ print response.status_code
 print response.body
 print response.headers
 ```
-## Retrieve all transactional templates.
+## Retrieve all transactional templates (dynamic and legacy).
 
 **This endpoint allows you to retrieve all transactional templates.**
 
@@ -3552,7 +3552,8 @@ Transactional templates are templates created specifically for transactional ema
 
 
 ```python
-response = sg.client.templates.get()
+query_params = {'generations':'legacy,dynamic'}
+response = sg.client.templates.get(params=query_params)
 print response.status_code
 print response.body
 print response.headers
