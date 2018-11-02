@@ -92,7 +92,7 @@ using Docker and Python 3.
 ## Cleaning Up
 1. Delete the cluster:
    ```bash
-   gcloud container clusters delete PROJECT_ID --zone GCP_ZONE
+   gcloud container clusters delete PROJECT_ID --region GCP_ZONE
    ```   
 
 # Contributing
