@@ -15,36 +15,48 @@ def hello():
 
 @app.route('/parse_inbound', methods=['POST'])
 def inbound_parser():
-    data = request.form
-    output = ""
+    form = request.form
 
-    output += "------------------ INCOMING WEBHOOK DATA ------------------"
-    output += "\n\n"
-    output += "[HEADERS]\n"
-    output += data['headers']
-    output += "\n\n"
-    output += "[DKIM]\n"
-    output += data['dkim']
-    output += "\n\n"
-    output += "[FROM]\n"
-    output += data['from']
-    output += "\n\n"
-    output += "[TO]\n"
-    output += data['to']
-    output += "\n\n"
-    output += "[SUBJECT]\n"
-    output += data['subject']
-    output += "\n\n"
-    output += "[BODY]\n"
-    output += data['text']
-    output += "\n\n"
-    output += "[ATTACHMENTS]\n"
-    output += data['attachments']
-    output += "\n\n"
-    output += "[CHARSETS]\n"
-    output += data['charsets']
-    output += "\n\n"
-    output += "------------------ END WEBHOOK DATA ------------------"
+    data = {
+        'headers': form['headers'],
+        'dkim': form['dkim'],
+        'from': form['from'],
+        'to': form['to'],
+        'subject': form['subject'],
+        'body': form['text'],
+        'attachments': form['attachments'],
+        'charsets': form['charsets']
+    }
+
+    output = """\
+    ------------------ INCOMING WEBHOOK DATA ------------------
+
+    [HEADERS]
+    {headers}
+
+    [DKIM]
+    {dkim}
+
+    [FROM]
+    {from}
+
+    [TO]
+    {to}
+
+    [SUBJECT]
+    {subject}
+
+    [BODY]
+    {text}
+
+    [ATTACHMENTS]
+    {attachments}
+
+    [CHARSETS]
+    {charsets}
+
+    ------------------ END WEBHOOK DATA ------------------
+    """.format(**data)
 
     print(output)
 
