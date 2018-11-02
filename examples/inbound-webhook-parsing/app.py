@@ -47,7 +47,7 @@ def inbound_parser():
     {subject}
 
     [BODY]
-    {text}
+    {body}
 
     [ATTACHMENTS]
     {attachments}
