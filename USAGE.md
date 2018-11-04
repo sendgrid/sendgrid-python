@@ -1820,7 +1820,7 @@ print response.headers
 
 IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
 
-IP pools can only be used with whitelabeled IP addresses.
+IP pools can only be used with authenticated IP addresses.
 
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
@@ -1842,7 +1842,7 @@ print response.headers
 
 IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
 
-IP pools can only be used with whitelabeled IP addresses.
+IP pools can only be used with authenticated IP addresses.
 
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
@@ -1861,7 +1861,7 @@ print response.headers
 
 IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
 
-IP pools can only be used with whitelabeled IP addresses.
+IP pools can only be used with authenticated IP addresses.
 
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
@@ -1884,7 +1884,7 @@ print response.headers
 
 IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
 
-IP pools can only be used with whitelabeled IP addresses.
+IP pools can only be used with authenticated IP addresses.
 
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
@@ -1904,7 +1904,7 @@ print response.headers
 
 IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you could create separate pools for your transactional and marketing email. When sending marketing emails, specify that you want to use the marketing IP pool. This allows you to maintain separate reputations for your different email traffic.
 
-IP pools can only be used with whitelabeled IP addresses.
+IP pools can only be used with authenticated IP addresses.
 
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
@@ -2726,7 +2726,7 @@ print response.headers
 
 *You may create up to 100 unique sender identities.*
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 ### POST /senders
 
@@ -2758,7 +2758,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a list of all sender identities that have been created for your account.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 ### GET /senders
 
@@ -2773,7 +2773,7 @@ print response.headers
 
 **This endpoint allows you to update a sender identity.**
 
-Updates to `from.email` require re-verification. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Updates to `from.email` require re-verification. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 Partial updates are allowed, but fields that are marked as "required" in the POST (create) endpoint must not be nil if that field is included in the PATCH request.
 
@@ -2808,7 +2808,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a specific sender identity.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 ### GET /senders/{sender_id}
 
@@ -2824,7 +2824,7 @@ print response.headers
 
 **This endpoint allows you to delete one of your sender identities.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 ### DELETE /senders/{sender_id}
 
@@ -2840,7 +2840,7 @@ print response.headers
 
 **This endpoint allows you to resend a sender identity verification email.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been authenticated it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
 ### POST /senders/{sender_id}/resend_verification
 
@@ -3282,7 +3282,7 @@ print response.headers
 
 **This endpoint allows you to retrieve the default link branding.**
 
-Default link branding is the actual link whitelabel to be used when sending messages. If there are multiple branded links, the default is determined by the following order:
+Default link branding is the actual link brand to be used when sending messages. If there are multiple branded links, the default is determined by the following order:
 <ul>
   <li>Validated link branding marked as "default"</li>
   <li>Legacy link whitelabels (migrated from the whitelabel wizard)</li>
@@ -3641,7 +3641,7 @@ Each subuser should be assigned to an IP address, from which all of this subuser
 More information:
 
 * [How to request more IPs](https://sendgrid.com/docs/Classroom/Basics/Account/adding_an_additional_dedicated_ip_to_your_account.html)
-* [IPs can be whitelabeled](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/ips.html)
+* [How to set up reverse DNS](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/)
 
 ### PUT /subusers/{subuser_name}/ips
 
