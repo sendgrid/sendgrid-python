@@ -31,13 +31,13 @@ sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 * [PARTNER SETTINGS](#partner-settings)
 * [SCOPES](#scopes)
 * [SENDERS](#senders)
+* [SENDER AUTHENTICATION](#sender-authentication)
 * [STATS](#stats)
 * [SUBUSERS](#subusers)
 * [SUPPRESSION](#suppression)
 * [TEMPLATES](#templates)
 * [TRACKING SETTINGS](#tracking-settings)
 * [USER](#user)
-* [WHITELABEL](#whitelabel)
 
 
 <a name="access-settings"></a>
@@ -292,7 +292,7 @@ print response.headers
 
 **This endpoint allows you to create a new random API Key for the user.**
 
-A JSON request body containing a "name" property is required. If number of maximum keys is reached, HTTP 403 will be returned.
+A JSON request body containing a "name" property is required. If the number of maximum keys is reached, HTTP 403 will be returned.
 
 There is a limit of 100 API Keys on your account.
 
@@ -339,7 +339,7 @@ print response.headers
 **This endpoint allows you to update the name and scopes of a given API key.**
 
 A JSON request body with a "name" property is required.
-Most provide the list of all the scopes an api key should have.
+Most provide the list of all the scopes an API key should have.
 
 The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
@@ -408,7 +408,7 @@ print response.headers
 
 **This endpoint allows you to revoke an existing API Key.**
 
-Authentications using this API Key will fail after this request is made, with some small propagation delay.If the API Key ID does not exist an HTTP 404 will be returned.
+Authentications using this API Key will fail after this request is made, with some small propagation delay. If the API Key ID does not exist an HTTP 404 will be returned.
 
 The API Keys feature allows customers to be able to generate an API Key credential which can be used for authentication with the SendGrid v3 Web API or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
@@ -435,7 +435,7 @@ print response.headers
 
 **This endpoint allows you to create a new suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -479,7 +479,7 @@ print response.headers
 
 **This endpoint allows you to update or change a suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -504,7 +504,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a single suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -526,7 +526,7 @@ print response.headers
 
 You can only delete groups that have not been attached to sent mail in the last 60 days. If a recipient uses the "one-click unsubscribe" option on an email associated with a deleted group, that recipient will be added to the global suppression list.
 
-Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of emails that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -713,7 +713,7 @@ print response.headers
 <a name="browsers"></a>
 # BROWSERS
 
-## Retrieve email statistics by browser.
+## Retrieve email statistics by the browser.
 
 **This endpoint allows you to retrieve your email statistics segmented by browser type.**
 
@@ -740,7 +740,7 @@ print response.headers
 
 Our Marketing Campaigns API lets you create, manage, send, and schedule campaigns.
 
-Note: In order to send or schedule the campaign, you will be required to provide a subject, sender ID, content (we suggest both html and plain text), and at least one list or segment ID. This information is not required when you create a campaign.
+Note: In order to send or schedule the campaign, you will be required to provide a subject, sender ID, content (we suggest both HTML and plain text), and at least one list or segment ID. This information is not required when you create a campaign.
 
 For more information:
 
@@ -1419,7 +1419,7 @@ print response.headers
 ```
 ## Delete Recipient
 
-**This endpoint allows you to deletes one or more recipients.**
+**This endpoint allows you to delete one or more recipients.**
 
 The body of an API call to this endpoint must include an array of recipient IDs of the recipients you want to delete.
 
@@ -1477,7 +1477,7 @@ print response.headers
 field_name:
 
 * is a variable that is substituted for your actual custom field name from your recipient.
-* Text fields must be url-encoded. Date fields are searchable only by unix timestamp (e.g. 2/2/2015 becomes 1422835200)
+* Text fields must be url-encoded. Date fields are searchable only by Unix timestamp (e.g. 2/2/2015 becomes 1422835200)
 * If field_name is a 'reserved' date field, such as created_at or updated_at, the system will internally convert
 your epoch time to a date range encompassing the entire day. For example, an epoch time of 1422835600 converts to
 Mon, 02 Feb 2015 00:06:40 GMT, but internally the system will search from Mon, 02 Feb 2015 00:00:00 GMT through
@@ -1531,7 +1531,7 @@ print response.headers
 
 **This endpoint allows you to retrieve the lists that a given recipient belongs to.**
 
-Each recipient can be on many lists. This endpoint gives you all of the lists that any one recipient has been added to.
+Each recipient can be on many lists. This endpoint gives you all of the lists that anyone recipient has been added to.
 
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
@@ -1688,7 +1688,7 @@ print response.headers
 ```
 ## Delete a segment
 
-**This endpoint allows you to delete a segment from your recipients database.**
+**This endpoint allows you to delete a segment from your recipient's database.**
 
 You also have the option to delete all the contacts from your Marketing Campaigns recipient database who were in this segment.
 
@@ -1738,10 +1738,10 @@ print response.headers
 ## Available Device Types
 | **Device** | **Description** | **Example** |
 |---|---|---|
-| Desktop | Email software on desktop computer. | I.E., Outlook, Sparrow, or Apple Mail. |
+| Desktop | Email software on a desktop computer. | I.E., Outlook, Sparrow, or Apple Mail. |
 | Webmail | A web-based email client. | I.E., Yahoo, Google, AOL, or Outlook.com. |
-| Phone | A smart phone. | iPhone, Android, Blackberry, etc.
-| Tablet | A tablet computer. | iPad, android based tablet, etc. |
+| Phone | A smartphone. | iPhone, Android, Blackberry, etc.
+| Tablet | A tablet computer. | iPad, Android-based tablet, etc. |
 | Other | An unrecognized device. |
 
 Advanced Stats provide a more in-depth view of your email statistics and the actions taken by your recipients. You can segment these statistics by geographic location, device type, client type, browser, and mailbox provider. For more information about statistics, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/index.html).
@@ -1892,7 +1892,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a list of all assigned and unassigned IPs.**
 
-Response includes warm up status, pools, assigned subusers, and whitelabel info. The start_date field corresponds to when warmup started for that IP.
+The response includes warm-up status, pools, assigned subusers, and whitelabel info. The start_date field corresponds to when warmup started for that IP.
 
 A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
@@ -2165,7 +2165,7 @@ print response.headers
 
 **This endpoint allows you to generate a new batch ID. This batch ID can be associated with scheduled sends via the mail/send endpoint.**
 
-If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
+If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mails/send requests together with the same ID. Then at any time up to 10 minutes before the scheduled date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
 
 More Information:
 
@@ -2184,7 +2184,7 @@ print response.headers
 
 **This endpoint allows you to validate a batch ID.**
 
-If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mail/send requests together with the same ID. Then at anytime up to 10 minutes before the schedule date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
+If you set the SMTPAPI header `batch_id`, it allows you to then associate multiple scheduled mails/send requests together with the same ID. Then at anytime up to 10 minutes before the scheduled date, you can cancel all of the mail/send requests that have this batch ID by calling the Cancel Scheduled Send endpoint.
 
 More Information:
 
@@ -2423,7 +2423,7 @@ print response.headers
 
 **This endpoint allows you to update your current BCC mail settings.**
 
-When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field, if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
+When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
 
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
@@ -2444,7 +2444,7 @@ print response.headers
 
 **This endpoint allows you to retrieve your current BCC mail settings.**
 
-When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field, if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
+When the BCC mail setting is enabled, SendGrid will automatically send a blind carbon copy (BCC) to an address for every email sent without adding that address to the header. Please note that only one email address may be entered in this field if you wish to distribute BCCs to multiple addresses you will need to create a distribution group or use forwarding rules.
 
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
@@ -2835,7 +2835,7 @@ print response.headers
 
 *You may create up to 100 unique sender identities.*
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 ### POST /senders
 
@@ -2867,7 +2867,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a list of all sender identities that have been created for your account.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 ### GET /senders
 
@@ -2882,7 +2882,7 @@ print response.headers
 
 **This endpoint allows you to update a sender identity.**
 
-Updates to `from.email` require re-verification. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Updates to `from.email` require re-verification. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 Partial updates are allowed, but fields that are marked as "required" in the POST (create) endpoint must not be nil if that field is included in the PATCH request.
 
@@ -2917,7 +2917,7 @@ print response.headers
 
 **This endpoint allows you to retrieve a specific sender identity.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 ### GET /senders/{sender_id}
 
@@ -2933,7 +2933,7 @@ print response.headers
 
 **This endpoint allows you to delete one of your sender identities.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 ### DELETE /senders/{sender_id}
 
@@ -2949,7 +2949,7 @@ print response.headers
 
 **This endpoint allows you to resend a sender identity verification email.**
 
-Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise, an email will be sent to the `from.email`.
 
 ### POST /senders/{sender_id}/resend_verification
 
@@ -2961,6 +2961,605 @@ print response.status_code
 print response.body
 print response.headers
 ```
+<a name="sender-authentication"></a>
+# Sender Authentication
+
+## Create a new domain authentication.
+
+**This endpoint allows you to create an authenticated domain.**
+
+If you are creating a domain authentication that you would like a subuser to use, you have two options:
+1. Use the "username" parameter. This allows you to create a domain authentication on behalf of your subuser. This means the subuser is able to see and modify the created domain authentication.
+2. Use the Association workflow (see Associate Domain section). This allows you to assign a Domain Authentication created by the parent to a subuser. This means the subuser will default to the assigned authenticated domain, but will not be able to see or modify that Authentication. However, if the subuser creates their own Domain Authentication it will overwrite the assigned Domain Authentication.
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+### POST /whitelabel/domains
+
+
+```python
+data = {
+  "automatic_security": False,
+  "custom_spf": True,
+  "default": True,
+  "domain": "example.com",
+  "ips": [
+    "192.168.1.1",
+    "192.168.1.2"
+  ],
+  "subdomain": "news",
+  "username": "john@example.com"
+}
+response = sg.client.whitelabel.domains.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## List all Domain Authentications.
+
+**This endpoint allows you to retrieve a list of all domain authentications you have created.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+
+
+### GET /whitelabel/domains
+
+
+```python
+params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 'true', 'limit': 1, 'offset': 1}
+response = sg.client.whitelabel.domains.get(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Get the default domain authentication.
+
+**This endpoint allows you to retrieve the default authentication for a domain.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+## URI Parameters
+| URI Parameter   | Type   | Description  |
+|---|---|---|
+| domain | string  |The domain to find a default domain whitelabel for. |
+
+### GET /whitelabel/domains/default
+
+
+```python
+response = sg.client.whitelabel.domains.default.get()
+print response.status_code
+print response.body
+print response.headers
+```
+## List the domain authentications associated with the given user.
+
+**This endpoint allows you to retrieve all of the domain authentications that have been assigned to a specific subuser.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+Domain authentications can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's authenticated domains. To associate a domain authentication with a subuser, the parent account must first create the authentication and validate it. The parent may then associate the domain authentication via the subuser management tools.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+## URI Parameters
+| URI Parameter   | Type  | Description  |
+|---|---|---|
+| username | string  | Username of the subuser to find associated whitelabels for. |
+
+### GET /whitelabel/domains/subuser
+
+
+```python
+response = sg.client.whitelabel.domains.subuser.get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Disassociate a domain authentication from a given user.
+
+**This endpoint allows you to disassociate a specific authenticated domain from a subuser.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+Domain authentications can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's authenticated domains. To associate a domain authentication with a subuser, the parent account must first create the authentication and validate it. The parent may then associate the domain authentication via the subuser management tools.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+## URI Parameters
+| URI Parameter   | Type  | Required?  | Description  |
+|---|---|---|---|
+| username | string  | required  | Username for the subuser to find associated whitelabels for. |
+
+### DELETE /whitelabel/domains/subuser
+
+
+```python
+response = sg.client.whitelabel.domains.subuser.delete()
+print response.status_code
+print response.body
+print response.headers
+```
+## Update a domain authentication.
+
+**This endpoint allows you to update the settings for a domain authentication.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+### PATCH /whitelabel/domains/{domain_id}
+
+
+```python
+data = {
+  "custom_spf": True,
+  "default": False
+}
+domain_id = "test_url_param"
+response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve a domain authentication.
+
+**This endpoint allows you to retrieve a specific domain authentication.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+
+### GET /whitelabel/domains/{domain_id}
+
+
+```python
+domain_id = "test_url_param"
+response = sg.client.whitelabel.domains._(domain_id).get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Delete a domain authentication.
+
+**This endpoint allows you to delete a domain authentication.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+### DELETE /whitelabel/domains/{domain_id}
+
+
+```python
+domain_id = "test_url_param"
+response = sg.client.whitelabel.domains._(domain_id).delete()
+print response.status_code
+print response.body
+print response.headers
+```
+## Associate a domain authentication with a given user.
+
+**This endpoint allows you to associate a specific domain authentication with a subuser.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+Domain authentications can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's authenticated domains. To associate a domain authentication with a subuser, the parent account must first create the authentication and validate it. The parent may then associate the domain authentication via the subuser management tools.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+## URI Parameters
+| URI Parameter   | Type   | Description  |
+|---|---|---|
+| domain_id | integer   | ID of the domain whitelabel to associate with the subuser. |
+
+### POST /whitelabel/domains/{domain_id}/subuser
+
+
+```python
+data = {
+  "username": "jane@example.com"
+}
+domain_id = "test_url_param"
+response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Add an IP to an authenticated domain.
+
+**This endpoint allows you to add an IP address to an authenticated domain.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+## URI Parameters
+| URI Parameter   | Type  |  Description  |
+|---|---|---|
+| id | integer  | ID of the domain to which you are adding an IP |
+
+### POST /whitelabel/domains/{id}/ips
+
+
+```python
+data = {
+  "ip": "192.168.0.1"
+}
+id = "test_url_param"
+response = sg.client.whitelabel.domains._(id).ips.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Remove an IP from an authenticated domain.
+
+**This endpoint allows you to remove a domain's IP address from an authenticated domain.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/))
+
+## URI Parameters
+| URI Parameter   | Type  | Description  |
+|---|---|---|
+| id | integer  | ID of the domain whitelabel to delete the IP from. |
+| ip | string | IP to remove from the domain whitelabel. |
+
+### DELETE /whitelabel/domains/{id}/ips/{ip}
+
+
+```python
+id = "test_url_param"
+ip = "test_url_param"
+response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
+print response.status_code
+print response.body
+print response.headers
+```
+## Validate a domain authentication.
+
+**This endpoint allows you to validate a domain authentication. If it fails, it will return an error message describing why the domain authentication could not be validated.**
+
+A domain authentication allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Authenticating a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+
+
+## URI Parameters
+| URI Parameter   | Type   | Description  |
+|---|---|---|
+| id | integer  |ID of the domain whitelabel to validate. |
+
+### POST /whitelabel/domains/{id}/validate
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.domains._(id).validate.post()
+print response.status_code
+print response.body
+print response.headers
+```
+## Setup reverse DNS
+
+**This endpoint allows you to setup reverse DNS.**
+
+When setting up reverse DNS, you should use the same subdomain that you used when you created a domain authentication.
+
+Reverse DNS consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/).
+
+### POST /whitelabel/ips
+
+
+```python
+data = {
+  "domain": "example.com",
+  "ip": "192.168.1.1",
+  "subdomain": "email"
+}
+response = sg.client.whitelabel.ips.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve all reverse DNS records
+
+**This endpoint allows you to retrieve all of the reverse DNS that have been created by this account.**
+
+You may include a search key by using the "ip" parameter. This enables you to perform a prefix search for a given IP segment (e.g. "192.").
+
+Reverse DNS consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/).
+
+### GET /whitelabel/ips
+
+
+```python
+params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
+response = sg.client.whitelabel.ips.get(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve an reverse DNS setting
+
+**This endpoint allows you to retrieve an reverse DNS setting.**
+
+Reverse DNS consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/).
+
+### GET /whitelabel/ips/{id}
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.ips._(id).get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Delete an reverse DNS record
+
+**This endpoint allows you to delete an reverse DNS record.**
+
+Reverse DNS consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/).
+
+### DELETE /whitelabel/ips/{id}
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.ips._(id).delete()
+print response.status_code
+print response.body
+print response.headers
+```
+## Validate an reverse DNS record
+
+**This endpoint allows you to validate an reverse DNS record.**
+
+Reverse DNS consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-reverse-dns/).
+
+### POST /whitelabel/ips/{id}/validate
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.ips._(id).validate.post()
+print response.status_code
+print response.body
+print response.headers
+```
+## Create Link Branding
+
+**This endpoint allows you to create a new branded link.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### POST /whitelabel/links
+
+
+```python
+data = {
+  "default": True,
+  "domain": "example.com",
+  "subdomain": "mail"
+}
+params = {'limit': 1, 'offset': 1}
+response = sg.client.whitelabel.links.post(request_body=data, query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve all link brands
+
+**This endpoint allows you to retrieve all branded links.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### GET /whitelabel/links
+
+
+```python
+params = {'limit': 1}
+response = sg.client.whitelabel.links.get(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve a Default Link Branding
+
+**This endpoint allows you to retrieve the default link branding.**
+
+Default link branding is the actual link whitelabel to be used when sending messages. If there are multiple branded links, the default is determined by the following order:
+<ul>
+  <li>Validated link branding marked as "default"</li>
+  <li>Legacy link whitelabels (migrated from the whitelabel wizard)</li>
+  <li>Default SendGrid link whitelabel (i.e. 100.ct.sendgrid.net)</li>
+</ul>
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### GET /whitelabel/links/default
+
+
+```python
+params = {'domain': 'test_string'}
+response = sg.client.whitelabel.links.default.get(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve Associated Link Branding
+
+**This endpoint allows you to retrieve the associated link branding for a subuser.**
+
+Link branding can be associated with subusers from the parent account. This functionality allows
+subusers to send mail using their parent's link branding. To associate a link branding, the parent account
+must first create a branded link and validate it. The parent may then associate that branded link with a subuser via the API or the Subuser Management page in the user interface.
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### GET /whitelabel/links/subuser
+
+
+```python
+params = {'username': 'test_string'}
+response = sg.client.whitelabel.links.subuser.get(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Disassociate a Link Branding
+
+**This endpoint allows you to disassociate a link branding from a subuser.**
+
+Link branding can be associated with subusers from the parent account. This functionality allows
+subusers to send mail using their parent's link branding. To associate a link branding, the parent account
+must first create a branded link and validate it. The parent may then associate that branded link with a subuser via the API or the Subuser Management page in the user interface.
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### DELETE /whitelabel/links/subuser
+
+
+```python
+params = {'username': 'test_string'}
+response = sg.client.whitelabel.links.subuser.delete(query_params=params)
+print response.status_code
+print response.body
+print response.headers
+```
+## Update a Link Branding
+
+**This endpoint allows you to update a specific link branding. You can use this endpoint to change a link branding's default status.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### PATCH /whitelabel/links/{id}
+
+
+```python
+data = {
+  "default": True
+}
+id = "test_url_param"
+response = sg.client.whitelabel.links._(id).patch(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+## Retrieve a Link Branding
+
+**This endpoint allows you to retrieve a specific link branding.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### GET /whitelabel/links/{id}
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.links._(id).get()
+print response.status_code
+print response.body
+print response.headers
+```
+## Delete a Link Branding
+
+**This endpoint allows you to delete a link branding.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### DELETE /whitelabel/links/{id}
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.links._(id).delete()
+print response.status_code
+print response.body
+print response.headers
+```
+## Validate a Link Branding
+
+**This endpoint allows you to validate a link branding.**
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### POST /whitelabel/links/{id}/validate
+
+
+```python
+id = "test_url_param"
+response = sg.client.whitelabel.links._(id).validate.post()
+print response.status_code
+print response.body
+print response.headers
+```
+## Associate a Link Branding
+
+**This endpoint allows you to associate a link branding with a subuser account.**
+
+Link branding can be associated with subusers from the parent account. This functionality allows
+subusers to send mail using their parent's link branding. To associate a link branding, the parent account
+must first create a branded link and validate it. The parent may then associate that branded link with a subuser via the API or the Subuser Management page in the user interface.
+
+Link branding allows all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+For more information, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-link-branding/).
+
+### POST /whitelabel/links/{link_id}/subuser
+
+
+```python
+data = {
+  "username": "jane@example.com"
+}
+link_id = "test_url_param"
+response = sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
+print response.status_code
+print response.body
+print response.headers
+```
+
+
 <a name="stats"></a>
 # STATS
 
@@ -3671,7 +4270,6 @@ print response.headers
 **This endpoint allows you to edit a transactional template.**
 
 Each user can create up to 300 different transactional templates. Transactional templates are specific to accounts and subusers. Templates created on a parent account will not be accessible from the subuser accounts.
-
 Transactional templates are templates created specifically for transactional email and are not to be confused with [Marketing Campaigns templates](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/templates.html). For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
 
@@ -3688,6 +4286,7 @@ print response.status_code
 print response.body
 print response.headers
 ```
+
 ## Retrieve a single transactional template.
 
 **This endpoint allows you to retrieve a single transactional template.**
@@ -3695,7 +4294,6 @@ print response.headers
 Each user can create up to 300 different transactional templates. Transactional templates are specific to accounts and subusers. Templates created on a parent account will not be accessible from the subuser accounts.
 
 Transactional templates are templates created specifically for transactional email and are not to be confused with [Marketing Campaigns templates](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/templates.html). For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
-
 
 ### GET /templates/{template_id}
 
@@ -4545,600 +5143,6 @@ There are a number of pre-made integrations for the SendGrid Parse Webhook which
 ```python
 params = {'aggregated_by': 'day', 'limit': 'test_string', 'start_date': '2016-01-01', 'end_date': '2016-04-01', 'offset': 'test_string'}
 response = sg.client.user.webhooks.parse.stats.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-<a name="whitelabel"></a>
-# WHITELABEL
-
-## Create a domain whitelabel.
-
-**This endpoint allows you to create a whitelabel for one of your domains.**
-
-If you are creating a domain whitelabel that you would like a subuser to use, you have two options:
-1. Use the "username" parameter. This allows you to create a whitelabel on behalf of your subuser. This means the subuser is able to see and modify the created whitelabel.
-2. Use the Association workflow (see Associate Domain section). This allows you to assign a whitelabel created by the parent to a subuser. This means the subuser will default to the assigned whitelabel, but will not be able to see or modify that whitelabel. However, if the subuser creates their own whitelabel it will overwrite the assigned whitelabel.
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-### POST /whitelabel/domains
-
-
-```python
-data = {
-  "automatic_security": False,
-  "custom_spf": True,
-  "default": True,
-  "domain": "example.com",
-  "ips": [
-    "192.168.1.1",
-    "192.168.1.2"
-  ],
-  "subdomain": "news",
-  "username": "john@example.com"
-}
-response = sg.client.whitelabel.domains.post(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## List all domain whitelabels.
-
-**This endpoint allows you to retrieve a list of all domain whitelabels you have created.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-
-### GET /whitelabel/domains
-
-
-```python
-params = {'username': 'test_string', 'domain': 'test_string', 'exclude_subusers': 'true', 'limit': 1, 'offset': 1}
-response = sg.client.whitelabel.domains.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Get the default domain whitelabel.
-
-**This endpoint allows you to retrieve the default whitelabel for a domain.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type   | Description  |
-|---|---|---|
-| domain | string  |The domain to find a default domain whitelabel for. |
-
-### GET /whitelabel/domains/default
-
-
-```python
-response = sg.client.whitelabel.domains.default.get()
-print response.status_code
-print response.body
-print response.headers
-```
-## List the domain whitelabel associated with the given user.
-
-**This endpoint allows you to retrieve all of the whitelabels that have been assigned to a specific subuser.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The parent may then associate the whitelabel via the subuser management tools.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type  | Description  |
-|---|---|---|
-| username | string  | Username of the subuser to find associated whitelabels for. |
-
-### GET /whitelabel/domains/subuser
-
-
-```python
-response = sg.client.whitelabel.domains.subuser.get()
-print response.status_code
-print response.body
-print response.headers
-```
-## Disassociate a domain whitelabel from a given user.
-
-**This endpoint allows you to disassociate a specific whitelabel from a subuser.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The parent may then associate the whitelabel via the subuser management tools.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type  | Required?  | Description  |
-|---|---|---|---|
-| username | string  | required  | Username for the subuser to find associated whitelabels for. |
-
-### DELETE /whitelabel/domains/subuser
-
-
-```python
-response = sg.client.whitelabel.domains.subuser.delete()
-print response.status_code
-print response.body
-print response.headers
-```
-## Update a domain whitelabel.
-
-**This endpoint allows you to update the settings for a domain whitelabel.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-### PATCH /whitelabel/domains/{domain_id}
-
-
-```python
-data = {
-  "custom_spf": True,
-  "default": False
-}
-domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).patch(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve a domain whitelabel.
-
-**This endpoint allows you to retrieve a specific domain whitelabel.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-
-### GET /whitelabel/domains/{domain_id}
-
-
-```python
-domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).get()
-print response.status_code
-print response.body
-print response.headers
-```
-## Delete a domain whitelabel.
-
-**This endpoint allows you to delete a domain whitelabel.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-### DELETE /whitelabel/domains/{domain_id}
-
-
-```python
-domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).delete()
-print response.status_code
-print response.body
-print response.headers
-```
-## Associate a domain whitelabel with a given user.
-
-**This endpoint allows you to associate a specific domain whitelabel with a subuser.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The parent may then associate the whitelabel via the subuser management tools.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type   | Description  |
-|---|---|---|
-| domain_id | integer   | ID of the domain whitelabel to associate with the subuser. |
-
-### POST /whitelabel/domains/{domain_id}/subuser
-
-
-```python
-data = {
-  "username": "jane@example.com"
-}
-domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## Add an IP to a domain whitelabel.
-
-**This endpoint allows you to add an IP address to a domain whitelabel.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type  |  Description  |
-|---|---|---|
-| id | integer  | ID of the domain to which you are adding an IP |
-
-### POST /whitelabel/domains/{id}/ips
-
-
-```python
-data = {
-  "ip": "192.168.0.1"
-}
-id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips.post(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## Remove an IP from a domain whitelabel.
-
-**This endpoint allows you to remove a domain's IP address from that domain's whitelabel.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type  | Description  |
-|---|---|---|
-| id | integer  | ID of the domain whitelabel to delete the IP from. |
-| ip | string | IP to remove from the domain whitelabel. |
-
-### DELETE /whitelabel/domains/{id}/ips/{ip}
-
-
-```python
-id = "test_url_param"
-ip = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
-print response.status_code
-print response.body
-print response.headers
-```
-## Validate a domain whitelabel.
-
-**This endpoint allows you to validate a domain whitelabel. If it fails, it will return an error message describing why the whitelabel could not be validated.**
-
-A domain whitelabel allows you to remove the via or sent on behalf of message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
-
-For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
-
-## URI Parameters
-| URI Parameter   | Type   | Description  |
-|---|---|---|
-| id | integer  |ID of the domain whitelabel to validate. |
-
-### POST /whitelabel/domains/{id}/validate
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post()
-print response.status_code
-print response.body
-print response.headers
-```
-## Create an IP whitelabel
-
-**This endpoint allows you to create an IP whitelabel.**
-
-When creating an IP whitelable, you should use the same subdomain that you used when you created a domain whitelabel.
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### POST /whitelabel/ips
-
-
-```python
-data = {
-  "domain": "example.com",
-  "ip": "192.168.1.1",
-  "subdomain": "email"
-}
-response = sg.client.whitelabel.ips.post(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve all IP whitelabels
-
-**This endpoint allows you to retrieve all of the IP whitelabels that have been created by this account.**
-
-You may include a search key by using the "ip" parameter. This enables you to perform a prefix search for a given IP segment (e.g. "192.").
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### GET /whitelabel/ips
-
-
-```python
-params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
-response = sg.client.whitelabel.ips.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve an IP whitelabel
-
-**This endpoint allows you to retrieve an IP whitelabel.**
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### GET /whitelabel/ips/{id}
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).get()
-print response.status_code
-print response.body
-print response.headers
-```
-## Delete an IP whitelabel
-
-**This endpoint allows you to delete an IP whitelabel.**
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### DELETE /whitelabel/ips/{id}
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete()
-print response.status_code
-print response.body
-print response.headers
-```
-## Validate an IP whitelabel
-
-**This endpoint allows you to validate an IP whitelabel.**
-
-A IP whitelabel consists of a subdomain and domain that will be used to generate a reverse DNS record for a given IP. Once SendGrid has verified that the appropriate A record for the IP has been created, the appropriate reverse DNS record for the IP is generated.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
-
-### POST /whitelabel/ips/{id}/validate
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post()
-print response.status_code
-print response.body
-print response.headers
-```
-## Create a Link Whitelabel
-
-**This endpoint allows you to create a new link whitelabel.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### POST /whitelabel/links
-
-
-```python
-data = {
-  "default": True,
-  "domain": "example.com",
-  "subdomain": "mail"
-}
-params = {'limit': 1, 'offset': 1}
-response = sg.client.whitelabel.links.post(request_body=data, query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve all link whitelabels
-
-**This endpoint allows you to retrieve all link whitelabels.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### GET /whitelabel/links
-
-
-```python
-params = {'limit': 1}
-response = sg.client.whitelabel.links.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve a Default Link Whitelabel
-
-**This endpoint allows you to retrieve the default link whitelabel.**
-
-Default link whitelabel is the actual link whitelabel to be used when sending messages. If there are multiple link whitelabels, the default is determined by the following order:
-<ul>
-  <li>Validated link whitelabels marked as "default"</li>
-  <li>Legacy link whitelabels (migrated from the whitelabel wizard)</li>
-  <li>Default SendGrid link whitelabel (i.e. 100.ct.sendgrid.net)</li>
-</ul>
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### GET /whitelabel/links/default
-
-
-```python
-params = {'domain': 'test_string'}
-response = sg.client.whitelabel.links.default.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve Associated Link Whitelabel
-
-**This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
-
-Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
-must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### GET /whitelabel/links/subuser
-
-
-```python
-params = {'username': 'test_string'}
-response = sg.client.whitelabel.links.subuser.get(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Disassociate a Link Whitelabel
-
-**This endpoint allows you to disassociate a link whitelabel from a subuser.**
-
-Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
-must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### DELETE /whitelabel/links/subuser
-
-
-```python
-params = {'username': 'test_string'}
-response = sg.client.whitelabel.links.subuser.delete(query_params=params)
-print response.status_code
-print response.body
-print response.headers
-```
-## Update a Link Whitelabel
-
-**This endpoint allows you to update a specific link whitelabel. You can use this endpoint to change a link whitelabel's default status.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### PATCH /whitelabel/links/{id}
-
-
-```python
-data = {
-  "default": True
-}
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).patch(request_body=data)
-print response.status_code
-print response.body
-print response.headers
-```
-## Retrieve a Link Whitelabel
-
-**This endpoint allows you to retrieve a specific link whitelabel.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### GET /whitelabel/links/{id}
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).get()
-print response.status_code
-print response.body
-print response.headers
-```
-## Delete a Link Whitelabel
-
-**This endpoint allows you to delete a link whitelabel.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### DELETE /whitelabel/links/{id}
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete()
-print response.status_code
-print response.body
-print response.headers
-```
-## Validate a Link Whitelabel
-
-**This endpoint allows you to validate a link whitelabel.**
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### POST /whitelabel/links/{id}/validate
-
-
-```python
-id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post()
-print response.status_code
-print response.body
-print response.headers
-```
-## Associate a Link Whitelabel
-
-**This endpoint allows you to associate a link whitelabel with a subuser account.**
-
-Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
-must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
-
-Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
-
-For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
-
-### POST /whitelabel/links/{link_id}/subuser
-
-
-```python
-data = {
-  "username": "jane@example.com"
-}
-link_id = "test_url_param"
-response = sg.client.whitelabel.links._(link_id).subuser.post(request_body=data)
 print response.status_code
 print response.body
 print response.headers
