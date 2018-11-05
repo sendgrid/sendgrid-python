@@ -45,6 +45,7 @@ def build_subuser_stats():
     # subuser_stats.add_subuser(Subuser("bar"))
     return subuser_stats.get()
 
+
 def build_subuser_stats_sums():
     subuser_stats = SubuserStats()
     subuser_stats.start_date = '2017-10-15'
@@ -91,6 +92,7 @@ def get_subuser_stats_sums():
     print(response.status_code)
     print(response.headers)
     pprint_json(response.body)
+
 
 get_global_stats()
 get_category_stats()

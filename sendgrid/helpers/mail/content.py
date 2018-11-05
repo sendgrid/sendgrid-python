@@ -1,5 +1,6 @@
 from .validators import ValidateAPIKey
 
+
 class Content(object):
     """Content to be included in your email.
 
