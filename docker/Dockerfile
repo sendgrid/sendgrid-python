@@ -26,7 +26,7 @@ RUN sync && bash install.sh
 
 # Install pip, tox
 ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
-RUN python2.7 get-pip.py && pip install tox
+RUN python3.6 get-pip.py && pip install tox
 
 # Install pyyaml, six, werkzeug
 RUN python3.6 -m pip install pyyaml six werkzeug flask
