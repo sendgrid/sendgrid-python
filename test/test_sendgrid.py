@@ -17,7 +17,6 @@ class UnitTests(unittest.TestCase):
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
         cls.devnull = open(os.devnull, 'w')
-        prism_cmd = None
 
     def test_apikey_init(self):
         self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
