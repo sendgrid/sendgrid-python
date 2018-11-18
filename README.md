@@ -49,7 +49,7 @@ We appreciate your continued support, thank you!
 ## Prerequisites
 
 - Python version 2.6, 2.7, 3.4, 3.5 or 3.6
-- The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
+- The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python) to send up to 40,000 emails for the first 30 days, then send 100 emails/day free forever or check out [our pricing](https://sendgrid.com/pricing?source=sendgrid-python).
 
 ## Setup Environment Variables
 ### Mac
