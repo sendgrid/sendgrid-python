@@ -8,12 +8,13 @@ ENV SENDGRID_API_KEY $SENDGRID_API_KEY
 RUN apk add --update --no-cache bash curl
 
 # Install Prism
-ADD https://raw.githubusercontent.com/stoplightio/prism/master/install.sh install.sh
+ADD prism.sh install.sh
 RUN sync && bash install.sh
 
 # Set up default SendGrid env
 RUN mkdir sendgrid-python
 COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["--mock"]
