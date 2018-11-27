@@ -6,6 +6,8 @@ class Attachment(object):
 
         :param content: The Base64 encoded content of the attachment
         :type content: string, optional
+        :param type: The MIME type of the content you are attaching
+        :type type string, optional
         :param filename: The filename of the attachment
         :type filename: string, optional
         :param disposition: The content-disposition of the attachment, specifying display style.

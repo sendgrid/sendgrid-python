@@ -9,6 +9,17 @@ class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(
             self, from_email=None, subject=None, to_email=None, content=None):
+        """Create Mail object
+        
+        :param from_email: The email address of the sender
+        :type from_email: string, optional
+        :param subject: The subject of the email
+        :type subject: string, optional
+        :param to_email: The email address of the recipient
+        :type to_email: string, optional
+        :param content: The body of the email
+        :type content: string, optional
+        """
         self._attachments = None
         self._categories = None
         self._contents = None
@@ -16,27 +27,27 @@ class Mail(object):
         self._headers = None
         self._personalizations = None
         self._sections = None
-        self.asm = None
-        self.batch_id = None
-        self.from_email = None
-        self.ip_pool_name = None
-        self.mail_settings = None
-        self.reply_to = None
-        self.send_at = None
-        self.subject = None
-        self.template_id = None
-        self.tracking_settings = None
+        self._asm = None
+        self._batch_id = None
+        self._from_email = None
+        self._ip_pool_name = None
+        self._mail_settings = None
+        self._reply_to = None
+        self._send_at = None
+        self._subject = None
+        self._template_id = None
+        self._tracking_settings = None
 
-        # Minimum required to send a single email
-        if from_email:
+        # Minimum required data to send a single email
+        if from_email is not None:
             self.from_email = from_email
-        if subject:
+        if subject is not None:
             self.subject = subject
-        if to_email:
+        if to_email is not None:
             personalization = Personalization()
             personalization.add_to(to_email)
             self.add_personalization(personalization)
-        if content:
+        if content is not None:
             self.add_content(content)
 
     def __str__(self):
@@ -116,6 +127,86 @@ class Mail(object):
 
     def add_section(self, section):
         self._sections = self._ensure_append(section, self._sections)
+
+    @property
+    def asm(self):
+        return self._asm
+    
+    @asm.setter
+    def asm(self, value):
+        self._asm = value
+
+    @property
+    def batch_id(self):
+        return self._batch_id
+    
+    @batch_id.setter
+    def batch_id(self, value):
+        self._batch_id = value
+
+    @property
+    def from_email(self):
+        return self._from_email
+    
+    @from_email.setter
+    def from_email(self, value):
+        self._from_email = value
+
+    @property
+    def ip_pool_name(self):
+        return self._ip_pool_name
+    
+    @ip_pool_name.setter
+    def ip_pool_name(self, value):
+        self._ip_pool_name = value
+
+    @property
+    def mail_settings(self):
+        return self._mail_settings
+    
+    @mail_settings.setter
+    def mail_settings(self, value):
+        self._mail_settings = value
+
+    @property
+    def reply_to(self):
+        return self._reply_to
+    
+    @reply_to.setter
+    def reply_to(self, value):
+        self._reply_to = value
+
+    @property
+    def send_at(self):
+        return self._send_at
+    
+    @send_at.setter
+    def send_at(self, value):
+        self._send_at = value
+
+    @property
+    def subject(self):
+        return self._subject
+    
+    @subject.setter
+    def subject(self, value):
+        self._subject = value
+
+    @property
+    def template_id(self):
+        return self._template_id
+    
+    @template_id.setter
+    def template_id(self, value):
+        self._template_id = value
+
+    @property
+    def tracking_settings(self):
+        return self._tracking_settings
+    
+    @tracking_settings.setter
+    def tracking_settings(self, value):
+        self._tracking_settings = value
 
     def get(self):
         """
