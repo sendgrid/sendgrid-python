@@ -62,7 +62,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 ### Development Environment ###
 #### There are two ways to get set up: ####
 #### 1. Using Docker ####
-This is usually the easiest and fastest way to get set up. 
+This is usually the easiest and fastest way to get set up.
 You can use our Docker image to avoid setting up the development environment yourself.  See [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
 #### - OR - ####
@@ -70,7 +70,7 @@ You can use our Docker image to avoid setting up the development environment you
 
 ##### Prerequisites #####
 
-- Python 2.6 through 3.6
+- Python 2.7 and 3.4+
 - [python_http_client](https://github.com/sendgrid/python-http-client)
 
 ##### Initial setup: #####
@@ -87,9 +87,14 @@ First, get your free SendGrid account [here](https://sendgrid.com/free?source=se
 Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
 
 ```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
+cp .env_sample .env
+```
+
+Then edit `.env` and insert your API key.
+
+```bash
+# You do not need to do this when using Docker Compose
+source .env
 ```
 
 ##### Execute: #####
@@ -122,12 +127,6 @@ All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/t
 
 For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
-For Python 2.6.*:
-
-`unit2 discover -v`
-
-For Python 2.7.* and up:
-
 `python -m unittest discover -v`
 
 ### Testing Multiple Versions of Python
@@ -149,7 +148,6 @@ You can install it by yourself in user dir by calling `source test/prism.sh`.
 Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, etc) after installing tox, you only need to do this once.
 
 ```
-pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
@@ -159,7 +157,7 @@ Make sure to change the current working directory to your local version of the r
 python setup.py install
 ```
 ```
-pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
+pyenv local 3.5.0 3.4.3 2.7.11
 pyenv rehash
 ```
 
@@ -191,8 +189,10 @@ Please run your code through:
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/sendgrid/sendgrid-python
+
    # Navigate to the newly cloned directory
    cd sendgrid-python
+
    # Assign the original repo to a remote called "upstream"
    git remote add upstream https://github.com/sendgrid/sendgrid-python
    ```

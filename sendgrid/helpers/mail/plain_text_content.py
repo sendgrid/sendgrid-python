@@ -1,6 +1,7 @@
 from .content import Content
 from .validators import ValidateAPIKey
 
+
 class PlainTextContent(Content):
     """Plain text content to be included in your email.
     """

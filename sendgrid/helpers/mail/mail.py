@@ -1,6 +1,9 @@
 """v3/mail/send response body builder"""
 from .personalization import Personalization
 from .header import Header
+from .email import Email
+from .content import Content
+
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -26,9 +29,9 @@ class Mail(object):
 
         # Minimum required to send a single email
         if from_email:
-            self.from_email = from_email    
+            self.from_email = from_email
         if subject:
-            self.subject = subject    
+            self.subject = subject
         if to_email:
             personalization = Personalization()
             personalization.add_to(to_email)
@@ -51,7 +54,7 @@ class Mail(object):
 
     def _flatten_dicts(self, dicts):
         list_of_dicts = [d.get() for d in dicts or []]
-        return dict((k, v) for d in list_of_dicts for k, v in d.items())
+        return {k: v for d in list_of_dicts for k, v in d.items()}
 
     def _get_or_none(self, from_obj):
         return from_obj.get() if from_obj is not None else None
@@ -138,5 +141,30 @@ class Mail(object):
             'reply_to': self._get_or_none(self.reply_to),
         }
 
-        return dict((key, value) for key, value in mail.items()
-                    if value is not None and value != [] and value != {})
+        return {key: value for key, value in mail.items()
+                if value is not None and value != [] and value != {}}
+
+    @classmethod
+    def from_EmailMessage(cls, message):
+        """Create a Mail object from an instance of
+        email.message.EmailMessage.
+        :type message: email.message.EmailMessage
+        :rtype: Mail
+        """
+        mail = cls(
+            from_email=Email(message.get('From')),
+            subject=message.get('Subject'),
+            to_email=Email(message.get('To')),
+        )
+        try:
+            body = message.get_content()
+        except AttributeError:
+            # Python2
+            body = message.get_payload()
+        mail.add_content(Content(
+            message.get_content_type(),
+            body.strip()
+        ))
+        for k, v in message.items():
+            mail.add_header(Header(k, v))
+        return mail
