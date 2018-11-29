@@ -13,8 +13,14 @@ class OpenTracking(object):
         :param substitution_tag: Tag in body to be replaced by tracking pixel.
         :type substitution_tag: string, optional
         """
-        self.enable = enable
-        self.substitution_tag = substitution_tag
+        self._enable = None
+        self._substitution_tag = None
+
+        if enable is not None:
+            self.enable = enable
+        
+        if substitution_tag is not None:
+            self.substitution_tag = substitution_tag
 
     @property
     def enable(self):

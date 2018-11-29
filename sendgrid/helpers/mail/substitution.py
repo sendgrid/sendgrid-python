@@ -11,8 +11,13 @@ class Substitution(object):
         :param value: Value to substitute into email
         :type value: string, optional
         """
-        self.key = key
-        self.value = value
+        self._key = None
+        self._value = None
+
+        if key is not None:
+            self.key = key
+        if value is not None:
+            self.value = value
 
     @property
     def key(self):

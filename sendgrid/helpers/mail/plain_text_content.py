@@ -6,15 +6,28 @@ class PlainTextContent(Content):
     """Plain text content to be included in your email.
     """
 
-    def __init__(self, value):
+    def __init__(self, value, validator=None):
         """Create a PlainTextContent with the specified MIME type and value.
 
         :param value: The actual text content.
-        :type value: string, optional
         """
-        self._validator = ValidateAPIKey()
-        self.type = "text/plain"
-        self.value = value
+        self._value = None
+        self._validator = None
+
+        if value is not None:
+            self.value = value
+        if validator is not None:
+            self.validator = validator
+        else:
+            self.validator = ValidateAPIKey()
+
+    @property
+    def type(self):
+        """The actual text content.
+
+        :rtype: string
+        """
+        return "text/plain"
 
     @property
     def value(self):
@@ -26,8 +39,16 @@ class PlainTextContent(Content):
 
     @value.setter
     def value(self, value):
-        self._validator.validate_message_dict(value)
+        self.validator.validate_message_dict(value)
         self._value = value
+
+    @property
+    def validator(self):
+        return self._validator
+
+    @validator.setter
+    def validator(self, value):
+        self._validator = value
 
     def get(self):
         """
@@ -37,6 +58,6 @@ class PlainTextContent(Content):
         :rtype: dict
         """
         content = {}
-        content["type"] = "text/plain"
-        content["value"] = self._value
+        content["type"] = self.type
+        content["value"] = self.value
         return content
