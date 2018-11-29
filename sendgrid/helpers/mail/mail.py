@@ -8,17 +8,25 @@ from .content import Content
 class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(
-            self, from_email=None, subject=None, to_email=None, content=None):
+            self,
+            from_email=None,
+            subject=None,
+            to_emails=None,
+            plain_text_content=None,
+            html_content=None
+        ):
         """Create Mail object
         
         :param from_email: The email address of the sender
-        :type from_email: string, optional
+        :type from_email: From, optional
         :param subject: The subject of the email
-        :type subject: string, optional
-        :param to_email: The email address of the recipient
-        :type to_email: string, optional
-        :param content: The body of the email
-        :type content: string, optional
+        :type subject: Subject, optional
+        :param to_emails: The email address of the recipient
+        :type to_emails: string, optional
+        :param plain_text_content: The plain text body of the email
+        :type plain_text_content: string, optional
+        :param html_content: The html body of the email
+        :type html_content: string, optional
         """
         self._attachments = None
         self._categories = None
@@ -43,12 +51,14 @@ class Mail(object):
             self.from_email = from_email
         if subject is not None:
             self.subject = subject
-        if to_email is not None:
+        if to_emails is not None:
             personalization = Personalization()
-            personalization.add_to(to_email)
+            personalization.add_to(to_emails)
             self.add_personalization(personalization)
-        if content is not None:
-            self.add_content(content)
+        if plain_text_content is not None:
+            self.add_content(plain_text_content)
+        if html_content is not None:
+            self.add_content(html_content)
 
     def __str__(self):
         return str(self.get())
@@ -97,7 +107,7 @@ class Mail(object):
 
     def add_content(self, content):
         # Text content should be before HTML content
-        if content._type == "text/plain":
+        if content.type == "text/plain":
             self._contents = self._ensure_insert(content, self._contents)
         else:
             self._contents = self._ensure_append(content, self._contents)
@@ -214,7 +224,7 @@ class Mail(object):
         """
         mail = {
             'from': self._get_or_none(self.from_email),
-            'subject': self.subject,
+            'subject': self._get_or_none(self.subject),
             'personalizations': [p.get() for p in self.personalizations or []],
             'content': [c.get() for c in self.contents or []],
             'attachments': [a.get() for a in self.attachments or []],
@@ -245,7 +255,7 @@ class Mail(object):
         mail = cls(
             from_email=Email(message.get('From')),
             subject=message.get('Subject'),
-            to_email=Email(message.get('To')),
+            to_emails=Email(message.get('To')),
         )
         try:
             body = message.get_content()

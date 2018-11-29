@@ -1,5 +1,6 @@
 # Send a Single Email to a Single Recipient
 import os
+import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
 
@@ -11,6 +12,7 @@ message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
 
 try:
     sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    print(json.dumps(message.get(), sort_keys=True, indent=4))
     response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
@@ -21,4 +23,3 @@ except SendGridException as e:
 # ToDo
 
 ## The Mail constructor should also support passing in tuples and strings
-## The send function parameter should be better named, maybe email_message or simply message

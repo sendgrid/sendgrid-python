@@ -18,6 +18,14 @@ class HtmlContent(Content):
             self.value = value
 
     @property
+    def type(self):
+        """The actual text content.
+
+        :rtype: string
+        """
+        return "text/html"
+
+    @property
     def value(self):
         """The actual HTML content.
 
@@ -38,6 +46,6 @@ class HtmlContent(Content):
         :rtype: dict
         """
         content = {}
-        content["type"] = "text/html"
-        content["value"] = self._value
+        content["type"] = self.type
+        content["value"] = self.value
         return content
