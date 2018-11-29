@@ -58,3 +58,27 @@ class TestEmailObject(unittest.TestCase):
         email.email = address
 
         self.assertEqual(email.email, address)
+
+    def test_equality_email_name(self):
+        address = "test@example.com"
+        name = "SomeName"
+        email1 = Email(address, name)
+        email2 = Email(address, name)
+        
+        self.assertEqual(email1, email2)
+
+    def test_equality_email(self):
+        address = "test@example.com"
+        email1 = Email(address)
+        email2 = Email(address)
+        
+        self.assertEqual(email1, email2)
+
+    def test_equality_name(self):
+        name = "SomeName"
+        email1 = Email()
+        email1.name = name
+        email2 = Email()
+        email2.name = name
+
+        self.assertEqual(email1, email2)
