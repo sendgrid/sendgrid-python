@@ -578,7 +578,7 @@ class UnitTests(unittest.TestCase):
         message['From'] = 'test@example.com'
         message['To'] = 'test@sendgrid.com'
         mail = Mail.from_EmailMessage(message)
-        self.assertEqual(mail.subject, 'URGENT TITLE')
+        self.assertEqual(mail.subject.get(), 'URGENT TITLE')
         self.assertEqual(mail.from_email.email, 'test@example.com')
         self.assertEqual(len(mail.personalizations), 1)
         self.assertEqual(len(mail.personalizations[0].tos), 1)

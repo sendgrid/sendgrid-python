@@ -3,6 +3,7 @@ from .personalization import Personalization
 from .header import Header
 from .email import Email
 from .content import Content
+from .subject import Subject
 
 
 class Mail(object):
@@ -13,7 +14,9 @@ class Mail(object):
             subject=None,
             to_emails=None,
             plain_text_content=None,
-            html_content=None
+            html_content=None,
+            global_substitutions=None,
+            is_multiple=False
         ):
         """Create Mail object
         
@@ -52,9 +55,38 @@ class Mail(object):
         if subject is not None:
             self.subject = subject
         if to_emails is not None:
-            personalization = Personalization()
-            personalization.add_to(to_emails)
-            self.add_personalization(personalization)
+            if is_multiple == True:
+                if isinstance(to_emails, list):
+                    for email in to_emails:
+                        personalization = Personalization()
+                        personalization.add_to(email)
+                        self.add_personalization(personalization)
+                else:
+                    personalization = Personalization()
+                    personalization.add_to(to_emails)
+                    self.add_personalization(personalization)
+                if global_substitutions is not None:
+                    if isinstance(global_substitutions, list):
+                        for substitution in global_substitutions:
+                            for p in self.personalizations:
+                                p.add_substitution(substitution)
+                    else:
+                        for p in self.personalizations:
+                            p.add_substitution(global_substitutions)
+            else:    
+                personalization = Personalization()
+                if isinstance(to_emails, list):
+                    for email in to_emails:
+                        personalization.add_to(email)
+                else:
+                    personalization.add_to(to_emails)
+                if global_substitutions is not None:
+                    if isinstance(global_substitutions, list):
+                        for substitution in global_substitutions:
+                            personalization.add_substitution(substitution)
+                    else:
+                        personalization.add_substitution(global_substitutions)
+                self.add_personalization(personalization)
         if plain_text_content is not None:
             self.add_content(plain_text_content)
         if html_content is not None:
@@ -200,7 +232,10 @@ class Mail(object):
     
     @subject.setter
     def subject(self, value):
-        self._subject = value
+        if isinstance(value, Subject):
+            self._subject = value
+        else:
+            self._subject = Subject(value)
 
     @property
     def template_id(self):

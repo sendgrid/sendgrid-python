@@ -26,7 +26,7 @@ class Personalization(object):
     def tos(self, value):
         self._tos = value
 
-    def add_to(self, email):
+    def add_to(self, email, substitutions=None):
         """Add a single recipient to this Personalization.
 
         :type email: Email

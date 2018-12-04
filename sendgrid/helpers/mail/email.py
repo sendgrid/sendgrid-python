@@ -21,7 +21,11 @@ else:
 class Email(object):
     """An email address with an optional name."""
 
-    def __init__(self, email=None, name=None):
+    def __init__(self,
+                 email=None,
+                 name=None,
+                 substitutions=None,
+                 subject=None):
         """Create an Email with the given address and name.
 
         Either fill the separate name and email fields, or pass all information
@@ -33,6 +37,7 @@ class Email(object):
         """
         self._name = None
         self._email = None
+        self._substitutions = None
 
         if email and not name:
             # allows passing emails as "dude Fella <example@example.com>"
@@ -78,6 +83,22 @@ class Email(object):
     @email.setter
     def email(self, value):
         self._email = value
+
+    @property
+    def substitutions(self):
+        return self._substitutions
+
+    @substitutions.setter
+    def substitutions(self, value):
+        self._substitutions = value
+
+    @property
+    def subject(self):
+        return self._subject
+
+    @subject.setter
+    def subject(self, value):
+        self._subject = value
 
     def get(self):
         """
