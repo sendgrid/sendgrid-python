@@ -15,7 +15,7 @@ This directory provides examples for specific use cases of this library. Please 
 ### Working with Mail
 * [Asynchronous Mail Send](asynchronous_mail_send.md)
 * [Attachment](attachment.md)
-* [Transactional Templates](transational_templates.md)
+* [Transactional Templates](transactional_templates.md)
 * [Integrate with Slack Events API](slack_event_api_integration.md)
 
 ### Library Features
