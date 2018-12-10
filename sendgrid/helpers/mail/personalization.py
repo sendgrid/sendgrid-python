@@ -26,11 +26,15 @@ class Personalization(object):
     def tos(self, value):
         self._tos = value
 
-    def add_to(self, email, substitutions=None):
+    def add_to(self, email):
         """Add a single recipient to this Personalization.
 
         :type email: Email
         """
+        if email.substitutions:
+            print(email.substitutions)
+            for substition in email.substitutions:
+                self.add_substitution(substition)
         self._tos.append(email.get())
 
     @property

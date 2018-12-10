@@ -83,10 +83,10 @@ message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
 try:
     sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
     print(json.dumps(message.get(), sort_keys=True, indent=4))
-    # response = sendgrid_client.send(message=message)
-    # print(response.status_code)
-    # print(response.body)
-    # print(response.headers)
+    response = sendgrid_client.send(message=message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
 except SendGridException as e:
     print(e.message)
 

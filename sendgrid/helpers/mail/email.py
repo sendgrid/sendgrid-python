@@ -49,6 +49,9 @@ class Email(object):
 
             if name is not None:
                 self.name = name
+            
+            if substitutions is not None:
+                self.substitutions = substitutions
 
     @property
     def name(self):
