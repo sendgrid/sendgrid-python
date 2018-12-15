@@ -5,7 +5,6 @@ from .email import Email
 from .content import Content
 from .subject import Subject
 
-
 class Mail(object):
     """Creates the response body for v3/mail/send"""
     def __init__(
@@ -36,7 +35,7 @@ class Mail(object):
         self._contents = None
         self._custom_args = None
         self._headers = None
-        self._personalizations = None
+        self._personalizations = []
         self._sections = None
         self._asm = None
         self._batch_id = None
@@ -55,38 +54,7 @@ class Mail(object):
         if subject is not None:
             self.subject = subject
         if to_emails is not None:
-            if is_multiple == True:
-                if isinstance(to_emails, list):
-                    for email in to_emails:
-                        personalization = Personalization()
-                        personalization.add_to(email)
-                        self.add_personalization(personalization)
-                else:
-                    personalization = Personalization()
-                    personalization.add_to(to_emails)
-                    self.add_personalization(personalization)
-                if global_substitutions is not None:
-                    if isinstance(global_substitutions, list):
-                        for substitution in global_substitutions:
-                            for p in self.personalizations:
-                                p.add_substitution(substitution)
-                    else:
-                        for p in self.personalizations:
-                            p.add_substitution(global_substitutions)
-            else:    
-                personalization = Personalization()
-                if isinstance(to_emails, list):
-                    for email in to_emails:
-                        personalization.add_to(email)
-                else:
-                    personalization.add_to(to_emails)
-                if global_substitutions is not None:
-                    if isinstance(global_substitutions, list):
-                        for substitution in global_substitutions:
-                            personalization.add_substitution(substitution)
-                    else:
-                        personalization.add_substitution(global_substitutions)
-                self.add_personalization(personalization)
+            self._set_emails(to_emails, global_substitutions, is_multiple)
         if plain_text_content is not None:
             self.add_content(plain_text_content)
         if html_content is not None:
@@ -95,9 +63,9 @@ class Mail(object):
     def __str__(self):
         return str(self.get())
 
-    def _ensure_append(self, new_items, append_to):
+    def _ensure_append(self, new_items, append_to, index=0):
         append_to = append_to or []
-        append_to.append(new_items)
+        append_to.insert(index, new_items)
         return append_to
 
     def _ensure_insert(self, new_items, insert_to):
@@ -111,6 +79,75 @@ class Mail(object):
 
     def _get_or_none(self, from_obj):
         return from_obj.get() if from_obj is not None else None
+
+    def _set_emails(self, emails, global_substitutions=None, is_multiple=False, p=0):
+        # Send Multiple Emails to Multiple Recipients
+        if is_multiple == True:
+            if isinstance(emails, list):
+                for email in emails:
+                    if p == 0 and self._personalizations[p] == None:
+                        personalization = Personalization()
+                        self.add_personalization(personalization, index=p)
+                    else:
+                        self._personalizations[p].add_email(email)
+            else:
+                personalization = Personalization()
+                personalization.add_email(emails)
+                self.add_personalization(personalization)
+            if global_substitutions is not None:
+                if isinstance(global_substitutions, list):
+                    for substitution in global_substitutions:
+                        for p in self.personalizations:
+                            p.add_substitution(substitution)
+                else:
+                    for p in self.personalizations:
+                        p.add_substitution(global_substitutions)
+        else:  
+            try:
+                personalization = self._personalizations[p]
+                has_internal_personalization = True
+            except IndexError:
+                personalization = Personalization()
+                has_internal_personalization = False
+
+            if isinstance(emails, list):
+                for email in emails:
+                    personalization.add_email(email)
+            else:
+                personalization.add_email(emails)
+            if global_substitutions is not None:
+                if isinstance(global_substitutions, list):
+                    for substitution in global_substitutions:
+                        personalization.add_substitution(substitution)
+                else:
+                    personalization.add_substitution(global_substitutions)
+            
+            if not has_internal_personalization:
+                self.add_personalization(personalization)
+
+    @property
+    def to(self):
+        pass
+    
+    @to.setter
+    def to(self, to_emails, global_substitutions=None, is_multiple=False, p=0):
+        self._set_emails(to_emails, None, is_multiple=is_multiple, p=p)
+
+    @property
+    def cc(self):
+        pass
+    
+    @cc.setter
+    def cc(self, bcc_emails, global_substitutions=None, is_multiple=False, p=0):
+        self._set_emails(bcc_emails, None, is_multiple=is_multiple, p=p)
+
+    @property
+    def bcc(self):
+        pass
+    
+    @bcc.setter
+    def bcc(self, bcc_emails, global_substitutions=None, is_multiple=False, p=0):
+        self._set_emails(bcc_emails, None, is_multiple=is_multiple, p=p)
 
     @property
     def attachments(self):
@@ -148,6 +185,14 @@ class Mail(object):
     def headers(self):
         return self._headers
 
+    @property
+    def header(self):
+        pass
+
+    @header.setter
+    def header(self, header):
+        self.add_header(header)
+
     def add_header(self, header):
         if isinstance(header, dict):
             (k, v) = list(header.items())[0]
@@ -159,9 +204,9 @@ class Mail(object):
     def personalizations(self):
         return self._personalizations
 
-    def add_personalization(self, personalizations):
+    def add_personalization(self, personalizations, index=0):
         self._personalizations = self._ensure_append(
-            personalizations, self._personalizations)
+            personalizations, self._personalizations, index)
 
     @property
     def sections(self):

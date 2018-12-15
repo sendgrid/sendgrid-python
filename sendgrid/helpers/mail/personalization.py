@@ -14,6 +14,19 @@ class Personalization(object):
         self._custom_args = []
         self._send_at = None
 
+    def add_email(self, email):
+        email_type = type(email)
+        if email_type.__name__ == 'To':
+            self.add_to(email)
+            return
+        if email_type.__name__ == 'Cc':
+            self.add_cc(email)
+            return
+        if email_type.__name__ == 'Bcc':
+            self.add_bcc(email)
+            return
+        raise ValueError('Please use a To, Cc or Bcc object.')
+
     @property
     def tos(self):
         """A list of recipients for this Personalization.

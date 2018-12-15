@@ -25,7 +25,8 @@ class Email(object):
                  email=None,
                  name=None,
                  substitutions=None,
-                 subject=None):
+                 subject=None,
+                 p=None):
         """Create an Email with the given address and name.
 
         Either fill the separate name and email fields, or pass all information
@@ -38,6 +39,7 @@ class Email(object):
         self._name = None
         self._email = None
         self._substitutions = None
+        self._personalization = None
 
         if email and not name:
             # allows passing emails as "dude Fella <example@example.com>"
@@ -102,6 +104,14 @@ class Email(object):
     @subject.setter
     def subject(self, value):
         self._subject = value
+
+    @property
+    def p(self):
+        return self._personalization
+
+    @p.setter
+    def p(self, value):
+        self._personalization = value
 
     def get(self):
         """
