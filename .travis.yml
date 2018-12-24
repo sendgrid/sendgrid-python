@@ -1,4 +1,5 @@
 language: python
+dist: xenial
 sudo: false
 cache: pip
 python:
@@ -7,6 +8,7 @@ python:
 - '3.4'
 - '3.5'
 - '3.6'
+- '3.7'
 env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
