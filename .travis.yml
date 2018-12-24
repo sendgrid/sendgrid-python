@@ -3,12 +3,15 @@ dist: xenial
 sudo: false
 cache: pip
 python:
-- '2.6'
 - '2.7'
 - '3.4'
 - '3.5'
 - '3.6'
 - '3.7'
+matrix:
+  include:
+    - python: '2.6'
+      dist: trusty
 env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
