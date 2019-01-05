@@ -4,11 +4,6 @@ from distutils.file_util import copy_file
 from setuptools import setup, find_packages
 
 
-def getRequires():
-    deps = ['python_http_client>=3.0']
-    return deps
-
-
 dir_path = os.path.abspath(os.path.dirname(__file__))
 readme = io.open(os.path.join(dir_path, 'README.rst'), encoding='utf-8').read()
 version = io.open(os.path.join(dir_path, 'VERSION.txt'), encoding='utf-8').read().strip()
@@ -27,7 +22,7 @@ setup(
     license='MIT',
     description='SendGrid library for Python',
     long_description=readme,
-    install_requires=getRequires(),
+    install_requires=['python_http_client>=3.0'],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
         'Programming Language :: Python :: 2.7',

@@ -14,6 +14,8 @@ env:
 addons:
   apt_packages:
     - pandoc
+install:
+- pip install tox tox-travis
 before_script:
 - "./test/prism.sh &"
 - sleep 20
