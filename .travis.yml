@@ -11,14 +11,6 @@ python:
 env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
-install:
-- python setup.py install
-- pip install pyyaml
-- pip install flask
-- pip install six
-- pip install coverage
-- pip install codecov
-# - sudo apt-get install -y pandoc
 addons:
   apt_packages:
     - pandoc
@@ -29,7 +21,7 @@ before_script:
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
 script:
-- coverage run -m unittest discover
+- tox
 after_script:
 - codecov
 - ./cc-test-reporter after-build --exit-code $?
