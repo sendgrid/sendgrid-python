@@ -10,11 +10,21 @@ class PlainTextContent(Content):
         """Create a PlainTextContent with the specified MIME type and value.
 
         :param value: The actual text content.
-        :type value: string, optional
         """
+        self._value = None
         self._validator = ValidateAPIKey()
-        self.type = "text/plain"
-        self.value = value
+
+        if value is not None:
+            self.value = value
+        
+
+    @property
+    def type(self):
+        """The actual text content.
+
+        :rtype: string
+        """
+        return "text/plain"
 
     @property
     def value(self):
@@ -37,6 +47,6 @@ class PlainTextContent(Content):
         :rtype: dict
         """
         content = {}
-        content["type"] = "text/plain"
-        content["value"] = self._value
+        content["type"] = self.type
+        content["value"] = self.value
         return content

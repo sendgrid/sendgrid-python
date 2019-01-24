@@ -1,6 +1,6 @@
 from .exceptions import APIKeyIncludedException
 ################################################################
-# Various types of Validators
+# Email content validators
 ################################################################
 
 

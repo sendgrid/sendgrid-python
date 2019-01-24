@@ -26,4 +26,6 @@ from .subscription_tracking import SubscriptionTracking
 from .substitution import Substitution
 from .tracking_settings import TrackingSettings
 from .to_email import To
+from .cc_email import Cc
+from .bcc_email import Bcc
 from .validators import ValidateAPIKey

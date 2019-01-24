@@ -15,6 +15,7 @@ RUN sync && bash install.sh
 # set up default sendgrid env
 RUN mkdir sendgrid-python
 COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["--mock"]

@@ -13,7 +13,10 @@ class BypassListManagement(object):
         :param enable: Whether emails should bypass list management.
         :type enable: boolean, optional
         """
-        self.enable = enable
+        self._enable = None
+
+        if enable is not None:
+            self.enable = enable
 
     @property
     def enable(self):

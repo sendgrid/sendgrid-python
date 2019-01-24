@@ -105,7 +105,7 @@ When debugging or testing, it may be useful to examine the raw request body to c
 You can do this right before you call `response = sg.client.mail.send.post(request_body=mail.get())` like so:
 
 ```python
-print mail.get()
+ print(json.dumps(message.get(), sort_keys=True, indent=4))
 ```
 
 <a name="error-handling"></a>
