@@ -11,9 +11,16 @@ class SpamCheck(object):
         :param post_to_url: Inbound Parse URL to send a copy of your email.
         :type post_to_url: string, optional
         """
-        self.enable = enable
-        self.threshold = threshold
-        self.post_to_url = post_to_url
+        self._enable = None
+        self._threshold = None
+        self._post_to_url = None
+
+        if enable is not None:
+            self.enable = enable
+        if threshold is not None:
+            self.threshold = threshold
+        if post_to_url is not None:
+            self.post_to_url = post_to_url
 
     @property
     def enable(self):

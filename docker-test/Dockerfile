@@ -1,23 +1,20 @@
 FROM python:3.6-alpine
 
+WORKDIR /root
+
 ENV OAI_SPEC_URL="https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"
 ENV SENDGRID_API_KEY $SENDGRID_API_KEY
 
-RUN apk add --no-cache curl
-RUN apk add --update bash && rm -rf /var/cache/apk/*
+RUN apk add --update --no-cache bash curl
 
-# install Prism
-WORKDIR /root
-ADD https://raw.githubusercontent.com/stoplightio/prism/master/install.sh install.sh
-RUN chmod +x ./install.sh && sync && \
-    ./install.sh && \
-    rm ./install.sh
+# Install Prism
+ADD prism.sh install.sh
+RUN sync && bash install.sh
 
-# set up default sendgrid env
-WORKDIR /root
-
+# Set up default SendGrid env
 RUN mkdir sendgrid-python
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["--mock"]

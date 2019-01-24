@@ -7,6 +7,8 @@ class Subject(object):
         :param subject: The subject for an email
         :type subject: string
         """
+        self._subject = None
+
         self.subject = subject
 
     @property
@@ -35,4 +37,4 @@ class Subject(object):
         :returns: This Subject, ready for use in a request body.
         :rtype: string
         """
-        return self._subject
+        return self.subject
