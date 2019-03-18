@@ -15,7 +15,7 @@ This directory provides examples for specific use cases of this library. Please 
 * [Asynchronous Mail Send](asynchronous_mail_send.md)
 * [Attachment](attachment.md)
 * [Sending HTML-Only Content](sending_html_content.md)
-* [Transactional Templates](transational_templates.md)
+* [Transactional Templates](transactional_templates.md)
 
 ### Library Features
 * [Error Handling](error_handling.md)
