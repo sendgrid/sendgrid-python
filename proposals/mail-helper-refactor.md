@@ -114,19 +114,19 @@ msg = Mail(from_email=From('from@example.com', 'From Name'),
 # For a detailed description of each of these settings, please see the [documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
 msg.to = To('test1@example.com', 'Example User1')
-msg.to = [ 
+msg.to = [
     To('test2@example.com', 'Example User2'),
     To('test3@example.com', 'Example User3')
 ]
 
 msg.cc = Cc('test4@example.com', 'Example User4')
-msg.cc = [ 
+msg.cc = [
     Cc('test5@example.com', 'Example User5'),
     Cc('test6@example.com', 'Example User6')
 ]
 
 msg.bcc = Bcc('test7@example.com', 'Example User7')
-msg.bcc = [ 
+msg.bcc = [
     Bcc('test8@example.com', 'Example User8'),
     Bcc('test9@example.com', 'Example User9')
 ]
@@ -136,13 +136,6 @@ msg.header = Header('X-Test2', 'Test2')
 msg.header = [
     Header('X-Test3', 'Test3'),
     Header('X-Test4', 'Test4')
-]
-
-msg.substitution = Substitution('%name1%', 'Example Name 1')
-msg.substitution = Substitution('%city1%', 'Denver')
-msg.substitution = [
-    Substitution('%name2%', 'Example Name 2'),
-    Substitution('%city2%', 'Orange')
 ]
 
 msg.custom_arg = CustomArg('marketing1', 'false')
@@ -223,7 +216,7 @@ msg.attachment = [
                File('base64 encoded content'),
                Type('image/png'),
                Disposition('inline'),
-               Name('Banner 2'))                             
+               Name('Banner 2'))
 ]
 
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')

@@ -1,4 +1,4 @@
-class ASM(object):
+class Asm(object):
     """An object specifying unsubscribe behavior."""
 
     def __init__(self, group_id=None, groups_to_display=None):
@@ -41,7 +41,7 @@ class ASM(object):
 
     @groups_to_display.setter
     def groups_to_display(self, value):
-        if value is not None and len(value) > 25:
+        if value is not None and len(value.get()) > 25:
             raise ValueError("New groups_to_display exceeds max length of 25.")
         self._groups_to_display = value
 
@@ -54,8 +54,8 @@ class ASM(object):
         """
         asm = {}
         if self.group_id is not None:
-            asm["group_id"] = self.group_id
+            asm["group_id"] = self.group_id.get()
 
         if self.groups_to_display is not None:
-            asm["groups_to_display"] = self.groups_to_display
+            asm["groups_to_display"] = self.groups_to_display.get()
         return asm

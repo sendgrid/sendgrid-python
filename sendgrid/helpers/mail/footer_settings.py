@@ -72,8 +72,8 @@ class FooterSettings(object):
             footer_settings["enable"] = self.enable
 
         if self.text is not None:
-            footer_settings["text"] = self.text
+            footer_settings["text"] = self.text.get()
 
         if self.html is not None:
-            footer_settings["html"] = self.html
+            footer_settings["html"] = self.html.get()
         return footer_settings

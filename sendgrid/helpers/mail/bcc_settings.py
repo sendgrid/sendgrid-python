@@ -1,4 +1,4 @@
-class BCCSettings(object):
+class BccSettings(object):
     """Settings object for automatic BCC.
 
     This allows you to have a blind carbon copy automatically sent to the
@@ -11,7 +11,7 @@ class BCCSettings(object):
         :param enable: Whether this BCCSettings is applied to sent emails.
         :type enable: boolean, optional
         :param email: Who should be BCCed.
-        :type email: Email, optional
+        :type email: BccSettingEmail, optional
         """
         self._enable = None
         self._email = None
@@ -38,7 +38,7 @@ class BCCSettings(object):
     def email(self):
         """The email address that you would like to receive the BCC.
 
-        :rtype: Email
+        :rtype: string
         """
         return self._email
 
@@ -58,6 +58,5 @@ class BCCSettings(object):
             bcc_settings["enable"] = self.enable
 
         if self.email is not None:
-            email = self.email.get()
-            bcc_settings["email"] = email["email"]
+            bcc_settings["email"] = self.email.get()
         return bcc_settings

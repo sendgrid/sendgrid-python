@@ -7,21 +7,26 @@ class Header(object):
     Content-Transfer-Encoding, To, From, Subject, Reply-To, CC, BCC
     """
 
-    def __init__(self, key=None, value=None):
+    def __init__(self, key=None, value=None, p=None):
         """Create a Header.
 
         :param key: The name of the header (e.g. "Date")
         :type key: string, optional
         :param value: The header's value (e.g. "2013-02-27 1:23:45 PM PDT")
         :type value: string, optional
+        :param name: p is the Personalization object or Personalization object index
+        :type name: Personalization or integer, optional
         """
         self._key = None
         self._value = None
+        self._personalization = None
 
         if key is not None:
             self.key = key
         if value is not None:
             self.value = value
+        if p is not None:
+            self.personalization = p
 
     @property
     def key(self):
@@ -46,6 +51,14 @@ class Header(object):
     @value.setter
     def value(self, value):
         self._value = value
+    
+    @property
+    def personalization(self):
+        return self._personalization
+
+    @personalization.setter
+    def personalization(self, value):
+        self._personalization = value
 
     def get(self):
         """

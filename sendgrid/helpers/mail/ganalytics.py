@@ -136,6 +136,9 @@ class Ganalytics(object):
         for key in keys:
             value = getattr(self, key, None)
             if value is not None:
-                ganalytics[key] = value
+                if isinstance(value, bool):
+                    ganalytics[key] = value
+                else:
+                    ganalytics[key] = value.get()
 
         return ganalytics

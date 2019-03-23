@@ -59,6 +59,7 @@ class Content(object):
         :returns: This Content, ready for use in a request body.
         :rtype: dict
         """
+        #TODO: text/plain must always come first
         content = {}
         if self.type is not None:
             content["type"] = self.type

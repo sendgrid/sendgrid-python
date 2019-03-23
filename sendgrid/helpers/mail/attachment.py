@@ -1,15 +1,15 @@
 class Attachment(object):
     """An attachment to be included with an email."""
 
-    def __init__(self, content=None, type_=None, filename=None, disposition=None, content_id=None):
+    def __init__(self, file_content=None, file_type=None, file_name=None, disposition=None, content_id=None):
         """Create an Attachment
 
-        :param content: The Base64 encoded content of the attachment
-        :type content: string, optional
-        :param type: The MIME type of the content you are attaching
-        :type type string, optional
-        :param filename: The filename of the attachment
-        :type filename: string, optional
+        :param file_content: The Base64 encoded content of the attachment
+        :type file_content: string, optional
+        :param file_type: The MIME type of the content you are attaching
+        :type file_type string, optional
+        :param file_name: The filename of the attachment
+        :type file_name: string, optional
         :param disposition: The content-disposition of the attachment, specifying display style.
                             Specifies how you would like the attachment to be displayed.
                             - "inline" results in the attached file being displayed automatically
@@ -19,24 +19,24 @@ class Attachment(object):
                             If unspecified, "attachment" is used. Must be one of the two choices.
         :type disposition: string, optional
         :param content_id: The content id for the attachment.
-                           This is used when the disposition is set to "inline" and the attachment
+                           This is used when the Disposition is set to "inline" and the attachment
                            is an image, allowing the file to be displayed within the email body.
         :type content_id: string, optional
         """
-        self._content = None
-        self._type = None
-        self._filename = None
+        self._file_content = None
+        self._file_type = None
+        self._file_name = None
         self._disposition = None
         self._content_id = None
 
-        if content is not None:
-            self.content = content
+        if file_content is not None:
+            self.file_content = file_content
         
-        if type_ is not None:
-            self.type = type_
+        if file_type is not None:
+            self.file_type = file_type
         
-        if filename is not None:
-            self.filename = filename
+        if file_name is not None:
+            self.file_name = file_name
         
         if disposition is not None:
             self.disposition = disposition
@@ -45,40 +45,40 @@ class Attachment(object):
             self.content_id = content_id
 
     @property
-    def content(self):
+    def file_content(self):
         """The Base64 encoded content of the attachment.
 
         :rtype: string
         """
-        return self._content
+        return self._file_content
 
-    @content.setter
-    def content(self, value):
-        self._content = value
+    @file_content.setter
+    def file_content(self, value):
+        self._file_content = value
 
     @property
-    def type(self):
+    def file_type(self):
         """The MIME type of the content you are attaching.
 
         :rtype: string
         """
-        return self._type
+        return self._file_type
 
-    @type.setter
-    def type(self, value):
-        self._type = value
+    @file_type.setter
+    def file_type(self, value):
+        self._file_type = value
 
     @property
-    def filename(self):
-        """The filename of the attachment.
+    def file_name(self):
+        """The file name of the attachment.
 
         :rtype: string
         """
-        return self._filename
+        return self._file_name
 
-    @filename.setter
-    def filename(self, value):
-        self._filename = value
+    @file_name.setter
+    def file_name(self, value):
+        self._file_name = value
 
     @property
     def disposition(self):
@@ -122,18 +122,18 @@ class Attachment(object):
         :rtype: dict
         """
         attachment = {}
-        if self.content is not None:
-            attachment["content"] = self.content
+        if self.file_content is not None:
+            attachment["content"] = self.file_content.get()
 
-        if self.type is not None:
-            attachment["type"] = self.type
+        if self.file_type is not None:
+            attachment["type"] = self.file_type.get()
 
-        if self.filename is not None:
-            attachment["filename"] = self.filename
+        if self.file_name is not None:
+            attachment["filename"] = self.file_name.get()
 
         if self.disposition is not None:
-            attachment["disposition"] = self.disposition
+            attachment["disposition"] = self.disposition.get()
 
         if self.content_id is not None:
-            attachment["content_id"] = self.content_id
+            attachment["content_id"] = self.content_id.get()
         return attachment

@@ -3,21 +3,28 @@ class Substitution(object):
     the body of your email, as well as in the Subject and Reply-To parameters.
     """
 
-    def __init__(self, key=None, value=None):
+    def __init__(self, key=None, value=None, p=None):
         """Create a Substitution with the given key and value.
 
         :param key: Text to be replaced with "value" param
         :type key: string, optional
         :param value: Value to substitute into email
         :type value: string, optional
+        :param name: p is the Personalization object or Personalization object index
+        :type name: Personalization or integer
+        :param name: p is the Personalization object or Personalization object index
+        :type name: Personalization or integer, optional
         """
         self._key = None
         self._value = None
+        self._personalization = None
 
         if key is not None:
             self.key = key
         if value is not None:
             self.value = value
+        if p is not None:
+            self.personalization = p
 
     @property
     def key(self):
@@ -34,6 +41,14 @@ class Substitution(object):
     @value.setter
     def value(self, value):
         self._value = value
+
+    @property
+    def personalization(self):
+        return self._personalization
+
+    @personalization.setter
+    def personalization(self, value):
+        self._personalization = value
 
     def get(self):
         """

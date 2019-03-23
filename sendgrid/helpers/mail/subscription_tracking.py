@@ -92,11 +92,11 @@ class SubscriptionTracking(object):
             subscription_tracking["enable"] = self.enable
 
         if self.text is not None:
-            subscription_tracking["text"] = self.text
+            subscription_tracking["text"] = self.text.get()
 
         if self.html is not None:
-            subscription_tracking["html"] = self.html
+            subscription_tracking["html"] = self.html.get()
 
         if self.substitution_tag is not None:
-            subscription_tracking["substitution_tag"] = self.substitution_tag
+            subscription_tracking["substitution_tag"] = self.substitution_tag.get()
         return subscription_tracking

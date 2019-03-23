@@ -73,8 +73,8 @@ class SpamCheck(object):
             spam_check["enable"] = self.enable
 
         if self.threshold is not None:
-            spam_check["threshold"] = self.threshold
+            spam_check["threshold"] = self.threshold.get()
 
         if self.post_to_url is not None:
-            spam_check["post_to_url"] = self.post_to_url
+            spam_check["post_to_url"] = self.post_to_url.get()
         return spam_check

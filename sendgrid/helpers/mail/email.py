@@ -26,19 +26,22 @@ class Email(object):
                  name=None,
                  substitutions=None,
                  subject=None,
-                 p=None):
+                 p=0):
         """Create an Email with the given address and name.
 
         Either fill the separate name and email fields, or pass all information
         in the email parameter (e.g. email="dude Fella <example@example.com>").
         :param email: Email address, or name and address in standard format.
-        :type email: string
+        :type email: string, optional
         :param name: Name for this sender or recipient.
-        :type name: string
+        :type name: string, optional
+        :param name: p is the Personalization object or Personalization object index
+        :type name: Personalization or integer, optional
         """
         self._name = None
         self._email = None
         self._substitutions = None
+        self._subject = None
         self._personalization = None
 
         if email and not name:
@@ -54,6 +57,12 @@ class Email(object):
             
             if substitutions is not None:
                 self.substitutions = substitutions
+            
+            if subject is not None:
+                self.subject = subject
+
+            if p is not None:
+                self.personalization = p
 
     @property
     def name(self):
@@ -106,11 +115,11 @@ class Email(object):
         self._subject = value
 
     @property
-    def p(self):
+    def personalization(self):
         return self._personalization
 
-    @p.setter
-    def p(self, value):
+    @personalization.setter
+    def personalization(self, value):
         self._personalization = value
 
     def get(self):

@@ -60,5 +60,5 @@ class OpenTracking(object):
             open_tracking["enable"] = self.enable
 
         if self.substitution_tag is not None:
-            open_tracking["substitution_tag"] = self.substitution_tag
+            open_tracking["substitution_tag"] = self.substitution_tag.get()
         return open_tracking
