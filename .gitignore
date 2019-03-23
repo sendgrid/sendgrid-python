@@ -19,6 +19,6 @@ README.txt
 .coverage
 coverage.xml
 htmlcov
-temp*.py
+temp.py
 .vscode
 sendgrid/VERSION.txt
