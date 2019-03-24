@@ -131,8 +131,8 @@ class UnitTests(unittest.TestCase):
             self.assertEqual(v, self.sg.client.request_headers[k])
 
     def test_hello_world(self):
-        from_email = Email("test@example.com")
-        to_email = Email("test@example.com")
+        from_email = From("test@example.com")
+        to_email = To("test@example.com")
         subject = "Sending with SendGrid is Fun"
         content = Content(
             "text/plain", "and easy to do anywhere, even with Python")

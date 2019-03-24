@@ -13,7 +13,7 @@ from .content_id import ContentId
 from .custom_arg import CustomArg
 from .disposition import Disposition
 from .email import Email
-from .exceptions import SendGridException, APIKeyIncludedException
+from .exceptions import SendGridException, ApiKeyIncludedException
 from .file_content import FileContent
 from .file_name import FileName
 from .file_type import FileType
@@ -55,4 +55,4 @@ from .utm_medium import UtmMedium
 from .utm_term import UtmTerm
 from .utm_content import UtmContent
 from .utm_campaign import UtmCampaign
-from .validators import ValidateAPIKey
+from .validators import ValidateApiKey

@@ -45,7 +45,6 @@ class Personalization(object):
         :type email: Email
         """
         if email.substitutions:
-            print(email.substitutions)
             for substition in email.substitutions:
                 self.add_substitution(substition)
         self._tos.append(email.get())

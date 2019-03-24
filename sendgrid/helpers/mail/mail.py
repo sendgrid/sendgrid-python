@@ -1,4 +1,5 @@
 """v3/mail/send response body builder"""
+from collections import OrderedDict
 from .personalization import Personalization
 from .header import Header
 from .email import Email
@@ -6,6 +7,7 @@ from .content import Content
 from .subject import Subject
 from .custom_arg import CustomArg
 from .send_at import SendAt
+from .mime_type import MimeType
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -87,11 +89,9 @@ class Mail(object):
         if is_multiple == True:
             if isinstance(emails, list):
                 for email in emails:
-                    if p == 0 and self._personalizations[p] == None:
-                        personalization = Personalization()
-                        self.add_personalization(personalization, index=p)
-                    else:
-                        self._personalizations[p].add_email(email)
+                    personalization = Personalization()
+                    personalization.add_email(email)
+                    self.add_personalization(personalization)
             else:
                 personalization = Personalization()
                 personalization.add_email(emails)
@@ -281,7 +281,11 @@ class Mail(object):
         if content.type == "text/plain":
             self._contents = self._ensure_insert(content, self._contents)
         else:
-            self._contents = self._ensure_append(content, self._contents)
+            if self._contents:
+                index = len(self._contents)
+            else:
+                index = 0
+            self._contents = self._ensure_append(content, self._contents, index=index)
 
     @property
     def headers(self):

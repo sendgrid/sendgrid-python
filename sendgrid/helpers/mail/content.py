@@ -1,4 +1,4 @@
-from .validators import ValidateAPIKey
+from .validators import ValidateApiKey
 
 
 class Content(object):
@@ -17,7 +17,7 @@ class Content(object):
         """
         self._type = None
         self._value = None
-        self._validator = ValidateAPIKey()
+        self._validator = ValidateApiKey()
 
         if type_ is not None:
             self.type = type_

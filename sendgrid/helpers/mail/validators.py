@@ -1,10 +1,10 @@
-from .exceptions import APIKeyIncludedException
+from .exceptions import ApiKeyIncludedException
 ################################################################
 # Email content validators
 ################################################################
 
 
-class ValidateAPIKey(object):
+class ValidateApiKey(object):
     """Validates content to ensure SendGrid API key is not present"""
 
     regexes = None
@@ -35,7 +35,7 @@ class ValidateAPIKey(object):
             request_body (:obj:`dict`): message parameter that is
                                             an argument to: mail.send.post()
         Raises:
-            APIKeyIncludedException: If any content in request_body matches regex
+            ApiKeyIncludedException: If any content in request_body matches regex
         """
 
         # Handle string in edge-case
@@ -60,10 +60,10 @@ class ValidateAPIKey(object):
         Args:
             message_string (str): message that will be sent
         Raises:
-            APIKeyIncludedException: If message_string matches a regex string
+            ApiKeyIncludedException: If message_string matches a regex string
         """
 
         if isinstance(message_string, str):
             for regex in self.regexes:
                 if regex.match(message_string) is not None:
-                    raise APIKeyIncludedException()
+                    raise ApiKeyIncludedException()

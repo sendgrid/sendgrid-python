@@ -1,5 +1,5 @@
 from .content import Content
-from .validators import ValidateAPIKey
+from .validators import ValidateApiKey
 
 
 class PlainTextContent(Content):
@@ -12,7 +12,7 @@ class PlainTextContent(Content):
         :param value: The actual text content.
         """
         self._value = None
-        self._validator = ValidateAPIKey()
+        self._validator = ValidateApiKey()
 
         if value is not None:
             self.value = value

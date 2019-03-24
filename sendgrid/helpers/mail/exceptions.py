@@ -8,7 +8,7 @@ class SendGridException(Exception):
     pass
 
 
-class APIKeyIncludedException(SendGridException):
+class ApiKeyIncludedException(SendGridException):
     """Exception raised for when SendGrid API Key included in message text"""
 
     def __init__(self,
