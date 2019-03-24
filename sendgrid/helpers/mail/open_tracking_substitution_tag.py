@@ -1,5 +1,4 @@
 class OpenTrackingSubstitutionTag(object):
-    #TODO: Make sure these are all consistent
     """The OpenTrackingSubstitutionTag of an SubscriptionTracking."""
 
     def __init__(self, open_tracking_substitution_tag=None):

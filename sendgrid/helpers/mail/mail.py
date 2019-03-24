@@ -1,13 +1,13 @@
 """v3/mail/send response body builder"""
 from collections import OrderedDict
-from .personalization import Personalization
-from .header import Header
-from .email import Email
 from .content import Content
-from .subject import Subject
 from .custom_arg import CustomArg
-from .send_at import SendAt
+from .email import Email
+from .header import Header
 from .mime_type import MimeType
+from .personalization import Personalization
+from .send_at import SendAt
+from .subject import Subject
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -128,6 +128,14 @@ class Mail(object):
                 self.add_personalization(personalization, index=p)
 
     @property
+    def personalizations(self):
+        return self._personalizations
+
+    def add_personalization(self, personalizations, index=0):
+        self._personalizations = self._ensure_append(
+            personalizations, self._personalizations, index)
+
+    @property
     def to(self):
         pass
     
@@ -179,113 +187,27 @@ class Mail(object):
         self._set_emails(bcc_emails, None, is_multiple=is_multiple, p=p)
 
     @property
-    def attachments(self):
-        return self._attachments
+    def subject(self):
+        return self._subject
     
-    @property
-    def attachment(self):
-        pass
-    
-    @attachment.setter
-    def attachment(self, attachment):
-        #TODO: refactor duplicate code
-        if isinstance(attachment, list):
-            for a in attachment:
-                self.add_attachment(a)
-        else:
-            self.add_attachment(attachment)
-
-    def add_attachment(self, attachment):
-        self._attachments = self._ensure_append(attachment, self._attachments)
-
-    @property
-    def categories(self):
-        return self._categories
-
-    @property
-    def category(self):
-        pass
-    
-    @category.setter
-    def category(self, category):     
-        #TODO: refactor duplicate code
-        if isinstance(category, list):
-            for c in category:
-                self.add_category(c)
-        else:
-            self.add_category(category)
-
-    def add_category(self, category):
-        self._categories = self._ensure_append(category, self._categories)
-
-    @property
-    def custom_args(self):
-        return self._custom_args
-
-    @property
-    def custom_arg(self):
-        return self._custom_args
-
-    @custom_arg.setter
-    def custom_arg(self, custom_arg):
-        if isinstance(custom_arg, list):
-            for c in custom_arg:
-                self.add_custom_arg(c)
-        else:
-            self.add_custom_arg(custom_arg)
-
-    def add_custom_arg(self, custom_arg):
-        if custom_arg.personalization is not None:
-            #TODO: refactor duplicate code
-            try:
-                personalization = self._personalizations[custom_arg.personalization]
-                has_internal_personalization = True
-            except IndexError:
-                personalization = Personalization()
-                has_internal_personalization = False
-            if isinstance(custom_arg, dict):
-                (k, v) = list(custom_arg.items())[0]
-                personalization.add_custom_arg(CustomArg(k, v))
+    @subject.setter
+    def subject(self, value):
+        if isinstance(value, Subject):
+            if value.personalization is not None:
+                try:
+                    personalization = self._personalizations[value.personalization]
+                    has_internal_personalization = True
+                except IndexError:
+                    personalization = Personalization()
+                    has_internal_personalization = False
+                personalization.subject = value.subject
+                
+                if not has_internal_personalization:
+                    self.add_personalization(personalization, index=value.personalization)
             else:
-                personalization.add_custom_arg(custom_arg)
-            
-            if not has_internal_personalization:
-                self.add_personalization(personalization, index=custom_arg.personalization)
-        else:    
-            if isinstance(custom_arg, dict):
-                (k, v) = list(custom_arg.items())[0]
-                self._custom_args = self._ensure_append(CustomArg(k, v), self._custom_args)
-            else:
-                self._custom_args = self._ensure_append(custom_arg, self._custom_args)
-
-
-    @property
-    def contents(self):
-        return self._contents
-
-    @property
-    def content(self):
-        pass
-    
-    @content.setter
-    def content(self, content):
-        #TODO: refactor duplicate code
-        if isinstance(content, list):
-            for c in content:
-                self.add_content(c)
+                self._subject = value
         else:
-            self.add_content(content)
-
-    def add_content(self, content):
-        # Text content should be before HTML content
-        if content.type == "text/plain":
-            self._contents = self._ensure_insert(content, self._contents)
-        else:
-            if self._contents:
-                index = len(self._contents)
-            else:
-                index = 0
-            self._contents = self._ensure_append(content, self._contents, index=index)
+            self._subject = Subject(value)
 
     @property
     def headers(self):
@@ -305,7 +227,6 @@ class Mail(object):
 
     def add_header(self, header):
         if header.personalization is not None:
-            #TODO: refactor duplicate code
             try:
                 personalization = self._personalizations[header.personalization]
                 has_internal_personalization = True
@@ -327,35 +248,6 @@ class Mail(object):
             else:
                 self._headers = self._ensure_append(header, self._headers)
 
-
-    @property
-    def personalizations(self):
-        return self._personalizations
-
-    def add_personalization(self, personalizations, index=0):
-        self._personalizations = self._ensure_append(
-            personalizations, self._personalizations, index)
-
-    @property
-    #TODO: Order the properties according to the documentation
-    def sections(self):
-        return self._sections
-
-    @property
-    def section(self):
-        pass
-    
-    @section.setter
-    def section(self, section):
-        if isinstance(section, list):
-            for h in section:
-                self.add_section(h)
-        else:
-            self.add_section(section)        
-
-    def add_section(self, section):
-        self._sections = self._ensure_append(section, self._sections)
-
     @property
     def substitution(self):
         pass
@@ -370,7 +262,6 @@ class Mail(object):
 
     def add_substitution(self, substitution):
         if substitution.personalization:
-            #TODO: refactor duplicate code
             try:
                 personalization = self._personalizations[substitution.personalization]
                 has_internal_personalization = True
@@ -382,7 +273,6 @@ class Mail(object):
             if not has_internal_personalization:
                 self.add_personalization(personalization, index=substitution.personalization)
         else:    
-            #TODO: refactor duplicate code
             if isinstance(substitution, list):
                 for s in substitution:
                     for p in self.personalizations:
@@ -392,52 +282,43 @@ class Mail(object):
                     p.add_substitution(substitution)
 
     @property
-    def asm(self):
-        return self._asm
-    
-    @asm.setter
-    def asm(self, value):
-        self._asm = value
+    def custom_args(self):
+        return self._custom_args
 
     @property
-    def batch_id(self):
-        return self._batch_id
-    
-    @batch_id.setter
-    def batch_id(self, value):
-        self._batch_id = value
+    def custom_arg(self):
+        return self._custom_args
 
-    @property
-    def from_email(self):
-        return self._from_email
-    
-    @from_email.setter
-    def from_email(self, value):
-        self._from_email = value
+    @custom_arg.setter
+    def custom_arg(self, custom_arg):
+        if isinstance(custom_arg, list):
+            for c in custom_arg:
+                self.add_custom_arg(c)
+        else:
+            self.add_custom_arg(custom_arg)
 
-    @property
-    def ip_pool_name(self):
-        return self._ip_pool_name
-    
-    @ip_pool_name.setter
-    def ip_pool_name(self, value):
-        self._ip_pool_name = value
-
-    @property
-    def mail_settings(self):
-        return self._mail_settings
-    
-    @mail_settings.setter
-    def mail_settings(self, value):
-        self._mail_settings = value
-
-    @property
-    def reply_to(self):
-        return self._reply_to
-    
-    @reply_to.setter
-    def reply_to(self, value):
-        self._reply_to = value
+    def add_custom_arg(self, custom_arg):
+        if custom_arg.personalization is not None:
+            try:
+                personalization = self._personalizations[custom_arg.personalization]
+                has_internal_personalization = True
+            except IndexError:
+                personalization = Personalization()
+                has_internal_personalization = False
+            if isinstance(custom_arg, dict):
+                (k, v) = list(custom_arg.items())[0]
+                personalization.add_custom_arg(CustomArg(k, v))
+            else:
+                personalization.add_custom_arg(custom_arg)
+            
+            if not has_internal_personalization:
+                self.add_personalization(personalization, index=custom_arg.personalization)
+        else:    
+            if isinstance(custom_arg, dict):
+                (k, v) = list(custom_arg.items())[0]
+                self._custom_args = self._ensure_append(CustomArg(k, v), self._custom_args)
+            else:
+                self._custom_args = self._ensure_append(custom_arg, self._custom_args)
 
     @property
     def send_at(self):
@@ -463,27 +344,65 @@ class Mail(object):
             self._send_at = SendAt(value)
 
     @property
-    def subject(self):
-        return self._subject
+    def from_email(self):
+        return self._from_email
     
-    @subject.setter
-    def subject(self, value):
-        if isinstance(value, Subject):
-            if value.personalization is not None:
-                try:
-                    personalization = self._personalizations[value.personalization]
-                    has_internal_personalization = True
-                except IndexError:
-                    personalization = Personalization()
-                    has_internal_personalization = False
-                personalization.subject = value.subject
-                
-                if not has_internal_personalization:
-                    self.add_personalization(personalization, index=value.personalization)
-            else:
-                self._subject = value
+    @from_email.setter
+    def from_email(self, value):
+        self._from_email = value
+
+    @property
+    def reply_to(self):
+        return self._reply_to
+    
+    @reply_to.setter
+    def reply_to(self, value):
+        self._reply_to = value
+
+    @property
+    def contents(self):
+        return self._contents
+
+    @property
+    def content(self):
+        pass
+    
+    @content.setter
+    def content(self, content):
+        if isinstance(content, list):
+            for c in content:
+                self.add_content(c)
         else:
-            self._subject = Subject(value)
+            self.add_content(content)
+
+    def add_content(self, content):
+        if content.type == "text/plain":
+            self._contents = self._ensure_insert(content, self._contents)
+        else:
+            if self._contents:
+                index = len(self._contents)
+            else:
+                index = 0
+            self._contents = self._ensure_append(content, self._contents, index=index)
+
+    @property
+    def attachments(self):
+        return self._attachments
+    
+    @property
+    def attachment(self):
+        pass
+    
+    @attachment.setter
+    def attachment(self, attachment):
+        if isinstance(attachment, list):
+            for a in attachment:
+                self.add_attachment(a)
+        else:
+            self.add_attachment(attachment)
+
+    def add_attachment(self, attachment):
+        self._attachments = self._ensure_append(attachment, self._attachments)
 
     @property
     def template_id(self):
@@ -492,6 +411,76 @@ class Mail(object):
     @template_id.setter
     def template_id(self, value):
         self._template_id = value
+
+    @property
+    def sections(self):
+        return self._sections
+
+    @property
+    def section(self):
+        pass
+    
+    @section.setter
+    def section(self, section):
+        if isinstance(section, list):
+            for h in section:
+                self.add_section(h)
+        else:
+            self.add_section(section)        
+
+    def add_section(self, section):
+        self._sections = self._ensure_append(section, self._sections)
+
+    @property
+    def categories(self):
+        return self._categories
+
+    @property
+    def category(self):
+        pass
+    
+    @category.setter
+    def category(self, category):     
+        if isinstance(category, list):
+            for c in category:
+                self.add_category(c)
+        else:
+            self.add_category(category)
+
+    def add_category(self, category):
+        self._categories = self._ensure_append(category, self._categories)
+
+    @property
+    def batch_id(self):
+        return self._batch_id
+    
+    @batch_id.setter
+    def batch_id(self, value):
+        self._batch_id = value
+
+    @property
+    def asm(self):
+        return self._asm
+    
+    @asm.setter
+    def asm(self, value):
+        self._asm = value
+
+    @property
+    def ip_pool_name(self):
+        return self._ip_pool_name
+    
+    @ip_pool_name.setter
+    def ip_pool_name(self, value):
+        self._ip_pool_name = value
+
+    @property
+    def mail_settings(self):
+        return self._mail_settings
+    
+    @mail_settings.setter
+    def mail_settings(self, value):
+        self._mail_settings = value
 
     @property
     def tracking_settings(self):
