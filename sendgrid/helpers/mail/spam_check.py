@@ -1,3 +1,6 @@
+from .spam_threshold import SpamThreshold
+from .spam_url import SpamUrl
+
 class SpamCheck(object):
     """This allows you to test the content of your email for spam."""
 
@@ -46,7 +49,10 @@ class SpamCheck(object):
 
     @threshold.setter
     def threshold(self, value):
-        self._threshold = value
+        if isinstance(value, SpamThreshold):
+            self._threshold = value
+        else:
+            self._threshold = SpamThreshold(value)
 
     @property
     def post_to_url(self):
@@ -59,7 +65,10 @@ class SpamCheck(object):
 
     @post_to_url.setter
     def post_to_url(self, value):
-        self._post_to_url = value
+        if isinstance(value, SpamUrl):
+            self._post_to_url = value
+        else:
+            self._post_to_url = SpamUrl(value)
 
     def get(self):
         """

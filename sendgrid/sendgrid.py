@@ -23,7 +23,7 @@ class SendGridAPIClient(object):
     """The SendGrid API Client.
 
     Use this object to interact with the v3 API.  For example:
-        sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+        sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
         ...
         mail = Mail(from_email, subject, to_email, content)
         response = sg.client.mail.send.post(request_body=mail.get())
@@ -34,42 +34,30 @@ class SendGridAPIClient(object):
 
     def __init__(
             self,
-            apikey=None,
             api_key=None,
-            impersonate_subuser=None,
             host='https://api.sendgrid.com',
-            **opts):  # TODO: remove **opts for 6.x release
+            impersonate_subuser=None):
         """
         Construct SendGrid v3 API object.
-        Note that underlying client being set up during initialization, therefore changing
+        Note that the underlying client is being set up during initialization, therefore changing
             attributes in runtime will not affect HTTP client behaviour.
 
-        :param apikey: SendGrid API key to use. If not provided, key will be read from
+        :param api_key: SendGrid API key to use. If not provided, key will be read from
             environment variable "SENDGRID_API_KEY"
-        :type apikey: basestring
-        :param api_key: SendGrid API key to use. Provides backward compatibility
-            .. deprecated:: 5.3
-                Use apikey instead
-        :type api_key: basestring
+        :type api_key: string
         :param impersonate_subuser: the subuser to impersonate. Will be passed by
             "On-Behalf-Of" header by underlying client.
             See https://sendgrid.com/docs/User_Guide/Settings/subusers.html for more details
-        :type impersonate_subuser: basestring
+        :type impersonate_subuser: string
         :param host: base URL for API calls
-        :type host: basestring
-        :param opts: dispatcher for deprecated arguments. Added for backward-compatibility
-            with `path` parameter. Should be removed during 6.x release
+        :type host: string
         """
         from . import __version__
-        if opts:
-            warnings.warn(
-                'Unsupported argument(s) provided: {}'.format(list(opts.keys())),
-                DeprecationWarning)
-        self.apikey = apikey or api_key or os.environ.get('SENDGRID_API_KEY')
+        self.api_key = api_key or os.environ.get('SENDGRID_API_KEY')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
-        self.useragent = 'sendgrid/{};python'.format(__version__)
         self.version = __version__
+        self.useragent = 'sendgrid/{};python'.format(self.version)
 
         self.client = python_http_client.Client(host=self.host,
                                                 request_headers=self._default_headers,
@@ -78,7 +66,7 @@ class SendGridAPIClient(object):
     @property
     def _default_headers(self):
         headers = {
-            "Authorization": 'Bearer {}'.format(self.apikey),
+            "Authorization": 'Bearer {}'.format(self.api_key),
             "User-agent": self.useragent,
             "Accept": 'application/json'
         }
@@ -89,19 +77,6 @@ class SendGridAPIClient(object):
 
     def reset_request_headers(self):
         self.client.request_headers = self._default_headers
-
-    @property
-    def api_key(self):
-        """
-        Alias for reading API key
-        .. deprecated:: 5.3
-            Use apikey instead
-        """
-        return self.apikey
-
-    @api_key.setter
-    def api_key(self, value):
-        self.apikey = value
 
     def send(self, message):
         response = self.client.mail.send.post(request_body=message.get())

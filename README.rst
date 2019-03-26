@@ -97,7 +97,7 @@ Hello Email
 -----------
 
 The following is the minimum needed code to send an email with the `/mail/send Helper`_
-(`here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L192>`__ is a full example):
+(`here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L192>`__ is a full example):
 
 With Mail Helper Class
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -120,7 +120,7 @@ With Mail Helper Class
     print(response.headers)
 
 The ``Mail`` constructor creates a `personalization object`_ for you.
-`Here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L16>`__ is an example of how to add it.
+`Here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16>`__ is an example of how to add it.
 
 Without Mail Helper Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~

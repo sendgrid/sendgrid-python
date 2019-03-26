@@ -3,18 +3,13 @@ import unittest
 
 
 class ProjectTests(unittest.TestCase):
-
     # ./docker
     def test_docker_dir(self):
-        self.assertTrue(os.path.isdir("./docker"))
+        self.assertTrue(os.path.isfile("./docker/Dockerfile"))
 
-    # ./docker-test
-    def test_docker_test_dir(self):
-        self.assertTrue(os.path.isdir("./docker-test"))
-
-    # # ./docker-compose.yml or ./docker/docker-compose.yml
-    # def test_docker_compose(self):
-    #     self.assertTrue(os.path.isfile('docker-compose.yml'))
+    # ./docker-compose.yml or ./docker/docker-compose.yml
+    def test_docker_compose(self):
+        self.assertTrue(os.path.isfile('./docker/docker-compose.yml'))
 
     # ./.env_sample
     def test_env(self):
@@ -68,9 +63,9 @@ class ProjectTests(unittest.TestCase):
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
 
-    # ./VERSION.txt
-    def test_usage(self):
-        self.assertTrue(os.path.isfile('./VERSION.txt'))
+    # ./sendgrid/VERSION.txt
+    def test_version(self):
+        self.assertTrue(os.path.isfile('./sendgrid/VERSION.txt'))
 
     # ./use-cases/README.md
     def test_use_cases(self):

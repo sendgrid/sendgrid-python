@@ -1,3 +1,5 @@
+# This is the original proposal for v4.0.0
+
 # Send a Single Email to a Single Recipient
 
 The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
@@ -185,12 +187,12 @@ msg.custom_arg = CustomArg('marketing3', 'true', p=1)
 msg.custom_arg = CustomArg('transactional3', 'false', p=1)
 msg.custom_arg = [
     CustomArg('marketing4', 'false', p=1),
-    CustomArg('transactional4': 'true', p=1)
+    CustomArg('transactional4', 'true', p=1)
 ]
 
 msg.send_at = SendAt(1461775052, p=1)
 
-# The values below this comment are global to entire message
+# The values below this comment are global to the entire message
 
 msg.global_subject = Subject('Sending with SendGrid is Fun')
 
@@ -224,13 +226,13 @@ msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 msg.global_header = Header('X-Day', 'Monday')
 msg.global_headers = [
     Header('X-Month', 'January'),
-    Header('X-Year': '2017')
+    Header('X-Year', '2017')
 ]
 
 msg.section = Section('%section1%', 'Substitution for Section 1 Tag')
 msg.section = [
     Section('%section2%', 'Substitution for Section 2 Tag'),
-    Section('%section3%': 'Substitution for Section 3 Tag')    
+    Section('%section3%', 'Substitution for Section 3 Tag')    
 ]
 
 try:

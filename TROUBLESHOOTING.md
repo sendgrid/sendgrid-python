@@ -21,13 +21,13 @@ All of our examples assume you are using [environment variables](https://github.
 
 If you choose to add your SendGrid API key directly (not recommended):
 
-`apikey=os.environ.get('SENDGRID_API_KEY')`
+`api_key=os.environ.get('SENDGRID_API_KEY')`
 
 becomes
 
-`apikey='SENDGRID_API_KEY'`
+`api_key='SENDGRID_API_KEY'`
 
-In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual SendGrid API Key.
+In the first case, SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual SendGrid API Key.
 
 <a name="error"></a>
 ## Error Messages
@@ -40,7 +40,7 @@ import urllib2
 try:
   response = sg.client.mail.send.post(request_body=mail.get())
 except urllib2.HTTPError as e:
-    print e.read()
+    print(e.read())
 ```
 
 To read the error message returned by SendGrid's API in Python 3.X:
@@ -50,7 +50,7 @@ import urllib
 try:
   response = sg.client.mail.send.post(request_body=mail.get())
 except urllib.error.HTTPError as e:
-    print e.read()
+    print(e.read())
 ```
 
 <a name="migrating"></a>
@@ -77,7 +77,7 @@ Click the "Clone or download" green button in [GitHub](https://github.com/sendgr
 <a name="testing"></a>
 ## Testing v3 /mail/send Calls Directly
 
-[Here](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/curl_examples.html) are some cURL examples for common use cases.
+[Here](https://sendgrid.com/docs/for-developers/sending-email/curl-examples) are some cURL examples for common use cases.
 
 <a name="package-manager"></a>
 ## Using the Package Manager
@@ -111,4 +111,4 @@ You can do this right before you call `response = sg.client.mail.send.post(reque
 <a name="error-handling"></a>
 # Error Handling
 
-Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/use_cases/README.md) for examples of error handling.
+Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md) for examples of error handling.

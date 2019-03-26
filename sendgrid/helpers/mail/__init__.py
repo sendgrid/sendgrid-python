@@ -12,6 +12,7 @@ from .content import Content
 from .content_id import ContentId
 from .custom_arg import CustomArg
 from .disposition import Disposition
+from .dynamic_template_data import DynamicTemplateData
 from .email import Email
 from .exceptions import SendGridException, ApiKeyIncludedException
 from .file_content import FileContent

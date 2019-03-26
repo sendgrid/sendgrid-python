@@ -13,6 +13,7 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
+        self._dynamic_template_data = None
 
     def add_email(self, email):
         email_type = type(email)
@@ -174,6 +175,19 @@ class Personalization(object):
     def send_at(self, value):
         self._send_at = value
 
+    @property
+    def dynamic_template_data(self):
+        """Data for dynamic transactional template.
+        Should be JSON-serializeable structure.
+
+        :rtype: JSON-serializeable structure
+        """
+        return self._dynamic_template_data
+
+    @dynamic_template_data.setter
+    def dynamic_template_data(self, value):
+        self._dynamic_template_data = value
+
     def get(self):
         """
         Get a JSON-ready representation of this Personalization.
@@ -188,7 +202,7 @@ class Personalization(object):
             if value:
                 personalization[key[:-1]] = value
 
-        for key in ['subject', 'send_at']:
+        for key in ['subject', 'send_at', 'dynamic_template_data']:
             value = getattr(self, key)
             if value:
                 personalization[key] = value

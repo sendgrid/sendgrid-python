@@ -8,6 +8,7 @@ from .mime_type import MimeType
 from .personalization import Personalization
 from .send_at import SendAt
 from .subject import Subject
+from .dynamic_template_data import DynamicTemplateData
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
@@ -342,6 +343,25 @@ class Mail(object):
                 self._send_at = value
         else:
             self._send_at = SendAt(value)
+
+    @property
+    def dynamic_template_data(self):
+        pass
+    
+    @dynamic_template_data.setter
+    def dynamic_template_data(self, value):
+        if not isinstance(value, DynamicTemplateData):
+            value = DynamicTemplateData(value)
+        try:
+            personalization = self._personalizations[value.personalization]
+            has_internal_personalization = True
+        except IndexError:
+            personalization = Personalization()
+            has_internal_personalization = False
+        personalization.dynamic_template_data = value.dynamic_template_data
+        
+        if not has_internal_personalization:
+            self.add_personalization(personalization, index=value.personalization)
 
     @property
     def from_email(self):

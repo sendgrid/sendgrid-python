@@ -65,26 +65,19 @@ class UnitTests(unittest.TestCase):
         # time.sleep(15)
         # print("Prism Started")
 
-    def test_apikey_init(self):
-        self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
+    def test_api_key_init(self):
+        self.assertEqual(self.sg.api_key, os.environ.get('SENDGRID_API_KEY'))
         # Support the previous naming convention for API keys
-        self.assertEqual(self.sg.api_key, self.sg.apikey)
-        my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
-
-    def test_apikey_setter(self):
-        sg_apikey_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(sg_apikey_setter.apikey, "THISISMYKEY")
-        # Use apikey setter to change api key
-        sg_apikey_setter.apikey = "THISISMYNEWAPIKEY"
-        self.assertEqual(sg_apikey_setter.apikey, "THISISMYNEWAPIKEY")
+        self.assertEqual(self.sg.api_key, self.sg.api_key)
+        my_sendgrid = sendgrid.SendGridAPIClient(api_key="THISISMYKEY")
+        self.assertEqual(my_sendgrid.api_key, "THISISMYKEY")
 
     def test_api_key_setter(self):
-        sg_api_key_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(sg_api_key_setter.apikey, "THISISMYKEY")
+        sg_api_key_setter = sendgrid.SendGridAPIClient(api_key="THISISMYKEY")
+        self.assertEqual(sg_api_key_setter.api_key, "THISISMYKEY")
         # Use api_key setter to change api key
-        sg_api_key_setter.api_key = "THISISMYNEWAPI_KEY"
-        self.assertEqual(sg_api_key_setter.apikey, "THISISMYNEWAPI_KEY")
+        sg_api_key_setter.api_key = "THISISMYNEWAPIKEY"
+        self.assertEqual(sg_api_key_setter.api_key, "THISISMYNEWAPIKEY")
 
     def test_impersonate_subuser_init(self):
         temp_subuser = 'abcxyz@this.is.a.test.subuser'

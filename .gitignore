@@ -21,4 +21,4 @@ coverage.xml
 htmlcov
 temp.py
 .vscode
-sendgrid/VERSION.txt
+live_test.py
