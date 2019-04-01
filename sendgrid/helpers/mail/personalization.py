@@ -46,8 +46,16 @@ class Personalization(object):
         :type email: Email
         """
         if email.substitutions:
-            for substition in email.substitutions:
-                self.add_substitution(substition)
+            if isinstance(email.substitutions, list):
+                for substitution in email.substitutions:
+                    self.add_substitution(substitution)
+            else:
+                self.add_substitution(email.substitutions)
+        if email.subject:
+            if isinstance(email.subject, str):
+                self.subject = email.subject
+            else:
+                self.subject = email.subject.get()
         self._tos.append(email.get())
 
     @property
@@ -96,6 +104,7 @@ class Personalization(object):
 
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
+        
         :rtype: string
         """
         return self._subject
@@ -140,7 +149,10 @@ class Personalization(object):
 
         :type substitution: Substitution
         """
-        self._substitutions.append(substitution.get())
+        if isinstance(substitution, dict):
+            self._substitutions.append(substitution)
+        else:
+            self._substitutions.append(substitution.get())
 
     @property
     def custom_args(self):

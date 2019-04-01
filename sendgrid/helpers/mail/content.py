@@ -7,50 +7,61 @@ class Content(object):
     You must specify at least one mime type in the Contents of your email.
     """
 
-    def __init__(self, type_=None, value=None):
-        """Create a Content with the specified MIME type and value.
+    def __init__(self, mime_type, content):
+        """Create a Content with the specified MIME type and content.
 
-        :param type_: MIME type of this Content (e.g. "text/plain").
-        :type type_: string, optional
-        :param value: The actual content.
-        :type value: string, optional
+        :param mime_type: MIME type of this Content (e.g. "text/plain").
+        :type mime_type: string
+        :param content: The actual content.
+        :type content: string
         """
-        self._type = None
-        self._value = None
+        self._mime_type = None
+        self._content = None
         self._validator = ValidateApiKey()
 
-        if type_ is not None:
-            self.type = type_
+        if mime_type is not None:
+            self.mime_type = mime_type
 
-        if value is not None:
-            self.value = value
+        if content is not None:
+            self.content = content
 
     @property
-    def type(self):
+    def mime_type(self):
         """The MIME type of the content you are including in your email.
-
         For example, "text/plain" or "text/html".
 
         :rtype: string
         """
-        return self._type
+        return self._mime_type
 
-    @type.setter
-    def type(self, value):
-        self._type = value
+    @mime_type.setter
+    def mime_type(self, value):
+        """The MIME type of the content you are including in your email.
+        For example, "text/plain" or "text/html".
+
+        :param value: The MIME type of the content you are including in your email.
+        For example, "text/plain" or "text/html".
+        :type value: string
+        """
+        self._mime_type = value
 
     @property
-    def value(self):
+    def content(self):
         """The actual content (of the specified mime type).
 
         :rtype: string
         """
-        return self._value
+        return self._content
 
-    @value.setter
-    def value(self, value):
+    @content.setter
+    def content(self, value):
+        """The actual content (of the specified mime type).
+
+        :param value: The actual content (of the specified mime type).
+        :type value: string
+        """
         self._validator.validate_message_dict(value)
-        self._value = value
+        self._content = value
 
     def get(self):
         """
@@ -60,9 +71,9 @@ class Content(object):
         :rtype: dict
         """
         content = {}
-        if self.type is not None:
-            content["type"] = self.type
+        if self.mime_type is not None:
+            content["type"] = self.mime_type
 
-        if self.value is not None:
-            content["value"] = self.value
+        if self.content is not None:
+            content["value"] = self.content
         return content

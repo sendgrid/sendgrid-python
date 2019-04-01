@@ -1,5 +1,5 @@
 class FooterHtml(object):
-    """The FooterHtml of an Attachment."""
+    """The HTML in a Footer."""
 
     def __init__(self, footer_html=None):
         """Create a FooterHtml object
@@ -21,8 +21,13 @@ class FooterHtml(object):
         return self._footer_html
 
     @footer_html.setter
-    def footer_html(self, value):
-        self._footer_html = value
+    def footer_html(self, html):
+        """The html content of your footer.
+
+        :param html: The html content of your footer.
+        :type html: string
+        """
+        self._footer_html = html
 
     def get(self):
         """

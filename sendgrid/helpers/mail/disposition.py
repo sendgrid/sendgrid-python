@@ -1,5 +1,6 @@
 class Disposition(object):
-    """The MIME type of the content you are attaching to an Attachment content."""
+    """The content-disposition of the Attachment specifying how you would like the attachment 
+    to be displayed."""
 
     def __init__(self, disposition=None):
         """Create a Disposition object
@@ -34,6 +35,23 @@ class Disposition(object):
 
     @disposition.setter
     def disposition(self, value):
+        """The content-disposition of the attachment, specifying display style.
+           Specifies how you would like the attachment to be displayed.
+           - "inline" results in the attached file being displayed automatically
+             within the message.
+           - "attachment" results in the attached file requiring some action to
+             display (e.g. opening or downloading the file).
+           If unspecified, "attachment" is used. Must be one of the two choices.
+
+        :param value: The content-disposition of the attachment, specifying display style.
+           Specifies how you would like the attachment to be displayed.
+           - "inline" results in the attached file being displayed automatically
+             within the message.
+           - "attachment" results in the attached file requiring some action to
+             display (e.g. opening or downloading the file).
+           If unspecified, "attachment" is used. Must be one of the two choices.
+        :type value: string
+        """
         self._disposition = value
 
     def get(self):

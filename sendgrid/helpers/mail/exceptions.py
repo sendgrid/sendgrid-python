@@ -40,6 +40,11 @@ class ApiKeyIncludedException(SendGridException):
 
     @expression.setter
     def expression(self, value):
+        """Input expression in which the error occurred
+
+        :param value: Input expression in which the error occurred
+        :type value: string
+        """
         self._expression = value
 
     @property
@@ -52,4 +57,9 @@ class ApiKeyIncludedException(SendGridException):
 
     @message.setter
     def message(self, value):
+        """Explanation of the error
+
+        :param value: Explanation of the error
+        :type value: string
+        """
         self._message = value

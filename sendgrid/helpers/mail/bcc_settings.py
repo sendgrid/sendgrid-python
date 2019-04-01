@@ -32,6 +32,11 @@ class BccSettings(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :type param: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
@@ -44,6 +49,11 @@ class BccSettings(object):
 
     @email.setter
     def email(self, value):
+        """The email address that you would like to receive the BCC.
+
+        :param value: The email address that you would like to receive the BCC.
+        :type value: string
+        """
         self._email = value
 
     def get(self):

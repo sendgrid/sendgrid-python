@@ -1,4 +1,4 @@
-Use Docker to easily try out or contribute to the sendgrid-python library. 
+Use Docker to easily test the sendgrid-python library. 
 
 This Docker image contains:
  - Python 3.6

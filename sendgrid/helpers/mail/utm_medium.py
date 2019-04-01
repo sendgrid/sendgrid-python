@@ -1,5 +1,5 @@
 class UtmMedium(object):
-    """The UtmMedium of an Ganalytics."""
+    """The utm medium of an Ganalytics object."""
 
     def __init__(self, utm_medium=None):
         """Create a UtmMedium object
@@ -23,6 +23,11 @@ class UtmMedium(object):
 
     @utm_medium.setter
     def utm_medium(self, value):
+        """Name of the marketing medium. (e.g. Email)
+
+        :param value: Name of the marketing medium. (e.g. Email)
+        :type value: string
+        """
         self._utm_medium = value
 
     def get(self):

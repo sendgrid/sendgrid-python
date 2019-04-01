@@ -38,7 +38,7 @@ To read the error message returned by SendGrid's API in Python 2.X:
 import urllib2
 
 try:
-  response = sg.client.mail.send.post(request_body=mail.get())
+  response = sendgrid_client.send(request_body=mail.get())
 except urllib2.HTTPError as e:
     print(e.read())
 ```
@@ -48,7 +48,7 @@ To read the error message returned by SendGrid's API in Python 3.X:
 ```python
 import urllib
 try:
-  response = sg.client.mail.send.post(request_body=mail.get())
+  response = sendgrid_client.send(request_body=mail.get())
 except urllib.error.HTTPError as e:
     print(e.read())
 ```

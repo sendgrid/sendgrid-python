@@ -1,4 +1,4 @@
-# This is the original proposal for v4.0.0
+# This is the original proposal for v6.0.0
 
 # Send a Single Email to a Single Recipient
 

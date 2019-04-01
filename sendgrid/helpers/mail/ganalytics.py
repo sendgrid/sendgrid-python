@@ -42,7 +42,7 @@ class Ganalytics(object):
 
         :param field: Name of the field
         :type field: string
-        :param value: value to be set, ignored if None
+        :param value: Value to be set, ignored if None
         :type value: Any
         """
         if value is not None:
@@ -58,19 +58,31 @@ class Ganalytics(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
     def utm_source(self):
         """Name of the referrer source.
-
         e.g. Google, SomeDomain.com, or Marketing Email
+
         :rtype: string
         """
         return self._utm_source
 
     @utm_source.setter
     def utm_source(self, value):
+        """Name of the referrer source.
+        e.g. Google, SomeDomain.com, or Marketing Email
+        
+        :param value: Name of the referrer source.
+        e.g. Google, SomeDomain.com, or Marketing Email
+        :type value: string
+        """
         self._utm_source = value
 
     @property
@@ -83,6 +95,11 @@ class Ganalytics(object):
 
     @utm_medium.setter
     def utm_medium(self, value):
+        """Name of the marketing medium (e.g. Email).
+
+        :param value: Name of the marketing medium (e.g. Email).
+        :type value: string
+        """
         self._utm_medium = value
 
     @property
@@ -95,6 +112,11 @@ class Ganalytics(object):
 
     @utm_term.setter
     def utm_term(self, value):
+        """Used to identify any paid keywords.
+
+        :param value: Used to identify any paid keywords.
+        :type value: string
+        """
         self._utm_term = value
 
     @property
@@ -107,6 +129,11 @@ class Ganalytics(object):
 
     @utm_content.setter
     def utm_content(self, value):
+        """Used to differentiate your campaign from advertisements.
+
+        :param value: Used to differentiate your campaign from advertisements.
+        :type value: string
+        """
         self._utm_content = value
 
     @property
@@ -119,6 +146,11 @@ class Ganalytics(object):
 
     @utm_campaign.setter
     def utm_campaign(self, value):
+        """The name of the campaign.
+
+        :param value: The name of the campaign.
+        :type value: string
+        """
         self._utm_campaign = value
 
     def get(self):

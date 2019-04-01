@@ -1,5 +1,5 @@
 class SubscriptionSubstitutionTag(object):
-    """The SubscriptionSubstitutionTag of an SubscriptionTracking."""
+    """The subscription substitution tag of an SubscriptionTracking."""
 
     def __init__(self, subscription_substitution_tag=None):
         """Create a SubscriptionSubstitutionTag object
@@ -28,6 +28,17 @@ class SubscriptionSubstitutionTag(object):
 
     @subscription_substitution_tag.setter
     def subscription_substitution_tag(self, value):
+        """A tag that will be replaced with the 
+           unsubscribe URL. for example: [unsubscribe_url]. If this parameter is used, 
+           it will override both the text and html parameters. The URL of the link will 
+           be placed at the substitution tag's location, with no additional formatting.
+
+        :param value: A tag that will be replaced with the 
+        unsubscribe URL. for example: [unsubscribe_url]. If this parameter is used, 
+        it will override both the text and html parameters. The URL of the link will 
+        be placed at the substitution tag's location, with no additional formatting.
+        :type value: string
+        """
         self._subscription_substitution_tag = value
 
     def get(self):

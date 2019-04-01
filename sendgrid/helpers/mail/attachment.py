@@ -1,15 +1,21 @@
+from .file_content import FileContent
+from .file_type import FileType
+from .file_name import FileName
+from .disposition import Disposition
+from .content_id import ContentId
+
 class Attachment(object):
     """An attachment to be included with an email."""
 
-    def __init__(self, file_content=None, file_type=None, file_name=None, disposition=None, content_id=None):
+    def __init__(self, file_content=None, file_name=None, file_type=None,  disposition=None, content_id=None):
         """Create an Attachment
 
         :param file_content: The Base64 encoded content of the attachment
-        :type file_content: string, optional
-        :param file_type: The MIME type of the content you are attaching
-        :type file_type string, optional
+        :type file_content: FileContent, string
         :param file_name: The filename of the attachment
-        :type file_name: string, optional
+        :type file_name: FileName, string
+        :param file_type: The MIME type of the content you are attaching
+        :type file_type FileType, string, optional
         :param disposition: The content-disposition of the attachment, specifying display style.
                             Specifies how you would like the attachment to be displayed.
                             - "inline" results in the attached file being displayed automatically
@@ -17,11 +23,11 @@ class Attachment(object):
                             - "attachment" results in the attached file requiring some action to
                                 display (e.g. opening or downloading the file).
                             If unspecified, "attachment" is used. Must be one of the two choices.
-        :type disposition: string, optional
+        :type disposition: Disposition, string, optional
         :param content_id: The content id for the attachment.
                            This is used when the Disposition is set to "inline" and the attachment
                            is an image, allowing the file to be displayed within the email body.
-        :type content_id: string, optional
+        :type content_id: ContentId, string, optional
         """
         self._file_content = None
         self._file_type = None
@@ -48,37 +54,61 @@ class Attachment(object):
     def file_content(self):
         """The Base64 encoded content of the attachment.
 
-        :rtype: string
+        :rtype: FileContent
         """
         return self._file_content
 
     @file_content.setter
     def file_content(self, value):
-        self._file_content = value
+        """The Base64 encoded content of the attachment
 
-    @property
-    def file_type(self):
-        """The MIME type of the content you are attaching.
-
-        :rtype: string
+        :param value: The Base64 encoded content of the attachment
+        :type value: FileContent, string
         """
-        return self._file_type
-
-    @file_type.setter
-    def file_type(self, value):
-        self._file_type = value
+        if isinstance(value, FileContent):
+            self._file_content = value
+        else:
+            self._file_content = FileContent(value)
 
     @property
     def file_name(self):
         """The file name of the attachment.
 
-        :rtype: string
+        :rtype: FileName
         """
         return self._file_name
 
     @file_name.setter
     def file_name(self, value):
-        self._file_name = value
+        """The filename of the attachment
+
+        :param file_name: The filename of the attachment
+        :type file_name: FileName, string
+        """
+        if isinstance(value, FileName):
+            self._file_name = value
+        else:
+            self._file_name = FileName(value)
+
+    @property
+    def file_type(self):
+        """The MIME type of the content you are attaching.
+
+        :rtype: FileType
+        """
+        return self._file_type
+
+    @file_type.setter
+    def file_type(self, value):
+        """The MIME type of the content you are attaching
+
+        :param file_type: The MIME type of the content you are attaching
+        :type file_type FileType, string, optional
+        """
+        if isinstance(value, FileType):
+            self._file_type = value
+        else:
+            self._file_type = FileType(value)
 
     @property
     def disposition(self):
@@ -91,13 +121,34 @@ class Attachment(object):
             display (e.g. opening or downloading the file).
         If unspecified, "attachment" is used. Must be one of the two choices.
 
-        :rtype: string
+        :rtype: Disposition
         """
         return self._disposition
 
     @disposition.setter
     def disposition(self, value):
-        self._disposition = value
+        """The content-disposition of the attachment, specifying display style.
+
+        Specifies how you would like the attachment to be displayed.
+         - "inline" results in the attached file being displayed automatically
+            within the message.
+         - "attachment" results in the attached file requiring some action to
+            display (e.g. opening or downloading the file).
+        If unspecified, "attachment" is used. Must be one of the two choices.
+
+        :param disposition: The content-disposition of the attachment, specifying display style.
+                            Specifies how you would like the attachment to be displayed.
+                            - "inline" results in the attached file being displayed automatically
+                                within the message.
+                            - "attachment" results in the attached file requiring some action to
+                                display (e.g. opening or downloading the file).
+                            If unspecified, "attachment" is used. Must be one of the two choices.
+        :type disposition: Disposition, string, optional
+        """
+        if isinstance(value, Disposition):
+            self._disposition = value
+        else:
+            self._disposition = Disposition(value)
 
     @property
     def content_id(self):
@@ -112,7 +163,20 @@ class Attachment(object):
 
     @content_id.setter
     def content_id(self, value):
-        self._content_id = value
+        """The content id for the attachment.
+
+        This is used when the disposition is set to "inline" and the attachment
+        is an image, allowing the file to be displayed within the email body.
+
+        :param content_id: The content id for the attachment.
+                           This is used when the Disposition is set to "inline" and the attachment
+                           is an image, allowing the file to be displayed within the email body.
+        :type content_id: ContentId, string, optional
+        """
+        if isinstance(value, ContentId):
+            self._content_id = value
+        else:
+            self._content_id = ContentId(value)
 
     def get(self):
         """

@@ -1,5 +1,5 @@
 class IpPoolName(object):
-    """The IpPoolName of an Attachment."""
+    """The IP Pool that you would like to send this email from."""
 
     def __init__(self, ip_pool_name=None):
         """Create a IpPoolName object
@@ -22,6 +22,11 @@ class IpPoolName(object):
 
     @ip_pool_name.setter
     def ip_pool_name(self, value):
+        """The IP Pool that you would like to send this email from.
+
+        :param value: The IP Pool that you would like to send this email from.
+        :type value: string
+        """
         self._ip_pool_name = value
 
     def get(self):

@@ -1,5 +1,5 @@
 class FileType(object):
-    """The MIME type of the content you are attaching to an Attachment content."""
+    """The MIME type of the content you are attaching to an Attachment."""
 
     def __init__(self, file_type=None):
         """Create a FileType object
@@ -21,8 +21,13 @@ class FileType(object):
         return self._file_type
 
     @file_type.setter
-    def file_type(self, value):
-        self._file_type = value
+    def file_type(self, mime_type):
+        """The MIME type of the content you are attaching.
+
+        :param mime_type: The MIME type of the content you are attaching.
+        :rtype mime_type: string
+        """
+        self._file_type = mime_type
 
     def get(self):
         """

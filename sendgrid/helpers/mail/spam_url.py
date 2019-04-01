@@ -25,6 +25,13 @@ class SpamUrl(object):
 
     @spam_url.setter
     def spam_url(self, value):
+        """An Inbound Parse URL that you would like a copy of your email 
+           along with the spam report to be sent to.
+
+        :param value: An Inbound Parse URL that you would like a copy of your email 
+        along with the spam report to be sent to.
+        :type value: string
+        """
         self._spam_url = value
 
     def get(self):

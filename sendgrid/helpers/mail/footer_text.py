@@ -1,5 +1,5 @@
 class FooterText(object):
-    """The FooterText of an Footer."""
+    """The text in an Footer."""
 
     def __init__(self, footer_text=None):
         """Create a FooterText object
@@ -22,6 +22,11 @@ class FooterText(object):
 
     @footer_text.setter
     def footer_text(self, value):
+        """The plain text content of your footer.
+
+        :param value: The plain text content of your footer.
+        :type value: string
+        """
         self._footer_text = value
 
     def get(self):

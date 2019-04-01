@@ -2,14 +2,9 @@
 
 # Quick Start
 
-Run the [example](https://github.com/sendgrid/sendgrid-python/tree/master/examples/helpers/mail) (make sure you have set your environment variable to include your SENDGRID_API_KEY).
-
-```bash
-cp examples/helpers/mail_settings.py .
-python mail_settings.py
-```
+Please complete the [installation steps](https://github.com/sendgrid/sendgrid-python#installation) and then execute the [quick start example](https://github.com/sendgrid/sendgrid-python#quick-start).
 
 ## Usage
 
-- See the [examples](https://github.com/sendgrid/sendgrid-python/tree/master/examples/helpers/mail) for complete working examples.
-- [Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/overview.html)
+- For the most common use cases, please see [these examples](https://github.com/sendgrid/sendgrid-python/tree/master/use_cases)
+-The comple v3 API Documentation can be found [here](https://sendgrid.com/docs/API_Reference/api_v3.html)

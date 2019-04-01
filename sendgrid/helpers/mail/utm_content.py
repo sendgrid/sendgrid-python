@@ -1,5 +1,5 @@
 class UtmContent(object):
-    """The UtmContent of an Ganalytics."""
+    """The utm content of an Ganalytics object."""
 
     def __init__(self, utm_content=None):
         """Create a UtmContent object
@@ -23,6 +23,11 @@ class UtmContent(object):
 
     @utm_content.setter
     def utm_content(self, value):
+        """Used to differentiate your campaign from advertisements.
+
+        :param value: Used to differentiate your campaign from advertisements.
+        :type value: string
+        """
         self._utm_content = value
 
     def get(self):

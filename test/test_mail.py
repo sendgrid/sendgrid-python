@@ -22,6 +22,7 @@ from sendgrid.helpers.mail import (
     DynamicTemplateData,
     Email,
     FooterSettings,
+    From,
     Ganalytics,
     Header,
     Mail,
@@ -32,57 +33,16 @@ from sendgrid.helpers.mail import (
     Section,
     SendGridException,
     SpamCheck,
+    Subject,
     SubscriptionTracking,
     Substitution,
     TrackingSettings,
+    To,
     ValidateApiKey
 )
 
 
 class UnitTests(unittest.TestCase):
-
-    def test_sendgrid_api_key(self):
-        """Tests if including SendGrid API will throw an Exception"""
-
-        # Minimum required to send an email
-        self.max_diff = None
-        mail = Mail()
-
-        mail.from_email = Email("test@example.com")
-
-        mail.subject = "Hello World from the SendGrid Python Library"
-
-        personalization = Personalization()
-        personalization.add_to(Email("test@example.com"))
-        mail.add_personalization(personalization)
-
-        # Try to include SendGrid API key
-        try:
-            mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
-            mail.add_content(
-                Content(
-                    "text/html",
-                    "<html><body>some SG.Ba2BlJSDba.232Ln2 here</body></html>"))
-
-            self.assertEqual(
-                json.dumps(
-                    mail.get(),
-                    sort_keys=True),
-                '{"content": [{"type": "text/plain", "value": "some text here"}, '
-                '{"type": "text/html", '
-                '"value": "<html><body>some text here</body></html>"}], '
-                '"from": {"email": "test@example.com"}, "personalizations": '
-                '[{"to": [{"email": "test@example.com"}]}], '
-                '"subject": "Hello World from the SendGrid Python Library"}'
-            )
-
-        # Exception should be thrown
-        except Exception as e:
-            pass
-
-        # Exception not thrown
-        else:
-            self.fail("Should have failed as SendGrid API key included")
 
     # Send a Single Email to a Single Recipient
     def test_single_email_to_a_single_recipient(self):
@@ -216,23 +176,23 @@ class UnitTests(unittest.TestCase):
         )
     
     def test_multiple_emails_to_multiple_recipients(self):
-        from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException, Substitution
+        from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, Substitution
         self.maxDiff = None
 
         to_emails = [
             To(email='test+to0@example.com',
             name='Example Name 0',
-            substitutions={
+            substitutions=[
                 Substitution('-name-', 'Example Name Substitution 0'),
                 Substitution('-github-', 'https://example.com/test0'),
-            },
+            ],
             subject=Subject('Override Global Subject')),
             To(email='test+to1@example.com',
             name='Example Name 1',
-            substitutions={
+            substitutions=[
                 Substitution('-name-', 'Example Name Substitution 1'),
                 Substitution('-github-', 'https://example.com/test1'),
-            })
+            ])
         ]
         global_substitutions = Substitution('-time-', '2019-01-01 00:00:00')
         message = Mail(from_email=From('test+from@example.com', 'Example From Name'),
@@ -242,7 +202,7 @@ class UnitTests(unittest.TestCase):
                     html_content=HtmlContent('<strong>Hello -name-, your URL is <a href=\"-github-\">here</a></strong> email sent at -time-'),
                     global_substitutions=global_substitutions,
                     is_multiple=True)
-    
+
         self.assertEqual(
             message.get(),
             json.loads(r'''{
@@ -275,6 +235,7 @@ class UnitTests(unittest.TestCase):
                         ]
                     }, 
                     {
+                        "subject": "Override Global Subject",
                         "substitutions": {
                             "-github-": "https://example.com/test0", 
                             "-name-": "Example Name Substitution 0", 
@@ -294,31 +255,28 @@ class UnitTests(unittest.TestCase):
 
     def test_kitchen_sink(self):
         from sendgrid.helpers.mail import (
-            Mail, From, To, Cc, Bcc, Subject, PlainTextContent, 
-            HtmlContent, SendGridException, Substitution, 
-            Header, CustomArg, SendAt, Content, MimeType, Attachment,
-            FileName, FileContent, FileType, Disposition, ContentId,
-            TemplateId, Section, ReplyTo, Category, BatchId, Asm,
-            GroupId, GroupsToDisplay, IpPoolName, MailSettings,
-            BccSettings, BccSettingsEmail, BypassListManagement,
-            FooterSettings, FooterText, FooterHtml, SandBoxMode,
-            SpamCheck, SpamThreshold, SpamUrl, TrackingSettings,
-            ClickTracking, SubscriptionTracking, SubscriptionText,
-            SubscriptionHtml, SubscriptionSubstitutionTag,
+            Mail, From, To, Cc, Bcc, Subject, Substitution, Header,
+            CustomArg, SendAt, Content, MimeType, Attachment, FileName, 
+            FileContent, FileType, Disposition, ContentId, TemplateId,
+            Section, ReplyTo, Category, BatchId, Asm, GroupId, GroupsToDisplay,
+            IpPoolName, MailSettings, BccSettings, BccSettingsEmail, 
+            BypassListManagement, FooterSettings, FooterText,
+            FooterHtml, SandBoxMode, SpamCheck, SpamThreshold, SpamUrl,
+            TrackingSettings, ClickTracking, SubscriptionTracking,
+            SubscriptionText, SubscriptionHtml, SubscriptionSubstitutionTag,
             OpenTracking, OpenTrackingSubstitutionTag, Ganalytics,
             UtmSource, UtmMedium, UtmTerm, UtmContent, UtmCampaign)
-        import time
-        import datetime
+        
         self.maxDiff = None
 
         message = Mail()
 
         # Define Personalizations 
 
-        message.to = To('test1@sendgrid.com', 'Example User1', p=0)
+        message.to = To('test1@example.com', 'Example User1', p=0)
         message.to = [ 
-            To('test2@sendgrid.com', 'Example User2', p=0),
-            To('test3@sendgrid.com', 'Example User3', p=0)
+            To('test2@example.com', 'Example User2', p=0),
+            To('test3@example.com', 'Example User3', p=0)
         ]
 
         message.cc = Cc('test4@example.com', 'Example User4', p=0)
@@ -403,9 +361,9 @@ class UnitTests(unittest.TestCase):
 
         # The values below this comment are global to entire message
 
-        message.from_email = From('dx@sendgrid.com', 'DX')
+        message.from_email = From('dx@example.com', 'DX')
 
-        message.reply_to = ReplyTo('dx_reply@sendgrid.com', 'DX Reply')
+        message.reply_to = ReplyTo('dx_reply@example.com', 'DX Reply')
 
         message.subject = Subject('Sending with SendGrid is Fun 2')
 
@@ -417,19 +375,19 @@ class UnitTests(unittest.TestCase):
         ]
 
         message.attachment = Attachment(FileContent('base64 encoded content 1'),
-                                        FileType('application/pdf'),
                                         FileName('balance_001.pdf'),
+                                        FileType('application/pdf'),
                                         Disposition('attachment'),
                                         ContentId('Content ID 1'))
         message.attachment = [
             Attachment(FileContent('base64 encoded content 2'),
-                    FileType('image/png'),
                     FileName('banner.png'),
+                    FileType('image/png'),
                     Disposition('inline'),
                     ContentId('Content ID 2')),
             Attachment(FileContent('base64 encoded content 3'),
-                    FileType('image/png'),
                     FileName('banner2.png'),
+                    FileType('image/png'),
                     Disposition('inline'),
                     ContentId('Content ID 3'))
         ]
@@ -562,7 +520,7 @@ class UnitTests(unittest.TestCase):
                     "transactional6": "false"
                 }, 
                 "from": {
-                    "email": "dx@sendgrid.com", 
+                    "email": "dx@example.com", 
                     "name": "DX"
                 }, 
                 "headers": {
@@ -646,15 +604,15 @@ class UnitTests(unittest.TestCase):
                         }, 
                         "to": [
                             {
-                                "email": "test1@sendgrid.com", 
+                                "email": "test1@example.com", 
                                 "name": "Example User1"
                             }, 
                             {
-                                "email": "test2@sendgrid.com", 
+                                "email": "test2@example.com", 
                                 "name": "Example User2"
                             }, 
                             {
-                                "email": "test3@sendgrid.com", 
+                                "email": "test3@example.com", 
                                 "name": "Example User3"
                             }
                         ]
@@ -725,7 +683,7 @@ class UnitTests(unittest.TestCase):
                     }
                 ], 
                 "reply_to": {
-                    "email": "dx_reply@sendgrid.com", 
+                    "email": "dx_reply@example.com", 
                     "name": "DX Reply"
                 }, 
                 "sections": {
@@ -763,7 +721,7 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
-    # Send a Single Email to a Single Recipient
+    # Send a Single Email to a Single Recipient with a Dynamic Template
     def test_single_email_to_a_single_recipient_with_dynamic_templates(self):
         from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent
         self.maxDiff = None
@@ -857,103 +815,102 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
+    def test_sendgrid_api_key(self):
+        """Tests if including SendGrid API will throw an Exception"""
+
+        # Minimum required to send an email
+        self.max_diff = None
+        mail = Mail()
+
+        mail.from_email = Email("test@example.com")
+
+        mail.subject = "Hello World from the SendGrid Python Library"
+
+        personalization = Personalization()
+        personalization.add_to(Email("test@example.com"))
+        mail.add_personalization(personalization)
+
+        # Try to include SendGrid API key
+        try:
+            mail.add_content(Content("text/plain", "some SG.2123b1B.1212lBaC here"))
+            mail.add_content(
+                Content(
+                    "text/html",
+                    "<html><body>some SG.Ba2BlJSDba.232Ln2 here</body></html>"))
+
+            self.assertEqual(
+                json.dumps(
+                    mail.get(),
+                    sort_keys=True),
+                '{"content": [{"type": "text/plain", "value": "some text here"}, '
+                '{"type": "text/html", '
+                '"value": "<html><body>some text here</body></html>"}], '
+                '"from": {"email": "test@example.com"}, "personalizations": '
+                '[{"to": [{"email": "test@example.com"}]}], '
+                '"subject": "Hello World from the SendGrid Python Library"}'
+            )
+
+        # Exception should be thrown
+        except Exception:
+            pass
+
+        # Exception not thrown
+        else:
+            self.fail("Should have failed as SendGrid API key included")
+
     def test_unicode_values_in_substitutions_helper(self):
-        return
-        # """ Test that the Substitutions helper accepts unicode values """
-
-        # self.max_diff = None
-
-        # """Minimum required to send an email"""
-        # mail = Mail()
-
-        # mail.from_email = Email("test@example.com")
-
-        # mail.subject = "Testing unicode substitutions with the SendGrid Python Library"
-
-        # personalization = Personalization()
-        # personalization.add_to(Email("test@example.com"))
-        # personalization.add_substitution(Substitution("%city%", u"Αθήνα"))
-        # mail.add_personalization(personalization)
-
-        # mail.add_content(Content("text/plain", "some text here"))
-        # mail.add_content(
-        #     Content(
-        #         "text/html",
-        #         "<html><body>some text here</body></html>"))
-
-        # expected_result = {
-        #     "content": [
-        #         {
-        #             "type": "text/plain",
-        #             "value": "some text here"
-        #         },
-        #         {
-        #             "type": "text/html",
-        #             "value": "<html><body>some text here</body></html>"
-        #         }
-        #     ],
-        #     "from": {
-        #         "email": "test@example.com"
-        #     },
-        #     "personalizations": [
-        #         {
-        #             "substitutions": {
-        #                 "%city%": u"Αθήνα"
-        #             },
-        #             "to": [
-        #                 {
-        #                     "email": "test@example.com"
-        #                 }
-        #             ]
-        #         }
-        #     ],
-        #     "subject": "Testing unicode substitutions with the SendGrid Python Library",
-        # }
-
-        # self.assertEqual(
-        #     json.dumps(mail.get(), sort_keys=True),
-        #     json.dumps(expected_result, sort_keys=True)
-        # )
+        from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent
+        self.maxDiff = None
+        message = Mail(from_email=From('test+from@example.com', 'Example From Name'),
+               to_emails=To('test+to@example.com', 'Example To Name'),
+               subject=Subject('Sending with SendGrid is Fun'),
+               plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
+               html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
+        message.substitution = Substitution('%city%', u'Αθήνα', p=1)
+        self.assertEqual(
+            message.get(),
+            json.loads(r'''{
+                "content": [
+                    {
+                        "type": "text/plain", 
+                        "value": "and easy to do anywhere, even with Python"
+                    }, 
+                    {
+                        "type": "text/html", 
+                        "value": "<strong>and easy to do anywhere, even with Python</strong>"
+                    }
+                ], 
+                "from": {
+                    "email": "test+from@example.com", 
+                    "name": "Example From Name"
+                }, 
+                "personalizations": [
+                    {
+                        "to": [
+                            {
+                                "email": "test+to@example.com", 
+                                "name": "Example To Name"
+                            }
+                        ]
+                    },
+                    {
+                        "substitutions": {
+                            "%city%": "Αθήνα"
+                        }
+                    }
+                ], 
+                "subject": "Sending with SendGrid is Fun"
+            }''')
+        )
 
     def test_asm_display_group_limit(self):
-        return
-        # self.assertRaises(ValueError, Asm, 1, list(range(26)))
+        self.assertRaises(ValueError, Asm, 1, list(range(26)))
 
     def test_disable_tracking(self):
-        return
-        # tracking_settings = TrackingSettings()
-        # tracking_settings.click_tracking = ClickTracking(False, False)
+        tracking_settings = TrackingSettings()
+        tracking_settings.click_tracking = ClickTracking(False, False)
 
-        # self.assertEqual(
-        #     tracking_settings.get(),
-        #     {'click_tracking': {'enable': False, 'enable_text': False}}
-        # )
-
-    def test_directly_setting_substitutions(self):
-        return
-        # personalization = Personalization()
-        # personalization.substitutions = [{'a': 0}]
-
-    def test_from_emailmessage(self):
-        return
-        # message = EmailMessage()
-        # body = 'message that is not urgent'
-        # try:
-        #     message.set_content(body)
-        # except AttributeError:
-        #     # Python2
-        #     message.set_payload(body)
-        # message.set_default_type('text/plain')
-        # message['Subject'] = 'URGENT TITLE'
-        # message['From'] = 'test@example.com'
-        # message['To'] = 'test@sendgrid.com'
-        # mail = Mail.from_EmailMessage(message)
-        # self.assertEqual(mail.subject.get(), 'URGENT TITLE')
-        # self.assertEqual(mail.from_email.email, 'test@example.com')
-        # self.assertEqual(len(mail.personalizations), 1)
-        # self.assertEqual(len(mail.personalizations[0].tos), 1)
-        # self.assertEqual(mail.personalizations[0].tos[0], {'email': 'test@sendgrid.com'})
-        # self.assertEqual(len(mail.contents), 1)
-        # content = mail.contents[0]
-        # self.assertEqual(content.type, 'text/plain')
-        # self.assertEqual(content.value, 'message that is not urgent')
+        self.assertEqual(
+            tracking_settings.get(),
+            {'click_tracking': {'enable': False, 'enable_text': False}}
+        )

@@ -40,30 +40,51 @@ class SubscriptionTracking(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
     def text(self):
         """Text to be appended to the email, with the subscription tracking
         link. You may control where the link is by using the tag <% %>
+
         :rtype: string
         """
         return self._text
 
     @text.setter
     def text(self, value):
+        """Text to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+
+        :param value: Text to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+        :type value: string
+        """
         self._text = value
 
     @property
     def html(self):
         """HTML to be appended to the email, with the subscription tracking
         link. You may control where the link is by using the tag <% %>
+
         :rtype: string
         """
         return self._html
 
     @html.setter
     def html(self, value):
+        """HTML to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+
+        :param value: HTML to be appended to the email, with the subscription tracking
+        link. You may control where the link is by using the tag <% %>
+        :type value: string
+        """
         self._html = value
 
     @property
@@ -72,12 +93,24 @@ class SubscriptionTracking(object):
         [unsubscribe_url]. If this parameter is used, it will override both the
         `text` and `html` parameters. The URL of the link will be placed at the
         substitution tag's location, with no additional formatting.
+
         :rtype: string
         """
         return self._substitution_tag
 
     @substitution_tag.setter
     def substitution_tag(self, value):
+        """"A tag that will be replaced with the unsubscribe URL. for example:
+        [unsubscribe_url]. If this parameter is used, it will override both the
+        `text` and `html` parameters. The URL of the link will be placed at the
+        substitution tag's location, with no additional formatting.
+
+        :param value: A tag that will be replaced with the unsubscribe URL. for example:
+        [unsubscribe_url]. If this parameter is used, it will override both the
+        `text` and `html` parameters. The URL of the link will be placed at the
+        substitution tag's location, with no additional formatting.
+        :type value: string
+        """
         self._substitution_tag = value
 
     def get(self):

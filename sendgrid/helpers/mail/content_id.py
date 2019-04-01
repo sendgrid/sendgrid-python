@@ -26,6 +26,15 @@ class ContentId(object):
 
     @content_id.setter
     def content_id(self, value):
+        """The content id for the attachment.
+           This is used when the Disposition is set to "inline" and the attachment
+           is an image, allowing the file to be displayed within the email body.
+
+        :param value: The content id for the attachment.
+        This is used when the Disposition is set to "inline" and the attachment
+        is an image, allowing the file to be displayed within the email body.
+        :type value: string
+        """
         self._content_id = value
 
     def get(self):

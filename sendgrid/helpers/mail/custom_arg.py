@@ -14,8 +14,8 @@ class CustomArg(object):
             :type key: string, optional
             :param value: Value of this CustomArg
             :type value: string, optional
-            :param name: p is the Personalization object or Personalization object index
-            :type name: Personalization or integer, optional
+            :param p: p is the Personalization object or Personalization object index
+            :type p: Personalization, integer, optional
         """
         self._key = None
         self._value = None
@@ -38,23 +38,45 @@ class CustomArg(object):
 
     @key.setter
     def key(self, value):
+        """Key for this CustomArg.
+
+        :param value: Key for this CustomArg.
+        :type value: string
+        """
         self._key = value
 
     @property
     def value(self):
-        """Value of this CustomArg."""
+        """Value of this CustomArg.
+        
+        :rtype: string
+        """
         return self._value
 
     @value.setter
     def value(self, value):
+        """Value of this CustomArg.
+        
+        :param value: Value of this CustomArg.
+        :type value: string
+        """
         self._value = value
 
     @property
     def personalization(self):
+        """The Personalization object or Personalization object index
+        
+        :rtype: Personalization, integer
+        """
         return self._personalization
 
     @personalization.setter
     def personalization(self, value):
+        """The Personalization object or Personalization object index
+        
+        :param value: The Personalization object or Personalization object index
+        :type value: Personalization, integer
+        """
         self._personalization = value
 
     def get(self):

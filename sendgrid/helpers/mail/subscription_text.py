@@ -1,5 +1,5 @@
 class SubscriptionText(object):
-    """The SubscriptionText of an SubscriptionTracking."""
+    """The text of an SubscriptionTracking."""
 
     def __init__(self, subscription_text=None):
         """Create a SubscriptionText object
@@ -25,6 +25,13 @@ class SubscriptionText(object):
 
     @subscription_text.setter
     def subscription_text(self, value):
+        """Text to be appended to the email, with the subscription tracking link. 
+           You may control where the link is by using the tag <% %>
+
+        :param value: Text to be appended to the email, with the subscription tracking link. 
+        You may control where the link is by using the tag <% %>
+        :type value: string
+        """
         self._subscription_text = value
 
     def get(self):

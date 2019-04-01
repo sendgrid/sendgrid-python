@@ -1,5 +1,5 @@
 class UtmSource(object):
-    """The UtmSource of an Ganalytics."""
+    """The utm source of an Ganalytics object."""
 
     def __init__(self, utm_source=None):
         """Create a UtmSource object
@@ -24,6 +24,13 @@ class UtmSource(object):
 
     @utm_source.setter
     def utm_source(self, value):
+        """Name of the referrer source. 
+           (e.g. Google, SomeDomain.com, or Marketing Email)
+
+        :param value: Name of the referrer source. 
+        (e.g. Google, SomeDomain.com, or Marketing Email)
+        :type value: string
+        """
         self._utm_source = value
 
     def get(self):

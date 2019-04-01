@@ -1,5 +1,5 @@
 class OpenTrackingSubstitutionTag(object):
-    """The OpenTrackingSubstitutionTag of an SubscriptionTracking."""
+    """The open tracking substitution tag of an SubscriptionTracking object."""
 
     def __init__(self, open_tracking_substitution_tag=None):
         """Create a OpenTrackingSubstitutionTag object
@@ -25,6 +25,15 @@ class OpenTrackingSubstitutionTag(object):
 
     @open_tracking_substitution_tag.setter
     def open_tracking_substitution_tag(self, value):
+        """Allows you to specify a substitution tag that you can insert in the body 
+        of your email at a location that you desire. This tag will be replaced by the 
+        open tracking pixel.
+
+        :param value: Allows you to specify a substitution tag that you can insert in the body 
+        of your email at a location that you desire. This tag will be replaced by the 
+        open tracking pixel.
+        :type value: string
+        """
         self._open_tracking_substitution_tag = value
 
     def get(self):

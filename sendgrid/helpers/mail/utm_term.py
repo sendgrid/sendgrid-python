@@ -1,6 +1,6 @@
 class UtmTerm(object):
-    """The UtmTerm of an Ganalytics."""
-
+    """The utm term of an Ganalytics object."""
+ 
     def __init__(self, utm_term=None):
         """Create a UtmTerm object
 
@@ -23,6 +23,11 @@ class UtmTerm(object):
 
     @utm_term.setter
     def utm_term(self, value):
+        """Used to identify any paid keywords.
+
+        :param value: Used to identify any paid keywords.
+        :type value: string
+        """
         self._utm_term = value
 
     def get(self):

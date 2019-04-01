@@ -52,6 +52,11 @@ class MailSettings(object):
 
     @bcc_settings.setter
     def bcc_settings(self, value):
+        """The BCC Settings of this MailSettings.
+
+        :param value: The BCC Settings of this MailSettings.
+        :type value: BCCSettings
+        """
         self._bcc_settings = value
 
     @property
@@ -64,6 +69,11 @@ class MailSettings(object):
 
     @bypass_list_management.setter
     def bypass_list_management(self, value):
+        """Whether this MailSettings bypasses list management.
+
+        :param value: Whether this MailSettings bypasses list management.
+        :type value: BypassListManagement
+        """
         self._bypass_list_management = value
 
     @property
@@ -76,6 +86,11 @@ class MailSettings(object):
 
     @footer_settings.setter
     def footer_settings(self, value):
+        """The default footer specified by this MailSettings.
+
+        :param value: The default footer specified by this MailSettings.
+        :type value: FooterSettings
+        """
         self._footer_settings = value
 
     @property
@@ -88,6 +103,11 @@ class MailSettings(object):
 
     @sandbox_mode.setter
     def sandbox_mode(self, value):
+        """Whether this MailSettings enables sandbox mode.
+
+        :param value: Whether this MailSettings enables sandbox mode.
+        :type value: SandBoxMode
+        """
         self._sandbox_mode = value
 
     @property
@@ -100,6 +120,11 @@ class MailSettings(object):
 
     @spam_check.setter
     def spam_check(self, value):
+        """How this MailSettings requests email to be checked for spam.
+
+        :param value: How this MailSettings requests email to be checked for spam.
+        :type value: SpamCheck
+        """
         self._spam_check = value
 
     def get(self):

@@ -15,7 +15,7 @@ class Header(object):
         :param value: The header's value (e.g. "2013-02-27 1:23:45 PM PDT")
         :type value: string, optional
         :param name: p is the Personalization object or Personalization object index
-        :type name: Personalization or integer, optional
+        :type name: Personalization, integer, optional
         """
         self._key = None
         self._value = None
@@ -38,6 +38,11 @@ class Header(object):
 
     @key.setter
     def key(self, value):
+        """The name of the header.
+
+        :param value: The name of the header.
+        :type value: string
+        """
         self._key = value
 
     @property
@@ -50,14 +55,28 @@ class Header(object):
 
     @value.setter
     def value(self, value):
+        """The value of the header.
+
+        :param value: The value of the header.
+        :type value: string
+        """
         self._value = value
     
     @property
     def personalization(self):
+        """The Personalization object or Personalization object index
+        
+        :rtype: Personalization, integer
+        """
         return self._personalization
 
     @personalization.setter
     def personalization(self, value):
+        """The Personalization object or Personalization object index
+        
+        :param value: The Personalization object or Personalization object index
+        :type value: Personalization, integer
+        """
         self._personalization = value
 
     def get(self):

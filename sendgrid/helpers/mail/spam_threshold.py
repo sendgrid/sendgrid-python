@@ -22,7 +22,7 @@ class SpamThreshold(object):
         """The threshold used to determine if your content 
            qualifies as spam on a scale from 1 to 10, with 
            10 being most strict, or most likely to be 
-           considered as spam..
+           considered as spam.
 
         :rtype: integer
         """
@@ -30,6 +30,17 @@ class SpamThreshold(object):
 
     @spam_threshold.setter
     def spam_threshold(self, value):
+        """The threshold used to determine if your content 
+           qualifies as spam on a scale from 1 to 10, with 
+           10 being most strict, or most likely to be 
+           considered as spam.
+
+        :param value: The threshold used to determine if your content 
+        qualifies as spam on a scale from 1 to 10, with 
+        10 being most strict, or most likely to be 
+        considered as spam.
+        :type value: integer
+        """
         self._spam_threshold = value
 
     def get(self):

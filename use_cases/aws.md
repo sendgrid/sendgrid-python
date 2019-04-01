@@ -113,18 +113,19 @@ Now go ahead and modify the `index.py` file to match below:
 ```python
 import json
 import datetime
-import sendgrid
+from sendgrid import SendGridAPIClient
 import os
-from sendgrid.helpers.mail import *
+from sendgrid.helpers.mail import (From, To, PlainTextContent, HtmlContent, Mail)
 
 def handler(event, context):
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    from_email = Email("test@example.com")
-    to_email = Email("test@example.com")
+    sendgrid_client = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    from_email = From("test@example.com")
+    to_email = To("test@example.com")
     subject = "Sending with SendGrid is Fun"
-    content = Content("text/plain", "and easy to do anywhere, even with Python")
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
+    plain_text_content = PlainTextContent("and easy to do anywhere, even with Python")
+    html_content = HtmlContent("<strong>and easy to do anywhere, even with Python</strong>")
+    message = Mail(from_email, to_email, subject, plain_text_content, html_content)
+    response = sendgrid_client.send(message=message)
     status = b"{}".decode('utf-8').format(response.status_code)
     body = b"{}".decode('utf-8').format(response.body)
     headers = b"{}".decode('utf-8').format(response.headers)

@@ -104,20 +104,23 @@ With Mail Helper Class
 
 .. code:: python
 
-    import sendgrid
     import os
-    from sendgrid.helpers.mail import *
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
 
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    from_email = Email("test@example.com")
-    to_email = Email("test@example.com")
-    subject = "Sending with SendGrid is Fun"
-    content = Content("text/plain", "and easy to do anywhere, even with Python")
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+    message = Mail(
+        from_email='from_email@example.com',
+        to_emails='to@example.com',
+        subject='Sending with SendGrid is Fun',
+        html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)
 
 The ``Mail`` constructor creates a `personalization object`_ for you.
 `Here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16>`__ is an example of how to add it.
@@ -130,45 +133,48 @@ The following is the minimum needed code to send an email without the /mail/send
 
 .. code:: python
 
-    import sendgrid
     import os
+    from sendgrid import SendGridAPIClient
 
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    data = {
-      "personalizations": [
-        {
-          "to": [
+    message = {
+        'personalizations': [
             {
-              "email": "test@example.com"
+                'to': [
+                    {
+                        'email': 'test@example.com'
+                    }
+                ],
+                'subject': 'Sending with SendGrid is Fun'
             }
-          ],
-          "subject": "Sending with SendGrid is Fun"
-        }
-      ],
-      "from": {
-        "email": "test@example.com"
-      },
-      "content": [
-        {
-          "type": "text/plain",
-          "value": "and easy to do anywhere, even with Python"
-        }
-      ]
+        ],
+        'from': {
+            'email': 'test@example.com'
+        },
+        'content': [
+            {
+                'type': 'text/plain',
+                'value': 'and easy to do anywhere, even with Python'
+            }
+        ]
     }
-    response = sg.client.mail.send.post(request_body=data)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)
 
 General v3 Web API Usage (With `Fluent Interface`_)
 ---------------------------------------------------
 
 .. code:: python
 
-    import sendgrid
     import os
+    from sendgrid import SendGridAPIClient
 
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sg.client.suppression.bounces.get()
     print(response.status_code)
     print(response.body)
@@ -179,11 +185,11 @@ General v3 Web API Usage (Without `Fluent Interface`_)
 
 .. code:: python
 
-    import sendgrid
     import os
+    from sendgrid import SendGridAPIClient
 
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    response = sg.client._("suppression/bounces").get()
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    response = sg.client._('suppression/bounces').get()
     print(response.status_code)
     print(response.body)
     print(response.headers)

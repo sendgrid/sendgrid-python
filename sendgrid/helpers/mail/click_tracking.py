@@ -28,16 +28,31 @@ class ClickTracking(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
     def enable_text(self):
         """Indicates if this setting should be included in the text/plain
-        portion of your email."""
+        portion of your email.
+        
+        :rtype: boolean
+        """
         return self._enable_text
 
     @enable_text.setter
     def enable_text(self, value):
+        """Indicates if this setting should be included in the text/plain
+        portion of your email.
+        
+        :param value: Indicates if this setting should be included in the 
+        text/plain portion of your email.
+        :type value: boolean
+        """
         self._enable_text = value
 
     def get(self):

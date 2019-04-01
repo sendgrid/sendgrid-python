@@ -22,6 +22,11 @@ class BccSettingsEmail(object):
 
     @bcc_settings_email.setter
     def bcc_settings_email(self, value):
+        """The email address that you would like to receive the BCC
+
+        :param value: The email address that you would like to receive the BCC
+        :type value: string
+        """
         self._bcc_settings_email = value
 
     def get(self):

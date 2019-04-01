@@ -1,5 +1,5 @@
 class GroupId(object):
-    """The unsubscribe group to associate with this email."""
+    """The unsubscribe group ID to associate with this email."""
 
     def __init__(self, group_id=None):
         """Create a GroupId object
@@ -22,6 +22,11 @@ class GroupId(object):
 
     @group_id.setter
     def group_id(self, value):
+        """The unsubscribe group to associate with this email.
+
+        :param value: The unsubscribe group to associate with this email.
+        :type value: integer
+        """
         self._group_id = value
 
     def get(self):

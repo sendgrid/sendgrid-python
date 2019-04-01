@@ -24,6 +24,11 @@ class BatchId(object):
 
     @batch_id.setter
     def batch_id(self, value):
+        """A unix timestamp.
+
+        :param value: Batch Id
+        :type value: string
+        """
         self._batch_id = value
 
     def __str__(self):

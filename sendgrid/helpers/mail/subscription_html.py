@@ -1,5 +1,5 @@
 class SubscriptionHtml(object):
-    """The SubscriptionHtml of an SubscriptionTracking."""
+    """The HTML of an SubscriptionTracking."""
 
     def __init__(self, subscription_html=None):
         """Create a SubscriptionHtml object
@@ -25,6 +25,13 @@ class SubscriptionHtml(object):
 
     @subscription_html.setter
     def subscription_html(self, value):
+        """Html to be appended to the email, with the subscription tracking link. 
+           You may control where the link is by using the tag <% %>
+
+        :param value: Html to be appended to the email, with the subscription tracking link. 
+        You may control where the link is by using the tag <% %>
+        :type value: string
+        """
         self._subscription_html = value
 
     def get(self):

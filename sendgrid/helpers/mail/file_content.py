@@ -22,6 +22,11 @@ class FileContent(object):
 
     @file_content.setter
     def file_content(self, value):
+        """The Base64 encoded content of the attachment.
+
+        :param value: The Base64 encoded content of the attachment.
+        :type value: string
+        """
         self._file_content = value
 
     def get(self):

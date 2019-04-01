@@ -3,11 +3,11 @@ This documentation is based on our [OAI specification](https://github.com/sendgr
 # INITIALIZATION
 
 ```python
-import sendgrid
+from sendgrid import SendGridAPIClient
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 ```
 
 # Table of Contents

@@ -34,6 +34,11 @@ class FooterSettings(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
@@ -46,6 +51,11 @@ class FooterSettings(object):
 
     @text.setter
     def text(self, value):
+        """The plain text content of your footer.
+
+        :param value: The plain text content of your footer.
+        :type value: string
+        """
         self._text = value
 
     @property
@@ -58,6 +68,11 @@ class FooterSettings(object):
 
     @html.setter
     def html(self, value):
+        """The HTML content of your footer.
+
+        :param value: The HTML content of your footer.
+        :type value: string
+        """
         self._html = value
 
     def get(self):

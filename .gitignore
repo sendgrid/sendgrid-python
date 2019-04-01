@@ -22,3 +22,5 @@ htmlcov
 temp.py
 .vscode
 live_test.py
+__pycache__
+example.pdf

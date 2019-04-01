@@ -16,7 +16,7 @@ class SendAt(object):
         :param send_at: Unix timestamp
         :type send_at: integer
         :param name: p is the Personalization object or Personalization object index
-        :type name: Personalization or integer, optional
+        :type name: Personalization, integer, optional
         """
         self._send_at = None
         self._personalization = None
@@ -36,14 +36,28 @@ class SendAt(object):
 
     @send_at.setter
     def send_at(self, value):
+        """A unix timestamp.
+
+        :param value: A unix timestamp.
+        :type value: integer
+        """
         self._send_at = value
 
     @property
     def personalization(self):
+        """The Personalization object or Personalization object index
+        
+        :rtype: Personalization, integer
+        """
         return self._personalization
 
     @personalization.setter
     def personalization(self, value):
+        """The Personalization object or Personalization object index
+        
+        :param value: The Personalization object or Personalization object index
+        :type value: Personalization, integer
+        """
         self._personalization = value
 
     def __str__(self):

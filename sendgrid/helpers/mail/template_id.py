@@ -1,5 +1,5 @@
 class TemplateId(object):
-    """The TemplateId of an Attachment."""
+    """The template ID of an Attachment object."""
 
     def __init__(self, template_id=None):
         """Create a TemplateId object
@@ -22,6 +22,11 @@ class TemplateId(object):
 
     @template_id.setter
     def template_id(self, value):
+        """The template id for the message
+
+        :param value:  The template id for the message
+        :type value: string
+        """
         self._template_id = value
 
     def get(self):

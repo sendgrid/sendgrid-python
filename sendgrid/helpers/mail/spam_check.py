@@ -35,20 +35,34 @@ class SpamCheck(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
     def threshold(self):
         """Threshold used to determine if your content qualifies as spam.
-
         On a scale from 1 to 10, with 10 being most strict, or most likely to
         be considered as spam.
+
         :rtype: int
         """
         return self._threshold
 
     @threshold.setter
     def threshold(self, value):
+        """Threshold used to determine if your content qualifies as spam.
+        On a scale from 1 to 10, with 10 being most strict, or most likely to
+        be considered as spam.
+
+        :param value: Threshold used to determine if your content qualifies as spam.
+        On a scale from 1 to 10, with 10 being most strict, or most likely to
+        be considered as spam.
+        :type value: int
+        """
         if isinstance(value, SpamThreshold):
             self._threshold = value
         else:
@@ -57,14 +71,21 @@ class SpamCheck(object):
     @property
     def post_to_url(self):
         """An Inbound Parse URL to send a copy of your email.
-
         If defined, a copy of your email and its spam report will be sent here.
+
         :rtype: string
         """
         return self._post_to_url
 
     @post_to_url.setter
     def post_to_url(self, value):
+        """An Inbound Parse URL to send a copy of your email.
+        If defined, a copy of your email and its spam report will be sent here.
+
+        :param value: An Inbound Parse URL to send a copy of your email.
+        If defined, a copy of your email and its spam report will be sent here.
+        :type value: string
+        """
         if isinstance(value, SpamUrl):
             self._post_to_url = value
         else:

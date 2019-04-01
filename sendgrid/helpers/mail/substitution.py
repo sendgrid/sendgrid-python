@@ -13,7 +13,7 @@ class Substitution(object):
         :param name: p is the Personalization object or Personalization object index
         :type name: Personalization or integer
         :param name: p is the Personalization object or Personalization object index
-        :type name: Personalization or integer, optional
+        :type name: Personalization, integer, optional
         """
         self._key = None
         self._value = None
@@ -28,26 +28,53 @@ class Substitution(object):
 
     @property
     def key(self):
+        """The substitution key.
+        
+        :rtype key: string
+        """
         return self._key
 
     @key.setter
     def key(self, value):
+        """The substitution key.
+        
+        :param key: The substitution key.
+        :type key: string
+        """
         self._key = value
 
     @property
     def value(self):
+        """The substitution value.
+        
+        :rtype value: string
+        """
         return self._value
 
     @value.setter
     def value(self, value):
+        """The substitution value.
+        
+        :param value: The substitution value.
+        :type value: string
+        """
         self._value = value
 
     @property
     def personalization(self):
+        """The Personalization object or Personalization object index
+        
+        :rtype: Personalization, integer
+        """
         return self._personalization
 
     @personalization.setter
     def personalization(self, value):
+        """The Personalization object or Personalization object index
+        
+        :param value: The Personalization object or Personalization object index
+        :type value: Personalization, integer
+        """
         self._personalization = value
 
     def get(self):

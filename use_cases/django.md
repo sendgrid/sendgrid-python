@@ -54,23 +54,24 @@ import os
 
 from django.http import HttpResponse
 
-import sendgrid
-from sendgrid.helpers.mail import *
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import (From, To, PlainTextContent, HtmlContent, Mail)
 
 
 def index(request):
-    sg = sendgrid.SendGridAPIClient(
-        apikey=os.environ.get('SENDGRID_API_KEY')
-    )
-    from_email = Email('test@example.com')
-    to_email = Email('test@example.com')
+    sendgrid_client = SendGridAPIClient(
+        api_key=os.environ.get('SENDGRID_API_KEY'))
+    from_email = From('test@example.com')
+    to_email = To('test@example.com')
     subject = 'Sending with SendGrid is Fun'
-    content = Content(
-        'text/plain',
+    plain_text_content = PlainTextContent(
         'and easy to do anywhere, even with Python'
     )
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
+    html_content = HtmlContent(
+        '<strong>and easy to do anywhere, even with Python</strong>'
+    )
+    message = Mail(from_email, to_email, subject, plain_text_content, html_content)
+    response = sendgrid_client.send(message=message)
 
     return HttpResponse('Email Sent!')
 ```

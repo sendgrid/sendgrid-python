@@ -1,5 +1,5 @@
 class UtmCampaign(object):
-    """The UtmCampaign of an Ganalytics."""
+    """The utm campaign of an Ganalytics object."""
 
     def __init__(self, utm_campaign=None):
         """Create a UtmCampaign object
@@ -23,6 +23,11 @@ class UtmCampaign(object):
 
     @utm_campaign.setter
     def utm_campaign(self, value):
+        """The name of the campaign
+
+        :param value: The name of the campaign
+        :type value: string
+        """
         self._utm_campaign = value
 
     def get(self):

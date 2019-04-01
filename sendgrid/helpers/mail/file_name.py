@@ -22,6 +22,11 @@ class FileName(object):
 
     @file_name.setter
     def file_name(self, value):
+        """The file name of the attachment.
+
+        :param value: The file name of the attachment.
+        :type value: string
+        """
         self._file_name = value
 
     def get(self):
