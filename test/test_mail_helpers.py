@@ -10,39 +10,54 @@ except ImportError:
     EmailMessage = message.Message
 
 from sendgrid.helpers.mail import (
-    Asm,
-    ApiKeyIncludedException,
-    Attachment,
-    BccSettings,
-    BypassListManagement,
-    Category,
-    ClickTracking,
-    Content,
-    CustomArg,
-    DynamicTemplateData,
-    Email,
-    FooterSettings,
-    From,
-    Ganalytics,
-    Header,
-    Mail,
-    MailSettings,
-    OpenTracking,
-    Personalization,
-    SandBoxMode,
-    Section,
-    SendGridException,
-    SpamCheck,
-    Subject,
-    SubscriptionTracking,
-    Substitution,
-    TrackingSettings,
-    To,
-    ValidateApiKey
+    Asm, ApiKeyIncludedException, Attachment, BccSettings,
+    BypassListManagement, Category, ClickTracking, Content, CustomArg,
+    DynamicTemplateData, Email, FooterSettings, From, Ganalytics, Header,
+    Mail, MailSettings, OpenTracking, Personalization, SandBoxMode, Section,
+    SendGridException, SpamCheck, Subject, SubscriptionTracking, Substitution,
+    TrackingSettings, To, ValidateApiKey
 )
 
 
 class UnitTests(unittest.TestCase):
+
+    def test_asm(self):
+        from sendgrid.helpers.mail import (GroupId, GroupsToDisplay)
+        asm1 = Asm(GroupId(1), GroupsToDisplay([1, 2, 3]))
+        asm2 = Asm(1, [1, 2, 3])
+        self.assertEqual(
+            asm1.group_id.get(), asm2.group_id.get())
+        self.assertEqual(
+            asm1.groups_to_display.get(), asm2.groups_to_display.get())
+    
+    def test_attachment(self):
+        from sendgrid.helpers.mail import (FileContent, FileType, FileName,
+                                           Disposition, ContentId)
+        a1 = Attachment(
+            FileContent('Base64EncodedString'),
+            FileName('example.pdf'),
+            FileType('application/pdf'),
+            Disposition('attachment'),
+            ContentId('123')
+        )
+        a2 = Attachment(
+            'Base64EncodedString',
+            'example.pdf',
+            'application/pdf',
+            'attachment',
+            '123'
+        )
+        self.assertEqual(a1.file_content.get(), a2.file_content.get())
+        self.assertEqual(a1.file_name.get(), a2.file_name.get()) 
+        self.assertEqual(a1.file_type.get(), a2.file_type.get())
+        self.assertEqual(a1.disposition.get(), a2.disposition.get())
+        self.assertEqual(a1.content_id.get(), a2.content_id.get())
+
+    def test_batch_id(self):
+        from sendgrid.helpers.mail import BatchId
+
+        b1 = BatchId('1')
+        self.assertEqual('1', b1.get())
 
     # Send a Single Email to a Single Recipient
     def test_single_email_to_a_single_recipient(self):

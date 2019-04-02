@@ -6,6 +6,7 @@
 **NEW:**
 
 -  Subscribe to email `notifications`_ for releases and breaking changes.
+-  Version 6.X release is a BREAKING CHANGE, please see the release notes for details.
 -  Quickly get started with `Docker`_.
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**

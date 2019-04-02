@@ -41,7 +41,8 @@ def unassigned(data, as_json=False):
         response = sg.client.ips.get(query_params=params)
         if response.status_code == 201:
            data = response.body
-           unused = unassinged(data) """
+           unused = unassigned(data)
+    """
 
     no_subusers = set()
 

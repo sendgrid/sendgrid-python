@@ -1,4 +1,5 @@
 import sendgrid
+from sendgrid.helpers.endpoints.ip.unassigned import unassigned
 from sendgrid.helpers.mail import *
 import os
 import datetime
@@ -859,7 +860,10 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.ips.get(
             query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
+        data = response.body
+        unused = unassigned(data)
+        self.assertEqual(type(unused), list)
+        self.assertEqual(response.status_code, 200)    
 
     def test_ips_assigned_get(self):
         headers = {'X-Mock': 200}
