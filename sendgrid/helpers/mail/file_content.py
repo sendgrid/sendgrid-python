@@ -8,7 +8,7 @@ class FileContent(object):
         :type file_content: string, optional
         """
         self._file_content = None
-        
+
         if file_content is not None:
             self.file_content = file_content
 

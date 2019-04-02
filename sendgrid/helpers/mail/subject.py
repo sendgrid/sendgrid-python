@@ -6,7 +6,8 @@ class Subject(object):
 
         :param subject: The subject for an email
         :type subject: string
-        :param name: p is the Personalization object or Personalization object index
+        :param name: p is the Personalization object or Personalization object
+                     index
         :type name: Personalization, integer, optional
         """
         self._subject = None
@@ -36,7 +37,7 @@ class Subject(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -44,8 +45,9 @@ class Subject(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value

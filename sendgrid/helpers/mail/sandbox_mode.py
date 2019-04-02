@@ -10,7 +10,7 @@ class SandBoxMode(object):
         :type enable: boolean, optional
         """
         self._enable = None
-        
+
         if enable is not None:
             self.enable = enable
 

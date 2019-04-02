@@ -1,14 +1,16 @@
 class DynamicTemplateData(object):
-    """To send a dynamic template, specify the template ID with the template_id parameter.
+    """To send a dynamic template, specify the template ID with the
+       template_id parameter.
     """
-    
+
     def __init__(self, dynamic_template_data=None, p=0):
         """Data for a transactional template.
-        Should be JSON-serializeable structure. 
+        Should be JSON-serializeable structure.
 
         :param dynamic_template_data: Data for a transactional template.
         :type dynamic_template_data: A JSON-serializeable structure
-        :param name: p is the Personalization object or Personalization object index
+        :param name: p is the Personalization object or Personalization object
+                     index
         :type name:  Personalization, integer, optional
         """
         self._dynamic_template_data = None
@@ -39,7 +41,7 @@ class DynamicTemplateData(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -47,8 +49,9 @@ class DynamicTemplateData(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value

@@ -18,7 +18,7 @@ class OpenTracking(object):
 
         if enable is not None:
             self.enable = enable
-        
+
         if substitution_tag is not None:
             self.substitution_tag = substitution_tag
 
@@ -55,9 +55,10 @@ class OpenTracking(object):
         body of your email at a location that you desire. This tag will be
         replaced by the open tracking pixel.
 
-        :param value: Allows you to specify a substitution tag that you can insert in the
-        body of your email at a location that you desire. This tag will be
-        replaced by the open tracking pixel.
+        :param value: Allows you to specify a substitution tag that you can
+                      insert in the body of your email at a location that you
+                      desire. This tag will be replaced by the open tracking
+                      pixel.
 
         :type value: string
         """

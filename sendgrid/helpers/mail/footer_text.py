@@ -8,7 +8,7 @@ class FooterText(object):
         :type footer_text: string, optional
         """
         self._footer_text = None
-        
+
         if footer_text is not None:
             self.footer_text = footer_text
 

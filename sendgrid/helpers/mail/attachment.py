@@ -4,10 +4,17 @@ from .file_name import FileName
 from .disposition import Disposition
 from .content_id import ContentId
 
+
 class Attachment(object):
     """An attachment to be included with an email."""
 
-    def __init__(self, file_content=None, file_name=None, file_type=None,  disposition=None, content_id=None):
+    def __init__(
+            self,
+            file_content=None,
+            file_name=None,
+            file_type=None,
+            disposition=None,
+            content_id=None):
         """Create an Attachment
 
         :param file_content: The Base64 encoded content of the attachment
@@ -16,17 +23,21 @@ class Attachment(object):
         :type file_name: FileName, string
         :param file_type: The MIME type of the content you are attaching
         :type file_type FileType, string, optional
-        :param disposition: The content-disposition of the attachment, specifying display style.
-                            Specifies how you would like the attachment to be displayed.
-                            - "inline" results in the attached file being displayed automatically
-                                within the message.
-                            - "attachment" results in the attached file requiring some action to
-                                display (e.g. opening or downloading the file).
-                            If unspecified, "attachment" is used. Must be one of the two choices.
+        :param disposition: The content-disposition of the attachment,
+                            specifying display style. Specifies how you
+                            would like the attachment to be displayed.
+                            - "inline" results in the attached file being
+                              displayed automatically within the message.
+                            - "attachment" results in the attached file
+                              requiring some action to display (e.g. opening
+                              or downloading the file).
+                            If unspecified, "attachment" is used. Must be one
+                            of the two choices.
         :type disposition: Disposition, string, optional
         :param content_id: The content id for the attachment.
-                           This is used when the Disposition is set to "inline" and the attachment
-                           is an image, allowing the file to be displayed within the email body.
+                           This is used when the Disposition is set to
+                           "inline" and the attachment is an image, allowing
+                           the file to be displayed within the email body.
         :type content_id: ContentId, string, optional
         """
         self._file_content = None
@@ -37,16 +48,16 @@ class Attachment(object):
 
         if file_content is not None:
             self.file_content = file_content
-        
+
         if file_type is not None:
             self.file_type = file_type
-        
+
         if file_name is not None:
             self.file_name = file_name
-        
+
         if disposition is not None:
             self.disposition = disposition
-        
+
         if content_id is not None:
             self.content_id = content_id
 
@@ -136,13 +147,16 @@ class Attachment(object):
             display (e.g. opening or downloading the file).
         If unspecified, "attachment" is used. Must be one of the two choices.
 
-        :param disposition: The content-disposition of the attachment, specifying display style.
-                            Specifies how you would like the attachment to be displayed.
-                            - "inline" results in the attached file being displayed automatically
-                                within the message.
-                            - "attachment" results in the attached file requiring some action to
-                                display (e.g. opening or downloading the file).
-                            If unspecified, "attachment" is used. Must be one of the two choices.
+        :param disposition: The content-disposition of the attachment,
+                            specifying display style. Specifies how you would
+                            like the attachment to be displayed.
+                            - "inline" results in the attached file being
+                              displayed automatically within the message.
+                            - "attachment" results in the attached file
+                              requiring some action to display (e.g. opening
+                              or downloading the file).
+                            If unspecified, "attachment" is used. Must be one
+                            of the two choices.
         :type disposition: Disposition, string, optional
         """
         if isinstance(value, Disposition):
@@ -169,8 +183,9 @@ class Attachment(object):
         is an image, allowing the file to be displayed within the email body.
 
         :param content_id: The content id for the attachment.
-                           This is used when the Disposition is set to "inline" and the attachment
-                           is an image, allowing the file to be displayed within the email body.
+                           This is used when the Disposition is set to "inline"
+                           and the attachment is an image, allowing the file to
+                           be displayed within the email body.
         :type content_id: ContentId, string, optional
         """
         if isinstance(value, ContentId):

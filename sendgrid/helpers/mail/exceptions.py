@@ -15,7 +15,7 @@ class ApiKeyIncludedException(SendGridException):
                  expression="Email body",
                  message="SendGrid API Key detected"):
         """Create an exception for when SendGrid API Key included in message text
-        
+
             :param expression: Input expression in which the error occurred
             :type expression: string
             :param message: Explanation of the error

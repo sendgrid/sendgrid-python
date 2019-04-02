@@ -39,7 +39,8 @@ class Content(object):
         """The MIME type of the content you are including in your email.
         For example, "text/plain" or "text/html".
 
-        :param value: The MIME type of the content you are including in your email.
+        :param value: The MIME type of the content you are including in your
+                      email.
         For example, "text/plain" or "text/html".
         :type value: string
         """

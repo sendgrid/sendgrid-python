@@ -18,7 +18,7 @@ class BccSettings(object):
 
         if enable is not None:
             self.enable = enable
-        
+
         if email is not None:
             self.email = email
 

@@ -1,6 +1,6 @@
 class UtmTerm(object):
     """The utm term of an Ganalytics object."""
- 
+
     def __init__(self, utm_term=None):
         """Create a UtmTerm object
 
@@ -9,7 +9,7 @@ class UtmTerm(object):
         :type utm_term: string, optional
         """
         self._utm_term = None
-        
+
         if utm_term is not None:
             self.utm_term = utm_term
 

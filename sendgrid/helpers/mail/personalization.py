@@ -104,7 +104,7 @@ class Personalization(object):
 
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
-        
+
         :rtype: string
         """
         return self._subject

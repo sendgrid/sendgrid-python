@@ -1,8 +1,10 @@
 class BatchId(object):
-    """This ID represents a batch of emails to be sent at the same time. Including a batch_id in your 
-       request allows you include this email in that batch, and also enables you to cancel or pause the 
-       delivery of that batch. For more information, 
-       see https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send."""
+    """This ID represents a batch of emails to be sent at the same time.
+       Including a batch_id in your request allows you include this email
+       in that batch, and also enables you to cancel or pause the delivery
+       of that batch. For more information, see
+       https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.
+    """
     def __init__(self, batch_id=None):
         """Create a batch ID.
 

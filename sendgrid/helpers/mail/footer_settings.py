@@ -17,10 +17,10 @@ class FooterSettings(object):
 
         if enable is not None:
             self.enable = enable
-        
+
         if text is not None:
             self.text = text
-        
+
         if html is not None:
             self.html = html
 

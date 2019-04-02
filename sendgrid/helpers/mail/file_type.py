@@ -8,7 +8,7 @@ class FileType(object):
         :type file_type: string, optional
         """
         self._file_type = None
-        
+
         if file_type is not None:
             self.file_type = file_type
 

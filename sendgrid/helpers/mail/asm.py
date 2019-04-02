@@ -1,6 +1,7 @@
 from .group_id import GroupId
 from .groups_to_display import GroupsToDisplay
 
+
 class Asm(object):
     """An object specifying unsubscribe behavior."""
 
@@ -52,8 +53,8 @@ class Asm(object):
 
     @groups_to_display.setter
     def groups_to_display(self, value):
-        """An array containing the unsubscribe groups that you would like to be displayed on the 
-        unsubscribe preferences page. Max of 25 groups.
+        """An array containing the unsubscribe groups that you would like to
+        be displayed on the unsubscribe preferences page. Max of 25 groups.
 
         :param groups_to_display: Unsubscribe groups to display
         :type groups_to_display: GroupsToDisplay, list(int), optional

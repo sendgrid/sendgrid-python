@@ -37,7 +37,8 @@ class Email(object):
         :type name: string, optional
         :param subject: Subject for this sender or recipient.
         :type subject: string, optional
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         self._name = None
@@ -56,10 +57,10 @@ class Email(object):
 
             if name is not None:
                 self.name = name
-            
+
         if substitutions is not None:
             self.substitutions = substitutions
-        
+
         if subject is not None:
             self.subject = subject
 
@@ -121,26 +122,29 @@ class Email(object):
 
     @property
     def substitutions(self):
-        """A list of Substitution objects. These substitutions will apply to the text and html 
-        content of  the body of your email, in addition to the subject and reply-to parameters. The 
-        total collective size of your substitutions may not exceed 10,000 bytes per personalization 
-        object.
-        
+        """A list of Substitution objects. These substitutions will apply to
+           the text and html content of  the body of your email, in addition
+           to the subject and reply-to parameters. The total collective size
+           of your substitutions may not exceed 10,000 bytes per
+           personalization object.
+
         :rtype: list(Substitution)
         """
         return self._substitutions
 
     @substitutions.setter
     def substitutions(self, value):
-        """A list of Substitution objects. These substitutions will apply to the text and html 
-        content of  the body of your email, in addition to the subject and reply-to parameters. The 
-        total collective size of your substitutions may not exceed 10,000 bytes per personalization 
+        """A list of Substitution objects. These substitutions will apply to
+        the text and html content of  the body of your email, in addition to
+        the subject and reply-to parameters. The total collective size of
+        your substitutions may not exceed 10,000 bytes per personalization
         object.
-        
-        :param value: A list of Substitution objects. These substitutions will apply to the text and html 
-        content of  the body of your email, in addition to the subject and reply-to parameters. The 
-        total collective size of your substitutions may not exceed 10,000 bytes per personalization 
-        object.
+
+        :param value: A list of Substitution objects. These substitutions will
+        apply to the text and html content of  the body of your email, in
+        addition to the subject and reply-to parameters. The total collective
+        size of your substitutions may not exceed 10,000 bytes per
+        personalization object.
         :type value: list(Substitution)
         """
         self._substitutions = value
@@ -165,7 +169,7 @@ class Email(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -173,16 +177,18 @@ class Email(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value
 
     def parse_email(self, email_info):
         """Allows passing emails as "Example Name <example@example.com>"
-        
-        :param email_info: Allows passing emails as "Example Name <example@example.com>"
+
+        :param email_info: Allows passing emails as
+                           "Example Name <example@example.com>"
         :type email_info: string
         """
         name, email = rfc822.parseaddr(email_info)
@@ -216,4 +222,3 @@ class Email(object):
         if self.email is not None:
             email["email"] = self.email
         return email
-

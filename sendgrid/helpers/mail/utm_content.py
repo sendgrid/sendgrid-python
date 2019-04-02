@@ -9,7 +9,7 @@ class UtmContent(object):
         :type utm_content: string, optional
         """
         self._utm_content = None
-        
+
         if utm_content is not None:
             self.utm_content = utm_content
 

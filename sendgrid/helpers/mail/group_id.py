@@ -8,7 +8,7 @@ class GroupId(object):
         :type group_id: integer, optional
         """
         self._group_id = None
-        
+
         if group_id is not None:
             self.group_id = group_id
 

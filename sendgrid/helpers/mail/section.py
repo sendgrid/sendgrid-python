@@ -3,7 +3,7 @@ class Section(object):
 
     def __init__(self, key=None, value=None):
         """Create a section with the given key and value.
-        
+
         :param key: section of code key
         :type key: string
         :param value: section of code value
@@ -20,7 +20,7 @@ class Section(object):
     @property
     def key(self):
         """A section of code's key.
-        
+
         :rtype key: string
         """
         return self._key
@@ -28,7 +28,7 @@ class Section(object):
     @key.setter
     def key(self, value):
         """A section of code's key.
-        
+
         :param key: section of code key
         :type key: string
         """
@@ -37,7 +37,7 @@ class Section(object):
     @property
     def value(self):
         """A section of code's value.
-    
+
         :rtype: string
         """
         return self._value
@@ -45,7 +45,7 @@ class Section(object):
     @value.setter
     def value(self, value):
         """A section of code's value.
-        
+
         :param value: A section of code's value.
         :type value: string
         """

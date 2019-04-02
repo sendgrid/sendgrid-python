@@ -2,24 +2,26 @@ class MailSettings(object):
     """A collection of mail settings that specify how to handle this email."""
 
     def __init__(self,
-                 bcc_settings = None,
-                 bypass_list_management = None,
-                 footer_settings = None,
-                 sandbox_mode = None,
-                 spam_check = None): 
+                 bcc_settings=None,
+                 bypass_list_management=None,
+                 footer_settings=None,
+                 sandbox_mode=None,
+                 spam_check=None):
         """Create a MailSettings object
 
         :param bcc_settings: The BCC Settings of this MailSettings
         :type bcc_settings: BCCSettings, optional
-        :param bypass_list_management: Whether this MailSettings bypasses list management
+        :param bypass_list_management: Whether this MailSettings bypasses list
+                                       management
         :type bypass_list_management: BypassListManagement, optional
-        :param footer_settings: The default footer specified by this MailSettings
+        :param footer_settings: The default footer specified by this
+                                MailSettings
         :type footer_settings: FooterSettings, optional
         :param sandbox_mode: Whether this MailSettings enables sandbox mode
         :type sandbox_mode: SandBoxMode, optional
-        :param spam_check: How this MailSettings requests email to be checked for spam
+        :param spam_check: How this MailSettings requests email to be checked
+                           for spam
         :type spam_check: SpamCheck, optional
-        
         """
         self._bcc_settings = None
         self._bypass_list_management = None
@@ -29,7 +31,7 @@ class MailSettings(object):
 
         if bcc_settings is not None:
             self.bcc_settings = bcc_settings
-        
+
         if bypass_list_management is not None:
             self.bypass_list_management = bypass_list_management
 
@@ -122,7 +124,8 @@ class MailSettings(object):
     def spam_check(self, value):
         """How this MailSettings requests email to be checked for spam.
 
-        :param value: How this MailSettings requests email to be checked for spam.
+        :param value: How this MailSettings requests email to be checked
+                      for spam.
         :type value: SpamCheck
         """
         self._spam_check = value

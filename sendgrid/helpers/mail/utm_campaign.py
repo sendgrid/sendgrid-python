@@ -9,7 +9,7 @@ class UtmCampaign(object):
         :type utm_campaign: string, optional
         """
         self._utm_campaign = None
-        
+
         if utm_campaign is not None:
             self.utm_campaign = utm_campaign
 

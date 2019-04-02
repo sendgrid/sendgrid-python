@@ -8,7 +8,7 @@ class TemplateId(object):
         :type template_id: string, optional
         """
         self._template_id = None
-        
+
         if template_id is not None:
             self.template_id = template_id
 

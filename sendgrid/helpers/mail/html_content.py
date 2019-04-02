@@ -53,7 +53,7 @@ class HtmlContent(Content):
         content = {}
         if self.mime_type is not None:
             content["type"] = self.mime_type
-        
+
         if self.content is not None:
             content["value"] = self.content
         return content

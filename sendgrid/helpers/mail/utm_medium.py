@@ -9,7 +9,7 @@ class UtmMedium(object):
         :type utm_medium: string, optional
         """
         self._utm_medium = None
-        
+
         if utm_medium is not None:
             self.utm_medium = utm_medium
 

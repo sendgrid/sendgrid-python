@@ -10,9 +10,8 @@ class Substitution(object):
         :type key: string, optional
         :param value: Value to substitute into email
         :type value: string, optional
-        :param name: p is the Personalization object or Personalization object index
-        :type name: Personalization or integer
-        :param name: p is the Personalization object or Personalization object index
+        :param name: p is the Personalization object or Personalization object
+                     index
         :type name: Personalization, integer, optional
         """
         self._key = None
@@ -29,7 +28,7 @@ class Substitution(object):
     @property
     def key(self):
         """The substitution key.
-        
+
         :rtype key: string
         """
         return self._key
@@ -37,7 +36,7 @@ class Substitution(object):
     @key.setter
     def key(self, value):
         """The substitution key.
-        
+
         :param key: The substitution key.
         :type key: string
         """
@@ -46,7 +45,7 @@ class Substitution(object):
     @property
     def value(self):
         """The substitution value.
-        
+
         :rtype value: string
         """
         return self._value
@@ -54,7 +53,7 @@ class Substitution(object):
     @value.setter
     def value(self, value):
         """The substitution value.
-        
+
         :param value: The substitution value.
         :type value: string
         """
@@ -63,7 +62,7 @@ class Substitution(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -71,8 +70,9 @@ class Substitution(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value

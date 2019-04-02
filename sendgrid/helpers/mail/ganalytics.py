@@ -78,7 +78,7 @@ class Ganalytics(object):
     def utm_source(self, value):
         """Name of the referrer source.
         e.g. Google, SomeDomain.com, or Marketing Email
-        
+
         :param value: Name of the referrer source.
         e.g. Google, SomeDomain.com, or Marketing Email
         :type value: string

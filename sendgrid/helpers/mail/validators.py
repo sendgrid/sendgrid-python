@@ -30,10 +30,12 @@ class ValidateApiKey(object):
     def validate_message_dict(self, request_body):
         """With the JSON dict that will be sent to SendGrid's API,
             check the content for SendGrid API keys - throw exception if found.
-        
-           :param request_body: The JSON dict that will be sent to SendGrid's API.
+
+           :param request_body: The JSON dict that will be sent to SendGrid's
+                                API.
            :type request_body: JSON serializable structure
-           :raise ApiKeyIncludedException: If any content in request_body matches regex
+           :raise ApiKeyIncludedException: If any content in request_body
+                                           matches regex
         """
 
         # Handle string in edge-case
@@ -58,7 +60,8 @@ class ValidateApiKey(object):
 
            :param message_string: message that will be sent
            :type message_string: string
-           :raises ApiKeyIncludedException: If message_string matches a regex string
+           :raises ApiKeyIncludedException: If message_string matches a regex
+                                            string
         """
         if isinstance(message_string, str):
             for regex in self.regexes:

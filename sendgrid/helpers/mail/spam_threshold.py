@@ -1,27 +1,27 @@
 class SpamThreshold(object):
-    """The threshold used to determine if your content qualifies as spam 
-       on a scale from 1 to 10, with 10 being most strict, or most likely 
+    """The threshold used to determine if your content qualifies as spam
+       on a scale from 1 to 10, with 10 being most strict, or most likely
        to be considered as spam."""
 
     def __init__(self, spam_threshold=None):
         """Create a SpamThreshold object
 
-        :param spam_threshold: The threshold used to determine if your content 
-                               qualifies as spam on a scale from 1 to 10, with 
-                               10 being most strict, or most likely to be 
+        :param spam_threshold: The threshold used to determine if your content
+                               qualifies as spam on a scale from 1 to 10, with
+                               10 being most strict, or most likely to be
                                considered as spam.
         :type spam_threshold: integer, optional
         """
         self._spam_threshold = None
-        
+
         if spam_threshold is not None:
             self.spam_threshold = spam_threshold
 
     @property
     def spam_threshold(self):
-        """The threshold used to determine if your content 
-           qualifies as spam on a scale from 1 to 10, with 
-           10 being most strict, or most likely to be 
+        """The threshold used to determine if your content
+           qualifies as spam on a scale from 1 to 10, with
+           10 being most strict, or most likely to be
            considered as spam.
 
         :rtype: integer
@@ -30,14 +30,14 @@ class SpamThreshold(object):
 
     @spam_threshold.setter
     def spam_threshold(self, value):
-        """The threshold used to determine if your content 
-           qualifies as spam on a scale from 1 to 10, with 
-           10 being most strict, or most likely to be 
+        """The threshold used to determine if your content
+           qualifies as spam on a scale from 1 to 10, with
+           10 being most strict, or most likely to be
            considered as spam.
 
-        :param value: The threshold used to determine if your content 
-        qualifies as spam on a scale from 1 to 10, with 
-        10 being most strict, or most likely to be 
+        :param value: The threshold used to determine if your content
+        qualifies as spam on a scale from 1 to 10, with
+        10 being most strict, or most likely to be
         considered as spam.
         :type value: integer
         """

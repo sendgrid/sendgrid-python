@@ -32,7 +32,7 @@ class Mail(object):
             is_multiple=False):
         """
         Creates the response body for a v3/mail/send API call
-        
+
         :param from_email: The email address of the sender
         :type from_email: From, tuple, optional
         :param subject: The subject of the email
@@ -84,7 +84,7 @@ class Mail(object):
 
     def _ensure_append(self, new_items, append_to, index=0):
         """Ensure an item is appended to a list or create a new empty list
-        
+
         :param new_items: the item(s) to append
         :type new_items: list(obj)
         :param append_to: the list on which to append the items
@@ -98,7 +98,7 @@ class Mail(object):
 
     def _ensure_insert(self, new_items, insert_to):
         """Ensure an item is inserted to a list or create a new empty list
-        
+
         :param new_items: the item(s) to insert
         :type new_items: list(obj)
         :param insert_to: the list on which to insert the items at index 0
@@ -110,36 +110,39 @@ class Mail(object):
 
     def _flatten_dicts(self, dicts):
         """Flatten a dict
-        
+
         :param dicts: Flatten a dict
         :type dicts: list(dict)
         """
+        d = dict()
         list_of_dicts = [d.get() for d in dicts or []]
         return {k: v for d in list_of_dicts for k, v in d.items()}
 
     def _get_or_none(self, from_obj):
         """Get the JSON representation of the object, else return None
-        
-        :param from_obj: Get the JSON representation of the object, 
+
+        :param from_obj: Get the JSON representation of the object,
         else return None
         :type from_obj: obj
         """
         return from_obj.get() if from_obj is not None else None
 
-    def _set_emails(self, emails, global_substitutions=None, is_multiple=False, p=0):
+    def _set_emails(
+            self, emails, global_substitutions=None, is_multiple=False, p=0):
         """Adds emails to the Personalization object
-        
+
         :param emails: An Email or list of Email objects
         :type emails: Email, list(Email)
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         # Send multiple emails to multiple recipients
-        if is_multiple == True:
+        if is_multiple is True:
             if isinstance(emails, list):
                 for email in emails:
                     personalization = Personalization()
@@ -157,7 +160,7 @@ class Mail(object):
                 else:
                     for p in self.personalizations:
                         p.add_substitution(global_substitutions)
-        else:  
+        else:
             try:
                 personalization = self._personalizations[p]
                 has_internal_personalization = True
@@ -177,21 +180,21 @@ class Mail(object):
                         personalization.add_substitution(substitution)
                 else:
                     personalization.add_substitution(global_substitutions)
-            
+
             if not has_internal_personalization:
                 self.add_personalization(personalization, index=p)
 
     @property
     def personalizations(self):
         """A list of one or more Personaliztion objects
-        
+
         :rtype: list(Personalization)
         """
         return self._personalizations
 
     def add_personalization(self, personalization, index=0):
         """Add a Personaliztion object
-        
+
         :param personalizations: Add a Personalization object
         :type personalizations: Personalization
         :param index: The index where to add the Personalization
@@ -203,18 +206,19 @@ class Mail(object):
     @property
     def to(self):
         pass
-    
+
     @to.setter
     def to(self, to_emails, global_substitutions=None, is_multiple=False, p=0):
         """Adds To objects to the Personalization object
-        
+
         :param to_emails: An To or list of To objects
         :type to_emails: To, list(To), str, tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         if isinstance(to_emails, list):
@@ -231,19 +235,21 @@ class Mail(object):
                 to_emails = To(to_emails[0], to_emails[1])
             self.add_to(to_emails, global_substitutions, is_multiple, p)
 
-    def add_to(self, to_email, global_substitutions=None, is_multiple=False, p=0):
+    def add_to(
+            self, to_email, global_substitutions=None, is_multiple=False, p=0):
         """Adds a To object to the Personalization object
-        
+
         :param to_emails: A To object
         :type to_emails: To, str, tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
-        
+
         if isinstance(to_email, list):
             for email in to_email:
                 if isinstance(email, str):
@@ -263,18 +269,19 @@ class Mail(object):
     @property
     def cc(self):
         pass
-    
+
     @cc.setter
     def cc(self, cc_emails, global_substitutions=None, is_multiple=False, p=0):
         """Adds Cc objects to the Personalization object
-        
+
         :param cc_emails: An Cc or list of Cc objects
         :type cc_emails: Cc, list(Cc), tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         if isinstance(cc_emails, list):
@@ -291,16 +298,18 @@ class Mail(object):
                 cc_emails = To(cc_emails[0], cc_emails[1])
             self.add_cc(cc_emails, global_substitutions, is_multiple, p)
 
-    def add_cc(self, cc_email, global_substitutions=None, is_multiple=False, p=0):
+    def add_cc(
+            self, cc_email, global_substitutions=None, is_multiple=False, p=0):
         """Adds a Cc object to the Personalization object
-        
+
         :param to_emails: An Cc object
         :type to_emails: Cc
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         if isinstance(cc_email, str):
@@ -309,25 +318,32 @@ class Mail(object):
             cc_email = Cc(cc_email[0], cc_email[1])
         if isinstance(cc_email, Email):
             p = cc_email.personalization
-        self._set_emails(cc_email, global_substitutions, is_multiple=is_multiple, p=p)
+        self._set_emails(
+            cc_email, global_substitutions, is_multiple=is_multiple, p=p)
 
     @property
     def bcc(self):
         pass
-    
+
     @bcc.setter
-    def bcc(self, bcc_emails, global_substitutions=None, is_multiple=False, p=0):
+    def bcc(
+            self,
+            bcc_emails,
+            global_substitutions=None,
+            is_multiple=False,
+            p=0):
         """Adds Bcc objects to the Personalization object
-        
+
         :param bcc_emails: An Bcc or list of Bcc objects
         :type bcc_emails: Bcc, list(Bcc), tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
-        """ 
+        """
         if isinstance(bcc_emails, list):
             for email in bcc_emails:
                 if isinstance(email, str):
@@ -342,16 +358,22 @@ class Mail(object):
                 bcc_emails = Bcc(bcc_emails[0], bcc_emails[1])
             self.add_bcc(bcc_emails, global_substitutions, is_multiple, p)
 
-    def add_bcc(self, bcc_email, global_substitutions=None, is_multiple=False, p=0):
+    def add_bcc(
+            self,
+            bcc_email,
+            global_substitutions=None,
+            is_multiple=False,
+            p=0):
         """Adds a Bcc object to the Personalization object
-        
+
         :param to_emails: An Bcc object
         :type to_emails: Bcc
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personilization for each recipient
         :type is_multiple: bool
-        :param p: p is the Personalization object or Personalization object index
+        :param p: p is the Personalization object or Personalization object
+                  index
         :type p: Personalization, integer, optional
         """
         if isinstance(bcc_email, str):
@@ -360,35 +382,42 @@ class Mail(object):
             bcc_email = Bcc(bcc_email[0], bcc_email[1])
         if isinstance(bcc_email, Email):
             p = bcc_email.personalization
-        self._set_emails(bcc_email, global_substitutions, is_multiple=is_multiple, p=p)
+        self._set_emails(
+            bcc_email,
+            global_substitutions,
+            is_multiple=is_multiple,
+            p=p)
 
     @property
     def subject(self):
         """The global Subject object
-        
+
         :rtype: Subject
         """
         return self._subject
-    
+
     @subject.setter
     def subject(self, value):
         """The subject of the email(s)
-        
+
         :param value: The subject of the email(s)
         :type value: Subject, string
         """
         if isinstance(value, Subject):
             if value.personalization is not None:
                 try:
-                    personalization = self._personalizations[value.personalization]
+                    personalization = \
+                        self._personalizations[value.personalization]
                     has_internal_personalization = True
                 except IndexError:
                     personalization = Personalization()
                     has_internal_personalization = False
                 personalization.subject = value.subject
-                
+
                 if not has_internal_personalization:
-                    self.add_personalization(personalization, index=value.personalization)
+                    self.add_personalization(
+                        personalization,
+                        index=value.personalization)
             else:
                 self._subject = value
         else:
@@ -397,7 +426,7 @@ class Mail(object):
     @property
     def headers(self):
         """A list of global Header objects
-        
+
         :rtype: list(Header)
         """
         return self._headers
@@ -427,7 +456,8 @@ class Mail(object):
         """
         if header.personalization is not None:
             try:
-                personalization = self._personalizations[header.personalization]
+                personalization = \
+                    self._personalizations[header.personalization]
                 has_internal_personalization = True
             except IndexError:
                 personalization = Personalization()
@@ -437,13 +467,16 @@ class Mail(object):
                 personalization.add_header(Header(k, v))
             else:
                 personalization.add_header(header)
-            
+
             if not has_internal_personalization:
-                self.add_personalization(personalization, index=header.personalization)
-        else:    
+                self.add_personalization(
+                    personalization,
+                    index=header.personalization)
+        else:
             if isinstance(header, dict):
                 (k, v) = list(header.items())[0]
-                self._headers = self._ensure_append(Header(k, v), self._headers)
+                self._headers = self._ensure_append(
+                                    Header(k, v), self._headers)
             else:
                 self._headers = self._ensure_append(header, self._headers)
 
@@ -472,15 +505,17 @@ class Mail(object):
         """
         if substitution.personalization:
             try:
-                personalization = self._personalizations[substitution.personalization]
+                personalization = \
+                    self._personalizations[substitution.personalization]
                 has_internal_personalization = True
             except IndexError:
                 personalization = Personalization()
                 has_internal_personalization = False
             personalization.add_substitution(substitution)
-            
+
             if not has_internal_personalization:
-                self.add_personalization(personalization, index=substitution.personalization)
+                self.add_personalization(
+                    personalization, index=substitution.personalization)
         else:
             if isinstance(substitution, list):
                 for s in substitution:
@@ -493,7 +528,7 @@ class Mail(object):
     @property
     def custom_args(self):
         """A list of global CustomArg objects
-        
+
         :rtype: list(CustomArg)
         """
         return self._custom_args
@@ -506,7 +541,8 @@ class Mail(object):
     def custom_arg(self, custom_arg):
         """Add custom args to the email
 
-        :param value: A list of CustomArg objects or a dict of custom arg key/values
+        :param value: A list of CustomArg objects or a dict of custom arg
+                      key/values
         :type value: CustomArg, list(CustomArg), dict
         """
         if isinstance(custom_arg, list):
@@ -523,7 +559,8 @@ class Mail(object):
         """
         if custom_arg.personalization is not None:
             try:
-                personalization = self._personalizations[custom_arg.personalization]
+                personalization = \
+                    self._personalizations[custom_arg.personalization]
                 has_internal_personalization = True
             except IndexError:
                 personalization = Personalization()
@@ -533,45 +570,50 @@ class Mail(object):
                 personalization.add_custom_arg(CustomArg(k, v))
             else:
                 personalization.add_custom_arg(custom_arg)
-            
+
             if not has_internal_personalization:
-                self.add_personalization(personalization, index=custom_arg.personalization)
-        else:    
+                self.add_personalization(
+                    personalization, index=custom_arg.personalization)
+        else:
             if isinstance(custom_arg, dict):
                 (k, v) = list(custom_arg.items())[0]
-                self._custom_args = self._ensure_append(CustomArg(k, v), self._custom_args)
+                self._custom_args = self._ensure_append(
+                    CustomArg(k, v), self._custom_args)
             else:
-                self._custom_args = self._ensure_append(custom_arg, self._custom_args)
+                self._custom_args = self._ensure_append(
+                    custom_arg, self._custom_args)
 
     @property
     def send_at(self):
         """The global SendAt object
-        
+
         :rtype: SendAt
         """
         return self._send_at
-    
+
     @send_at.setter
     def send_at(self, value):
-        """A unix timestamp specifying when your email should 
+        """A unix timestamp specifying when your email should
         be delivered.
-        
-        :param value: A unix timestamp specifying when your email should 
+
+        :param value: A unix timestamp specifying when your email should
         be delivered.
         :type value: SendAt, int
         """
         if isinstance(value, SendAt):
             if value.personalization is not None:
                 try:
-                    personalization = self._personalizations[value.personalization]
+                    personalization = \
+                        self._personalizations[value.personalization]
                     has_internal_personalization = True
                 except IndexError:
                     personalization = Personalization()
                     has_internal_personalization = False
                 personalization.send_at = value.send_at
-                
+
                 if not has_internal_personalization:
-                    self.add_personalization(personalization, index=value.personalization)
+                    self.add_personalization(
+                        personalization, index=value.personalization)
             else:
                 self._send_at = value
         else:
@@ -580,11 +622,11 @@ class Mail(object):
     @property
     def dynamic_template_data(self):
         pass
-    
+
     @dynamic_template_data.setter
     def dynamic_template_data(self, value):
         """Data for a transactional template
-        
+
         :param value: Data for a transactional template
         :type value: DynamicTemplateData, a JSON-serializeable structure
         """
@@ -597,22 +639,23 @@ class Mail(object):
             personalization = Personalization()
             has_internal_personalization = False
         personalization.dynamic_template_data = value.dynamic_template_data
-        
+
         if not has_internal_personalization:
-            self.add_personalization(personalization, index=value.personalization)
+            self.add_personalization(
+                personalization, index=value.personalization)
 
     @property
     def from_email(self):
         """The email address of the sender
-        
+
         :rtype: From
         """
         return self._from_email
-    
+
     @from_email.setter
     def from_email(self, value):
         """The email address of the sender
-        
+
         :param value: The email address of the sender
         :type value: From, str, tuple
         """
@@ -625,15 +668,15 @@ class Mail(object):
     @property
     def reply_to(self):
         """The reply to email address
-        
+
         :rtype: ReplyTo
         """
         return self._reply_to
-    
+
     @reply_to.setter
     def reply_to(self, value):
         """The reply to email address
-        
+
         :param value: The reply to email address
         :type value: ReplyTo, str, tuple
         """
@@ -646,7 +689,7 @@ class Mail(object):
     @property
     def contents(self):
         """The contents of the email
-        
+
         :rtype: list(Content)
         """
         return self._contents
@@ -654,11 +697,11 @@ class Mail(object):
     @property
     def content(self):
         pass
-    
+
     @content.setter
     def content(self, contents):
         """The content(s) of the email
-        
+
         :param contents: The content(s) of the email
         :type contents: Content, list(Content)
         """
@@ -670,7 +713,7 @@ class Mail(object):
 
     def add_content(self, content, mime_type=None):
         """Add content to the email
-        
+
         :param contents: Content to be added to the email
         :type contents: Content
         :param mime_type: Override the mime type
@@ -686,24 +729,25 @@ class Mail(object):
                 index = len(self._contents)
             else:
                 index = 0
-            self._contents = self._ensure_append(content, self._contents, index=index)
+            self._contents = self._ensure_append(
+                content, self._contents, index=index)
 
     @property
     def attachments(self):
         """The attachments to this email
-        
+
         :rtype: list(Attachment)
         """
         return self._attachments
-    
+
     @property
     def attachment(self):
         pass
-    
+
     @attachment.setter
     def attachment(self, attachment):
         """Add attachment(s) to this email
-        
+
         :param attachment: Add attachment(s) to this email
         :type attachment: Attachment, list(Attachment)
         """
@@ -715,7 +759,7 @@ class Mail(object):
 
     def add_attachment(self, attachment):
         """Add an attachment to this email
-        
+
         :param attachment: Add an attachment to this email
         :type attachment: Attachment
         """
@@ -724,15 +768,15 @@ class Mail(object):
     @property
     def template_id(self):
         """The transactional template id for this email
-        
+
         :rtype: TemplateId
         """
         return self._template_id
-    
+
     @template_id.setter
     def template_id(self, value):
         """The transactional template id for this email
-        
+
         :param value: The transactional template id for this email
         :type value: TemplateId
         """
@@ -744,7 +788,7 @@ class Mail(object):
     @property
     def sections(self):
         """The block sections of code to be used as substitutions
-        
+
         :rtype: Section
         """
         return self._sections
@@ -752,22 +796,22 @@ class Mail(object):
     @property
     def section(self):
         pass
-    
+
     @section.setter
     def section(self, section):
         """The block sections of code to be used as substitutions
-        
+
         :rtype: Section, list(Section)
         """
         if isinstance(section, list):
             for h in section:
                 self.add_section(h)
         else:
-            self.add_section(section)        
+            self.add_section(section)
 
     def add_section(self, section):
         """A block section of code to be used as substitutions
-        
+
         :param section: A block section of code to be used as substitutions
         :type section: Section
         """
@@ -776,7 +820,7 @@ class Mail(object):
     @property
     def categories(self):
         """The categories assigned to this message
-        
+
         :rtype: list(Category)
         """
         return self._categories
@@ -784,13 +828,13 @@ class Mail(object):
     @property
     def category(self):
         pass
-    
+
     @category.setter
-    def category(self, categories):   
+    def category(self, categories):
         """Add categories assigned to this message
-        
+
         :rtype: list(Category)
-        """  
+        """
         if isinstance(categories, list):
             for c in categories:
                 self.add_category(c)
@@ -799,23 +843,23 @@ class Mail(object):
 
     def add_category(self, category):
         """Add a category assigned to this message
-        
+
         :rtype: Category
-        """  
+        """
         self._categories = self._ensure_append(category, self._categories)
 
     @property
     def batch_id(self):
         """The batch id for this email
-        
+
         :rtype: BatchId
         """
         return self._batch_id
-    
+
     @batch_id.setter
     def batch_id(self, value):
         """The batch id for this email
-        
+
         :param value: The batch id for this email
         :type value: BatchId
         """
@@ -824,15 +868,15 @@ class Mail(object):
     @property
     def asm(self):
         """An object specifying unsubscribe behavior.
-        
+
         :rtype: Asm
         """
         return self._asm
-    
+
     @asm.setter
     def asm(self, value):
         """An object specifying unsubscribe behavior.
-        
+
         :param value: An object specifying unsubscribe behavior.
         :type value: Asm
         """
@@ -841,15 +885,15 @@ class Mail(object):
     @property
     def ip_pool_name(self):
         """The IP Pool that you would like to send this email from
-        
+
         :rtype: IpPoolName
         """
         return self._ip_pool_name
-    
+
     @ip_pool_name.setter
     def ip_pool_name(self, value):
         """The IP Pool that you would like to send this email from
-        
+
         :paran value: The IP Pool that you would like to send this email from
         :type value: IpPoolName
         """
@@ -858,15 +902,15 @@ class Mail(object):
     @property
     def mail_settings(self):
         """The mail settings for this email
-        
+
         :rtype: MailSettings
         """
         return self._mail_settings
-    
+
     @mail_settings.setter
     def mail_settings(self, value):
         """The mail settings for this email
-        
+
         :param value: The mail settings for this email
         :type value: MailSettings
         """
@@ -875,15 +919,15 @@ class Mail(object):
     @property
     def tracking_settings(self):
         """The tracking settings for this email
-        
+
         :rtype: TrackingSettings
         """
         return self._tracking_settings
-    
+
     @tracking_settings.setter
     def tracking_settings(self, value):
         """The tracking settings for this email
-        
+
         :param value: The tracking settings for this email
         :type value: TrackingSettings
         """

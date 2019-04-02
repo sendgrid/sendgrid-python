@@ -1,21 +1,22 @@
 class SendAt(object):
-    """A unix timestamp allowing you to specify when you want your 
-    email to be delivered. This may be overridden by the 
-    personalizations[x].send_at parameter. You can't schedule more 
-    than 72 hours in advance. If you have the flexibility, it's 
-    better to schedule mail for off-peak times. Most emails are 
-    scheduled and sent at the top of the hour or half hour. 
-    Scheduling email to avoid those times (for example, scheduling 
-    at 10:53) can result in lower deferral rates because it won't 
-    be going through our servers at the same times as everyone else's 
+    """A unix timestamp allowing you to specify when you want your
+    email to be delivered. This may be overridden by the
+    personalizations[x].send_at parameter. You can't schedule more
+    than 72 hours in advance. If you have the flexibility, it's
+    better to schedule mail for off-peak times. Most emails are
+    scheduled and sent at the top of the hour or half hour.
+    Scheduling email to avoid those times (for example, scheduling
+    at 10:53) can result in lower deferral rates because it won't
+    be going through our servers at the same times as everyone else's
     mail."""
     def __init__(self, send_at=None, p=None):
-        """Create a unix timestamp specifying when your email should 
+        """Create a unix timestamp specifying when your email should
         be delivered.
 
         :param send_at: Unix timestamp
         :type send_at: integer
-        :param name: p is the Personalization object or Personalization object index
+        :param name: p is the Personalization object or Personalization object
+                     index
         :type name: Personalization, integer, optional
         """
         self._send_at = None
@@ -46,7 +47,7 @@ class SendAt(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -54,8 +55,9 @@ class SendAt(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value

@@ -1,6 +1,7 @@
 from .spam_threshold import SpamThreshold
 from .spam_url import SpamUrl
 
+
 class SpamCheck(object):
     """This allows you to test the content of your email for spam."""
 
@@ -58,9 +59,10 @@ class SpamCheck(object):
         On a scale from 1 to 10, with 10 being most strict, or most likely to
         be considered as spam.
 
-        :param value: Threshold used to determine if your content qualifies as spam.
-        On a scale from 1 to 10, with 10 being most strict, or most likely to
-        be considered as spam.
+        :param value: Threshold used to determine if your content qualifies as
+                      spam.
+                      On a scale from 1 to 10, with 10 being most strict, or
+                      most likely to be considered as spam.
         :type value: int
         """
         if isinstance(value, SpamThreshold):

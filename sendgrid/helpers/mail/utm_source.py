@@ -4,19 +4,19 @@ class UtmSource(object):
     def __init__(self, utm_source=None):
         """Create a UtmSource object
 
-        :param utm_source: Name of the referrer source. 
+        :param utm_source: Name of the referrer source.
             (e.g. Google, SomeDomain.com, or Marketing Email)
         :type utm_source: string, optional
         """
         self._utm_source = None
-        
+
         if utm_source is not None:
             self.utm_source = utm_source
 
     @property
     def utm_source(self):
-        """Name of the referrer source. 
-            (e.g. Google, SomeDomain.com, or Marketing Email)
+        """Name of the referrer source. (e.g. Google, SomeDomain.com, or
+           Marketing Email)
 
         :rtype: string
         """
@@ -24,10 +24,10 @@ class UtmSource(object):
 
     @utm_source.setter
     def utm_source(self, value):
-        """Name of the referrer source. 
-           (e.g. Google, SomeDomain.com, or Marketing Email)
+        """Name of the referrer source. (e.g. Google, SomeDomain.com, or
+           Marketing Email)
 
-        :param value: Name of the referrer source. 
+        :param value: Name of the referrer source.
         (e.g. Google, SomeDomain.com, or Marketing Email)
         :type value: string
         """

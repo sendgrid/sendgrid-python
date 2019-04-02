@@ -9,18 +9,19 @@ class CustomArg(object):
 
     def __init__(self, key=None, value=None, p=None):
         """Create a CustomArg with the given key and value.
-            
+
             :param key: Key for this CustomArg
             :type key: string, optional
             :param value: Value of this CustomArg
             :type value: string, optional
-            :param p: p is the Personalization object or Personalization object index
+            :param p: p is the Personalization object or Personalization
+                      object index
             :type p: Personalization, integer, optional
         """
         self._key = None
         self._value = None
         self._personalization = None
-        
+
         if key is not None:
             self.key = key
         if value is not None:
@@ -48,7 +49,7 @@ class CustomArg(object):
     @property
     def value(self):
         """Value of this CustomArg.
-        
+
         :rtype: string
         """
         return self._value
@@ -56,7 +57,7 @@ class CustomArg(object):
     @value.setter
     def value(self, value):
         """Value of this CustomArg.
-        
+
         :param value: Value of this CustomArg.
         :type value: string
         """
@@ -65,7 +66,7 @@ class CustomArg(object):
     @property
     def personalization(self):
         """The Personalization object or Personalization object index
-        
+
         :rtype: Personalization, integer
         """
         return self._personalization
@@ -73,8 +74,9 @@ class CustomArg(object):
     @personalization.setter
     def personalization(self, value):
         """The Personalization object or Personalization object index
-        
-        :param value: The Personalization object or Personalization object index
+
+        :param value: The Personalization object or Personalization object
+                      index
         :type value: Personalization, integer
         """
         self._personalization = value

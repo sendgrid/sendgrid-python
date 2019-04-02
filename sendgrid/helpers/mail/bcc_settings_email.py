@@ -4,11 +4,12 @@ class BccSettingsEmail(object):
     def __init__(self, bcc_settings_email=None):
         """Create a BccSettingsEmail object
 
-        :param bcc_settings_email: The email address that you would like to receive the BCC
+        :param bcc_settings_email: The email address that you would like to
+                                   receive the BCC
         :type bcc_settings_email: string, optional
         """
         self._bcc_settings_email = None
-        
+
         if bcc_settings_email is not None:
             self.bcc_settings_email = bcc_settings_email
 

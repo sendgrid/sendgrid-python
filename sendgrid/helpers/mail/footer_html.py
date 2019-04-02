@@ -8,7 +8,7 @@ class FooterHtml(object):
         :type footer_html: string, optional
         """
         self._footer_html = None
-        
+
         if footer_html is not None:
             self.footer_html = footer_html
 
