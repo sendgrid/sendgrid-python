@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 
 def getRequires():
-    deps = ['python_http_client>=3.0','PyYAML>=5.1', 'six>=1.12.0', 'Werkzeug>=0.15.2']
+    deps = ['python_http_client>=3.0']
     return deps
 
 
@@ -22,7 +22,7 @@ setup(
     author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
-    packages=find_packages(exclude=["temp*.py", "test"]),
+    packages=find_packages(exclude=["temp*.py", "test", "inbound"]),
     include_package_data=True,
     license='MIT',
     description='SendGrid library for Python',
