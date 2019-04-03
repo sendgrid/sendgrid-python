@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 
 def getRequires():
-    deps = ['python_http_client>=3.0']
+    deps = ['python_http_client>=3.0','PyYAML>=5.1', 'six>=1.12.0', 'Werkzeug>=0.15.2']
     return deps
 
 
