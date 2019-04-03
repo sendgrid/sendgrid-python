@@ -21,11 +21,11 @@ All of our examples assume you are using [environment variables](https://github.
 
 If you choose to add your SendGrid API key directly (not recommended):
 
-`apikey=os.environ.get('SENDGRID_API_KEY')`
+`api_key=os.environ.get('SENDGRID_API_KEY')`
 
 becomes
 
-`apikey='SENDGRID_API_KEY'`
+`api_key='SENDGRID_API_KEY'`
 
 In the first case, SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual SendGrid API Key.
 
@@ -38,9 +38,9 @@ To read the error message returned by SendGrid's API in Python 2.X:
 import urllib2
 
 try:
-  response = sg.client.mail.send.post(request_body=mail.get())
+  response = sendgrid_client.send(request_body=mail.get())
 except urllib2.HTTPError as e:
-    print e.read()
+    print(e.read())
 ```
 
 To read the error message returned by SendGrid's API in Python 3.X:
@@ -48,7 +48,7 @@ To read the error message returned by SendGrid's API in Python 3.X:
 ```python
 import urllib
 try:
-  response = sg.client.mail.send.post(request_body=mail.get())
+  response = sendgrid_client.send(request_body=mail.get())
 except urllib.error.HTTPError as e:
     print(e.read())
 ```
@@ -77,7 +77,7 @@ Click the "Clone or download" green button in [GitHub](https://github.com/sendgr
 <a name="testing"></a>
 ## Testing v3 /mail/send Calls Directly
 
-[Here](https://sendgrid.com/docs/for-developers/sending-email/curl-examples/) are some cURL examples for common use cases.
+[Here](https://sendgrid.com/docs/for-developers/sending-email/curl-examples) are some cURL examples for common use cases.
 
 <a name="package-manager"></a>
 ## Using the Package Manager
@@ -95,7 +95,7 @@ If you are using a [requirements file](https://pip.readthedocs.io/en/1.1/require
 <a name="versions"></a>
 ## Versioning Convention
 
-We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with in your code and never auto-update to the latest version. Especially when there is a MAJOR point release since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
+We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
 
 <a name="request-body"></a>
 ## Viewing the Request Body
@@ -105,10 +105,10 @@ When debugging or testing, it may be useful to examine the raw request body to c
 You can do this right before you call `response = sg.client.mail.send.post(request_body=mail.get())` like so:
 
 ```python
-print mail.get()
+ print(json.dumps(message.get(), sort_keys=True, indent=4))
 ```
 
 <a name="error-handling"></a>
 # Error Handling
 
-Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md#use-cases) for examples of error handling.
+Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md) for examples of error handling.

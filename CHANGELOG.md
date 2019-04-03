@@ -1,23 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [5.6.0] - 2018-08-20 ##
-### Added
-- [PR #593](https://github.com/sendgrid/sendgrid-python/pull/593): Adds support for dynamic template data. Big thanks to [Slam](https://github.com/3lnc) for the PR! Also, big thanks to [Wojciech Bartosiak](https://github.com/wojtek-fliposports) for [PR #597](https://github.com/sendgrid/sendgrid-python/pull/597)!
+## [6.0.0] - TBD
 
-## [5.5.0] - 2018-08-16 ##
-### Added
-- [PR #588](https://github.com/sendgrid/sendgrid-python/pull/588): Updates the Readme to include environment variable setup in windows. Big thanks to [Bhargav Chandaka](https://github.com/bchandaka) for the PR!
-- [PR #599](https://github.com/sendgrid/sendgrid-python/pull/599): Updates the Readme to include additional API Key instruction. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
-- [PR #600](https://github.com/sendgrid/sendgrid-python/pull/600): Add CodeTriage Badge. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
-- [PR #601](https://github.com/sendgrid/sendgrid-python/pull/601): Readability improvements to CONTRIBUTING.md. Big thanks to [Anshul Singhal](https://github.com/af4ro) for the PR!
-- [PR #604](https://github.com/sendgrid/sendgrid-python/pull/604): Readability improvements to CONTRIBUTING.md. Big thanks to [agnesjang98](https://github.com/agnesjang98) for the PR!
-
-### Fixed
-- [PR #595](https://github.com/sendgrid/sendgrid-python/pull/595): Change type of category in Mail.add_category from string to Category. Big thanks to [Phawin Khongkhasawan](https://github.com/lifez) for the PR!
-- [PR #596](https://github.com/sendgrid/sendgrid-python/pull/596): Fix Docker build. Big thanks to [Phawin Khongkhasawan](https://github.com/lifez) for the PR!
-- [PR #598](https://github.com/sendgrid/sendgrid-python/pull/598): Fix python3 print example in TROUBLESHOOTING.md. Big thanks to [Ryan Jarvis](https://github.com/Cabalist) for the PR!
-- [PR #603](https://github.com/sendgrid/sendgrid-python/pull/603): Update TROUBLESHOOTING.md to link to correct use cases page. Big thanks to [James Purpura](https://github.com/jpurpura) for the PR!
+- https://github.com/sendgrid/sendgrid-python/pull/486
+- https://github.com/sendgrid/sendgrid-python/pull/488
+- https://github.com/sendgrid/sendgrid-python/pull/493 
+- https://github.com/sendgrid/sendgrid-python/pull/496
+- https://github.com/sendgrid/sendgrid-python/pull/509 
+- https://github.com/sendgrid/sendgrid-python/pull/510
+- https://github.com/sendgrid/sendgrid-python/pull/512
+- https://github.com/sendgrid/sendgrid-python/pull/524
 
 ## [5.4.1] - 2018-06-26 ##
 ### Fixed

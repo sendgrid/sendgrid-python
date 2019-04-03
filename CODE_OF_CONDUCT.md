@@ -1,7 +1,7 @@
 # SendGrid Community Code of Conduct
-
+ 
  The SendGrid open source community is made up of members from around the globe with a diverse set of skills, personalities, and experiences. It is through these differences that our community experiences successes and continued growth. When you're working with members of the community, we encourage you to follow these guidelines, which help steer our interactions and strive to maintain a positive, successful and growing community.
-
+ 
  ### Be Open
  Members of the community are open to collaboration, whether it's on pull requests, code reviews, approvals, issues or otherwise. We're receptive to constructive comments and criticism, as the experiences and skill sets of all members contribute to the whole of our efforts. We're accepting of all who wish to take part in our activities, fostering an environment where anyone can participate, and everyone can make a difference.
 
@@ -18,7 +18,7 @@
 
  ### Interpretation
  This Code is not exhaustive or complete. It is not a rulebook; it serves to distill our common understanding of a collaborative, shared environment and goals. We expect it to be followed in spirit as much as in the letter.  When in doubt, try to abide by [SendGrid’s cultural values](https://sendgrid.com/blog/employee-engagement-the-4h-way) defined by our “4H’s”: Happy, Hungry, Humble and Honest.
-
+ 
  ### Enforcement
  Most members of the SendGrid community always comply with this Code, not because of the existence of this Code, but because they have long experience participating in open source communities where the conduct described above is normal and expected. However, failure to observe this Code may be grounds for suspension, reporting the user for abuse or changing permissions for outside contributors.
 
@@ -31,12 +31,11 @@
 
  ## Submission to SendGrid Repositories
  Finally, just a reminder, changes to the SendGrid repositories will only be accepted upon completion of the [SendGrid Contributor Agreement](https://cla.sendgrid.com).
-
+ 
  ## Attribution
 
  SendGrid thanks the following, on which it draws for content and inspiration:
  
-  [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/)<br>
-  [Open Source Initiative General Code of Conduct](https://opensource.org/codeofconduct) <br> 
-  [Apache Code of Conduct](https://www.apache.org/foundation/policies/conduct.html) <br>
-
+* [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct)
+* [Open Source Initiative General Code of Conduct](https://opensource.org/codeofconduct)
+* [Apache Code of Conduct](https://www.apache.org/foundation/policies/conduct.html)

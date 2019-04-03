@@ -1,16 +1,9 @@
 import sendgrid
+from sendgrid.helpers.endpoints.ip.unassigned import unassigned
 from sendgrid.helpers.mail import *
-from sendgrid.version import __version__
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 import os
-import subprocess
-import sys
-import time
 import datetime
+import unittest
 
 host = "http://localhost:4010"
 
@@ -20,79 +13,26 @@ class UnitTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.host = host
-        cls.path = '{0}{1}'.format(
+        cls.path = '{}{}'.format(
             os.path.abspath(
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
         cls.devnull = open(os.devnull, 'w')
         prism_cmd = None
 
-        # try:
-        #     # check for prism in the PATH
-        #     if subprocess.call('prism version'.split(), stdout=cls.devnull) == 0:
-        #         prism_cmd = 'prism'
-        # except OSError:
-        #     prism_cmd = None
-
-        # if not prism_cmd:
-        #     # check for known prism locations
-        #     for path in ('/usr/local/bin/prism', os.path.expanduser(os.path.join('~', 'bin', 'prism')),
-        #                  os.path.abspath(os.path.join(os.getcwd(), 'prism', 'bin', 'prism'))):
-        #         prism_cmd = path if os.path.isfile(path) else None
-        #         if prism_cmd:
-        #             break
-
-        # if not prism_cmd:
-        #     if sys.platform != 'win32':
-        #         # try to install with prism.sh
-        #         try:
-        #             print("Warning: no prism detected, I will try to install it locally")
-        #             prism_sh = os.path.abspath(os.path.join(cls.path, 'test', 'prism.sh'))
-        #             if subprocess.call(prism_sh) == 0:
-        #                 prism_cmd = os.path.expanduser(os.path.join('~', 'bin', 'prism'))
-        #             else:
-        #                 raise RuntimeError()
-        #         except Exception as e:
-        #             print(
-        #                 "Error installing the prism binary, you can try "
-        #                 "downloading directly here "
-        #                 "(https://github.com/stoplightio/prism/releases) "
-        #                 "and place in your $PATH", e)
-        #             sys.exit()
-        #     else:
-        #         print("Please download the Windows binary "
-        #               "(https://github.com/stoplightio/prism/releases) "
-        #               "and place it in your %PATH% ")
-        #         sys.exit()
-
-        # print("Activating Prism (~20 seconds)")
-        # cls.p = subprocess.Popen([
-        #     prism_cmd, "run", "-s",
-        #     "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/"
-        #     "oai_stoplight.json"], stdout=cls.devnull, stderr=subprocess.STDOUT)
-        # time.sleep(15)
-        # print("Prism Started")
-
-    def test_apikey_init(self):
-        self.assertEqual(self.sg.apikey, os.environ.get('SENDGRID_API_KEY'))
+    def test_api_key_init(self):
+        self.assertEqual(self.sg.api_key, os.environ.get('SENDGRID_API_KEY'))
         # Support the previous naming convention for API keys
-        self.assertEqual(self.sg.api_key, self.sg.apikey)
-        my_sendgrid = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(my_sendgrid.apikey, "THISISMYKEY")
-
-    def test_apikey_setter(self):
-        sg_apikey_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(sg_apikey_setter.apikey, "THISISMYKEY")
-        # Use apikey setter to change api key
-        sg_apikey_setter.apikey = "THISISMYNEWAPIKEY"
-        self.assertEqual(sg_apikey_setter.apikey, "THISISMYNEWAPIKEY")
+        self.assertEqual(self.sg.api_key, self.sg.api_key)
+        my_sendgrid = sendgrid.SendGridAPIClient(api_key="THISISMYKEY")
+        self.assertEqual(my_sendgrid.api_key, "THISISMYKEY")
 
     def test_api_key_setter(self):
-        sg_api_key_setter = sendgrid.SendGridAPIClient(apikey="THISISMYKEY")
-        self.assertEqual(sg_api_key_setter.apikey, "THISISMYKEY")
+        sg_api_key_setter = sendgrid.SendGridAPIClient(api_key="THISISMYKEY")
+        self.assertEqual(sg_api_key_setter.api_key, "THISISMYKEY")
         # Use api_key setter to change api key
-        sg_api_key_setter.api_key = "THISISMYNEWAPI_KEY"
-        self.assertEqual(sg_api_key_setter.apikey, "THISISMYNEWAPI_KEY")
+        sg_api_key_setter.api_key = "THISISMYNEWAPIKEY"
+        self.assertEqual(sg_api_key_setter.api_key, "THISISMYNEWAPIKEY")
 
     def test_impersonate_subuser_init(self):
         temp_subuser = 'abcxyz@this.is.a.test.subuser'
@@ -102,7 +42,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
     def test_useragent(self):
-        useragent = '{0}{1}{2}'.format('sendgrid/', __version__, ';python')
+        useragent = '{}{}{}'.format('sendgrid/', sendgrid.__version__, ';python')
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):
@@ -137,19 +77,6 @@ class UnitTests(unittest.TestCase):
 
         for k, v in self.sg._default_headers.items():
             self.assertEqual(v, self.sg.client.request_headers[k])
-
-    def test_hello_world(self):
-        from_email = Email("test@example.com")
-        to_email = Email("test@example.com")
-        subject = "Sending with SendGrid is Fun"
-        content = Content(
-            "text/plain", "and easy to do anywhere, even with Python")
-        mail = Mail(from_email, subject, to_email, content)
-        self.assertTrue(
-            mail.get() == {'content': [{'type': 'text/plain', 'value': 'and easy to do anywhere, even with Python'}],
-                           'personalizations': [
-                               {'to': [{'email': 'test@example.com'}]}], 'from': {'email': 'test@example.com'},
-                           'subject': 'Sending with SendGrid is Fun'})
 
     def test_access_settings_activity_get(self):
         params = {'limit': 1}
@@ -933,7 +860,10 @@ class UnitTests(unittest.TestCase):
         headers = {'X-Mock': 200}
         response = self.sg.client.ips.get(
             query_params=params, request_headers=headers)
-        self.assertEqual(response.status_code, 200)
+        data = response.body
+        unused = unassigned(data)
+        self.assertEqual(type(unused), list)
+        self.assertEqual(response.status_code, 200)    
 
     def test_ips_assigned_get(self):
         headers = {'X-Mock': 200}
@@ -2377,7 +2307,9 @@ class UnitTests(unittest.TestCase):
         LICENSE_FILE = 'LICENSE.txt'
         with open(LICENSE_FILE, 'r') as f:
             copyright_line = f.readline().rstrip()
-        self.assertEqual('Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year, copyright_line)
+        self.assertEqual(
+            'Copyright (c) 2012-%s SendGrid, Inc.' % datetime.datetime.now().year,
+            copyright_line)
 
     # @classmethod
     # def tearDownClass(cls):

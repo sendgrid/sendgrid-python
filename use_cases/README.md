@@ -4,19 +4,26 @@ This directory provides examples for specific use cases of this library. Please 
 
 ## Table of Contents
 
-### How-Tos
+### Common Use Cases
+* [Send a Single Email to a Single Recipient](send_a_single_email_to_a_single_recipient.md)
+* [Send a Single Email to Multiple Recipients](send_a_single_email_to_multiple_recipients.md)
+* [Send Multiple Emails to Multiple Recipients](send_multiple_emails_to_multiple_recipients.md)
+* [Kitchen Sink - an example with all settings used](kitchen_sink.md)
+* [Transactional Templates](transational_templates.md)
+* [Attachments](attachment.md)
 
+### Working with Email
+* [Asynchronous Mail Send](asynchronous_mail_send.md)
+* [Sending HTML-Only Content](sending_html_content.md)
+* [Integrate with Slack Events API](slack_event_api_integration.md)
+* [Legacy Templates](legacy_templates.md)
+
+### Troubleshooting
+* [Error Handling](error_handling.md)
+
+### How-Tos
 * [How to Create a Django app, Deployed on Heroku, to Send Email with SendGrid](django.md)
 * [How to Deploy A Simple Hello Email App on AWS](aws.md)
 * [How to Deploy a simple Flask app, to send Email with SendGrid, on Heroku](flask_heroku.md)
 * [How to Setup a Domain Authentication](domain_authentication.md)
 * [How to View Email Statistics](email_stats.md)
-
-### Working with Mail
-* [Asynchronous Mail Send](asynchronous_mail_send.md)
-* [Attachment](attachment.md)
-* [Transactional Templates](transational_templates.md)
-* [Integrate with Slack Events API](slack_event_api_integration.md)
-
-### Library Features
-* [Error Handling](error_handling.md)

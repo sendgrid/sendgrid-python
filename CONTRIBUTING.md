@@ -1,14 +1,27 @@
 Hello! Thank you for choosing to help contribute to one of the SendGrid open source libraries. There are many ways you can contribute and help is always welcome.  We simply ask that you follow the following contribution policies.
 
-- [CLAs and CCLAs](#cla)
-- [Roadmap & Milestones](#roadmap)
+- [CLAs and CCLAs](#clas-and-cclas)
 - [Feature Request](#feature-request)
 - [Submit a Bug Report](#submit-a-bug-report)
+  - [Please use our Bug Report Template](#please-use-our-bug-report-template)
 - [Improvements to the Codebase](#improvements-to-the-codebase)
-- [Understanding the Code Base](#understanding-the-codebase)
+  - [Development Environment](#development-environment)
+    - [There are two ways to get set up:](#there-are-two-ways-to-get-set-up)
+    - [1. Using Docker](#1-using-docker)
+    - [- OR -](#or)
+    - [2. Install and Run Locally](#2-install-and-run-locally)
+      - [Prerequisites](#prerequisites)
+      - [Initial setup:](#initial-setup)
+  - [Environment Variables](#environment-variables)
+      - [Execute:](#execute)
+- [Understanding the Code Base](#understanding-the-code-base)
 - [Testing](#testing)
-- [Style Guidelines & Naming Conventions](#style-guidelines-and-naming-conventions)
-- [Creating a Pull Request](#creating-a-pull-request)
+  - [Testing Multiple Versions of Python](#testing-multiple-versions-of-python)
+    - [Prerequisites:](#prerequisites)
+    - [Initial setup:](#initial-setup-1)
+    - [Execute:](#execute-1)
+- [Style Guidelines & Naming Conventions](#style-guidelines--naming-conventions)
+- [Creating a Pull Request<a name="creating-a-pull-request"></a>](#creating-a-pull-requesta-name%22creating-a-pull-request%22a)
 - [Code Reviews](#code-reviews)
 
 <a name="roadmap"></a>
@@ -70,7 +83,7 @@ You can use our Docker image to avoid setting up the development environment you
 
 ##### Prerequisites #####
 
-- Python 2.6 through 3.6
+- Python 2.7 and 3.4+
 - [python_http_client](https://github.com/sendgrid/python-http-client)
 
 ##### Initial setup: #####
@@ -87,9 +100,14 @@ First, get your free SendGrid account [here](https://sendgrid.com/free?source=se
 Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
 
 ```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
+cp .env_sample .env
+```
+
+Then edit `.env` and insert your API key.
+
+```bash
+# You do not need to do this when using Docker Compose
+source .env
 ```
 
 ##### Execute: #####
@@ -122,12 +140,6 @@ All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/t
 
 For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
 
-For Python 2.6.*:
-
-`unit2 discover -v`
-
-For Python 2.7.* and up:
-
 `python -m unittest discover -v`
 
 ### Testing Multiple Versions of Python
@@ -149,7 +161,6 @@ You can install it by yourself in user dir by calling `source test/prism.sh`.
 Add ```eval "$(pyenv init -)"``` to your shell environment (.profile, .bashrc, etc) after installing tox, you only need to do this once.
 
 ```
-pyenv install 2.6.9
 pyenv install 2.7.11
 pyenv install 3.4.3
 pyenv install 3.5.0
@@ -159,7 +170,7 @@ Make sure to change the current working directory to your local version of the r
 python setup.py install
 ```
 ```
-pyenv local 3.5.0 3.4.3 2.7.11 2.6.9
+pyenv local 3.5.0 3.4.3 2.7.11
 pyenv rehash
 ```
 
@@ -242,4 +253,4 @@ If you have any additional questions, please feel free to [email](mailto:dx@send
 
 <a name="code-reviews"></a>
 ## Code Reviews
-If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how GitHub has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).
+If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, GitHub has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).

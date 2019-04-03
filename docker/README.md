@@ -22,6 +22,7 @@
  - `v3.2.2`
  - `v3.2.1`
  - `v3.2.0`
+
 # Quick reference
  - **Where to get help:**
    [Contact SendGrid Support](https://support.sendgrid.com/hc/en-us)

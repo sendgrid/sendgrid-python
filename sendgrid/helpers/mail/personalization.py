@@ -1,14 +1,10 @@
 class Personalization(object):
     """A Personalization defines who should receive an individual message and
     how that message should be handled.
-
-    :var dynamic_template_data: data for dynamic transactional template.
-        Should be JSON-serializeable structure. No pre-processing will be done
-        prior to sending this via http client.
     """
 
     def __init__(self):
-        """Create an empty Personalization."""
+        """Create an empty Personalization and initialize member variables."""
         self._tos = []
         self._ccs = []
         self._bccs = []
@@ -18,6 +14,19 @@ class Personalization(object):
         self._custom_args = []
         self._send_at = None
         self._dynamic_template_data = None
+
+    def add_email(self, email):
+        email_type = type(email)
+        if email_type.__name__ == 'To':
+            self.add_to(email)
+            return
+        if email_type.__name__ == 'Cc':
+            self.add_cc(email)
+            return
+        if email_type.__name__ == 'Bcc':
+            self.add_bcc(email)
+            return
+        raise ValueError('Please use a To, Cc or Bcc object.')
 
     @property
     def tos(self):
@@ -36,6 +45,17 @@ class Personalization(object):
 
         :type email: Email
         """
+        if email.substitutions:
+            if isinstance(email.substitutions, list):
+                for substitution in email.substitutions:
+                    self.add_substitution(substitution)
+            else:
+                self.add_substitution(email.substitutions)
+        if email.subject:
+            if isinstance(email.subject, str):
+                self.subject = email.subject
+            else:
+                self.subject = email.subject.get()
         self._tos.append(email.get())
 
     @property
@@ -84,6 +104,7 @@ class Personalization(object):
 
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
+
         :rtype: string
         """
         return self._subject
@@ -128,7 +149,10 @@ class Personalization(object):
 
         :type substitution: Substitution
         """
-        self._substitutions.append(substitution.get())
+        if isinstance(substitution, dict):
+            self._substitutions.append(substitution)
+        else:
+            self._substitutions.append(substitution.get())
 
     @property
     def custom_args(self):
@@ -166,14 +190,15 @@ class Personalization(object):
     @property
     def dynamic_template_data(self):
         """Data for dynamic transactional template.
+        Should be JSON-serializeable structure.
 
         :rtype: JSON-serializeable structure
         """
         return self._dynamic_template_data
 
     @dynamic_template_data.setter
-    def dynamic_template_data(self, json):
-        self._dynamic_template_data = json
+    def dynamic_template_data(self, value):
+        self._dynamic_template_data = value
 
     def get(self):
         """
@@ -183,40 +208,23 @@ class Personalization(object):
         :rtype: dict
         """
         personalization = {}
-        if self.tos:
-            personalization["to"] = self.tos
 
-        if self.ccs:
-            personalization["cc"] = self.ccs
+        for key in ['tos', 'ccs', 'bccs']:
+            value = getattr(self, key)
+            if value:
+                personalization[key[:-1]] = value
 
-        if self.bccs:
-            personalization["bcc"] = self.bccs
+        for key in ['subject', 'send_at', 'dynamic_template_data']:
+            value = getattr(self, key)
+            if value:
+                personalization[key] = value
 
-        if self.subject is not None:
-            personalization["subject"] = self.subject
-
-        if self.headers:
-            headers = {}
-            for key in self.headers:
-                headers.update(key)
-            personalization["headers"] = headers
-
-        if self.substitutions:
-            substitutions = {}
-            for key in self.substitutions:
-                substitutions.update(key)
-            personalization["substitutions"] = substitutions
-
-        if self.custom_args:
-            custom_args = {}
-            for key in self.custom_args:
-                custom_args.update(key)
-            personalization["custom_args"] = custom_args
-
-        if self.send_at is not None:
-            personalization["send_at"] = self.send_at
-
-        if self.dynamic_template_data is not None:
-            personalization['dynamic_template_data'] = self.dynamic_template_data
+        for prop_name in ['headers', 'substitutions', 'custom_args']:
+            prop = getattr(self, prop_name)
+            if prop:
+                obj = {}
+                for key in prop:
+                    obj.update(key)
+                    personalization[prop_name] = obj
 
         return personalization

@@ -10,14 +10,15 @@ Then, we set `SENDGRID_API_KEY` _(which you can create on the SendGrid dashboard
 
 Once this is done, we can subscribe to [events on Slack](https://api.slack.com/events) and trigger emails when an event occurs. In the example below, we trigger an email to `test@example.com` whenever someone posts a message on Slack that has the word "_help_" in it.
 
-```
+```python
 from slackeventsapi import SlackEventAdapter
 from slackclient import SlackClient
 import os
-import sendgrid
-from sendgrid.helpers.mail import *
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import From, To, Subject, PlainTextContent, HtmlContent, Mail
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sendgrid_client = SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+
 
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 slack_events_adapter = SlackEventAdapter(SLACK_VERIFICATION_TOKEN, "/slack/events")
@@ -33,12 +34,13 @@ def handle_message(event_data):
 
 
 def send_email(message):
-    from_email = Email("slack_integration@example.com")
-    to_email = Email("test@example.com")
-    subject = "Psst... Someone needs help!"
-    content = Content("text/plain", message)
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
+    from_email = From("slack_integration@example.com")
+    to_email = To("test@example.com")
+    subject = Subject("Psst... Someone needs help!")
+    plain_text_content = PlainTextContent(message)
+    html_content = HtmlContent('{0}message{0}'.format('<strong>','</strong>'))
+    message = Mail(from_email, to_email, subject, plain_text_content, html_content)
+    response = sendgrid_client.send(message=message)
     return response.status_code
 
 # Start the slack event listener server on port 3000

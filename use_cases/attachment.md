@@ -2,9 +2,12 @@
 
 ```python
 import base64
-import sendgrid
 import os
-from sendgrid.helpers.mail import Email, Content, Mail, Attachment
+import json
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import (
+    Mail, Attachment, FileContent, FileName,
+    FileType, Disposition, ContentId)
 try:
     # Python 3
     import urllib.request as urllib
@@ -12,34 +15,35 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-from_email = Email("test@example.com")
-subject = "subject"
-to_email = Email("to_email@example.com")
-content = Content("text/html", "I'm a content example")
+import os
+import json
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
-file_path = "file_path.pdf"
-with open(file_path,'rb') as f:
+message = Mail(
+    from_email='from_email@example.com',
+    to_emails='to@example.com',
+    subject='Sending with SendGrid is Fun',
+    html_content='<strong>and easy to do anywhere, even with Python</strong>')
+file_path = 'example.pdf'
+with open(file_path, 'rb') as f:
     data = f.read()
     f.close()
 encoded = base64.b64encode(data).decode()
-
 attachment = Attachment()
-attachment.content = encoded
-attachment.type = "application/pdf"
-attachment.filename = "test.pdf"
-attachment.disposition = "attachment"
-attachment.content_id = "Example Content ID"
-
-mail = Mail(from_email, subject, to_email, content)
-mail.add_attachment(attachment)
+attachment.file_content = FileContent(encoded)
+attachment.file_type = FileType('application/pdf')
+attachment.file_name = FileName('test_filename.pdf')
+attachment.disposition = Disposition('attachment')
+attachment.content_id = ContentId('Example Content ID')
+message.attachment = attachment
 try:
-    response = sg.client.mail.send.post(request_body=mail.get())
-except urllib.HTTPError as e:
-    print(e.read())
-    exit()
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    response = sendgrid_client.send(message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+except Exception as e:
+    print(e.message)
 
-print(response.status_code)
-print(response.body)
-print(response.headers)
 ```

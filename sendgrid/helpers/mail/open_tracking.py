@@ -13,8 +13,14 @@ class OpenTracking(object):
         :param substitution_tag: Tag in body to be replaced by tracking pixel.
         :type substitution_tag: string, optional
         """
-        self.enable = enable
-        self.substitution_tag = substitution_tag
+        self._enable = None
+        self._substitution_tag = None
+
+        if enable is not None:
+            self.enable = enable
+
+        if substitution_tag is not None:
+            self.substitution_tag = substitution_tag
 
     @property
     def enable(self):
@@ -26,6 +32,11 @@ class OpenTracking(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
@@ -40,6 +51,17 @@ class OpenTracking(object):
 
     @substitution_tag.setter
     def substitution_tag(self, value):
+        """Allows you to specify a substitution tag that you can insert in the
+        body of your email at a location that you desire. This tag will be
+        replaced by the open tracking pixel.
+
+        :param value: Allows you to specify a substitution tag that you can
+                      insert in the body of your email at a location that you
+                      desire. This tag will be replaced by the open tracking
+                      pixel.
+
+        :type value: string
+        """
         self._substitution_tag = value
 
     def get(self):
@@ -54,5 +76,5 @@ class OpenTracking(object):
             open_tracking["enable"] = self.enable
 
         if self.substitution_tag is not None:
-            open_tracking["substitution_tag"] = self.substitution_tag
+            open_tracking["substitution_tag"] = self.substitution_tag.get()
         return open_tracking
