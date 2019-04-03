@@ -1,8 +1,6 @@
-import json
-import os
-import urllib2
+from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import *
-from sendgrid import *
+
 
 # NOTE: you will need move this file to the root
 # directory of this project to execute properly.
@@ -28,6 +26,84 @@ def build_hello_email():
     except SendGridException as e:
         print(e.message)
 
+<<<<<<< HEAD:examples/helpers/mail/mail_example.py
+=======
+    for cc_addr in personalization['cc_list']:
+        mock_personalization.add_to(cc_addr)
+
+    for bcc_addr in personalization['bcc_list']:
+        mock_personalization.add_bcc(bcc_addr)
+
+    for header in personalization['headers']:
+        mock_personalization.add_header(header)
+
+    for substitution in personalization['substitutions']:
+        mock_personalization.add_substitution(substitution)
+
+    for arg in personalization['custom_args']:
+        mock_personalization.add_custom_arg(arg)
+
+    mock_personalization.subject = personalization['subject']
+    mock_personalization.send_at = personalization['send_at']
+    return mock_personalization
+
+
+def get_mock_personalization_dict():
+    """Get a dict of personalization mock."""
+    mock_pers = dict()
+
+    mock_pers['to_list'] = [Email("test1@example.com",
+                                  "Example User"),
+                            Email("test2@example.com",
+                                  "Example User")]
+
+    mock_pers['cc_list'] = [Email("test3@example.com",
+                                  "Example User"),
+                            Email("test4@example.com",
+                                  "Example User")]
+
+    mock_pers['bcc_list'] = [Email("test5@example.com"),
+                             Email("test6@example.com")]
+
+    mock_pers['subject'] = ("Hello World from the Personalized "
+                            "SendGrid Python Library")
+
+    mock_pers['headers'] = [Header("X-Test", "test"),
+                            Header("X-Mock", "true")]
+
+    mock_pers['substitutions'] = [Substitution("%name%", "Example User"),
+                                  Substitution("%city%", "Denver")]
+
+    mock_pers['custom_args'] = [CustomArg("user_id", "343"),
+                                CustomArg("type", "marketing")]
+
+    mock_pers['send_at'] = 1443636843
+    return mock_pers
+
+
+def build_attachment1():
+    """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
+    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""
+    attachment = Attachment()
+    attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
+                          "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
+    attachment.type = "application/pdf"
+    attachment.filename = "balance_001.pdf"
+    attachment.disposition = "attachment"
+    attachment.content_id = "Balance Sheet"
+    return attachment
+
+
+def build_attachment2():
+    """Build attachment mock."""
+    attachment = Attachment()
+    attachment.content = "BwdW"
+    attachment.type = "image/png"
+    attachment.filename = "banner.png"
+    attachment.disposition = "inline"
+    attachment.content_id = "Banner"
+    return attachment
+>>>>>>> master:examples/helpers/mail_example.py
 
 def build_kitchen_sink():
     """All settings set"""
@@ -261,5 +337,40 @@ def send_kitchen_sink():
 ## this will actually send an email
 # send_hello_email()
 
+<<<<<<< HEAD:examples/helpers/mail/mail_example.py
 ## this will only send an email if you set SandBox Mode to False
 # send_kitchen_sink()
+=======
+# this will only send an email if you set SandBox Mode to False
+send_kitchen_sink()
+
+
+def transactional_template_usage():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    
+    """
+    Sample usage of dynamic (handlebars) transactional templates.
+    To make this work, you should have dynamic template created within your
+    SendGrid account. For this particular example, template may be like::
+
+        <p>Hello, {{name}}! Your current balance is {{balance}}<p>
+
+    """
+    mail = Mail()
+    mail.from_email = Email('templates@sendgrid.com')
+    mail.template_id = 'd-your-dynamic-template-uid'
+    p = Personalization()
+    p.add_to(Email('user@example.com'))
+    p.dynamic_template_data = {
+        'name': 'Bob',
+        'balance': 42
+    }
+    mail.add_personalization(p)
+
+    sg = SendGridAPIClient()
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.headers)
+    print(response.body)
+>>>>>>> master:examples/helpers/mail_example.py

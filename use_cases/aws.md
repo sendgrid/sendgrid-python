@@ -4,7 +4,7 @@ This tutorial explains how to set up a simple "Hello Email" app on AWS, using th
 
 We'll be creating a basic web service to send email via SendGrid. The application will run on AWS Lambda, and the "endpoint" will be via AWS API Gateway.
 
-The neat thing is that CodeStar provides all of this in a pre-configured package. We just have to make some config changes, and push our code.
+The neat thing is that CodeStar provides all of this in a pre-configured package. We just have to make some config changes and push our code.
 
 Once this tutorial is complete, you'll have a basic web service for sending email that can be invoked via a link to your newly created API endpoint.
 
@@ -25,12 +25,12 @@ After you've selected the template, you're asked to provide a name for your proj
 
 Once that is completed, you'll be given some basic steps to get Git installed and setup, and instructions for connecting to the AWS CodeCommit(Git) repository. You can either use HTTPS, or SSH. Instructions for setting up either are provided.
 
-Go ahead and clone the Git repository link after it is created. You may need to click "Skip" in the lower right hand corner to proceed.
+Go ahead and clone the Git repository link after it is created. You may need to click "Skip" in the lower right-hand corner to proceed.
 
 Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, change log, build pipeline, and application endpoint.
 
 ### Create SendGrid API Key
-Log in to your SendGrid account. Click on your user name on the left hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
+Log in to your SendGrid account. Click on your username on the left-hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
 
 On the next menu, you have the option to choose what programming language you'll be using. The obvious choice for this tutorial will be Python.
 
@@ -140,7 +140,7 @@ def handler(event, context):
             'headers': {'Content-Type': 'application/json'}}
 ```
 
-Note that for the most part, we've simply copied the intial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
+Note that for the most part, we've simply copied the initial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
 
 Change the `test@example.com` emails appropriately so that you may receive the test email.
 

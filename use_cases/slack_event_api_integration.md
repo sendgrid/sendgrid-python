@@ -10,7 +10,7 @@ Then, we set `SENDGRID_API_KEY` _(which you can create on the SendGrid dashboard
 
 Once this is done, we can subscribe to [events on Slack](https://api.slack.com/events) and trigger emails when an event occurs. In the example below, we trigger an email to `test@example.com` whenever someone posts a message on Slack that has the word "_help_" in it.
 
-```
+```python
 from slackeventsapi import SlackEventAdapter
 from slackclient import SlackClient
 import os

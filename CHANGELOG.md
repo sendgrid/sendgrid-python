@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 ## [5.4.1] - 2018-06-26 ##
 ### Fixed
 - [PR #585](https://github.com/sendgrid/sendgrid-python/pull/585): Fix typo in `mail_example.py`. Big thanks to [Anurag Anand](https://github.com/theanuraganand) for the PR!
-- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/585): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
+- [PR #583](https://github.com/sendgrid/sendgrid-python/pull/583): Fix `Personalization.substitutions` setter. Trying to set substitutions directly rather than with add_substitution was causing an infinite regress. Big thanks to [Richard Nias](https://github.com/richardnias) for the PR!
 
 ## [5.4.0] - 2018-06-07 ##
 ### Added
@@ -54,7 +54,7 @@ All notable changes to this project will be documented in this file.
 - [PR #430](https://github.com/sendgrid/sendgrid-python/pull/430): Attempt to sync before executing the shell command. Big thanks to [Aditya Narayan](https://github.com/aditnryn) for the PR!
 - [PR #429](https://github.com/sendgrid/sendgrid-python/pull/429): Typos. Big thanks to [daluntw](https://github.com/daluntw) for the PR!
 - [PR #492](https://github.com/sendgrid/sendgrid-python/pull/492): 
-Updated date-range in LICENSE file. Big thanks to [Dhruv Srivastava](https://github.com/dhruvhacks) for the PR!
+Updated date-range in the LICENSE file. Big thanks to [Dhruv Srivastava](https://github.com/dhruvhacks) for the PR!
 - [PR #482](https://github.com/sendgrid/sendgrid-python/pull/482): Typos. Big thanks to [Karan Samani](https://github.com/Kimi450) for the PR!
 - [PR #504](https://github.com/sendgrid/sendgrid-python/pull/504): Fix .codeclimate.yml. Big thanks to [Matt Bernier](https://github.com/mbernier) for the PR!
 - [PR #505](https://github.com/sendgrid/sendgrid-python/pull/505): Remove unnecessary GitHub PR templates. Big thanks to [Alex](https://github.com/pushkyn) for the PR!
