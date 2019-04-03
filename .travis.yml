@@ -37,16 +37,16 @@ script:
 after_script:
 - codecov
 - ./cc-test-reporter after-build --exit-code $?
-deploy:
-  provider: pypi
-  user: thinkingserious
-  password:
-    secure: DoM21KiMKkt/7AS6zOqTs7j3fgInrpswRTPG3cqBNRSzyfkXeXmKecCPruooxvYKLM7fPNDOuIH2phgCjdx/XBtJwghNh34n+TzhNFEiI/6pV0iS4a9gW0+QU+GMYvQmfNlA9DKQ5N20FMy4XeK8QQFarJXQwW1/a5wWftbUYvQ=
-  skip_cleanup: true
-  distributions: sdist bdist_wheel
-  on:
-    tags: true
-    python: '3.6'
+# deploy:
+#   provider: pypi
+#   user: thinkingserious
+#   password:
+#     secure: DoM21KiMKkt/7AS6zOqTs7j3fgInrpswRTPG3cqBNRSzyfkXeXmKecCPruooxvYKLM7fPNDOuIH2phgCjdx/XBtJwghNh34n+TzhNFEiI/6pV0iS4a9gW0+QU+GMYvQmfNlA9DKQ5N20FMy4XeK8QQFarJXQwW1/a5wWftbUYvQ=
+#   skip_cleanup: true
+#   distributions: sdist bdist_wheel
+#   on:
+#     tags: true
+#     python: '3.6'
 notifications:
   hipchat:
     rooms:
