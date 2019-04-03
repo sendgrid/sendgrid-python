@@ -22,7 +22,7 @@ setup(
     author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
-    packages=find_packages(exclude=["temp*.py", "test", "inbound"]),
+    packages=find_packages(exclude=["temp*.py", "test"]),
     include_package_data=True,
     license='MIT',
     description='SendGrid library for Python',
