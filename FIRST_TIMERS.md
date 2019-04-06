@@ -1,25 +1,25 @@
-## Welcome to the SendGrid Open Source Community
+## Welcome to the Twilio SendGrid Open Source Community
  If you are new to Open Source, you are at the right place to start with. Contributions are always encouraged & appreciated. Just follow the organisation's Contribution Policies & you are good to go.
  ## How to get Started?
- - [Explore SendGrid](#explore)
+ - [Explore Twilio SendGrid](#explore)
  - [Raise Issues(If Found Any)](#issues)
  - [Setting up the Development Environment](#setup)
  - [Proposing Change through a Pull Request](#pr)
  - [Be Patient & Wait for reviews](#reviews)
  
  <a name="explore"></a>
- ### Explore SendGrid
-Step 1: Get yourself Access to SendGrid API Service absolutely free from [here](https://sendgrid.com/free/?source=sendgrid-python)\
-Step 2: Get familiar with SendGrid Service
+ ### Explore Twilio SendGrid
+Step 1: Get yourself Access to Twilio SendGrid API Service absolutely free from [here](https://sendgrid.com/free/?source=sendgrid-python)\
+Step 2: Get familiar with Twilio SendGrid Service
  - Prerequisites are Python version 2.6, 2.7, 3.4, 3.5 or 3.6
- - Set up your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace [using](https://github.com/sendgrid/sendgrid-python#setup-environment-variables)
- - Install SendGrid to your workspace using `pip install sendgrid`
+ - Set up your [Twilio SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace [using](https://github.com/sendgrid/sendgrid-python#setup-environment-variables)
+ - Install Twilio SendGrid to your workspace using `pip install sendgrid`
  - Copy & Run few sample programs from [here](https://github.com/sendgrid/sendgrid-python#hello-email)
  
  
  <a name="issues"></a>
  ### Raise Issues
- SendGrid uses GitHub as the content management service so, all the issues related to the project be it some feature request or a bug report, all are reported at the [GitHub Issue Tracker](https://github.com/sendgrid/sendgrid-python/issues)\
+ Twilio SendGrid uses GitHub as the content management service so, all the issues related to the project be it some feature request or a bug report, all are reported at the [GitHub Issue Tracker](https://github.com/sendgrid/sendgrid-python/issues)\
  Kindly make sure, to check for any duplicate issues raised by fellow contributors before opening a new issue. Be humble & polite while commenting on issues
   - Feature Request\
   In case you feel like something is missing or lacking in the API Service, feel free to share your views & opinions with the community
@@ -38,7 +38,7 @@ Step 2: Get familiar with SendGrid Service
    - **Setting up Locally**\
    Step 1: Install the Prerequistes: Any Version of Python(2.6 through 3.6) & [python_http_client](https://github.com/sendgrid/python-http-client)\
    Step 2: Get a local copy of repository using `git clone https://github.com/sendgrid/sendgrid-python.git`\
-   Step 3: Set your [SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace using\
+   Step 3: Set your [Twilio SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace using\
     `echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env`\
     `echo "sendgrid.env" >> .gitignore`\
     `source ./sendgrid.env`\

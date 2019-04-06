@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [6.0.3] - 2019-04-05 ##
+
+### Added
+- Twilio SendGrid branding
+- [Twilio SMS example](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/sms.md)
+- Updated CLA process
+
 ## [6.0.0] - 2019-04-02 ##
 
 ### BREAKING CHANGE

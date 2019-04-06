@@ -1,6 +1,7 @@
 <!--
 We appreciate the effort for this pull request, but before that, please make sure you read the [contribution guidelines](https://github.com/sendgrid/sendgrid-python/blob/v4/CONTRIBUTING.md), and then fill out the blanks below.
 
+**All third party contributors acknowledge that any contributions they provide will be made under the same open source license that the open source project is provided under.**
 
 Please enter each Issue number you are resolving in your PR after one of the following words [Fixes, Closes, Resolves]. This will auto-link these issues and close them when this PR is merged!
 e.g. 

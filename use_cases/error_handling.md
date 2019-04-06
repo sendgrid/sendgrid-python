@@ -14,7 +14,7 @@ There are also email specific exceptions located [here](https://github.com/sendg
   sendgrid_client = SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
   from_email = From("dx@sendgrid.com")
   to_email = To("elmer.thomas@sendgrid.com")
-  subject = Subject("Sending with SendGrid is Fun")
+  subject = Subject("Sending with Twilio SendGrid is Fun")
   plain_text_content = PlainTextContent("and easy to do anywhere, even with Python")
   html_content = HtmlContent("<strong>and easy to do anywhere, even with Python</strong>")
   message = Mail(from_email, to_email, subject, plain_text_content, html_content)

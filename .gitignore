@@ -24,3 +24,5 @@ temp.py
 live_test.py
 __pycache__
 example.pdf
+TODO.txt
+twilio.env

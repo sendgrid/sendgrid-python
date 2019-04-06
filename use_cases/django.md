@@ -1,6 +1,6 @@
-# Create a Django app to send email with SendGrid
+# Create a Django app to send email with Twilio SendGrid
 
-This tutorial explains how we set up a simple Django app to send an email with the SendGrid Python SDK and how we deploy our app to Heroku.
+This tutorial explains how we set up a simple Django app to send an email with the Twilio SendGrid Python SDK and how we deploy our app to Heroku.
 
 ## Create a Django project
 
@@ -13,7 +13,7 @@ $ cd hello-sendgrid
 
 We assume you have created and activated a [virtual environment](https://virtualenv.pypa.io/) (See [venv](https://docs.python.org/3/tutorial/venv.html) for Python 3+) for isolated Python environments.
 
-Run the command below to install Django, Gunicorn (a Python WSGI HTTP server), and SendGrid Python SDK.
+Run the command below to install Django, Gunicorn (a Python WSGI HTTP server), and Twilio SendGrid Python SDK.
 
 ```bash
 $ pip install django gunicorn sendgrid
@@ -63,7 +63,7 @@ def index(request):
         api_key=os.environ.get('SENDGRID_API_KEY'))
     from_email = From('test@example.com')
     to_email = To('test@example.com')
-    subject = 'Sending with SendGrid is Fun'
+    subject = 'Sending with Twilio SendGrid is Fun'
     plain_text_content = PlainTextContent(
         'and easy to do anywhere, even with Python'
     )
@@ -122,7 +122,7 @@ $ python manage.py runserver
 
 By default, it starts the development server at `http://127.0.0.1:8000/`. To test if we can send email or not, go to `http://127.0.0.1:8000/sendgrid/`. If it works, we should see the page says "Email Sent!".
 
-**Note:** If you use `test@example.com` as your from email, it's likely to go to your spam folder. To have the emails show up in your inbox, try using an email address at the domain you registered your SendGrid account.
+**Note:** If you use `test@example.com` as your from email, it's likely to go to your spam folder. To have the emails show up in your inbox, try using an email address at the domain you registered your Twilio SendGrid account.
 
 ## Deploy to Heroku
 
@@ -195,8 +195,8 @@ Commit the code to the repository and deploy it to Heroku using Git.
 
 ```
 $ git add .
-$ git commit -am "Create simple Hello Email Django app using SendGrid"
+$ git commit -am "Create simple Hello Email Django app using Twilio SendGrid"
 $ git push heroku master
 ```
 
-After that, let's verify if our app is working or not by accessing the root domain of your Heroku app. You should see the page says "Email Sent!" and on the Activity Feed page in the SendGrid dashboard, you should see a new feed with the email you set in the code.
+After that, let's verify if our app is working or not by accessing the root domain of your Heroku app. You should see the page says "Email Sent!" and on the Activity Feed page in the Twilio SendGrid dashboard, you should see a new feed with the email you set in the code.

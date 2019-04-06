@@ -23,7 +23,7 @@ from sendgrid.helpers.mail import Mail
 message = Mail(
     from_email='from_email@example.com',
     to_emails='to@example.com',
-    subject='Sending with SendGrid is Fun',
+    subject='Sending with Twilio SendGrid is Fun',
     html_content='<strong>and easy to do anywhere, even with Python</strong>')
 file_path = 'example.pdf'
 with open(file_path, 'rb') as f:

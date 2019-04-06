@@ -47,7 +47,7 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
 subject = "I'm replacing the subject tag"
 to_email = Email("test@example.com")
@@ -78,7 +78,7 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 data = {
   "personalizations": [
     {

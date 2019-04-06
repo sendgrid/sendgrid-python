@@ -1,4 +1,4 @@
-"""SendGrid v3/mail/send response body builder"""
+"""Twilio SendGrid v3/mail/send response body builder"""
 from .bcc_email import Bcc
 from .cc_email import Cc
 from .content import Content

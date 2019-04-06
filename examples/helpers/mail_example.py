@@ -26,8 +26,6 @@ def build_hello_email():
     except SendGridException as e:
         print(e.message)
 
-<<<<<<< HEAD:examples/helpers/mail/mail_example.py
-=======
     for cc_addr in personalization['cc_list']:
         mock_personalization.add_to(cc_addr)
 
@@ -52,18 +50,18 @@ def get_mock_personalization_dict():
     """Get a dict of personalization mock."""
     mock_pers = dict()
 
-    mock_pers['to_list'] = [Email("test1@example.com",
+    mock_pers['to_list'] = [To("test1@example.com",
                                   "Example User"),
-                            Email("test2@example.com",
+                            To("test2@example.com",
                                   "Example User")]
 
-    mock_pers['cc_list'] = [Email("test3@example.com",
+    mock_pers['cc_list'] = [To("test3@example.com",
                                   "Example User"),
-                            Email("test4@example.com",
+                            To("test4@example.com",
                                   "Example User")]
 
-    mock_pers['bcc_list'] = [Email("test5@example.com"),
-                             Email("test6@example.com")]
+    mock_pers['bcc_list'] = [To("test5@example.com"),
+                             To("test6@example.com")]
 
     mock_pers['subject'] = ("Hello World from the Personalized "
                             "SendGrid Python Library")
@@ -103,7 +101,6 @@ def build_attachment2():
     attachment.disposition = "inline"
     attachment.content_id = "Banner"
     return attachment
->>>>>>> master:examples/helpers/mail_example.py
 
 def build_kitchen_sink():
     """All settings set"""
@@ -285,7 +282,7 @@ def build_kitchen_sink():
     message.ip_pool_name = IpPoolName("IP Pool Name")
 
     mail_settings = MailSettings()
-    mail_settings.bcc_settings = BccSettings(False, BccSettingsEmail("bcc@twilio.com"))
+    mail_settings.bcc_settings = BccSettings(False, BccSettingsTo("bcc@twilio.com"))
     mail_settings.bypass_list_management = BypassListManagement(False)
     mail_settings.footer_settings = FooterSettings(True, FooterText("w00t"), FooterHtml("<string>w00t!<strong>"))
     mail_settings.sandbox_mode = SandBoxMode(True)
@@ -316,7 +313,7 @@ def send_hello_email():
     # Assumes you set your environment variable:
     # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     message = build_hello_email()
-    sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
@@ -327,7 +324,7 @@ def send_kitchen_sink():
     # Assumes you set your environment variable:
     # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     message = build_kitchen_sink()
-    sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
@@ -337,40 +334,5 @@ def send_kitchen_sink():
 ## this will actually send an email
 # send_hello_email()
 
-<<<<<<< HEAD:examples/helpers/mail/mail_example.py
 ## this will only send an email if you set SandBox Mode to False
 # send_kitchen_sink()
-=======
-# this will only send an email if you set SandBox Mode to False
-send_kitchen_sink()
-
-
-def transactional_template_usage():
-    # Assumes you set your environment variable:
-    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
-    
-    """
-    Sample usage of dynamic (handlebars) transactional templates.
-    To make this work, you should have dynamic template created within your
-    SendGrid account. For this particular example, template may be like::
-
-        <p>Hello, {{name}}! Your current balance is {{balance}}<p>
-
-    """
-    mail = Mail()
-    mail.from_email = Email('templates@sendgrid.com')
-    mail.template_id = 'd-your-dynamic-template-uid'
-    p = Personalization()
-    p.add_to(Email('user@example.com'))
-    p.dynamic_template_data = {
-        'name': 'Bob',
-        'balance': 42
-    }
-    mail.add_personalization(p)
-
-    sg = SendGridAPIClient()
-    response = sg.client.mail.send.post(request_body=mail.get())
-    print(response.status_code)
-    print(response.headers)
-    print(response.body)
->>>>>>> master:examples/helpers/mail_example.py

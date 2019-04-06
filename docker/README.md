@@ -1,5 +1,6 @@
 # Supported tags and respective `Dockerfile` links
- - `v6.0.0`, `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
+ - `v6.0.3`, `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
+ - `v6.0.0`
  - `v5.6.0`
  - `v5.5.0`
  - `v5.4.1`
@@ -26,7 +27,7 @@
 
 # Quick reference
  - **Where to get help:**
-   [Contact SendGrid Support](https://support.sendgrid.com/hc/en-us)
+   [Contact Twilio SendGrid Support](https://support.sendgrid.com/hc/en-us)
 
  - **Where to file issues:**
    https://github.com/sendgrid/sendgrid-python/issues
@@ -35,7 +36,7 @@
    [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md)
 
  - **Maintained by:**
-   [SendGrid Inc.](https://sendgrid.com)
+   [Twilio SendGrid Inc.](https://sendgrid.com)
 
 # Usage examples
  - Most recent version: `docker run -it sendgrid/sendgrid-python`.
@@ -59,8 +60,8 @@ For more detailed information, see [USAGE.md](https://github.com/sendgrid/sendgr
 
 # About
 
-sendgrid-python is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
+sendgrid-python is guided and supported by the Twilio SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
 
-sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
+sendgrid-python is maintained and funded by Twilio SendGrid, Inc. The names and logos for sendgrid-python are trademarks of Twilio SendGrid, Inc.
 
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![Twilio SendGrid Logo](https://sendgrid.com/brand/sg-twilio/SG_Twilio_Lockup_RGBx1.png)
