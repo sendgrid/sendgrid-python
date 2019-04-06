@@ -1,6 +1,9 @@
 .. image:: https://sendgrid.com/brand/sg-twilio/SG_Twilio_Lockup_RGBx1.png
+   :height: 54px
+   :width: 245px
    :target: https://www.sendgrid.com
-   :scale: 33 %
+   
+
 
 |Travis Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
 
