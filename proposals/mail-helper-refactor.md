@@ -18,7 +18,7 @@ message = Mail(from_email=From('from@example.com', 'From Name'),
                html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_apikey'))
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_apikey'))
     response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
@@ -42,12 +42,12 @@ to_emails = [
 ]
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=to_emails,
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -90,7 +90,7 @@ msg = Mail(from_email=From('from@example.com', 'From Name'),
            global_substitutions=global_substitutions)
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -109,7 +109,7 @@ from sendgrid.helpers.mail import *
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_email=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
@@ -194,7 +194,7 @@ msg.send_at = SendAt(1461775052, p=1)
 
 # The values below this comment are global to the entire message
 
-msg.global_subject = Subject('Sending with SendGrid is Fun')
+msg.global_subject = Subject('Sending with Twilio SendGrid is Fun')
 
 msg.content = Content(MimeType.Text, 'and easy to do anywhere, even with Python')
 msg.content = Content(MimeType.Html, '<strong>and easy to do anywhere, even with Python</strong>')
@@ -236,7 +236,7 @@ msg.section = [
 ]
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -255,7 +255,7 @@ from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, Htm
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 msg.attachment = Attachment(FileName('balance_001.pdf'),
@@ -265,7 +265,7 @@ msg.attachment = Attachment(FileName('balance_001.pdf'),
                             Name('Balance Sheet'))
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -318,7 +318,7 @@ from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, Htm
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 msg.substitution = [
@@ -328,7 +328,7 @@ msg.substitution = [
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)

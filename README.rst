@@ -1,20 +1,22 @@
-.. image:: https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png
+.. image:: https://github.com/sendgrid/sendgrid-python/blob/master/twilio_sendgrid_logo.png
    :target: https://www.sendgrid.com
+   
+
 
 |Travis Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
+
+**This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Python.**
 
 **NEW:**
 
 -  Subscribe to email `notifications`_ for releases and breaking changes.
--  Version 6.X release is a BREAKING CHANGE, please see the release notes for details.
+-  Version 6.X release is a BREAKING CHANGE from version 5.X, please see the `release notes`_ for details.
 -  Quickly get started with `Docker`_.
+-  Send SMS messages with `Twilio`_.
 
-**This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
+This library provides full support for all Twilio SendGrid `Web API v3`_ endpoints, including `v3 /mail/send`_.
 
-Version 3.X.X+ of this library provides full support for all SendGrid `Web API v3`_ endpoints, including the new `v3 /mail/send`_.
-
-This library represents the beginning of a new path for SendGrid.
-We want this library to be community driven and SendGrid led.
+We want this library to be community driven and Twilio SendGrid led.
 We need your help to realize this goal.
 To help make sure we are building the right things in the right order,
 we ask that you create `issues`_ and `pull requests`_ or simply upvote or comment on existing issues or pull requests.
@@ -28,9 +30,9 @@ Table of Contents
 
 -  `Installation <#installation>`__
 -  `Quick Start <#quick-start>`__
+-  `Common Use Cases <#use-cases>`__
+-  `General Usage <#usage>`__
 -  `Processing Inbound Email <#processing-inbound-email>`__
--  `Usage <#usage>`__
--  `Use Cases <#use-cases>`__
 -  `Announcements <#announcements>`__
 -  `Roadmap <#roadmap>`__
 -  `How to Contribute <#how-to-contribute>`__
@@ -45,7 +47,8 @@ Prerequisites
 -------------
 
 -  Python version 2.7 and 3.4+
--  The SendGrid service, starting at the `free level`_
+-  For email, you will need a Twilio SendGrid account, starting at the `free level`_
+-  For SMS messages, you will need a free `Twilio account`_
 
 Setup Environment Variables
 ---------------------------
@@ -61,7 +64,7 @@ Update the development environment with your `SENDGRID_API_KEY`_ (more info `her
     echo "sendgrid.env" >> .gitignore
     source ./sendgrid.env
 
-SendGrid also supports local environment file ``.env``.
+Twilio SendGrid also supports local environment file ``.env``.
 Copy or rename ``.env_sample`` into ``.env`` and update `SENDGRID_API_KEY`_ with your key.
 
 Windows
@@ -112,7 +115,7 @@ With Mail Helper Class
     message = Mail(
         from_email='from_email@example.com',
         to_emails='to@example.com',
-        subject='Sending with SendGrid is Fun',
+        subject='Sending with Twilio SendGrid is Fun',
         html_content='<strong>and easy to do anywhere, even with Python</strong>')
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
@@ -145,7 +148,7 @@ The following is the minimum needed code to send an email without the /mail/send
                         'email': 'test@example.com'
                     }
                 ],
-                'subject': 'Sending with SendGrid is Fun'
+                'subject': 'Sending with Twilio SendGrid is Fun'
             }
         ],
         'from': {
@@ -203,7 +206,7 @@ Please see `our helper`_ for utilizing our Inbound Parse webhook.
 Usage
 =====
 
--  `SendGrid Documentation`_
+-  `Twilio SendGrid Documentation`_
 -  `Library Usage Documentation`_
 -  `Example Code`_
 -  `How-to: Migration from v2 to v3`_
@@ -213,16 +216,13 @@ Usage
 Use Cases
 =========
 
-`Examples of common API use cases`_, such as how to send an email with a transactional template.
+`Examples of common API use cases`_, such as how to send an email with a transactional template or add an attachment or send an SMS message.
 
 Announcements
 =============
 
 Join an experienced and passionate team that focuses on making an impact.
 `Opportunities abound`_ to grow the product - and grow your career!
-
-Please see our announcement regarding `breaking changes`_.
-Your support is appreciated!
 
 All updates to this library are documented in our `CHANGELOG`_ and `releases`_.
 You may also subscribe to email `release notifications`_ for releases and breaking changes.
@@ -255,12 +255,12 @@ Please see our `troubleshooting guide`_ for common library issues.
 About
 =====
 
-**sendgrid-python** is guided and supported by the SendGrid Developer Experience Team.
+**sendgrid-python** is guided and supported by the Twilio Developer Experience Team.
 
 Email the Developer Experience Team `here <mailto:dx@sendgrid.com>`__ in case of any queries.
 
-**sendgrid-python** is maintained and funded by SendGrid, Inc.
-The names and logos for **sendgrid-python** are trademarks of SendGrid, Inc.
+**sendgrid-python** is maintained and funded by Twilio SendGrid, Inc.
+The names and logos for **sendgrid-python** are trademarks of Twilio SendGrid, Inc.
 
 License
 =======
@@ -269,18 +269,21 @@ License
 
 .. _notifications: https://dx.sendgrid.com/newsletter/python
 .. _Docker: https://github.com/sendgrid/sendgrid-python/tree/master/docker
+.. _Twilio: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/sms.md
+.. _release notes: https://github.com/sendgrid/sendgrid-python/releases/tag/v6.0.0
 .. _Web API v3: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _v3 /mail/send: https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint
 .. _issues: https://github.com/sendgrid/sendgrid-python/issues
 .. _pull requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md
 .. _free level: https://sendgrid.com/free?source=sendgrid-python
+.. _Twilio account: https://www.twilio.com/try-twilio?source=sendgrid-python
 .. _SENDGRID_API_KEY: https://app.sendgrid.com/settings/api_keys
 .. _Python-HTTP-Client: https://github.com/sendgrid/python-http-client
 .. _/mail/send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
 .. _personalization object: https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html
 .. _Fluent Interface: https://sendgrid.com/blog/using-python-to-implement-a-fluent-interface-to-any-rest-api/
 .. _our helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound
-.. _SendGrid Documentation: https://sendgrid.com/docs/API_Reference/index.html
+.. _Twilio SendGrid Documentation: https://sendgrid.com/docs/API_Reference/index.html
 .. _Library Usage Documentation: https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md
 .. _Example Code: https://github.com/sendgrid/sendgrid-python/tree/master/examples
 .. _`How-to: Migration from v2 to v3`: https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html

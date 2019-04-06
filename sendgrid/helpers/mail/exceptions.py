@@ -1,5 +1,5 @@
 ################################################################
-# Various types of extensible SendGrid related exceptions
+# Various types of extensible Twilio SendGrid related exceptions
 ################################################################
 
 
@@ -9,12 +9,12 @@ class SendGridException(Exception):
 
 
 class ApiKeyIncludedException(SendGridException):
-    """Exception raised for when SendGrid API Key included in message text"""
+    """Exception raised for when Twilio SendGrid API Key included in message text"""
 
     def __init__(self,
                  expression="Email body",
-                 message="SendGrid API Key detected"):
-        """Create an exception for when SendGrid API Key included in message text
+                 message="Twilio SendGrid API Key detected"):
+        """Create an exception for when Twilio SendGrid API Key included in message text
 
             :param expression: Input expression in which the error occurred
             :type expression: string

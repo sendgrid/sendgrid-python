@@ -11,7 +11,7 @@ RUN apk add --update --no-cache bash curl
 ADD prism.sh install.sh
 RUN sync && bash install.sh
 
-# Set up default SendGrid env
+# Set up default Twilio SendGrid env
 RUN mkdir sendgrid-python
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh

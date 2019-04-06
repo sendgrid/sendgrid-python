@@ -37,7 +37,7 @@ message.bcc = [
     Bcc('test9@example.com', 'Example User9', p=0)
 ]
 
-message.subject = Subject('Sending with SendGrid is Fun 0', p=0)
+message.subject = Subject('Sending with Twilio SendGrid is Fun 0', p=0)
 
 message.header = Header('X-Test1', 'Test1', p=0)
 message.header = Header('X-Test2', 'Test2', p=0)
@@ -103,7 +103,7 @@ message.custom_arg = [
 
 message.send_at = SendAt(1461775052, p=1)
 
-message.subject = Subject('Sending with SendGrid is Fun 1', p=1)
+message.subject = Subject('Sending with Twilio SendGrid is Fun 1', p=1)
 
 # The values below this comment are global to entire message
 
@@ -111,7 +111,7 @@ message.from_email = From('dx@example.com', 'DX')
 
 message.reply_to = ReplyTo('dx_reply@example.com', 'DX Reply')
 
-message.subject = Subject('Sending with SendGrid is Fun 2')
+message.subject = Subject('Sending with Twilio SendGrid is Fun 2')
 
 message.content = Content(
     MimeType.text,

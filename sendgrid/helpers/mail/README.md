@@ -1,4 +1,4 @@
-**This helper allows you to quickly and easily build a Mail object for sending email through SendGrid.**
+**This helper allows you to quickly and easily build a Mail object for sending email through Twilio SendGrid.**
 
 # Quick Start
 

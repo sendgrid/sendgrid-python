@@ -38,7 +38,7 @@ ems = [em1, em2, em3, em4, em5, em6, em7, em8, em9, em10]
 
 async def send_email(n, email):
     '''
-    send_mail wraps SendGrid's API client, and makes a POST request to
+    send_mail wraps Twilio SendGrid's API client, and makes a POST request to
     the api/v3/mail/send endpoint with `email`.
     Args:
         email<sendgrid.helpers.mail.Mail>: single mail object.

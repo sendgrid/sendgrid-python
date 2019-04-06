@@ -6,7 +6,7 @@ from sendgrid.helpers.mail import Mail
 message = Mail(
     from_email='from_email@example.com',
     to_emails='to@example.com',
-    subject='Sending with SendGrid is Fun',
+    subject='Sending with Twilio SendGrid is Fun',
     html_content='<strong>and easy to do anywhere, even with Python</strong>')
 try:
     sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))

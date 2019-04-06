@@ -11,7 +11,7 @@ to_emails = [
 message = Mail(
     from_email=('from@example.com', 'Example From Name'),
     to_emails=to_emails,
-    subject='Sending with SendGrid is Fun',
+    subject='Sending with Twilio SendGrid is Fun',
     html_content='<strong>and easy to do anywhere, even with Python</strong>')
 try:
     sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
