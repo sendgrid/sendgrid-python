@@ -1,4 +1,4 @@
-.. image:: https://github.com/sendgrid/sendgrid-python/blob/master/twilio_sendgrid_logo.png
+.. image:: https://github.com/sendgrid/sendgrid-python/raw/master/twilio_sendgrid_logo.png
    :target: https://www.sendgrid.com
    
 
