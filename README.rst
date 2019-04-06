@@ -1,6 +1,7 @@
 .. image:: https://sendgrid.com/brand/sg-twilio/SG_Twilio_Lockup_RGBx1.png
    :height: 54px
    :width: 245px
+   :scale: 33 %
    :target: https://www.sendgrid.com
    
 
