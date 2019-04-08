@@ -1,6 +1,9 @@
 Following are the steps to add Twilio SMS to your app:
 
-## 1. Setup a [free Twilio account](https://www.twilio.com/try-twilio?source=sendgrid-python)
+## 1. Obtain a Free Twilio Account
+
+Sign up for a free Twilio account [here](https://www.twilio.com/try-twilio?source=sendgrid-python).
+
 ## 2. Update your environment variables
 
 You can obtain your Account Sid and Auth Token from [twilio.com/console](https://twilio.com/console).
@@ -30,7 +33,9 @@ setx TWILIO_ACCOUNT_SID "YOUR_TWILIO_ACCOUNT_SID"
 setx TWILIO_AUTH_TOKEN "YOUR_TWILIO_AUTH_TOKEN"
 ```
 
-## 3. `pip install twilio`
+## 3. Install the Twilio Helper Library
+
+`pip install twilio`
 
 Then, you can execute the following code.
 
