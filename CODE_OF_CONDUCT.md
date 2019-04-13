@@ -28,9 +28,6 @@
  **Discuss Publicly** - Discussing publicly is always acceptable. Note, though, that approaching the person directly may be better, as it tends to make them less defensive, and it respects the time of other community members, so you probably want to try direct contact first.
 
  **Contact the Moderators** - You can reach the Twilio SendGrid moderators by emailing dx@sendgrid.com.
-
- ## Submission to Twilio SendGrid Repositories
- Finally, just a reminder, changes to the Twilio SendGrid repositories will only be accepted upon completion of the [Twilio SendGrid Contributor Agreement](https://cla.sendgrid.com).
  
  ## Attribution
 
