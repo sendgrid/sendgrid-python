@@ -82,7 +82,7 @@ class Email(object):
         :param value: Name associated with this email.
         :type value: string
         """
-        if not (value is None or isinstance(value, str)):
+        if not (value is None or isinstance(value, basestring)):
             raise TypeError('name must be of type string.')
 
         # Escape common CSV delimiters as workaround for
