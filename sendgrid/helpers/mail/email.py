@@ -18,7 +18,7 @@ else:
     html_entity_decode = __html_parser__.unescape
 
 try:
-     basestring = unicode
+     basestring = basestring
 except NameError:
     # Define basestring when Python >= 3.0
     basestring = str
