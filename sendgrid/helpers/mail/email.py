@@ -17,6 +17,12 @@ else:
     __html_parser__ = HTMLParser()
     html_entity_decode = __html_parser__.unescape
 
+try:
+     basestring = unicode
+except NameError:
+    # Define basestring when Python >= 3.0
+    basestring = str
+
 
 class Email(object):
     """An email address with an optional name."""
