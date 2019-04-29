@@ -7,9 +7,9 @@ class FooterSettings(object):
         :param enable: Whether this footer should be applied.
         :type enable: boolean, optional
         :param text: Text content of this footer
-        :type text: string, optional
+        :type text: FooterText, optional
         :param html: HTML content of this footer
-        :type html: string, optional
+        :type html: FooterHtml, optional
         """
         self._enable = None
         self._text = None
