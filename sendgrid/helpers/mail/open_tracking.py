@@ -11,7 +11,7 @@ class OpenTracking(object):
         :param enable: If open tracking is enabled.
         :type enable: boolean, optional
         :param substitution_tag: Tag in body to be replaced by tracking pixel.
-        :type substitution_tag: string, optional
+        :type substitution_tag: OpenTrackingSubstitionTag, optional
         """
         self._enable = None
         self._substitution_tag = None
