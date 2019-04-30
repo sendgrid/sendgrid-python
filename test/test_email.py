@@ -18,12 +18,25 @@ class TestEmailObject(unittest.TestCase):
 
         self.assertEqual(email.name, name)
 
+    def test_add_unicode_name(self):
+        name = u"SomeName"
+        email = Email(name=name)
+
+        self.assertEqual(email.name, name)
+
     def test_add_name_email(self):
         name = "SomeName"
         address = "test@example.com"
         email = Email(email=address, name=name)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")
+
+    def test_add_unicode_name_email(self):
+        name = u"SomeName"
+        address = u"test@example.com"
+        email = Email(email=address, name=name)
+        self.assertEqual(email.name, name)
+        self.assertEqual(email.email, u"test@example.com")
 
     def test_add_rfc_function_finds_name_not_email(self):
         name = "SomeName"
@@ -60,3 +73,10 @@ class TestEmailObject(unittest.TestCase):
         email.name = name
 
         self.assertEqual(email.name, '"' + name + '"')
+
+    def test_add_unicode_name_with_comma(self):
+        email = Email()
+        name = u"Name, Some"
+        email.name = name
+
+        self.assertEqual(email.name, u'"' + name + u'"')

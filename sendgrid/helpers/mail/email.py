@@ -17,6 +17,12 @@ else:
     __html_parser__ = HTMLParser()
     html_entity_decode = __html_parser__.unescape
 
+try:
+     basestring = basestring
+except NameError:
+    # Define basestring when Python >= 3.0
+    basestring = str
+
 
 class Email(object):
     """An email address with an optional name."""
@@ -82,7 +88,7 @@ class Email(object):
         :param value: Name associated with this email.
         :type value: string
         """
-        if not (value is None or isinstance(value, str)):
+        if not (value is None or isinstance(value, basestring)):
             raise TypeError('name must be of type string.')
 
         # Escape common CSV delimiters as workaround for
