@@ -11,12 +11,12 @@ class SubscriptionTracking(object):
         :param enable: Whether this setting is enabled.
         :type enable: boolean, optional
         :param text: Text to be appended to the email with the link as "<% %>".
-        :type text: string, optional
+        :type text: SubscriptionText, optional
         :param html: HTML to be appended to the email with the link as "<% %>".
-        :type html: string, optional
+        :type html: SubscriptionHtml, optional
         :param substitution_tag: Tag replaced with URL. Overrides text, html
                                  params.
-        :type substitution_tag: string, optional
+        :type substitution_tag: SubscriptionSubstitutionTag, optional
         """
         self._enable = None
         self._text = None
