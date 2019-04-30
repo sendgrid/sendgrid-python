@@ -118,7 +118,7 @@ import os
 from sendgrid.helpers.mail import (From, To, PlainTextContent, HtmlContent, Mail)
 
 def handler(event, context):
-    sendgrid_client = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    sendgrid_client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     from_email = From("test@example.com")
     to_email = To("test@example.com")
     subject = "Sending with Twilio SendGrid is Fun"
