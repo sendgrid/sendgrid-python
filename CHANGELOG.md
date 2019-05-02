@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [6.0.5] - 2019-05-01 ##
+
+### Fixed
+
+- [PR #794](https://github.com/sendgrid/sendgrid-python/pull/794): Update type requirements used for multiple objects (BIG thanks to [@jphilipsen05](https://github.com/jphilipsen05))
+- [PR #797](https://github.com/sendgrid/sendgrid-python/pull/797): API Key typo
+- [PR #792](https://github.com/sendgrid/sendgrid-python/pull/792): Fixes #790: TypeError "name must be of type string" regression when name is Unicode string (BIG thanks to [@johnpkennedy](https://github.com/johnpkennedy))
+- [PR #785](https://github.com/sendgrid/sendgrid-python/pull/785): Link for 'Transactional Templates' in use_cases README.md broken (BIG thanks to [@nguyenpk](https://github.com/nguyenpk))
+
 ## [6.0.3] - 2019-04-05 ##
 
 ### Added

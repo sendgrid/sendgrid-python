@@ -1,5 +1,6 @@
 # Supported tags and respective `Dockerfile` links
- - `v6.0.3`, `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
+ - `v6.0.5`, `latest` [(Dockerfile)](https://github.com/sendgrid/sendgrid-python/blob/master/docker/Dockerfile)
+ - `v6.0.3`
  - `v6.0.0`
  - `v5.6.0`
  - `v5.5.0`
