@@ -3,7 +3,7 @@ import json
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
 # Retrieve a list of scopes for which this user has access. #

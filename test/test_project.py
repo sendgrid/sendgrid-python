@@ -1,13 +1,9 @@
 import os
+import unittest
 
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class ProjectTests(unittest.TestCase):
-
     # ./docker
     def test_docker_dir(self):
         self.assertTrue(os.path.isfile("./docker/Dockerfile"))
@@ -56,9 +52,9 @@ class ProjectTests(unittest.TestCase):
     def test_pr_template(self):
         self.assertTrue(os.path.isfile('./.github/PULL_REQUEST_TEMPLATE'))
 
-    # ./README.md
+    # ./README.rst
     def test_readme(self):
-        self.assertTrue(os.path.isfile('./README.md'))
+        self.assertTrue(os.path.isfile('./README.rst'))
 
     # ./TROUBLESHOOTING.md
     def test_troubleshooting(self):
@@ -67,6 +63,10 @@ class ProjectTests(unittest.TestCase):
     # ./USAGE.md
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
+
+    # ./sendgrid/VERSION.txt
+    def test_version(self):
+        self.assertTrue(os.path.isfile('./sendgrid/VERSION.txt'))
 
     # ./use-cases/README.md
     def test_use_cases(self):
