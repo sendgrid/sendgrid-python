@@ -4,6 +4,10 @@ from distutils.file_util import copy_file
 from setuptools import setup, find_packages
 
 
+__version__ = None
+with open('sendgrid/version.py') as f:
+    exec(f.read())
+
 def getRequires():
     deps = ['python_http_client>=3.0']
     return deps
@@ -11,14 +15,10 @@ def getRequires():
 
 dir_path = os.path.abspath(os.path.dirname(__file__))
 readme = io.open(os.path.join(dir_path, 'README.rst'), encoding='utf-8').read()
-version = io.open(os.path.join(dir_path, 'sendgrid/VERSION.txt'), encoding='utf-8').read().strip()
-copy_file(os.path.join(dir_path, 'sendgrid', 'VERSION.txt'),
-          os.path.join(dir_path, 'sendgrid', 'VERSION.txt'),
-          verbose=0)
 
 setup(
     name='sendgrid',
-    version=version,
+    version=str(__version__),
     author='Elmer Thomas, Yamil Asusta',
     author_email='dx@sendgrid.com',
     url='https://github.com/sendgrid/sendgrid-python/',
