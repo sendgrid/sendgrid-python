@@ -64,10 +64,6 @@ class ProjectTests(unittest.TestCase):
     def test_usage(self):
         self.assertTrue(os.path.isfile('./USAGE.md'))
 
-    # ./sendgrid/VERSION.txt
-    def test_version(self):
-        self.assertTrue(os.path.isfile('./sendgrid/VERSION.txt'))
-
     # ./use-cases/README.md
     def test_use_cases(self):
         self.assertTrue(os.path.isfile('./use_cases/README.md'))
