@@ -46,7 +46,7 @@ data = {
             "disposition": "inline",
             "filename": "file1.jpg",
             "name": "file1",
-            "type": "jpg"
+            "type": "application/pdf"
         }
     ],
     "batch_id": "[YOUR BATCH ID GOES HERE]",
