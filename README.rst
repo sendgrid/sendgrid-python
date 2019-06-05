@@ -127,7 +127,7 @@ With Mail Helper Class
         print(e.message)
 
 The ``Mail`` constructor creates a `personalization object`_ for you.
-`Here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail/mail_example.py#L16>`__ is an example of how to add it.
+`Here <https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/kitchen_sink.md>`__ is an example of how to add it.
 
 Without Mail Helper Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~
