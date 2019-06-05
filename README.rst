@@ -124,7 +124,7 @@ With Mail Helper Class
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(e.message)
+        print(str(e))
 
 The ``Mail`` constructor creates a `personalization object`_ for you.
 `Here <https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/kitchen_sink.md>`__ is an example of how to add it.
@@ -168,7 +168,7 @@ The following is the minimum needed code to send an email without the /mail/send
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(e.message)
+        print(str(e))
 
 General v3 Web API Usage (With `Fluent Interface`_)
 ---------------------------------------------------
