@@ -306,7 +306,7 @@ def build_kitchen_sink():
         UtmCampaign("utm_campaign"))
     message.tracking_settings = tracking_settings
 
-    return message.get()
+    return message
 
 
 def send_hello_email():
