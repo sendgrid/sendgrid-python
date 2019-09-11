@@ -15,6 +15,9 @@ This directory provides examples for specific use cases of this library. Please 
 ### Working with Email
 * [Asynchronous Mail Send](asynchronous_mail_send.md)
 * [Sending HTML-Only Content](sending_html_content.md)
+* [Transactional Templates](transactional_templates.md)
+
+### Library Features
 * [Integrate with Slack Events API](slack_event_api_integration.md)
 * [Legacy Templates](legacy_templates.md)
 
