@@ -2,7 +2,7 @@ This documentation is based on our [OAI specification](https://github.com/sendgr
 
 # INITIALIZATION
 
-Make sure your API key has [required permissions](https://sendgrid.com/docs/ui/account-and-settings/api-keys/).
+Make sure your API key has the [required permissions](https://sendgrid.com/docs/ui/account-and-settings/api-keys/).
 
 ```python
 from sendgrid import SendGridAPIClient
