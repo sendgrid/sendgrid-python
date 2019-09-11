@@ -8,14 +8,14 @@ class SendGridException(Exception):
     pass
 
 
-class APIKeyIncludedException(SendGridException):
+class ApiKeyIncludedException(SendGridException):
     """Exception raised for when SendGrid API Key included in message text"""
 
     def __init__(self,
                  expression="Email body",
                  message="SendGrid API Key detected"):
         """Create an exception for when SendGrid API Key included in message text
-        
+
             :param expression: Input expression in which the error occurred
             :type expression: string
             :param message: Explanation of the error
@@ -40,6 +40,11 @@ class APIKeyIncludedException(SendGridException):
 
     @expression.setter
     def expression(self, value):
+        """Input expression in which the error occurred
+
+        :param value: Input expression in which the error occurred
+        :type value: string
+        """
         self._expression = value
 
     @property
@@ -52,4 +57,9 @@ class APIKeyIncludedException(SendGridException):
 
     @message.setter
     def message(self, value):
+        """Explanation of the error
+
+        :param value: Explanation of the error
+        :type value: string
+        """
         self._message = value

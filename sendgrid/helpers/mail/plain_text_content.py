@@ -1,43 +1,48 @@
 from .content import Content
-from .validators import ValidateAPIKey
+from .validators import ValidateApiKey
 
 
 class PlainTextContent(Content):
     """Plain text content to be included in your email.
     """
 
-    def __init__(self, value):
-        """Create a PlainTextContent with the specified MIME type and value.
+    def __init__(self, content):
+        """Create a PlainTextContent with the specified MIME type and content.
 
-        :param value: The actual text content.
+        :param content: The actual text content.
+        :type content: string
         """
-        self._value = None
-        self._validator = ValidateAPIKey()
+        self._content = None
+        self._validator = ValidateApiKey()
 
-        if value is not None:
-            self.value = value
-        
+        if content is not None:
+            self.content = content
 
     @property
-    def type(self):
-        """The actual text content.
+    def mime_type(self):
+        """The MIME type.
 
         :rtype: string
         """
         return "text/plain"
 
     @property
-    def value(self):
+    def content(self):
         """The actual text content.
 
         :rtype: string
         """
-        return self._value
+        return self._content
 
-    @value.setter
-    def value(self, value):
+    @content.setter
+    def content(self, value):
+        """The actual text content.
+
+        :param value: The actual text content.
+        :type value: string
+        """
         self._validator.validate_message_dict(value)
-        self._value = value
+        self._content = value
 
     def get(self):
         """
@@ -47,6 +52,9 @@ class PlainTextContent(Content):
         :rtype: dict
         """
         content = {}
-        content["type"] = self.type
-        content["value"] = self.value
+        if self.mime_type is not None:
+            content["type"] = self.mime_type
+
+        if self.content is not None:
+            content["value"] = self.content
         return content

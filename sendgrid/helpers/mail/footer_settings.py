@@ -17,10 +17,10 @@ class FooterSettings(object):
 
         if enable is not None:
             self.enable = enable
-        
+
         if text is not None:
             self.text = text
-        
+
         if html is not None:
             self.html = html
 
@@ -34,6 +34,11 @@ class FooterSettings(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     @property
@@ -46,6 +51,11 @@ class FooterSettings(object):
 
     @text.setter
     def text(self, value):
+        """The plain text content of your footer.
+
+        :param value: The plain text content of your footer.
+        :type value: string
+        """
         self._text = value
 
     @property
@@ -58,6 +68,11 @@ class FooterSettings(object):
 
     @html.setter
     def html(self, value):
+        """The HTML content of your footer.
+
+        :param value: The HTML content of your footer.
+        :type value: string
+        """
         self._html = value
 
     def get(self):
@@ -72,8 +87,8 @@ class FooterSettings(object):
             footer_settings["enable"] = self.enable
 
         if self.text is not None:
-            footer_settings["text"] = self.text
+            footer_settings["text"] = self.text.get()
 
         if self.html is not None:
-            footer_settings["html"] = self.html
+            footer_settings["html"] = self.html.get()
         return footer_settings

@@ -28,7 +28,7 @@ print(response.headers)
 # v3 Mail Send #
 # POST /mail/send #
 # This endpoint has a helper, check it out
-# [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/README.md).
+# [here](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md).
 
 data = {
     "asm": {
@@ -46,7 +46,7 @@ data = {
             "disposition": "inline",
             "filename": "file1.jpg",
             "name": "file1",
-            "type": "jpg"
+            "type": "application/pdf"
         }
     ],
     "batch_id": "[YOUR BATCH ID GOES HERE]",
