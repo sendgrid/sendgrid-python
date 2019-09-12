@@ -24,7 +24,7 @@ class Substitution(object):
 
     @property
     def value(self):
-        return self._value
+        return str(self._value) if isinstance(self._value, int) else self.__value
 
     @value.setter
     def value(self, value):
