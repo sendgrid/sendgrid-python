@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [6.1.0] - 2019-09-12 ##
+
+### Added
+- Bumped dependency on python-http-client to [v3.2.1](https://github.com/sendgrid/python-http-client/releases/tag/v3.2.0)
+- [PR #807](https://github.com/sendgrid/sendgrid-python/pull/807): Get version from version.py instead of version.txt. (BIG thanks to [@lipis](https://github.com/lipis))
+- [PR #808](https://github.com/sendgrid/sendgrid-python/pull/808): API key permissions mention in USAGE.md. (BIG thanks to [@int-ua](https://github.com/int-ua))
+
+### Fixed
+- [PR #763](https://github.com/sendgrid/sendgrid-python/pull/763): Updated Error Message Section. (BIG thanks to [@FFX01](https://github.com/FFX01))
+- [PR #818](https://github.com/sendgrid/sendgrid-python/pull/818): Handle new API in the helper example. (BIG thanks to [@enugentdt](https://github.com/enugentdt))
+- [PR #839](https://github.com/sendgrid/sendgrid-python/pull/839): Fix for ganalytics json builder.
+
 ## [6.0.5] - 2019-05-01 ##
 
 ### Fixed

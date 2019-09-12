@@ -9,7 +9,7 @@ with open('sendgrid/version.py') as f:
     exec(f.read())
 
 def getRequires():
-    deps = ['python_http_client>=3.0']
+    deps = ['python_http_client>=3.2.1']
     return deps
 
 
