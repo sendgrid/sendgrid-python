@@ -168,7 +168,7 @@ class Ganalytics(object):
         for key in keys:
             value = getattr(self, key, None)
             if value is not None:
-                if isinstance(value, bool):
+                if isinstance(value, bool) or isinstance(value, str):
                     ganalytics[key] = value
                 else:
                     ganalytics[key] = value.get()
