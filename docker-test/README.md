@@ -1,4 +1,4 @@
-Use Docker to easily try out or contribute to the sendgrid-python library. 
+Use Docker to easily test the sendgrid-python library. 
 
 This Docker image contains:
  - Python 3.6
@@ -20,7 +20,7 @@ This Docker image contains:
   - `python setup.py install`
 2. [Install Docker](https://docs.docker.com/install/)
 3. [Setup local environment variable SENDGRID_API_KEY](https://github.com/sendgrid/sendgrid-php#setup-environment-variables)
-4. Build Docker image, run Docker container, login to the Docker container
+4. Build a Docker image, run Docker container, login to the Docker container
   - `docker image build --tag="sendgrid/python3.6" ./docker-test`
   - `docker run -itd --name="sendgrid_python3.6" -v $(pwd):/root/sendgrid-python sendgrid/python3.6 /bin/bash`
 5. Run the tests within the Docker container

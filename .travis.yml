@@ -2,21 +2,24 @@ language: python
 sudo: false
 cache: pip
 python:
-- '2.6'
 - '2.7'
 - '3.4'
 - '3.5'
 - '3.6'
+# Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
 env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
 install:
-- if [[ $TRAVIS_PYTHON_VERSION == 2.6* ]]; then pip install unittest2; fi
 - python setup.py install
 - pip install pyyaml
 - pip install flask
 - pip install six
-- pip install pypandoc
 - pip install coverage
 - pip install codecov
 # - sudo apt-get install -y pandoc
@@ -30,22 +33,20 @@ before_script:
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
 script:
-- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then coverage run -m unittest2 discover; else coverage run -m unittest discover; fi
+- coverage run -m unittest discover
 after_script:
 - codecov
 - ./cc-test-reporter after-build --exit-code $?
-before_deploy:
-- python ./register.py
-deploy:
-  provider: pypi
-  user: thinkingserious
-  password:
-    secure: DoM21KiMKkt/7AS6zOqTs7j3fgInrpswRTPG3cqBNRSzyfkXeXmKecCPruooxvYKLM7fPNDOuIH2phgCjdx/XBtJwghNh34n+TzhNFEiI/6pV0iS4a9gW0+QU+GMYvQmfNlA9DKQ5N20FMy4XeK8QQFarJXQwW1/a5wWftbUYvQ=
-  skip_cleanup: true
-  distributions: sdist bdist_wheel
-  on:
-    tags: true
-    python: '3.6'
+# deploy:
+#   provider: pypi
+#   user: thinkingserious
+#   password:
+#     secure: DoM21KiMKkt/7AS6zOqTs7j3fgInrpswRTPG3cqBNRSzyfkXeXmKecCPruooxvYKLM7fPNDOuIH2phgCjdx/XBtJwghNh34n+TzhNFEiI/6pV0iS4a9gW0+QU+GMYvQmfNlA9DKQ5N20FMy4XeK8QQFarJXQwW1/a5wWftbUYvQ=
+#   skip_cleanup: true
+#   distributions: sdist bdist_wheel
+#   on:
+#     tags: true
+#     python: '3.6'
 notifications:
   hipchat:
     rooms:

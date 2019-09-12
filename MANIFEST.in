@@ -3,4 +3,5 @@ include LICENSE.txt
 include app.json
 include Procfile
 include requirements.txt
+recursive-include sendgrid *.py *.txt
 recursive-exclude test *

@@ -1,6 +1,6 @@
-# Transactional Templates
+# Legacy Templates
 
-For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
+For this example, we assume you have created a [legacy template](https://sendgrid.com/docs/ui//sending-email/create-and-edit-legacy-transactional-templates). Following is the template content we used for testing.
 
 Template ID (replace with your own):
 
@@ -47,7 +47,7 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
 subject = "I'm replacing the subject tag"
 to_email = Email("test@example.com")
@@ -78,7 +78,7 @@ except ImportError:
     # Python 2
     import urllib2 as urllib
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 data = {
   "personalizations": [
     {
