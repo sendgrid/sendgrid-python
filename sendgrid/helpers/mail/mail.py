@@ -185,6 +185,13 @@ class Mail(object):
                 self.add_personalization(personalization, index=p)
 
     def _get_internal_personalizations(self, value):
+        """Return if it has internal personalizations and internal 
+        personalization object
+
+        :param value: Get the object value that could has internal 
+        personalization
+        :type value: obj
+        """
         has_internal_personalization = False
 
         try:
@@ -416,7 +423,8 @@ class Mail(object):
         """
         if isinstance(value, Subject):
             if value.personalization is not None:
-                has_internal_personalization, personalization = self._get_internal_personalizations(value)
+                has_internal_personalization, personalization = \
+                    self._get_internal_personalizations(value)
                 personalization.subject = value.subject
 
                 if not has_internal_personalization:
@@ -460,7 +468,8 @@ class Mail(object):
         :type value: Header, dict
         """
         if header.personalization is not None:
-            has_internal_personalization, personalization = self._get_internal_personalizations(header)
+            has_internal_personalization, personalization = \
+                self._get_internal_personalizations(header)
             if isinstance(header, dict):
                 (k, v) = list(header.items())[0]
                 personalization.add_header(Header(k, v))
@@ -503,7 +512,8 @@ class Mail(object):
         :type value: Substitution
         """
         if substitution.personalization:
-            has_internal_personalization, personalization = self._get_internal_personalizations(substitution)
+            has_internal_personalization, personalization = \
+                self._get_internal_personalizations(substitution)
             personalization.add_substitution(substitution)
 
             if not has_internal_personalization:
@@ -551,7 +561,8 @@ class Mail(object):
         :type value: CustomArg, dict
         """
         if custom_arg.personalization is not None:
-            has_internal_personalization, personalization = self._get_internal_personalizations(custom_arg)
+            has_internal_personalization, personalization = \
+                self._get_internal_personalizations(custom_arg)
             if isinstance(custom_arg, dict):
                 (k, v) = list(custom_arg.items())[0]
                 personalization.add_custom_arg(CustomArg(k, v))
@@ -589,7 +600,8 @@ class Mail(object):
         """
         if isinstance(value, SendAt):
             if value.personalization is not None:
-                has_internal_personalization, personalization = self._get_internal_personalizations(value)
+                has_internal_personalization, personalization = \
+                    self._get_internal_personalizations(value)
                 personalization.send_at = value.send_at
 
                 if not has_internal_personalization:
@@ -614,7 +626,8 @@ class Mail(object):
         if not isinstance(value, DynamicTemplateData):
             value = DynamicTemplateData(value)
             
-        has_internal_personalization, personalization = self._get_internal_personalizations(value)
+        has_internal_personalization, personalization = \
+            self._get_internal_personalizations(value)
         personalization.dynamic_template_data = value.dynamic_template_data
 
         if not has_internal_personalization:
