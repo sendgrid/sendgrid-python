@@ -1,32 +1,47 @@
 from .content import Content
-from .validators import ValidateAPIKey
+from .validators import ValidateApiKey
 
 
 class HtmlContent(Content):
     """HTML content to be included in your email."""
 
-    def __init__(self, value):
-        """Create an HtmlContent with the specified MIME type and value.
+    def __init__(self, content):
+        """Create an HtmlContent with the specified MIME type and content.
 
-        :param value: The HTML content.
-        :type value: string, optional
+        :param content: The HTML content.
+        :type content: string
         """
-        self._validator = ValidateAPIKey()
-        self.type = "text/html"
-        self.value = value
+        self._content = None
+        self._validator = ValidateApiKey()
+
+        if content is not None:
+            self.content = content
 
     @property
-    def value(self):
+    def mime_type(self):
+        """The MIME type for HTML content.
+
+        :rtype: string
+        """
+        return "text/html"
+
+    @property
+    def content(self):
         """The actual HTML content.
 
         :rtype: string
         """
-        return self._value
+        return self._content
 
-    @value.setter
-    def value(self, value):
+    @content.setter
+    def content(self, value):
+        """The actual HTML content.
+
+        :param value: The actual HTML content.
+        :type value: string
+        """
         self._validator.validate_message_dict(value)
-        self._value = value
+        self._content = value
 
     def get(self):
         """
@@ -36,6 +51,9 @@ class HtmlContent(Content):
         :rtype: dict
         """
         content = {}
-        content["type"] = "text/html"
-        content["value"] = self._value
+        if self.mime_type is not None:
+            content["type"] = self.mime_type
+
+        if self.content is not None:
+            content["value"] = self.content
         return content

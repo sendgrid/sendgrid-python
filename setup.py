@@ -11,8 +11,8 @@ def getRequires():
 
 dir_path = os.path.abspath(os.path.dirname(__file__))
 readme = io.open(os.path.join(dir_path, 'README.rst'), encoding='utf-8').read()
-version = io.open(os.path.join(dir_path, 'VERSION.txt'), encoding='utf-8').read().strip()
-copy_file(os.path.join(dir_path, 'VERSION.txt'),
+version = io.open(os.path.join(dir_path, 'sendgrid/VERSION.txt'), encoding='utf-8').read().strip()
+copy_file(os.path.join(dir_path, 'sendgrid', 'VERSION.txt'),
           os.path.join(dir_path, 'sendgrid', 'VERSION.txt'),
           verbose=0)
 

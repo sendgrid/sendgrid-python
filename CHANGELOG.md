@@ -41,7 +41,7 @@ All notable changes to this project will be documented in this file.
 - [PR #365](https://github.com/sendgrid/sendgrid-python/pull/365): Write tutorial to deploy simple Django app on Heroku. Big thanks to [Kan Ouivirach](https://github.com/zkan) for the PR!
 - [PR #526](https://github.com/sendgrid/sendgrid-python/pull/526): Include code reviews section. Big thanks to [Jared Scott](https://github.com/jlax47) for the PR!
 - [PR #414](https://github.com/sendgrid/sendgrid-python/pull/414): Provide utf-8 as encoding explicitly when opening text files. Big thanks to [Ruslan Shestopalyuk](https://github.com/rshest) for the PR!
-- [PR #537](https://github.com/sendgrid/sendgrid-python/pull/537): Add unittesting support to .codeclimate.yml. Big thanks to [Prashu Chaudhary](https://github.com/prashuchaudhary) for the PR!
+- [PR #537](https://github.com/sendgrid/sendgrid-python/pull/537): Add unit testing support to .codeclimate.yml. Big thanks to [Prashu Chaudhary](https://github.com/prashuchaudhary) for the PR!
 - [PR #554](https://github.com/sendgrid/sendgrid-python/pull/554): Ensure params are applied independently. Big thanks to [Nino Milenovic](https://github.com/rubyengineer) for the PR!
 - [PR #557](https://github.com/sendgrid/sendgrid-python/pull/557): Client cleanup. Big thanks to [Slam](https://github.com/3lnc) for the PR!
 - [PR #569](https://github.com/sendgrid/sendgrid-python/pull/569): Make Mail helper parameters truly optional. Big thanks to [Ian Beck](https://github.com/onecrayon) for the PR!
@@ -51,13 +51,13 @@ All notable changes to this project will be documented in this file.
 - [PR #421](https://github.com/sendgrid/sendgrid-python/pull/421): Typos. Big thanks to [Abhishek Bhatt](https://github.com/ab-bh) for the PR!
 - [PR #432](https://github.com/sendgrid/sendgrid-python/pull/432): Typos. Big thanks to [Gaurav Arora](https://github.com/gaurav61) for the PR!
 - [PR #431](https://github.com/sendgrid/sendgrid-python/pull/431): Typos. Big thanks to [Gaurav Arora](https://github.com/gaurav61) for the PR!
-- [PR #430](https://github.com/sendgrid/sendgrid-python/pull/430): Attempt to sync before executing shell command. Big thanks to [Aditya Narayan](https://github.com/aditnryn) for the PR!
+- [PR #430](https://github.com/sendgrid/sendgrid-python/pull/430): Attempt to sync before executing the shell command. Big thanks to [Aditya Narayan](https://github.com/aditnryn) for the PR!
 - [PR #429](https://github.com/sendgrid/sendgrid-python/pull/429): Typos. Big thanks to [daluntw](https://github.com/daluntw) for the PR!
 - [PR #492](https://github.com/sendgrid/sendgrid-python/pull/492): 
 Updated date-range in LICENSE file. Big thanks to [Dhruv Srivastava](https://github.com/dhruvhacks) for the PR!
 - [PR #482](https://github.com/sendgrid/sendgrid-python/pull/482): Typos. Big thanks to [Karan Samani](https://github.com/Kimi450) for the PR!
 - [PR #504](https://github.com/sendgrid/sendgrid-python/pull/504): Fix .codeclimate.yml. Big thanks to [Matt Bernier](https://github.com/mbernier) for the PR!
-- [PR #505](https://github.com/sendgrid/sendgrid-python/pull/505): Remove unnecessary github PR templates. Big thanks to [Alex](https://github.com/pushkyn) for the PR!
+- [PR #505](https://github.com/sendgrid/sendgrid-python/pull/505): Remove unnecessary GitHub PR templates. Big thanks to [Alex](https://github.com/pushkyn) for the PR!
 - [PR #494](https://github.com/sendgrid/sendgrid-python/pull/494): Remove unused import in register.py. Big thanks to [Alexis Rivera De La Torre](https://github.com/gardlt) for the PR!
 - [PR #469](https://github.com/sendgrid/sendgrid-python/pull/469): 
 Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github.com/SidduH) for the PR!
@@ -65,7 +65,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 - [PR #508](https://github.com/sendgrid/sendgrid-python/pull/508): Typos. Big thanks to [Saksham Gupta](https://github.com/shucon) for the PR!
 - [PR #353](https://github.com/sendgrid/sendgrid-python/pull/353): Typos. Big thanks to [Yothin M](https://github.com/yothinix) for the PR!
 - [PR #564](https://github.com/sendgrid/sendgrid-python/pull/564): Typos. Big thanks to [Chao](https://github.com/chaoranxie) for the PR!
-- [PR #424](https://github.com/sendgrid/sendgrid-python/pull/424): Updating version 2.7.8 to 2.7.11 to match version in pyenv install instruction. Big thanks to [Krista LaFentres](https://github.com/lafentres) for the PR!
+- [PR #424](https://github.com/sendgrid/sendgrid-python/pull/424): Updating version 2.7.8 to 2.7.11 to match the version in pyenv install instruction. Big thanks to [Krista LaFentres](https://github.com/lafentres) for the PR!
 - [PR #454](https://github.com/sendgrid/sendgrid-python/pull/454): Requests to send mail with both plain text and HTML content fail if the HTML content is specified first. Big thanks to [Ryan D'souza](https://github.com/dsouzarc) for the PR!
 - [PR #466](https://github.com/sendgrid/sendgrid-python/pull/466): Fixed PEP8 issues. Big thanks to [Piotr Szwarc](https://github.com/blackpioter) for the PR!
 - [PR #522](https://github.com/sendgrid/sendgrid-python/pull/522): Typos. Big thanks to [Abhishek J](https://github.com/slashstar) for the PR!

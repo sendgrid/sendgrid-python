@@ -27,13 +27,23 @@ class UnitTests(unittest.TestCase):
         x = send.Send(fake_url)
         x.test_payload(fake_url)
 
-        send.Client.assert_called_once_with(host=fake_url, request_headers={'User-Agent': 'SendGrid-Test',
-                                                                            'Content-Type': 'multipart/form-data; boundary=xYzZY'})
+        send.Client.assert_called_once_with(
+            host=fake_url,
+            request_headers={
+                'User-Agent': 'SendGrid-Test',
+                'Content-Type': 'multipart/form-data; boundary=xYzZY'
+            })
 
     def test_main_call(self):
         fake_url = 'https://fake_url'
 
-        with mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(host=fake_url, data='test_file.txt')):
+        with mock.patch(
+            'argparse.ArgumentParser.parse_args',
+            return_value=argparse.Namespace(
+                host=fake_url, data='test_file.txt')):
             send.main()
-            send.Client.assert_called_once_with(host=fake_url, request_headers={'User-Agent': 'SendGrid-Test',
-                                                                                'Content-Type': 'multipart/form-data; boundary=xYzZY'})
+            send.Client.assert_called_once_with(
+                host=fake_url,
+                request_headers={
+                    'User-Agent': 'SendGrid-Test',
+                    'Content-Type': 'multipart/form-data; boundary=xYzZY'})
