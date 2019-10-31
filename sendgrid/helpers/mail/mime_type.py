@@ -3,3 +3,4 @@ class MimeType(object):
     """
     text = "text/plain"
     html = "text/html"
+    amp = "text/x-amp-html"
