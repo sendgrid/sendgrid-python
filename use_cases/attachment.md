@@ -3,22 +3,10 @@
 ```python
 import base64
 import os
-import json
-from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import (
     Mail, Attachment, FileContent, FileName,
     FileType, Disposition, ContentId)
-try:
-    # Python 3
-    import urllib.request as urllib
-except ImportError:
-    # Python 2
-    import urllib2 as urllib
-
-import os
-import json
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 
 message = Mail(
     from_email='from_email@example.com',
