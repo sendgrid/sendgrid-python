@@ -863,7 +863,7 @@ class UnitTests(unittest.TestCase):
         data = response.body
         unused = unassigned(data)
         self.assertEqual(type(unused), list)
-        self.assertEqual(response.status_code, 200)    
+        self.assertEqual(response.status_code, 200)
 
     def test_ips_assigned_get(self):
         headers = {'X-Mock': 200}
@@ -2305,8 +2305,12 @@ class UnitTests(unittest.TestCase):
 
     def test_license_year(self):
         LICENSE_FILE = 'LICENSE.txt'
+        copyright_line=''
         with open(LICENSE_FILE, 'r') as f:
-            copyright_line = f.readline().rstrip()
+            for line in f:
+                if line.startswith('Copyright'):
+                    copyright_line = line.strip()
+                    break
         self.assertEqual(
             'Copyright (c) 2012-%s Twilio SendGrid, Inc.' % datetime.datetime.now().year,
             copyright_line)
