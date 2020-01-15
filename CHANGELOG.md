@@ -1,7 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [6.1.0] - 2019-09-12 ##
+[2019-09-12] Version 6.1.0
+---------------------------
 
 ### Added
 - Bumped dependency on python-http-client to [v3.2.1](https://github.com/sendgrid/python-http-client/releases/tag/v3.2.0)
