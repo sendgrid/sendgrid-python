@@ -2,10 +2,9 @@ language: python
 sudo: false
 cache: pip
 python:
-- '2.7'
-- '3.4'
-- '3.5'
-- '3.6'
+  - '2.7'
+  - '3.5'
+  - '3.6'
 # Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
 matrix:
   include:
@@ -14,47 +13,28 @@ matrix:
       sudo: true
 env:
   global:
-    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
+    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN SENDGRID_API_KEY=SGAPIKEY
 install:
-- python setup.py install
-- pip install pyyaml
-- pip install flask
-- pip install six
-- pip install coverage
-- pip install codecov
-# - sudo apt-get install -y pandoc
-addons:
-  apt_packages:
-    - pandoc
+  - python setup.py install
+  - pip install pyyaml flask six coverage codecov
 before_script:
-- "./test/prism.sh &"
-- sleep 20
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- ./cc-test-reporter before-build
+  - "./test/prism.sh &"
+  - sleep 20
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-- coverage run -m unittest discover
+  - coverage run -m unittest discover
 after_script:
-- codecov
-- ./cc-test-reporter after-build --exit-code $?
-# deploy:
-#   provider: pypi
-#   user: thinkingserious
-#   password:
-#     secure: DoM21KiMKkt/7AS6zOqTs7j3fgInrpswRTPG3cqBNRSzyfkXeXmKecCPruooxvYKLM7fPNDOuIH2phgCjdx/XBtJwghNh34n+TzhNFEiI/6pV0iS4a9gW0+QU+GMYvQmfNlA9DKQ5N20FMy4XeK8QQFarJXQwW1/a5wWftbUYvQ=
-#   skip_cleanup: true
-#   distributions: sdist bdist_wheel
-#   on:
-#     tags: true
-#     python: '3.6'
-notifications:
-  hipchat:
-    rooms:
-      secure: Lo3L/YNWpn9ulGX4D2HlWrBOyxMPlLkFcwxbYViG69Ta6BV+c6YE+Pct43tExlL6sZ+nj5p8X4KRTeOM4sqASrebWA25nyUrNTm+vZYFbi5XfmGvvi8TEsgg0MYRQRWWn/R2z0kZW/fqOY6sqJuoIafMBmC3tayTJRiH1Ct2Cw0=
-    template:
-    - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
-      Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/%{repository}/commits/%{commit}">View on
-      GitHub</a>'
-    format: html
-    notify: false
+  - codecov
+  - ./cc-test-reporter after-build --exit-code $?
+deploy:
+  provider: pypi
+  user: __token__
+  password:
+    secure: $PYPI_TOKEN
+  skip_cleanup: true
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: '3.6'
