@@ -1,6 +1,6 @@
 .. image:: https://github.com/sendgrid/sendgrid-python/raw/master/twilio_sendgrid_logo.png
    :target: https://www.sendgrid.com
-   
+
 
 
 |Travis Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
@@ -46,7 +46,7 @@ Installation
 Prerequisites
 -------------
 
--  Python version 2.7 and 3.4+
+-  Python version 2.7 and 3.5+
 -  For email, you will need a Twilio SendGrid account, starting at the `free level`_
 -  For SMS messages, you will need a free `Twilio account`_
 
