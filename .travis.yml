@@ -24,9 +24,9 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - coverage run -m unittest discover
+  - . venv/bin/activate; coverage run -m unittest discover
 after_script:
-  - codecov
+  - . venv/bin/activate; codecov
   - ./cc-test-reporter after-build --exit-code $?
 deploy:
   provider: pypi
