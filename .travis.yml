@@ -15,8 +15,8 @@ env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN SENDGRID_API_KEY=SGAPIKEY
 install:
-  - python setup.py install
-  - pip install pyyaml flask six coverage codecov
+  - make install
+  - make test-install
 before_script:
   - "./test/prism.sh &"
   - sleep 20
