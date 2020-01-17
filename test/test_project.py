@@ -40,17 +40,17 @@ class ProjectTests(unittest.TestCase):
     def test_contributing(self):
         self.assertTrue(os.path.isfile('./CONTRIBUTING.md'))
 
-    # ./.github/ISSUE_TEMPLATE
+    # ./ISSUE_TEMPLATE.md
     def test_issue_template(self):
-        self.assertTrue(os.path.isfile('./.github/ISSUE_TEMPLATE'))
+        self.assertTrue(os.path.isfile('./ISSUE_TEMPLATE.md'))
 
     # ./LICENSE.md
     def test_license(self):
-        self.assertTrue(os.path.isfile('./LICENSE.txt'))
+        self.assertTrue(os.path.isfile('./LICENSE.md'))
 
-    # ./.github/PULL_REQUEST_TEMPLATE
+    # ./PULL_REQUEST_TEMPLATE.md
     def test_pr_template(self):
-        self.assertTrue(os.path.isfile('./.github/PULL_REQUEST_TEMPLATE'))
+        self.assertTrue(os.path.isfile('./PULL_REQUEST_TEMPLATE.md'))
 
     # ./README.rst
     def test_readme(self):
