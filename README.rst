@@ -303,7 +303,7 @@ License
 .. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md
 .. _Developer Experience Team: mailto:dx@sendgrid.com
-.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.txt
+.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.md
 
 .. |Travis Badge| image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master
    :target: https://travis-ci.org/sendgrid/sendgrid-python
@@ -318,7 +318,7 @@ License
 .. |Email Notifications Badge| image:: https://dx.sendgrid.com/badge/python
    :target: https://dx.sendgrid.com/newsletter/python
 .. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: ./LICENSE.txt
+   :target: ./LICENSE.md
 .. |Twitter Follow| image:: https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow
    :target: https://twitter.com/sendgrid
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg

@@ -2304,7 +2304,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_license_year(self):
-        LICENSE_FILE = 'LICENSE.txt'
+        LICENSE_FILE = 'LICENSE.md'
         copyright_line=''
         with open(LICENSE_FILE, 'r') as f:
             for line in f:
@@ -2312,7 +2312,7 @@ class UnitTests(unittest.TestCase):
                     copyright_line = line.strip()
                     break
         self.assertEqual(
-            'Copyright (c) 2012-%s Twilio SendGrid, Inc.' % datetime.datetime.now().year,
+            'Copyright (C) %s, Twilio SendGrid, Inc. <help@twilio.com>' % datetime.datetime.now().year,
             copyright_line)
 
     # @classmethod
