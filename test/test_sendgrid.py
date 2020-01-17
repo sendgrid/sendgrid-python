@@ -2312,7 +2312,7 @@ class UnitTests(unittest.TestCase):
                     copyright_line = line.strip()
                     break
         self.assertEqual(
-            'Copyright (C) %s, Twilio SendGrid, Inc.' % datetime.datetime.now().year,
+            'Copyright (C) %s, Twilio SendGrid, Inc. <help@twilio.com>' % datetime.datetime.now().year,
             copyright_line)
 
     # @classmethod
