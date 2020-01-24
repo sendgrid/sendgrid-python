@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-01-24] Version 6.1.1
+--------------------------
+**Library - Docs**
+- [PR #865](https://github.com/sendgrid/sendgrid-python/pull/865): baseline all the templated markdown docs. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+**Library - Chore**
+- [PR #853](https://github.com/sendgrid/sendgrid-python/pull/853): clean up imports. Thanks to [@DucarrougeR](https://github.com/DucarrougeR)!
+- [PR #862](https://github.com/sendgrid/sendgrid-python/pull/862): prep the repo for automated releasing. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Fix**
+- [PR #863](https://github.com/sendgrid/sendgrid-python/pull/863): improve make test command. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2019-09-12] Version 6.1.0
 ---------------------------
 
