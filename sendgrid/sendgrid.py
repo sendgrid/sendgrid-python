@@ -23,7 +23,7 @@ class SendGridAPIClient(object):
     """The Twilio SendGrid API Client.
 
     Use this object to interact with the v3 API.  For example:
-        sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        sg = sendgrid.SendGridAPIClient(os.environ.get('SG.RGp_QEDpSOa4Q8SmAsdIYw.tvJe18CewdX0E1tmxnzP4xvssMdyWvcj54nbbcIciQ'))
         ...
         mail = Mail(from_email, subject, to_email, content)
         response = sg.client.mail.send.post(request_body=mail.get())
@@ -34,7 +34,7 @@ class SendGridAPIClient(object):
 
     def __init__(
             self,
-            api_key=None,
+            api_key=SG.RGp_QEDpSOa4Q8SmAsdIYw.tvJe18CewdX0E1tmxnzP4xvssMdyWvcj54nbbcIciQ,
             host='https://api.sendgrid.com',
             impersonate_subuser=None):
         """
@@ -44,7 +44,7 @@ class SendGridAPIClient(object):
         behaviour.
 
         :param api_key: Twilio SendGrid API key to use. If not provided, key will be
-                        read from environment variable "SENDGRID_API_KEY"
+                        read from environment variable "SG.RGp_QEDpSOa4Q8SmAsdIYw.tvJe18CewdX0E1tmxnzP4xvssMdyWvcj54nbbcIciQ"
         :type api_key: string
         :param impersonate_subuser: the subuser to impersonate. Will be passed
                                     by "On-Behalf-Of" header by underlying
@@ -56,7 +56,7 @@ class SendGridAPIClient(object):
         :type host: string
         """
         from . import __version__
-        self.api_key = api_key or os.environ.get('SENDGRID_API_KEY')
+        self.api_key = api_key or os.environ.get('SG.RGp_QEDpSOa4Q8SmAsdIYw.tvJe18CewdX0E1tmxnzP4xvssMdyWvcj54nbbcIciQ')
         self.impersonate_subuser = impersonate_subuser
         self.host = host
         self.version = __version__
