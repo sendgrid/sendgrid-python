@@ -48,7 +48,7 @@ class Substitution(object):
 
         :rtype value: string
         """
-        return self._value
+        return str(self._value) if isinstance(self._value, int) else self._value
 
     @value.setter
     def value(self, value):
