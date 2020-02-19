@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-02-19] Version 6.1.2
+--------------------------
+**Library - Fix**
+- [PR #838](https://github.com/sendgrid/sendgrid-python/pull/838): Convert integer substitution value to string. Thanks to [@lifez](https://github.com/lifez)!
+
+
 [2020-01-24] Version 6.1.1
 --------------------------
 **Library - Docs**
