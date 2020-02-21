@@ -1,16 +1,12 @@
+dist: xenial # required for Python >= 3.7
 language: python
-sudo: false
 cache: pip
 python:
   - '2.7'
   - '3.5'
   - '3.6'
-# Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
-matrix:
-  include:
-    - python: 3.7
-      dist: xenial
-      sudo: true
+  - '3.7'
+  - '3.8'
 env:
   global:
     - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN SENDGRID_API_KEY=SGAPIKEY
