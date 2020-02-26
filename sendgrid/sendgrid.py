@@ -11,10 +11,10 @@ For the user guide, code examples, and more, visit the main docs page:
 This file provides the Twilio SendGrid API Client.
 """
 
-
 import os
-import warnings
+
 import python_http_client
+
 
 class SendGridAPIClient(object):
     """The Twilio SendGrid API Client.
