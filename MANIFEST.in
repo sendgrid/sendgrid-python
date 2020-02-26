@@ -3,5 +3,6 @@ include LICENSE.md
 include app.json
 include Procfile
 include requirements.txt
+include sendgrid/helpers/inbound/config.yml
 recursive-include sendgrid *.py *.txt
 recursive-exclude test *
