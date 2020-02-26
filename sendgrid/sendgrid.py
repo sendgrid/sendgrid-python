@@ -1,6 +1,5 @@
 """
-This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via
-Python.
+This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Python.
 
 For more information on this library, see the README on GitHub.
     http://github.com/sendgrid/sendgrid-python
@@ -12,9 +11,7 @@ For the user guide, code examples, and more, visit the main docs page:
 This file provides the Twilio SendGrid API Client.
 """
 
-
 import os
-import warnings
 
 import python_http_client
 
