@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-03-04] Version 6.1.3
+--------------------------
+**Library - Chore**
+- [PR #844](https://github.com/sendgrid/sendgrid-python/pull/844): Clean up sendgrid.py. Thanks to [@Aman-am](https://github.com/Aman-am)!
+- [PR #870](https://github.com/sendgrid/sendgrid-python/pull/870): add Python 3.8 to Travis. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+**Library - Fix**
+- [PR #872](https://github.com/sendgrid/sendgrid-python/pull/872): add config.yml file to pypi distribution files. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2020-02-19] Version 6.1.2
 --------------------------
 **Library - Fix**
