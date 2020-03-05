@@ -26,9 +26,8 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $?
 deploy:
   provider: pypi
-  user: __token__
-  password:
-    secure: $PYPI_TOKEN
+  user: "__token__"
+  password: $PYPI_TOKEN
   skip_cleanup: true
   distributions: sdist bdist_wheel
   on:
