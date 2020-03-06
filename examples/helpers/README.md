@@ -21,7 +21,7 @@ content = Content("text/plain", "some text here")
 The `Content` class takes mainly two parameters: MIME type and the actual content of the email, it then returns the JSON-ready representation of this content.
 
 ```
- mail = Mail(from_email, subject, to_email, content)
+ mail = Mail(from_email, to_email, subject, content)
 ```
 After adding the above we create a mail object using `Mail` class, it takes the following parameters: email address to send from, subject line of emails, email address to send to, content of the message.
 For more information on parameters and usage, see [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/mail.py)
@@ -58,7 +58,7 @@ After you have configured every component and added your own functions, you can 
 ```
     sg = SendGridAPIClient()
     data = build_kitchen_sink()
-    response = sg.client.mail.send.post(request_body=data)
+    response = sg.send(data)
 ```
 Make sure you have [environment variable](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key) set up!
 Full example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L203).

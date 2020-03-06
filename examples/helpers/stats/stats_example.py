@@ -7,7 +7,7 @@ from sendgrid import *
 
 # Assumes you set your environment variable:
 # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
-sg = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 
 def pprint_json(json_raw):

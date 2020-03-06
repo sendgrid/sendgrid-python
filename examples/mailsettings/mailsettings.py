@@ -2,7 +2,7 @@ import sendgrid
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
 # Retrieve all mail settings #

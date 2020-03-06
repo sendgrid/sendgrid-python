@@ -40,7 +40,8 @@ class Send(object):
 
 def main():
     config = Config()
-    parser = argparse.ArgumentParser(description='Test data and optional host.')
+    parser = argparse.ArgumentParser(
+        description='Test data and optional host.')
     parser.add_argument('data',
                         type=str,
                         help='path to the sample data')
