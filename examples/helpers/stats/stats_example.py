@@ -3,11 +3,11 @@ import os
 from sendgrid.helpers.stats import *
 from sendgrid import *
 
-# NOTE: you will need move this file to the root directory of this project to execute properly.
+# NOTE: you will need to move this file to the root directory of this project to execute properly.
 
 # Assumes you set your environment variable:
-# https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
-sg = SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+# See: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 
 def pprint_json(json_raw):
@@ -44,6 +44,7 @@ def build_subuser_stats():
     # subuser_stats.add_subuser(Subuser("foo"))
     # subuser_stats.add_subuser(Subuser("bar"))
     return subuser_stats.get()
+
 
 def build_subuser_stats_sums():
     subuser_stats = SubuserStats()
@@ -91,6 +92,7 @@ def get_subuser_stats_sums():
     print(response.status_code)
     print(response.headers)
     pprint_json(response.body)
+
 
 get_global_stats()
 get_category_stats()

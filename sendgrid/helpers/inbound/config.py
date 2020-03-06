@@ -15,7 +15,7 @@ class Config(object):
         self.path = opts.get(
             'path', os.path.abspath(os.path.dirname(__file__))
         )
-        with open(self.path + '/config.yml') as stream:
+        with open('{0}/config.yml'.format(self.path)) as stream:
             config = yaml.load(stream)
             self._debug_mode = config['debug_mode']
             self._endpoint = config['endpoint']
@@ -28,8 +28,9 @@ class Config(object):
         """Allow variables assigned in .env available using
            os.environ.get('VAR_NAME')"""
         base_path = os.path.abspath(os.path.dirname(__file__))
-        if os.path.exists(base_path + '/.env'):
-            with open(base_path + '/.env') as f:
+        env_path = '{0}/.env'.format(base_path)
+        if os.path.exists(env_path):
+            with open(env_path) as f:
                 lines = f.readlines()
                 for line in lines:
                     var = line.strip().split('=')
