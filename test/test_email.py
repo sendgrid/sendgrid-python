@@ -80,3 +80,51 @@ class TestEmailObject(unittest.TestCase):
         email.name = name
 
         self.assertEqual(email.name, u'"' + name + u'"')
+
+    def test_equality_email_name(self):
+        address = "test@example.com"
+        name = "SomeName"
+        email1 = Email(address, name)
+        email2 = Email(address, name)
+        
+        self.assertEqual(email1, email2)
+
+    def test_equality_email(self):
+        address = "test@example.com"
+        email1 = Email(address)
+        email2 = Email(address)
+        
+        self.assertEqual(email1, email2)
+
+    def test_equality_name(self):
+        name = "SomeName"
+        email1 = Email()
+        email1.name = name
+        email2 = Email()
+        email2.name = name
+
+        self.assertEqual(email1, email2)
+
+    def test_equality_different_emails(self):
+        address1 = "test1@example.com"
+        email1 = Email(address1)
+        address2 = "test2@example.com"
+        email2 = Email(address2)
+
+        self.assertNotEqual(email1, email2)
+
+    def test_equality_different_name(self):
+        name1 = "SomeName1"
+        email1 = Email()
+        email1.name = name1
+        name2 = "SomeName2"
+        email2 = Email()
+        email2.name = name2
+
+        self.assertNotEqual(email1, email2)
+
+    def test_equality_non_email(self):
+        address = "test@example.com"
+        email = Email(address)
+
+        self.assertNotEqual(email, address)
