@@ -20,22 +20,29 @@ def unassigned(data, as_json=False):
         The /ips rest endpoint returns information about the IP addresses
         and the usernames assigned to an IP
 
-        unassigned returns a listing of the IP addresses that are allocated 
+        unassigned returns a listing of the IP addresses that are allocated
         but have 0 users assigned
 
-        
-        data (response.body from sg.client.ips.get()) 
+
+        data (response.body from sg.client.ips.get())
         as_json False -> get list of dicts
                 True  -> get json object
 
         example:
-        sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+        sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
-        params = {'subuser': 'test_string', 'ip': 'test_string', 'limit': 1, 'exclude_whitelabels': 'true', 'offset': 1}
+        params = {
+            'subuser': 'test_string',
+            'ip': 'test_string',
+            'limit': 1,
+            'exclude_whitelabels':
+            'true', 'offset': 1
+        }
         response = sg.client.ips.get(query_params=params)
         if response.status_code == 201:
            data = response.body
-           unused = unassinged(data) """
+           unused = unassigned(data)
+    """
 
     no_subusers = set()
 

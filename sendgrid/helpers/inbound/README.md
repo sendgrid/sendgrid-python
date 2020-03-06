@@ -2,12 +2,16 @@
 
 ## Table of Contents
 
-* [Quick Start for Local Testing with Sample Data](#quick_start_local_sample)
-* [Quick Start for Local Testing with Real Data](#quick_start_local_real)
-* [Deploy to Heroku](#heroku)
-* [Code Walkthrough](#code_walkthrough)
-* [Testing the Source Code](#testing)
-* [Contributing](#contributing)
+- [Quick Start for Local Testing with Sample Data](#quick-start-for-local-testing-with-sample-data)
+- [Quick Start for Local Testing with Real Data](#quick-start-for-local-testing-with-real-data)
+- [Deploy to Heroku](#deploy-to-heroku)
+- [Code Walkthrough](#code-walkthrough)
+  - [app.py](#apppy)
+  - [config.py & config.yml](#configpy--configyml)
+  - [parse.py](#parsepy)
+  - [send.py & /sample_data](#sendpy--sampledata)
+- [Testing the Source Code](#testing-the-source-code)
+- [Contributing](#contributing)
 
 <a name="quick_start_local_sample"></a>
 # Quick Start for Local Testing with Sample Data

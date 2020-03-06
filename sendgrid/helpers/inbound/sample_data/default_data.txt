@@ -20,7 +20,7 @@ inbound@inbound.example.com
 --xYzZY
 Content-Disposition: form-data; name="html"
 
-<html><body><strong>Hello SendGrid!</body></html>
+<html><body><strong>Hello Twilio SendGrid!</body></html>
 
 --xYzZY
 Content-Disposition: form-data; name="from"
@@ -29,7 +29,7 @@ Example User <test@example.com>
 --xYzZY
 Content-Disposition: form-data; name="text"
 
-Hello SendGrid!
+Hello Twilio SendGrid!
 
 --xYzZY
 Content-Disposition: form-data; name="sender_ip"

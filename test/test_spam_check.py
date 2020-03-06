@@ -30,11 +30,9 @@ class UnitTests(unittest.TestCase):
 
     def test_spam_change_properties(self):
         """Tests changing the properties of the spam check class"""
-        
         expected = {'enable': False, 'threshold': 10, 'post_to_url': 'https://www.testing.com'}
         spam_check = SpamCheck(enable=True, threshold=5, post_to_url='https://www.test.com')
         spam_check.enable = False
         spam_check.threshold = 10
         spam_check.post_to_url = 'https://www.testing.com'
         self.assertEqual(spam_check.get(), expected)
-
