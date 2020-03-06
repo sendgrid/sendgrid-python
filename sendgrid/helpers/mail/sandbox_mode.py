@@ -1,6 +1,5 @@
 class SandBoxMode(object):
     """Setting for sandbox mode.
-
     This allows you to send a test email to ensure that your request body is
     valid and formatted correctly.
     """
@@ -10,7 +9,10 @@ class SandBoxMode(object):
         :param enable: Whether this is a test request.
         :type enable: boolean, optional
         """
-        self.enable = enable
+        self._enable = None
+
+        if enable is not None:
+            self.enable = enable
 
     @property
     def enable(self):
@@ -22,6 +24,11 @@ class SandBoxMode(object):
 
     @enable.setter
     def enable(self, value):
+        """Indicates if this setting is enabled.
+
+        :param value: Indicates if this setting is enabled.
+        :type value: boolean
+        """
         self._enable = value
 
     def get(self):

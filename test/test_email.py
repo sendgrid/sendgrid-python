@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+import unittest
 
 from sendgrid.helpers.mail import (Email)
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 class TestEmailObject(unittest.TestCase):
@@ -23,12 +18,25 @@ class TestEmailObject(unittest.TestCase):
 
         self.assertEqual(email.name, name)
 
+    def test_add_unicode_name(self):
+        name = u"SomeName"
+        email = Email(name=name)
+
+        self.assertEqual(email.name, name)
+
     def test_add_name_email(self):
         name = "SomeName"
         address = "test@example.com"
         email = Email(email=address, name=name)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")
+
+    def test_add_unicode_name_email(self):
+        name = u"SomeName"
+        address = u"test@example.com"
+        email = Email(email=address, name=name)
+        self.assertEqual(email.name, name)
+        self.assertEqual(email.email, u"test@example.com")
 
     def test_add_rfc_function_finds_name_not_email(self):
         name = "SomeName"
@@ -40,7 +48,7 @@ class TestEmailObject(unittest.TestCase):
     def test_add_rfc_email(self):
         name = "SomeName"
         address = "test@example.com"
-        name_address = "{0} <{1}>".format(name, address)
+        name_address = "{} <{}>".format(name, address)
         email = Email(name_address)
         self.assertEqual(email.name, name)
         self.assertEqual(email.email, "test@example.com")
@@ -58,6 +66,20 @@ class TestEmailObject(unittest.TestCase):
         email.email = address
 
         self.assertEqual(email.email, address)
+
+    def test_add_name_with_comma(self):
+        email = Email()
+        name = "Name, Some"
+        email.name = name
+
+        self.assertEqual(email.name, '"' + name + '"')
+
+    def test_add_unicode_name_with_comma(self):
+        email = Email()
+        name = u"Name, Some"
+        email.name = name
+
+        self.assertEqual(email.name, u'"' + name + u'"')
 
     def test_equality_email_name(self):
         address = "test@example.com"
