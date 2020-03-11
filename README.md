@@ -93,7 +93,7 @@ import sendgrid
 import os
 from sendgrid.helpers.mail import *
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
 to_email = Email("test@example.com")
 subject = "Sending with SendGrid is Fun"
@@ -115,7 +115,7 @@ The following is the minimum needed code to send an email without the /mail/send
 import sendgrid
 import os
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 data = {
   "personalizations": [
     {
@@ -149,7 +149,7 @@ print(response.headers)
 import sendgrid
 import os
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 response = sg.client.suppression.bounces.get()
 print(response.status_code)
 print(response.body)
@@ -162,7 +162,7 @@ print(response.headers)
 import sendgrid
 import os
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 response = sg.client._("suppression/bounces").get()
 print(response.status_code)
 print(response.body)
