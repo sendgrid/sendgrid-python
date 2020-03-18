@@ -1,6 +1,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-03-18] Version 6.2.0
+--------------------------
+**Library - Docs**
+- [PR #878](https://github.com/sendgrid/sendgrid-python/pull/878): fix code snippet in README. Thanks to [@neerajgupta2407](https://github.com/neerajgupta2407)!
+- [PR #734](https://github.com/sendgrid/sendgrid-python/pull/734): Further Remove "Whitelabel" References. Thanks to [@crweiner](https://github.com/crweiner)!
+- [PR #714](https://github.com/sendgrid/sendgrid-python/pull/714): Give preference to 'to' after visible. Thanks to [@agarwalrounak](https://github.com/agarwalrounak)!
+- [PR #669](https://github.com/sendgrid/sendgrid-python/pull/669): Fixed links in examples. Thanks to [@pktrieu](https://github.com/pktrieu)!
+- [PR #706](https://github.com/sendgrid/sendgrid-python/pull/706): Fix grammatical errors. Thanks to [@vinayak42](https://github.com/vinayak42)!
+- [PR #682](https://github.com/sendgrid/sendgrid-python/pull/682): Updated link to direct to #L9. Thanks to [@vinayak42](https://github.com/vinayak42)!
+
+**Library - Feature**
+- [PR #739](https://github.com/sendgrid/sendgrid-python/pull/739): Add equality to Email. Thanks to [@mcintyre94](https://github.com/mcintyre94)!
+
+**Library - Chore**
+- [PR #731](https://github.com/sendgrid/sendgrid-python/pull/731): Remove unused Python json modules. Thanks to [@gy741](https://github.com/gy741)!
+
+
 [2020-03-04] Version 6.1.3
 --------------------------
 **Library - Chore**
