@@ -33,3 +33,11 @@ deploy:
   on:
     tags: true
     python: '3.6'
+
+notifications:
+  slack:
+    if: branch = master
+    on_success: never
+    on_failure: change
+    rooms:
+      - secure: Yp7gJ6NPRPNgO77vwS0HynSdnU5LYlLlUNBEzcx+zy230UxuLLWcYZtIqsIqt4oZm45OwgJLBwoCMgmU2Jcj79rGyqWKYtUcLMLKgHVzSgxjm2outt2fxjXIJHIU60S3RCGofBJRkPwEMb7ibgwHYBEsH3wIeLrVVbWvimxka6A=
