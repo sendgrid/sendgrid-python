@@ -69,7 +69,7 @@ class SendGridAPIClient(object):
         """Set the default header for a Twilio SendGrid v3 API call"""
         headers = {
             "Authorization": 'Bearer {}'.format(self.api_key),
-            "User-agent": self.useragent,
+            "User-Agent": self.useragent,
             "Accept": 'application/json'
         }
         if self.impersonate_subuser:

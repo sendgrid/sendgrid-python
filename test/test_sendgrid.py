@@ -51,14 +51,14 @@ class UnitTests(unittest.TestCase):
     def test_get_default_headers(self):
         headers = self.sg._default_headers
         self.assertIn('Authorization', headers)
-        self.assertIn('User-agent', headers)
+        self.assertIn('User-Agent', headers)
         self.assertIn('Accept', headers)
         self.assertNotIn('On-Behalf-Of', headers)
 
         self.sg.impersonate_subuser = 'ladida@testsubuser.sendgrid'
         headers = self.sg._default_headers
         self.assertIn('Authorization', headers)
-        self.assertIn('User-agent', headers)
+        self.assertIn('User-Agent', headers)
         self.assertIn('Accept', headers)
         self.assertIn('On-Behalf-Of', headers)
 
