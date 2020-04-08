@@ -20,7 +20,7 @@ setup(
     name='sendgrid',
     version=str(__version__),
     author='Elmer Thomas, Yamil Asusta',
-    author_email='dx@sendgrid.com',
+    author_email='help@twilio.com',
     url='https://github.com/sendgrid/sendgrid-python/',
     packages=find_packages(exclude=["temp*.py", "test"]),
     include_package_data=True,

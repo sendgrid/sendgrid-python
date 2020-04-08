@@ -239,8 +239,6 @@ Please run your code through:
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
     with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
 
-If you have any additional questions, please feel free to [email](mailto:dx@sendgrid.com) us or create an issue in this repo.
-
 <a name="code-reviews"></a>
 ## Code Reviews
 If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, GitHub has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).

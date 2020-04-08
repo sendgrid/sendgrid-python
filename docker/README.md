@@ -60,10 +60,4 @@
 
 For more detailed information, see [USAGE.md](https://github.com/sendgrid/sendgrid-python/blob/master/docker/USAGE.md).
 
-# About
-
-sendgrid-python is guided and supported by the Twilio SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
-
-sendgrid-python is maintained and funded by Twilio SendGrid, Inc. The names and logos for sendgrid-python are trademarks of Twilio SendGrid, Inc.
-
 ![Twilio SendGrid Logo](https://sendgrid.com/brand/sg-twilio/SG_Twilio_Lockup_RGBx1.png)

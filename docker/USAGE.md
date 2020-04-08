@@ -131,11 +131,4 @@ $ docker-compose up -d sendgrid-beta
 # Testing
 Testing is easy!  Run the container, `cd sendgrid`, and run `tox`.
 
-<a name="about"></a>
-# About
-
-sendgrid-python is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
-
-sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
-
 ![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)

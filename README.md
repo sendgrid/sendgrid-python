@@ -192,8 +192,6 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/
 <a name="announcements"></a>
 # Announcements
 
-Join an experienced and passionate team that focuses on making an impact. [Opportunities abound](https://sendgrid.com/careers) to grow the product - and grow your career!
-
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
 All updates to this library are documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
@@ -224,11 +222,11 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-pyth
 <a name="about"></a>
 # About
 
-sendgrid-python is guided and supported by the SendGrid Developer Experience Team.
+sendgrid-python is maintained and funded by Twilio SendGrid, Inc. The names and logos for sendgrid-python are trademarks of Twilio SendGrid, Inc.
 
-Email the Developer Experience Team [here](mailto:dx@sendgrid.com) in case of any queries.
+If you need help installing or using the library, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).
 
-sendgrid-python is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-python are trademarks of SendGrid, Inc.
+If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
 
 <a name="license"></a>
 # License

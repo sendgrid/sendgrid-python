@@ -4,8 +4,8 @@ import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
 
-message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
-               to_emails=To('elmer.thomas@sendgrid.com', 'Elmer Thomas'),
+message = Mail(from_email=From('help@twilio.com', 'Twilio SendGrid'),
+               to_emails=To('ethomas@twilio.com', 'Elmer Thomas'),
                subject=Subject('Sending with SendGrid is Fun'),
                plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
                html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
@@ -27,10 +27,10 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
 
 to_emails = [
-    To('elmer.thomas@sendgrid.com', 'Elmer SendGrid'),
+    To('ethomas@twilio.com', 'Elmer SendGrid'),
     To('elmer.thomas@gmail.com', 'Elmer Thomas')
 ]
-message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
+message = Mail(from_email=From('help@twilio.com', 'Twilio SendGrid'),
                to_emails=to_emails,
                subject=Subject('Sending with SendGrid is Fun'),
                plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
@@ -56,10 +56,10 @@ import time
 import datetime
 
 to_emails = [
-    To(email='elmer.thomas@sendgrid.com',
-       name='Elmer SendGrid',
+    To(email='ethomas@twilio.com',
+       name='Elmer Twilio',
        substitutions={
-           Substitution('-name-', 'Elmer SendGrid'),
+           Substitution('-name-', 'Elmer Twilio'),
            Substitution('-github-', 'http://github.com/ethomas'),
        },
        subject=Subject('Override Global Subject')),
@@ -72,7 +72,7 @@ to_emails = [
 ]
 ts = time.time()
 global_substitutions = Substitution('-time-', datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
-message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
+message = Mail(from_email=From('help@twilio.com', 'Twilio SendGrid'),
                to_emails=to_emails,
                subject=Subject('Hi -name-'),
                plain_text_content=PlainTextContent('Hello -name-, your github is -github-, email sent at -time-'),
@@ -96,8 +96,8 @@ import os
 import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import (
-    Mail, From, To, Cc, Bcc, Subject, PlainTextContent, 
-    HtmlContent, SendGridException, Substitution, 
+    Mail, From, To, Cc, Bcc, Subject, PlainTextContent,
+    HtmlContent, SendGridException, Substitution,
     Header, CustomArg, SendAt, Content, MimeType, Attachment,
     FileName, FileContent, FileType, Disposition, ContentId,
     TemplateId, Section, ReplyTo, Category, BatchId, Asm,
@@ -114,22 +114,22 @@ import datetime
 
 message = Mail()
 
-# Define Personalizations 
+# Define Personalizations
 
 message.to = To('elmer+test1@sendgrid.com', 'Example User1', p=0)
-message.to = [ 
+message.to = [
     To('elmer+test2@sendgrid.com', 'Example User2', p=0),
     To('elmer+test3@sendgrid.com', 'Example User3', p=0)
 ]
 
 message.cc = Cc('test4@example.com', 'Example User4', p=0)
-message.cc = [ 
+message.cc = [
     Cc('test5@example.com', 'Example User5', p=0),
     Cc('test6@example.com', 'Example User6', p=0)
 ]
 
 message.bcc = Bcc('test7@example.com', 'Example User7', p=0)
-message.bcc = [ 
+message.bcc = [
     Bcc('test8@example.com', 'Example User8', p=0),
     Bcc('test9@example.com', 'Example User9', p=0)
 ]
@@ -160,19 +160,19 @@ message.custom_arg = [
 message.send_at = SendAt(1461775051, p=0)
 
 message.to = To('test10@example.com', 'Example User10', p=1)
-message.to = [ 
+message.to = [
     To('test11@example.com', 'Example User11', p=1),
     To('test12@example.com', 'Example User12', p=1)
 ]
 
 message.cc = Cc('test13@example.com', 'Example User13', p=1)
-message.cc = [ 
+message.cc = [
     Cc('test14@example.com', 'Example User14', p=1),
     Cc('test15@example.com', 'Example User15', p=1)
 ]
 
 message.bcc = Bcc('test16@example.com', 'Example User16', p=1)
-message.bcc = [ 
+message.bcc = [
     Bcc('test17@example.com', 'Example User17', p=1),
     Bcc('test18@example.com', 'Example User18', p=1)
 ]
@@ -204,9 +204,9 @@ message.subject = Subject('Sending with SendGrid is Fun 1', p=1)
 
 # The values below this comment are global to entire message
 
-message.from_email = From('dx@sendgrid.com', 'DX')
+message.from_email = From('help@twilio.com', 'Twilio SendGrid')
 
-message.reply_to = ReplyTo('dx_reply@sendgrid.com', 'DX Reply')
+message.reply_to = ReplyTo('help_reply@twilio.com', 'Twilio SendGrid Reply')
 
 message.subject = Subject('Sending with SendGrid is Fun 2')
 
@@ -240,7 +240,7 @@ message.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 message.section = Section('%section1%', 'Substitution for Section 1 Tag')
 message.section = [
     Section('%section2%', 'Substitution for Section 2 Tag'),
-    Section('%section3%', 'Substitution for Section 3 Tag')    
+    Section('%section3%', 'Substitution for Section 3 Tag')
 ]
 
 message.header = Header('X-Test9', 'Test9')
@@ -284,7 +284,7 @@ tracking_settings = TrackingSettings()
 tracking_settings.click_tracking = ClickTracking(True, False)
 tracking_settings.open_tracking = OpenTracking(True, OpenTrackingSubstitutionTag("open_tracking"))
 tracking_settings.subscription_tracking = SubscriptionTracking(
-    True, 
+    True,
     SubscriptionText("Goodbye"),
     SubscriptionHtml("<strong>Goodbye!</strong>"),
     SubscriptionSubstitutionTag("unsubscribe"))
@@ -313,8 +313,8 @@ import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException, DynamicTemplateData
 
-message = Mail(from_email=From('dx@sendgrid.com', 'DX'),
-               to_emails=To('elmer.thomas@sendgrid.com', 'Elmer Thomas'),
+message = Mail(from_email=From('help@twilio.com', 'Twilio SendGrid'),
+               to_emails=To('ethomas@twilio.com', 'Elmer Thomas'),
                subject=Subject('Sending with SendGrid is Fun'),
                plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
                html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))

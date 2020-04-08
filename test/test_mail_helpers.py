@@ -29,7 +29,7 @@ class UnitTests(unittest.TestCase):
             asm1.group_id.get(), asm2.group_id.get())
         self.assertEqual(
             asm1.groups_to_display.get(), asm2.groups_to_display.get())
-    
+
     def test_attachment(self):
         from sendgrid.helpers.mail import (FileContent, FileType, FileName,
                                            Disposition, ContentId)
@@ -48,7 +48,7 @@ class UnitTests(unittest.TestCase):
             '123'
         )
         self.assertEqual(a1.file_content.get(), a2.file_content.get())
-        self.assertEqual(a1.file_name.get(), a2.file_name.get()) 
+        self.assertEqual(a1.file_name.get(), a2.file_name.get())
         self.assertEqual(a1.file_type.get(), a2.file_type.get())
         self.assertEqual(a1.disposition.get(), a2.disposition.get())
         self.assertEqual(a1.content_id.get(), a2.content_id.get())
@@ -393,9 +393,9 @@ class UnitTests(unittest.TestCase):
 
         # The values below this comment are global to entire message
 
-        message.from_email = From('dx@example.com', 'DX')
+        message.from_email = From('help@twilio.com', 'Twilio SendGrid')
 
-        message.reply_to = ReplyTo('dx_reply@example.com', 'DX Reply')
+        message.reply_to = ReplyTo('help_reply@twilio.com', 'Twilio SendGrid Reply')
 
         message.subject = Subject('Sending with SendGrid is Fun 2')
 
@@ -565,8 +565,8 @@ class UnitTests(unittest.TestCase):
                     "transactional6": "false"
                 },
                 "from": {
-                    "email": "dx@example.com",
-                    "name": "DX"
+                    "email": "help@twilio.com",
+                    "name": "Twilio SendGrid"
                 },
                 "headers": {
                     "X-Test10": "Test10",
@@ -728,8 +728,8 @@ class UnitTests(unittest.TestCase):
                     }
                 ],
                 "reply_to": {
-                    "email": "dx_reply@example.com",
-                    "name": "DX Reply"
+                    "email": "help_reply@twilio.com",
+                    "name": "Twilio SendGrid Reply"
                 },
                 "sections": {
                     "%section1%": "Substitution for Section 1 Tag",

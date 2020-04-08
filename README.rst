@@ -221,9 +221,6 @@ Use Cases
 Announcements
 =============
 
-Join an experienced and passionate team that focuses on making an impact.
-`Opportunities abound`_ to grow the product - and grow your career!
-
 All updates to this library are documented in our `CHANGELOG`_ and `releases`_.
 You may also subscribe to email `release notifications`_ for releases and breaking changes.
 
@@ -254,10 +251,6 @@ Please see our `troubleshooting guide`_ for common library issues.
 
 About
 =====
-
-**sendgrid-python** is guided and supported by the Twilio Developer Experience Team.
-
-Email the Developer Experience Team `here <mailto:dx@sendgrid.com>`__ in case of any queries.
 
 **sendgrid-python** is maintained and funded by Twilio SendGrid, Inc.
 The names and logos for **sendgrid-python** are trademarks of Twilio SendGrid, Inc.
@@ -290,7 +283,6 @@ License
 .. _v3 Web API Mail Send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
 .. _Processing Inbound Email: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound
 .. _Examples of common API use cases: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md
-.. _Opportunities abound: https://sendgrid.com/careers
 .. _breaking changes: https://github.com/sendgrid/sendgrid-python/issues/217
 .. _CHANGELOG: https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md
 .. _releases: https://github.com/sendgrid/sendgrid-python/releases
@@ -302,7 +294,6 @@ License
 .. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews
 .. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md
-.. _Developer Experience Team: mailto:dx@sendgrid.com
 .. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.md
 
 .. |Travis Badge| image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master

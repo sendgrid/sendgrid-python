@@ -65,11 +65,9 @@ Step 2: Get familiar with Twilio SendGrid Service
   **Step 7:** Push the topic branch up to your fork using `git push origin <topic-branch-name>`
   
   **Step 8:** Open a Pull Request with clear title and description against the master branch.
-  
-  In case, you have additional questions, feel free to drop a [mail](dx@sendgrid.com) or open an issue.
-  
+
   <a name="reviews"></a>
   ## Be Patient & Wait for Reviews
-  Kindly be patient & follow the suggestions as provided by the peer reviewers. Make required ammendments & changes to the PR as asked.
+  Kindly be patient & follow the suggestions as provided by the peer reviewers. Make required amendments & changes to the PR as asked.
   
 ## [Explore New Issues to work upon](https://github.com/sendgrid/sendgrid-python/labels/difficulty%3A%20easy)

@@ -105,8 +105,8 @@ def build_attachment2():
 def build_kitchen_sink():
     """All settings set"""
     from sendgrid.helpers.mail import (
-        Mail, From, To, Cc, Bcc, Subject, PlainTextContent, 
-        HtmlContent, SendGridException, Substitution, 
+        Mail, From, To, Cc, Bcc, Subject, PlainTextContent,
+        HtmlContent, SendGridException, Substitution,
         Header, CustomArg, SendAt, Content, MimeType, Attachment,
         FileName, FileContent, FileType, Disposition, ContentId,
         TemplateId, Section, ReplyTo, Category, BatchId, Asm,
@@ -123,22 +123,22 @@ def build_kitchen_sink():
 
     message = Mail()
 
-    # Define Personalizations 
+    # Define Personalizations
 
     message.to = To('test1@sendgrid.com', 'Example User1', p=0)
-    message.to = [ 
+    message.to = [
         To('test2@sendgrid.com', 'Example User2', p=0),
         To('test3@sendgrid.com', 'Example User3', p=0)
     ]
 
     message.cc = Cc('test4@example.com', 'Example User4', p=0)
-    message.cc = [ 
+    message.cc = [
         Cc('test5@example.com', 'Example User5', p=0),
         Cc('test6@example.com', 'Example User6', p=0)
     ]
 
     message.bcc = Bcc('test7@example.com', 'Example User7', p=0)
-    message.bcc = [ 
+    message.bcc = [
         Bcc('test8@example.com', 'Example User8', p=0),
         Bcc('test9@example.com', 'Example User9', p=0)
     ]
@@ -169,19 +169,19 @@ def build_kitchen_sink():
     message.send_at = SendAt(1461775051, p=0)
 
     message.to = To('test10@example.com', 'Example User10', p=1)
-    message.to = [ 
+    message.to = [
         To('test11@example.com', 'Example User11', p=1),
         To('test12@example.com', 'Example User12', p=1)
     ]
 
     message.cc = Cc('test13@example.com', 'Example User13', p=1)
-    message.cc = [ 
+    message.cc = [
         Cc('test14@example.com', 'Example User14', p=1),
         Cc('test15@example.com', 'Example User15', p=1)
     ]
 
     message.bcc = Bcc('test16@example.com', 'Example User16', p=1)
-    message.bcc = [ 
+    message.bcc = [
         Bcc('test17@example.com', 'Example User17', p=1),
         Bcc('test18@example.com', 'Example User18', p=1)
     ]
@@ -213,9 +213,9 @@ def build_kitchen_sink():
 
     # The values below this comment are global to entire message
 
-    message.from_email = From('dx@sendgrid.com', 'DX')
+    message.from_email = From('help@twilio.com', 'Twilio SendGrid')
 
-    message.reply_to = ReplyTo('dx_reply@sendgrid.com', 'DX Reply')
+    message.reply_to = ReplyTo('help_reply@twilio.com', 'Twilio SendGrid Reply')
 
     message.subject = Subject('Sending with SendGrid is Fun 2')
 
@@ -249,7 +249,7 @@ def build_kitchen_sink():
     message.section = Section('%section1%', 'Substitution for Section 1 Tag')
     message.section = [
         Section('%section2%', 'Substitution for Section 2 Tag'),
-        Section('%section3%', 'Substitution for Section 3 Tag')    
+        Section('%section3%', 'Substitution for Section 3 Tag')
     ]
 
     message.header = Header('X-Test9', 'Test9')
@@ -293,7 +293,7 @@ def build_kitchen_sink():
     tracking_settings.click_tracking = ClickTracking(True, False)
     tracking_settings.open_tracking = OpenTracking(True, OpenTrackingSubstitutionTag("open_tracking"))
     tracking_settings.subscription_tracking = SubscriptionTracking(
-        True, 
+        True,
         SubscriptionText("Goodbye"),
         SubscriptionHtml("<strong>Goodbye!</strong>"),
         SubscriptionSubstitutionTag("unsubscribe"))

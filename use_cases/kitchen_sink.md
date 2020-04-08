@@ -107,9 +107,9 @@ message.subject = Subject('Sending with Twilio SendGrid is Fun 1', p=1)
 
 # The values below this comment are global to entire message
 
-message.from_email = From('dx@example.com', 'DX')
+message.from_email = From('help@twilio.com', 'Twilio SendGrid')
 
-message.reply_to = ReplyTo('dx_reply@example.com', 'DX Reply')
+message.reply_to = ReplyTo('help_reply@twilio.com', 'Twilio SendGrid Reply')
 
 message.subject = Subject('Sending with Twilio SendGrid is Fun 2')
 
