@@ -18,8 +18,10 @@ This directory provides examples for specific use cases of this library. Please 
 * [Integrate with Slack Events API](slack_event_api_integration.md)
 * [Legacy Templates](legacy_templates.md)
 
-### Working with SMS
-* [Send a SMS Message](sms.md)
+# Twilio Use Cases
+* [Twilio Setup](twilio-setup.md)
+* [Send an Email With Twilio Email (Pilot)](twilio-email.md)
+* [Send an SMS Message](sms.md)
 
 ### Troubleshooting
 * [Error Handling](error_handling.md)

@@ -1,9 +1,9 @@
+import datetime
+import os
+import unittest
+
 import sendgrid
 from sendgrid.helpers.endpoints.ip.unassigned import unassigned
-from sendgrid.helpers.mail import *
-import os
-import datetime
-import unittest
 
 host = "http://localhost:4010"
 
@@ -18,12 +18,9 @@ class UnitTests(unittest.TestCase):
                 os.path.dirname(__file__)), '/..')
         cls.sg = sendgrid.SendGridAPIClient(host=host)
         cls.devnull = open(os.devnull, 'w')
-        prism_cmd = None
 
     def test_api_key_init(self):
         self.assertEqual(self.sg.api_key, os.environ.get('SENDGRID_API_KEY'))
-        # Support the previous naming convention for API keys
-        self.assertEqual(self.sg.api_key, self.sg.api_key)
         my_sendgrid = sendgrid.SendGridAPIClient(api_key="THISISMYKEY")
         self.assertEqual(my_sendgrid.api_key, "THISISMYKEY")
 
@@ -2305,7 +2302,7 @@ class UnitTests(unittest.TestCase):
 
     def test_license_year(self):
         LICENSE_FILE = 'LICENSE.md'
-        copyright_line=''
+        copyright_line = ''
         with open(LICENSE_FILE, 'r') as f:
             for line in f:
                 if line.startswith('Copyright'):
@@ -2314,8 +2311,3 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(
             'Copyright (C) %s, Twilio SendGrid, Inc. <help@twilio.com>' % datetime.datetime.now().year,
             copyright_line)
-
-    # @classmethod
-    # def tearDownClass(cls):
-    #     cls.p.kill()
-    #     print("Prism Shut Down")
