@@ -1,43 +1,12 @@
-Following are the steps to add Twilio SMS to your app:
+First, follow the [Twilio Setup](twilio-setup.md) guide for creating a Twilio account and setting up environment variables with the proper credentials.
 
-## 1. Obtain a Free Twilio Account
-
-Sign up for a free Twilio account [here](https://www.twilio.com/try-twilio?source=sendgrid-python).
-
-## 2. Update Your Environment Variables
-
-You can obtain your Account Sid and Auth Token from [twilio.com/console](https://twilio.com/console).
-
-### Mac
+Then, install the Twilio Helper Library.
 
 ```bash
-echo "export TWILIO_ACCOUNT_SID='YOUR_TWILIO_ACCOUNT_SID'" > twilio.env
-echo "export TWILIO_AUTH_TOKEN='YOUR_TWILIO_AUTH_TOKEN'" >> twilio.env
-echo "twilio.env" >> .gitignore
-source ./twilio.env
+pip install twilio
 ```
 
-### Windows
-
-Temporarily set the environment variable (accessible only during the current CLI session):
-
-```bash
-set TWILIO_ACCOUNT_SID=YOUR_TWILIO_ACCOUNT_SID
-set TWILIO_AUTH_TOKEN=YOUR_TWILIO_AUTH_TOKEN
-```
-
-Permanently set the environment variable (accessible in all subsequent CLI sessions):
-
-```bash
-setx TWILIO_ACCOUNT_SID "YOUR_TWILIO_ACCOUNT_SID"
-setx TWILIO_AUTH_TOKEN "YOUR_TWILIO_AUTH_TOKEN"
-```
-
-## 3. Install the Twilio Helper Library
-
-`pip install twilio`
-
-Then, you can execute the following code.
+Finally, send a message.
 
 ```python
 import os
@@ -50,12 +19,11 @@ to_number ='+15558675310'
 body = "Join Earth's mightiest heroes. Like Kevin Bacon."
 client = Client(account_sid, auth_token)
 
-message = client.messages \
-                .create(
-                     body=body,
-                     from_=from_number,
-                     to=to_number
-                 )
+message = client.messages.create(
+    body=body,
+    from_=from_number,
+    to=to_number
+)
 
 print(message.sid)
 ```
