@@ -3,24 +3,23 @@ from .bcc_email import Bcc
 from .cc_email import Cc
 from .content import Content
 from .custom_arg import CustomArg
+from .dynamic_template_data import DynamicTemplateData
 from .email import Email
 from .from_email import From
 from .header import Header
-from .html_content import HtmlContent
 from .mime_type import MimeType
 from .personalization import Personalization
-from .plain_text_content import PlainTextContent
 from .reply_to import ReplyTo
 from .send_at import SendAt
 from .subject import Subject
 from .substitution import Substitution
 from .template_id import TemplateId
 from .to_email import To
-from .dynamic_template_data import DynamicTemplateData
 
 
 class Mail(object):
     """Creates the response body for v3/mail/send"""
+
     def __init__(
             self,
             from_email=None,
@@ -135,7 +134,7 @@ class Mail(object):
         :type emails: Email, list(Email)
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -215,7 +214,7 @@ class Mail(object):
         :type to_emails: To, list(To), str, tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -239,11 +238,11 @@ class Mail(object):
             self, to_email, global_substitutions=None, is_multiple=False, p=0):
         """Adds a To object to the Personalization object
 
-        :param to_emails: A To object
-        :type to_emails: To, str, tuple
+        :param to_email: A To object
+        :type to_email: To, str, tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -278,7 +277,7 @@ class Mail(object):
         :type cc_emails: Cc, list(Cc), tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -306,7 +305,7 @@ class Mail(object):
         :type to_emails: Cc
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -338,7 +337,7 @@ class Mail(object):
         :type bcc_emails: Bcc, list(Bcc), tuple
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -370,7 +369,7 @@ class Mail(object):
         :type to_emails: Bcc
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
-        :param is_multiple: Create a new personilization for each recipient
+        :param is_multiple: Create a new personalization for each recipient
         :type is_multiple: bool
         :param p: p is the Personalization object or Personalization object
                   index
@@ -476,7 +475,7 @@ class Mail(object):
             if isinstance(header, dict):
                 (k, v) = list(header.items())[0]
                 self._headers = self._ensure_append(
-                                    Header(k, v), self._headers)
+                    Header(k, v), self._headers)
             else:
                 self._headers = self._ensure_append(header, self._headers)
 
@@ -951,7 +950,7 @@ class Mail(object):
             'headers': self._flatten_dicts(self.headers),
             'categories': [c.get() for c in self.categories or []],
             'custom_args': self._flatten_dicts(self.custom_args),
-            'send_at':  self._get_or_none(self.send_at),
+            'send_at': self._get_or_none(self.send_at),
             'batch_id': self._get_or_none(self.batch_id),
             'asm': self._get_or_none(self.asm),
             'ip_pool_name': self._get_or_none(self.ip_pool_name),
