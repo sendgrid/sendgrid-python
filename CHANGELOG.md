@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-04-29] Version 6.3.0
+--------------------------
+**Library - Feature**
+- [PR #882](https://github.com/sendgrid/sendgrid-python/pull/882): add support for Twilio Email. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-04-15] Version 6.2.2
 --------------------------
 **Library - Fix**
