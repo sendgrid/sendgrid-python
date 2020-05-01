@@ -1,4 +1,4 @@
-.PHONY: venv install test-install test clean nopyc
+.PHONY: venv install test-install test test-integ test-docker clean nopyc
 
 venv:
 	@python --version || (echo "Python is not installed, please install Python 2 or Python 3"; exit 1);
@@ -8,13 +8,17 @@ install: venv
 	. venv/bin/activate; python setup.py install
 	. venv/bin/activate; pip install -r requirements.txt
 
-test-install:
+test-install: install
 	. venv/bin/activate; pip install -r test/requirements.txt
 
 test: test-install
-	./test/prism.sh &
-	sleep 2
-	. venv/bin/activate; python -m unittest discover -v
+
+test-integ: test
+	. venv/bin/activate; coverage run -m unittest discover
+
+version ?= latest
+test-docker:
+	curl -s https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/prism/prism.sh | version=$(version) bash
 
 clean: nopyc
 	rm -rf venv

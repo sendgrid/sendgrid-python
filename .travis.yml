@@ -1,27 +1,25 @@
 dist: xenial # required for Python >= 3.7
 language: python
 cache: pip
-python:
-  - '2.7'
-  - '3.5'
-  - '3.6'
-  - '3.7'
-  - '3.8'
+services:
+  - docker
 env:
+  matrix:
+    - version=2.7
+    - version=3.5
+    - version=3.6
+    - version=3.7
+    - version=3.8
   global:
-    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN SENDGRID_API_KEY=SGAPIKEY
-install:
-  - make install
-  - make test-install
+    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
 before_script:
-  - "./test/prism.sh &"
-  - sleep 20
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - . venv/bin/activate; coverage run -m unittest discover
+  - make test-docker
 after_script:
+  - make test-install
   - . venv/bin/activate; codecov
   - ./cc-test-reporter after-build --exit-code $?
 deploy:
@@ -32,7 +30,7 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
-    python: '3.6'
+    condition: $version=3.6
 
 notifications:
   slack:

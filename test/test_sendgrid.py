@@ -5,18 +5,15 @@ import unittest
 import sendgrid
 from sendgrid.helpers.endpoints.ip.unassigned import unassigned
 
-host = "http://localhost:4010"
-
 
 class UnitTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.host = host
         cls.path = '{}{}'.format(
             os.path.abspath(
                 os.path.dirname(__file__)), '/..')
-        cls.sg = sendgrid.SendGridAPIClient(host=host)
+        cls.sg = sendgrid.SendGridAPIClient()
         cls.devnull = open(os.devnull, 'w')
 
     def test_api_key_init(self):
@@ -34,7 +31,6 @@ class UnitTests(unittest.TestCase):
     def test_impersonate_subuser_init(self):
         temp_subuser = 'abcxyz@this.is.a.test.subuser'
         sg_impersonate = sendgrid.SendGridAPIClient(
-            host=host,
             impersonate_subuser=temp_subuser)
         self.assertEqual(sg_impersonate.impersonate_subuser, temp_subuser)
 
@@ -43,7 +39,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(self.sg.useragent, useragent)
 
     def test_host(self):
-        self.assertEqual(self.sg.host, self.host)
+        self.assertEqual(self.sg.host, 'https://api.sendgrid.com')
 
     def test_get_default_headers(self):
         headers = self.sg._default_headers
