@@ -44,7 +44,7 @@ We appreciate your continued support, thank you!
 
 ## Prerequisites
 
-- Python version 2.6, 2.7, 3.4, 3.5 or 3.6
+- Python version 2.7, 3.5, 3.6, 3.7, or 3.8
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-python)
 
 ## Setup Environment Variables
