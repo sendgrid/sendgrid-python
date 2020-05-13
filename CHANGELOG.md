@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-05-13] Version 6.3.1
+--------------------------
+**Library - Docs**
+- [PR #893](https://github.com/sendgrid/sendgrid-python/pull/893): Update readme supported versions. Thanks to [@PaulMcMillan](https://github.com/PaulMcMillan)!
+
+**Library - Fix**
+- [PR #888](https://github.com/sendgrid/sendgrid-python/pull/888): migrate to common prism setup. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-04-29] Version 6.3.0
 --------------------------
 **Library - Feature**
