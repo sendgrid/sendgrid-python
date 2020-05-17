@@ -2,7 +2,7 @@ class Subject(object):
     """A subject for an email message."""
 
     def __init__(self, subject, p=None):
-        """Create a Subjuct.
+        """Create a Subject.
 
         :param subject: The subject for an email
         :type subject: string
