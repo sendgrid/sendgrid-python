@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-05-27] Version 6.3.2
+--------------------------
+**Library - Docs**
+- [PR #895](https://github.com/sendgrid/sendgrid-python/pull/895): Fixed Subject typo. Thanks to [@dmitry-krasilnikov](https://github.com/dmitry-krasilnikov)!
+
+
 [2020-05-13] Version 6.3.1
 --------------------------
 **Library - Docs**
