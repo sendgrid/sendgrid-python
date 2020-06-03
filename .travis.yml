@@ -30,7 +30,7 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
-    condition: env(version)=3.6
+    condition: $version = 3.6
 
 notifications:
   slack:
