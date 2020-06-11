@@ -1,12 +1,14 @@
 from ellipticcurve.ecdsa import Ecdsa
-from ellipticcurve.signature import Signature
 from ellipticcurve.publicKey import PublicKey
+from ellipticcurve.signature import Signature
 
-class EventWebhook():
+
+class EventWebhook:
     """
     This class allows you to use the Event Webhook feature. Read the docs for
     more details: https://sendgrid.com/docs/for-developers/tracking-events/event
     """
+
     def __init__(self, public_key=None):
         """
         Construct the Event Webhook verifier object

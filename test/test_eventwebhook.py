@@ -3,6 +3,7 @@ import unittest
 
 from sendgrid import EventWebhook
 
+
 class UnitTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -13,7 +14,7 @@ class UnitTests(unittest.TestCase):
             'event': 'test_event',
             'category': 'example_payload',
             'message_id': 'message_id',
-        }, separators=(',', ':'))
+        }, sort_keys=True, separators=(',', ':'))
 
     def test_verify_valid_signature(self):
         ew = EventWebhook()
