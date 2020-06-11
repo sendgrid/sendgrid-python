@@ -2,6 +2,7 @@ from ellipticcurve.ecdsa import Ecdsa
 from ellipticcurve.publicKey import PublicKey
 from ellipticcurve.signature import Signature
 
+from .eventwebhook_header import EventWebhookHeader
 
 class EventWebhook:
     """
