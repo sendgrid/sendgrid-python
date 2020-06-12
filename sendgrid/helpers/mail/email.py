@@ -73,27 +73,6 @@ class Email(object):
         if p is not None:
             self.personalization = p
 
-    def __eq__(self, other):
-        """Email objects are equal if they have the same email and the same name
-
-        :param other: object to compare with
-        :type other: any
-        """
-        if isinstance(other, Email):
-            return self.email == other.email and self.name == other.name
-        return NotImplemented
-    
-    def __ne__(self, other):
-        """Inverse of __eq__ (required for Python 2)
-        
-        :param other: object to compare with
-        :type other: any
-        """
-        x = self.__eq__(other)
-        if x is not NotImplemented:
-            return not x
-        return NotImplemented
-
     @property
     def name(self):
         """Name associated with this email.
