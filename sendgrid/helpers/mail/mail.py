@@ -627,7 +627,7 @@ class Mail(object):
         """Data for a transactional template
 
         :param value: Data for a transactional template
-        :type value: DynamicTemplateData, a JSON-serializeable structure
+        :type value: DynamicTemplateData, a JSON-serializable structure
         """
         if not isinstance(value, DynamicTemplateData):
             value = DynamicTemplateData(value)

@@ -51,11 +51,16 @@ class Personalization(object):
                     self.add_substitution(substitution)
             else:
                 self.add_substitution(email.substitutions)
+
+        if email.dynamic_template_data:
+            self.dynamic_template_data = email.dynamic_template_data
+
         if email.subject:
             if isinstance(email.subject, str):
                 self.subject = email.subject
             else:
                 self.subject = email.subject.get()
+
         self._tos.append(email.get())
 
     @property
@@ -149,10 +154,10 @@ class Personalization(object):
 
         :type substitution: Substitution
         """
-        if isinstance(substitution, dict):
-            self._substitutions.append(substitution)
-        else:
-            self._substitutions.append(substitution.get())
+        if not isinstance(substitution, dict):
+            substitution = substitution.get()
+
+        self._substitutions.append(substitution)
 
     @property
     def custom_args(self):
@@ -190,14 +195,17 @@ class Personalization(object):
     @property
     def dynamic_template_data(self):
         """Data for dynamic transactional template.
-        Should be JSON-serializeable structure.
+        Should be JSON-serializable structure.
 
-        :rtype: JSON-serializeable structure
+        :rtype: JSON-serializable structure
         """
         return self._dynamic_template_data
 
     @dynamic_template_data.setter
     def dynamic_template_data(self, value):
+        if not isinstance(value, dict):
+            value = value.get()
+
         self._dynamic_template_data = value
 
     def get(self):
