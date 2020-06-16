@@ -18,6 +18,7 @@ helpers
 from .helpers.endpoints import *  # noqa
 from .helpers.mail import *  # noqa
 from .helpers.stats import *  # noqa
+from .helpers.eventwebhook import * # noqa
 from .sendgrid import SendGridAPIClient  # noqa
 from .twilio_email import TwilioEmailAPIClient  # noqa
 from .version import __version__
