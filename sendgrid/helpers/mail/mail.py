@@ -185,17 +185,17 @@ class Mail(object):
 
     @property
     def personalizations(self):
-        """A list of one or more Personaliztion objects
+        """A list of one or more Personalization objects
 
         :rtype: list(Personalization)
         """
         return self._personalizations
 
     def add_personalization(self, personalization, index=0):
-        """Add a Personaliztion object
+        """Add a Personalization object
 
-        :param personalizations: Add a Personalization object
-        :type personalizations: Personalization
+        :param personalization: Add a Personalization object
+        :type personalization: Personalization
         :param index: The index where to add the Personalization
         :type index: int
         """

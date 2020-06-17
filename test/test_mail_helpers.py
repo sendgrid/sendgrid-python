@@ -288,16 +288,20 @@ class UnitTests(unittest.TestCase):
         self.maxDiff = None
 
         to_emails = [
-            To(email='test+to@example.com',
-               name='Example To Name',
-               dynamic_template_data=DynamicTemplateData({'name': 'Example Name'}))
+            To(email='test+to+0@example.com',
+               name='Example To 0 Name',
+               dynamic_template_data=DynamicTemplateData({'name': 'Example 0 Name'})),
+            To(email='test+to+1@example.com',
+               name='Example To 1 Name',
+               dynamic_template_data={'name': 'Example 1 Name'})
         ]
         message = Mail(
             from_email=From('test@example.com', 'Example From Name'),
             to_emails=to_emails,
             subject=Subject('Hi!'),
             plain_text_content='Hello!',
-            html_content='<strong>Hello!</strong>')
+            html_content='<strong>Hello!</strong>',
+            is_multiple=True)
 
         self.assertEqual(
             message.get(),
@@ -319,12 +323,23 @@ class UnitTests(unittest.TestCase):
                 "personalizations": [
                     {
                         "dynamic_template_data": {
-                            "name": "Example Name"
+                            "name": "Example 1 Name"
                         },
                         "to": [
                             {
-                                "email": "test+to@example.com",
-                                "name": "Example To Name"
+                                "email": "test+to+1@example.com",
+                                "name": "Example To 1 Name"
+                            }
+                        ]
+                    },
+                    {
+                        "dynamic_template_data": {
+                            "name": "Example 0 Name"
+                        },
+                        "to": [
+                            {
+                                "email": "test+to+0@example.com",
+                                "name": "Example To 0 Name"
                             }
                         ]
                     }
