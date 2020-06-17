@@ -10,12 +10,11 @@ except ImportError:
     EmailMessage = message.Message
 
 from sendgrid.helpers.mail import (
-    Asm, ApiKeyIncludedException, Attachment, BccSettings,
-    BypassListManagement, Category, ClickTracking, Content, CustomArg,
-    DynamicTemplateData, Email, FooterSettings, From, Ganalytics, Header,
-    Mail, MailSettings, OpenTracking, Personalization, SandBoxMode, Section,
-    SendGridException, SpamCheck, Subject, SubscriptionTracking, Substitution,
-    TrackingSettings, To, ValidateApiKey
+    Asm, Attachment,
+    ClickTracking, Content,
+    DynamicTemplateData, Email, From,
+    Mail, Personalization,
+    Subject, Substitution, To, TrackingSettings
 )
 
 
@@ -210,18 +209,18 @@ class UnitTests(unittest.TestCase):
 
         to_emails = [
             To(email='test+to0@example.com',
-                name='Example Name 0',
-                substitutions=[
-                    Substitution('-name-', 'Example Name Substitution 0'),
-                    Substitution('-github-', 'https://example.com/test0'),
-                ],
-                subject=Subject('Override Global Subject')),
+               name='Example Name 0',
+               substitutions=[
+                   Substitution('-name-', 'Example Name Substitution 0'),
+                   Substitution('-github-', 'https://example.com/test0'),
+               ],
+               subject=Subject('Override Global Subject')),
             To(email='test+to1@example.com',
-                name='Example Name 1',
-                substitutions=[
-                    Substitution('-name-', 'Example Name Substitution 1'),
-                    Substitution('-github-', 'https://example.com/test1'),
-                ])
+               name='Example Name 1',
+               substitutions=[
+                   Substitution('-name-', 'Example Name Substitution 1'),
+                   Substitution('-github-', 'https://example.com/test1'),
+               ])
         ]
         global_substitutions = Substitution('-time-', '2019-01-01 00:00:00')
         message = Mail(
@@ -282,6 +281,70 @@ class UnitTests(unittest.TestCase):
                     }
                 ],
                 "subject": "Hi -name-"
+            }''')
+        )
+
+    def test_dynamic_template_data(self):
+        self.maxDiff = None
+
+        to_emails = [
+            To(email='test+to+0@example.com',
+               name='Example To 0 Name',
+               dynamic_template_data=DynamicTemplateData({'name': 'Example 0 Name'})),
+            To(email='test+to+1@example.com',
+               name='Example To 1 Name',
+               dynamic_template_data={'name': 'Example 1 Name'})
+        ]
+        message = Mail(
+            from_email=From('test@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Hi!'),
+            plain_text_content='Hello!',
+            html_content='<strong>Hello!</strong>',
+            is_multiple=True)
+
+        self.assertEqual(
+            message.get(),
+            json.loads(r'''{
+                "content": [
+                    {
+                        "type": "text/plain",
+                        "value": "Hello!"
+                    },
+                    {
+                        "type": "text/html",
+                        "value": "<strong>Hello!</strong>"
+                    }
+                ],
+                "from": {
+                    "email": "test@example.com",
+                    "name": "Example From Name"
+                },
+                "personalizations": [
+                    {
+                        "dynamic_template_data": {
+                            "name": "Example 1 Name"
+                        },
+                        "to": [
+                            {
+                                "email": "test+to+1@example.com",
+                                "name": "Example To 1 Name"
+                            }
+                        ]
+                    },
+                    {
+                        "dynamic_template_data": {
+                            "name": "Example 0 Name"
+                        },
+                        "to": [
+                            {
+                                "email": "test+to+0@example.com",
+                                "name": "Example To 0 Name"
+                            }
+                        ]
+                    }
+                ],
+                "subject": "Hi!"
             }''')
         )
 

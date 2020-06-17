@@ -18,7 +18,7 @@ else:
     html_entity_decode = __html_parser__.unescape
 
 try:
-     basestring = basestring
+    basestring = basestring
 except NameError:
     # Define basestring when Python >= 3.0
     basestring = str
@@ -32,7 +32,8 @@ class Email(object):
                  name=None,
                  substitutions=None,
                  subject=None,
-                 p=0):
+                 p=0,
+                 dynamic_template_data=None):
         """Create an Email with the given address and name.
 
         Either fill the separate name and email fields, or pass all information
@@ -41,17 +42,19 @@ class Email(object):
         :type email: string, optional
         :param name: Name for this sender or recipient.
         :type name: string, optional
+        :param substitutions: String substitutions to be applied to the email.
+        :type substitutions: list(Substitution), optional
         :param subject: Subject for this sender or recipient.
         :type subject: string, optional
         :param p: p is the Personalization object or Personalization object
                   index
         :type p: Personalization, integer, optional
+        :param dynamic_template_data: Data for a dynamic transactional template.
+        :type dynamic_template_data: DynamicTemplateData, optional
         """
         self._name = None
         self._email = None
-        self._substitutions = None
-        self._subject = None
-        self._personalization = None
+        self._personalization = p
 
         if email and not name:
             # allows passing emails as "Example Name <example@example.com>"
@@ -64,14 +67,11 @@ class Email(object):
             if name is not None:
                 self.name = name
 
-        if substitutions is not None:
-            self.substitutions = substitutions
-
-        if subject is not None:
-            self.subject = subject
-
-        if p is not None:
-            self.personalization = p
+        # Note that these only apply to To Emails (see Personalization.add_to)
+        # and should be moved but have not been for compatibility.
+        self._substitutions = substitutions
+        self._dynamic_template_data = dynamic_template_data
+        self._subject = subject
 
     @property
     def name(self):
@@ -129,7 +129,7 @@ class Email(object):
     @property
     def substitutions(self):
         """A list of Substitution objects. These substitutions will apply to
-           the text and html content of  the body of your email, in addition
+           the text and html content of the body of your email, in addition
            to the subject and reply-to parameters. The total collective size
            of your substitutions may not exceed 10,000 bytes per
            personalization object.
@@ -141,19 +141,36 @@ class Email(object):
     @substitutions.setter
     def substitutions(self, value):
         """A list of Substitution objects. These substitutions will apply to
-        the text and html content of  the body of your email, in addition to
+        the text and html content of the body of your email, in addition to
         the subject and reply-to parameters. The total collective size of
         your substitutions may not exceed 10,000 bytes per personalization
         object.
 
         :param value: A list of Substitution objects. These substitutions will
-        apply to the text and html content of  the body of your email, in
+        apply to the text and html content of the body of your email, in
         addition to the subject and reply-to parameters. The total collective
         size of your substitutions may not exceed 10,000 bytes per
         personalization object.
         :type value: list(Substitution)
         """
         self._substitutions = value
+
+    @property
+    def dynamic_template_data(self):
+        """Data for a dynamic transactional template.
+
+        :rtype: DynamicTemplateData
+        """
+        return self._dynamic_template_data
+
+    @dynamic_template_data.setter
+    def dynamic_template_data(self, value):
+        """Data for a dynamic transactional template.
+
+        :param value: DynamicTemplateData
+        :type value: DynamicTemplateData
+        """
+        self._dynamic_template_data = value
 
     @property
     def subject(self):

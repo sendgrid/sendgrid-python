@@ -5,10 +5,10 @@ class DynamicTemplateData(object):
 
     def __init__(self, dynamic_template_data=None, p=0):
         """Data for a transactional template.
-        Should be JSON-serializeable structure.
+        Should be JSON-serializable structure.
 
         :param dynamic_template_data: Data for a transactional template.
-        :type dynamic_template_data: A JSON-serializeable structure
+        :type dynamic_template_data: A JSON-serializable structure
         :param name: p is the Personalization object or Personalization object
                      index
         :type name:  Personalization, integer, optional
@@ -25,7 +25,7 @@ class DynamicTemplateData(object):
     def dynamic_template_data(self):
         """Data for a transactional template.
 
-        :rtype: A JSON-serializeable structure
+        :rtype: A JSON-serializable structure
         """
         return self._dynamic_template_data
 
@@ -34,7 +34,7 @@ class DynamicTemplateData(object):
         """Data for a transactional template.
 
         :param value: Data for a transactional template.
-        :type value: A JSON-serializeable structure
+        :type value: A JSON-serializable structure
         """
         self._dynamic_template_data = value
 
@@ -59,7 +59,7 @@ class DynamicTemplateData(object):
     def __str__(self):
         """Get a JSON representation of this object.
 
-        :rtype: A JSON-serializeable structure
+        :rtype: A JSON-serializable structure
         """
         return str(self.get())
 
@@ -68,6 +68,6 @@ class DynamicTemplateData(object):
         Get a JSON-ready representation of this DynamicTemplateData object.
 
         :returns: Data for a transactional template.
-        :rtype: A JSON-serializeable structure.
+        :rtype: A JSON-serializable structure.
         """
         return self.dynamic_template_data
