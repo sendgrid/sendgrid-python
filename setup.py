@@ -9,7 +9,10 @@ with open('sendgrid/version.py') as f:
     exec(f.read())
 
 def getRequires():
-    deps = ['python_http_client>=3.2.1']
+    deps = [
+        'python_http_client>=3.2.1',
+        'starkbank-ecdsa>=1.0.0'
+    ]
     return deps
 
 
