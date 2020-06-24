@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-06-24] Version 6.4.0
+--------------------------
+**Library - Docs**
+- [PR #912](https://github.com/sendgrid/sendgrid-python/pull/912): added docstrings to Stats classes. Thanks to [@DougCal](https://github.com/DougCal)!
+
+**Library - Feature**
+- [PR #908](https://github.com/sendgrid/sendgrid-python/pull/908): add support for dynamic template data to Email class. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #901](https://github.com/sendgrid/sendgrid-python/pull/901): verify signature from event webhook. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Fix**
+- [PR #904](https://github.com/sendgrid/sendgrid-python/pull/904): revert "feat: Add equality to Email". Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-05-27] Version 6.3.2
 --------------------------
 **Library - Docs**
