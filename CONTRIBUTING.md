@@ -75,6 +75,7 @@ You can use our Docker image to avoid setting up the development environment you
 
 - Python 2.7 and 3.4+
 - [python_http_client](https://github.com/sendgrid/python-http-client)
+- [ecdsa_python](https://github.com/starkbank/ecdsa-python)
 
 ##### Initial setup: #####
 
