@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-06-25] Version 6.4.1
+--------------------------
+**Library - Fix**
+- [PR #914](https://github.com/sendgrid/sendgrid-python/pull/914): add dependency to install requires. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2020-06-24] Version 6.4.0
 --------------------------
 **Library - Docs**
