@@ -77,6 +77,7 @@ pip install sendgrid
 ## Dependencies
 
 - [Python-HTTP-Client](https://github.com/sendgrid/python-http-client)
+- [ECDSA-Python](https://github.com/starkbank/ecdsa-python)
 
 
 <a name="quick-start"></a>
