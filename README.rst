@@ -93,7 +93,7 @@ Dependencies
 ------------
 
 -  `Python-HTTP-Client`_
--  `CDSA-Python`_
+-  `ECDSA-Python`_
 
 Quick Start
 ===========
@@ -273,7 +273,7 @@ License
 .. _Twilio account: https://www.twilio.com/try-twilio?source=sendgrid-python
 .. _SENDGRID_API_KEY: https://app.sendgrid.com/settings/api_keys
 .. _Python-HTTP-Client: https://github.com/sendgrid/python-http-client
-.. _:ECDSA-Python: https://github.com/starkbank/ecdsa-python
+.. _ECDSA-Python: https://github.com/starkbank/ecdsa-python
 .. _/mail/send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
 .. _personalization object: https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html
 .. _Fluent Interface: https://sendgrid.com/blog/using-python-to-implement-a-fluent-interface-to-any-rest-api/
