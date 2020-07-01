@@ -2,16 +2,7 @@ import os
 import unittest
 
 
-
 class ProjectTests(unittest.TestCase):
-    # ./docker
-    def test_docker_dir(self):
-        self.assertTrue(os.path.isfile("./docker/Dockerfile"))
-
-    # ./docker-compose.yml or ./docker/docker-compose.yml
-    def test_docker_compose(self):
-        self.assertTrue(os.path.isfile('./docker/docker-compose.yml'))
-
     # ./.env_sample
     def test_env(self):
         self.assertTrue(os.path.isfile('./.env_sample'))
