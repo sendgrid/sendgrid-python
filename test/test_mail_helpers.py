@@ -284,6 +284,25 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
+    def test_value_error_is_thrown_on_to_emails_set_to_list_of_lists(self):
+        from sendgrid.helpers.mail import (Mail, From, Subject,
+                                           PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = [
+            ['test+to0@example.com', 'Example To Name 0'],
+            ['test+to1@example.com', 'Example To Name 1']
+        ]
+
+        with self.assertRaises(ValueError):
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+
     def test_dynamic_template_data(self):
         self.maxDiff = None
 
