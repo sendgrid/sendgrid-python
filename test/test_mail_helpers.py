@@ -284,6 +284,95 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
+    def test_value_error_is_raised_on_to_emails_set_to_list_of_lists(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = [
+            ['test+to0@example.com', 'Example To Name 0'],
+            ['test+to1@example.com', 'Example To Name 1']
+        ]
+
+        with self.assertRaises(ValueError):
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+
+    def test_error_is_not_raised_on_to_emails_set_to_list_of_tuples(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = [
+            ('test+to0@example.com', 'Example To Name 0'),
+            ('test+to1@example.com', 'Example To Name 1')
+        ]
+
+        try:
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+        except:
+            self.fail('Mail() raised an error on list of tuples')
+
+    def test_error_is_not_raised_on_to_emails_set_to_list_of_strs(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = ['test+to0@example.com', 'test+to1@example.com']
+
+        try:
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+        except:
+            self.fail('Mail() raised an error on list of strings')
+
+    def test_error_is_not_raised_on_to_emails_set_to_a_str(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = 'test+to0@example.com'
+
+        try:
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+        except:
+            self.fail('Mail() raised an error on a string')
+
+    def test_error_is_not_raised_on_to_emails_set_to_a_tuple(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = ('test+to0@example.com', 'Example To Name 0')
+
+        try:
+            Mail(
+                from_email=From('test+from@example.com', 'Example From Name'),
+                to_emails=to_emails,
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent(
+                    'and easy to do anywhere, even with Python'),
+                html_content=HtmlContent(
+                    '<strong>and easy to do anywhere, even with Python</strong>'))
+        except:
+            self.fail('Mail() raised an error on a tuple of strings')
+
     def test_dynamic_template_data(self):
         self.maxDiff = None
 

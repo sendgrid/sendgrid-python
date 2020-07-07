@@ -37,7 +37,8 @@ class Mail(object):
         :param subject: The subject of the email
         :type subject: Subject, optional
         :param to_emails: The email address of the recipient
-        :type to_emails: To, tuple, optional
+        :type to_emails: To, str, tuple, list(str), list(tuple),
+                         list(To), optional
         :param plain_text_content: The plain text body of the email
         :type plain_text_content: string, optional
         :param html_content: The html body of the email
@@ -239,7 +240,7 @@ class Mail(object):
         """Adds a To object to the Personalization object
 
         :param to_email: A To object
-        :type to_email: To, str, tuple
+        :type to_email: To, str, tuple, list(str), list(tuple), list(To)
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personalization for each recipient
@@ -253,8 +254,12 @@ class Mail(object):
             for email in to_email:
                 if isinstance(email, str):
                     email = To(email, None)
-                if isinstance(email, tuple):
+                elif isinstance(email, tuple):
                     email = To(email[0], email[1])
+                elif not isinstance(email, To):
+                    raise ValueError(
+                        'Please use a tuple, To, or a str for a to_email list.'
+                    )
                 self._set_emails(email, global_substitutions, is_multiple, p)
         else:
             if isinstance(to_email, str):
