@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-07-08] Version 6.4.2
+--------------------------
+**Library - Fix**
+- [PR #920](https://github.com/sendgrid/sendgrid-python/pull/920): type validation on to_emails parameter on mail object. Thanks to [@DougCal](https://github.com/DougCal)!
+
+**Library - Docs**
+- [PR #915](https://github.com/sendgrid/sendgrid-python/pull/915): document change in top-level dependencies. Thanks to [@honzajavorek](https://github.com/honzajavorek)!
+
+
 [2020-06-25] Version 6.4.1
 --------------------------
 **Library - Fix**
