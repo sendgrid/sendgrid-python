@@ -256,9 +256,9 @@ class Mail(object):
                     email = To(email, None)
                 elif isinstance(email, tuple):
                     email = To(email[0], email[1])
-                elif not isinstance(email, To):
+                elif not isinstance(email, Email):
                     raise ValueError(
-                        'Please use a tuple, To, or a str for a to_email list.'
+                        'Please use a To/Cc/Bcc, tuple, or a str for a to_email list.'
                     )
                 self._set_emails(email, global_substitutions, is_multiple, p)
         else:
