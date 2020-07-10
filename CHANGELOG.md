@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-07-10] Version 6.4.3
+--------------------------
+**Library - Fix**
+- [PR #921](https://github.com/sendgrid/sendgrid-python/pull/921): allow general email type for to_emails. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2020-07-08] Version 6.4.2
 --------------------------
 **Library - Fix**
