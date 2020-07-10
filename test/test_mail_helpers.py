@@ -310,68 +310,56 @@ class UnitTests(unittest.TestCase):
             ('test+to1@example.com', 'Example To Name 1')
         ]
 
-        try:
-            Mail(
-                from_email=From('test+from@example.com', 'Example From Name'),
-                to_emails=to_emails,
-                subject=Subject('Sending with SendGrid is Fun'),
-                plain_text_content=PlainTextContent(
-                    'and easy to do anywhere, even with Python'),
-                html_content=HtmlContent(
-                    '<strong>and easy to do anywhere, even with Python</strong>'))
-        except:
-            self.fail('Mail() raised an error on list of tuples')
+        Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
 
     def test_error_is_not_raised_on_to_emails_set_to_list_of_strs(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
         self.maxDiff = None
         to_emails = ['test+to0@example.com', 'test+to1@example.com']
 
-        try:
-            Mail(
-                from_email=From('test+from@example.com', 'Example From Name'),
-                to_emails=to_emails,
-                subject=Subject('Sending with SendGrid is Fun'),
-                plain_text_content=PlainTextContent(
-                    'and easy to do anywhere, even with Python'),
-                html_content=HtmlContent(
-                    '<strong>and easy to do anywhere, even with Python</strong>'))
-        except:
-            self.fail('Mail() raised an error on list of strings')
+        Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
 
     def test_error_is_not_raised_on_to_emails_set_to_a_str(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
         self.maxDiff = None
         to_emails = 'test+to0@example.com'
 
-        try:
-            Mail(
-                from_email=From('test+from@example.com', 'Example From Name'),
-                to_emails=to_emails,
-                subject=Subject('Sending with SendGrid is Fun'),
-                plain_text_content=PlainTextContent(
-                    'and easy to do anywhere, even with Python'),
-                html_content=HtmlContent(
-                    '<strong>and easy to do anywhere, even with Python</strong>'))
-        except:
-            self.fail('Mail() raised an error on a string')
+        Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
 
     def test_error_is_not_raised_on_to_emails_set_to_a_tuple(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
         self.maxDiff = None
         to_emails = ('test+to0@example.com', 'Example To Name 0')
 
-        try:
-            Mail(
-                from_email=From('test+from@example.com', 'Example From Name'),
-                to_emails=to_emails,
-                subject=Subject('Sending with SendGrid is Fun'),
-                plain_text_content=PlainTextContent(
-                    'and easy to do anywhere, even with Python'),
-                html_content=HtmlContent(
-                    '<strong>and easy to do anywhere, even with Python</strong>'))
-        except:
-            self.fail('Mail() raised an error on a tuple of strings')
+        Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
 
     def test_error_is_not_raised_on_to_emails_includes_bcc_cc(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
@@ -382,17 +370,14 @@ class UnitTests(unittest.TestCase):
             Cc('test+cc@example.com', 'Example Cc Name 2')
         ]
 
-        try:
-            Mail(
-                from_email=From('test+from@example.com', 'Example From Name'),
-                to_emails=to_emails,
-                subject=Subject('Sending with SendGrid is Fun'),
-                plain_text_content=PlainTextContent(
-                    'and easy to do anywhere, even with Python'),
-                html_content=HtmlContent(
-                    '<strong>and easy to do anywhere, even with Python</strong>'))
-        except:
-            self.fail('Mail() raised an error on a tuple of strings')
+        Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
 
     def test_dynamic_template_data(self):
         self.maxDiff = None
