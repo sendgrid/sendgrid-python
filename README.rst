@@ -243,7 +243,6 @@ Quick links:
 -  `Bug Reports`_
 -  `Improvements to the Codebase`_
 -  `Review Pull Requests`_
--  `Sign the CLA to Create a Pull Request`_
 
 Troubleshooting
 ===============
@@ -294,7 +293,6 @@ License
 .. _Bug Reports: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report
 .. _Improvements to the Codebase: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase
 .. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews
-.. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md
 .. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.md
 
