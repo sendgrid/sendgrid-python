@@ -11,7 +11,6 @@
 
 -  Subscribe to email `notifications`_ for releases and breaking changes.
 -  Version 6.X release is a BREAKING CHANGE from version 5.X, please see the `release notes`_ for details.
--  Quickly get started with `Docker`_.
 -  Send SMS messages with `Twilio`_.
 
 This library provides full support for all Twilio SendGrid `Web API v3`_ endpoints, including `v3 /mail/send`_.
@@ -261,7 +260,6 @@ License
 `The MIT License (MIT)`_
 
 .. _notifications: https://dx.sendgrid.com/newsletter/python
-.. _Docker: https://github.com/sendgrid/sendgrid-python/tree/master/docker
 .. _Twilio: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/sms.md
 .. _release notes: https://github.com/sendgrid/sendgrid-python/releases/tag/v6.0.0
 .. _Web API v3: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
