@@ -19,14 +19,31 @@ class Personalization(object):
         email_type = type(email)
         if email_type.__name__ == 'To':
             self.add_to(email)
+            self._tos = self._get_unique_recipients(self._tos)
             return
         if email_type.__name__ == 'Cc':
             self.add_cc(email)
+            self._ccs = self._get_unique_recipients(self._ccs)
             return
         if email_type.__name__ == 'Bcc':
             self.add_bcc(email)
+            self._bccs = self._get_unique_recipients(self._bccs)
             return
         raise ValueError('Please use a To, Cc or Bcc object.')
+    
+    def _get_unique_recipients(self, recipients):
+        unique_recipients = []
+
+        for recipient in recipients:
+            recipient_email = recipient['email'].lower() if isinstance(recipient, dict) else recipient.email.lower()
+            if all(
+                unique_recipient['email'].lower() != recipient_email for unique_recipient in unique_recipients
+            ):
+                new_unique_recipient = recipient if isinstance(recipient, dict) else recipient.get()
+                unique_recipients.append(new_unique_recipient)
+
+        return unique_recipients
+
 
     @property
     def tos(self):
@@ -38,7 +55,10 @@ class Personalization(object):
 
     @tos.setter
     def tos(self, value):
-        self._tos = value
+        if isinstance(value, list):
+            self._tos = self._get_unique_recipients(value)
+        else:
+            self._tos = value
 
     def add_to(self, email):
         """Add a single recipient to this Personalization.
@@ -73,7 +93,10 @@ class Personalization(object):
 
     @ccs.setter
     def ccs(self, value):
-        self._ccs = value
+        if isinstance(value, list):
+            self._ccs = self._get_unique_recipients(value)
+        else:
+            self._ccs = value
 
     def add_cc(self, email):
         """Add a single recipient to receive a copy of this email.
@@ -93,7 +116,10 @@ class Personalization(object):
 
     @bccs.setter
     def bccs(self, value):
-        self._bccs = value
+        if isinstance(value, list):
+            self._bccs = self._get_unique_recipients(value)
+        else:
+            self._bccs = value
 
     def add_bcc(self, email):
         """Add a single recipient to receive a blind carbon copy of this email.
