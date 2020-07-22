@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-07-22] Version 6.4.4
+--------------------------
+**Library - Chore**
+- [PR #925](https://github.com/sendgrid/sendgrid-python/pull/925): migrate to new default sendgrid-oai branch. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2020-07-10] Version 6.4.3
 --------------------------
 **Library - Fix**
