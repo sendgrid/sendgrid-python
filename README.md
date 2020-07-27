@@ -9,6 +9,8 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
 [![Open Source Helpers](https://www.codetriage.com/sendgrid/sendgrid-python/badges/users.svg)](https://www.codetriage.com/sendgrid/sendgrid-python)
 
+**The default branch name for this repository has been changed to `main` as of 07/27/2020.**
+
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Python.**
 
 Version 3.X.X+ of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).

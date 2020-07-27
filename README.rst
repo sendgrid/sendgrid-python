@@ -9,6 +9,8 @@
 
 **NEW:**
 
+**The default branch name for this repository has been changed to `main` as of 07/27/2020.**
+
 -  Subscribe to email `notifications`_ for releases and breaking changes.
 -  Version 6.X release is a BREAKING CHANGE from version 5.X, please see the `release notes`_ for details.
 -  Send SMS messages with `Twilio`_.
