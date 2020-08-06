@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-08-05] Version 6.4.5
+--------------------------
+**Library - Docs**
+- [PR #926](https://github.com/sendgrid/sendgrid-python/pull/926): remove last references of "whitelabel". Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-07-22] Version 6.4.4
 --------------------------
 **Library - Chore**
