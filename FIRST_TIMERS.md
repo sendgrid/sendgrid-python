@@ -54,7 +54,7 @@ Kindly make sure, to check for any duplicate issues raised by fellow contributor
 
 **Step 4:** Commit the changes in logical chunks & add commit messages strictly following [this](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
 
-**Step 5:** Run all test locally, [for more info](https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#testing)
+**Step 5:** Run all test locally, [for more info](CONTRIBUTING.md#testing)
 
 **Step 6:** Locally merge your the upstream development branch into your topic-branch using `git pull [--rebase] upstream main`
 

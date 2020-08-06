@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python sendgrid/helpers/inbound/send.py ./sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](../../../sendgrid/helpers/inbound/sample_data).
 
 View the results in the first terminal.
 
@@ -127,12 +127,12 @@ This module is used to send sample test data. It is useful for testing and devel
 
 Tests are located in the root of this project in the /test folder:
 
-- [test_config.py](https://github.com/sendgrid/sendgrid-python/blob/HEAD/test/test_config.py)
-- [test_parse.py](https://github.com/sendgrid/sendgrid-python/blob/HEAD/test/test_parse.py)
+- [test_config.py](../../../test/test_config.py)
+- [test_parse.py](../../../test/test_parse.py)
 
-Learn about testing this code [here](https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#testing).
+Learn about testing this code [here](../../../CONTRIBUTING.md#testing).
 
 <a name="contributing"></a>
 # Contributing
 
-If you would like to contribute to this project, please see our [contributing guide](https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md). Thanks!
+If you would like to contribute to this project, please see our [contributing guide](../../../CONTRIBUTING.md). Thanks!

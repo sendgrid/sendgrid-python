@@ -87,7 +87,7 @@ source .env
 
 #### Execute
 
-See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/HEAD/examples) to get started quickly.
+See the [examples folder](examples) to get started quickly.
 
 If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
 
@@ -104,7 +104,7 @@ If testing from the root directory of this repo, create a new file (e.g. test.py
 
 The PR must pass all the tests before it is reviewed.
 
-All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/HEAD/test/test_sendgrid.py) file with unit tests as you modify the code.
+All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](test/test_sendgrid.py) file with unit tests as you modify the code.
 
 The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 

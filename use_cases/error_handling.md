@@ -3,7 +3,7 @@
 
 Please see [here](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py) for a list of supported exceptions.
 
-There are also email specific exceptions located [here](https://github.com/sendgrid/sendgrid-python/blob/HEAD/sendgrid/helpers/mail/exceptions.py)
+There are also email specific exceptions located [here](../sendgrid/helpers/mail/exceptions.py)
 
 ```python
   import os

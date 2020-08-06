@@ -152,7 +152,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Twilio SendGrid branding
-- [Twilio SMS example](https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/sms.md)
+- [Twilio SMS example](use_cases/sms.md)
 - Updated CLA process
 
 ## [6.0.0] - 2019-04-02 ##
@@ -162,7 +162,7 @@ All notable changes to this project will be documented in this file.
 - The `Mail` helper signature has changed.
 - Setting up a `SendGridAPIClient` has changed.
 
-Please see the [use cases documentation](https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/README.md) for implemenation details.
+Please see the [use cases documentation](use_cases/README.md) for implemenation details.
 
 This refactor was based on [this issue](https://github.com/sendgrid/sendgrid-python/issues/347). BIG thanks to all of those who [participated](https://github.com/sendgrid/sendgrid-python/issues/323) in shaping this release. 
 
@@ -337,7 +337,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 ### BREAKING CHANGE
 - Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
 - Big thanks to [Denis Vlasov](https://github.com/denis90) for the pull request!
-- The changes break the implementation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/mail) `Mail()` class
+- The changes break the implementation of the [Mail Helper](sendgrid/helpers/mail) `Mail()` class
 - `set_from()` is now the property `from_email`
 - `set_subject()` is now the property `subject`
 - `set_template_id()` is now the property `template_id`
@@ -426,7 +426,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 ## [3.2.2] - 2016-08-23 ##
 ### Added
 - Table of Contents in the README
-- Added a [USE_CASES.md](https://github.com/sendgrid/sendgrid-python/blob/HEAD/USE_CASES.md) section, with the first use case example for transactional templates
+- Added a [USE_CASES.md](USE_CASES.md) section, with the first use case example for transactional templates
 
 ## [3.2.1] - 2016-08-17 ##
 ### Fixed
@@ -448,7 +448,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 
 ## [3.1.8] - 2016-07-25 ##
 ### Added
-- [Troubleshooting](https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md) section
+- [Troubleshooting](TROUBLESHOOTING.md) section
 
 ## [3.1.7] - 2016-07-25 ##
 ### Added
