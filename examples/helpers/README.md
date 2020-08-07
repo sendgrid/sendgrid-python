@@ -6,7 +6,7 @@ all the classes imported and you can start sending emails!
 > Note: You will need move this file to the root directory of this project to execute properly.
 
 ### Creating a simple email object and sending it
-The example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L9)
+The example [here](mail_example.py#L9)
 defines minimum requirement to send an email.
 ```
  from_email = Email("test@example.com")
@@ -24,11 +24,11 @@ The `Content` class takes mainly two parameters: MIME type and the actual conten
  mail = Mail(from_email, to_email, subject, content)
 ```
 After adding the above we create a mail object using `Mail` class, it takes the following parameters: email address to send from, subject line of emails, email address to send to, content of the message.
-For more information on parameters and usage, see [here](../../sendgrid/helpers/mail/mail.py)
+For more information on parameters and usage, see [here](../mail/mail.py)
 
 ### Creating Personalizations
 
-To create personalizations, you need a dictionary to store all your email components. See example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L47)
+To create personalizations, you need a dictionary to store all your email components. See example [here](mail_example.py#L47)
 After creating a dictionary, you can go ahead and create a `Personalization` object. 
 ```
  mock_personalization = Personalization()
@@ -48,9 +48,9 @@ Another example: [Link](../../use_cases/attachment.md)
 
 ### Managing Settings
 
-To configure settings in mail, you can use the `MailSettings` class. The class takes some [parameters](../../sendgrid/helpers/mail/mail_settings.py#L1)(such as bcc_settings, bypass_list_management, footer_settings, sandbox_mode)
+To configure settings in mail, you can use the `MailSettings` class. The class takes some [parameters](../mailsettings/mailsettings.py#L1)(such as bcc_settings, bypass_list_management, footer_settings, sandbox_mode)
 
-To add tracking settings, you can add `TrackingSettings` class. See example [here](../../examples/helpers/mail_example.py#L118) and parameters and usage [here](../../sendgrid/helpers/mail/tracking_settings.py).
+To add tracking settings, you can add `TrackingSettings` class. See example [here](mail_example.py#L118) and parameters and usage [here](../trackingsettings/trackingsettings.py).
 
 ### Sending email
 
@@ -61,9 +61,9 @@ After you have configured every component and added your own functions, you can 
     response = sg.send(data)
 ```
 Make sure you have [environment variable](../../TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key) set up!
-Full example [here](../../examples/helpers/mail_example.py#L203).
+Full example [here](mail_example.py#L105).
 
 ### Using Dynamic Templates
 You can use dynamic (handlebars) transactional templates to make things easy and less time taking. To make this work, you should have dynamic template created within your SendGrid account.
 
-See Full example [here](../../examples/helpers/mail_example.py#L221).
+See Full example [here](mail_example.py#L105).

@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python sendgrid/helpers/inbound/send.py ./sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](../../../sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](sample_data).
 
 View the results in the first terminal.
 
