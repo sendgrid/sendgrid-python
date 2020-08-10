@@ -6,7 +6,7 @@ all the classes imported and you can start sending emails!
 > Note: You will need move this file to the root directory of this project to execute properly.
 
 ### Creating a simple email object and sending it
-The example [here](mail_example.py#L9)
+The example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L9)
 defines minimum requirement to send an email.
 ```
  from_email = Email("test@example.com")
