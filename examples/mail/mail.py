@@ -27,7 +27,7 @@ print(response.headers)
 # v3 Mail Send #
 # POST /mail/send #
 # This endpoint has a helper, check it out
-# [here](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md).
+# [here](https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/README.md).
 
 data = {
     "asm": {

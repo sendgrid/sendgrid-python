@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python sendgrid/helpers/inbound/send.py ./sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](sample_data).
 
 View the results in the first terminal.
 
@@ -71,7 +71,7 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 
 Get a [Heroku](https://www.heroku.com) account.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sendgrid/sendgrid-python/tree/main)
 
 [Setup your MX records.](https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html#-Setup) Depending on your domain name host, you may need to wait up to 48 hours for the settings to propagate.
 
@@ -100,7 +100,7 @@ heroku git:remote -a [name-of-your-app]
 ---make changes---
 git add .
 git commit -m "update configuration"
-git push heroku master
+git push heroku main
 ```
 
 <a name="code_walkthrough"></a>
@@ -127,12 +127,12 @@ This module is used to send sample test data. It is useful for testing and devel
 
 Tests are located in the root of this project in the /test folder:
 
-- [test_config.py](https://github.com/sendgrid/sendgrid-python/blob/master/test/test_config.py)
-- [test_parse.py](https://github.com/sendgrid/sendgrid-python/blob/master/test/test_parse.py)
+- [test_config.py](../../../test/test_config.py)
+- [test_parse.py](../../../test/test_parse.py)
 
-Learn about testing this code [here](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#testing).
+Learn about testing this code [here](../../../CONTRIBUTING.md#testing).
 
 <a name="contributing"></a>
 # Contributing
 
-If you would like to contribute to this project, please see our [contributing guide](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md). Thanks!
+If you would like to contribute to this project, please see our [contributing guide](../../../CONTRIBUTING.md). Thanks!

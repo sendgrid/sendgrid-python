@@ -1,9 +1,9 @@
 # Error Handling
-[Custom exceptions](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for `python_http_client` are now supported.
+[Custom exceptions](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py) for `python_http_client` are now supported.
 
-Please see [here](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) for a list of supported exceptions.
+Please see [here](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py) for a list of supported exceptions.
 
-There are also email specific exceptions located [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/exceptions.py)
+There are also email specific exceptions located [here](../sendgrid/helpers/mail/exceptions.py)
 
 ```python
   import os

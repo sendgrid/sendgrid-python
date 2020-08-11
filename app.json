@@ -6,6 +6,6 @@
     "inbound parse"
   ],
   "website": "http://www.sendgrid.com",
-  "repository": "https://github.com/sendgrid/sendgrid-python/tree/master",
+  "repository": "https://github.com/sendgrid/sendgrid-python",
   "logo": "https://sendgrid.com/brand/sg-twilio/SG_Twilio_Lockup_RGBx1.png"
 }

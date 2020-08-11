@@ -2105,7 +2105,7 @@ For more detailed information about how to use the v3 Mail Send endpoint, please
 
 ### POST /mail/send
 
-This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/README.md).
+This endpoint has a helper, check it out [here](sendgrid/helpers/mail/README.md).
 
 ```python
 data = {

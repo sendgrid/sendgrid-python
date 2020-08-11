@@ -54,13 +54,13 @@ Kindly make sure, to check for any duplicate issues raised by fellow contributor
 
 **Step 4:** Commit the changes in logical chunks & add commit messages strictly following [this](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
 
-**Step 5:** Run all test locally, [for more info](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#testing)
+**Step 5:** Run all test locally, [for more info](CONTRIBUTING.md#testing)
 
-**Step 6:** Locally merge your the upstream development branch into your topic-branch using `git pull [--rebase] upstream master`
+**Step 6:** Locally merge your the upstream development branch into your topic-branch using `git pull [--rebase] upstream main`
 
 **Step 7:** Push the topic branch up to your fork using `git push origin <topic-branch-name>`
 
-**Step 8:** Open a Pull Request with clear title and description against the master branch.
+**Step 8:** Open a Pull Request with clear title and description against the main branch.
 
 <a name="reviews"></a>
 ## Be Patient & Wait for Reviews

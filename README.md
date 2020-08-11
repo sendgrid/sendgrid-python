@@ -1,7 +1,7 @@
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![SendGrid Logo](twilio_sendgrid_logo.png)
 
-[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-python)
-[![codecov](https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/sendgrid/sendgrid-python)
+[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=main)](https://travis-ci.org/sendgrid/sendgrid-python)
+[![codecov](https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/main.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/sendgrid/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
@@ -15,7 +15,7 @@
 
 Version 3.X.X+ of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
 
-This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
+This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
 Please browse the rest of this README for further detail.
 
@@ -82,7 +82,7 @@ pip install sendgrid
 
 ## Hello Email
 
-The following is the minimum needed code to send an email with the [/mail/send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L9) is a full example):
+The following is the minimum needed code to send an email with the [/mail/send Helper](sendgrid/helpers/mail) ([here](examples/helpers/mail_example.py#L9) is a full example):
 
 ### With Mail Helper Class
 
@@ -103,11 +103,11 @@ print(response.body)
 print(response.headers)
 ```
 
-The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L16) is an example of how to add it.
+The `Mail` constructor creates a [personalization object](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html) for you. [Here](examples/helpers/mail_example.py#L16) is an example of how to add it.
 
 ### Without Mail Helper Class
 
-The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27) is a full example):
+The following is the minimum needed code to send an email without the /mail/send Helper ([here](examples/mail/mail.py#L27) is a full example):
 
 ```python
 import sendgrid
@@ -170,29 +170,29 @@ print(response.headers)
 <a name="inbound"></a>
 # Processing Inbound Email
 
-Please see [our helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound) for utilizing our Inbound Parse webhook.
+Please see [our helper](sendgrid/helpers/inbound) for utilizing our Inbound Parse webhook.
 
 <a name="usage"></a>
 # Usage
 
 - [SendGrid Documentation](https://sendgrid.com/docs/API_Reference/index.html)
-- [Library Usage Documentation](https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md)
-- [Example Code](https://github.com/sendgrid/sendgrid-python/tree/master/examples)
+- [Library Usage Documentation](USAGE.md)
+- [Example Code](examples)
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
-- [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
-- [Processing Inbound Email](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound)
+- [v3 Web API Mail Send Helper](sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
+- [Processing Inbound Email](sendgrid/helpers/inbound)
 
 <a name="use-cases"></a>
 # Use Cases
 
-[Examples of common API use cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md), such as how to send an email with a transactional template.
+[Examples of common API use cases](use_cases/README.md), such as how to send an email with a transactional template.
 
 <a name="announcements"></a>
 # Announcements
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
-All updates to this library are documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
+All updates to this library are documented in our [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
 
 <a name="roadmap"></a>
 # Roadmap
@@ -202,19 +202,19 @@ If you are interested in the future direction of this project, please take a loo
 <a name="contribute"></a>
 # How to Contribute
 
-We encourage contribution to our libraries (you might even score some nifty swag), please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md) guide for details.
+We encourage contribution to our libraries (you might even score some nifty swag), please see our [CONTRIBUTING](CONTRIBUTING.md) guide for details.
 
 Quick links:
 
-- [Feature Request](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature-request)
-- [Bug Reports](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report)
-- [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
-- [Review Pull Requests](https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews)
+- [Feature Request](CONTRIBUTING.md#feature-request)
+- [Bug Reports](CONTRIBUTING.md#submit-a-bug-report)
+- [Improvements to the Codebase](CONTRIBUTING.md#improvements-to-the-codebase)
+- [Review Pull Requests](CONTRIBUTING.md#code-reviews)
 
 <a name="troubleshooting"></a>
 # Troubleshooting
 
-Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md) for common library issues.
+Please see our [troubleshooting guide](TROUBLESHOOTING.md) for common library issues.
 
 <a name="about"></a>
 # About
