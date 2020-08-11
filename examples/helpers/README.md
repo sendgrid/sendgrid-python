@@ -28,7 +28,7 @@ For more information on parameters and usage, see [here](../mail/mail.py)
 
 ### Creating Personalizations
 
-To create personalizations, you need a dictionary to store all your email components. See example [here](mail_example.py#L47)
+To create personalizations, you need a dictionary to store all your email components. See example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L47)
 After creating a dictionary, you can go ahead and create a `Personalization` object. 
 ```
  mock_personalization = Personalization()
@@ -61,9 +61,9 @@ After you have configured every component and added your own functions, you can 
     response = sg.send(data)
 ```
 Make sure you have [environment variable](../../TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key) set up!
-Full example [here](mail_example.py#L105).
+Full example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L203).
 
 ### Using Dynamic Templates
 You can use dynamic (handlebars) transactional templates to make things easy and less time taking. To make this work, you should have dynamic template created within your SendGrid account.
 
-See Full example [here](mail_example.py#L105).
+See Full example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L221).
