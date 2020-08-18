@@ -1,69 +1,79 @@
-## Welcome to the Twilio SendGrid Open Source Community
-If you are new to Open Source, you are at the right place to start with. Contributions are always encouraged & appreciated. Just follow the organisation's Contribution Policies & you are good to go.
+# How To Contribute to Twilio SendGrid Repositories via GitHub
+Contributing to the Twilio SendGrid repositories is easy! All you need to do is find an open issue (see the bottom of this page for a list of repositories containing open issues), fix it and submit a pull request. Once you have submitted your pull request, the team can easily review it before it is merged into the repository.
 
-## How to get Started?
-- [Explore Twilio SendGrid](#explore)
-- [Raise Issues(If Found Any)](#issues)
-- [Setting up the Development Environment](#setup)
-- [Proposing Change through a Pull Request](#pr)
-- [Be Patient & Wait for reviews](#reviews)
+To make a pull request, follow these steps:
 
-<a name="explore"></a>
-### Explore Twilio SendGrid
-Step 1: Get yourself Access to Twilio SendGrid API Service absolutely free from [here](https://sendgrid.com/free/?source=sendgrid-python) \
-Step 2: Get familiar with Twilio SendGrid Service
-- Prerequisites are Python version 2.6, 2.7, 3.4, 3.5 or 3.6
-- Set up your [Twilio SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace [using](https://github.com/sendgrid/sendgrid-python#setup-environment-variables)
-- Install Twilio SendGrid to your workspace using `pip install sendgrid`
-- Copy & Run few sample programs from [here](https://github.com/sendgrid/sendgrid-python#hello-email)
+1. Log into GitHub. If you do not already have a GitHub account, you will have to create one in order to submit a change. Click the Sign up link in the upper right-hand corner to create an account. Enter your username, password, and email address. If you are an employee of Twilio SendGrid, please use your full name with your GitHub account and enter Twilio SendGrid as your company so we can easily identify you.
 
-<a name="issues"></a>
-### Raise Issues
-Twilio SendGrid uses GitHub as the content management service so, all the issues related to the project be it some feature request or a bug report, all are reported at the [GitHub Issue Tracker](https://github.com/sendgrid/sendgrid-python/issues)\
-Kindly make sure, to check for any duplicate issues raised by fellow contributors before opening a new issue. Be humble & polite while commenting on issues
-- Feature Request\
-  In case you feel like something is missing or lacking in the API Service, feel free to share your views & opinions with the community
-- Bug Report\
-  If you encounter any sort of bug or abnormal behavior, feel free to inform the community after performing the following checks:
-  - Update to the latest version & check if the bug persists
-  - Check the Issue Tracker for any similar bug report
+<img src="/static/img/github-sign-up.png" width="800">
 
-  Finally, fill up the Bug Report Template & Open the Issue highlighting your encountered bug & detailed steps to regenerate the bug.
+2. __[Fork](https://help.github.com/fork-a-repo/)__ the [sendgrid-python](https://github.com/sendgrid/sendgrid-python) repository:
 
-<a name="setup"></a>
-### Setting up the Development Environment
-- **Setting up Locally**
-  - Step 1: Install the Prerequistes: Any Version of Python (2.6 through 3.6) and both [python_http_client](https://github.com/sendgrid/python-http-client) and [ecdsa_python](https://github.com/starkbank/ecdsa-python)
-  - Step 2: Get a local copy of repository using `git clone https://github.com/sendgrid/sendgrid-python.git`
-  - Step 3: Set your [Twilio SendGrid API Key](https://app.sendgrid.com/settings/api_keys) to your local workspace using\
-    `echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env`\
-    `echo "sendgrid.env" >> .gitignore`\
-    `source ./sendgrid.env`
-  - Step 4: The entire codebase consist of 3 major divisions
-- **/examples** contains *Working examples that demonstrate usage*
-- **/tests** contains *the unit and profiling tests*
-- **/sendgrid** contains *the Web API v3 client ie sendgrid.py and other files*.
+<img src="/static/img/github-fork.png" width="800">
 
-<a name="pr"></a>
-## Proposing Change through a Pull Request
-**Step 1:** Fork the project & Clone your fork using `git clone https://github.com/<USERNAME>/sendgrid-python.git`
+3. __Clone__  your fork via the following commands:
 
-**Step 2:** Reconfigure the remotes using `cd sendgrid-python` and `git remote add upstream https://github.com/sendgrid/sendgrid-python.git`
+```bash
+# Clone your fork of the repo into the current directory
+git clone https://github.com/your_username/sendgrid-python
+# Navigate to the newly cloned directory
+cd sendgrid-python
+# Assign the original repo to a remote called "upstream"
+git remote add upstream https://github.com/sendgrid/sendgrid-python
+```
 
-**Step 3:** Create a new branch for your modifications using `git checkout -b <topic-branch-name>`
+> Don't forget to replace *your_username* in the URL by your real GitHub username.
 
-**Step 4:** Commit the changes in logical chunks & add commit messages strictly following [this](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+4. __Create a new topic branch__ (off the main project development branch) to contain your feature, change, or fix:
 
-**Step 5:** Run all test locally, [for more info](CONTRIBUTING.md#testing)
+```bash
+git checkout -b <topic-branch-name>
+```
 
-**Step 6:** Locally merge your the upstream development branch into your topic-branch using `git pull [--rebase] upstream main`
+5. __Commit your changes__ in logical chunks.
 
-**Step 7:** Push the topic branch up to your fork using `git push origin <topic-branch-name>`
+Please adhere to these [git commit message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) or your code is unlikely be merged into the main project. Use Git's [interactive rebase](https://help.github.com/articles/interactive-rebase) feature to tidy up your commits before making them public. Probably you will also have to create tests (if needed) or create or update the example code that demonstrates the functionality of this change to the code.
 
-**Step 8:** Open a Pull Request with clear title and description against the main branch.
+6. __Locally merge (or rebase)__ the upstream development branch into your topic branch:
 
-<a name="reviews"></a>
-## Be Patient & Wait for Reviews
-Kindly be patient & follow the suggestions as provided by the peer reviewers. Make required amendments & changes to the PR as asked.
+```bash
+git pull [--rebase] upstream main
+```
 
-## [Explore New Issues to work upon](https://github.com/sendgrid/sendgrid-python/labels/difficulty%3A%20easy)
+7. __Push__ your topic branch up to your fork:
+
+```bash
+git push origin <topic-branch-name>
+```
+
+8. __[Open a Pull Request](https://help.github.com/articles/creating-a-pull-request/#changing-the-branch-range-and-destination-repository/)__ with a clear title and description against the `main` branch. All tests must be passing before we will review the PR.
+
+## Important notice
+
+Before creating a pull request, make sure that you respect the repository's constraints regarding contributions. You can find them in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+## Repositories with Open, Easy, Help Wanted, Issue Filters
+
+* [Python SDK](https://github.com/sendgrid/sendgrid-python/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [PHP SDK](https://github.com/sendgrid/sendgrid-php/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [C# SDK](https://github.com/sendgrid/sendgrid-csharp/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Ruby SDK](https://github.com/sendgrid/sendgrid-ruby/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Node.js SDK](https://github.com/sendgrid/sendgrid-nodejs/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Java SDK](https://github.com/sendgrid/sendgrid-java/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Go SDK](https://github.com/sendgrid/sendgrid-go/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Python STMPAPI Client](https://github.com/sendgrid/smtpapi-python/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [PHP STMPAPI Client](https://github.com/sendgrid/smtpapi-php/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [C# STMPAPI Client](https://github.com/sendgrid/smtpapi-csharp/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Ruby STMPAPI Client](https://github.com/sendgrid/smtpapi-ruby/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Node.js STMPAPI Client](https://github.com/sendgrid/smtpapi-nodejs/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Java STMPAPI Client](https://github.com/sendgrid/smtpapi-java/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Go STMPAPI Client](https://github.com/sendgrid/smtpapi-go/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Python HTTP Client](https://github.com/sendgrid/python-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [PHP HTTP Client](https://github.com/sendgrid/php-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [C# HTTP Client](https://github.com/sendgrid/csharp-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Java HTTP Client](https://github.com/sendgrid/java-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Ruby HTTP Client](https://github.com/sendgrid/ruby-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Go HTTP Client](https://github.com/sendgrid/rest/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Open API Definition](https://github.com/sendgrid/sendgrid-oai/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [DX Automator](https://github.com/sendgrid/dx-automator/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
+* [Documentation](https://github.com/sendgrid/docs/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
