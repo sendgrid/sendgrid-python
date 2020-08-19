@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-08-19] Version 6.4.6
+--------------------------
+**Library - Chore**
+- [PR #929](https://github.com/sendgrid/sendgrid-python/pull/929): update GitHub branch references to use HEAD. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
 [2020-08-05] Version 6.4.5
 --------------------------
 **Library - Docs**
