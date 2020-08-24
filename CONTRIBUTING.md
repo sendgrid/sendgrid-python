@@ -17,9 +17,6 @@ All third party contributors acknowledge that any contributions they provide wil
 - [Creating a Pull Request](#creating-a-pull-request)
 - [Code Reviews](#code-reviews)
 
-<a name="roadmap"></a>
-We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community reviews, comments, suggestions, and additional PRs are welcomed and encouraged.
-
 There are a few ways to contribute, which we'll enumerate below:
 
 ## Feature Request

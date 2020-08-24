@@ -29,7 +29,6 @@ We appreciate your continued support, thank you!
 * [Usage](#usage)
 * [Use Cases](#use-cases)
 * [Announcements](#announcements)
-* [Roadmap](#roadmap)
 * [How to Contribute](#contribute)
 * [Troubleshooting](#troubleshooting)
 * [About](#about)
@@ -193,11 +192,6 @@ Please see [our helper](sendgrid/helpers/inbound) for utilizing our Inbound Pars
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-python/issues/217). Your support is appreciated!
 
 All updates to this library are documented in our [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/java) for releases and breaking changes.
-
-<a name="roadmap"></a>
-# Roadmap
-
-If you are interested in the future direction of this project, please take a look at our open [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](https://github.com/sendgrid/sendgrid-python/pulls). We would love to hear your feedback.
 
 <a name="contribute"></a>
 # How to Contribute

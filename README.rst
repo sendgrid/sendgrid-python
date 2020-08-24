@@ -35,7 +35,6 @@ Table of Contents
 -  `General Usage <#usage>`__
 -  `Processing Inbound Email <#processing-inbound-email>`__
 -  `Announcements <#announcements>`__
--  `Roadmap <#roadmap>`__
 -  `How to Contribute <#how-to-contribute>`__
 -  `Troubleshooting <#troubleshooting>`__
 -  `About <#about>`__
@@ -225,13 +224,6 @@ Announcements
 
 All updates to this library are documented in our `CHANGELOG`_ and `releases`_.
 You may also subscribe to email `release notifications`_ for releases and breaking changes.
-
-Roadmap
-=======
-
-If you are interested in the future direction of this project,
-please take a look at our open `issues`_ and `pull requests <https://github.com/sendgrid/sendgrid-python/pulls>`__.
-We would love to hear your feedback.
 
 How to Contribute
 =================
