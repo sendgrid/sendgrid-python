@@ -834,7 +834,7 @@ class Mail(object):
         pass
 
     @category.setter
-    def category(self, categories):
+    def categories(self, categories):
         """Add categories assigned to this message
 
         :rtype: list(Category)
