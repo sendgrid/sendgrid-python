@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-09-16] Version 6.4.7
+--------------------------
+**Library - Docs**
+- [PR #936](https://github.com/sendgrid/sendgrid-python/pull/936): correct attachment example. Thanks to [@Arbitrage0](https://github.com/Arbitrage0)!
+
+
 [2020-08-19] Version 6.4.6
 --------------------------
 **Library - Chore**
