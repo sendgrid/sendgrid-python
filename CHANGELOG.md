@@ -450,7 +450,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 ## [3.2.2] - 2016-08-23 ##
 ### Added
 - Table of Contents in the README
-- Added a [USE_CASES.md](https://github.com/sendgrid/sendgrid-python/blob/master/USE_CASES.md) section, with the first use case example for transactional templates
+- Added a [USE_CASES.md](USE_CASES.md) section, with the first use case example for transactional templates
 
 ## [3.2.1] - 2016-08-17 ##
 ### Fixed
