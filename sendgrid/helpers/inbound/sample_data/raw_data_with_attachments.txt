@@ -19,13 +19,13 @@ Content-Type: multipart/alternative; boundary=001a1140ffb6f4fc5f053a2257e0
 --001a1140ffb6f4fc5f053a2257e0
 Content-Type: text/plain; charset=UTF-8
 
-Hello SendGrid!
+Hello Twilio SendGrid!
 
 --001a1140ffb6f4fc5f053a2257e0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><strong>Hello SendGrid!</body></html>
+<html><body><strong>Hello Twilio SendGrid!</body></html>
 
 --001a1140ffb6f4fc5f053a2257e0--
 

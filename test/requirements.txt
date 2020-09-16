@@ -1,0 +1,6 @@
+pyyaml
+flask
+six
+coverage
+codecov
+mock

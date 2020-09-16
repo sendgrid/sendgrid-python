@@ -1,9 +1,8 @@
 import sendgrid
-import json
 import os
 
 
-sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
 # Create a batch ID #
@@ -28,7 +27,7 @@ print(response.headers)
 # v3 Mail Send #
 # POST /mail/send #
 # This endpoint has a helper, check it out
-# [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/README.md).
+# [here](https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/README.md).
 
 data = {
     "asm": {

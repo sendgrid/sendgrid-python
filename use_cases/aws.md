@@ -2,34 +2,35 @@
 
 This tutorial explains how to set up a simple "Hello Email" app on AWS, using the AWS CodeStar service.
 
-We'll be creating a basic web service to send email via SendGrid. The application will run on AWS Lambda, and the "endpoint" will be via AWS API Gateway.
+We'll be creating a basic web service to send email via Twilio SendGrid. The application will run on AWS Lambda, and the "endpoint" will be via AWS API Gateway.
 
 The neat thing is that CodeStar provides all of this in a pre-configured package. We just have to make some config changes and push our code.
 
 Once this tutorial is complete, you'll have a basic web service for sending email that can be invoked via a link to your newly created API endpoint.
 
-Python 2.6, 2.7, 3.4, or 3.5 are supported by the sendgrid Python library, however, I was able to utilize 3.6 with no issue.
+### Prerequisites
+Python 2.7 and 3.4 or 3.5 are supported by the sendgrid Python library, however, I was able to utilize 3.6 with no issue.
 
-Before starting this tutorial, you will need to have access to an AWS account in which you are allowed to provision resources. This tutorial also assumes you've already created a SendGrid account with free-tier access. Finally, it is highly recommended you utilize [virtualenv](https://virtualenv.pypa.io/en/stable/).
+Before starting this tutorial, you will need to have access to an AWS account in which you are allowed to provision resources. This tutorial also assumes you've already created a Twilio SendGrid account with free-tier access. Finally, it is highly recommended you utilize [virtualenv](https://virtualenv.pypa.io/en/stable/).
 
-*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. SendGrid is in no way responsible for any billing charges.
+*DISCLAIMER*: Any resources provisioned here may result in charges being incurred to your account. Twilio SendGrid is in no way responsible for any billing charges.
 
 
 ## Getting Started
 
 ### Create AWS CodeStar Project
-Log in to your AWS account and go to the AWS CodeStar service. Click "Start a project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left-hand side of the UI to narrow down the available choices.
+Log in to your AWS account and go to the AWS CodeStar service. Click "Start a project". For this tutorial we're going to choose a Python Web service, utilizing AWS Lambda. You can use the filters on the left hand side of the UI to narrow down the available choices.
 
-After you've selected the template, you're asked to provide a name for your project. Go ahead and name it "hello-email". Once you've entered a name, click "Create Project" in the lower right-hand corner. You can then choose which tools you want to use to interact with the project. For this tutorial, we'll be choosing "Command Line".
+After you've selected the template, you're asked to provide a name for your project. Go ahead and name it "hello-email". Once you've entered a name, click "Create Project" in the lower right hand corner. You can then choose which tools you want to use to interact with the project. For this tutorial, we'll be choosing "Command Line".
 
-Once that is completed, you'll be given some basic steps to get Git installed and setup, and instructions for connecting to the AWS CodeCommit(git) repository. You can either use HTTPS or SSH. Instructions for setting up either are provided.
+Once that is completed, you'll be given some basic steps to get Git installed and setup, and instructions for connecting to the AWS CodeCommit(Git) repository. You can either use HTTPS, or SSH. Instructions for setting up either are provided.
 
 Go ahead and clone the Git repository link after it is created. You may need to click "Skip" in the lower right-hand corner to proceed.
 
-Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, changelog, build pipeline, and application endpoint.
+Once that's done, you've successfully created a CodeStar project! You should be at the dashboard, with a view of the wiki, change log, build pipeline, and application endpoint.
 
-### Create SendGrid API Key
-Log in to your SendGrid account. Click on your username on the left-hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
+### Create Twilio SendGrid API Key
+Log in to your Twilio SendGrid account. Click on your username on the left-hand side of the UI and choose "Setup Guide" from the drop-down menu. On the "Welcome" menu, choose "Send Your First Email", and then "Integrate using our Web API or SMTP relay." Choose "Web API" as the recommended option on the next screen, as we'll be using that for this tutorial.  For more information about creating API keys, see https://sendgrid.com/docs/Classroom/Send/How_Emails_Are_Sent/api_keys.html
 
 On the next menu, you have the option to choose what programming language you'll be using. The obvious choice for this tutorial will be Python.
 
@@ -99,7 +100,7 @@ virtualenv venv
 source ./venv/bin/activate
 ```
 
-Prior to being able to deploy our Python code, we'll need to install the sendgrid Python module *locally*. One of the idiosyncrasies of AWS Lambda is that all library and module dependencies that aren't part of the standard library have to be included with the code/build artifact. Virtual environments do not translate to the Lambda runtime environment.
+Prior to being able to deploy our Python code, we'll need to install the sendgrid Python module *locally*. One of the idiosyncracies of AWS Lambda is that all library and module dependencies that aren't part of the standard library have to be included with the code/build artifact. Virtual environments do not translate to the Lambda runtime environment.
 
 In the root project directory, run the following command:
 ```
@@ -112,18 +113,19 @@ Now go ahead and modify the `index.py` file to match below:
 ```python
 import json
 import datetime
-import sendgrid
+from sendgrid import SendGridAPIClient
 import os
-from sendgrid.helpers.mail import *
+from sendgrid.helpers.mail import (From, To, PlainTextContent, HtmlContent, Mail)
 
 def handler(event, context):
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-    from_email = Email("test@example.com")
-    to_email = Email("test@example.com")
-    subject = "Sending with SendGrid is Fun"
-    content = Content("text/plain", "and easy to do anywhere, even with Python")
-    mail = Mail(from_email, subject, to_email, content)
-    response = sg.client.mail.send.post(request_body=mail.get())
+    sendgrid_client = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    from_email = From("test@example.com")
+    to_email = To("test@example.com")
+    subject = "Sending with Twilio SendGrid is Fun"
+    plain_text_content = PlainTextContent("and easy to do anywhere, even with Python")
+    html_content = HtmlContent("<strong>and easy to do anywhere, even with Python</strong>")
+    message = Mail(from_email, to_email, subject, plain_text_content, html_content)
+    response = sendgrid_client.send(message=message)
     status = b"{}".decode('utf-8').format(response.status_code)
     body = b"{}".decode('utf-8').format(response.body)
     headers = b"{}".decode('utf-8').format(response.headers)
@@ -138,7 +140,7 @@ def handler(event, context):
             'headers': {'Content-Type': 'application/json'}}
 ```
 
-Note that for the most part, we've simply copied the initial code from the API verification with SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
+Note that for the most part, we've simply copied the initial code from the API verification with Twilio SendGrid. Some slight modifications were needed to allow it to run as a lambda function, and for the output to be passed cleanly from the API endpoint.
 
 Change the `test@example.com` emails appropriately so that you may receive the test email.
 
@@ -160,7 +162,7 @@ Once the code is successfully pushed, head back to the AWS CodeStar dashboard fo
 
 One more step left before our application will work correctly. After your code has bee deployed, head to the AWS Lambda console. Click on your function name, which should start with `awscodestar-hello-email-lambda-`, or similar.
 
-Scroll down to the "Environment Variables" section. Here we need to populate our SendGrid API key. Copy the value from the `sendgrid.env` file you created earlier, ensuring to capture the entire value. Make sure the key is titled:
+Scroll down to the "Environment Variables" section. Here we need to populate our Twilio SendGrid API key. Copy the value from the `.env` file you created earlier, ensuring to capture the entire value. Make sure the key is titled:
 
 ```
 SENDGRID_API_KEY

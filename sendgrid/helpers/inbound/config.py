@@ -16,7 +16,7 @@ class Config(object):
             'path', os.path.abspath(os.path.dirname(__file__))
         )
         with open('{0}/config.yml'.format(self.path)) as stream:
-            config = yaml.load(stream)
+            config = yaml.load(stream, Loader=yaml.FullLoader)
             self._debug_mode = config['debug_mode']
             self._endpoint = config['endpoint']
             self._host = config['host']

@@ -2,17 +2,7 @@ import os
 import unittest
 
 
-
 class ProjectTests(unittest.TestCase):
-
-    # ./docker
-    def test_docker_dir(self):
-        self.assertTrue(os.path.isfile("./docker/Dockerfile"))
-
-    # ./docker-compose.yml or ./docker/docker-compose.yml
-    def test_docker_compose(self):
-        self.assertTrue(os.path.isfile('./docker/docker-compose.yml'))
-
     # ./.env_sample
     def test_env(self):
         self.assertTrue(os.path.isfile('./.env_sample'))
@@ -41,21 +31,21 @@ class ProjectTests(unittest.TestCase):
     def test_contributing(self):
         self.assertTrue(os.path.isfile('./CONTRIBUTING.md'))
 
-    # ./.github/ISSUE_TEMPLATE
+    # ./ISSUE_TEMPLATE.md
     def test_issue_template(self):
-        self.assertTrue(os.path.isfile('./.github/ISSUE_TEMPLATE'))
+        self.assertTrue(os.path.isfile('./ISSUE_TEMPLATE.md'))
 
     # ./LICENSE.md
     def test_license(self):
-        self.assertTrue(os.path.isfile('./LICENSE.txt'))
+        self.assertTrue(os.path.isfile('./LICENSE.md'))
 
-    # ./.github/PULL_REQUEST_TEMPLATE
+    # ./PULL_REQUEST_TEMPLATE.md
     def test_pr_template(self):
-        self.assertTrue(os.path.isfile('./.github/PULL_REQUEST_TEMPLATE'))
+        self.assertTrue(os.path.isfile('./PULL_REQUEST_TEMPLATE.md'))
 
-    # ./README.md
+    # ./README.rst
     def test_readme(self):
-        self.assertTrue(os.path.isfile('./README.md'))
+        self.assertTrue(os.path.isfile('./README.rst'))
 
     # ./TROUBLESHOOTING.md
     def test_troubleshooting(self):

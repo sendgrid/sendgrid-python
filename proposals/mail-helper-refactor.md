@@ -1,6 +1,8 @@
+# This is the original proposal for v6.0.0
+
 # Send a Single Email to a Single Recipient
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 This is the minimum code needed to send an email.
 
@@ -16,7 +18,7 @@ message = Mail(from_email=From('from@example.com', 'From Name'),
                html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    sendgrid_client = SendGridAPIClient(apikey=os.environ.get('SENDGRID_apikey'))
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_apikey'))
     response = sendgrid_client.send(message=message)
     print(response.status_code)
     print(response.body)
@@ -27,7 +29,7 @@ except SendGridException as e:
 
 # Send a Single Email to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -40,12 +42,12 @@ to_emails = [
 ]
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=to_emails,
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -55,7 +57,7 @@ except Exception as e:
 
 # Send Multiple Emails to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -88,7 +90,7 @@ msg = Mail(from_email=From('from@example.com', 'From Name'),
            global_substitutions=global_substitutions)
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -98,7 +100,7 @@ except Exception as e:
 
 # Kitchen Sink - an example with all settings used
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -107,26 +109,26 @@ from sendgrid.helpers.mail import *
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_email=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 
 # For a detailed description of each of these settings, please see the [documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
 msg.to = To('test1@example.com', 'Example User1')
-msg.to = [ 
+msg.to = [
     To('test2@example.com', 'Example User2'),
     To('test3@example.com', 'Example User3')
 ]
 
 msg.cc = Cc('test4@example.com', 'Example User4')
-msg.cc = [ 
+msg.cc = [
     Cc('test5@example.com', 'Example User5'),
     Cc('test6@example.com', 'Example User6')
 ]
 
 msg.bcc = Bcc('test7@example.com', 'Example User7')
-msg.bcc = [ 
+msg.bcc = [
     Bcc('test8@example.com', 'Example User8'),
     Bcc('test9@example.com', 'Example User9')
 ]
@@ -136,13 +138,6 @@ msg.header = Header('X-Test2', 'Test2')
 msg.header = [
     Header('X-Test3', 'Test3'),
     Header('X-Test4', 'Test4')
-]
-
-msg.substitution = Substitution('%name1%', 'Example Name 1')
-msg.substitution = Substitution('%city1%', 'Denver')
-msg.substitution = [
-    Substitution('%name2%', 'Example Name 2'),
-    Substitution('%city2%', 'Orange')
 ]
 
 msg.custom_arg = CustomArg('marketing1', 'false')
@@ -199,7 +194,7 @@ msg.send_at = SendAt(1461775052, p=1)
 
 # The values below this comment are global to the entire message
 
-msg.global_subject = Subject('Sending with SendGrid is Fun')
+msg.global_subject = Subject('Sending with Twilio SendGrid is Fun')
 
 msg.content = Content(MimeType.Text, 'and easy to do anywhere, even with Python')
 msg.content = Content(MimeType.Html, '<strong>and easy to do anywhere, even with Python</strong>')
@@ -223,7 +218,7 @@ msg.attachment = [
                File('base64 encoded content'),
                Type('image/png'),
                Disposition('inline'),
-               Name('Banner 2'))                             
+               Name('Banner 2'))
 ]
 
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
@@ -241,7 +236,7 @@ msg.section = [
 ]
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -251,7 +246,7 @@ except Exception as e:
 
 # Attachments
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -260,7 +255,7 @@ from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, Htm
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 msg.attachment = Attachment(FileName('balance_001.pdf'),
@@ -270,7 +265,7 @@ msg.attachment = Attachment(FileName('balance_001.pdf'),
                             Name('Balance Sheet'))
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)
@@ -280,7 +275,7 @@ except Exception as e:
 
 # Transactional Templates
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
 
@@ -323,7 +318,7 @@ from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, Htm
 
 msg = Mail(from_email=From('from@example.com', 'From Name'),
            to_emails=To('to@example.com', 'To Name'),
-           subject=Subject('Sending with SendGrid is Fun'),
+           subject=Subject('Sending with Twilio SendGrid is Fun'),
            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
 msg.substitution = [
@@ -333,7 +328,7 @@ msg.substitution = [
 msg.template_id = TemplateId('13b8f94f-bcae-4ec6-b752-70d6cb59f932')
 
 try:
-    response = sendgrid.send(msg, apikey=os.environ.get('SENDGRID_apikey'))
+    response = sendgrid.send(msg, os.environ.get('SENDGRID_apikey'))
     print(response.status_code)
     print(response.body)
     print(response.headers)

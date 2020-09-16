@@ -1,16 +1,230 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [6.0.0] - TBD
+[2020-08-19] Version 6.4.6
+--------------------------
+**Library - Chore**
+- [PR #929](https://github.com/sendgrid/sendgrid-python/pull/929): update GitHub branch references to use HEAD. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
 
-- https://github.com/sendgrid/sendgrid-python/pull/486
-- https://github.com/sendgrid/sendgrid-python/pull/488
-- https://github.com/sendgrid/sendgrid-python/pull/493 
-- https://github.com/sendgrid/sendgrid-python/pull/496
-- https://github.com/sendgrid/sendgrid-python/pull/509 
-- https://github.com/sendgrid/sendgrid-python/pull/510
-- https://github.com/sendgrid/sendgrid-python/pull/512
-- https://github.com/sendgrid/sendgrid-python/pull/524
+
+[2020-08-05] Version 6.4.5
+--------------------------
+**Library - Docs**
+- [PR #926](https://github.com/sendgrid/sendgrid-python/pull/926): remove last references of "whitelabel". Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-07-22] Version 6.4.4
+--------------------------
+**Library - Chore**
+- [PR #925](https://github.com/sendgrid/sendgrid-python/pull/925): migrate to new default sendgrid-oai branch. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
+[2020-07-10] Version 6.4.3
+--------------------------
+**Library - Fix**
+- [PR #921](https://github.com/sendgrid/sendgrid-python/pull/921): allow general email type for to_emails. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
+[2020-07-08] Version 6.4.2
+--------------------------
+**Library - Fix**
+- [PR #920](https://github.com/sendgrid/sendgrid-python/pull/920): type validation on to_emails parameter on mail object. Thanks to [@DougCal](https://github.com/DougCal)!
+
+**Library - Docs**
+- [PR #915](https://github.com/sendgrid/sendgrid-python/pull/915): document change in top-level dependencies. Thanks to [@honzajavorek](https://github.com/honzajavorek)!
+
+
+[2020-06-25] Version 6.4.1
+--------------------------
+**Library - Fix**
+- [PR #914](https://github.com/sendgrid/sendgrid-python/pull/914): add dependency to install requires. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
+[2020-06-24] Version 6.4.0
+--------------------------
+**Library - Docs**
+- [PR #912](https://github.com/sendgrid/sendgrid-python/pull/912): added docstrings to Stats classes. Thanks to [@DougCal](https://github.com/DougCal)!
+
+**Library - Feature**
+- [PR #908](https://github.com/sendgrid/sendgrid-python/pull/908): add support for dynamic template data to Email class. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #901](https://github.com/sendgrid/sendgrid-python/pull/901): verify signature from event webhook. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Fix**
+- [PR #904](https://github.com/sendgrid/sendgrid-python/pull/904): revert "feat: Add equality to Email". Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-05-27] Version 6.3.2
+--------------------------
+**Library - Docs**
+- [PR #895](https://github.com/sendgrid/sendgrid-python/pull/895): Fixed Subject typo. Thanks to [@dmitry-krasilnikov](https://github.com/dmitry-krasilnikov)!
+
+
+[2020-05-13] Version 6.3.1
+--------------------------
+**Library - Docs**
+- [PR #893](https://github.com/sendgrid/sendgrid-python/pull/893): Update readme supported versions. Thanks to [@PaulMcMillan](https://github.com/PaulMcMillan)!
+
+**Library - Fix**
+- [PR #888](https://github.com/sendgrid/sendgrid-python/pull/888): migrate to common prism setup. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-04-29] Version 6.3.0
+--------------------------
+**Library - Feature**
+- [PR #882](https://github.com/sendgrid/sendgrid-python/pull/882): add support for Twilio Email. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-04-15] Version 6.2.2
+--------------------------
+**Library - Fix**
+- [PR #881](https://github.com/sendgrid/sendgrid-python/pull/881): correct the User-Agent casing. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-04-01] Version 6.2.1
+--------------------------
+**Library - Docs**
+- [PR #880](https://github.com/sendgrid/sendgrid-python/pull/880): support verbiage for login issues. Thanks to [@adamchasetaylor](https://github.com/adamchasetaylor)!
+
+
+[2020-03-18] Version 6.2.0
+--------------------------
+**Library - Docs**
+- [PR #878](https://github.com/sendgrid/sendgrid-python/pull/878): fix code snippet in README. Thanks to [@neerajgupta2407](https://github.com/neerajgupta2407)!
+- [PR #734](https://github.com/sendgrid/sendgrid-python/pull/734): Further Remove "Whitelabel" References. Thanks to [@crweiner](https://github.com/crweiner)!
+- [PR #714](https://github.com/sendgrid/sendgrid-python/pull/714): Give preference to 'to' after visible. Thanks to [@agarwalrounak](https://github.com/agarwalrounak)!
+- [PR #669](https://github.com/sendgrid/sendgrid-python/pull/669): Fixed links in examples. Thanks to [@pktrieu](https://github.com/pktrieu)!
+- [PR #706](https://github.com/sendgrid/sendgrid-python/pull/706): Fix grammatical errors. Thanks to [@vinayak42](https://github.com/vinayak42)!
+- [PR #682](https://github.com/sendgrid/sendgrid-python/pull/682): Updated link to direct to #L9. Thanks to [@vinayak42](https://github.com/vinayak42)!
+
+**Library - Feature**
+- [PR #739](https://github.com/sendgrid/sendgrid-python/pull/739): Add equality to Email. Thanks to [@mcintyre94](https://github.com/mcintyre94)!
+
+**Library - Chore**
+- [PR #731](https://github.com/sendgrid/sendgrid-python/pull/731): Remove unused Python json modules. Thanks to [@gy741](https://github.com/gy741)!
+
+
+[2020-03-04] Version 6.1.3
+--------------------------
+**Library - Chore**
+- [PR #844](https://github.com/sendgrid/sendgrid-python/pull/844): Clean up sendgrid.py. Thanks to [@Aman-am](https://github.com/Aman-am)!
+- [PR #870](https://github.com/sendgrid/sendgrid-python/pull/870): add Python 3.8 to Travis. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+**Library - Fix**
+- [PR #872](https://github.com/sendgrid/sendgrid-python/pull/872): add config.yml file to pypi distribution files. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
+[2020-02-19] Version 6.1.2
+--------------------------
+**Library - Fix**
+- [PR #838](https://github.com/sendgrid/sendgrid-python/pull/838): Convert integer substitution value to string. Thanks to [@lifez](https://github.com/lifez)!
+
+
+[2020-01-24] Version 6.1.1
+--------------------------
+**Library - Docs**
+- [PR #865](https://github.com/sendgrid/sendgrid-python/pull/865): baseline all the templated markdown docs. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+**Library - Chore**
+- [PR #853](https://github.com/sendgrid/sendgrid-python/pull/853): clean up imports. Thanks to [@DucarrougeR](https://github.com/DucarrougeR)!
+- [PR #862](https://github.com/sendgrid/sendgrid-python/pull/862): prep the repo for automated releasing. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Fix**
+- [PR #863](https://github.com/sendgrid/sendgrid-python/pull/863): improve make test command. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
+[2019-09-12] Version 6.1.0
+---------------------------
+
+### Added
+- Bumped dependency on python-http-client to [v3.2.1](https://github.com/sendgrid/python-http-client/releases/tag/v3.2.0)
+- [PR #807](https://github.com/sendgrid/sendgrid-python/pull/807): Get version from version.py instead of version.txt. (BIG thanks to [@lipis](https://github.com/lipis))
+- [PR #808](https://github.com/sendgrid/sendgrid-python/pull/808): API key permissions mention in USAGE.md. (BIG thanks to [@int-ua](https://github.com/int-ua))
+
+### Fixed
+- [PR #763](https://github.com/sendgrid/sendgrid-python/pull/763): Updated Error Message Section. (BIG thanks to [@FFX01](https://github.com/FFX01))
+- [PR #818](https://github.com/sendgrid/sendgrid-python/pull/818): Handle new API in the helper example. (BIG thanks to [@enugentdt](https://github.com/enugentdt))
+- [PR #839](https://github.com/sendgrid/sendgrid-python/pull/839): Fix for ganalytics json builder.
+
+## [6.0.5] - 2019-05-01 ##
+
+### Fixed
+
+- [PR #794](https://github.com/sendgrid/sendgrid-python/pull/794): Update type requirements used for multiple objects (BIG thanks to [@jphilipsen05](https://github.com/jphilipsen05))
+- [PR #797](https://github.com/sendgrid/sendgrid-python/pull/797): API Key typo
+- [PR #792](https://github.com/sendgrid/sendgrid-python/pull/792): Fixes #790: TypeError "name must be of type string" regression when name is Unicode string (BIG thanks to [@johnpkennedy](https://github.com/johnpkennedy))
+- [PR #785](https://github.com/sendgrid/sendgrid-python/pull/785): Link for 'Transactional Templates' in use_cases README.md broken (BIG thanks to [@nguyenpk](https://github.com/nguyenpk))
+
+## [6.0.3] - 2019-04-05 ##
+
+### Added
+- Twilio SendGrid branding
+- [Twilio SMS example](use_cases/sms.md)
+- Updated CLA process
+
+## [6.0.0] - 2019-04-02 ##
+
+### BREAKING CHANGE
+
+- The `Mail` helper signature has changed.
+- Setting up a `SendGridAPIClient` has changed.
+
+Please see the [use cases documentation](use_cases/README.md) for implemenation details.
+
+This refactor was based on [this issue](https://github.com/sendgrid/sendgrid-python/issues/347). BIG thanks to all of those who [participated](https://github.com/sendgrid/sendgrid-python/issues/323) in shaping this release. 
+
+In particular, BIG THANKS to:
+[@yothinix](https://github.com/yothinix)
+[@jeffoneill](https://github.com/jeffoneill)
+[@elbuo8](https://github.com/elbuo8)
+[@Jakobovski](https://github.com/Jakobovski)
+[@andriisoldatenko](https://github.com/andriisoldatenko)
+[@dibyadas](https://github.com/dibyadas)
+[@belfazt](https://github.com/belfazt)
+[@iandouglas](https://github.com/iandouglas)
+[@mehronkugler](https://github.com/mehronkugler)
+
+### Fixed
+- [PR #727](https://github.com/sendgrid/sendgrid-python/pull/727): Use raw-string notation for regex to avoid invalid escape sequence (BIG thanks to [@](https://github.com/))
+- [PR #715](https://github.com/sendgrid/sendgrid-python/pull/715): Correct attribution links formating (BIG thanks to [@hugovk](https://github.com/hugovk))
+- [PR #640](https://github.com/sendgrid/sendgrid-python/pull/640): Changes suggested by grammarly (BIG thanks to [@xeon-zolt](https://github.com/xeon-zolt))
+- [PR #697](https://github.com/sendgrid/sendgrid-python/pull/697): PEP8 Fixes and String Formatting Enhancement (BIG thanks to [@vkmrishad](https://github.com/vkmrishad))
+- [PR #647](https://github.com/sendgrid/sendgrid-python/pull/647): TROUBLESHOOTING.md broken link fix (BIG thanks to [@arshadkazmi42](https://github.com/arshadkazmi42))
+- [PR #638](https://github.com/sendgrid/sendgrid-python/pull/638): Fixed syntax errors in Kitchen sink Python example code (BIG thanks to [@vinayak42](https://github.com/vinayak42))
+- [PR #687](https://github.com/sendgrid/sendgrid-python/pull/687): Remove references to "Whitelabel" (BIG thanks to [@crweiner](https://github.com/crweiner))
+- [PR #690](https://github.com/sendgrid/sendgrid-python/pull/690): Corrected links in CoC (BIG thanks to [@bhavinjawade](https://github.com/bhavinjawade))
+- [PR #656](https://github.com/sendgrid/sendgrid-python/pull/656): Fix helper mail_example redirection link (BIG thanks to [@joshuadeguzman](https://github.com/joshuadeguzman))
+- [PR #636](https://github.com/sendgrid/sendgrid-python/pull/636): Fix broken link for mail example (BIG thanks to [@mattjegan](https://github.com/mattjegan))
+- [PR #630](https://github.com/sendgrid/sendgrid-python/pull/630): Update requirements.txt (BIG thanks to [@rahulkumaran](https://github.com/rahulkumaran))
+- [PR #628](https://github.com/sendgrid/sendgrid-python/pull/628): Update job description in README (BIG thanks to [@Jeremyyang920](https://github.com/Jeremyyang920))
+- [PR #618](https://github.com/sendgrid/sendgrid-python/pull/618): Quote names containing comma or semicolon (BIG thanks to [@cmccandless](https://github.com/cmccandless))
+- [PR #613](https://github.com/sendgrid/sendgrid-python/pull/613): Fix typos (BIG thanks to [@Bharat123rox](https://github.com/Bharat123rox))
+- [PR #616](https://github.com/sendgrid/sendgrid-python/pull/616): Fix typos (BIG thanks to [@hugovk](https://github.com/hugovk))
+- [PR #619](https://github.com/sendgrid/sendgrid-python/pull/619): Fix format of dependency pytest (BIG thanks to [@cmccandless](https://github.com/cmccandless))
+- [PR #611](https://github.com/sendgrid/sendgrid-python/pull/611): Fix broken link (BIG thanks to [@themousepotato](https://github.com/themousepotato))
+- [PR #488](https://github.com/sendgrid/sendgrid-python/pull/488): Fix similar code issue in mail.py helper (BIG thanks to [@adiman9](https://github.com/adiman9))
+- [PR #496](https://github.com/sendgrid/sendgrid-python/pull/496): Fix issues in sendgrid/helpers/mail/mail.py (BIG thanks to [@galihmelon](https://github.com/galihmelon))
+- [PR #510](https://github.com/sendgrid/sendgrid-python/pull/510): Fix similar code issue in sendgrid/helpers/mail/mail.py (BIG thanks to [@nanspro](https://github.com/nanspro))
+- [PR #524](https://github.com/sendgrid/sendgrid-python/pull/524): Fix main failure on travis (relating to ASM raise-assertion). (BIG thanks to [@extemporalgenome](https://github.com/extemporalgenome))
+
+### Added
+- [PR #666](https://github.com/sendgrid/sendgrid-python/pull/666): Created First-timers.md File (BIG thanks to [@jaykay12](https://github.com/jaykay12))
+- [PR #655](https://github.com/sendgrid/sendgrid-python/pull/655): Update USAGE.md (BIG thanks to [@ChatPion](https://github.com/ChatPion))
+- [PR #665](https://github.com/sendgrid/sendgrid-python/pull/665): Add use case for generation of Plain Text Content from HTML (BIG thanks to [@cmccandless](https://github.com/cmccandless))
+- [PR #718](https://github.com/sendgrid/sendgrid-python/pull/718): Update prerequisites (BIG thanks to [@Rishabh04-02](https://github.com/Rishabh04-02))
+- [PR #722](https://github.com/sendgrid/sendgrid-python/pull/722): Updated README.md (BIG thanks to [@rahulpuroht](https://github.com/rahulpuroht))
+- [PR #711](https://github.com/sendgrid/sendgrid-python/pull/711): Cleanup Dockerfiles (BIG thanks to [@rawkode](https://github.com/rawkode))
+- [PR #709](https://github.com/sendgrid/sendgrid-python/pull/709): Cleanup Env Documentation (BIG thanks to [@rawkode](https://github.com/rawkode))
+- [PR #631](https://github.com/sendgrid/sendgrid-python/pull/631): Allow creation of Mail from EmailMessage (BIG thanks to [@cmccandless](https://github.com/cmccandless))
+- [PR #683](https://github.com/sendgrid/sendgrid-python/pull/683): Create README.md for mail_example.py (BIG thanks to [@tulikavijay](https://github.com/tulikavijay))
+- [PR #663](https://github.com/sendgrid/sendgrid-python/pull/663): Converted README to reStructuredText and version as plain text file (BIG thanks to [@StrikerRUS](https://github.com/StrikerRUS))
+- [PR #643](https://github.com/sendgrid/sendgrid-python/pull/643): Add test to increase test coverage on config.py (BIG thanks to [@zkan](https://github.com/zkan))
+- [PR #692](https://github.com/sendgrid/sendgrid-python/pull/692): Add unit tests for spam check (BIG thanks to [@pyasi](https://github.com/pyasi))
+- [PR #637](https://github.com/sendgrid/sendgrid-python/pull/637): Add support for Python 3.7 (BIG thanks to [@hugovk](https://github.com/hugovk))
+- [PR #626](https://github.com/sendgrid/sendgrid-python/pull/626): Drop support for EOL Python 2.6 and 3.0-3.3 (BIG thanks to [@hugovk](https://github.com/hugovk))
+- [PR #486](https://github.com/sendgrid/sendgrid-python/pull/486): Refactor sengrid get method of Mail class (BIG thanks to [@Prashant-Surya](https://github.com/Prashant-Surya))
+- [PR #493](https://github.com/sendgrid/sendgrid-python/pull/493): Refactor personalization.py (BIG thanks to [@defaults](https://github.com/defaults))
+- [PR #509](https://github.com/sendgrid/sendgrid-python/pull/509): Refactor mail.py (BIG thanks to [@palash16](https://github.com/palash16))
+- [PR #512](https://github.com/sendgrid/sendgrid-python/pull/512): Refactor mail.py (BIG thanks to [@extemporalgenome](https://github.com/extemporalgenome))
 
 ## [5.6.0] - 2018-08-20 ##
 ### Added
@@ -126,7 +340,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 ## [5.0.0] - 2017-08-11
 ### BREAKING CHANGE
 - The breaking change actually happened in [version 4.2.1](https://github.com/sendgrid/sendgrid-python/releases/tag/v4.2.1), where I mistakenly applied a patch version bump. See issues #328 and #321 for details.
-- This version (5.0.0) replaces error handling via HTTPError from urllib in favor of custom error handling via the [HTTPError class](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py) as was the case in version 4.2.0.
+- This version (5.0.0) replaces error handling via HTTPError from urllib in favor of custom error handling via the [HTTPError class](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py) as was the case in version 4.2.0.
 
 ## [4.2.1] - 2017-08-03 ##
 ### Fixed
@@ -147,7 +361,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 ### BREAKING CHANGE
 - Pull #244 [refactor helpers using property getter/setter](https://github.com/sendgrid/sendgrid-python/pull/244/files)
 - Big thanks to [Denis Vlasov](https://github.com/denis90) for the pull request!
-- The changes break the implementation of the [Mail Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) `Mail()` class
+- The changes break the implementation of the [Mail Helper](sendgrid/helpers/mail) `Mail()` class
 - `set_from()` is now the property `from_email`
 - `set_subject()` is now the property `subject`
 - `set_template_id()` is now the property `template_id`
@@ -258,7 +472,7 @@ Removed the trailing white spaces. Big thanks to [Siddaram Halli](https://github
 
 ## [3.1.8] - 2016-07-25 ##
 ### Added
-- [Troubleshooting](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md) section
+- [Troubleshooting](TROUBLESHOOTING.md) section
 
 ## [3.1.7] - 2016-07-25 ##
 ### Added

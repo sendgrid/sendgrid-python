@@ -13,6 +13,20 @@ class Personalization(object):
         self._substitutions = []
         self._custom_args = []
         self._send_at = None
+        self._dynamic_template_data = None
+
+    def add_email(self, email):
+        email_type = type(email)
+        if email_type.__name__ == 'To':
+            self.add_to(email)
+            return
+        if email_type.__name__ == 'Cc':
+            self.add_cc(email)
+            return
+        if email_type.__name__ == 'Bcc':
+            self.add_bcc(email)
+            return
+        raise ValueError('Please use a To, Cc or Bcc object.')
 
     @property
     def tos(self):
@@ -31,6 +45,22 @@ class Personalization(object):
 
         :type email: Email
         """
+        if email.substitutions:
+            if isinstance(email.substitutions, list):
+                for substitution in email.substitutions:
+                    self.add_substitution(substitution)
+            else:
+                self.add_substitution(email.substitutions)
+
+        if email.dynamic_template_data:
+            self.dynamic_template_data = email.dynamic_template_data
+
+        if email.subject:
+            if isinstance(email.subject, str):
+                self.subject = email.subject
+            else:
+                self.subject = email.subject.get()
+
         self._tos.append(email.get())
 
     @property
@@ -79,6 +109,7 @@ class Personalization(object):
 
         Char length requirements, according to the RFC:
         https://stackoverflow.com/a/1592310
+
         :rtype: string
         """
         return self._subject
@@ -123,7 +154,10 @@ class Personalization(object):
 
         :type substitution: Substitution
         """
-        self._substitutions.append(substitution.get())
+        if not isinstance(substitution, dict):
+            substitution = substitution.get()
+
+        self._substitutions.append(substitution)
 
     @property
     def custom_args(self):
@@ -158,6 +192,22 @@ class Personalization(object):
     def send_at(self, value):
         self._send_at = value
 
+    @property
+    def dynamic_template_data(self):
+        """Data for dynamic transactional template.
+        Should be JSON-serializable structure.
+
+        :rtype: JSON-serializable structure
+        """
+        return self._dynamic_template_data
+
+    @dynamic_template_data.setter
+    def dynamic_template_data(self, value):
+        if not isinstance(value, dict):
+            value = value.get()
+
+        self._dynamic_template_data = value
+
     def get(self):
         """
         Get a JSON-ready representation of this Personalization.
@@ -172,7 +222,7 @@ class Personalization(object):
             if value:
                 personalization[key[:-1]] = value
 
-        for key in ['subject', 'send_at']:
+        for key in ['subject', 'send_at', 'dynamic_template_data']:
             value = getattr(self, key)
             if value:
                 personalization[key] = value
