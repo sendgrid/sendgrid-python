@@ -2297,7 +2297,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_license_year(self):
-        LICENSE_FILE = 'LICENSE.md'
+        LICENSE_FILE = 'LICENSE'
         copyright_line = ''
         with open(LICENSE_FILE, 'r') as f:
             for line in f:

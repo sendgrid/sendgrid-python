@@ -4,7 +4,7 @@
 [![codecov](https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/main.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/sendgrid/sendgrid-python)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![Email Notifications Badge](https://dx.sendgrid.com/badge/python)](https://dx.sendgrid.com/newsletter/python)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg)](https://github.com/sendgrid/sendgrid-python/graphs/contributors)
 [![Open Source Helpers](https://www.codetriage.com/sendgrid/sendgrid-python/badges/users.svg)](https://www.codetriage.com/sendgrid/sendgrid-python)
@@ -221,4 +221,4 @@ If you've instead found a bug in the library or would like new features added, g
 
 <a name="license"></a>
 # License
-[The MIT License (MIT)](LICENSE.md)
+[The MIT License (MIT)](LICENSE)

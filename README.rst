@@ -286,7 +286,7 @@ License
 .. _Improvements to the Codebase: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#improvements-to-the-codebase
 .. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#code-reviews
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md
-.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/HEAD/LICENSE.md
+.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/HEAD/LICENSE
 
 .. |Travis Badge| image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=main
    :target: https://travis-ci.org/sendgrid/sendgrid-python
@@ -301,7 +301,7 @@ License
 .. |Email Notifications Badge| image:: https://dx.sendgrid.com/badge/python
    :target: https://dx.sendgrid.com/newsletter/python
 .. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: ./LICENSE.md
+   :target: ./LICENSE
 .. |Twitter Follow| image:: https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow
    :target: https://twitter.com/sendgrid
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg
