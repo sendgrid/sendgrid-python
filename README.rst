@@ -288,8 +288,8 @@ License
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md
 .. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/HEAD/LICENSE
 
-.. |Travis Badge| image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=main
-   :target: https://travis-ci.org/sendgrid/sendgrid-python
+.. |Travis Badge| image:: https://travis-ci.com/sendgrid/sendgrid-python.svg?branch=main
+   :target: https://travis-ci.com/sendgrid/sendgrid-python
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/sendgrid.svg
    :target: https://pypi.org/project/sendgrid/
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/sendgrid.svg
