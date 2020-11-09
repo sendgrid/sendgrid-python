@@ -81,12 +81,12 @@ def get_mock_personalization_dict():
 
 def build_attachment1():
     """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
-    Another example: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md"""
+    Another example: https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/attachment.md"""
     attachment = Attachment()
-    attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
+    attachment.file_content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
-    attachment.type = "application/pdf"
-    attachment.filename = "balance_001.pdf"
+    attachment.file_type = "application/pdf"
+    attachment.file_name = "balance_001.pdf"
     attachment.disposition = "attachment"
     attachment.content_id = "Balance Sheet"
     return attachment
@@ -95,9 +95,9 @@ def build_attachment1():
 def build_attachment2():
     """Build attachment mock."""
     attachment = Attachment()
-    attachment.content = "BwdW"
-    attachment.type = "image/png"
-    attachment.filename = "banner.png"
+    attachment.file_content = "BwdW"
+    attachment.file_type = "image/png"
+    attachment.file_name = "banner.png"
     attachment.disposition = "inline"
     attachment.content_id = "Banner"
     return attachment
@@ -227,19 +227,19 @@ def build_kitchen_sink():
     ]
 
     message.attachment = Attachment(FileContent('base64 encoded content 1'),
-                                    FileType('application/pdf'),
                                     FileName('balance_001.pdf'),
+                                    FileType('application/pdf'),
                                     Disposition('attachment'),
                                     ContentId('Content ID 1'))
     message.attachment = [
         Attachment(FileContent('base64 encoded content 2'),
-                FileType('image/png'),
                 FileName('banner.png'),
+                FileType('image/png'),
                 Disposition('inline'),
                 ContentId('Content ID 2')),
         Attachment(FileContent('base64 encoded content 3'),
-                FileType('image/png'),
                 FileName('banner2.png'),
+                FileType('image/png'),
                 Disposition('inline'),
                 ContentId('Content ID 3'))
     ]
@@ -311,7 +311,7 @@ def build_kitchen_sink():
 
 def send_hello_email():
     # Assumes you set your environment variable:
-    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    # https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     message = build_hello_email()
     sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sendgrid_client.send(message=message)
@@ -322,7 +322,7 @@ def send_hello_email():
 
 def send_kitchen_sink():
     # Assumes you set your environment variable:
-    # https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    # https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
     message = build_kitchen_sink()
     sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sendgrid_client.send(message=message)

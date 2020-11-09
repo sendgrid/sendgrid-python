@@ -34,7 +34,7 @@ In the first case, SENDGRID_API_KEY is in reference to the name of the environme
 <a name="error"></a>
 ## Error Messages
 
-HTTP exceptions are defined in the [`python_http_client` package](https://github.com/sendgrid/python-http-client/blob/master/python_http_client/exceptions.py).
+HTTP exceptions are defined in the [`python_http_client` package](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py).
 
 To read the error message returned by SendGrid's API in Python 2.X:
 
@@ -100,7 +100,7 @@ If you are using a [requirements file](https://pip.readthedocs.io/en/1.1/require
 <a name="versions"></a>
 ## Versioning Convention
 
-We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
+We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-python/releases) section.
 
 <a name="request-body"></a>
 ## Viewing the Request Body
@@ -116,4 +116,4 @@ You can do this right before you call `response = sg.client.mail.send.post(reque
 <a name="error-handling"></a>
 # Error Handling
 
-Please review [our use_cases](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md) for examples of error handling.
+Please review [our use_cases](use_cases/README.md) for examples of error handling.

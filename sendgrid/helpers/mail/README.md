@@ -6,5 +6,5 @@ Please complete the [installation steps](https://github.com/sendgrid/sendgrid-py
 
 ## Usage
 
-- For the most common use cases, please see [these examples](https://github.com/sendgrid/sendgrid-python/tree/master/use_cases)
+- For the most common use cases, please see [these examples](../../../use_cases)
 - The complete v3 API Documentation can be found [here](https://sendgrid.com/docs/API_Reference/api_v3.html)

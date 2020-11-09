@@ -17,9 +17,6 @@ All third party contributors acknowledge that any contributions they provide wil
 - [Creating a Pull Request](#creating-a-pull-request)
 - [Code Reviews](#code-reviews)
 
-<a name="roadmap"></a>
-We use [Milestones](https://github.com/sendgrid/sendgrid-python/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community reviews, comments, suggestions, and additional PRs are welcomed and encouraged.
-
 There are a few ways to contribute, which we'll enumerate below:
 
 ## Feature Request
@@ -87,7 +84,7 @@ source .env
 
 #### Execute
 
-See the [examples folder](https://github.com/sendgrid/sendgrid-python/tree/master/examples) to get started quickly.
+See the [examples folder](examples) to get started quickly.
 
 If testing from the root directory of this repo, create a new file (e.g. test.py) and replace `import sendgrid` with `from sendgrid import *`
 
@@ -104,7 +101,7 @@ If testing from the root directory of this repo, create a new file (e.g. test.py
 
 The PR must pass all the tests before it is reviewed.
 
-All test files are in the [`test`](https://github.com/sendgrid/sendgrid-python/test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](https://github.com/sendgrid/sendgrid-python/tree/master/test/test_sendgrid.py) file with unit tests as you modify the code.
+All test files are in the [`test`](test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid.py`](test/test_sendgrid.py) file with unit tests as you modify the code.
 
 The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 
@@ -165,7 +162,7 @@ Please run your code through:
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream main
    ```
 
 6. Push your topic branch up to your fork:
@@ -175,7 +172,7 @@ Please run your code through:
    ```
 
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
+    with a clear title and description against the `main` branch. All tests must be passing before we will review the PR.
 
 ## Code Reviews
 If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, GitHub has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).

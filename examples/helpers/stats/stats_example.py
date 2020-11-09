@@ -6,7 +6,7 @@ from sendgrid import *
 # NOTE: you will need to move this file to the root directory of this project to execute properly.
 
 # Assumes you set your environment variable:
-# See: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+# See: https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
 sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 

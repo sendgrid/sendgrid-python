@@ -1,4 +1,4 @@
-.. image:: https://github.com/sendgrid/sendgrid-python/raw/master/twilio_sendgrid_logo.png
+.. image:: https://github.com/sendgrid/sendgrid-python/raw/HEAD/twilio_sendgrid_logo.png
    :target: https://www.sendgrid.com
 
 
@@ -9,9 +9,10 @@
 
 **NEW:**
 
+**The default branch name for this repository has been changed to `main` as of 07/27/2020.**
+
 -  Subscribe to email `notifications`_ for releases and breaking changes.
 -  Version 6.X release is a BREAKING CHANGE from version 5.X, please see the `release notes`_ for details.
--  Quickly get started with `Docker`_.
 -  Send SMS messages with `Twilio`_.
 
 This library provides full support for all Twilio SendGrid `Web API v3`_ endpoints, including `v3 /mail/send`_.
@@ -34,7 +35,6 @@ Table of Contents
 -  `General Usage <#usage>`__
 -  `Processing Inbound Email <#processing-inbound-email>`__
 -  `Announcements <#announcements>`__
--  `Roadmap <#roadmap>`__
 -  `How to Contribute <#how-to-contribute>`__
 -  `Troubleshooting <#troubleshooting>`__
 -  `About <#about>`__
@@ -102,7 +102,7 @@ Hello Email
 -----------
 
 The following is the minimum needed code to send an email with the `/mail/send Helper`_
-(`here <https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/kitchen_sink.md>`__ is a full example):
+(`here <https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/kitchen_sink.md>`__ is a full example):
 
 With Mail Helper Class
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -128,13 +128,13 @@ With Mail Helper Class
         print(str(e))
 
 The ``Mail`` constructor creates a `personalization object`_ for you.
-`Here <https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/kitchen_sink.md>`__ is an example of how to add it.
+`Here <https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/kitchen_sink.md>`__ is an example of how to add it.
 
 Without Mail Helper Class
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is the minimum needed code to send an email without the /mail/send Helper
-(`here <https://github.com/sendgrid/sendgrid-python/blob/master/examples/mail/mail.py#L27>`__ is a full example):
+(`here <https://github.com/sendgrid/sendgrid-python/blob/HEAD/examples/mail/mail.py#L27>`__ is a full example):
 
 .. code:: python
 
@@ -225,13 +225,6 @@ Announcements
 All updates to this library are documented in our `CHANGELOG`_ and `releases`_.
 You may also subscribe to email `release notifications`_ for releases and breaking changes.
 
-Roadmap
-=======
-
-If you are interested in the future direction of this project,
-please take a look at our open `issues`_ and `pull requests <https://github.com/sendgrid/sendgrid-python/pulls>`__.
-We would love to hear your feedback.
-
 How to Contribute
 =================
 
@@ -243,7 +236,6 @@ Quick links:
 -  `Bug Reports`_
 -  `Improvements to the Codebase`_
 -  `Review Pull Requests`_
--  `Sign the CLA to Create a Pull Request`_
 
 Troubleshooting
 ===============
@@ -262,56 +254,54 @@ License
 `The MIT License (MIT)`_
 
 .. _notifications: https://dx.sendgrid.com/newsletter/python
-.. _Docker: https://github.com/sendgrid/sendgrid-python/tree/master/docker
-.. _Twilio: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/sms.md
+.. _Twilio: https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/sms.md
 .. _release notes: https://github.com/sendgrid/sendgrid-python/releases/tag/v6.0.0
 .. _Web API v3: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
 .. _v3 /mail/send: https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint
 .. _issues: https://github.com/sendgrid/sendgrid-python/issues
-.. _pull requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md
+.. _pull requests: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md
 .. _free level: https://sendgrid.com/free?source=sendgrid-python
 .. _Twilio account: https://www.twilio.com/try-twilio?source=sendgrid-python
 .. _SENDGRID_API_KEY: https://app.sendgrid.com/settings/api_keys
 .. _Python-HTTP-Client: https://github.com/sendgrid/python-http-client
 .. _ECDSA-Python: https://github.com/starkbank/ecdsa-python
-.. _/mail/send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
+.. _/mail/send Helper: https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/mail
 .. _personalization object: https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html
 .. _Fluent Interface: https://sendgrid.com/blog/using-python-to-implement-a-fluent-interface-to-any-rest-api/
-.. _our helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound
+.. _our helper: https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/inbound
 .. _Twilio SendGrid Documentation: https://sendgrid.com/docs/API_Reference/index.html
-.. _Library Usage Documentation: https://github.com/sendgrid/sendgrid-python/tree/master/USAGE.md
-.. _Example Code: https://github.com/sendgrid/sendgrid-python/tree/master/examples
+.. _Library Usage Documentation: https://github.com/sendgrid/sendgrid-python/tree/HEAD/USAGE.md
+.. _Example Code: https://github.com/sendgrid/sendgrid-python/tree/HEAD/examples
 .. _`How-to: Migration from v2 to v3`: https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html
-.. _v3 Web API Mail Send Helper: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail
-.. _Processing Inbound Email: https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/inbound
-.. _Examples of common API use cases: https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/README.md
+.. _v3 Web API Mail Send Helper: https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/mail
+.. _Processing Inbound Email: https://github.com/sendgrid/sendgrid-python/tree/HEAD/sendgrid/helpers/inbound
+.. _Examples of common API use cases: https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/README.md
 .. _breaking changes: https://github.com/sendgrid/sendgrid-python/issues/217
-.. _CHANGELOG: https://github.com/sendgrid/sendgrid-python/blob/master/CHANGELOG.md
+.. _CHANGELOG: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CHANGELOG.md
 .. _releases: https://github.com/sendgrid/sendgrid-python/releases
 .. _release notifications: https://dx.sendgrid.com/newsletter/python
-.. _CONTRIBUTING: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md
-.. _Feature Request: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#feature-request
-.. _Bug Reports: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#submit-a-bug-report
-.. _Improvements to the Codebase: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#improvements-to-the-codebase
-.. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/master/CONTRIBUTING.md#code-reviews
-.. _Sign the CLA to Create a Pull Request: https://cla.sendgrid.com/sendgrid/sendgrid-python
-.. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md
-.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/master/LICENSE.md
+.. _CONTRIBUTING: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md
+.. _Feature Request: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#feature-request
+.. _Bug Reports: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#submit-a-bug-report
+.. _Improvements to the Codebase: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#improvements-to-the-codebase
+.. _Review Pull Requests: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#code-reviews
+.. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md
+.. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/HEAD/LICENSE
 
-.. |Travis Badge| image:: https://travis-ci.org/sendgrid/sendgrid-python.svg?branch=master
-   :target: https://travis-ci.org/sendgrid/sendgrid-python
+.. |Travis Badge| image:: https://travis-ci.com/sendgrid/sendgrid-python.svg?branch=main
+   :target: https://travis-ci.com/sendgrid/sendgrid-python
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/sendgrid.svg
    :target: https://pypi.org/project/sendgrid/
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/sendgrid.svg
    :target: https://pypi.org/project/sendgrid/
-.. |codecov| image:: https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/master.svg?style=flat-square&label=Codecov+Coverage
+.. |codecov| image:: https://img.shields.io/codecov/c/github/sendgrid/sendgrid-python/main.svg?style=flat-square&label=Codecov+Coverage
    :target: https://codecov.io/gh/sendgrid/sendgrid-python
 .. |Docker Badge| image:: https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg
    :target: https://hub.docker.com/r/sendgrid/sendgrid-python/
 .. |Email Notifications Badge| image:: https://dx.sendgrid.com/badge/python
    :target: https://dx.sendgrid.com/newsletter/python
 .. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: ./LICENSE.md
+   :target: ./LICENSE
 .. |Twitter Follow| image:: https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow
    :target: https://twitter.com/sendgrid
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/sendgrid/sendgrid-python.svg
