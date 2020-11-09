@@ -1,5 +1,5 @@
 include README.rst
-include LICENSE.md
+include LICENSE
 include app.json
 include Procfile
 include requirements.txt
