@@ -81,7 +81,7 @@ async def send_email(n: int, email: Mail) -> None:
         e.read()
 
 
-async def send_many(emails, cb):
+async def send_many(emails):
     '''
     send_many creates a number of non-blocking tasks (to send email)
     that will run on the existing event loop's executor (ThreadPoolExecutor by
@@ -101,5 +101,5 @@ async def send_many(emails, cb):
     print("END - returning control...")
 
 if __name__ == "__main__":
-    async_run(send_many(ems, sample_cb))
+    async_run(send_many(ems))
 ```
