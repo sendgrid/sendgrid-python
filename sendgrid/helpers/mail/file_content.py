@@ -31,7 +31,7 @@ class FileContent(object):
 
     def get(self):
         """
-        Get a JSON-ready representation of this FileContente.
+        Get a JSON-ready representation of this FileContent.
 
         :returns: This FileContent, ready for use in a request body.
         :rtype: string
