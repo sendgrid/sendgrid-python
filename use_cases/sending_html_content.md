@@ -42,7 +42,6 @@ html_content = HtmlContent(html_text)
 soup = BeautifulSoup(html_text)
 plain_text = soup.get_text()
 plain_text_content = Content("text/plain", plain_text)
-mail.add_content(plain_content)
 
 message = Mail(from_email, to_email, subject, plain_text_content, html_content)
 
