@@ -35,7 +35,7 @@ html_text = """
 
 sendgrid_client = SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 from_email = From("from_email@exmaple.com")
-to_email = Email("to_email@example.com")
+to_email = To("to_email@example.com")
 subject = Subject("Test Subject")
 html_content = HtmlContent(html_text)
 
