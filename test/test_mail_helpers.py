@@ -561,6 +561,42 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual([bcc_email.get()], p.bccs)
 
+    def test_personalization_add_to_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        p.add_to(to_email)
+        p.add_to(to_email)
+
+        expected = [to_email.get()]
+
+        self.assertEqual(expected, p.tos)
+
+    def test_personalization_add_bcc_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+to0@example.com', 'Example To Name 0')
+        p.add_bcc(bcc_email)
+        p.add_bcc(bcc_email)
+
+        expected = [bcc_email.get()]
+
+        self.assertEqual(expected, p.bccs)
+
+    def test_personalization_add_cc_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+to0@example.com', 'Example To Name 0')
+        p.add_cc(cc_email)
+        p.add_cc(cc_email)
+
+        expected = [cc_email.get()]
+
+        self.assertEqual(expected, p.ccs)
+
     def test_dynamic_template_data(self):
         self.maxDiff = None
 

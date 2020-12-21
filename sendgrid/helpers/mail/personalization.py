@@ -19,15 +19,12 @@ class Personalization(object):
         email_type = type(email)
         if email_type.__name__ == 'To':
             self.add_to(email)
-            self._tos = self._get_unique_recipients(self._tos)
             return
         if email_type.__name__ == 'Cc':
             self.add_cc(email)
-            self._ccs = self._get_unique_recipients(self._ccs)
             return
         if email_type.__name__ == 'Bcc':
             self.add_bcc(email)
-            self._bccs = self._get_unique_recipients(self._bccs)
             return
         raise ValueError('Please use a To, Cc or Bcc object.')
     
@@ -51,14 +48,11 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._tos
+        return self._get_unique_recipients(self._tos)
 
     @tos.setter
     def tos(self, value):
-        if isinstance(value, list):
-            self._tos = self._get_unique_recipients(value)
-        else:
-            self._tos = value
+        self._tos = value
 
     def add_to(self, email):
         """Add a single recipient to this Personalization.
@@ -89,14 +83,11 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._ccs
+        return self._get_unique_recipients(self._ccs)
 
     @ccs.setter
     def ccs(self, value):
-        if isinstance(value, list):
-            self._ccs = self._get_unique_recipients(value)
-        else:
-            self._ccs = value
+        self._ccs = value
 
     def add_cc(self, email):
         """Add a single recipient to receive a copy of this email.
@@ -112,14 +103,11 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._bccs
+        return self._get_unique_recipients(self._bccs)
 
     @bccs.setter
     def bccs(self, value):
-        if isinstance(value, list):
-            self._bccs = self._get_unique_recipients(value)
-        else:
-            self._bccs = value
+        self._bccs = value
 
     def add_bcc(self, email):
         """Add a single recipient to receive a blind carbon copy of this email.
