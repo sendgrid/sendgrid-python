@@ -6,7 +6,7 @@ import os
 sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 
 ##################################################
-# Create a domain whitelabel. #
+# Create a domain authentication. #
 # POST /whitelabel/domains #
 
 data = {
@@ -27,7 +27,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# List all domain whitelabels. #
+# List all domain authentications. #
 # GET /whitelabel/domains #
 
 params = {'username': 'test_string', 'domain': 'test_string',
@@ -38,7 +38,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Get the default domain whitelabel. #
+# Get the default domain authentication. #
 # GET /whitelabel/domains/default #
 
 response = sg.client.whitelabel.domains.default.get()
@@ -47,7 +47,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# List the domain whitelabel associated with the given user. #
+# List the domain authentication associated with the given user. #
 # GET /whitelabel/domains/subuser #
 
 response = sg.client.whitelabel.domains.subuser.get()
@@ -56,7 +56,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Disassociate a domain whitelabel from a given user. #
+# Disassociate a domain authentication from a given user. #
 # DELETE /whitelabel/domains/subuser #
 
 response = sg.client.whitelabel.domains.subuser.delete()
@@ -65,7 +65,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Update a domain whitelabel. #
+# Update a domain authentication. #
 # PATCH /whitelabel/domains/{domain_id} #
 
 data = {
@@ -79,7 +79,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve a domain whitelabel. #
+# Retrieve a domain authentication. #
 # GET /whitelabel/domains/{domain_id} #
 
 domain_id = "test_url_param"
@@ -89,7 +89,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Delete a domain whitelabel. #
+# Delete a domain authentication. #
 # DELETE /whitelabel/domains/{domain_id} #
 
 domain_id = "test_url_param"
@@ -99,7 +99,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Associate a domain whitelabel with a given user. #
+# Associate a domain authentication with a given user. #
 # POST /whitelabel/domains/{domain_id}/subuser #
 
 data = {
@@ -113,7 +113,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Add an IP to a domain whitelabel. #
+# Add an IP to a domain authentication. #
 # POST /whitelabel/domains/{id}/ips #
 
 data = {
@@ -126,7 +126,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Remove an IP from a domain whitelabel. #
+# Remove an IP from a domain authentication. #
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
 id_ = "test_url_param"
@@ -137,7 +137,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Validate a domain whitelabel. #
+# Validate a domain authentication. #
 # POST /whitelabel/domains/{id}/validate #
 
 id_ = "test_url_param"
@@ -147,7 +147,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Create an IP whitelabel #
+# Create a reverse DNS record #
 # POST /whitelabel/ips #
 
 data = {
@@ -161,7 +161,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve all IP whitelabels #
+# Create a reverse DNS record #
 # GET /whitelabel/ips #
 
 params = {'ip': 'test_string', 'limit': 1, 'offset': 1}
@@ -171,7 +171,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve an IP whitelabel #
+# Retrieve a reverse DNS record #
 # GET /whitelabel/ips/{id} #
 
 id_ = "test_url_param"
@@ -181,7 +181,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Delete an IP whitelabel #
+# Delete a reverse DNS record #
 # DELETE /whitelabel/ips/{id} #
 
 id_ = "test_url_param"
@@ -191,7 +191,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Validate an IP whitelabel #
+# Validate a reverse DNS record #
 # POST /whitelabel/ips/{id}/validate #
 
 id_ = "test_url_param"
@@ -201,7 +201,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Create a Link Whitelabel #
+# Create a Link Branding #
 # POST /whitelabel/links #
 
 data = {
@@ -217,7 +217,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve all link whitelabels #
+# Retrieve all link brandings #
 # GET /whitelabel/links #
 
 params = {'limit': 1}
@@ -227,7 +227,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve a Default Link Whitelabel #
+# Retrieve a Default Link Branding #
 # GET /whitelabel/links/default #
 
 params = {'domain': 'test_string'}
@@ -237,7 +237,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve Associated Link Whitelabel #
+# Retrieve Associated Link Branding #
 # GET /whitelabel/links/subuser #
 
 params = {'username': 'test_string'}
@@ -247,7 +247,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Disassociate a Link Whitelabel #
+# Disassociate a Link Branding #
 # DELETE /whitelabel/links/subuser #
 
 params = {'username': 'test_string'}
@@ -257,7 +257,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Update a Link Whitelabel #
+# Update a Link Branding #
 # PATCH /whitelabel/links/{id} #
 
 data = {
@@ -270,7 +270,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Retrieve a Link Whitelabel #
+# Retrieve a Link Branding #
 # GET /whitelabel/links/{id} #
 
 id_ = "test_url_param"
@@ -280,7 +280,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Delete a Link Whitelabel #
+# Delete a Link Branding #
 # DELETE /whitelabel/links/{id} #
 
 id_ = "test_url_param"
@@ -290,7 +290,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Validate a Link Whitelabel #
+# Validate a Link Branding #
 # POST /whitelabel/links/{id}/validate #
 
 id_ = "test_url_param"
@@ -300,7 +300,7 @@ print(response.body)
 print(response.headers)
 
 ##################################################
-# Associate a Link Whitelabel #
+# Associate a Link Branding #
 # POST /whitelabel/links/{link_id}/subuser #
 
 data = {

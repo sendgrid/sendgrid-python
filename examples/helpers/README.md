@@ -24,7 +24,7 @@ The `Content` class takes mainly two parameters: MIME type and the actual conten
  mail = Mail(from_email, to_email, subject, content)
 ```
 After adding the above we create a mail object using `Mail` class, it takes the following parameters: email address to send from, subject line of emails, email address to send to, content of the message.
-For more information on parameters and usage, see [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/mail.py)
+For more information on parameters and usage, see [here](../mail/mail.py)
 
 ### Creating Personalizations
 
@@ -44,13 +44,13 @@ To create attachments, we use the `Attachment` class and make sure the content i
     attachment.content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
 ```
-Another example: [Link](https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/attachment.md)
+Another example: [Link](../../use_cases/attachment.md)
 
 ### Managing Settings
 
-To configure settings in mail, you can use the `MailSettings` class. The class takes some [parameters](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/mail_settings.py#L1)(such as bcc_settings, bypass_list_management, footer_settings, sandbox_mode)
+To configure settings in mail, you can use the `MailSettings` class. The class takes some [parameters](../mailsettings/mailsettings.py#L1)(such as bcc_settings, bypass_list_management, footer_settings, sandbox_mode)
 
-To add tracking settings, you can add `TrackingSettings` class. See example [here](https://github.com/sendgrid/sendgrid-python/blob/master/examples/helpers/mail_example.py#L118) and parameters and usage [here](https://github.com/sendgrid/sendgrid-python/blob/master/sendgrid/helpers/mail/tracking_settings.py).
+To add tracking settings, you can add `TrackingSettings` class. See example [here](mail_example.py#L118) and parameters and usage [here](../trackingsettings/trackingsettings.py).
 
 ### Sending email
 
@@ -60,7 +60,7 @@ After you have configured every component and added your own functions, you can 
     data = build_kitchen_sink()
     response = sg.send(data)
 ```
-Make sure you have [environment variable](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key) set up!
+Make sure you have [environment variable](../../TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key) set up!
 Full example [here](https://github.com/sendgrid/sendgrid-python/blob/0b683169b08d3a7c204107cd333be33053297e74/examples/helpers/mail_example.py#L203).
 
 ### Using Dynamic Templates

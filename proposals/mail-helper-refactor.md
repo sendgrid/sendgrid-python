@@ -2,7 +2,7 @@
 
 # Send a Single Email to a Single Recipient
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 This is the minimum code needed to send an email.
 
@@ -29,7 +29,7 @@ except SendGridException as e:
 
 # Send a Single Email to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -57,7 +57,7 @@ except Exception as e:
 
 # Send Multiple Emails to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -100,7 +100,7 @@ except Exception as e:
 
 # Kitchen Sink - an example with all settings used
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -246,7 +246,7 @@ except Exception as e:
 
 # Attachments
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 ```python
 import os
@@ -275,7 +275,7 @@ except Exception as e:
 
 # Transactional Templates
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-python/blob/master/TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](../TROUBLESHOOTING.md#environment). If you don't have your key stored in an environment variable, you can assign it directly to `apikey` for testing purposes.
 
 For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
 

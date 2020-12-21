@@ -196,7 +196,7 @@ Commit the code to the repository and deploy it to Heroku using Git.
 ```
 $ git add .
 $ git commit -am "Create simple Hello Email Django app using Twilio SendGrid"
-$ git push heroku master
+$ git push heroku main
 ```
 
 After that, let's verify if our app is working or not by accessing the root domain of your Heroku app. You should see the page says "Email Sent!" and on the Activity Feed page in the Twilio SendGrid dashboard, you should see a new feed with the email you set in the code.
