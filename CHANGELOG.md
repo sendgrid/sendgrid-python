@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-12-02] Version 6.4.8
+--------------------------
+**Library - Docs**
+- [PR #955](https://github.com/sendgrid/sendgrid-python/pull/955): fixed typo in sendgrid/helpers/mail/file_content.py. Thanks to [@razvandimescu](https://github.com/razvandimescu)!
+
+
 [2020-09-16] Version 6.4.7
 --------------------------
 **Library - Docs**

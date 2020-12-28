@@ -35,14 +35,13 @@ html_text = """
 
 sendgrid_client = SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 from_email = From("from_email@exmaple.com")
-to_email = Email("to_email@example.com")
+to_email = To("to_email@example.com")
 subject = Subject("Test Subject")
 html_content = HtmlContent(html_text)
 
 soup = BeautifulSoup(html_text)
 plain_text = soup.get_text()
 plain_text_content = Content("text/plain", plain_text)
-mail.add_content(plain_content)
 
 message = Mail(from_email, to_email, subject, plain_text_content, html_content)
 
