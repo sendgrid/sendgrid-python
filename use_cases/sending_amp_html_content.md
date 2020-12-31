@@ -1,7 +1,9 @@
 # Sending AMP-HTML Email
 
+Following is an example on how to send an AMP HTML Email.
+Currently, we require AMP HTML and any one of HTML or Plain Text content for improved deliverability or fallback for AMP HTML Email for supporting older clients and showing alternate content after 30 days.
 
-Currently, we require AMP HTML and any one of HTML or Plain Text content for improved deliverability or fallback for AMP HTML Email for supporting older clients and showing alternate content after 30 days. In some cases, only HTML may be available. The below example shows how to obtain the Plain Text equivalent of the HTML content.
+For more information on AMP emails pls check the [official AMP email page](https://amp.dev/about/email/)
 
 ```python
 import os
@@ -84,10 +86,11 @@ Learn how to create your first AMP email. This sample covers the basic structure
 '''
 
 message = Mail(
-    from_email='arun@raneesarees.in',
-    to_emails='aruntvs227@gmail.com',
+    from_email='example@example.com',
+    to_emails='example@example.com',
     subject='Sending with Twilio SendGrid is Fun',
-    html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    html_content='<strong>and easy to do anywhere, even with Python</strong>',
+    amp_html_content=amp_html_content)
 try:
     sg =  SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
     response = sg.send(message)
