@@ -735,7 +735,14 @@ class Mail(object):
             self._contents = self._ensure_insert(content, self._contents)
         elif content.mime_type == "text/x-amp-html":
             if self._contents:
-                index = len(self._contents)
+                for _content in self._contents:
+                    # this is written in the context that plain text content will always come earlier than the html content
+                    if _content.mime_type == "text/plain":
+                        index = 1
+                        break
+                    elif _content.mime_type == "text/html":
+                        index = 0
+                        break
             else:
                 index = 0
             self._contents = self._ensure_append(
