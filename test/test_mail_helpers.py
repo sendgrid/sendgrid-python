@@ -429,6 +429,26 @@ class UnitTests(unittest.TestCase):
         )
 
     ## Check ordering of MIME types in different variants - start
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_plain_amp_html_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+
+        self.assertEqual(
+            message.get(),
+            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+        )
+
     def test_single_email_with_all_three_contents_in_collapsed_order_of_plain_html_amp_content_single_recipient(self):
         from sendgrid.helpers.mail import (Mail, From, To, Subject,
                                            PlainTextContent, HtmlContent, AmpHtmlContent)
@@ -436,13 +456,13 @@ class UnitTests(unittest.TestCase):
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            subject=Subject('Sending with SendGrid is Fun'),
-            plain_text_content=PlainTextContent(
-                'and easy to do anywhere, even with Python'),
-            html_content=HtmlContent(
-                '<strong>and easy to do anywhere, even with Python</strong>'),
-            amp_html_content=AmpHtmlContent(amp_html_content)
+            subject=Subject('Sending with SendGrid is Fun')
         )
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = AmpHtmlContent(amp_html_content)
 
         self.assertEqual(
             message.get(),
@@ -456,13 +476,13 @@ class UnitTests(unittest.TestCase):
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            subject=Subject('Sending with SendGrid is Fun'),
-            html_content=HtmlContent(
-                '<strong>and easy to do anywhere, even with Python</strong>'),
-            plain_text_content=PlainTextContent(
-                'and easy to do anywhere, even with Python'),
-            amp_html_content=AmpHtmlContent(amp_html_content)
+            subject=Subject('Sending with SendGrid is Fun')
         )
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = AmpHtmlContent(amp_html_content)
 
         self.assertEqual(
             message.get(),
@@ -476,13 +496,13 @@ class UnitTests(unittest.TestCase):
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            subject=Subject('Sending with SendGrid is Fun'),
-            html_content=HtmlContent(
-                '<strong>and easy to do anywhere, even with Python</strong>'),
-            amp_html_content=AmpHtmlContent(amp_html_content),
-            plain_text_content=PlainTextContent(
-                'and easy to do anywhere, even with Python')
+            subject=Subject('Sending with SendGrid is Fun')
         )
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
 
         self.assertEqual(
             message.get(),
@@ -496,13 +516,13 @@ class UnitTests(unittest.TestCase):
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            subject=Subject('Sending with SendGrid is Fun'),
-            amp_html_content=AmpHtmlContent(amp_html_content),
-            html_content=HtmlContent(
-                '<strong>and easy to do anywhere, even with Python</strong>'),
-            plain_text_content=PlainTextContent(
-                'and easy to do anywhere, even with Python')
+            subject=Subject('Sending with SendGrid is Fun')
         )
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
 
         self.assertEqual(
             message.get(),
@@ -516,18 +536,19 @@ class UnitTests(unittest.TestCase):
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            subject=Subject('Sending with SendGrid is Fun'),
-            plain_text_content=PlainTextContent(
-                'and easy to do anywhere, even with Python'),
-            amp_html_content=AmpHtmlContent(amp_html_content),
-            html_content=HtmlContent(
-                '<strong>and easy to do anywhere, even with Python</strong>')
+            subject=Subject('Sending with SendGrid is Fun')
         )
-        
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+
         self.assertEqual(
             message.get(),
             json.loads(json.dumps(response_content_with_all_three_mime_contents))
         )
+
     ## end
 
     def test_value_error_is_raised_on_to_emails_set_to_list_of_lists(self):
