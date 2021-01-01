@@ -1528,6 +1528,3 @@ class UnitTests(unittest.TestCase):
             tracking_settings.get(),
             {'click_tracking': {'enable': False, 'enable_text': False}}
         )
-
-
-unittest.main()
