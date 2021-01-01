@@ -1,7 +1,7 @@
 # Sending AMP-HTML Email
 
 Following is an example on how to send an AMP HTML Email.
-Currently, we require AMP HTML and any one of HTML or Plain Text content for improved deliverability or fallback for AMP HTML Email for supporting older clients and showing alternate content after 30 days.
+Currently, we require AMP HTML and any one of HTML or Plain Text content (preferrably both) for improved deliverability or fallback for AMP HTML Email for supporting older clients and showing alternate content after 30 days.
 
 For more information on AMP emails pls check the [official AMP email page](https://amp.dev/about/email/)
 

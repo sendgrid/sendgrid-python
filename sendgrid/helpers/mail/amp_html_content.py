@@ -23,7 +23,7 @@ class AmpHtmlContent(Content):
 
         :rtype: string
         """
-        return "text/html"
+        return "text/x-amp-html"
 
     @property
     def content(self):
