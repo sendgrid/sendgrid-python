@@ -27,6 +27,7 @@ from .group_id import GroupId
 from .groups_to_display import GroupsToDisplay
 from .header import Header
 from .html_content import HtmlContent
+from .amp_html_content import AmpHtmlContent
 from .ip_pool_name import IpPoolName
 from .mail_settings import MailSettings
 from .mail import Mail
