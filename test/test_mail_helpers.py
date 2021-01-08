@@ -20,7 +20,7 @@ from sendgrid.helpers.mail import (
 # The below amp html email content is taken from [Google AMP Hello World Email](https://amp.dev/documentation/examples/introduction/hello_world_email/)
 amp_html_content = '''<!doctype html><html amp4email><head><meta charset="utf-8"><script async src="https://cdn.ampproject.org/v0.js"></script><style amp4email-boilerplate>body{visibility:hidden}</style><script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script><style amp-custom>.emailbody {padding: 16px;}.helloworld {font-family: Helvetica;color: red;font-size: 24px;padding-bottom: 8px;}.images {max-width: 100%;}</style></head><body><div class="emailbody"><h1 class="helloworld">Hello!</h1><amp-img src="https://amp.dev/static/samples/img/amp.jpg" width="800" height="600" layout="responsive"></amp-img></div></body></html>'''
 
-response_content_with_all_three_mime_contents = {
+response_content_with_all_three_mime_contents = json.dumps({
     "content": [
         {
             "type": "text/plain",
@@ -50,7 +50,7 @@ response_content_with_all_three_mime_contents = {
         }
     ],
     "subject": "Sending with SendGrid is Fun"
-}
+})
 
 class UnitTests(unittest.TestCase):
 
@@ -332,10 +332,10 @@ class UnitTests(unittest.TestCase):
             html_content=HtmlContent(
                 '<strong>and easy to do anywhere, even with Python</strong>')
         )
-        
+
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_amp_and_html_contents_to_single_recipient(self):
@@ -351,7 +351,7 @@ class UnitTests(unittest.TestCase):
                 '<strong>and easy to do anywhere, even with Python</strong>')
         )
 
-        response_content = {
+        response_content = json.dumps({
             "content": [
                 {
                     "type": "text/x-amp-html",
@@ -377,10 +377,10 @@ class UnitTests(unittest.TestCase):
                 }
             ],
             "subject": "Sending with SendGrid is Fun"
-        }
+        })
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content))
+            json.loads(response_content)
         )
 
     def test_single_email_with_amp_and_plain_contents_to_single_recipient(self):
@@ -396,7 +396,7 @@ class UnitTests(unittest.TestCase):
             amp_html_content=AmpHtmlContent(amp_html_content)
         )
 
-        response_content = {
+        response_content = json.dumps({
             "content": [
                 {
                     "type": "text/plain",
@@ -422,10 +422,10 @@ class UnitTests(unittest.TestCase):
                 }
             ],
             "subject": "Sending with SendGrid is Fun"
-        }
+        })
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content))
+            json.loads(response_content)
         )
 
     ## Check ordering of MIME types in different variants - start
@@ -446,7 +446,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_all_three_contents_in_collapsed_order_of_plain_html_amp_content_single_recipient(self):
@@ -466,7 +466,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_all_three_contents_in_collapsed_order_of_html_plain_amp_content_single_recipient(self):
@@ -486,7 +486,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_all_three_contents_in_collapsed_order_of_html_amp_plain_content_single_recipient(self):
@@ -506,7 +506,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_all_three_contents_in_collapsed_order_of_amp_html_plain_content_single_recipient(self):
@@ -526,7 +526,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     def test_single_email_with_all_three_contents_in_collapsed_order_of_amp_plain_html_content_single_recipient(self):
@@ -546,7 +546,7 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual(
             message.get(),
-            json.loads(json.dumps(response_content_with_all_three_mime_contents))
+            json.loads(response_content_with_all_three_mime_contents)
         )
 
     ## end
