@@ -18,7 +18,7 @@ class BatchId(object):
 
     @property
     def batch_id(self):
-        """A unix timestamp.
+        """The batch ID.
 
         :rtype: string
         """
@@ -26,7 +26,7 @@ class BatchId(object):
 
     @batch_id.setter
     def batch_id(self, value):
-        """A unix timestamp.
+        """The batch ID.
 
         :param value: Batch Id
         :type value: string
@@ -42,7 +42,7 @@ class BatchId(object):
 
     def get(self):
         """
-        Get a JSON-ready representation of this SendAt object.
+        Get a JSON-ready representation of this BatchId object.
 
         :returns: The BatchId, ready for use in a request body.
         :rtype: string
