@@ -27,6 +27,7 @@ class Mail(object):
             subject=None,
             plain_text_content=None,
             html_content=None,
+            amp_html_content=None,
             global_substitutions=None,
             is_multiple=False):
         """
@@ -43,6 +44,8 @@ class Mail(object):
         :type plain_text_content: string, optional
         :param html_content: The html body of the email
         :type html_content: string, optional
+        :param amp_html_content: The amp-html body of the email
+        :type amp_html_content: string, optional
         """
         self._attachments = None
         self._categories = None
@@ -71,6 +74,8 @@ class Mail(object):
             self.subject = subject
         if plain_text_content is not None:
             self.add_content(plain_text_content, MimeType.text)
+        if amp_html_content is not None:
+            self.add_content(amp_html_content, MimeType.amp)
         if html_content is not None:
             self.add_content(html_content, MimeType.html)
 
@@ -725,9 +730,23 @@ class Mail(object):
         """
         if isinstance(content, str):
             content = Content(mime_type, content)
-        # Content of mime type text/plain must always come first
-        if content.mime_type == "text/plain":
+        # Content of mime type text/plain must always come first, followed by text/x-amp-html and then text/html
+        if content.mime_type == MimeType.text:
             self._contents = self._ensure_insert(content, self._contents)
+        elif content.mime_type == MimeType.amp:
+            if self._contents:
+                for _content in self._contents:
+                    # this is written in the context that plain text content will always come earlier than the html content
+                    if _content.mime_type == MimeType.text:
+                        index = 1
+                        break
+                    elif _content.mime_type == MimeType.html:
+                        index = 0
+                        break
+            else:
+                index = 0
+            self._contents = self._ensure_append(
+                content, self._contents, index=index)
         else:
             if self._contents:
                 index = len(self._contents)

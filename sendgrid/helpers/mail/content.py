@@ -29,7 +29,7 @@ class Content(object):
     @property
     def mime_type(self):
         """The MIME type of the content you are including in your email.
-        For example, "text/plain" or "text/html".
+        For example, "text/plain" or "text/html" or "text/x-amp-html".
 
         :rtype: string
         """
@@ -38,11 +38,11 @@ class Content(object):
     @mime_type.setter
     def mime_type(self, value):
         """The MIME type of the content you are including in your email.
-        For example, "text/plain" or "text/html".
+        For example, "text/plain" or "text/html" or "text/x-amp-html".
 
         :param value: The MIME type of the content you are including in your
                       email.
-        For example, "text/plain" or "text/html".
+        For example, "text/plain" or "text/html" or "text/x-amp-html".
         :type value: string
         """
         self._mime_type = value

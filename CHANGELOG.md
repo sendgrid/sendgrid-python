@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-01-13] Version 6.5.0
+--------------------------
+**Library - Feature**
+- [PR #945](https://github.com/sendgrid/sendgrid-python/pull/945): Support for AMP HTML Email. Thanks to [@modernwarfareuplink](https://github.com/modernwarfareuplink)!
+
+**Library - Docs**
+- [PR #962](https://github.com/sendgrid/sendgrid-python/pull/962): Sending HTML email example is broken. Thanks to [@mikeckennedy](https://github.com/mikeckennedy)!
+
+
 [2020-12-02] Version 6.4.8
 --------------------------
 **Library - Docs**
