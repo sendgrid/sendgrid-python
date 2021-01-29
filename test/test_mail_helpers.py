@@ -646,6 +646,224 @@ class UnitTests(unittest.TestCase):
             html_content=HtmlContent(
                 '<strong>and easy to do anywhere, even with Python</strong>'))
 
+    def test_personalization_add_email_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        p.add_email(to_email)
+        p.add_email(to_email)
+
+        self.assertEqual([to_email.get()], p.tos)
+    
+    def test_personalization_add_email_filters_out_duplicate_to_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        to_email_with_caps = To('test+TO0@example.com', 'Example To Name 0')
+        p.add_email(to_email)
+        p.add_email(to_email_with_caps)
+
+        self.assertEqual([to_email.get()], p.tos)
+
+    def test_personalization_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        p.add_email(cc_email)
+        p.add_email(cc_email)
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_filters_out_duplicate_cc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        cc_email_with_caps = Cc('test+CC0@example.com', 'Example Cc Name 0')
+        p.add_email(cc_email)
+        p.add_email(cc_email_with_caps)
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        p.add_email(bcc_email)
+        p.add_email(bcc_email)
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_filters_out_duplicate_bcc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        bcc_email_with_caps = Bcc('test+BCC0@example.com', 'Example Bcc Name 0')
+        p.add_email(bcc_email)
+        p.add_email(bcc_email_with_caps)
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_tos_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_emails = [{ 'email': 'test+to0@example.com', 'name': 'Example To Name 0' }] * 2
+        p.tos = to_emails
+
+        self.assertEqual([to_emails[0]], p.tos)
+
+    def test_personalization_tos_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = { 'email': 'test+to0@example.com', 'name': 'Example To Name 0' }
+        to_email_with_caps = { 'email': 'test+TO0@example.com', 'name': 'Example To Name 0' }
+        to_emails = [to_email, to_email_with_caps]
+        p.tos = to_emails
+
+        self.assertEqual([to_email], p.tos)
+
+    def test_personalization_tos_setter_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_emails = [To('test+to0@example.com', 'Example To Name 0')] * 2
+        p.tos = to_emails
+
+        self.assertEqual([to_emails[0].get()], p.tos)
+
+
+    def test_personalization_tos_setter_filters_out_duplicate_to_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        to_email_with_caps = To('test+TO0@example.com', 'Example To Name 0')
+        to_emails = [to_email, to_email_with_caps]
+        p.tos = to_emails
+
+        self.assertEqual([to_email.get()], p.tos)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_emails = [{ 'email': 'test+cc0@example.com', 'name': 'Example Cc Name 0' }] * 2
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_emails[0]], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = { 'email': 'test+cc0@example.com', 'name': 'Example Cc Name 0' }
+        cc_email_with_caps = { 'email': 'test+CC0@example.com', 'name': 'Example Cc Name 0' }
+        cc_emails = [cc_email, cc_email_with_caps]
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_email], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_emails = [Cc('test+cc0@example.com', 'Example Cc Name 0')] * 2
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_emails[0].get()], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_cc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        cc_email_with_caps = Cc('test+CC0@example.com', 'Example Cc Name 0')
+        p.ccs = [cc_email, cc_email_with_caps]
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_emails = [{ 'email': 'test+bcc0@example.com', 'name': 'Example Bcc Name 0' }] * 2
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_emails[0]], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = { 'email': 'test+bcc0@example.com', 'name': 'Example Bcc Name 0' }
+        bcc_email_with_caps = { 'email': 'test+BCC0@example.com', 'name': 'Example Bcc Name 0' }
+        bcc_emails = [bcc_email, bcc_email_with_caps]
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_email], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_emails = [Bcc('test+bcc0@example.com', 'Example Bcc Name 0')] * 2
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_emails[0].get()], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_bcc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        bcc_email_with_caps = Bcc('test+BCC0@example.com', 'Example Bcc Name 0')
+        p.bccs = [bcc_email, bcc_email_with_caps]
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_add_to_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        p.add_to(to_email)
+        p.add_to(to_email)
+
+        expected = [to_email.get()]
+
+        self.assertEqual(expected, p.tos)
+
+    def test_personalization_add_bcc_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+to0@example.com', 'Example To Name 0')
+        p.add_bcc(bcc_email)
+        p.add_bcc(bcc_email)
+
+        expected = [bcc_email.get()]
+
+        self.assertEqual(expected, p.bccs)
+
+    def test_personalization_add_cc_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+to0@example.com', 'Example To Name 0')
+        p.add_cc(cc_email)
+        p.add_cc(cc_email)
+
+        expected = [cc_email.get()]
+
+        self.assertEqual(expected, p.ccs)
+
     def test_dynamic_template_data(self):
         self.maxDiff = None
 

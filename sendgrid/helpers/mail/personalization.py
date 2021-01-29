@@ -27,6 +27,20 @@ class Personalization(object):
             self.add_bcc(email)
             return
         raise ValueError('Please use a To, Cc or Bcc object.')
+    
+    def _get_unique_recipients(self, recipients):
+        unique_recipients = []
+
+        for recipient in recipients:
+            recipient_email = recipient['email'].lower() if isinstance(recipient, dict) else recipient.email.lower()
+            if all(
+                unique_recipient['email'].lower() != recipient_email for unique_recipient in unique_recipients
+            ):
+                new_unique_recipient = recipient if isinstance(recipient, dict) else recipient.get()
+                unique_recipients.append(new_unique_recipient)
+
+        return unique_recipients
+
 
     @property
     def tos(self):
@@ -34,7 +48,7 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._tos
+        return self._get_unique_recipients(self._tos)
 
     @tos.setter
     def tos(self, value):
@@ -69,7 +83,7 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._ccs
+        return self._get_unique_recipients(self._ccs)
 
     @ccs.setter
     def ccs(self, value):
@@ -89,7 +103,7 @@ class Personalization(object):
 
         :rtype: list(dict)
         """
-        return self._bccs
+        return self._get_unique_recipients(self._bccs)
 
     @bccs.setter
     def bccs(self, value):
