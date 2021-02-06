@@ -17,6 +17,40 @@ from sendgrid.helpers.mail import (
     Subject, Substitution, To, Cc, Bcc, TrackingSettings
 )
 
+# The below amp html email content is taken from [Google AMP Hello World Email](https://amp.dev/documentation/examples/introduction/hello_world_email/)
+amp_html_content = '''<!doctype html><html amp4email><head><meta charset="utf-8"><script async src="https://cdn.ampproject.org/v0.js"></script><style amp4email-boilerplate>body{visibility:hidden}</style><script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script><style amp-custom>.emailbody {padding: 16px;}.helloworld {font-family: Helvetica;color: red;font-size: 24px;padding-bottom: 8px;}.images {max-width: 100%;}</style></head><body><div class="emailbody"><h1 class="helloworld">Hello!</h1><amp-img src="https://amp.dev/static/samples/img/amp.jpg" width="800" height="600" layout="responsive"></amp-img></div></body></html>'''
+
+response_content_with_all_three_mime_contents = json.dumps({
+    "content": [
+        {
+            "type": "text/plain",
+            "value": "and easy to do anywhere, even with Python"
+        },
+        {
+            "type": "text/x-amp-html",
+            "value": amp_html_content
+        },
+        {
+            "type": "text/html",
+            "value": "<strong>and easy to do anywhere, even with Python</strong>"
+        }
+    ],
+    "from": {
+        "email": "test+from@example.com",
+        "name": "Example From Name"
+    },
+    "personalizations": [
+        {
+            "to": [
+                {
+                    "email": "test+to@example.com",
+                    "name": "Example To Name"
+                }
+            ]
+        }
+    ],
+    "subject": "Sending with SendGrid is Fun"
+})
 
 class UnitTests(unittest.TestCase):
 
@@ -284,6 +318,239 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
+    def test_single_email_with_all_three_email_contents_to_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            amp_html_content=AmpHtmlContent(amp_html_content),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>')
+        )
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_amp_and_html_contents_to_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            amp_html_content=AmpHtmlContent(amp_html_content),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>')
+        )
+
+        response_content = json.dumps({
+            "content": [
+                {
+                    "type": "text/x-amp-html",
+                    "value": amp_html_content
+                },
+                {
+                    "type": "text/html",
+                    "value": "<strong>and easy to do anywhere, even with Python</strong>"
+                }
+            ],
+            "from": {
+                "email": "test+from@example.com",
+                "name": "Example From Name"
+            },
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "test+to@example.com",
+                            "name": "Example To Name"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Sending with SendGrid is Fun"
+        })
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content)
+        )
+
+    def test_single_email_with_amp_and_plain_contents_to_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            amp_html_content=AmpHtmlContent(amp_html_content)
+        )
+
+        response_content = json.dumps({
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": "and easy to do anywhere, even with Python"
+                },
+                {
+                    "type": "text/x-amp-html",
+                    "value": amp_html_content
+                }
+            ],
+            "from": {
+                "email": "test+from@example.com",
+                "name": "Example From Name"
+            },
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "test+to@example.com",
+                            "name": "Example To Name"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Sending with SendGrid is Fun"
+        })
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content)
+        )
+
+    ## Check ordering of MIME types in different variants - start
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_plain_amp_html_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_plain_html_amp_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = AmpHtmlContent(amp_html_content)
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_html_plain_amp_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = AmpHtmlContent(amp_html_content)
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_html_amp_plain_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_amp_html_plain_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_all_three_contents_in_collapsed_order_of_amp_plain_html_content_single_recipient(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           PlainTextContent, HtmlContent, AmpHtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun')
+        )
+        message.content = AmpHtmlContent(amp_html_content)
+        message.content = PlainTextContent(
+            'and easy to do anywhere, even with Python')
+        message.content = HtmlContent(
+            '<strong>and easy to do anywhere, even with Python</strong>')
+
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    ## end
+
     def test_value_error_is_raised_on_to_emails_set_to_list_of_lists(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
         self.maxDiff = None
@@ -378,6 +645,224 @@ class UnitTests(unittest.TestCase):
                 'and easy to do anywhere, even with Python'),
             html_content=HtmlContent(
                 '<strong>and easy to do anywhere, even with Python</strong>'))
+
+    def test_personalization_add_email_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        p.add_email(to_email)
+        p.add_email(to_email)
+
+        self.assertEqual([to_email.get()], p.tos)
+    
+    def test_personalization_add_email_filters_out_duplicate_to_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        to_email_with_caps = To('test+TO0@example.com', 'Example To Name 0')
+        p.add_email(to_email)
+        p.add_email(to_email_with_caps)
+
+        self.assertEqual([to_email.get()], p.tos)
+
+    def test_personalization_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        p.add_email(cc_email)
+        p.add_email(cc_email)
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_filters_out_duplicate_cc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        cc_email_with_caps = Cc('test+CC0@example.com', 'Example Cc Name 0')
+        p.add_email(cc_email)
+        p.add_email(cc_email_with_caps)
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        p.add_email(bcc_email)
+        p.add_email(bcc_email)
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_filters_out_duplicate_bcc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        bcc_email_with_caps = Bcc('test+BCC0@example.com', 'Example Bcc Name 0')
+        p.add_email(bcc_email)
+        p.add_email(bcc_email_with_caps)
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_tos_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_emails = [{ 'email': 'test+to0@example.com', 'name': 'Example To Name 0' }] * 2
+        p.tos = to_emails
+
+        self.assertEqual([to_emails[0]], p.tos)
+
+    def test_personalization_tos_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = { 'email': 'test+to0@example.com', 'name': 'Example To Name 0' }
+        to_email_with_caps = { 'email': 'test+TO0@example.com', 'name': 'Example To Name 0' }
+        to_emails = [to_email, to_email_with_caps]
+        p.tos = to_emails
+
+        self.assertEqual([to_email], p.tos)
+
+    def test_personalization_tos_setter_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_emails = [To('test+to0@example.com', 'Example To Name 0')] * 2
+        p.tos = to_emails
+
+        self.assertEqual([to_emails[0].get()], p.tos)
+
+
+    def test_personalization_tos_setter_filters_out_duplicate_to_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        to_email_with_caps = To('test+TO0@example.com', 'Example To Name 0')
+        to_emails = [to_email, to_email_with_caps]
+        p.tos = to_emails
+
+        self.assertEqual([to_email.get()], p.tos)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_emails = [{ 'email': 'test+cc0@example.com', 'name': 'Example Cc Name 0' }] * 2
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_emails[0]], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = { 'email': 'test+cc0@example.com', 'name': 'Example Cc Name 0' }
+        cc_email_with_caps = { 'email': 'test+CC0@example.com', 'name': 'Example Cc Name 0' }
+        cc_emails = [cc_email, cc_email_with_caps]
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_email], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_emails = [Cc('test+cc0@example.com', 'Example Cc Name 0')] * 2
+        p.ccs = cc_emails
+
+        self.assertEqual([cc_emails[0].get()], p.ccs)
+
+    def test_personalization_ccs_setter_filters_out_duplicate_cc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+cc0@example.com', 'Example Cc Name 0')
+        cc_email_with_caps = Cc('test+CC0@example.com', 'Example Cc Name 0')
+        p.ccs = [cc_email, cc_email_with_caps]
+
+        self.assertEqual([cc_email.get()], p.ccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_dict_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_emails = [{ 'email': 'test+bcc0@example.com', 'name': 'Example Bcc Name 0' }] * 2
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_emails[0]], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_dict_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = { 'email': 'test+bcc0@example.com', 'name': 'Example Bcc Name 0' }
+        bcc_email_with_caps = { 'email': 'test+BCC0@example.com', 'name': 'Example Bcc Name 0' }
+        bcc_emails = [bcc_email, bcc_email_with_caps]
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_email], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_emails = [Bcc('test+bcc0@example.com', 'Example Bcc Name 0')] * 2
+        p.bccs = bcc_emails
+
+        self.assertEqual([bcc_emails[0].get()], p.bccs)
+
+    def test_personalization_bccs_setter_filters_out_duplicate_bcc_emails_ignoring_case(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+bcc0@example.com', 'Example Bcc Name 0')
+        bcc_email_with_caps = Bcc('test+BCC0@example.com', 'Example Bcc Name 0')
+        p.bccs = [bcc_email, bcc_email_with_caps]
+
+        self.assertEqual([bcc_email.get()], p.bccs)
+
+    def test_personalization_add_to_filters_out_duplicate_to_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        to_email = To('test+to0@example.com', 'Example To Name 0')
+        p.add_to(to_email)
+        p.add_to(to_email)
+
+        expected = [to_email.get()]
+
+        self.assertEqual(expected, p.tos)
+
+    def test_personalization_add_bcc_filters_out_duplicate_bcc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        bcc_email = Bcc('test+to0@example.com', 'Example To Name 0')
+        p.add_bcc(bcc_email)
+        p.add_bcc(bcc_email)
+
+        expected = [bcc_email.get()]
+
+        self.assertEqual(expected, p.bccs)
+
+    def test_personalization_add_cc_filters_out_duplicate_cc_emails(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        cc_email = Cc('test+to0@example.com', 'Example To Name 0')
+        p.add_cc(cc_email)
+        p.add_cc(cc_email)
+
+        expected = [cc_email.get()]
+
+        self.assertEqual(expected, p.ccs)
 
     def test_dynamic_template_data(self):
         self.maxDiff = None
