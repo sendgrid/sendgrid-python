@@ -72,7 +72,7 @@ Using pip:
 
 ```bash
 pip uninstall sendgrid
-pip install sendgrid=1.6.22
+pip install sendgrid==1.6.22
 ```
 
 Download:
