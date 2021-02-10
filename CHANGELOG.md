@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-02-10] Version 6.6.0
+--------------------------
+**Library - Docs**
+- [PR #964](https://github.com/sendgrid/sendgrid-python/pull/964): Use correct pip installation command. Thanks to [@Akasurde](https://github.com/Akasurde)!
+
+**Library - Fix**
+- [PR #971](https://github.com/sendgrid/sendgrid-python/pull/971): replace names in BatchId docstrings. Thanks to [@bennylope](https://github.com/bennylope)!
+
+**Library - Feature**
+- [PR #924](https://github.com/sendgrid/sendgrid-python/pull/924): remove duplicate emails ignoring case in Personalization. Thanks to [@DougCal](https://github.com/DougCal)!
+
+
 [2021-01-13] Version 6.5.0
 --------------------------
 **Library - Feature**
