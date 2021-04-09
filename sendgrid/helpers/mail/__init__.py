@@ -4,7 +4,10 @@ from .batch_id import BatchId
 from .bcc_email import Bcc
 from .bcc_settings import BccSettings
 from .bcc_settings_email import BccSettingsEmail
+from .bypass_bounce_management import BypassBounceManagement
 from .bypass_list_management import BypassListManagement
+from .bypass_spam_management import BypassSpamManagement
+from .bypass_unsubscribe_management import BypassUnsubscribeManagement
 from .category import Category
 from .cc_email import Cc
 from .click_tracking import ClickTracking

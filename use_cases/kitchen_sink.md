@@ -8,7 +8,8 @@ from sendgrid.helpers.mail import (
     FileContent, FileType, Disposition, ContentId, TemplateId,
     Section, ReplyTo, Category, BatchId, Asm, GroupId, GroupsToDisplay,
     IpPoolName, MailSettings, BccSettings, BccSettingsEmail,
-    BypassListManagement, FooterSettings, FooterText,
+    BypassBounceManagement, BypassListManagement, BypassSpamManagement,
+    BypassUnsubscribeManagement, FooterSettings, FooterText,
     FooterHtml, SandBoxMode, SpamCheck, SpamThreshold, SpamUrl,
     TrackingSettings, ClickTracking, SubscriptionTracking,
     SubscriptionText, SubscriptionHtml, SubscriptionSubstitutionTag,
@@ -185,7 +186,10 @@ mail_settings = MailSettings()
 mail_settings.bcc_settings = BccSettings(
     False,
     BccSettingsEmail("bcc@twilio.com"))
+mail_settings.bypass_bounce_management = BypassBounceManagement(False)
 mail_settings.bypass_list_management = BypassListManagement(False)
+mail_settings.bypass_spam_management = BypassSpamManagement(False)
+mail_settings.bypass_unsubscribe_management = BypassUnsubscribeManagement(False)
 mail_settings.footer_settings = FooterSettings(
     True,
     FooterText("w00t"),

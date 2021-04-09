@@ -935,7 +935,8 @@ class UnitTests(unittest.TestCase):
             FileContent, FileType, Disposition, ContentId, TemplateId,
             Section, ReplyTo, Category, BatchId, Asm, GroupId, GroupsToDisplay,
             IpPoolName, MailSettings, BccSettings, BccSettingsEmail,
-            BypassListManagement, FooterSettings, FooterText,
+            BypassBounceManagement, BypassListManagement, BypassSpamManagement,
+            BypassUnsubscribeManagement, FooterSettings, FooterText,
             FooterHtml, SandBoxMode, SpamCheck, SpamThreshold, SpamUrl,
             TrackingSettings, ClickTracking, SubscriptionTracking,
             SubscriptionText, SubscriptionHtml, SubscriptionSubstitutionTag,
@@ -1116,7 +1117,10 @@ class UnitTests(unittest.TestCase):
         mail_settings = MailSettings()
         mail_settings.bcc_settings = BccSettings(
             False, BccSettingsEmail("bcc@twilio.com"))
+        mail_settings.bypass_bounce_management = BypassBounceManagement(False)
         mail_settings.bypass_list_management = BypassListManagement(False)
+        mail_settings.bypass_spam_management = BypassSpamManagement(False)
+        mail_settings.bypass_unsubscribe_management = BypassUnsubscribeManagement(False)
         mail_settings.footer_settings = FooterSettings(
             True, FooterText("w00t"), FooterHtml("<string>w00t!<strong>"))
         mail_settings.sandbox_mode = SandBoxMode(True)
@@ -1223,7 +1227,16 @@ class UnitTests(unittest.TestCase):
                         "email": "bcc@twilio.com",
                         "enable": false
                     },
+                    "bypass_bounce_management": {
+                        "enable": false
+                    },
                     "bypass_list_management": {
+                        "enable": false
+                    },
+                    "bypass_spam_management": {
+                        "enable": false
+                    },
+                    "bypass_unsubscribe_management": {
                         "enable": false
                     },
                     "footer": {
@@ -1612,4 +1625,43 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(
             tracking_settings.get(),
             {'click_tracking': {'enable': False, 'enable_text': False}}
+        )
+
+    def test_bypass_list_management(self):
+        from sendgrid.helpers.mail import (MailSettings, BypassListManagement)
+        mail_settings = MailSettings()
+        mail_settings.bypass_list_management = BypassListManagement(True)
+
+        self.assertEqual(
+            mail_settings.get(),
+            {
+                "bypass_list_management": {
+                    "enable": True
+                },
+            },
+        )
+
+    def test_v3_bypass_filters(self):
+        from sendgrid.helpers.mail import (
+            MailSettings, BypassBounceManagement,
+            BypassSpamManagement, BypassUnsubscribeManagement
+        )
+        mail_settings = MailSettings()
+        mail_settings.bypass_bounce_management = BypassBounceManagement(True)
+        mail_settings.bypass_spam_management = BypassSpamManagement(True)
+        mail_settings.bypass_unsubscribe_management = BypassUnsubscribeManagement(True)
+
+        self.assertEqual(
+            mail_settings.get(),
+            {
+                "bypass_bounce_management": {
+                    "enable": True
+                },
+                "bypass_spam_management": {
+                    "enable": True
+                },
+                "bypass_unsubscribe_management": {
+                    "enable": True
+                },
+            },
         )
