@@ -216,8 +216,8 @@ class Mail(object):
     def to(self, to_emails, global_substitutions=None, is_multiple=False, p=0):
         """Adds To objects to the Personalization object
 
-        :param to_emails: An To or list of To objects
-        :type to_emails: To, list(To), str, tuple
+        :param to_emails: The email addresses of all recipients
+        :type to_emails: To, str, tuple, list(str), list(tuple), list(To)
         :param global_substitutions: A dict of substitutions for all recipients
         :type global_substitutions: dict
         :param is_multiple: Create a new personalization for each recipient
