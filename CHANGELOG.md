@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-04-21] Version 6.7.0
+--------------------------
+**Library - Docs**
+- [PR #986](https://github.com/sendgrid/sendgrid-python/pull/986): Update to_emails type. Thanks to [@PyGeek03](https://github.com/PyGeek03)!
+
+**Library - Feature**
+- [PR #983](https://github.com/sendgrid/sendgrid-python/pull/983): add v3 bypass filters. Thanks to [@anarayanan604](https://github.com/anarayanan604)!
+
+
 [2021-02-10] Version 6.6.0
 --------------------------
 **Library - Docs**
