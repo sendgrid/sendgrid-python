@@ -1,37 +1,37 @@
-dist: xenial # required for Python >= 3.7
+dist: xenial
 language: python
 cache: pip
 services:
-  - docker
+- docker
 env:
   matrix:
-    - version=2.7
-    - version=3.5
-    - version=3.6
-    - version=3.7
-    - version=3.8
+  - version=2.7
+  - version=3.5
+  - version=3.6
+  - version=3.7
+  - version=3.8
   global:
-    - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
+  - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - make test-docker
+- make test-docker
 after_script:
-  - make test-install
-  - . venv/bin/activate; codecov
-  - ./cc-test-reporter after-build --exit-code $?
+- make test-install
+- ". venv/bin/activate; codecov"
+- "./cc-test-reporter after-build --exit-code $?"
 deploy:
   provider: pypi
-  user: "__token__"
-  password: $PYPI_TOKEN
+  user: __token__
+  password: "$PYPI_TOKEN"
   skip_cleanup: true
   distributions: sdist bdist_wheel
   on:
     tags: true
-    condition: $version = 3.6
-
+    condition: "$version = 3.6"
 notifications:
   slack:
     if: branch = main
@@ -39,4 +39,4 @@ notifications:
     on_success: never
     on_failure: change
     rooms:
-      - secure: Yp7gJ6NPRPNgO77vwS0HynSdnU5LYlLlUNBEzcx+zy230UxuLLWcYZtIqsIqt4oZm45OwgJLBwoCMgmU2Jcj79rGyqWKYtUcLMLKgHVzSgxjm2outt2fxjXIJHIU60S3RCGofBJRkPwEMb7ibgwHYBEsH3wIeLrVVbWvimxka6A=
+      secure: damw3UZJAjoUy2Wsf9/DWT5XHIJ4DcRucS/sLPVEyynSRqhzJlxGL7gLQ2fdtMNDY+1fs4UhzYzpUIdu+Tz2mSdZlv1kRY5zIWwJ5JK+9PACt5wVXpKN794JGKcDXOh64Bqrd3ofXkyecI2OyTVNdcTu370K/Tlz3xhHvdBqpU0=
