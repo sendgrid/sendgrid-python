@@ -91,11 +91,6 @@ class Email(object):
         if not (value is None or isinstance(value, basestring)):
             raise TypeError('name must be of type string.')
 
-        # Escape common CSV delimiters as workaround for
-        # https://github.com/sendgrid/sendgrid-python/issues/578
-        if value is not None and (',' in value or ';' in value):
-            value = html_entity_decode(value)
-            value = '"' + value + '"'
         self._name = value
 
     @property
