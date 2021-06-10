@@ -3,20 +3,6 @@ try:
 except ImportError:
     import email.utils as rfc822
 
-import sys
-if sys.version_info[:3] >= (3, 5, 0):
-    import html
-    html_entity_decode = html.unescape
-else:
-    try:
-        # Python 2.6-2.7
-        from HTMLParser import HTMLParser
-    except ImportError:
-        # Python < 3.5
-        from html.parser import HTMLParser
-    __html_parser__ = HTMLParser()
-    html_entity_decode = __html_parser__.unescape
-
 try:
     basestring = basestring
 except NameError:
