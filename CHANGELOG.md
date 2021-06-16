@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-06-16] Version 6.7.1
+--------------------------
+**Library - Chore**
+- [PR #994](https://github.com/sendgrid/sendgrid-python/pull/994): remove logic adding quotes to names containing , and ;. Thanks to [@JenniferMah](https://github.com/JenniferMah)!
+
+
 [2021-04-21] Version 6.7.0
 --------------------------
 **Library - Docs**
