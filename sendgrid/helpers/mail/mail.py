@@ -24,6 +24,7 @@ class Mail(object):
             self,
             from_email=None,
             to_emails=None,
+            reply_to=None,
             subject=None,
             plain_text_content=None,
             html_content=None,
@@ -40,6 +41,8 @@ class Mail(object):
         :param to_emails: The email address of the recipient
         :type to_emails: To, str, tuple, list(str), list(tuple),
                          list(To), optional
+        :param reply_to: The email address to reply to
+        :type reply_to: ReplyTo, tuple, optional
         :param plain_text_content: The plain text body of the email
         :type plain_text_content: string, optional
         :param html_content: The html body of the email
@@ -78,6 +81,10 @@ class Mail(object):
             self.add_content(amp_html_content, MimeType.amp)
         if html_content is not None:
             self.add_content(html_content, MimeType.html)
+
+        # Optional
+        if reply_to is not None:
+            self.reply_to = reply_to
 
     def __str__(self):
         """A JSON-ready string representation of this Mail object.
