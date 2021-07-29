@@ -94,7 +94,7 @@ class UnitTests(unittest.TestCase):
 
     # Send a Single Email to a Single Recipient
     def test_single_email_to_a_single_recipient(self):
-        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+        from sendgrid.helpers.mail import (Mail, From, To, ReplyTo, Subject,
                                            PlainTextContent, HtmlContent)
         self.maxDiff = None
         message = Mail(
