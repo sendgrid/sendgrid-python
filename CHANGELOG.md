@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-08-11] Version 6.8.0
+--------------------------
+**Library - Feature**
+- [PR #999](https://github.com/sendgrid/sendgrid-python/pull/999): add reply_to to helpers.Mail. Thanks to [@vindarel](https://github.com/vindarel)!
+
+
 [2021-06-16] Version 6.7.1
 --------------------------
 **Library - Chore**
