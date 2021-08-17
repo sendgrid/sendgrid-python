@@ -94,13 +94,12 @@ class UnitTests(unittest.TestCase):
 
     # Send a Single Email to a Single Recipient
     def test_single_email_to_a_single_recipient(self):
-        from sendgrid.helpers.mail import (Mail, From, To, ReplyTo, Subject,
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
                                            PlainTextContent, HtmlContent)
         self.maxDiff = None
         message = Mail(
             from_email=From('test+from@example.com', 'Example From Name'),
             to_emails=To('test+to@example.com', 'Example To Name'),
-            reply_to=ReplyTo('test+reply_to@example.com', 'Example Reply To Name'),
             subject=Subject('Sending with SendGrid is Fun'),
             plain_text_content=PlainTextContent(
                 'and easy to do anywhere, even with Python'),
@@ -123,10 +122,6 @@ class UnitTests(unittest.TestCase):
                 "from": {
                     "email": "test+from@example.com",
                     "name": "Example From Name"
-                },
-                "reply_to": {
-                    "email": "test+reply_to@example.com",
-                    "name": "Example Reply To Name"
                 },
                 "personalizations": [
                     {
@@ -660,7 +655,7 @@ class UnitTests(unittest.TestCase):
         p.add_email(to_email)
 
         self.assertEqual([to_email.get()], p.tos)
-    
+
     def test_personalization_add_email_filters_out_duplicate_to_emails_ignoring_case(self):
         self.maxDiff = None
 
