@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-08-25] Version 6.8.1
+--------------------------
+**Library - Chore**
+- [PR #1003](https://github.com/sendgrid/sendgrid-python/pull/1003): get rid of reply_to in mail helper. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+
+
 [2021-08-11] Version 6.8.0
 --------------------------
 **Library - Feature**
