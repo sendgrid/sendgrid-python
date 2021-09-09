@@ -10,6 +10,7 @@ env:
   - version=3.6
   - version=3.7
   - version=3.8
+  - version=3.9
   global:
   - CC_TEST_REPORTER_ID=$TRAVIS_CODE_CLIMATE_TOKEN
 before_script:
