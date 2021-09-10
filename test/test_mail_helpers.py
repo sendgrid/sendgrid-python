@@ -1100,10 +1100,10 @@ class UnitTests(unittest.TestCase):
         ]
 
         message.custom_arg = CustomArg('marketing5', 'false')
-        message.custom_arg = CustomArg('transactional5', 'true')
+        message.custom_arg = {'transactional5': 'true'}
         message.custom_arg = [
             CustomArg('marketing6', 'true'),
-            CustomArg('transactional6', 'false')
+            {'transactional6': 'false'}
         ]
 
         message.send_at = SendAt(1461775053)
