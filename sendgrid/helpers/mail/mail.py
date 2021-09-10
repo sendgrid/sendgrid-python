@@ -565,32 +565,31 @@ class Mail(object):
 
         :param value: A CustomArg object or a dict of custom arg key/values
         :type value: CustomArg, dict
-        """
-        if custom_arg.personalization is not None:
-            try:
-                personalization = \
-                    self._personalizations[custom_arg.personalization]
-                has_internal_personalization = True
-            except IndexError:
-                personalization = Personalization()
-                has_internal_personalization = False
-            if isinstance(custom_arg, dict):
-                (k, v) = list(custom_arg.items())[0]
-                personalization.add_custom_arg(CustomArg(k, v))
-            else:
+        """ 
+
+        if isinstance(custom_arg, CustomArg):
+            if custom_arg.personalization is not None:
+                try:
+                    personalization = \
+                        self._personalizations[custom_arg.personalization]
+                    has_internal_personalization = True
+                except IndexError:
+                    personalization = Personalization()
+                    has_internal_personalization = False
+
                 personalization.add_custom_arg(custom_arg)
 
-            if not has_internal_personalization:
-                self.add_personalization(
-                    personalization, index=custom_arg.personalization)
-        else:
-            if isinstance(custom_arg, dict):
-                (k, v) = list(custom_arg.items())[0]
-                self._custom_args = self._ensure_append(
-                    CustomArg(k, v), self._custom_args)
+                if not has_internal_personalization:
+                    self.add_personalization(
+                        personalization, index=custom_arg.personalization)
             else:
                 self._custom_args = self._ensure_append(
                     custom_arg, self._custom_args)
+        elif isinstance(custom_arg, dict):
+            (k, v) = list(custom_arg.items())[0]
+            self._custom_args = self._ensure_append(
+                CustomArg(k, v), self._custom_args)
+               
 
     @property
     def send_at(self):
