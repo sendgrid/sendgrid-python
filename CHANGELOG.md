@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-10-18] Version 6.8.3
+--------------------------
+**Library - Chore**
+- [PR #1016](https://github.com/sendgrid/sendgrid-python/pull/1016): pin starkbank-ecdsa version. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+- [PR #1015](https://github.com/sendgrid/sendgrid-python/pull/1015): pin starkbank-ecdsa version. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Docs**
+- [PR #1013](https://github.com/sendgrid/sendgrid-python/pull/1013): improve signed event webhook validation docs. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+
+
 [2021-09-22] Version 6.8.2
 --------------------------
 **Library - Chore**
