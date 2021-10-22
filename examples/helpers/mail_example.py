@@ -13,7 +13,7 @@ def build_hello_email():
     from sendgrid import SendGridAPIClient
     from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
 
-    message = Mail(from_email=From('from@example.com.com', 'Example From Name'),
+    message = Mail(from_email=From('from@example.com', 'Example From Name'),
                 to_emails=To('to@example.com', 'Example To Name'),
                 subject=Subject('Sending with SendGrid is Fun'),
                 plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
@@ -26,25 +26,30 @@ def build_hello_email():
     except SendGridException as e:
         print(e.message)
 
-    for cc_addr in personalization['cc_list']:
+    mock_personalization = Personalization()
+    personalization_dict = get_mock_personalization_dict()
+
+    for cc_addr in personalization_dict['cc_list']:
         mock_personalization.add_to(cc_addr)
 
-    for bcc_addr in personalization['bcc_list']:
+    for bcc_addr in personalization_dict['bcc_list']:
         mock_personalization.add_bcc(bcc_addr)
 
-    for header in personalization['headers']:
+    for header in personalization_dict['headers']:
         mock_personalization.add_header(header)
 
-    for substitution in personalization['substitutions']:
+    for substitution in personalization_dict['substitutions']:
         mock_personalization.add_substitution(substitution)
 
-    for arg in personalization['custom_args']:
+    for arg in personalization_dict['custom_args']:
         mock_personalization.add_custom_arg(arg)
 
-    mock_personalization.subject = personalization['subject']
-    mock_personalization.send_at = personalization['send_at']
-    return mock_personalization
+    mock_personalization.subject = personalization_dict['subject']
+    mock_personalization.send_at = personalization_dict['send_at']
 
+    message.add_personalization(mock_personalization)
+
+    return message
 
 def get_mock_personalization_dict():
     """Get a dict of personalization mock."""
@@ -78,6 +83,36 @@ def get_mock_personalization_dict():
     mock_pers['send_at'] = 1443636843
     return mock_pers
 
+def build_multiple_emails_personalized():
+    import json
+    from sendgrid.helpers.mail import Mail, From, To, Cc, Bcc, Subject, PlainTextContent, \
+        HtmlContent, SendGridException, Personalization
+
+    # Note that the domain for all From email addresses must match
+    message = Mail(from_email=From('from@example.com', 'Example From Name'),
+                subject=Subject('Sending with SendGrid is Fun'),
+                plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
+                html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
+
+    mock_personalization = Personalization()
+    mock_personalization.add_to(To('test@example.com', 'Example User 1'))
+    mock_personalization.add_cc(Cc('test1@example.com', 'Example User 2'))
+    message.add_personalization(mock_personalization)
+
+    mock_personalization_2 = Personalization()
+    mock_personalization_2.add_to(To('test2@example.com', 'Example User 3'))
+    mock_personalization_2.set_from(From('from@example.com', 'Example From Name 2'))
+    mock_personalization_2.add_bcc(Bcc('test3@example.com', 'Example User 4'))
+    message.add_personalization(mock_personalization_2)
+
+    try:
+        print(json.dumps(message.get(), sort_keys=True, indent=4))
+        return message.get()
+
+    except SendGridException as e:
+        print(e.message)
+
+    return message
 
 def build_attachment1():
     """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
@@ -308,6 +343,15 @@ def build_kitchen_sink():
 
     return message
 
+def send_multiple_emails_personalized():
+    # Assumes you set your environment variable:
+    # https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key
+    message = build_multiple_emails_personalized()
+    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    response = sendgrid_client.send(message=message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
 
 def send_hello_email():
     # Assumes you set your environment variable:
@@ -333,6 +377,9 @@ def send_kitchen_sink():
 
 ## this will actually send an email
 # send_hello_email()
+
+## this will send multiple emails
+# send_multiple_emails_personalized()
 
 ## this will only send an email if you set SandBox Mode to False
 # send_kitchen_sink()
