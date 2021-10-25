@@ -6,6 +6,7 @@ class Personalization(object):
     def __init__(self):
         """Create an empty Personalization and initialize member variables."""
         self._tos = []
+        self._from_email = None
         self._ccs = []
         self._bccs = []
         self._subject = None
@@ -26,7 +27,10 @@ class Personalization(object):
         if email_type.__name__ == 'Bcc':
             self.add_bcc(email)
             return
-        raise ValueError('Please use a To, Cc or Bcc object.')
+        if email_type.__name__ == 'From':
+            self.from_email = email
+            return
+        raise ValueError('Please use a To, From, Cc or Bcc object.')
     
     def _get_unique_recipients(self, recipients):
         unique_recipients = []
@@ -76,6 +80,17 @@ class Personalization(object):
                 self.subject = email.subject.get()
 
         self._tos.append(email.get())
+
+    @property
+    def from_email(self):
+        return self._from_email
+
+    @from_email.setter
+    def from_email(self, value):
+        self._from_email = value
+
+    def set_from(self, email):
+        self._from_email = email.get()
 
     @property
     def ccs(self):
@@ -235,6 +250,10 @@ class Personalization(object):
             value = getattr(self, key)
             if value:
                 personalization[key[:-1]] = value
+
+        from_value = getattr(self, 'from_email')
+        if from_value:
+            personalization['from'] = from_value
 
         for key in ['subject', 'send_at', 'dynamic_template_data']:
             value = getattr(self, key)

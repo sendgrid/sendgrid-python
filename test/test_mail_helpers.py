@@ -667,6 +667,15 @@ class UnitTests(unittest.TestCase):
 
         self.assertEqual([to_email.get()], p.tos)
 
+    def test_personalization_set_from_email(self):
+        self.maxDiff = None
+
+        p = Personalization()
+        from_email = From('test+from@example.com', 'Example From')
+        p.set_from(from_email)
+
+        self.assertEqual(from_email.get(), p.from_email)
+
     def test_personalization_filters_out_duplicate_cc_emails(self):
         self.maxDiff = None
 

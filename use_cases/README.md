@@ -8,6 +8,7 @@ This directory provides examples for specific use cases of this library. Please 
 * [Send a Single Email to a Single Recipient](send_a_single_email_to_a_single_recipient.md)
 * [Send a Single Email to Multiple Recipients](send_a_single_email_to_multiple_recipients.md)
 * [Send Multiple Emails to Multiple Recipients](send_multiple_emails_to_multiple_recipients.md)
+* [Send Multiple Emails with Personalizations](send_multiple_emails_personalizations.md)
 * [Kitchen Sink - an example with all settings used](kitchen_sink.md)
 * [Transactional Templates](transactional_templates.md)
 * [Attachments](attachment.md)
