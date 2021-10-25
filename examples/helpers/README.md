@@ -31,7 +31,10 @@ For more information on parameters and usage, see [here](../mail/mail.py)
 The personalization helper can be used to create personalizations and customize various aspects of an email. See example [here](mail_example.py) in `build_multiple_emails_personalized()`, and refer [here](https://docs.sendgrid.com/for-developers/sending-email/personalizations) for more documentation.
 ```
  mock_personalization = Personalization()
- mock_personalization.add_to(to_addr)
+ 
+ for to_addr in personalization['to_list']:
+   mock_personalization.add_to(to_addr)
+
  mock_personalization.set_from(from_addr)
  mock_personalization.add_cc(cc_addr)
  # etc...
