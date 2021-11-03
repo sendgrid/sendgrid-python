@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-11-03] Version 6.9.0
+--------------------------
+**Library - Feature**
+- [PR #1020](https://github.com/sendgrid/sendgrid-python/pull/1020): allow personalization of the From name and email for each recipient. Thanks to [@beebzz](https://github.com/beebzz)!
+
+
 [2021-10-18] Version 6.8.3
 --------------------------
 **Library - Chore**
