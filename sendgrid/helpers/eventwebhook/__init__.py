@@ -27,7 +27,7 @@ class EventWebhook:
         :return: public key using the ECDSA algorithm
         :rtype PublicKey
         """
-        return PublicKey.fromPem(public_key)
+        return PublicKey.fromPem('\n-----BEGIN PUBLIC KEY-----\n'+public_key+'\n-----END PUBLIC KEY-----\n')
 
     def verify_signature(self, payload, signature, timestamp, public_key=None):
         """
