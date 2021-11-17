@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-11-17] Version 6.9.1
+--------------------------
+**Library - Chore**
+- [PR #1022](https://github.com/sendgrid/sendgrid-python/pull/1022): fix vulnerability in starbank-ecdsa dependency. Thanks to [@hellno](https://github.com/hellno)!
+
+
 [2021-11-03] Version 6.9.0
 --------------------------
 **Library - Feature**
