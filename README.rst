@@ -3,7 +3,7 @@
 
 
 
-|Travis Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
+|Tests Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
 
 **This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Python.**
 
@@ -288,8 +288,8 @@ License
 .. _troubleshooting guide: https://github.com/sendgrid/sendgrid-python/blob/HEAD/TROUBLESHOOTING.md
 .. _The MIT License (MIT): https://github.com/sendgrid/sendgrid-python/blob/HEAD/LICENSE
 
-.. |Travis Badge| image:: https://travis-ci.com/sendgrid/sendgrid-python.svg?branch=main
-   :target: https://travis-ci.com/sendgrid/sendgrid-python
+.. |Tests Badge| image:: https://github.com/sendgrid/sendgrid-python/actions/workflows/test.yml/badge.svg
+   :target: https://github.com/sendgrid/sendgrid-python/actions/workflows/test.yml
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/sendgrid.svg
    :target: https://pypi.org/project/sendgrid/
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/sendgrid.svg
