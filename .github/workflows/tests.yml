@@ -30,7 +30,6 @@ jobs:
 
       - name: Build & Test
         run: make test-docker test-install
-      - run: bash <(curl -s https://codecov.io/bash)
 
   notify-on-failure:
     name: Slack notify on failure
