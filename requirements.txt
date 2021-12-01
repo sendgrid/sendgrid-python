@@ -1,4 +1,4 @@
-Flask==1.0.2
+Flask==1.1.2
 PyYAML>=4.2b1
 python-http-client>=3.2.1
 six==1.11.0

@@ -11,14 +11,6 @@ class ProjectTests(unittest.TestCase):
     def test_gitignore(self):
         self.assertTrue(os.path.isfile('./.gitignore'))
 
-    # ./.travis.yml
-    def test_travis(self):
-        self.assertTrue(os.path.isfile('./.travis.yml'))
-
-    # ./.codeclimate.yml
-    def test_codeclimate(self):
-        self.assertTrue(os.path.isfile('./.codeclimate.yml'))
-
     # ./CHANGELOG.md
     def test_changelog(self):
         self.assertTrue(os.path.isfile('./CHANGELOG.md'))

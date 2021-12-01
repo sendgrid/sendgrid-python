@@ -1649,14 +1649,14 @@ class UnitTests(unittest.TestCase):
     def test_suppression_spam_report__email__get(self):
         email = "test_url_param"
         headers = {'X-Mock': 200}
-        response = self.sg.client.suppression.spam_report._(
+        response = self.sg.client.suppression.spam_reports._(
             email).get(request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_suppression_spam_report__email__delete(self):
         email = "test_url_param"
         headers = {'X-Mock': 204}
-        response = self.sg.client.suppression.spam_report._(
+        response = self.sg.client.suppression.spam_reports._(
             email).delete(request_headers=headers)
         self.assertEqual(response.status_code, 204)
 
