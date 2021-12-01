@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-12-01] Version 6.9.2
+--------------------------
+**Library - Chore**
+- [PR #1027](https://github.com/sendgrid/sendgrid-python/pull/1027): migrate to GitHub Actions. Thanks to [@JenniferMah](https://github.com/JenniferMah)!
+
+
 [2021-11-17] Version 6.9.1
 --------------------------
 **Library - Chore**
