@@ -13,9 +13,10 @@ test-install: install
 	. venv/bin/activate; pip install -r test/requirements.txt
 
 test: test-install
+	. venv/bin/activate; coverage run -m unittest discover -s test/unit
 
 test-integ: test
-	. venv/bin/activate; coverage run -m unittest discover
+	. venv/bin/activate; coverage run -m unittest discover -s test/integ
 
 version ?= latest
 test-docker:
