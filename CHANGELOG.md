@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-12-15] Version 6.9.3
+--------------------------
+**Library - Test**
+- [PR #1029](https://github.com/sendgrid/sendgrid-python/pull/1029): split up unit and integ tests. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2021-12-01] Version 6.9.2
 --------------------------
 **Library - Chore**
