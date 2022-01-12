@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-01-12] Version 6.9.4
+--------------------------
+**Library - Chore**
+- [PR #1031](https://github.com/sendgrid/sendgrid-python/pull/1031): Remove unused import from distutils. Thanks to [@tirkarthi](https://github.com/tirkarthi)!
+
+**Library - Docs**
+- [PR #1032](https://github.com/sendgrid/sendgrid-python/pull/1032): remove leading spaces on error handling example. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
 [2021-12-15] Version 6.9.3
 --------------------------
 **Library - Test**
