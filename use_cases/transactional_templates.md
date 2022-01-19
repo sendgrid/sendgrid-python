@@ -28,7 +28,6 @@ I hope you are having a great day in {{ city }} :)
 
 ```python
 import os
-import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
@@ -86,7 +85,6 @@ I hope you are having a great day in {{{ city }}} :)
 
 ```python
 import os
-import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
