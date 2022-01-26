@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-01-26] Version 6.9.5
+--------------------------
+**Library - Docs**
+- [PR #1036](https://github.com/sendgrid/sendgrid-python/pull/1036): Removing unused json import. Thanks to [@vital101](https://github.com/vital101)!
+
+
 [2022-01-12] Version 6.9.4
 --------------------------
 **Library - Chore**
