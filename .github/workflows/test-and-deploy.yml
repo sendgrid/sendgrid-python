@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
-    name: Run Tests
+  test:
+    name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -35,7 +35,7 @@ jobs:
   release:
       name: Release
       if: success() && github.ref_type == 'tag'
-      needs: [ tests ]
+      needs: [ test ]
       runs-on: ubuntu-latest
       steps:
         - name: Checkout sendgrid-python
@@ -62,7 +62,7 @@ jobs:
   notify-on-failure:
     name: Slack notify on failure
     if: failure() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
-    needs: [ tests, release ]
+    needs: [ test, release ]
     runs-on: ubuntu-latest
     steps:
       - uses: rtCamp/action-slack-notify@v2
