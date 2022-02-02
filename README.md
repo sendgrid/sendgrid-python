@@ -1,6 +1,6 @@
 ![SendGrid Logo](twilio_sendgrid_logo.png)
 
-[![Tests](https://github.com/sendgrid/sendgrid-python/actions/workflows/tests.yml/badge.svg)](https://github.com/sendgrid/sendgrid-python/actions/workflows/tests.yml)
+[![BuildStatus](https://github.com/sendgrid/sendgrid-python/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/sendgrid/sendgrid-python/actions/workflows/test-and-deploy.yml)
 [![Docker Badge](https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg)](https://hub.docker.com/r/sendgrid/sendgrid-python/)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)

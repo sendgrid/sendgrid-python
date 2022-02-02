@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Checkout sendgrid-python
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Build & Test
         run: make test-docker version=${{ matrix.python-version }}
