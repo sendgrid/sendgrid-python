@@ -1,0 +1,71 @@
+name: Test and Deploy
+on:
+  push:
+    branches: [ '*' ]
+    tags: [ '*' ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run automatically at 8AM PST Monday-Friday
+    - cron: '0 15 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        python-version: [ '2.7', '3.5', '3.6', '3.7', '3.8', '3.9' ]
+    steps:
+      - name: Checkout sendgrid-python
+        uses: actions/checkout@v2
+
+      - name: Build & Test
+        run: make test-docker version=${{ matrix.python-version }}
+
+  deploy:
+      name: Deploy
+      if: success() && github.ref_type == 'tag'
+      needs: [ test ]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout sendgrid-python
+          uses: actions/checkout@v2
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.6'
+
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install build
+            pip install wheel
+            python setup.py sdist bdist_wheel
+
+        - name: Publish package to PyPI
+          uses: pypa/gh-action-pypi-publish@release/v1
+          with:
+            user: __token__
+            password: ${{ secrets.PYPI_TOKEN }}
+
+  notify-on-failure:
+    name: Slack notify on failure
+    if: failure() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
+    needs: [ test, deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: failure
+          SLACK_ICON_EMOJI: ':github:'
+          SLACK_MESSAGE: ${{ format('Test *{0}*, Deploy *{1}*, {2}/{3}/actions/runs/{4}', needs.test.result, needs.deploy.result, github.server_url, github.repository, github.run_id) }}
+          SLACK_TITLE: Action Failure - ${{ github.repository }}
+          SLACK_USERNAME: GitHub Actions
+          SLACK_MSG_AUTHOR: twilio-dx
+          SLACK_FOOTER: Posted automatically using GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          MSG_MINIMAL: true
