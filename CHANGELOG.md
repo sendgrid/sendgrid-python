@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-02-09] Version 6.9.6
+--------------------------
+**Library - Chore**
+- [PR #1044](https://github.com/sendgrid/sendgrid-python/pull/1044): drop pytest which was not being used. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #1043](https://github.com/sendgrid/sendgrid-python/pull/1043): upgrade supported language versions. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #1041](https://github.com/sendgrid/sendgrid-python/pull/1041): add gh release to workflow. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+- [PR #1039](https://github.com/sendgrid/sendgrid-python/pull/1039): merge test and deploy workflows. Thanks to [@Hunga1](https://github.com/Hunga1)!
+
+
 [2022-01-26] Version 6.9.5
 --------------------------
 **Library - Docs**
