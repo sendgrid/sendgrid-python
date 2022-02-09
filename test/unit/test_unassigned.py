@@ -1,8 +1,6 @@
 import json
-import pytest
 
 from sendgrid.helpers.endpoints.ip.unassigned import unassigned
-
 
 ret_json = '''[ {
 	"ip": "167.89.21.3",
@@ -69,8 +67,7 @@ def make_data():
 
 
 def test_unassigned_ip_json():
-
-    data =  make_data()
+    data = make_data()
 
     as_json = True
     calculated = unassigned(get_all_ip(), as_json=as_json)
@@ -81,8 +78,7 @@ def test_unassigned_ip_json():
 
 
 def test_unassigned_ip_obj():
-
-    data =  make_data()
+    data = make_data()
 
     as_json = False
     calculated = unassigned(get_all_ip(), as_json=as_json)
