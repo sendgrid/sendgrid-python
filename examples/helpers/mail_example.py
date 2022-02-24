@@ -1,3 +1,6 @@
+import os
+import json
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import *
 
@@ -8,11 +11,7 @@ from sendgrid.helpers.mail import *
 
 def build_hello_email():
     ## Send a Single Email to a Single Recipient
-    import os
-    import json
-    from sendgrid import SendGridAPIClient
-    from sendgrid.helpers.mail import Mail, From, To, Subject, PlainTextContent, HtmlContent, SendGridException
-
+    
     message = Mail(from_email=From('from@example.com', 'Example From Name'),
                 to_emails=To('to@example.com', 'Example To Name'),
                 subject=Subject('Sending with SendGrid is Fun'),
@@ -84,11 +83,8 @@ def get_mock_personalization_dict():
     return mock_pers
 
 def build_multiple_emails_personalized():
-    import json
-    from sendgrid.helpers.mail import Mail, From, To, Cc, Bcc, Subject, PlainTextContent, \
-        HtmlContent, SendGridException, Personalization
-
     # Note that the domain for all From email addresses must match
+    
     message = Mail(from_email=From('from@example.com', 'Example From Name'),
                 subject=Subject('Sending with SendGrid is Fun'),
                 plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
@@ -117,6 +113,7 @@ def build_multiple_emails_personalized():
 def build_attachment1():
     """Build attachment mock. Make sure your content is base64 encoded before passing into attachment.content.
     Another example: https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/attachment.md"""
+    
     attachment = Attachment()
     attachment.file_content = ("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNl"
                           "Y3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12")
