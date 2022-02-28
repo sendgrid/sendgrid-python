@@ -1,5 +1,5 @@
 pyyaml
-flask
+Flask==2.0.3
 six
 coverage
 codecov
