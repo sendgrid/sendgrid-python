@@ -1,6 +1,8 @@
 pyyaml
-Flask==2.0.3
+Flask==1.1.4
 six
 coverage
 codecov
 mock
+itsdangerous==1.1.0
+markupsafe==1.1.1
