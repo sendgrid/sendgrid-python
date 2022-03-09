@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-03-09] Version 6.9.7
+--------------------------
+**Library - Chore**
+- [PR #1048](https://github.com/sendgrid/sendgrid-python/pull/1048): Update mail_example.py. Thanks to [@vmesel](https://github.com/vmesel)!
+- [PR #1049](https://github.com/sendgrid/sendgrid-python/pull/1049): push Datadog Release Metric upon deploy success. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+- [PR #1050](https://github.com/sendgrid/sendgrid-python/pull/1050): fix flask dependency test issues. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2022-02-09] Version 6.9.6
 --------------------------
 **Library - Chore**
