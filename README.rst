@@ -3,15 +3,12 @@
 
 
 
-|Tests Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |Email Notifications Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
+|Tests Badge| |codecov| |Python Versions| |PyPI Version| |Docker Badge| |MIT licensed| |Twitter Follow| |GitHub contributors| |Open Source Helpers|
 
 **This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Python.**
 
 **NEW:**
 
-**The default branch name for this repository has been changed to `main` as of 07/27/2020.**
-
--  Subscribe to email `notifications`_ for releases and breaking changes.
 -  Version 6.X release is a BREAKING CHANGE from version 5.X, please see the `release notes`_ for details.
 -  Send SMS messages with `Twilio`_.
 
@@ -223,7 +220,6 @@ Announcements
 =============
 
 All updates to this library are documented in our `CHANGELOG`_ and `releases`_.
-You may also subscribe to email `release notifications`_ for releases and breaking changes.
 
 How to Contribute
 =================
@@ -253,7 +249,6 @@ License
 
 `The MIT License (MIT)`_
 
-.. _notifications: https://dx.sendgrid.com/newsletter/python
 .. _Twilio: https://github.com/sendgrid/sendgrid-python/blob/HEAD/use_cases/sms.md
 .. _release notes: https://github.com/sendgrid/sendgrid-python/releases/tag/v6.0.0
 .. _Web API v3: https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html
@@ -279,7 +274,6 @@ License
 .. _breaking changes: https://github.com/sendgrid/sendgrid-python/issues/217
 .. _CHANGELOG: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CHANGELOG.md
 .. _releases: https://github.com/sendgrid/sendgrid-python/releases
-.. _release notifications: https://dx.sendgrid.com/newsletter/python
 .. _CONTRIBUTING: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md
 .. _Feature Request: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#feature-request
 .. _Bug Reports: https://github.com/sendgrid/sendgrid-python/blob/HEAD/CONTRIBUTING.md#submit-a-bug-report
@@ -298,8 +292,6 @@ License
    :target: https://codecov.io/gh/sendgrid/sendgrid-python
 .. |Docker Badge| image:: https://img.shields.io/docker/automated/sendgrid/sendgrid-python.svg
    :target: https://hub.docker.com/r/sendgrid/sendgrid-python/
-.. |Email Notifications Badge| image:: https://dx.sendgrid.com/badge/python
-   :target: https://dx.sendgrid.com/newsletter/python
 .. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: ./LICENSE
 .. |Twitter Follow| image:: https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow
