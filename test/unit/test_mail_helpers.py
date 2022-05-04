@@ -2,6 +2,8 @@
 import json
 import unittest
 
+from sendgrid.helpers.mail.header import Header
+
 try:
     from email.message import EmailMessage
 except ImportError:
@@ -336,6 +338,142 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(
             message.get(),
             json.loads(response_content_with_all_three_mime_contents)
+        )
+
+    def test_single_email_with_custom_header_globaly(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           Header, PlainTextContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python')
+        )
+
+        message.header = Header('X-Test1', 'Test1')
+        response_content = json.dumps({
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": "and easy to do anywhere, even with Python"
+                }
+            ],
+            "from": {
+                "email": "test+from@example.com",
+                "name": "Example From Name"
+            },
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "test+to@example.com",
+                            "name": "Example To Name"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Sending with SendGrid is Fun",
+            "headers": {
+                "X-Test1": "Test1"
+            }
+        })
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content)
+        )
+
+    def test_single_email_with_custom_header_globaly_single_key_value_dict(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           Header, PlainTextContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python')
+        )
+        message.add_header({'X-Test1': 'Test1'})
+
+        response_content = json.dumps({
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": "and easy to do anywhere, even with Python"
+                }
+            ],
+            "from": {
+                "email": "test+from@example.com",
+                "name": "Example From Name"
+            },
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "test+to@example.com",
+                            "name": "Example To Name"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Sending with SendGrid is Fun",
+            "headers": {
+                "X-Test1": "Test1"
+            }
+        })
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content)
+        )
+
+    def test_single_email_with_custom_header_globaly_multi_key_values_dict(self):
+        from sendgrid.helpers.mail import (Mail, From, To, Subject,
+                                           Header, PlainTextContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python')
+        )
+        message.add_header({
+            'X-Test1': 'Test1',
+            'X-Test2': 'Test2'
+        })
+
+        response_content = json.dumps({
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": "and easy to do anywhere, even with Python"
+                }
+            ],
+            "from": {
+                "email": "test+from@example.com",
+                "name": "Example From Name"
+            },
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "test+to@example.com",
+                            "name": "Example To Name"
+                        }
+                    ]
+                }
+            ],
+            "subject": "Sending with SendGrid is Fun",
+            "headers": {
+                "X-Test1": "Test1",
+                # "X-Test2": "Test2",  # does NOT applied
+            }
+        })
+        self.assertEqual(
+            message.get(),
+            json.loads(response_content)
         )
 
     def test_single_email_with_amp_and_html_contents_to_single_recipient(self):
