@@ -461,8 +461,13 @@ class Mail(object):
         """Add headers to the email globaly or to a specific Personalization
 
         :param value: A Header object or a dict of header key/values
+                      If dict has multiple keys, only first key/value item are applied
         :type value: Header, dict
         """
+        if isinstance(header, dict):
+            (k, v) = list(header.items())[0]
+            self._headers = self._ensure_append(Header(k, v), self._headers)
+            return
         if header.personalization is not None:
             try:
                 personalization = \
@@ -471,23 +476,14 @@ class Mail(object):
             except IndexError:
                 personalization = Personalization()
                 has_internal_personalization = False
-            if isinstance(header, dict):
-                (k, v) = list(header.items())[0]
-                personalization.add_header(Header(k, v))
-            else:
-                personalization.add_header(header)
+            personalization.add_header(header)
 
             if not has_internal_personalization:
                 self.add_personalization(
                     personalization,
                     index=header.personalization)
         else:
-            if isinstance(header, dict):
-                (k, v) = list(header.items())[0]
-                self._headers = self._ensure_append(
-                    Header(k, v), self._headers)
-            else:
-                self._headers = self._ensure_append(header, self._headers)
+            self._headers = self._ensure_append(header, self._headers)
 
     @property
     def substitution(self):
