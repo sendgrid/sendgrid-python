@@ -23,10 +23,6 @@ class ProjectTests(unittest.TestCase):
     def test_contributing(self):
         self.assertTrue(os.path.isfile('./CONTRIBUTING.md'))
 
-    # ./ISSUE_TEMPLATE.md
-    def test_issue_template(self):
-        self.assertTrue(os.path.isfile('./ISSUE_TEMPLATE.md'))
-
     # ./LICENSE
     def test_license(self):
         self.assertTrue(os.path.isfile('./LICENSE'))
