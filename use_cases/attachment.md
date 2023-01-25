@@ -26,12 +26,12 @@ attachment.disposition = Disposition('attachment')
 attachment.content_id = ContentId('Example Content ID')
 message.attachment = attachment
 try:
-    sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    sendgrid_client = SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY')
     response = sendgrid_client.send(message)
     print(response.status_code)
     print(response.body)
     print(response.headers)
 except Exception as e:
-    print(e.message)
+    print(e)
 
 ```
