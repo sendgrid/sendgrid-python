@@ -716,12 +716,11 @@ class Mail(object):
                 if isinstance(reply, ReplyTo):
                     if not isinstance(reply.email, str):
                         raise ValueError('You must provide an email for each entry in a reply_to_list')
-                    reply = ReplyTo(reply.email, reply.name)
                 else:
                     raise ValueError(
                         'Please use a list of ReplyTos for a reply_to_list.'
                     )
-                self._reply_to_list = value
+            self._reply_to_list = value
 
     @property
     def contents(self):
