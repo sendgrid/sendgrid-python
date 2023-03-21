@@ -235,6 +235,58 @@ class UnitTests(unittest.TestCase):
             }''')
         )
 
+    def test_send_a_single_email_with_multiple_reply_to_addresses(self):
+        from sendgrid.helpers.mail import (Mail, From, ReplyTo, To, Subject,
+                                           PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        message = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=To('test+to0@example.com', 'Example To Name'),
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent('and easy to do anywhere, even with Python'),
+            html_content=HtmlContent('<strong>and easy to do anywhere, even with Python</strong>'))
+
+        message.reply_to_list = [ReplyTo(email = 'test+reply_to_1@example.com'), ReplyTo(email = 'test+reply_to_2@example.com')]
+
+        self.assertEqual(
+            message.get(),
+            json.loads(r'''{
+                "content": [
+                    {
+                        "type": "text/plain",
+                        "value": "and easy to do anywhere, even with Python"
+                    },
+                    {
+                        "type": "text/html",
+                        "value": "<strong>and easy to do anywhere, even with Python</strong>"
+                    }
+                ],
+                "from": {
+                    "email": "test+from@example.com",
+                    "name": "Example From Name"
+                },
+                "personalizations": [
+                    {
+                        "to": [
+                            {
+                                "email": "test+to0@example.com",
+                                "name": "Example To Name"
+                            }
+                        ]
+                    }
+                ],
+                "reply_to_list": [
+                    {
+                        "email": "test+reply_to_1@example.com"
+                    },
+                    {
+                        "email": "test+reply_to_2@example.com"
+                    }
+                ],
+                "subject": "Sending with SendGrid is Fun"
+            }''')
+        )
+
     def test_multiple_emails_to_multiple_recipients(self):
         from sendgrid.helpers.mail import (Mail, From, To, Subject,
                                            PlainTextContent, HtmlContent,
@@ -568,6 +620,44 @@ class UnitTests(unittest.TestCase):
                     'and easy to do anywhere, even with Python'),
                 html_content=HtmlContent(
                     '<strong>and easy to do anywhere, even with Python</strong>'))
+    
+    def test_value_error_is_raised_on_to_emails_set_to_reply_to_list_of_strs(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = [
+            ('test+to0@example.com', 'Example To Name 0'),
+            ('test+to1@example.com', 'Example To Name 1')
+        ]
+    
+        mail = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
+        with self.assertRaises(ValueError):
+            mail.reply_to_list = ['test+reply_to0@example.com', 'test+reply_to1@example.com']
+    
+    def test_value_error_is_raised_on_to_emails_set_to_reply_to_list_of_tuples(self):
+        from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)
+        self.maxDiff = None
+        to_emails = [
+            ('test+to0@example.com', 'Example To Name 0'),
+            ('test+to1@example.com', 'Example To Name 1')
+        ]
+    
+        mail = Mail(
+            from_email=From('test+from@example.com', 'Example From Name'),
+            to_emails=to_emails,
+            subject=Subject('Sending with SendGrid is Fun'),
+            plain_text_content=PlainTextContent(
+                'and easy to do anywhere, even with Python'),
+            html_content=HtmlContent(
+                '<strong>and easy to do anywhere, even with Python</strong>'))
+        with self.assertRaises(ValueError):
+            mail.reply_to_list = [('test+reply_to@example.com', 'Test Name')]
 
     def test_error_is_not_raised_on_to_emails_set_to_list_of_tuples(self):
         from sendgrid.helpers.mail import (PlainTextContent, HtmlContent)

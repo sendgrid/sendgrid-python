@@ -60,6 +60,7 @@ class Mail(object):
         self._ip_pool_name = None
         self._mail_settings = None
         self._reply_to = None
+        self._reply_to_list = None
         self._send_at = None
         self._subject = None
         self._template_id = None
@@ -696,6 +697,32 @@ class Mail(object):
         self._reply_to = value
 
     @property
+    def reply_to_list(self):
+        """A list of ReplyTo email addresses
+
+        :rtype: list(ReplyTo), tuple
+        """
+        return self._reply_to_list
+
+    @reply_to_list.setter
+    def reply_to_list(self, value):
+        """A list of ReplyTo email addresses
+
+        :param value: A list of ReplyTo email addresses
+        :type value: list(ReplyTo), tuple
+        """
+        if isinstance(value, list):
+            for reply in value:
+                if isinstance(reply, ReplyTo):
+                    if not isinstance(reply.email, str):
+                        raise ValueError('You must provide an email for each entry in a reply_to_list')
+                else:
+                    raise ValueError(
+                        'Please use a list of ReplyTos for a reply_to_list.'
+                    )
+            self._reply_to_list = value
+
+    @property
     def contents(self):
         """The contents of the email
 
@@ -981,6 +1008,7 @@ class Mail(object):
             'mail_settings': self._get_or_none(self.mail_settings),
             'tracking_settings': self._get_or_none(self.tracking_settings),
             'reply_to': self._get_or_none(self.reply_to),
+            'reply_to_list': [r.get() for r in self.reply_to_list or []],
         }
 
         return {key: value for key, value in mail.items()
