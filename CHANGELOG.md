@@ -1,6 +1,25 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2023-03-22] Version 6.10.0
+---------------------------
+**Library - Feature**
+- [PR #1062](https://github.com/sendgrid/sendgrid-python/pull/1062): Add reply_to_list functionality. Thanks to [@thepuzzlemaster](https://github.com/thepuzzlemaster)!
+- [PR #1059](https://github.com/sendgrid/sendgrid-python/pull/1059): Add Python 3.11 to the testing. Thanks to [@cclauss](https://github.com/cclauss)!
+
+**Library - Miscellaneous**
+- [PR #1065](https://github.com/sendgrid/sendgrid-python/pull/1065): Create GitHub Action to lint Python code. Thanks to [@cclauss](https://github.com/cclauss)!
+- [PR #1064](https://github.com/sendgrid/sendgrid-python/pull/1064): Upgrade GitHub Action test-and-deploy.yml. Thanks to [@cclauss](https://github.com/cclauss)!
+- [PR #1063](https://github.com/sendgrid/sendgrid-python/pull/1063): Upgrade GitHub Action pr-lint.yml. Thanks to [@cclauss](https://github.com/cclauss)!
+
+**Library - Test**
+- [PR #1058](https://github.com/sendgrid/sendgrid-python/pull/1058): Adding misc as PR type. Thanks to [@rakatyal](https://github.com/rakatyal)!
+
+**Library - Docs**
+- [PR #1055](https://github.com/sendgrid/sendgrid-python/pull/1055): Modify README.md in alignment with SendGrid Support. Thanks to [@garethpaul](https://github.com/garethpaul)!
+- [PR #1052](https://github.com/sendgrid/sendgrid-python/pull/1052): Fix link that has drifted. Thanks to [@jonathanberger](https://github.com/jonathanberger)!
+
+
 [2022-03-09] Version 6.9.7
 --------------------------
 **Library - Chore**
