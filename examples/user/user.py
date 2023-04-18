@@ -206,7 +206,6 @@ print(response.headers)
 # Retrieve Event Webhook settings (legacy, no id)#
 # GET /user/webhooks/event/settings #
 
-webhook_id = "some-webhook-uuid"
 response = sg.client.user.webhooks.event.settings.get()
 print(response.status_code)
 print(response.body)
