@@ -196,7 +196,8 @@ data = {
     "unsubscribe": True,
     "url": "url"
 }
-response = sg.client.user.webhooks.event.settings.patch(request_body=data)
+webhook_id = "some-webhook-uuid"
+response = sg.client.user.webhooks.event.settings._(webhook_id).patch(request_body=data)
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -205,7 +206,8 @@ print(response.headers)
 # Retrieve Event Webhook settings #
 # GET /user/webhooks/event/settings #
 
-response = sg.client.user.webhooks.event.settings.get()
+webhook_id = "some-webhook-uuid"
+response = sg.client.user.webhooks.event.settings._(webhook_id).get()
 print(response.status_code)
 print(response.body)
 print(response.headers)
@@ -214,8 +216,10 @@ print(response.headers)
 # Test Event Notification Settings  #
 # POST /user/webhooks/event/test #
 
+webhook_id = "some-webhook-uuid"
 data = {
-    "url": "url"
+    "url": "url",
+    "id": webhook_id
 }
 response = sg.client.user.webhooks.event.test.post(request_body=data)
 print(response.status_code)
