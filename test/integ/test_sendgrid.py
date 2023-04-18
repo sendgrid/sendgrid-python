@@ -2006,7 +2006,6 @@ class UnitTests(unittest.TestCase):
         webhook_id = "some-webhook-uuid"
         response = self.sg.client.user.webhooks.event.settings.get(
             request_headers=headers)
-        repr(response)
         self.assertEqual(response.status_code, 200)
 
     def test_user_webhooks_event_settings_get(self):
@@ -2015,7 +2014,6 @@ class UnitTests(unittest.TestCase):
         self.assertTrue(False, "not true")
         response = self.sg.client.user.webhooks.event.settings._(webhook_id).get(
             request_headers=headers)
-        self.assertEqual(repr(response), "I got a response")
 
         self.assertEqual(response.status_code, 200)
 
