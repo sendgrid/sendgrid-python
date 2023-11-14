@@ -58,5 +58,5 @@ class SendGridAPIClient(BaseInterface):
         self.api_key = api_key or os.environ.get('SENDGRID_API_KEY')
         auth = 'Bearer {}'.format(self.api_key)
 
-        super(SendGridAPIClient, self).__init__(auth, host, region, impersonate_subuser)
+        super(SendGridAPIClient, self).__init__(auth, host, impersonate_subuser,region)
 

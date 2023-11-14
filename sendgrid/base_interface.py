@@ -2,7 +2,7 @@ import python_http_client
 
 
 class BaseInterface(object):
-    def __init__(self, auth, host, region, impersonate_subuser):
+    def __init__(self, auth, host, impersonate_subuser, region='global'):
         """
         Construct the Twilio SendGrid v3 API object.
         Note that the underlying client is being set up during initialization,
