@@ -1,5 +1,6 @@
 import python_http_client
 
+region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
 
 class BaseInterface(object):
     def __init__(self, auth, host, impersonate_subuser, region='global'):
@@ -27,7 +28,7 @@ class BaseInterface(object):
         if host is not None and region == 'global':
             self.set_host(host)
         else:
-            self.set_region(region)
+            self.set_data_residency(region)
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
@@ -69,7 +70,7 @@ class BaseInterface(object):
     def set_host(self,host):
         self.host = host
 
-    def set_region(self,region):
+    def set_data_residency(self,region):
         """
         * Client libraries contain setters for specifying region/edge.
         * This allows support global and eu regions only. This set will likely expand in the future.
@@ -81,7 +82,6 @@ class BaseInterface(object):
         :param region:
         :return:
         """
-        region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
         if region in region_host_dict.keys():
             self.host = region_host_dict[region]
         else:
