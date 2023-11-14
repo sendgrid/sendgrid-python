@@ -1,4 +1,5 @@
 import sendgrid
+import os
 
 from sendgrid import Email, To, Content, Mail
 
