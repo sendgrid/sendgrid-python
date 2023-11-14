@@ -2,7 +2,7 @@ import python_http_client
 
 
 class BaseInterface(object):
-    def __init__(self, auth, host, impersonate_subuser):
+    def __init__(self, auth, host, region, impersonate_subuser):
         """
         Construct the Twilio SendGrid v3 API object.
         Note that the underlying client is being set up during initialization,
@@ -19,10 +19,15 @@ class BaseInterface(object):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
+        :param region: To determine the region which can only be 'global' or 'eu'
+        :type region: string
         """
         from . import __version__
         self.auth = auth
-        self.host = host
+        if host is not None and region == 'global':
+            self.set_host(host)
+        else:
+            self.set_region(region)
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
@@ -60,3 +65,24 @@ class BaseInterface(object):
             message = message.get()
 
         return self.client.mail.send.post(request_body=message)
+
+    def set_host(self,host):
+        self.host = host
+
+    def set_region(self,region):
+        """
+        * Client libraries contain setters for specifying region/edge.
+        * This allows support global and eu regions only. This set will likely expand in the future.
+        * Global should be the default
+        * Global region means the message should be sent through:
+        * HTTP: api.sendgrid.com
+        * EU region means the message should be sent through:
+        * HTTP: api.eu.sendgrid.com
+        :param region:
+        :return:
+        """
+        region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
+        if region in region_host_dict.keys():
+            self.host = region_host_dict[region]
+        else:
+            raise ValueError("region can only be \"eu\" or \"global\"")

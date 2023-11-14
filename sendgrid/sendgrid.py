@@ -32,7 +32,8 @@ class SendGridAPIClient(BaseInterface):
     def __init__(
             self,
             api_key=None,
-            host='https://api.sendgrid.com',
+            host=None,
+            region='global',
             impersonate_subuser=None):
         """
         Construct the Twilio SendGrid v3 API object.
@@ -51,8 +52,11 @@ class SendGridAPIClient(BaseInterface):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
+        :param region: To determine the region which can only be 'global' or 'eu'
+        :type region: string
         """
         self.api_key = api_key or os.environ.get('SENDGRID_API_KEY')
         auth = 'Bearer {}'.format(self.api_key)
 
-        super(SendGridAPIClient, self).__init__(auth, host, impersonate_subuser)
+        super(SendGridAPIClient, self).__init__(auth, host, region, impersonate_subuser)
+
