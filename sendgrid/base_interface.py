@@ -25,10 +25,7 @@ class BaseInterface(object):
         """
         from . import __version__
         self.auth = auth
-        if host is not None and region == 'global':
-            self.set_host(host)
-        else:
-            self.set_data_residency(region)
+        self.host = host
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
@@ -69,6 +66,10 @@ class BaseInterface(object):
 
     def set_host(self,host):
         self.host = host
+        self.client = python_http_client.Client(
+            host=self.host,
+            request_headers=self._default_headers,
+            version=3)
 
     def set_data_residency(self,region):
         """
@@ -84,5 +85,9 @@ class BaseInterface(object):
         """
         if region in region_host_dict.keys():
             self.host = region_host_dict[region]
+            self.client = python_http_client.Client(
+                host=self.host,
+                request_headers=self._default_headers,
+                version=3)
         else:
             raise ValueError("region can only be \"eu\" or \"global\"")

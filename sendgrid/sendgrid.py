@@ -32,7 +32,7 @@ class SendGridAPIClient(BaseInterface):
     def __init__(
             self,
             api_key=None,
-            host=None,
+            host='https://api.sendgrid.com',
             region='global',
             impersonate_subuser=None):
         """
