@@ -33,7 +33,7 @@ class SendGridAPIClient(BaseInterface):
             self,
             api_key=None,
             host='https://api.sendgrid.com',
-            region='global',
+            region=None,
             impersonate_subuser=None):
         """
         Construct the Twilio SendGrid v3 API object.

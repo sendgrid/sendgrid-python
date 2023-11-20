@@ -25,10 +25,13 @@ class BaseInterface(object):
         """
         from . import __version__
         self.auth = auth
-        self.host = host
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
+        if region is None:
+            self.host = host
+        else:
+            self.set_data_residency(region=region)
 
         self.client = python_http_client.Client(
             host=self.host,
@@ -64,30 +67,29 @@ class BaseInterface(object):
 
         return self.client.mail.send.post(request_body=message)
 
-    def set_host(self,host):
+    def set_host(self, host):
         self.host = host
         self.client = python_http_client.Client(
             host=self.host,
             request_headers=self._default_headers,
             version=3)
 
-    def set_data_residency(self,region):
+    def set_data_residency(self, region):
         """
-        * Client libraries contain setters for specifying region/edge.
-        * This allows support global and eu regions only. This set will likely expand in the future.
-        * Global should be the default
-        * Global region means the message should be sent through:
-        * HTTP: api.sendgrid.com
-        * EU region means the message should be sent through:
-        * HTTP: api.eu.sendgrid.com
+        Client libraries contain setters for specifying region/edge.
+        This supports global and eu regions only. This set will likely expand in the future.
+        Global is the default residency (or region)
+        Global region means the message will be sent through https://api.sendgrid.com
+        EU region means the message will be sent through https://api.eu.sendgrid.com
         :param region:
         :return:
         """
         if region in region_host_dict.keys():
             self.host = region_host_dict[region]
-            self.client = python_http_client.Client(
-                host=self.host,
-                request_headers=self._default_headers,
-                version=3)
+            if self._default_headers is not None:
+                self.client = python_http_client.Client(
+                    host=self.host,
+                    request_headers=self._default_headers,
+                    version=3)
         else:
             raise ValueError("region can only be \"eu\" or \"global\"")

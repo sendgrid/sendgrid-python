@@ -5,7 +5,6 @@ from sendgrid import Email, To, Content, Mail
 
 # Example 1
 # setting region to be "global"
-# sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 
 sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
 sg.set_data_residency("global")

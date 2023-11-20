@@ -41,3 +41,7 @@ class UnitTests(unittest.TestCase):
         sg = sendgrid.SendGridAPIClient(api_key='MY_API_KEY')
         with self.assertRaises(ValueError):
             sg.set_data_residency("abc")
+
+    def test_host_with_both_host_and_region_in_constructor(self):
+        sg = sendgrid.SendGridAPIClient(api_key='MY_API_KEY',host="https://example.com",region="eu")
+        self.assertEqual("https://api.eu.sendgrid.com",sg.client.host)
