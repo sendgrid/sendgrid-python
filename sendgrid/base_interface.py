@@ -3,7 +3,7 @@ import python_http_client
 region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
 
 class BaseInterface(object):
-    def __init__(self, auth, host, impersonate_subuser, region='global'):
+    def __init__(self, auth, host, impersonate_subuser, region=None):
         """
         Construct the Twilio SendGrid v3 API object.
         Note that the underlying client is being set up during initialization,
