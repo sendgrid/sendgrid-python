@@ -56,4 +56,3 @@ class SendGridAPIClient(BaseInterface):
         auth = 'Bearer {}'.format(self.api_key)
 
         super(SendGridAPIClient, self).__init__(auth, host, impersonate_subuser)
-
