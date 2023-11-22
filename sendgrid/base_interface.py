@@ -62,7 +62,7 @@ class BaseInterface(object):
 
         return self.client.mail.send.post(request_body=message)
 
-    def set_data_residency(self, region):
+    def set_sendgrid_data_residency(self, region):
         """
         Client libraries contain setters for specifying region/edge.
         This supports global and eu regions only. This set will likely expand in the future.
