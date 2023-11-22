@@ -3,7 +3,7 @@ import python_http_client
 region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
 
 class BaseInterface(object):
-    def __init__(self, auth, host, impersonate_subuser, region=None):
+    def __init__(self, auth, host, impersonate_subuser):
         """
         Construct the Twilio SendGrid v3 API object.
         Note that the underlying client is being set up during initialization,
@@ -20,18 +20,13 @@ class BaseInterface(object):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
-        :param region: To determine the region which can only be 'global' or 'eu'
-        :type region: string
         """
         from . import __version__
         self.auth = auth
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
-        if region is None:
-            self.host = host
-        else:
-            self.set_data_residency(region=region)
+        self.host = host
 
         self.client = python_http_client.Client(
             host=self.host,
@@ -67,13 +62,6 @@ class BaseInterface(object):
 
         return self.client.mail.send.post(request_body=message)
 
-    def set_host(self, host):
-        self.host = host
-        self.client = python_http_client.Client(
-            host=self.host,
-            request_headers=self._default_headers,
-            version=3)
-
     def set_data_residency(self, region):
         """
         Client libraries contain setters for specifying region/edge.
@@ -81,7 +69,7 @@ class BaseInterface(object):
         Global is the default residency (or region)
         Global region means the message will be sent through https://api.sendgrid.com
         EU region means the message will be sent through https://api.eu.sendgrid.com
-        :param region:
+        :param region: string
         :return:
         """
         if region in region_host_dict.keys():
