@@ -51,8 +51,6 @@ class SendGridAPIClient(BaseInterface):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
-        :param region: To determine the region which can only be 'global' or 'eu'
-        :type region: string
         """
         self.api_key = api_key or os.environ.get('SENDGRID_API_KEY')
         auth = 'Bearer {}'.format(self.api_key)
