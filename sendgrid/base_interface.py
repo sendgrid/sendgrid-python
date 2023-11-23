@@ -1,5 +1,6 @@
 import python_http_client
 
+region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
 
 class BaseInterface(object):
     def __init__(self, auth, host, impersonate_subuser):
@@ -22,10 +23,10 @@ class BaseInterface(object):
         """
         from . import __version__
         self.auth = auth
-        self.host = host
         self.impersonate_subuser = impersonate_subuser
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
+        self.host = host
 
         self.client = python_http_client.Client(
             host=self.host,
@@ -60,3 +61,23 @@ class BaseInterface(object):
             message = message.get()
 
         return self.client.mail.send.post(request_body=message)
+
+    def set_sendgrid_data_residency(self, region):
+        """
+        Client libraries contain setters for specifying region/edge.
+        This supports global and eu regions only. This set will likely expand in the future.
+        Global is the default residency (or region)
+        Global region means the message will be sent through https://api.sendgrid.com
+        EU region means the message will be sent through https://api.eu.sendgrid.com
+        :param region: string
+        :return:
+        """
+        if region in region_host_dict.keys():
+            self.host = region_host_dict[region]
+            if self._default_headers is not None:
+                self.client = python_http_client.Client(
+                    host=self.host,
+                    request_headers=self._default_headers,
+                    version=3)
+        else:
+            raise ValueError("region can only be \"eu\" or \"global\"")
