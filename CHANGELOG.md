@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2023-12-01] Version 6.11.0
+---------------------------
+**Library - Feature**
+- [PR #1073](https://github.com/sendgrid/sendgrid-python/pull/1073): geolocation setter in sendgrid-python for GDPR compliance. Thanks to [@manisha1997](https://github.com/manisha1997)!
+
+**Library - Test**
+- [PR #1066](https://github.com/sendgrid/sendgrid-python/pull/1066): removing codedev test dependency. Thanks to [@sethgrid](https://github.com/sethgrid)!
+
+
 [2023-03-22] Version 6.10.0
 ---------------------------
 **Library - Feature**
