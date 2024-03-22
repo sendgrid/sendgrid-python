@@ -7,7 +7,7 @@ venv: clean
 
 install: venv
 	. venv/bin/activate; python setup.py install
-	. venv/bin/activate; pip install -r requirements.txt
+	pip install -r requirements.txt
 
 test-install: install
 	. venv/bin/activate; pip install -r test/requirements.txt
