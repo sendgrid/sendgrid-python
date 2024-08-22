@@ -1,8 +1,7 @@
-from ellipticcurve.ecdsa import Ecdsa
-from ellipticcurve.publicKey import PublicKey
-from ellipticcurve.signature import Signature
-
-from .eventwebhook_header import EventWebhookHeader
+from ecdsa import VerifyingKey, BadSignatureError
+from ecdsa.util import sigdecode_der
+import base64
+import hashlib
 
 class EventWebhook:
     """
@@ -20,14 +19,15 @@ class EventWebhook:
 
     def convert_public_key_to_ecdsa(self, public_key):
         """
-        Convert the public key string to a ECPublicKey.
+        Convert the public key string to a VerifyingKey object.
 
         :param public_key: verification key under Mail Settings
         :type public_key string
-        :return: public key using the ECDSA algorithm
-        :rtype PublicKey
+        :return: VerifyingKey object using the ECDSA algorithm
+        :rtype VerifyingKey
         """
-        return PublicKey.fromPem('\n-----BEGIN PUBLIC KEY-----\n'+public_key+'\n-----END PUBLIC KEY-----\n')
+        pem_key = "-----BEGIN PUBLIC KEY-----\n" + public_key + "\n-----END PUBLIC KEY-----"
+        return VerifyingKey.from_pem(pem_key)
 
     def verify_signature(self, payload, signature, timestamp, public_key=None):
         """
@@ -40,11 +40,15 @@ class EventWebhook:
         :param timestamp: value obtained from the 'X-Twilio-Email-Event-Webhook-Timestamp' header
         :type timestamp: string
         :param public_key: elliptic curve public key
-        :type public_key: PublicKey
+        :type public_key: VerifyingKey
         :return: true or false if signature is valid
         """
-        timestamped_payload = timestamp + payload
-        decoded_signature = Signature.fromBase64(signature)
+        timestamped_payload = (timestamp + payload).encode('utf-8')
+        decoded_signature = base64.b64decode(signature)
 
         key = public_key or self.public_key
-        return Ecdsa.verify(timestamped_payload, decoded_signature, key)
+        try:
+            key.verify(decoded_signature, timestamped_payload, hashfunc=hashlib.sha256, sigdecode=sigdecode_der)
+            return True
+        except BadSignatureError:
+            return False
