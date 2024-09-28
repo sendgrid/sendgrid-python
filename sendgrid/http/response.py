@@ -27,5 +27,20 @@ class Response(object):
     def is_success(self):
         return self.status_code in HTTPStatus.SUCCESS
 
-    def __repr__(self) -> str:
-        return "HTTP {} {}".format(self.status_code, self.content)
+    def __str__(self) -> str:
+        return f"Response(status_code={self.status_code}, text={self.text}, headers={self.headers}, ok={self.ok})"
+
+
+class ApiResponse(object):
+    def __init__(
+            self,
+            status_code,
+            model,
+            headers
+    ):
+        self.status_code = status_code
+        self.model = model
+        self.headers = headers
+
+    def __str__(self) -> str:
+        return f"ApiResponse(status_code={self.status_code}, model={self.model}, headers={self.headers})"
