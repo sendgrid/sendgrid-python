@@ -10,4 +10,3 @@ def parse_response(self, response: Response) -> Any:
         raise self.exception(response, "Unable to create record")
 
     return json.loads(response.text)
-

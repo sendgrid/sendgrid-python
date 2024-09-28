@@ -30,15 +30,15 @@ class HttpClient:
     """
 
     def request(
-            self,
-            method: str,
-            uri: str,
-            params: Optional[Dict[str, object]] = None,
-            data: Optional[Dict[str, object]] = None,
-            headers: Optional[Dict[str, str]] = None,
-            auth: Optional[Tuple[str, str]] = None,
-            timeout: Optional[float] = None,
-            allow_redirects: bool = False,
+        self,
+        method: str,
+        uri: str,
+        params: Optional[Dict[str, object]] = None,
+        data: Optional[Dict[str, object]] = None,
+        headers: Optional[Dict[str, str]] = None,
+        auth: Optional[Tuple[str, str]] = None,
+        timeout: Optional[float] = None,
+        allow_redirects: bool = False,
     ) -> Response:
         """
         Make an HTTP request.
@@ -84,15 +84,15 @@ class AsyncHttpClient(HttpClient):
     """
 
     async def request(
-            self,
-            method: str,
-            uri: str,
-            params: Optional[Dict[str, object]] = None,
-            data: Optional[Dict[str, object]] = None,
-            headers: Optional[Dict[str, str]] = None,
-            auth: Optional[Tuple[str, str]] = None,
-            timeout: Optional[float] = None,
-            allow_redirects: bool = False,
+        self,
+        method: str,
+        uri: str,
+        params: Optional[Dict[str, object]] = None,
+        data: Optional[Dict[str, object]] = None,
+        headers: Optional[Dict[str, str]] = None,
+        auth: Optional[Tuple[str, str]] = None,
+        timeout: Optional[float] = None,
+        allow_redirects: bool = False,
     ) -> Response:
         """
         Make an asynchronous HTTP request.
@@ -106,13 +106,13 @@ class SendgridHttpClient(HttpClient):
     """
 
     def __init__(
-            self,
-            pool_connections: bool = True,
-            request_hooks: Optional[Dict[str, object]] = None,
-            timeout: Optional[float] = None,
-            logger: logging.Logger = _logger,
-            proxy: Optional[Dict[str, str]] = None,
-            max_retries: Optional[int] = None,
+        self,
+        pool_connections: bool = True,
+        request_hooks: Optional[Dict[str, object]] = None,
+        timeout: Optional[float] = None,
+        logger: logging.Logger = _logger,
+        proxy: Optional[Dict[str, str]] = None,
+        max_retries: Optional[int] = None,
     ):
         """
         Constructor for the TwilioHttpClient
@@ -136,20 +136,20 @@ class SendgridHttpClient(HttpClient):
         self.proxy = proxy if proxy else {}
 
     def request(
-            self,
-            method: str,
-            url: str,
-            api_key: str = None,
-            params: Optional[Dict[str, object]] = None,
-            data: Optional[Dict[str, object]] = None,
-            headers: Optional[Dict[str, str]] = None,
-            timeout: Optional[float] = None,
-            allow_redirects: bool = False,
+        self,
+        method: str,
+        url: str,
+        api_key: str = None,
+        params: Optional[Dict[str, object]] = None,
+        data: Optional[Dict[str, object]] = None,
+        headers: Optional[Dict[str, str]] = None,
+        timeout: Optional[float] = None,
+        allow_redirects: bool = False,
     ) -> Response:
         """
         Make an HTTP Request with parameters provided.
 
-        :param api_key: 
+        :param api_key:
         :param method: The HTTP method to use
         :param url: The URL to request
         :param params: Query parameters to append to the URL
@@ -167,7 +167,9 @@ class SendgridHttpClient(HttpClient):
             raise ValueError(timeout)
 
         headers["Authorization"] = f"Bearer {api_key}"
-        #auth.authenticate()
+        # Currently supporting 'application/json' content type
+        headers["Content-Type"] = "application/json"
+        # auth.authenticate()
         kwargs = {
             "method": method.upper(),
             "url": url,
@@ -185,7 +187,7 @@ class SendgridHttpClient(HttpClient):
         session = self.session or Session()
         request = Request(**kwargs)
         self._test_only_last_request = Request(**kwargs)
-        
+
         prepped_request = session.prepare_request(request)
 
         settings = session.merge_environment_settings(
@@ -196,7 +198,7 @@ class SendgridHttpClient(HttpClient):
             prepped_request,
             allow_redirects=allow_redirects,
             timeout=timeout,
-            **settings
+            **settings,
         )
         print(response)
         print(response.status_code)

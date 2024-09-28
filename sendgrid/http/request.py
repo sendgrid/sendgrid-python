@@ -9,14 +9,14 @@ class Match(Enum):
 
 class Request(object):
     def __init__(
-            self,
-            method: Union[str, Match] = Match.ANY,
-            url: Union[str, Match] = Match.ANY,
-            auth: Union[Tuple[str, str], Match] = Match.ANY,
-            params: Union[Dict[str, str], Match] = Match.ANY,
-            data: Union[Dict[str, str], Match] = Match.ANY,
-            headers: Union[Dict[str, str], Match] = Match.ANY,
-            **kwargs: Any
+        self,
+        method: Union[str, Match] = Match.ANY,
+        url: Union[str, Match] = Match.ANY,
+        auth: Union[Tuple[str, str], Match] = Match.ANY,
+        params: Union[Dict[str, str], Match] = Match.ANY,
+        data: Union[Dict[str, str], Match] = Match.ANY,
+        headers: Union[Dict[str, str], Match] = Match.ANY,
+        **kwargs: Any
     ):
         self.method = method
         if method and method is not Match.ANY:
@@ -43,12 +43,12 @@ class Request(object):
             return False
 
         return (
-                self.attribute_equal(self.method, other.method)
-                and self.attribute_equal(self.url, other.url)
-                and self.attribute_equal(self.auth, other.auth)
-                and self.attribute_equal(self.params, other.params)
-                and self.attribute_equal(self.data, other.data)
-                and self.attribute_equal(self.headers, other.headers)
+            self.attribute_equal(self.method, other.method)
+            and self.attribute_equal(self.url, other.url)
+            and self.attribute_equal(self.auth, other.auth)
+            and self.attribute_equal(self.params, other.params)
+            and self.attribute_equal(self.data, other.data)
+            and self.attribute_equal(self.headers, other.headers)
         )
 
     def __str__(self) -> str:

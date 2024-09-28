@@ -9,10 +9,10 @@ class HTTPStatus:
 
 class Response(object):
     def __init__(
-            self,
-            status_code: int,
-            text: str,
-            headers: Optional[Any] = None,
+        self,
+        status_code: int,
+        text: str,
+        headers: Optional[Any] = None,
     ):
         self.content = text
         self.headers = headers
@@ -32,12 +32,7 @@ class Response(object):
 
 
 class ApiResponse(object):
-    def __init__(
-            self,
-            status_code,
-            model,
-            headers
-    ):
+    def __init__(self, status_code, model, headers):
         self.status_code = status_code
         self.model = model
         self.headers = headers
