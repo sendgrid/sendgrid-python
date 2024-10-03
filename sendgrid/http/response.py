@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 
 class HTTPStatus:
-    SUCCESS = range(200, 300)  # Success codes: 200-299
+    SUCCESS = range(200, 400)  # Success codes: 200-399
     CLIENT_ERROR = range(400, 500)  # Client error codes: 400-499
     SERVER_ERROR = range(500, 600)  # Server error codes: 500-599
 
