@@ -3,6 +3,7 @@ import os
 from setuptools import setup, find_packages
 
 
+
 __version__ = None
 with open('sendgrid/version.py') as f:
     exec(f.read())
