@@ -1,0 +1,38 @@
+from enum import Enum
+from typing import Optional, Dict, List
+from sendgrid.converters.serialize import to_serializable, from_serializable
+from enum import Enum
+
+
+
+class ContactdbList2xx:
+    def __init__(
+            self,
+            id: Optional[int]=None,
+            name: Optional[str]=None,
+            recipient_count: Optional[int]=None
+    ):
+        self.id=id
+        self.name=name
+        self.recipient_count=recipient_count
+
+    def to_dict(self):
+        return {key: to_serializable(value)
+            for key, value in {
+            "id": self.id,
+            "name": self.name,
+            "recipient_count": self.recipient_count
+            }.items() if value is not None}
+
+    @classmethod
+    def from_dict(cls, data):
+        return from_serializable(data, cls)
+
+    @staticmethod
+    def generate_model(payload: Dict[str, object]):
+        return ContactdbList2xx(
+            id=payload.get('id'),
+            name=payload.get('name'),
+            recipient_count=payload.get('recipient_count')
+        ) 
+
