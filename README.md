@@ -80,6 +80,30 @@ pip install sendgrid
 
 The following is the minimum needed code to send an email with the [/mail/send Helper](sendgrid/helpers/mail) ([here](examples/helpers/mail_example.py#L9) is a full example):
 
+### Send Email using Auto generated code
+```python
+from sendgrid.client import Client
+
+from sendgrid.rest.api.mail.v3.send_mail import SendMail
+from sendgrid.rest.api.mail.v3.models import (MailTo, MailFrom, SendMailRequestPersonalizationsInner,
+                                              SendMailRequestContentInner, SendMailRequest)
+
+
+client = Client(api_key='api_key')
+
+mail_to_list = [MailTo(email="to_email", name="to_name")]
+personalization = [SendMailRequestPersonalizationsInner(to=mail_to_list, subject="Message")]
+
+send_mail_request = SendMailRequest(
+    personalizations=personalization,
+    var_from=MailFrom(email="from_email", name="from_name"),
+    content=[SendMailRequestContentInner(type="text/plain", value="Body")])
+
+send_mail = SendMail(client)
+response = send_mail.send(send_mail_request=send_mail_request)
+print(response)
+```
+
 ### With Mail Helper Class
 
 ```python
