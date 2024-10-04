@@ -12,59 +12,58 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
+from typing import Optional
 from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from pydantic import Field, StrictStr
 from typing import Optional
-from typing_extensions import Annotated
-from sendgrid.rest.api.api_keys.v3.models.api_key_response import ApiKeyResponse
-from sendgrid.rest.api.api_keys.v3.models.update_api_key_request import UpdateApiKeyRequest
+from sendgrid.rest.api.api_keys.v3.models.update_api_key_request import (
+    UpdateApiKeyRequest,
+)
+
 
 class UpdateApiKey:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            api_key_id: str,
-    on_behalf_of: Optional[str] = None,
-    update_api_key_request: Optional[UpdateApiKeyRequest] = None,
-
+        api_key_id: str,
+        on_behalf_of: Optional[str] = None,
+        update_api_key_request: Optional[UpdateApiKeyRequest] = None,
     ):
-        path='/v3/api_keys/{api_key_id}'
+        path = "/v3/api_keys/{api_key_id}"
         path = path.format(
-        api_key_id=api_key_id,
+            api_key_id=api_key_id,
         )
 
         headers = values.of(
-        {
-            'on-behalf-of': on_behalf_of,
-        })
+            {
+                "on-behalf-of": on_behalf_of,
+            }
+        )
         headers["Content-Type"] = "application/json"
         data = None
         if update_api_key_request:
             data = update_api_key_request.to_dict()
-        request = Request(
-            method='PUT',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="PUT", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

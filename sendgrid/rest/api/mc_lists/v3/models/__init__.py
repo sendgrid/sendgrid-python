@@ -11,21 +11,54 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.mc_lists.v3.models.contact_details import ContactDetails
-from sendgrid.rest.api.mc_lists.v3.models.create_marketing_list400_response import CreateMarketingList400Response
-from sendgrid.rest.api.mc_lists.v3.models.create_marketing_list_request import CreateMarketingListRequest
-from sendgrid.rest.api.mc_lists.v3.models.delete_contact202_response import DeleteContact202Response
-from sendgrid.rest.api.mc_lists.v3.models.delete_marketing_list200_response import DeleteMarketingList200Response
-from sendgrid.rest.api.mc_lists.v3.models.delete_marketing_list404_response import DeleteMarketingList404Response
+from sendgrid.rest.api.mc_lists.v3.models.create_marketing_list400_response import (
+    CreateMarketingList400Response,
+)
+from sendgrid.rest.api.mc_lists.v3.models.create_marketing_list_request import (
+    CreateMarketingListRequest,
+)
+from sendgrid.rest.api.mc_lists.v3.models.delete_contact202_response import (
+    DeleteContact202Response,
+)
+from sendgrid.rest.api.mc_lists.v3.models.delete_marketing_list200_response import (
+    DeleteMarketingList200Response,
+)
+from sendgrid.rest.api.mc_lists.v3.models.delete_marketing_list404_response import (
+    DeleteMarketingList404Response,
+)
 from sendgrid.rest.api.mc_lists.v3.models.error import Error
-from sendgrid.rest.api.mc_lists.v3.models.get_marketing_list200_response import GetMarketingList200Response
+from sendgrid.rest.api.mc_lists.v3.models.get_marketing_list200_response import (
+    GetMarketingList200Response,
+)
 from sendgrid.rest.api.mc_lists.v3.models.list import List
-from sendgrid.rest.api.mc_lists.v3.models.list_contact_count200_response import ListContactCount200Response
-from sendgrid.rest.api.mc_lists.v3.models.list_marketing_list200_response import ListMarketingList200Response
+from sendgrid.rest.api.mc_lists.v3.models.list_contact_count200_response import (
+    ListContactCount200Response,
+)
+from sendgrid.rest.api.mc_lists.v3.models.list_marketing_list200_response import (
+    ListMarketingList200Response,
+)
 from sendgrid.rest.api.mc_lists.v3.models.metadata import Metadata
 from sendgrid.rest.api.mc_lists.v3.models.self_metadata import SelfMetadata
-from sendgrid.rest.api.mc_lists.v3.models.update_marketing_list_request import UpdateMarketingListRequest
-__all__ = [ 'ContactDetails',   'CreateMarketingList400Response',   'CreateMarketingListRequest',   'DeleteContact202Response',   'DeleteMarketingList200Response',   'DeleteMarketingList404Response',   'Error',   'GetMarketingList200Response',   'List',   'ListContactCount200Response',   'ListMarketingList200Response',   'Metadata',   'SelfMetadata',   'UpdateMarketingListRequest'  ]
+from sendgrid.rest.api.mc_lists.v3.models.update_marketing_list_request import (
+    UpdateMarketingListRequest,
+)
+
+__all__ = [
+    "ContactDetails",
+    "CreateMarketingList400Response",
+    "CreateMarketingListRequest",
+    "DeleteContact202Response",
+    "DeleteMarketingList200Response",
+    "DeleteMarketingList404Response",
+    "Error",
+    "GetMarketingList200Response",
+    "List",
+    "ListContactCount200Response",
+    "ListMarketingList200Response",
+    "Metadata",
+    "SelfMetadata",
+    "UpdateMarketingListRequest",
+]
 # Testing code

@@ -1,25 +1,23 @@
-from enum import Enum
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
-
 
 
 class UpdateTemplateRequest:
     def __init__(
-            self,
-            enabled: Optional[bool]=None,
-            html_content: Optional[str]=None
+        self, enabled: Optional[bool] = None, html_content: Optional[str] = None
     ):
-        self.enabled=enabled
-        self.html_content=html_content
+        self.enabled = enabled
+        self.html_content = html_content
 
     def to_dict(self):
-        return {key: to_serializable(value)
+        return {
+            key: to_serializable(value)
             for key, value in {
-            "enabled": self.enabled,
-            "html_content": self.html_content
-            }.items() if value is not None}
+                "enabled": self.enabled,
+                "html_content": self.html_content,
+            }.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -28,7 +26,5 @@ class UpdateTemplateRequest:
     @staticmethod
     def generate_model(payload: Dict[str, object]):
         return UpdateTemplateRequest(
-            enabled=payload.get('enabled'),
-            html_content=payload.get('html_content')
-        ) 
-
+            enabled=payload.get("enabled"), html_content=payload.get("html_content")
+        )

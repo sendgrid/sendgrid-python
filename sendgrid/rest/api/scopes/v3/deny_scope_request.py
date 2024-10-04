@@ -12,47 +12,41 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from pydantic import Field, StrictStr
-from typing_extensions import Annotated
 
 class DenyScopeRequest:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            request_id: str,
-
+        request_id: str,
     ):
-        path='/v3/scopes/requests/{request_id}'
+        path = "/v3/scopes/requests/{request_id}"
         path = path.format(
-        request_id=request_id,
+            request_id=request_id,
         )
 
         data = None
-        request = Request(
-            method='DELETE',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="DELETE", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

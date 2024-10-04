@@ -11,10 +11,20 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_erase_recipients_request import RecipientsDataErasureEraseRecipientsRequest
-from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_error_v1 import RecipientsDataErasureErrorV1
-from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_job_id import RecipientsDataErasureJobId
-__all__ = [ 'RecipientsDataErasureEraseRecipientsRequest',   'RecipientsDataErasureErrorV1',   'RecipientsDataErasureJobId'  ]
+from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_erase_recipients_request import (
+    RecipientsDataErasureEraseRecipientsRequest,
+)
+from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_error_v1 import (
+    RecipientsDataErasureErrorV1,
+)
+from sendgrid.rest.api.recipients_data_erasure.v3.models.recipients_data_erasure_job_id import (
+    RecipientsDataErasureJobId,
+)
+
+__all__ = [
+    "RecipientsDataErasureEraseRecipientsRequest",
+    "RecipientsDataErasureErrorV1",
+    "RecipientsDataErasureJobId",
+]
 # Testing code

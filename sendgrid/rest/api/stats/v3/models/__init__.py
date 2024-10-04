@@ -11,35 +11,100 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.stats.v3.models.advanced_stats_clicks import AdvancedStatsClicks
-from sendgrid.rest.api.stats.v3.models.advanced_stats_clicks_opens import AdvancedStatsClicksOpens
-from sendgrid.rest.api.stats.v3.models.advanced_stats_mailbox_provider import AdvancedStatsMailboxProvider
+from sendgrid.rest.api.stats.v3.models.advanced_stats_clicks_opens import (
+    AdvancedStatsClicksOpens,
+)
+from sendgrid.rest.api.stats.v3.models.advanced_stats_mailbox_provider import (
+    AdvancedStatsMailboxProvider,
+)
 from sendgrid.rest.api.stats.v3.models.advanced_stats_opens import AdvancedStatsOpens
 from sendgrid.rest.api.stats.v3.models.aggregated_by import AggregatedBy
 from sendgrid.rest.api.stats.v3.models.aggregated_by1 import AggregatedBy1
 from sendgrid.rest.api.stats.v3.models.aggregated_by2 import AggregatedBy2
 from sendgrid.rest.api.stats.v3.models.aggregated_by3 import AggregatedBy3
 from sendgrid.rest.api.stats.v3.models.category_stats import CategoryStats
-from sendgrid.rest.api.stats.v3.models.category_stats_stats_inner import CategoryStatsStatsInner
-from sendgrid.rest.api.stats.v3.models.category_stats_stats_inner_metrics import CategoryStatsStatsInnerMetrics
+from sendgrid.rest.api.stats.v3.models.category_stats_stats_inner import (
+    CategoryStatsStatsInner,
+)
+from sendgrid.rest.api.stats.v3.models.category_stats_stats_inner_metrics import (
+    CategoryStatsStatsInnerMetrics,
+)
 from sendgrid.rest.api.stats.v3.models.client_type import ClientType
 from sendgrid.rest.api.stats.v3.models.country import Country
-from sendgrid.rest.api.stats.v3.models.list_browser_stat200_response_inner import ListBrowserStat200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_browser_stat200_response_inner_stats_inner import ListBrowserStat200ResponseInnerStatsInner
-from sendgrid.rest.api.stats.v3.models.list_category200_response_inner import ListCategory200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_category400_response import ListCategory400Response
-from sendgrid.rest.api.stats.v3.models.list_category400_response_errors_inner import ListCategory400ResponseErrorsInner
-from sendgrid.rest.api.stats.v3.models.list_client_stat200_response_inner import ListClientStat200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_client_stat200_response_inner_stats_inner import ListClientStat200ResponseInnerStatsInner
-from sendgrid.rest.api.stats.v3.models.list_geo_stat200_response_inner import ListGeoStat200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_geo_stat200_response_inner_stats_inner import ListGeoStat200ResponseInnerStatsInner
-from sendgrid.rest.api.stats.v3.models.list_mailbox_provider_stat200_response_inner import ListMailboxProviderStat200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_mailbox_provider_stat200_response_inner_stats_inner import ListMailboxProviderStat200ResponseInnerStatsInner
-from sendgrid.rest.api.stats.v3.models.list_stat200_response_inner import ListStat200ResponseInner
-from sendgrid.rest.api.stats.v3.models.list_stat200_response_inner_stats_inner import ListStat200ResponseInnerStatsInner
+from sendgrid.rest.api.stats.v3.models.list_browser_stat200_response_inner import (
+    ListBrowserStat200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_browser_stat200_response_inner_stats_inner import (
+    ListBrowserStat200ResponseInnerStatsInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_category200_response_inner import (
+    ListCategory200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_category400_response import (
+    ListCategory400Response,
+)
+from sendgrid.rest.api.stats.v3.models.list_category400_response_errors_inner import (
+    ListCategory400ResponseErrorsInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_client_stat200_response_inner import (
+    ListClientStat200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_client_stat200_response_inner_stats_inner import (
+    ListClientStat200ResponseInnerStatsInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_geo_stat200_response_inner import (
+    ListGeoStat200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_geo_stat200_response_inner_stats_inner import (
+    ListGeoStat200ResponseInnerStatsInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_mailbox_provider_stat200_response_inner import (
+    ListMailboxProviderStat200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_mailbox_provider_stat200_response_inner_stats_inner import (
+    ListMailboxProviderStat200ResponseInnerStatsInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_stat200_response_inner import (
+    ListStat200ResponseInner,
+)
+from sendgrid.rest.api.stats.v3.models.list_stat200_response_inner_stats_inner import (
+    ListStat200ResponseInnerStatsInner,
+)
 from sendgrid.rest.api.stats.v3.models.sort_by_direction import SortByDirection
-from sendgrid.rest.api.stats.v3.models.stats_advanced_global_stats import StatsAdvancedGlobalStats
-__all__ = [ 'AdvancedStatsClicks',   'AdvancedStatsClicksOpens',   'AdvancedStatsMailboxProvider',   'AdvancedStatsOpens',   'AggregatedBy',   'AggregatedBy1',   'AggregatedBy2',   'AggregatedBy3',   'CategoryStats',   'CategoryStatsStatsInner',   'CategoryStatsStatsInnerMetrics',   'ClientType',   'Country',   'ListBrowserStat200ResponseInner',   'ListBrowserStat200ResponseInnerStatsInner',   'ListCategory200ResponseInner',   'ListCategory400Response',   'ListCategory400ResponseErrorsInner',   'ListClientStat200ResponseInner',   'ListClientStat200ResponseInnerStatsInner',   'ListGeoStat200ResponseInner',   'ListGeoStat200ResponseInnerStatsInner',   'ListMailboxProviderStat200ResponseInner',   'ListMailboxProviderStat200ResponseInnerStatsInner',   'ListStat200ResponseInner',   'ListStat200ResponseInnerStatsInner',   'SortByDirection',   'StatsAdvancedGlobalStats'  ]
+from sendgrid.rest.api.stats.v3.models.stats_advanced_global_stats import (
+    StatsAdvancedGlobalStats,
+)
+
+__all__ = [
+    "AdvancedStatsClicks",
+    "AdvancedStatsClicksOpens",
+    "AdvancedStatsMailboxProvider",
+    "AdvancedStatsOpens",
+    "AggregatedBy",
+    "AggregatedBy1",
+    "AggregatedBy2",
+    "AggregatedBy3",
+    "CategoryStats",
+    "CategoryStatsStatsInner",
+    "CategoryStatsStatsInnerMetrics",
+    "ClientType",
+    "Country",
+    "ListBrowserStat200ResponseInner",
+    "ListBrowserStat200ResponseInnerStatsInner",
+    "ListCategory200ResponseInner",
+    "ListCategory400Response",
+    "ListCategory400ResponseErrorsInner",
+    "ListClientStat200ResponseInner",
+    "ListClientStat200ResponseInnerStatsInner",
+    "ListGeoStat200ResponseInner",
+    "ListGeoStat200ResponseInnerStatsInner",
+    "ListMailboxProviderStat200ResponseInner",
+    "ListMailboxProviderStat200ResponseInnerStatsInner",
+    "ListStat200ResponseInner",
+    "ListStat200ResponseInnerStatsInner",
+    "SortByDirection",
+    "StatsAdvancedGlobalStats",
+]
 # Testing code

@@ -11,20 +11,44 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.mc_segments_2.v3.models.all_segments200 import AllSegments200
 from sendgrid.rest.api.mc_segments_2.v3.models.contact_response import ContactResponse
-from sendgrid.rest.api.mc_segments_2.v3.models.contact_response_custom_fields import ContactResponseCustomFields
+from sendgrid.rest.api.mc_segments_2.v3.models.contact_response_custom_fields import (
+    ContactResponseCustomFields,
+)
 from sendgrid.rest.api.mc_segments_2.v3.models.errors_segment_v2 import ErrorsSegmentV2
-from sendgrid.rest.api.mc_segments_2.v3.models.errors_segment_v2_errors_inner import ErrorsSegmentV2ErrorsInner
+from sendgrid.rest.api.mc_segments_2.v3.models.errors_segment_v2_errors_inner import (
+    ErrorsSegmentV2ErrorsInner,
+)
 from sendgrid.rest.api.mc_segments_2.v3.models.metadata import Metadata
 from sendgrid.rest.api.mc_segments_2.v3.models.segment2xx import Segment2xx
 from sendgrid.rest.api.mc_segments_2.v3.models.segment_error import SegmentError
-from sendgrid.rest.api.mc_segments_2.v3.models.segment_refresh202 import SegmentRefresh202
-from sendgrid.rest.api.mc_segments_2.v3.models.segment_refresh_request import SegmentRefreshRequest
-from sendgrid.rest.api.mc_segments_2.v3.models.segment_status_response import SegmentStatusResponse
+from sendgrid.rest.api.mc_segments_2.v3.models.segment_refresh202 import (
+    SegmentRefresh202,
+)
+from sendgrid.rest.api.mc_segments_2.v3.models.segment_refresh_request import (
+    SegmentRefreshRequest,
+)
+from sendgrid.rest.api.mc_segments_2.v3.models.segment_status_response import (
+    SegmentStatusResponse,
+)
 from sendgrid.rest.api.mc_segments_2.v3.models.segment_update import SegmentUpdate
 from sendgrid.rest.api.mc_segments_2.v3.models.segment_write_v2 import SegmentWriteV2
-__all__ = [ 'AllSegments200',   'ContactResponse',   'ContactResponseCustomFields',   'ErrorsSegmentV2',   'ErrorsSegmentV2ErrorsInner',   'Metadata',   'Segment2xx',   'SegmentError',   'SegmentRefresh202',   'SegmentRefreshRequest',   'SegmentStatusResponse',   'SegmentUpdate',   'SegmentWriteV2'  ]
+
+__all__ = [
+    "AllSegments200",
+    "ContactResponse",
+    "ContactResponseCustomFields",
+    "ErrorsSegmentV2",
+    "ErrorsSegmentV2ErrorsInner",
+    "Metadata",
+    "Segment2xx",
+    "SegmentError",
+    "SegmentRefresh202",
+    "SegmentRefreshRequest",
+    "SegmentStatusResponse",
+    "SegmentUpdate",
+    "SegmentWriteV2",
+]
 # Testing code

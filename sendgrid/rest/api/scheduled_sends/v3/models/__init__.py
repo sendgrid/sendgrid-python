@@ -11,16 +11,34 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.scheduled_sends.v3.models.cancel_or_pause_a_scheduled_send_request import CancelOrPauseAScheduledSendRequest
+from sendgrid.rest.api.scheduled_sends.v3.models.cancel_or_pause_a_scheduled_send_request import (
+    CancelOrPauseAScheduledSendRequest,
+)
 from sendgrid.rest.api.scheduled_sends.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.scheduled_sends.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.scheduled_sends.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
 from sendgrid.rest.api.scheduled_sends.v3.models.mail_batch_id import MailBatchId
-from sendgrid.rest.api.scheduled_sends.v3.models.scheduled_send_status import ScheduledSendStatus
+from sendgrid.rest.api.scheduled_sends.v3.models.scheduled_send_status import (
+    ScheduledSendStatus,
+)
 from sendgrid.rest.api.scheduled_sends.v3.models.status import Status
 from sendgrid.rest.api.scheduled_sends.v3.models.status1 import Status1
 from sendgrid.rest.api.scheduled_sends.v3.models.status2 import Status2
-from sendgrid.rest.api.scheduled_sends.v3.models.update_scheduled_send_request import UpdateScheduledSendRequest
-__all__ = [ 'CancelOrPauseAScheduledSendRequest',   'ErrorResponse',   'ErrorResponseErrorsInner',   'MailBatchId',   'ScheduledSendStatus',   'Status',   'Status1',   'Status2',   'UpdateScheduledSendRequest'  ]
+from sendgrid.rest.api.scheduled_sends.v3.models.update_scheduled_send_request import (
+    UpdateScheduledSendRequest,
+)
+
+__all__ = [
+    "CancelOrPauseAScheduledSendRequest",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "MailBatchId",
+    "ScheduledSendStatus",
+    "Status",
+    "Status1",
+    "Status2",
+    "UpdateScheduledSendRequest",
+]
 # Testing code

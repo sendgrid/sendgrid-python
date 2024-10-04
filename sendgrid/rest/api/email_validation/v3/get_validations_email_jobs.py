@@ -12,42 +12,37 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs200_response import GetValidationsEmailJobs200Response
 
 class GetValidationsEmailJobs:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-        
     ):
-        path='/v3/validations/email/jobs'
+        path = "/v3/validations/email/jobs"
 
         data = None
-        request = Request(
-            method='GET',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="GET", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

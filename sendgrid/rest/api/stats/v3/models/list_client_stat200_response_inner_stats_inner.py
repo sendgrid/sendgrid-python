@@ -1,29 +1,29 @@
-from enum import Enum
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
 from sendgrid.rest.api.stats.v3.models.advanced_stats_opens import AdvancedStatsOpens
-
 
 
 class ListClientStat200ResponseInnerStatsInner:
     def __init__(
-            self,
-            type: Optional[str]=None,
-            name: Optional[str]=None,
-            metrics: Optional[AdvancedStatsOpens]=None
+        self,
+        type: Optional[str] = None,
+        name: Optional[str] = None,
+        metrics: Optional[AdvancedStatsOpens] = None,
     ):
-        self.type=type
-        self.name=name
-        self.metrics=metrics
+        self.type = type
+        self.name = name
+        self.metrics = metrics
 
     def to_dict(self):
-        return {key: to_serializable(value)
+        return {
+            key: to_serializable(value)
             for key, value in {
-            "type": self.type,
-            "name": self.name,
-            "metrics": self.metrics
-            }.items() if value is not None}
+                "type": self.type,
+                "name": self.name,
+                "metrics": self.metrics,
+            }.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -32,8 +32,7 @@ class ListClientStat200ResponseInnerStatsInner:
     @staticmethod
     def generate_model(payload: Dict[str, object]):
         return ListClientStat200ResponseInnerStatsInner(
-            type=payload.get('type'),
-            name=payload.get('name'),
-            metrics=payload.get('metrics')
-        ) 
-
+            type=payload.get("type"),
+            name=payload.get("name"),
+            metrics=payload.get("metrics"),
+        )

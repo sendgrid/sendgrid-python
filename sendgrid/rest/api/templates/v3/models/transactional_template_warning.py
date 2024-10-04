@@ -1,22 +1,17 @@
-from enum import Enum
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
-
 
 
 class TransactionalTemplateWarning:
-    def __init__(
-            self,
-            message: Optional[str]=None
-    ):
-        self.message=message
+    def __init__(self, message: Optional[str] = None):
+        self.message = message
 
     def to_dict(self):
-        return {key: to_serializable(value)
-            for key, value in {
-            "message": self.message
-            }.items() if value is not None}
+        return {
+            key: to_serializable(value)
+            for key, value in {"message": self.message}.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -24,7 +19,4 @@ class TransactionalTemplateWarning:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return TransactionalTemplateWarning(
-            message=payload.get('message')
-        ) 
-
+        return TransactionalTemplateWarning(message=payload.get("message"))

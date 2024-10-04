@@ -12,60 +12,55 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
+from typing import List, Optional
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
 from datetime import date
-from pydantic import Field, StrictStr
 from typing import List, Optional
-from typing_extensions import Annotated
 from sendgrid.rest.api.mc_stats.v3.models.aggregated_by import AggregatedBy
-from sendgrid.rest.api.mc_stats.v3.models.automations_response import AutomationsResponse
 from sendgrid.rest.api.mc_stats.v3.models.items import Items
+
 
 class GetAutomationStat:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            id: str,
-    group_by: Optional[List[Items]] = None,
-    step_ids: Optional[List[str]] = None,
-    aggregated_by: Optional[AggregatedBy] = None,
-    start_date: Optional[date] = None,
-    end_date: Optional[date] = None,
-    timezone: Optional[str] = None,
-    page_size: Optional[int] = None,
-    page_token: Optional[str] = None,
-
+        id: str,
+        group_by: Optional[List[Items]] = None,
+        step_ids: Optional[List[str]] = None,
+        aggregated_by: Optional[AggregatedBy] = None,
+        start_date: Optional[date] = None,
+        end_date: Optional[date] = None,
+        timezone: Optional[str] = None,
+        page_size: Optional[int] = None,
+        page_token: Optional[str] = None,
     ):
-        path='/v3/marketing/stats/automations/{id}'
+        path = "/v3/marketing/stats/automations/{id}"
         path = path.format(
-        id=id,
+            id=id,
         )
 
         data = None
-        request = Request(
-            method='GET',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="GET", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

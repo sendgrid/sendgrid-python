@@ -1,26 +1,21 @@
-from enum import Enum
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
 from sendgrid.rest.api.scheduled_sends.v3.models.status2 import Status2
-
 
 
 class ScheduledSendStatus:
     def __init__(
-            self,
-            batch_id: Optional[str]=None,
-            status: Optional[Status2]=None
+        self, batch_id: Optional[str] = None, status: Optional[Status2] = None
     ):
-        self.batch_id=batch_id
-        self.status=status
+        self.batch_id = batch_id
+        self.status = status
 
     def to_dict(self):
-        return {key: to_serializable(value)
-            for key, value in {
-            "batch_id": self.batch_id,
-            "status": self.status
-            }.items() if value is not None}
+        return {
+            key: to_serializable(value)
+            for key, value in {"batch_id": self.batch_id, "status": self.status}.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -29,7 +24,5 @@ class ScheduledSendStatus:
     @staticmethod
     def generate_model(payload: Dict[str, object]):
         return ScheduledSendStatus(
-            batch_id=payload.get('batch_id'),
-            status=payload.get('status')
-        ) 
-
+            batch_id=payload.get("batch_id"), status=payload.get("status")
+        )

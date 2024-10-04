@@ -1,22 +1,17 @@
-from enum import Enum
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
-
 
 
 class UpdateUsername200Response:
-    def __init__(
-            self,
-            username: Optional[str]=None
-    ):
-        self.username=username
+    def __init__(self, username: Optional[str] = None):
+        self.username = username
 
     def to_dict(self):
-        return {key: to_serializable(value)
-            for key, value in {
-            "username": self.username
-            }.items() if value is not None}
+        return {
+            key: to_serializable(value)
+            for key, value in {"username": self.username}.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -24,7 +19,4 @@ class UpdateUsername200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return UpdateUsername200Response(
-            username=payload.get('username')
-        ) 
-
+        return UpdateUsername200Response(username=payload.get("username"))

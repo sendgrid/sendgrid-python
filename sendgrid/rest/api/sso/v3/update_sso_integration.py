@@ -12,54 +12,51 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
+from typing import Optional
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from pydantic import Field, StrictBool, StrictStr
 from typing import Optional
-from typing_extensions import Annotated
-from sendgrid.rest.api.sso.v3.models.post_patch_integration_request import PostPatchIntegrationRequest
-from sendgrid.rest.api.sso.v3.models.sso_integration import SsoIntegration
+from sendgrid.rest.api.sso.v3.models.post_patch_integration_request import (
+    PostPatchIntegrationRequest,
+)
+
 
 class UpdateSsoIntegration:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            id: str,
-    si: Optional[bool] = None,
-    post_patch_integration_request: Optional[PostPatchIntegrationRequest] = None,
-
+        id: str,
+        si: Optional[bool] = None,
+        post_patch_integration_request: Optional[PostPatchIntegrationRequest] = None,
     ):
-        path='/v3/sso/integrations/{id}'
+        path = "/v3/sso/integrations/{id}"
         path = path.format(
-        id=id,
+            id=id,
         )
 
         data = None
         if post_patch_integration_request:
             data = post_patch_integration_request.to_dict()
-        request = Request(
-            method='PATCH',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="PATCH", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

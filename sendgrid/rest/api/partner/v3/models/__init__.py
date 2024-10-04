@@ -11,9 +11,13 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.partner.v3.models.list_partner_setting200_response import ListPartnerSetting200Response
-from sendgrid.rest.api.partner.v3.models.list_partner_setting200_response_result_inner import ListPartnerSetting200ResponseResultInner
-__all__ = [ 'ListPartnerSetting200Response',   'ListPartnerSetting200ResponseResultInner'  ]
+from sendgrid.rest.api.partner.v3.models.list_partner_setting200_response import (
+    ListPartnerSetting200Response,
+)
+from sendgrid.rest.api.partner.v3.models.list_partner_setting200_response_result_inner import (
+    ListPartnerSetting200ResponseResultInner,
+)
+
+__all__ = ["ListPartnerSetting200Response", "ListPartnerSetting200ResponseResultInner"]
 # Testing code

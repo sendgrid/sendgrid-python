@@ -11,17 +11,44 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.api_keys.v3.models.api_key_response import ApiKeyResponse
-from sendgrid.rest.api.api_keys.v3.models.api_key_scopes_response import ApiKeyScopesResponse
-from sendgrid.rest.api.api_keys.v3.models.create_api_key201_response import CreateApiKey201Response
-from sendgrid.rest.api.api_keys.v3.models.create_api_key_request import CreateApiKeyRequest
+from sendgrid.rest.api.api_keys.v3.models.api_key_scopes_response import (
+    ApiKeyScopesResponse,
+)
+from sendgrid.rest.api.api_keys.v3.models.create_api_key201_response import (
+    CreateApiKey201Response,
+)
+from sendgrid.rest.api.api_keys.v3.models.create_api_key_request import (
+    CreateApiKeyRequest,
+)
 from sendgrid.rest.api.api_keys.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.api_keys.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
-from sendgrid.rest.api.api_keys.v3.models.get_api_key200_response import GetApiKey200Response
-from sendgrid.rest.api.api_keys.v3.models.list_api_key200_response import ListApiKey200Response
-from sendgrid.rest.api.api_keys.v3.models.update_api_key_name_request import UpdateApiKeyNameRequest
-from sendgrid.rest.api.api_keys.v3.models.update_api_key_request import UpdateApiKeyRequest
-__all__ = [ 'ApiKeyResponse',   'ApiKeyScopesResponse',   'CreateApiKey201Response',   'CreateApiKeyRequest',   'ErrorResponse',   'ErrorResponseErrorsInner',   'GetApiKey200Response',   'ListApiKey200Response',   'UpdateApiKeyNameRequest',   'UpdateApiKeyRequest'  ]
+from sendgrid.rest.api.api_keys.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
+from sendgrid.rest.api.api_keys.v3.models.get_api_key200_response import (
+    GetApiKey200Response,
+)
+from sendgrid.rest.api.api_keys.v3.models.list_api_key200_response import (
+    ListApiKey200Response,
+)
+from sendgrid.rest.api.api_keys.v3.models.update_api_key_name_request import (
+    UpdateApiKeyNameRequest,
+)
+from sendgrid.rest.api.api_keys.v3.models.update_api_key_request import (
+    UpdateApiKeyRequest,
+)
+
+__all__ = [
+    "ApiKeyResponse",
+    "ApiKeyScopesResponse",
+    "CreateApiKey201Response",
+    "CreateApiKeyRequest",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "GetApiKey200Response",
+    "ListApiKey200Response",
+    "UpdateApiKeyNameRequest",
+    "UpdateApiKeyRequest",
+]
 # Testing code

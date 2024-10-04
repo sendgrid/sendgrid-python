@@ -11,21 +11,54 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.user.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.user.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
-from sendgrid.rest.api.user.v3.models.get_user_account_response import GETUserAccountResponse
-from sendgrid.rest.api.user.v3.models.get_user_profile_response import GETUserProfileResponse
-from sendgrid.rest.api.user.v3.models.list_credit200_response import ListCredit200Response
+from sendgrid.rest.api.user.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
+from sendgrid.rest.api.user.v3.models.get_user_account_response import (
+    GETUserAccountResponse,
+)
+from sendgrid.rest.api.user.v3.models.get_user_profile_response import (
+    GETUserProfileResponse,
+)
+from sendgrid.rest.api.user.v3.models.list_credit200_response import (
+    ListCredit200Response,
+)
 from sendgrid.rest.api.user.v3.models.list_email200_response import ListEmail200Response
-from sendgrid.rest.api.user.v3.models.list_username200_response import ListUsername200Response
+from sendgrid.rest.api.user.v3.models.list_username200_response import (
+    ListUsername200Response,
+)
 from sendgrid.rest.api.user.v3.models.type import Type
-from sendgrid.rest.api.user.v3.models.update_email200_response import UpdateEmail200Response
+from sendgrid.rest.api.user.v3.models.update_email200_response import (
+    UpdateEmail200Response,
+)
 from sendgrid.rest.api.user.v3.models.update_email_request import UpdateEmailRequest
-from sendgrid.rest.api.user.v3.models.update_password_request import UpdatePasswordRequest
-from sendgrid.rest.api.user.v3.models.update_username200_response import UpdateUsername200Response
-from sendgrid.rest.api.user.v3.models.update_username_request import UpdateUsernameRequest
+from sendgrid.rest.api.user.v3.models.update_password_request import (
+    UpdatePasswordRequest,
+)
+from sendgrid.rest.api.user.v3.models.update_username200_response import (
+    UpdateUsername200Response,
+)
+from sendgrid.rest.api.user.v3.models.update_username_request import (
+    UpdateUsernameRequest,
+)
 from sendgrid.rest.api.user.v3.models.user_profile import UserProfile
-__all__ = [ 'ErrorResponse',   'ErrorResponseErrorsInner',   'GETUserAccountResponse',   'GETUserProfileResponse',   'ListCredit200Response',   'ListEmail200Response',   'ListUsername200Response',   'Type',   'UpdateEmail200Response',   'UpdateEmailRequest',   'UpdatePasswordRequest',   'UpdateUsername200Response',   'UpdateUsernameRequest',   'UserProfile'  ]
+
+__all__ = [
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "GETUserAccountResponse",
+    "GETUserProfileResponse",
+    "ListCredit200Response",
+    "ListEmail200Response",
+    "ListUsername200Response",
+    "Type",
+    "UpdateEmail200Response",
+    "UpdateEmailRequest",
+    "UpdatePasswordRequest",
+    "UpdateUsername200Response",
+    "UpdateUsernameRequest",
+    "UserProfile",
+]
 # Testing code

@@ -1,23 +1,18 @@
-from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from enum import Enum
 from sendgrid.rest.api.lmc_campaigns.v3.models.campaigns2xx import Campaigns2xx
 
 
-
 class ListCampaign200Response:
-    def __init__(
-            self,
-            result: Optional[List[Campaigns2xx]]=None
-    ):
-        self.result=result
+    def __init__(self, result: Optional[List[Campaigns2xx]] = None):
+        self.result = result
 
     def to_dict(self):
-        return {key: to_serializable(value)
-            for key, value in {
-            "result": self.result
-            }.items() if value is not None}
+        return {
+            key: to_serializable(value)
+            for key, value in {"result": self.result}.items()
+            if value is not None
+        }
 
     @classmethod
     def from_dict(cls, data):
@@ -25,7 +20,4 @@ class ListCampaign200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListCampaign200Response(
-            result=payload.get('result')
-        ) 
-
+        return ListCampaign200Response(result=payload.get("result"))

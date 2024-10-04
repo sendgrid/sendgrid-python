@@ -11,19 +11,48 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition200_response import CreateFieldDefinition200Response
-from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition400_response import CreateFieldDefinition400Response
-from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition_request import CreateFieldDefinitionRequest
-from sendgrid.rest.api.mc_custom_fields.v3.models.custom_field_definitions_response import CustomFieldDefinitionsResponse
-from sendgrid.rest.api.mc_custom_fields.v3.models.custom_fields_error import CustomFieldsError
+from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition200_response import (
+    CreateFieldDefinition200Response,
+)
+from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition400_response import (
+    CreateFieldDefinition400Response,
+)
+from sendgrid.rest.api.mc_custom_fields.v3.models.create_field_definition_request import (
+    CreateFieldDefinitionRequest,
+)
+from sendgrid.rest.api.mc_custom_fields.v3.models.custom_field_definitions_response import (
+    CustomFieldDefinitionsResponse,
+)
+from sendgrid.rest.api.mc_custom_fields.v3.models.custom_fields_error import (
+    CustomFieldsError,
+)
 from sendgrid.rest.api.mc_custom_fields.v3.models.field_type import FieldType
 from sendgrid.rest.api.mc_custom_fields.v3.models.field_type1 import FieldType1
 from sendgrid.rest.api.mc_custom_fields.v3.models.field_type2 import FieldType2
-from sendgrid.rest.api.mc_custom_fields.v3.models.list_field_definition200_response import ListFieldDefinition200Response
+from sendgrid.rest.api.mc_custom_fields.v3.models.list_field_definition200_response import (
+    ListFieldDefinition200Response,
+)
 from sendgrid.rest.api.mc_custom_fields.v3.models.metadata import Metadata
-from sendgrid.rest.api.mc_custom_fields.v3.models.reserved_field_definitions_response_inner import ReservedFieldDefinitionsResponseInner
-from sendgrid.rest.api.mc_custom_fields.v3.models.update_field_definition_request import UpdateFieldDefinitionRequest
-__all__ = [ 'CreateFieldDefinition200Response',   'CreateFieldDefinition400Response',   'CreateFieldDefinitionRequest',   'CustomFieldDefinitionsResponse',   'CustomFieldsError',   'FieldType',   'FieldType1',   'FieldType2',   'ListFieldDefinition200Response',   'Metadata',   'ReservedFieldDefinitionsResponseInner',   'UpdateFieldDefinitionRequest'  ]
+from sendgrid.rest.api.mc_custom_fields.v3.models.reserved_field_definitions_response_inner import (
+    ReservedFieldDefinitionsResponseInner,
+)
+from sendgrid.rest.api.mc_custom_fields.v3.models.update_field_definition_request import (
+    UpdateFieldDefinitionRequest,
+)
+
+__all__ = [
+    "CreateFieldDefinition200Response",
+    "CreateFieldDefinition400Response",
+    "CreateFieldDefinitionRequest",
+    "CustomFieldDefinitionsResponse",
+    "CustomFieldsError",
+    "FieldType",
+    "FieldType1",
+    "FieldType2",
+    "ListFieldDefinition200Response",
+    "Metadata",
+    "ReservedFieldDefinitionsResponseInner",
+    "UpdateFieldDefinitionRequest",
+]
 # Testing code

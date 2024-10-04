@@ -11,27 +11,68 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.mc_stats.v3.models.ab_phase import AbPhase
 from sendgrid.rest.api.mc_stats.v3.models.ab_phase1 import AbPhase1
 from sendgrid.rest.api.mc_stats.v3.models.ab_phase_id import AbPhaseId
 from sendgrid.rest.api.mc_stats.v3.models.aggregated_by import AggregatedBy
-from sendgrid.rest.api.mc_stats.v3.models.autmoations_link_stats_response import AutmoationsLinkStatsResponse
-from sendgrid.rest.api.mc_stats.v3.models.autmoations_link_stats_response_results_inner import AutmoationsLinkStatsResponseResultsInner
-from sendgrid.rest.api.mc_stats.v3.models.automations_response import AutomationsResponse
-from sendgrid.rest.api.mc_stats.v3.models.automations_response_results_inner import AutomationsResponseResultsInner
+from sendgrid.rest.api.mc_stats.v3.models.autmoations_link_stats_response import (
+    AutmoationsLinkStatsResponse,
+)
+from sendgrid.rest.api.mc_stats.v3.models.autmoations_link_stats_response_results_inner import (
+    AutmoationsLinkStatsResponseResultsInner,
+)
+from sendgrid.rest.api.mc_stats.v3.models.automations_response import (
+    AutomationsResponse,
+)
+from sendgrid.rest.api.mc_stats.v3.models.automations_response_results_inner import (
+    AutomationsResponseResultsInner,
+)
 from sendgrid.rest.api.mc_stats.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.mc_stats.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.mc_stats.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
 from sendgrid.rest.api.mc_stats.v3.models.items import Items
 from sendgrid.rest.api.mc_stats.v3.models.items1 import Items1
 from sendgrid.rest.api.mc_stats.v3.models.items2 import Items2
-from sendgrid.rest.api.mc_stats.v3.models.link_tracking_metadata import LinkTrackingMetadata
+from sendgrid.rest.api.mc_stats.v3.models.link_tracking_metadata import (
+    LinkTrackingMetadata,
+)
 from sendgrid.rest.api.mc_stats.v3.models.metadata import Metadata
 from sendgrid.rest.api.mc_stats.v3.models.metrics import Metrics
-from sendgrid.rest.api.mc_stats.v3.models.singlesends_link_stats_response import SinglesendsLinkStatsResponse
-from sendgrid.rest.api.mc_stats.v3.models.singlesends_link_stats_response_results_inner import SinglesendsLinkStatsResponseResultsInner
-from sendgrid.rest.api.mc_stats.v3.models.singlesends_response import SinglesendsResponse
-from sendgrid.rest.api.mc_stats.v3.models.singlesends_response_results_inner import SinglesendsResponseResultsInner
-__all__ = [ 'AbPhase',   'AbPhase1',   'AbPhaseId',   'AggregatedBy',   'AutmoationsLinkStatsResponse',   'AutmoationsLinkStatsResponseResultsInner',   'AutomationsResponse',   'AutomationsResponseResultsInner',   'ErrorResponse',   'ErrorResponseErrorsInner',   'Items',   'Items1',   'Items2',   'LinkTrackingMetadata',   'Metadata',   'Metrics',   'SinglesendsLinkStatsResponse',   'SinglesendsLinkStatsResponseResultsInner',   'SinglesendsResponse',   'SinglesendsResponseResultsInner'  ]
+from sendgrid.rest.api.mc_stats.v3.models.singlesends_link_stats_response import (
+    SinglesendsLinkStatsResponse,
+)
+from sendgrid.rest.api.mc_stats.v3.models.singlesends_link_stats_response_results_inner import (
+    SinglesendsLinkStatsResponseResultsInner,
+)
+from sendgrid.rest.api.mc_stats.v3.models.singlesends_response import (
+    SinglesendsResponse,
+)
+from sendgrid.rest.api.mc_stats.v3.models.singlesends_response_results_inner import (
+    SinglesendsResponseResultsInner,
+)
+
+__all__ = [
+    "AbPhase",
+    "AbPhase1",
+    "AbPhaseId",
+    "AggregatedBy",
+    "AutmoationsLinkStatsResponse",
+    "AutmoationsLinkStatsResponseResultsInner",
+    "AutomationsResponse",
+    "AutomationsResponseResultsInner",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "Items",
+    "Items1",
+    "Items2",
+    "LinkTrackingMetadata",
+    "Metadata",
+    "Metrics",
+    "SinglesendsLinkStatsResponse",
+    "SinglesendsLinkStatsResponseResultsInner",
+    "SinglesendsResponse",
+    "SinglesendsResponseResultsInner",
+]
 # Testing code

@@ -12,46 +12,48 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
+from typing import Optional
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
 from typing import Optional
-from sendgrid.rest.api.mc_test.v3.models.send_test_marketing_email_request import SendTestMarketingEmailRequest
+from sendgrid.rest.api.mc_test.v3.models.send_test_marketing_email_request import (
+    SendTestMarketingEmailRequest,
+)
+
 
 class SendTestMarketingEmail:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            send_test_marketing_email_request: Optional[SendTestMarketingEmailRequest] = None,
-
+        send_test_marketing_email_request: Optional[
+            SendTestMarketingEmailRequest
+        ] = None,
     ):
-        path='/v3/marketing/test/send_email'
+        path = "/v3/marketing/test/send_email"
 
         data = None
         if send_test_marketing_email_request:
             data = send_test_marketing_email_request.to_dict()
-        request = Request(
-            method='POST',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="POST", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

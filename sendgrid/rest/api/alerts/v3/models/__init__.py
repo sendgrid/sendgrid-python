@@ -11,19 +11,40 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.alerts.v3.models.create_alert201_response import CreateAlert201Response
+from sendgrid.rest.api.alerts.v3.models.create_alert201_response import (
+    CreateAlert201Response,
+)
 from sendgrid.rest.api.alerts.v3.models.create_alert_request import CreateAlertRequest
 from sendgrid.rest.api.alerts.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.alerts.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.alerts.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
 from sendgrid.rest.api.alerts.v3.models.get_alert200_response import GetAlert200Response
-from sendgrid.rest.api.alerts.v3.models.list_alert200_response_inner import ListAlert200ResponseInner
+from sendgrid.rest.api.alerts.v3.models.list_alert200_response_inner import (
+    ListAlert200ResponseInner,
+)
 from sendgrid.rest.api.alerts.v3.models.type import Type
 from sendgrid.rest.api.alerts.v3.models.type1 import Type1
 from sendgrid.rest.api.alerts.v3.models.type2 import Type2
 from sendgrid.rest.api.alerts.v3.models.type3 import Type3
-from sendgrid.rest.api.alerts.v3.models.update_alert200_response import UpdateAlert200Response
+from sendgrid.rest.api.alerts.v3.models.update_alert200_response import (
+    UpdateAlert200Response,
+)
 from sendgrid.rest.api.alerts.v3.models.update_alert_request import UpdateAlertRequest
-__all__ = [ 'CreateAlert201Response',   'CreateAlertRequest',   'ErrorResponse',   'ErrorResponseErrorsInner',   'GetAlert200Response',   'ListAlert200ResponseInner',   'Type',   'Type1',   'Type2',   'Type3',   'UpdateAlert200Response',   'UpdateAlertRequest'  ]
+
+__all__ = [
+    "CreateAlert201Response",
+    "CreateAlertRequest",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "GetAlert200Response",
+    "ListAlert200ResponseInner",
+    "Type",
+    "Type1",
+    "Type2",
+    "Type3",
+    "UpdateAlert200Response",
+    "UpdateAlertRequest",
+]
 # Testing code

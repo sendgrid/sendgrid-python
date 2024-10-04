@@ -11,17 +11,40 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
-from sendgrid.rest.api.mc_senders.v3.models.create_sender_request import CreateSenderRequest
-from sendgrid.rest.api.mc_senders.v3.models.create_sender_request_from import CreateSenderRequestFrom
-from sendgrid.rest.api.mc_senders.v3.models.create_sender_request_reply_to import CreateSenderRequestReplyTo
+from sendgrid.rest.api.mc_senders.v3.models.create_sender_request import (
+    CreateSenderRequest,
+)
+from sendgrid.rest.api.mc_senders.v3.models.create_sender_request_from import (
+    CreateSenderRequestFrom,
+)
+from sendgrid.rest.api.mc_senders.v3.models.create_sender_request_reply_to import (
+    CreateSenderRequestReplyTo,
+)
 from sendgrid.rest.api.mc_senders.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.mc_senders.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
-from sendgrid.rest.api.mc_senders.v3.models.list_sender200_response import ListSender200Response
+from sendgrid.rest.api.mc_senders.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
+from sendgrid.rest.api.mc_senders.v3.models.list_sender200_response import (
+    ListSender200Response,
+)
 from sendgrid.rest.api.mc_senders.v3.models.sender import Sender
 from sendgrid.rest.api.mc_senders.v3.models.sender_request import SenderRequest
 from sendgrid.rest.api.mc_senders.v3.models.sender_request_from import SenderRequestFrom
-from sendgrid.rest.api.mc_senders.v3.models.sender_request_reply_to import SenderRequestReplyTo
-__all__ = [ 'CreateSenderRequest',   'CreateSenderRequestFrom',   'CreateSenderRequestReplyTo',   'ErrorResponse',   'ErrorResponseErrorsInner',   'ListSender200Response',   'Sender',   'SenderRequest',   'SenderRequestFrom',   'SenderRequestReplyTo'  ]
+from sendgrid.rest.api.mc_senders.v3.models.sender_request_reply_to import (
+    SenderRequestReplyTo,
+)
+
+__all__ = [
+    "CreateSenderRequest",
+    "CreateSenderRequestFrom",
+    "CreateSenderRequestReplyTo",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "ListSender200Response",
+    "Sender",
+    "SenderRequest",
+    "SenderRequestFrom",
+    "SenderRequestReplyTo",
+]
 # Testing code

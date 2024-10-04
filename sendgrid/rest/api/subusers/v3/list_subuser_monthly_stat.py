@@ -12,55 +12,50 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
+from typing import Optional
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from pydantic import Field, StrictInt, StrictStr
 from typing import Optional
-from typing_extensions import Annotated
 from sendgrid.rest.api.subusers.v3.models.sort_by_direction import SortByDirection
-from sendgrid.rest.api.subusers.v3.models.subuser_stats import SubuserStats
+
 
 class ListSubuserMonthlyStat:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            subuser_name: str,
-    var_date: Optional[str] = None,
-    sort_by_metric: Optional[str] = None,
-    sort_by_direction: Optional[SortByDirection] = None,
-    limit: Optional[int] = None,
-    offset: Optional[int] = None,
-
+        subuser_name: str,
+        var_date: Optional[str] = None,
+        sort_by_metric: Optional[str] = None,
+        sort_by_direction: Optional[SortByDirection] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
     ):
-        path='/v3/subusers/{subuser_name}/stats/monthly'
+        path = "/v3/subusers/{subuser_name}/stats/monthly"
         path = path.format(
-        subuser_name=subuser_name,
+            subuser_name=subuser_name,
         )
 
         data = None
-        request = Request(
-            method='GET',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="GET", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

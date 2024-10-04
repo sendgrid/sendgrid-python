@@ -11,19 +11,46 @@
   Do not edit the class manually.
 """
 
-
 # import models into model package
 from sendgrid.rest.api.mc_segments.v3.models.contact_response import ContactResponse
-from sendgrid.rest.api.mc_segments.v3.models.contact_response_custom_fields import ContactResponseCustomFields
+from sendgrid.rest.api.mc_segments.v3.models.contact_response_custom_fields import (
+    ContactResponseCustomFields,
+)
 from sendgrid.rest.api.mc_segments.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.mc_segments.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.mc_segments.v3.models.error_response_errors_inner import (
+    ErrorResponseErrorsInner,
+)
 from sendgrid.rest.api.mc_segments.v3.models.full_segment import FullSegment
-from sendgrid.rest.api.mc_segments.v3.models.get_segment404_response import GetSegment404Response
-from sendgrid.rest.api.mc_segments.v3.models.get_segment404_response_errors_inner import GetSegment404ResponseErrorsInner
-from sendgrid.rest.api.mc_segments.v3.models.list_segment200_response import ListSegment200Response
-from sendgrid.rest.api.mc_segments.v3.models.list_segment500_response import ListSegment500Response
-from sendgrid.rest.api.mc_segments.v3.models.list_segment500_response_errors_inner import ListSegment500ResponseErrorsInner
+from sendgrid.rest.api.mc_segments.v3.models.get_segment404_response import (
+    GetSegment404Response,
+)
+from sendgrid.rest.api.mc_segments.v3.models.get_segment404_response_errors_inner import (
+    GetSegment404ResponseErrorsInner,
+)
+from sendgrid.rest.api.mc_segments.v3.models.list_segment200_response import (
+    ListSegment200Response,
+)
+from sendgrid.rest.api.mc_segments.v3.models.list_segment500_response import (
+    ListSegment500Response,
+)
+from sendgrid.rest.api.mc_segments.v3.models.list_segment500_response_errors_inner import (
+    ListSegment500ResponseErrorsInner,
+)
 from sendgrid.rest.api.mc_segments.v3.models.segment_summary import SegmentSummary
 from sendgrid.rest.api.mc_segments.v3.models.segment_write_v2 import SegmentWriteV2
-__all__ = [ 'ContactResponse',   'ContactResponseCustomFields',   'ErrorResponse',   'ErrorResponseErrorsInner',   'FullSegment',   'GetSegment404Response',   'GetSegment404ResponseErrorsInner',   'ListSegment200Response',   'ListSegment500Response',   'ListSegment500ResponseErrorsInner',   'SegmentSummary',   'SegmentWriteV2'  ]
+
+__all__ = [
+    "ContactResponse",
+    "ContactResponseCustomFields",
+    "ErrorResponse",
+    "ErrorResponseErrorsInner",
+    "FullSegment",
+    "GetSegment404Response",
+    "GetSegment404ResponseErrorsInner",
+    "ListSegment200Response",
+    "ListSegment500Response",
+    "ListSegment500ResponseErrorsInner",
+    "SegmentSummary",
+    "SegmentWriteV2",
+]
 # Testing code

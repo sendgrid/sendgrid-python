@@ -12,51 +12,52 @@
 """
 
 import json
-import warnings
-from typing import Any, Dict, List, Optional, Tuple, Union
-from typing_extensions import Annotated
-from sendgrid.base import values
+from typing import Optional
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from pydantic import StrictStr
 from typing import Optional
-from sendgrid.rest.api.subusers.v3.models.update_subuser_website_access_request import UpdateSubuserWebsiteAccessRequest
+from sendgrid.rest.api.subusers.v3.models.update_subuser_website_access_request import (
+    UpdateSubuserWebsiteAccessRequest,
+)
+
 
 class UpdateSubuserWebsiteAccess:
     def __init__(self, client) -> None:
         self.client = client
-    
+
     def send(
         self,
-            subuser_name: str,
-    update_subuser_website_access_request: Optional[UpdateSubuserWebsiteAccessRequest] = None,
-
+        subuser_name: str,
+        update_subuser_website_access_request: Optional[
+            UpdateSubuserWebsiteAccessRequest
+        ] = None,
     ):
-        path='/v3/subusers/{subuser_name}/website_access'
+        path = "/v3/subusers/{subuser_name}/website_access"
         path = path.format(
-        subuser_name=subuser_name,
+            subuser_name=subuser_name,
         )
 
         data = None
         if update_subuser_website_access_request:
             data = update_subuser_website_access_request.to_dict()
-        request = Request(
-            method='PATCH',
-            url=path,
-            data=data,
-            headers=headers
-        )
-        response=self.client.send(request)
+        request = Request(method="PATCH", url=path, data=data, headers=headers)
+        response = self.client.send(request)
         if response is None:
-            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
+            raise ApiException(
+                error="CreateAlert creation failed: Unable to connect to server"
+            )
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
+            return ApiResponse(
+                status_code=response.status_code, model=text, headers=response.headers
+            )
         else:
-            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)
+            raise ApiException(
+                status_code=response.status_code, error=text, headers=response.headers
+            )

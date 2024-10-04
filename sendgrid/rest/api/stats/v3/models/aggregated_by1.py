@@ -1,12 +1,8 @@
 from enum import Enum
-from typing import Optional, Dict, List
-from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
 
 
-
 class AggregatedBy1(Enum):
-        DAY='day'
-        WEEK='week'
-        MONTH='month'
-
+    DAY = "day"
+    WEEK = "week"
+    MONTH = "month"
