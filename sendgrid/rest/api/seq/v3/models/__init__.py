@@ -11,14 +11,12 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
 from sendgrid.rest.api.seq.v3.models.seq_error import SeqError
 from sendgrid.rest.api.seq.v3.models.seq_metadata import SeqMetadata
-from sendgrid.rest.api.seq.v3.models.seq_metadata_next_params import (
-    SeqMetadataNextParams,
-)
+from sendgrid.rest.api.seq.v3.models.seq_metadata_next_params import SeqMetadataNextParams
 from sendgrid.rest.api.seq.v3.models.seq_metrics import SeqMetrics
 from sendgrid.rest.api.seq.v3.models.seq_score import SeqScore
-
-__all__ = ["SeqError", "SeqMetadata", "SeqMetadataNextParams", "SeqMetrics", "SeqScore"]
+__all__ = [ 'SeqError',   'SeqMetadata',   'SeqMetadataNextParams',   'SeqMetrics',   'SeqScore'  ]
 # Testing code

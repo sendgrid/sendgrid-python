@@ -12,50 +12,53 @@
 """
 
 import json
-from typing import Optional
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
+from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
+from pydantic import Field, StrictStr
 from typing import Optional
-from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props import (
-    SsoTeammatesBaseRequestProps,
-)
-
+from typing_extensions import Annotated
+from sendgrid.rest.api.sso.v3.models.patch_sso_teammates200 import PatchSsoTeammates200
+from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props import SsoTeammatesBaseRequestProps
 
 class UpdateSsoTeammate:
     def __init__(self, client) -> None:
         self.client = client
-
+    
     def send(
         self,
-        username: str,
-        body: Optional[SsoTeammatesBaseRequestProps] = None,
+            username: str,
+    body: Optional[SsoTeammatesBaseRequestProps] = None,
+
     ):
-        path = "/v3/sso/teammates/{username}"
+        path='/v3/sso/teammates/{username}'
         path = path.format(
-            username=username,
+        username=username,
         )
 
         data = None
         if body:
             data = body.to_dict()
-        request = Request(method="PATCH", url=path, data=data, headers=headers)
-        response = self.client.send(request)
+        request = Request(
+            method='PATCH',
+            url=path,
+            data=data,
+            headers=headers
+        )
+        response=self.client.send(request)
         if response is None:
-            raise ApiException(
-                error="CreateAlert creation failed: Unable to connect to server"
-            )
+            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(
-                status_code=response.status_code, model=text, headers=response.headers
-            )
+            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
         else:
-            raise ApiException(
-                status_code=response.status_code, error=text, headers=response.headers
-            )
+            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)

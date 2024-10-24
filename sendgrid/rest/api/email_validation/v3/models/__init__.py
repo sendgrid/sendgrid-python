@@ -11,82 +11,28 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
 from sendgrid.rest.api.email_validation.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.email_validation.v3.models.error_response_errors_inner import (
-    ErrorResponseErrorsInner,
-)
+from sendgrid.rest.api.email_validation.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
 from sendgrid.rest.api.email_validation.v3.models.file_type import FileType
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs200_response import (
-    GetValidationsEmailJobs200Response,
-)
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs200_response_result_inner import (
-    GetValidationsEmailJobs200ResponseResultInner,
-)
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response import (
-    GetValidationsEmailJobsJobId200Response,
-)
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response_result import (
-    GetValidationsEmailJobsJobId200ResponseResult,
-)
-from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response_result_errors_inner import (
-    GetValidationsEmailJobsJobId200ResponseResultErrorsInner,
-)
-from sendgrid.rest.api.email_validation.v3.models.list_email_job_for_verification_request import (
-    ListEmailJobForVerificationRequest,
-)
-from sendgrid.rest.api.email_validation.v3.models.put_validations_email_jobs200_response import (
-    PutValidationsEmailJobs200Response,
-)
-from sendgrid.rest.api.email_validation.v3.models.put_validations_email_jobs200_response_upload_headers_inner import (
-    PutValidationsEmailJobs200ResponseUploadHeadersInner,
-)
+from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs200_response import GetValidationsEmailJobs200Response
+from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs200_response_result_inner import GetValidationsEmailJobs200ResponseResultInner
+from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response import GetValidationsEmailJobsJobId200Response
+from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response_result import GetValidationsEmailJobsJobId200ResponseResult
+from sendgrid.rest.api.email_validation.v3.models.get_validations_email_jobs_job_id200_response_result_errors_inner import GetValidationsEmailJobsJobId200ResponseResultErrorsInner
+from sendgrid.rest.api.email_validation.v3.models.list_email_job_for_verification_request import ListEmailJobForVerificationRequest
+from sendgrid.rest.api.email_validation.v3.models.put_validations_email_jobs200_response import PutValidationsEmailJobs200Response
+from sendgrid.rest.api.email_validation.v3.models.put_validations_email_jobs200_response_upload_headers_inner import PutValidationsEmailJobs200ResponseUploadHeadersInner
 from sendgrid.rest.api.email_validation.v3.models.status import Status
 from sendgrid.rest.api.email_validation.v3.models.status1 import Status1
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response import (
-    ValidateEmail200Response,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result import (
-    ValidateEmail200ResponseResult,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks import (
-    ValidateEmail200ResponseResultChecks,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_additional import (
-    ValidateEmail200ResponseResultChecksAdditional,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_domain import (
-    ValidateEmail200ResponseResultChecksDomain,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_local_part import (
-    ValidateEmail200ResponseResultChecksLocalPart,
-)
-from sendgrid.rest.api.email_validation.v3.models.validate_email_request import (
-    ValidateEmailRequest,
-)
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response import ValidateEmail200Response
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result import ValidateEmail200ResponseResult
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks import ValidateEmail200ResponseResultChecks
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_additional import ValidateEmail200ResponseResultChecksAdditional
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_domain import ValidateEmail200ResponseResultChecksDomain
+from sendgrid.rest.api.email_validation.v3.models.validate_email200_response_result_checks_local_part import ValidateEmail200ResponseResultChecksLocalPart
+from sendgrid.rest.api.email_validation.v3.models.validate_email_request import ValidateEmailRequest
 from sendgrid.rest.api.email_validation.v3.models.verdict import Verdict
-
-__all__ = [
-    "ErrorResponse",
-    "ErrorResponseErrorsInner",
-    "FileType",
-    "GetValidationsEmailJobs200Response",
-    "GetValidationsEmailJobs200ResponseResultInner",
-    "GetValidationsEmailJobsJobId200Response",
-    "GetValidationsEmailJobsJobId200ResponseResult",
-    "GetValidationsEmailJobsJobId200ResponseResultErrorsInner",
-    "ListEmailJobForVerificationRequest",
-    "PutValidationsEmailJobs200Response",
-    "PutValidationsEmailJobs200ResponseUploadHeadersInner",
-    "Status",
-    "Status1",
-    "ValidateEmail200Response",
-    "ValidateEmail200ResponseResult",
-    "ValidateEmail200ResponseResultChecks",
-    "ValidateEmail200ResponseResultChecksAdditional",
-    "ValidateEmail200ResponseResultChecksDomain",
-    "ValidateEmail200ResponseResultChecksLocalPart",
-    "ValidateEmailRequest",
-    "Verdict",
-]
+__all__ = [ 'ErrorResponse',   'ErrorResponseErrorsInner',   'FileType',   'GetValidationsEmailJobs200Response',   'GetValidationsEmailJobs200ResponseResultInner',   'GetValidationsEmailJobsJobId200Response',   'GetValidationsEmailJobsJobId200ResponseResult',   'GetValidationsEmailJobsJobId200ResponseResultErrorsInner',   'ListEmailJobForVerificationRequest',   'PutValidationsEmailJobs200Response',   'PutValidationsEmailJobs200ResponseUploadHeadersInner',   'Status',   'Status1',   'ValidateEmail200Response',   'ValidateEmail200ResponseResult',   'ValidateEmail200ResponseResultChecks',   'ValidateEmail200ResponseResultChecksAdditional',   'ValidateEmail200ResponseResultChecksDomain',   'ValidateEmail200ResponseResultChecksLocalPart',   'ValidateEmailRequest',   'Verdict'  ]
 # Testing code

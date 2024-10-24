@@ -1,28 +1,26 @@
-from typing import Optional, Dict
+from enum import Enum
+from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
-from sendgrid.rest.api.integrations.v3.models.destination_region2 import (
-    DestinationRegion2,
-)
+from enum import Enum
+from sendgrid.rest.api.integrations.v3.models.destination_region2 import DestinationRegion2
+
 
 
 class IntegrationProperties:
     def __init__(
-        self,
-        write_key: Optional[str] = None,
-        destination_region: Optional[DestinationRegion2] = None,
+            self,
+            write_key: Optional[str]=None,
+            destination_region: Optional[DestinationRegion2]=None
     ):
-        self.write_key = write_key
-        self.destination_region = destination_region
+        self.write_key=write_key
+        self.destination_region=destination_region
 
     def to_dict(self):
-        return {
-            key: to_serializable(value)
+        return {key: to_serializable(value)
             for key, value in {
-                "write_key": self.write_key,
-                "destination_region": self.destination_region,
-            }.items()
-            if value is not None
-        }
+            "write_key": self.write_key,
+            "destination_region": self.destination_region
+            }.items() if value is not None}
 
     @classmethod
     def from_dict(cls, data):
@@ -31,6 +29,7 @@ class IntegrationProperties:
     @staticmethod
     def generate_model(payload: Dict[str, object]):
         return IntegrationProperties(
-            write_key=payload.get("write_key"),
-            destination_region=payload.get("destination_region"),
-        )
+            write_key=payload.get('write_key'),
+            destination_region=payload.get('destination_region')
+        ) 
+

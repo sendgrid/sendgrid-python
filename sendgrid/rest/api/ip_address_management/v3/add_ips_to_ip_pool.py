@@ -12,50 +12,53 @@
 """
 
 import json
-from typing import Optional
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
+from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
+from pydantic import Field, StrictStr
 from typing import Optional
-from sendgrid.rest.api.ip_address_management.v3.models.add_ips_to_ip_pool_request import (
-    AddIpsToIpPoolRequest,
-)
-
+from typing_extensions import Annotated
+from sendgrid.rest.api.ip_address_management.v3.models.add_ips_to_ip_pool200_response import AddIpsToIpPool200Response
+from sendgrid.rest.api.ip_address_management.v3.models.add_ips_to_ip_pool_request import AddIpsToIpPoolRequest
 
 class AddIpsToIpPool:
     def __init__(self, client) -> None:
         self.client = client
-
+    
     def send(
         self,
-        poolid: str,
-        add_ips_to_ip_pool_request: Optional[AddIpsToIpPoolRequest] = None,
+            poolid: str,
+    add_ips_to_ip_pool_request: Optional[AddIpsToIpPoolRequest] = None,
+
     ):
-        path = "/v3/send_ips/pools/{poolid}/ips:batchAdd"
+        path='/v3/send_ips/pools/{poolid}/ips:batchAdd'
         path = path.format(
-            poolid=poolid,
+        poolid=poolid,
         )
 
         data = None
         if add_ips_to_ip_pool_request:
             data = add_ips_to_ip_pool_request.to_dict()
-        request = Request(method="POST", url=path, data=data, headers=headers)
-        response = self.client.send(request)
+        request = Request(
+            method='POST',
+            url=path,
+            data=data,
+            headers=headers
+        )
+        response=self.client.send(request)
         if response is None:
-            raise ApiException(
-                error="CreateAlert creation failed: Unable to connect to server"
-            )
+            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(
-                status_code=response.status_code, model=text, headers=response.headers
-            )
+            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
         else:
-            raise ApiException(
-                status_code=response.status_code, error=text, headers=response.headers
-            )
+            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)

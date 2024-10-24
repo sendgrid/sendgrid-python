@@ -11,64 +11,25 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
-from sendgrid.rest.api.sso.v3.models.create_sso_certificate_request import (
-    CreateSsoCertificateRequest,
-)
+from sendgrid.rest.api.sso.v3.models.create_sso_certificate_request import CreateSsoCertificateRequest
 from sendgrid.rest.api.sso.v3.models.patch_sso_teammates200 import PatchSsoTeammates200
 from sendgrid.rest.api.sso.v3.models.permission_type import PermissionType
 from sendgrid.rest.api.sso.v3.models.permission_type1 import PermissionType1
 from sendgrid.rest.api.sso.v3.models.persona import Persona
-from sendgrid.rest.api.sso.v3.models.post_patch_integration_request import (
-    PostPatchIntegrationRequest,
-)
+from sendgrid.rest.api.sso.v3.models.post_patch_integration_request import PostPatchIntegrationRequest
 from sendgrid.rest.api.sso.v3.models.post_sso_teammates201 import PostSsoTeammates201
-from sendgrid.rest.api.sso.v3.models.post_sso_teammates_request import (
-    PostSsoTeammatesRequest,
-)
+from sendgrid.rest.api.sso.v3.models.post_sso_teammates_request import PostSsoTeammatesRequest
 from sendgrid.rest.api.sso.v3.models.sso_certificate_body import SsoCertificateBody
-from sendgrid.rest.api.sso.v3.models.sso_error_response_inner import (
-    SsoErrorResponseInner,
-)
+from sendgrid.rest.api.sso.v3.models.sso_error_response_inner import SsoErrorResponseInner
 from sendgrid.rest.api.sso.v3.models.sso_integration import SsoIntegration
-from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props import (
-    SsoTeammatesBaseRequestProps,
-)
-from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props_subuser_access_inner import (
-    SsoTeammatesBaseRequestPropsSubuserAccessInner,
-)
-from sendgrid.rest.api.sso.v3.models.sso_teammates_base_response_props import (
-    SsoTeammatesBaseResponseProps,
-)
-from sendgrid.rest.api.sso.v3.models.sso_teammates_restricted_subuser_response_props import (
-    SsoTeammatesRestrictedSubuserResponseProps,
-)
-from sendgrid.rest.api.sso.v3.models.sso_teammates_restricted_subuser_response_props_subuser_access_inner import (
-    SsoTeammatesRestrictedSubuserResponsePropsSubuserAccessInner,
-)
-from sendgrid.rest.api.sso.v3.models.update_sso_certificate_request import (
-    UpdateSsoCertificateRequest,
-)
+from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props import SsoTeammatesBaseRequestProps
+from sendgrid.rest.api.sso.v3.models.sso_teammates_base_request_props_subuser_access_inner import SsoTeammatesBaseRequestPropsSubuserAccessInner
+from sendgrid.rest.api.sso.v3.models.sso_teammates_base_response_props import SsoTeammatesBaseResponseProps
+from sendgrid.rest.api.sso.v3.models.sso_teammates_restricted_subuser_response_props import SsoTeammatesRestrictedSubuserResponseProps
+from sendgrid.rest.api.sso.v3.models.sso_teammates_restricted_subuser_response_props_subuser_access_inner import SsoTeammatesRestrictedSubuserResponsePropsSubuserAccessInner
+from sendgrid.rest.api.sso.v3.models.update_sso_certificate_request import UpdateSsoCertificateRequest
 from sendgrid.rest.api.sso.v3.models.user_type import UserType
-
-__all__ = [
-    "CreateSsoCertificateRequest",
-    "PatchSsoTeammates200",
-    "PermissionType",
-    "PermissionType1",
-    "Persona",
-    "PostPatchIntegrationRequest",
-    "PostSsoTeammates201",
-    "PostSsoTeammatesRequest",
-    "SsoCertificateBody",
-    "SsoErrorResponseInner",
-    "SsoIntegration",
-    "SsoTeammatesBaseRequestProps",
-    "SsoTeammatesBaseRequestPropsSubuserAccessInner",
-    "SsoTeammatesBaseResponseProps",
-    "SsoTeammatesRestrictedSubuserResponseProps",
-    "SsoTeammatesRestrictedSubuserResponsePropsSubuserAccessInner",
-    "UpdateSsoCertificateRequest",
-    "UserType",
-]
+__all__ = [ 'CreateSsoCertificateRequest',   'PatchSsoTeammates200',   'PermissionType',   'PermissionType1',   'Persona',   'PostPatchIntegrationRequest',   'PostSsoTeammates201',   'PostSsoTeammatesRequest',   'SsoCertificateBody',   'SsoErrorResponseInner',   'SsoIntegration',   'SsoTeammatesBaseRequestProps',   'SsoTeammatesBaseRequestPropsSubuserAccessInner',   'SsoTeammatesBaseResponseProps',   'SsoTeammatesRestrictedSubuserResponseProps',   'SsoTeammatesRestrictedSubuserResponsePropsSubuserAccessInner',   'UpdateSsoCertificateRequest',   'UserType'  ]
 # Testing code

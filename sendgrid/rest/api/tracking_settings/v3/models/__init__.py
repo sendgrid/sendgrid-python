@@ -11,38 +11,15 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
 from sendgrid.rest.api.tracking_settings.v3.models.click_tracking import ClickTracking
-from sendgrid.rest.api.tracking_settings.v3.models.google_analytics_settings import (
-    GoogleAnalyticsSettings,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.list_open_tracking_setting200_response import (
-    ListOpenTrackingSetting200Response,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.list_tracking_setting200_response import (
-    ListTrackingSetting200Response,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.list_tracking_setting200_response_result_inner import (
-    ListTrackingSetting200ResponseResultInner,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.subscription_tracking_settings import (
-    SubscriptionTrackingSettings,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.update_click_tracking_setting_request import (
-    UpdateClickTrackingSettingRequest,
-)
-from sendgrid.rest.api.tracking_settings.v3.models.update_open_tracking_setting_request import (
-    UpdateOpenTrackingSettingRequest,
-)
-
-__all__ = [
-    "ClickTracking",
-    "GoogleAnalyticsSettings",
-    "ListOpenTrackingSetting200Response",
-    "ListTrackingSetting200Response",
-    "ListTrackingSetting200ResponseResultInner",
-    "SubscriptionTrackingSettings",
-    "UpdateClickTrackingSettingRequest",
-    "UpdateOpenTrackingSettingRequest",
-]
+from sendgrid.rest.api.tracking_settings.v3.models.google_analytics_settings import GoogleAnalyticsSettings
+from sendgrid.rest.api.tracking_settings.v3.models.list_open_tracking_setting200_response import ListOpenTrackingSetting200Response
+from sendgrid.rest.api.tracking_settings.v3.models.list_tracking_setting200_response import ListTrackingSetting200Response
+from sendgrid.rest.api.tracking_settings.v3.models.list_tracking_setting200_response_result_inner import ListTrackingSetting200ResponseResultInner
+from sendgrid.rest.api.tracking_settings.v3.models.subscription_tracking_settings import SubscriptionTrackingSettings
+from sendgrid.rest.api.tracking_settings.v3.models.update_click_tracking_setting_request import UpdateClickTrackingSettingRequest
+from sendgrid.rest.api.tracking_settings.v3.models.update_open_tracking_setting_request import UpdateOpenTrackingSettingRequest
+__all__ = [ 'ClickTracking',   'GoogleAnalyticsSettings',   'ListOpenTrackingSetting200Response',   'ListTrackingSetting200Response',   'ListTrackingSetting200ResponseResultInner',   'SubscriptionTrackingSettings',   'UpdateClickTrackingSettingRequest',   'UpdateOpenTrackingSettingRequest'  ]
 # Testing code

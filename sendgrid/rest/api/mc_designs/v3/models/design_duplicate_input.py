@@ -1,19 +1,26 @@
-from typing import Optional, Dict
+from enum import Enum
+from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
+from enum import Enum
 from sendgrid.rest.api.mc_designs.v3.models.editor import Editor
 
 
+
 class DesignDuplicateInput:
-    def __init__(self, name: Optional[str] = None, editor: Optional[Editor] = None):
-        self.name = name
-        self.editor = editor
+    def __init__(
+            self,
+            name: Optional[str]=None,
+            editor: Optional[Editor]=None
+    ):
+        self.name=name
+        self.editor=editor
 
     def to_dict(self):
-        return {
-            key: to_serializable(value)
-            for key, value in {"name": self.name, "editor": self.editor}.items()
-            if value is not None
-        }
+        return {key: to_serializable(value)
+            for key, value in {
+            "name": self.name,
+            "editor": self.editor
+            }.items() if value is not None}
 
     @classmethod
     def from_dict(cls, data):
@@ -22,5 +29,7 @@ class DesignDuplicateInput:
     @staticmethod
     def generate_model(payload: Dict[str, object]):
         return DesignDuplicateInput(
-            name=payload.get("name"), editor=payload.get("editor")
-        )
+            name=payload.get('name'),
+            editor=payload.get('editor')
+        ) 
+

@@ -1,17 +1,22 @@
-from typing import Optional, Dict
+from enum import Enum
+from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
+from enum import Enum
+
 
 
 class DeleteContactIdentifier202Response:
-    def __init__(self, job_id: Optional[object] = None):
-        self.job_id = job_id
+    def __init__(
+            self,
+            job_id: Optional[object]=None
+    ):
+        self.job_id=job_id
 
     def to_dict(self):
-        return {
-            key: to_serializable(value)
-            for key, value in {"job_id": self.job_id}.items()
-            if value is not None
-        }
+        return {key: to_serializable(value)
+            for key, value in {
+            "job_id": self.job_id
+            }.items() if value is not None}
 
     @classmethod
     def from_dict(cls, data):
@@ -19,4 +24,7 @@ class DeleteContactIdentifier202Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return DeleteContactIdentifier202Response(job_id=payload.get("job_id"))
+        return DeleteContactIdentifier202Response(
+            job_id=payload.get('job_id')
+        ) 
+

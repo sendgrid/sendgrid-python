@@ -12,57 +12,59 @@
 """
 
 import json
-from typing import Optional
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
 from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
-from typing import Optional
-
+from pydantic import Field, StrictInt, StrictStr
+from typing import Any, Optional
+from typing_extensions import Annotated
 
 class DeleteRecipientFromContactDbList:
     def __init__(self, client) -> None:
         self.client = client
-
+    
     def send(
         self,
-        list_id: int,
-        recipient_id: str,
-        on_behalf_of: Optional[str] = None,
-        body: Optional[object] = None,
+            list_id: int,
+    recipient_id: str,
+    on_behalf_of: Optional[str] = None,
+    body: Optional[object] = None,
+
     ):
-        path = "/v3/contactdb/lists/{list_id}/recipients/{recipient_id}"
+        path='/v3/contactdb/lists/{list_id}/recipients/{recipient_id}'
         path = path.format(
-            list_id=list_id,
-            recipient_id=recipient_id,
+        list_id=list_id,
+        recipient_id=recipient_id,
         )
 
         headers = values.of(
-            {
-                "on-behalf-of": on_behalf_of,
-            }
-        )
+        {
+            'on-behalf-of': on_behalf_of,
+        })
         headers["Content-Type"] = "application/json"
         data = None
         if body:
             data = body.to_dict()
-        request = Request(method="DELETE", url=path, data=data, headers=headers)
-        response = self.client.send(request)
+        request = Request(
+            method='DELETE',
+            url=path,
+            data=data,
+            headers=headers
+        )
+        response=self.client.send(request)
         if response is None:
-            raise ApiException(
-                error="CreateAlert creation failed: Unable to connect to server"
-            )
+            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(
-                status_code=response.status_code, model=text, headers=response.headers
-            )
+            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
         else:
-            raise ApiException(
-                status_code=response.status_code, error=text, headers=response.headers
-            )
+            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)

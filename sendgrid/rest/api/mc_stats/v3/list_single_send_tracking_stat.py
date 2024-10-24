@@ -12,51 +12,56 @@
 """
 
 import json
-from typing import List, Optional
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
+from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
+from pydantic import Field, StrictStr
 from typing import List, Optional
+from typing_extensions import Annotated
 from sendgrid.rest.api.mc_stats.v3.models.ab_phase_id import AbPhaseId
 from sendgrid.rest.api.mc_stats.v3.models.items2 import Items2
-
+from sendgrid.rest.api.mc_stats.v3.models.singlesends_link_stats_response import SinglesendsLinkStatsResponse
 
 class ListSingleSendTrackingStat:
     def __init__(self, client) -> None:
         self.client = client
-
+    
     def send(
         self,
-        id: str,
-        page_size: Optional[int] = None,
-        page_token: Optional[str] = None,
-        group_by: Optional[List[Items2]] = None,
-        ab_variation_id: Optional[str] = None,
-        ab_phase_id: Optional[AbPhaseId] = None,
+            id: str,
+    page_size: Optional[int] = None,
+    page_token: Optional[str] = None,
+    group_by: Optional[List[Items2]] = None,
+    ab_variation_id: Optional[str] = None,
+    ab_phase_id: Optional[AbPhaseId] = None,
+
     ):
-        path = "/v3/marketing/stats/singlesends/{id}/links"
+        path='/v3/marketing/stats/singlesends/{id}/links'
         path = path.format(
-            id=id,
+        id=id,
         )
 
         data = None
-        request = Request(method="GET", url=path, data=data, headers=headers)
-        response = self.client.send(request)
+        request = Request(
+            method='GET',
+            url=path,
+            data=data,
+            headers=headers
+        )
+        response=self.client.send(request)
         if response is None:
-            raise ApiException(
-                error="CreateAlert creation failed: Unable to connect to server"
-            )
+            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(
-                status_code=response.status_code, model=text, headers=response.headers
-            )
+            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
         else:
-            raise ApiException(
-                status_code=response.status_code, error=text, headers=response.headers
-            )
+            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)

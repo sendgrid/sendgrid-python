@@ -11,14 +11,10 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
 from sendgrid.rest.api.mc_test.v3.models.error_response import ErrorResponse
-from sendgrid.rest.api.mc_test.v3.models.error_response_errors_inner import (
-    ErrorResponseErrorsInner,
-)
-from sendgrid.rest.api.mc_test.v3.models.send_test_marketing_email_request import (
-    SendTestMarketingEmailRequest,
-)
-
-__all__ = ["ErrorResponse", "ErrorResponseErrorsInner", "SendTestMarketingEmailRequest"]
+from sendgrid.rest.api.mc_test.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.mc_test.v3.models.send_test_marketing_email_request import SendTestMarketingEmailRequest
+__all__ = [ 'ErrorResponse',   'ErrorResponseErrorsInner',   'SendTestMarketingEmailRequest'  ]
 # Testing code

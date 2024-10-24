@@ -11,40 +11,18 @@
   Do not edit the class manually.
 """
 
+
 # import models into model package
 from sendgrid.rest.api.mc_designs.v3.models.api_error import ApiError
 from sendgrid.rest.api.mc_designs.v3.models.api_errors import ApiErrors
-from sendgrid.rest.api.mc_designs.v3.models.design_common_properties import (
-    DesignCommonProperties,
-)
-from sendgrid.rest.api.mc_designs.v3.models.design_duplicate_input import (
-    DesignDuplicateInput,
-)
+from sendgrid.rest.api.mc_designs.v3.models.design_common_properties import DesignCommonProperties
+from sendgrid.rest.api.mc_designs.v3.models.design_duplicate_input import DesignDuplicateInput
 from sendgrid.rest.api.mc_designs.v3.models.design_input import DesignInput
 from sendgrid.rest.api.mc_designs.v3.models.design_output import DesignOutput
-from sendgrid.rest.api.mc_designs.v3.models.design_output_summary import (
-    DesignOutputSummary,
-)
+from sendgrid.rest.api.mc_designs.v3.models.design_output_summary import DesignOutputSummary
 from sendgrid.rest.api.mc_designs.v3.models.editor import Editor
-from sendgrid.rest.api.mc_designs.v3.models.list_design200_response import (
-    ListDesign200Response,
-)
+from sendgrid.rest.api.mc_designs.v3.models.list_design200_response import ListDesign200Response
 from sendgrid.rest.api.mc_designs.v3.models.metadata import Metadata
-from sendgrid.rest.api.mc_designs.v3.models.update_design_request import (
-    UpdateDesignRequest,
-)
-
-__all__ = [
-    "ApiError",
-    "ApiErrors",
-    "DesignCommonProperties",
-    "DesignDuplicateInput",
-    "DesignInput",
-    "DesignOutput",
-    "DesignOutputSummary",
-    "Editor",
-    "ListDesign200Response",
-    "Metadata",
-    "UpdateDesignRequest",
-]
+from sendgrid.rest.api.mc_designs.v3.models.update_design_request import UpdateDesignRequest
+__all__ = [ 'ApiError',   'ApiErrors',   'DesignCommonProperties',   'DesignDuplicateInput',   'DesignInput',   'DesignOutput',   'DesignOutputSummary',   'Editor',   'ListDesign200Response',   'Metadata',   'UpdateDesignRequest'  ]
 # Testing code

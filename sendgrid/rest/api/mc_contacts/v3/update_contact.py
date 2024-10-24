@@ -12,46 +12,47 @@
 """
 
 import json
-from typing import Optional
+import warnings
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing_extensions import Annotated
+from sendgrid.base import values
 from sendgrid.exceptions import ApiException
 from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
 from typing import Optional
-from sendgrid.rest.api.mc_contacts.v3.models.update_contact_request import (
-    UpdateContactRequest,
-)
-
+from sendgrid.rest.api.mc_contacts.v3.models.update_contact202_response import UpdateContact202Response
+from sendgrid.rest.api.mc_contacts.v3.models.update_contact_request import UpdateContactRequest
 
 class UpdateContact:
     def __init__(self, client) -> None:
         self.client = client
-
+    
     def send(
         self,
-        update_contact_request: Optional[UpdateContactRequest] = None,
+            update_contact_request: Optional[UpdateContactRequest] = None,
+
     ):
-        path = "/v3/marketing/contacts"
+        path='/v3/marketing/contacts'
 
         data = None
         if update_contact_request:
             data = update_contact_request.to_dict()
-        request = Request(method="PUT", url=path, data=data, headers=headers)
-        response = self.client.send(request)
+        request = Request(
+            method='PUT',
+            url=path,
+            data=data,
+            headers=headers
+        )
+        response=self.client.send(request)
         if response is None:
-            raise ApiException(
-                error="CreateAlert creation failed: Unable to connect to server"
-            )
+            raise ApiException(error="CreateAlert creation failed: Unable to connect to server")
 
         if response.text:
             text = json.loads(response.text)
         else:
             text = ""
         if response.is_success():
-            return ApiResponse(
-                status_code=response.status_code, model=text, headers=response.headers
-            )
+            return ApiResponse(status_code=response.status_code, model=text, headers=response.headers)
         else:
-            raise ApiException(
-                status_code=response.status_code, error=text, headers=response.headers
-            )
+            raise ApiException(status_code=response.status_code, error=text, headers=response.headers)

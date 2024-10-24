@@ -1,7 +1,11 @@
 from enum import Enum
+from typing import Optional, Dict, List
+from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
 
 
+
 class PermissionType1(Enum):
-    ADMIN = "admin"
-    RESTRICTED = "restricted"
+        ADMIN='admin'
+        RESTRICTED='restricted'
+

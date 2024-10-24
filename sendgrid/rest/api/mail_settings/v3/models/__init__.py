@@ -11,52 +11,18 @@
   Do not edit the class manually.
 """
 
-# import models into model package
-from sendgrid.rest.api.mail_settings.v3.models.list_mail_setting200_response import (
-    ListMailSetting200Response,
-)
-from sendgrid.rest.api.mail_settings.v3.models.list_mail_setting200_response_result_inner import (
-    ListMailSetting200ResponseResultInner,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_address_whitelabel200 import (
-    MailSettingsAddressWhitelabel200,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_bounce_purge import (
-    MailSettingsBouncePurge,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_footer import (
-    MailSettingsFooter,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_forward_bounce import (
-    MailSettingsForwardBounce,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_forward_spam import (
-    MailSettingsForwardSpam,
-)
-from sendgrid.rest.api.mail_settings.v3.models.mail_settings_template200 import (
-    MailSettingsTemplate200,
-)
-from sendgrid.rest.api.mail_settings.v3.models.update_address_whitelist_request import (
-    UpdateAddressWhitelistRequest,
-)
-from sendgrid.rest.api.mail_settings.v3.models.update_template200_response import (
-    UpdateTemplate200Response,
-)
-from sendgrid.rest.api.mail_settings.v3.models.update_template_request import (
-    UpdateTemplateRequest,
-)
 
-__all__ = [
-    "ListMailSetting200Response",
-    "ListMailSetting200ResponseResultInner",
-    "MailSettingsAddressWhitelabel200",
-    "MailSettingsBouncePurge",
-    "MailSettingsFooter",
-    "MailSettingsForwardBounce",
-    "MailSettingsForwardSpam",
-    "MailSettingsTemplate200",
-    "UpdateAddressWhitelistRequest",
-    "UpdateTemplate200Response",
-    "UpdateTemplateRequest",
-]
+# import models into model package
+from sendgrid.rest.api.mail_settings.v3.models.list_mail_setting200_response import ListMailSetting200Response
+from sendgrid.rest.api.mail_settings.v3.models.list_mail_setting200_response_result_inner import ListMailSetting200ResponseResultInner
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_address_whitelabel200 import MailSettingsAddressWhitelabel200
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_bounce_purge import MailSettingsBouncePurge
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_footer import MailSettingsFooter
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_forward_bounce import MailSettingsForwardBounce
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_forward_spam import MailSettingsForwardSpam
+from sendgrid.rest.api.mail_settings.v3.models.mail_settings_template200 import MailSettingsTemplate200
+from sendgrid.rest.api.mail_settings.v3.models.update_address_whitelist_request import UpdateAddressWhitelistRequest
+from sendgrid.rest.api.mail_settings.v3.models.update_template200_response import UpdateTemplate200Response
+from sendgrid.rest.api.mail_settings.v3.models.update_template_request import UpdateTemplateRequest
+__all__ = [ 'ListMailSetting200Response',   'ListMailSetting200ResponseResultInner',   'MailSettingsAddressWhitelabel200',   'MailSettingsBouncePurge',   'MailSettingsFooter',   'MailSettingsForwardBounce',   'MailSettingsForwardSpam',   'MailSettingsTemplate200',   'UpdateAddressWhitelistRequest',   'UpdateTemplate200Response',   'UpdateTemplateRequest'  ]
 # Testing code
