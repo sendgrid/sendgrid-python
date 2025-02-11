@@ -2,20 +2,21 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
+from sendgrid.rest.api.scopes.v3.models.list_scope401_response_errors_inner import ListScope401ResponseErrorsInner
 
 
 
-class AccountProvisioningPagination:
+class ListScope401Response:
     def __init__(
             self,
-            last: Optional[str]=None
+            errors: Optional[List[ListScope401ResponseErrorsInner]]=None
     ):
-        self.last=last
+        self.errors=errors
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "last": self.last
+            "errors": self.errors
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +25,7 @@ class AccountProvisioningPagination:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return AccountProvisioningPagination(
-            last=payload.get('last')
+        return ListScope401Response(
+            errors=payload.get('errors')
         ) 
 

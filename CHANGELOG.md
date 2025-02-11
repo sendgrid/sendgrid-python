@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-02-11] Version 7.0.0-rc.4
+-------------------------------
+**Suppressions**
+- Remove `last_email_sent_at` from suppression groups
+
+
 [2025-01-28] Version 7.0.0-rc.3
 -------------------------------
 **Mc list**

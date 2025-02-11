@@ -5,17 +5,23 @@ from enum import Enum
 
 
 
-class AccountProvisioningPagination:
+class SsoErrorResponseInner:
     def __init__(
             self,
-            last: Optional[str]=None
+            message: Optional[str]=None,
+            field: Optional[str]=None,
+            error_id: Optional[str]=None
     ):
-        self.last=last
+        self.message=message
+        self.field=field
+        self.error_id=error_id
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "last": self.last
+            "message": self.message,
+            "field": self.field,
+            "error_id": self.error_id
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +30,9 @@ class AccountProvisioningPagination:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return AccountProvisioningPagination(
-            last=payload.get('last')
+        return SsoErrorResponseInner(
+            message=payload.get('message'),
+            field=payload.get('field'),
+            error_id=payload.get('error_id')
         ) 
 

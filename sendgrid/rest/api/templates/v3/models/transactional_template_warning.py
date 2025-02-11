@@ -5,17 +5,17 @@ from enum import Enum
 
 
 
-class AccountProvisioningPagination:
+class TransactionalTemplateWarning:
     def __init__(
             self,
-            last: Optional[str]=None
+            message: Optional[str]=None
     ):
-        self.last=last
+        self.message=message
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "last": self.last
+            "message": self.message
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +24,7 @@ class AccountProvisioningPagination:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return AccountProvisioningPagination(
-            last=payload.get('last')
+        return TransactionalTemplateWarning(
+            message=payload.get('message')
         ) 
 

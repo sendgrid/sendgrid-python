@@ -5,17 +5,20 @@ from enum import Enum
 
 
 
-class AccountProvisioningPagination:
+class DenyScopeRequest404ResponseErrorsInner:
     def __init__(
             self,
-            last: Optional[str]=None
+            message: Optional[str]=None,
+            field: Optional[str]=None
     ):
-        self.last=last
+        self.message=message
+        self.field=field
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "last": self.last
+            "message": self.message,
+            "field": self.field
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +27,8 @@ class AccountProvisioningPagination:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return AccountProvisioningPagination(
-            last=payload.get('last')
+        return DenyScopeRequest404ResponseErrorsInner(
+            message=payload.get('message'),
+            field=payload.get('field')
         ) 
 

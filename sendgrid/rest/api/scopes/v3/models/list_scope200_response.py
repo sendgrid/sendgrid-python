@@ -5,17 +5,17 @@ from enum import Enum
 
 
 
-class AccountProvisioningPagination:
+class ListScope200Response:
     def __init__(
             self,
-            last: Optional[str]=None
+            scopes: Optional[List[str]]=None
     ):
-        self.last=last
+        self.scopes=scopes
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "last": self.last
+            "scopes": self.scopes
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +24,7 @@ class AccountProvisioningPagination:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return AccountProvisioningPagination(
-            last=payload.get('last')
+        return ListScope200Response(
+            scopes=payload.get('scopes')
         ) 
 
