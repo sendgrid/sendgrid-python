@@ -21,7 +21,7 @@ from sendgrid.http.request import Request
 from sendgrid.http.response import ApiResponse
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
 
 class DeleteSegment:
@@ -33,7 +33,6 @@ class DeleteSegment:
             segment_id: int,
     on_behalf_of: Optional[str] = None,
     delete_contacts: Optional[bool] = None,
-    body: Optional[object] = None,
 
     ):
         path='/v3/contactdb/segments/{segment_id}'
@@ -45,10 +44,7 @@ class DeleteSegment:
         {
             'on-behalf-of': on_behalf_of,
         })
-        headers["Content-Type"] = "application/json"
         data = None
-        if body:
-            data = body.to_dict()
         request = Request(
             method='DELETE',
             url=path,
