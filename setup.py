@@ -11,6 +11,7 @@ def getRequires():
     deps = [
         'python_http_client>=3.2.1',
         'starkbank-ecdsa>=2.0.1'
+        'werkzeug>=3.1.3'
     ]
     return deps
 
