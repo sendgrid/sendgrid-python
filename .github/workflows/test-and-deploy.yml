@@ -31,6 +31,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_AUTH_TOKEN }}
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Build & Test
         run: make test-docker version=${{ matrix.python-version }}
 
