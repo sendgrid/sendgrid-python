@@ -6,7 +6,6 @@ venv: clean
 	virtualenv --python=python venv
 
 install: venv
-	. venv/bin/activate; pip install -r test/requirements.txt
 	. venv/bin/activate; python setup.py install
 	. venv/bin/activate; pip install -r requirements.txt
 
