@@ -9,7 +9,10 @@ install: venv
 	. venv/bin/activate; python setup.py install
 	. venv/bin/activate; pip install -r requirements.txt
 
-test: install
+test-install: install
+	. venv/bin/activate; pip install -r test/requirements.txt
+
+test: test-install
 	. venv/bin/activate; coverage run -m unittest discover -s test/unit
 
 test-integ: test
