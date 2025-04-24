@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        python-version: [ '2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11', '3.12' , '3.13']
+        python-version: [ '3.9', '3.10', '3.11', '3.12' , '3.13']
     env:
       DOCKER_LOGIN: ${{ secrets.DOCKER_USERNAME && secrets.DOCKER_AUTH_TOKEN }}
     steps:
