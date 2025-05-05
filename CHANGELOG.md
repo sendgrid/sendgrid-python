@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-05] Version 7.0.0-rc.6
+-------------------------------
+**Account provisioning**
+- Fix response data for v3/partners/offerings
+
+
 [2025-02-22] Version 7.0.0-rc.5
 -------------------------------
 **Account provisioning**

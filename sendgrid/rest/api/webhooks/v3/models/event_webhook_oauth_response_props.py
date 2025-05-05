@@ -2,21 +2,23 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner1 import ListTeammate200ResponseResultInner1
 
 
 
-class ListTeammate200Response:
+class EventWebhookOauthResponseProps:
     def __init__(
             self,
-            result: Optional[List[ListTeammate200ResponseResultInner1]]=None
+            oauth_client_id: Optional[str]=None,
+            oauth_token_url: Optional[str]=None
     ):
-        self.result=result
+        self.oauth_client_id=oauth_client_id
+        self.oauth_token_url=oauth_token_url
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "result": self.result
+            "oauth_client_id": self.oauth_client_id,
+            "oauth_token_url": self.oauth_token_url
             }.items() if value is not None}
 
     @classmethod
@@ -25,7 +27,8 @@ class ListTeammate200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListTeammate200Response(
-            result=payload.get('result')
+        return EventWebhookOauthResponseProps(
+            oauth_client_id=payload.get('oauth_client_id'),
+            oauth_token_url=payload.get('oauth_token_url')
         ) 
 

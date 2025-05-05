@@ -2,14 +2,14 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner1 import ListTeammate200ResponseResultInner1
+from sendgrid.rest.api.webhooks.v3.models.parse_setting import ParseSetting
 
 
 
-class ListTeammate200Response:
+class ListParseSetting200Response:
     def __init__(
             self,
-            result: Optional[List[ListTeammate200ResponseResultInner1]]=None
+            result: Optional[List[ParseSetting]]=None
     ):
         self.result=result
 
@@ -25,7 +25,7 @@ class ListTeammate200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListTeammate200Response(
+        return ListParseSetting200Response(
             result=payload.get('result')
         ) 
 
