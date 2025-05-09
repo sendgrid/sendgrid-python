@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-05] Version 6.12.0
+---------------------------
+**Library - Chore**
+- [PR #1098](https://github.com/sendgrid/sendgrid-python/pull/1098): Add werkzeug package to setup file. Thanks to [@gopidesupavan](https://github.com/gopidesupavan)!
+- [PR #1099](https://github.com/sendgrid/sendgrid-python/pull/1099): install docker-compose. Thanks to [@tiwarishubham635](https://github.com/tiwarishubham635)!
+
+**Library - Feature**
+- [PR #1087](https://github.com/sendgrid/sendgrid-python/pull/1087): add support for python3.12 and 3.13. Thanks to [@meysam81](https://github.com/meysam81)!
+
+
 [2023-12-01] Version 6.11.0
 ---------------------------
 **Library - Feature**
