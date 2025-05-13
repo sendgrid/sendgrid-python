@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-13] Version 6.12.1
+---------------------------
+**Library - Fix**
+- [PR #1085](https://github.com/sendgrid/sendgrid-python/pull/1085): Vulnerability fix for starkbank-ecdsa 2.2.0 dependency. Thanks to [@ranjanprasad1996](https://github.com/ranjanprasad1996)!
+
+
 [2025-05-05] Version 6.12.0
 ---------------------------
 **Library - Chore**
