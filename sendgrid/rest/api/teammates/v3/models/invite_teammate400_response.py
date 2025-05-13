@@ -2,14 +2,14 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.invite_teammate400_response_errors_inner1 import InviteTeammate400ResponseErrorsInner1
+from sendgrid.rest.api.teammates.v3.models.invite_teammate400_response_errors_inner import InviteTeammate400ResponseErrorsInner
 
 
 
 class InviteTeammate400Response:
     def __init__(
             self,
-            errors: Optional[List[InviteTeammate400ResponseErrorsInner1]]=None
+            errors: Optional[List[InviteTeammate400ResponseErrorsInner]]=None
     ):
         self.errors=errors
 

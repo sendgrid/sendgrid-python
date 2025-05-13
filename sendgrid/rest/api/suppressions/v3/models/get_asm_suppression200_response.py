@@ -2,21 +2,21 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner import ListTeammate200ResponseResultInner
+from sendgrid.rest.api.suppressions.v3.models.get_asm_suppression200_response_suppressions_inner import GetAsmSuppression200ResponseSuppressionsInner
 
 
 
-class ListTeammate200Response:
+class GetAsmSuppression200Response:
     def __init__(
             self,
-            result: Optional[List[ListTeammate200ResponseResultInner]]=None
+            suppressions: Optional[List[GetAsmSuppression200ResponseSuppressionsInner]]=None
     ):
-        self.result=result
+        self.suppressions=suppressions
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "result": self.result
+            "suppressions": self.suppressions
             }.items() if value is not None}
 
     @classmethod
@@ -25,7 +25,7 @@ class ListTeammate200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListTeammate200Response(
-            result=payload.get('result')
+        return GetAsmSuppression200Response(
+            suppressions=payload.get('suppressions')
         ) 
 

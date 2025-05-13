@@ -32,10 +32,22 @@ from sendgrid.rest.api.lmc_contactdb.v3.models.create_custom_field_request impor
 from sendgrid.rest.api.lmc_contactdb.v3.models.delete_contacts import DeleteContacts
 from sendgrid.rest.api.lmc_contactdb.v3.models.error_response import ErrorResponse
 from sendgrid.rest.api.lmc_contactdb.v3.models.error_response_errors_inner import ErrorResponseErrorsInner
+from sendgrid.rest.api.lmc_contactdb.v3.models.export_recipient202_response import ExportRecipient202Response
+from sendgrid.rest.api.lmc_contactdb.v3.models.export_recipient400_response import ExportRecipient400Response
+from sendgrid.rest.api.lmc_contactdb.v3.models.export_recipient_request import ExportRecipientRequest
+from sendgrid.rest.api.lmc_contactdb.v3.models.export_recipient_request_notifications import ExportRecipientRequestNotifications
+from sendgrid.rest.api.lmc_contactdb.v3.models.file_type import FileType
 from sendgrid.rest.api.lmc_contactdb.v3.models.get_recipient_list200_response import GetRecipientList200Response
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_all_custom_fields_response import ListAllCustomFieldsResponse
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_all_lists_response import ListAllListsResponse
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_all_segments_response import ListAllSegmentsResponse
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient200_response import ListExportRecipient200Response
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient200_response_metadata import ListExportRecipient200ResponseMetadata
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient200_response_result_inner import ListExportRecipient200ResponseResultInner
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient200_response_result_inner_metadata import ListExportRecipient200ResponseResultInnerMetadata
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient200_response_result_inner_segments_inner import ListExportRecipient200ResponseResultInnerSegmentsInner
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient400_response import ListExportRecipient400Response
+from sendgrid.rest.api.lmc_contactdb.v3.models.list_export_recipient400_response_errors_inner import ListExportRecipient400ResponseErrorsInner
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_recipients_from_contact_db_list200_response import ListRecipientsFromContactDbList200Response
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_recipients_on_a_segment_response import ListRecipientsOnASegmentResponse
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_recipients_response import ListRecipientsResponse
@@ -43,16 +55,20 @@ from sendgrid.rest.api.lmc_contactdb.v3.models.list_reserved_field200_response i
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_reserved_field200_response_reserved_fields_inner import ListReservedField200ResponseReservedFieldsInner
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_status200_response import ListStatus200Response
 from sendgrid.rest.api.lmc_contactdb.v3.models.list_status200_response_status_inner import ListStatus200ResponseStatusInner
+from sendgrid.rest.api.lmc_contactdb.v3.models.metadata import Metadata
 from sendgrid.rest.api.lmc_contactdb.v3.models.operator import Operator
+from sendgrid.rest.api.lmc_contactdb.v3.models.recipient_export import RecipientExport
+from sendgrid.rest.api.lmc_contactdb.v3.models.recipients_error import RecipientsError
 from sendgrid.rest.api.lmc_contactdb.v3.models.search_recipient200_response import SearchRecipient200Response
 from sendgrid.rest.api.lmc_contactdb.v3.models.search_recipient200_response_recipients_inner import SearchRecipient200ResponseRecipientsInner
 from sendgrid.rest.api.lmc_contactdb.v3.models.search_recipient200_response_recipients_inner_custom_fields_inner import SearchRecipient200ResponseRecipientsInnerCustomFieldsInner
 from sendgrid.rest.api.lmc_contactdb.v3.models.search_recipient200_response_recipients_inner_custom_fields_inner_value import SearchRecipient200ResponseRecipientsInnerCustomFieldsInnerValue
 from sendgrid.rest.api.lmc_contactdb.v3.models.search_recipient_request import SearchRecipientRequest
+from sendgrid.rest.api.lmc_contactdb.v3.models.status import Status
 from sendgrid.rest.api.lmc_contactdb.v3.models.type import Type
 from sendgrid.rest.api.lmc_contactdb.v3.models.update_a_list_request import UpdateAListRequest
 from sendgrid.rest.api.lmc_contactdb.v3.models.update_contact_db_list200_response import UpdateContactDbList200Response
 from sendgrid.rest.api.lmc_contactdb.v3.models.update_recipient_request_inner import UpdateRecipientRequestInner
 from sendgrid.rest.api.lmc_contactdb.v3.models.update_segment_request import UpdateSegmentRequest
-__all__ = [ 'AddRecipientRequestInner',   'AndOr',   'ContactdbCustomField',   'ContactdbCustomFieldId2xx',   'ContactdbCustomFieldIdValue',   'ContactdbList2xx',   'ContactdbRecipient200',   'ContactdbRecipient200RecipientsInner',   'ContactdbRecipientCount200',   'ContactdbRecipientResponse201',   'ContactdbRecipientResponse201ErrorsInner',   'ContactdbSegments',   'ContactdbSegmentsConditions',   'ContactdbSegmentsId200',   'CreateAListRequest',   'CreateCustomFieldRequest',   'DeleteContacts',   'ErrorResponse',   'ErrorResponseErrorsInner',   'GetRecipientList200Response',   'ListAllCustomFieldsResponse',   'ListAllListsResponse',   'ListAllSegmentsResponse',   'ListRecipientsFromContactDbList200Response',   'ListRecipientsOnASegmentResponse',   'ListRecipientsResponse',   'ListReservedField200Response',   'ListReservedField200ResponseReservedFieldsInner',   'ListStatus200Response',   'ListStatus200ResponseStatusInner',   'Operator',   'SearchRecipient200Response',   'SearchRecipient200ResponseRecipientsInner',   'SearchRecipient200ResponseRecipientsInnerCustomFieldsInner',   'SearchRecipient200ResponseRecipientsInnerCustomFieldsInnerValue',   'SearchRecipientRequest',   'Type',   'UpdateAListRequest',   'UpdateContactDbList200Response',   'UpdateRecipientRequestInner',   'UpdateSegmentRequest'  ]
+__all__ = [ 'AddRecipientRequestInner',   'AndOr',   'ContactdbCustomField',   'ContactdbCustomFieldId2xx',   'ContactdbCustomFieldIdValue',   'ContactdbList2xx',   'ContactdbRecipient200',   'ContactdbRecipient200RecipientsInner',   'ContactdbRecipientCount200',   'ContactdbRecipientResponse201',   'ContactdbRecipientResponse201ErrorsInner',   'ContactdbSegments',   'ContactdbSegmentsConditions',   'ContactdbSegmentsId200',   'CreateAListRequest',   'CreateCustomFieldRequest',   'DeleteContacts',   'ErrorResponse',   'ErrorResponseErrorsInner',   'ExportRecipient202Response',   'ExportRecipient400Response',   'ExportRecipientRequest',   'ExportRecipientRequestNotifications',   'FileType',   'GetRecipientList200Response',   'ListAllCustomFieldsResponse',   'ListAllListsResponse',   'ListAllSegmentsResponse',   'ListExportRecipient200Response',   'ListExportRecipient200ResponseMetadata',   'ListExportRecipient200ResponseResultInner',   'ListExportRecipient200ResponseResultInnerMetadata',   'ListExportRecipient200ResponseResultInnerSegmentsInner',   'ListExportRecipient400Response',   'ListExportRecipient400ResponseErrorsInner',   'ListRecipientsFromContactDbList200Response',   'ListRecipientsOnASegmentResponse',   'ListRecipientsResponse',   'ListReservedField200Response',   'ListReservedField200ResponseReservedFieldsInner',   'ListStatus200Response',   'ListStatus200ResponseStatusInner',   'Metadata',   'Operator',   'RecipientExport',   'RecipientsError',   'SearchRecipient200Response',   'SearchRecipient200ResponseRecipientsInner',   'SearchRecipient200ResponseRecipientsInnerCustomFieldsInner',   'SearchRecipient200ResponseRecipientsInnerCustomFieldsInnerValue',   'SearchRecipientRequest',   'Status',   'Type',   'UpdateAListRequest',   'UpdateContactDbList200Response',   'UpdateRecipientRequestInner',   'UpdateSegmentRequest'  ]
 # Testing code

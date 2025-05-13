@@ -2,21 +2,24 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner import ListTeammate200ResponseResultInner
+from sendgrid.rest.api.lmc_contactdb.v3.models.metadata import Metadata
 
 
 
-class ListTeammate200Response:
+class ExportRecipient202Response:
     def __init__(
             self,
-            result: Optional[List[ListTeammate200ResponseResultInner]]=None
+            metadata: Optional[Metadata]=None,
+            id: Optional[str]=None
     ):
-        self.result=result
+        self.metadata=metadata
+        self.id=id
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "result": self.result
+            "_metadata": self.metadata,
+            "id": self.id
             }.items() if value is not None}
 
     @classmethod
@@ -25,7 +28,8 @@ class ListTeammate200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListTeammate200Response(
-            result=payload.get('result')
+        return ExportRecipient202Response(
+            metadata=payload.get('_metadata'),
+            id=payload.get('id')
         ) 
 

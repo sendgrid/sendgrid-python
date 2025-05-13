@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-13] Version 7.0.0-rc.7
+-------------------------------
+**Lmc contactdb v3**
+- Add 3 endpoints to legacy API
+
+
 [2025-05-05] Version 7.0.0-rc.6
 -------------------------------
 **Account provisioning**

@@ -13,13 +13,10 @@
 
 
 # import models into model package
-from sendgrid.rest.api.teammates.v3.models.delete_pending_teammate404_response import DeletePendingTeammate404Response
-from sendgrid.rest.api.teammates.v3.models.delete_teammate404_response import DeleteTeammate404Response
 from sendgrid.rest.api.teammates.v3.models.get_teammate200_response import GetTeammate200Response
 from sendgrid.rest.api.teammates.v3.models.invite_teammate201_response import InviteTeammate201Response
 from sendgrid.rest.api.teammates.v3.models.invite_teammate400_response import InviteTeammate400Response
 from sendgrid.rest.api.teammates.v3.models.invite_teammate400_response_errors_inner import InviteTeammate400ResponseErrorsInner
-from sendgrid.rest.api.teammates.v3.models.invite_teammate400_response_errors_inner1 import InviteTeammate400ResponseErrorsInner1
 from sendgrid.rest.api.teammates.v3.models.invite_teammate_request import InviteTeammateRequest
 from sendgrid.rest.api.teammates.v3.models.list_pending_teammate200_response import ListPendingTeammate200Response
 from sendgrid.rest.api.teammates.v3.models.list_pending_teammate200_response_result_inner import ListPendingTeammate200ResponseResultInner
@@ -31,7 +28,6 @@ from sendgrid.rest.api.teammates.v3.models.list_subuser_by_template400_response 
 from sendgrid.rest.api.teammates.v3.models.list_subuser_by_template400_response_errors_inner import ListSubuserByTemplate400ResponseErrorsInner
 from sendgrid.rest.api.teammates.v3.models.list_teammate200_response import ListTeammate200Response
 from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner import ListTeammate200ResponseResultInner
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner1 import ListTeammate200ResponseResultInner1
 from sendgrid.rest.api.teammates.v3.models.permission_type import PermissionType
 from sendgrid.rest.api.teammates.v3.models.resend_teammate_invite200_response import ResendTeammateInvite200Response
 from sendgrid.rest.api.teammates.v3.models.update_teammate200_response import UpdateTeammate200Response
@@ -39,5 +35,5 @@ from sendgrid.rest.api.teammates.v3.models.update_teammate_request import Update
 from sendgrid.rest.api.teammates.v3.models.user_type import UserType
 from sendgrid.rest.api.teammates.v3.models.user_type1 import UserType1
 from sendgrid.rest.api.teammates.v3.models.user_type2 import UserType2
-__all__ = [ 'DeletePendingTeammate404Response',   'DeleteTeammate404Response',   'GetTeammate200Response',   'InviteTeammate201Response',   'InviteTeammate400Response',   'InviteTeammate400ResponseErrorsInner',   'InviteTeammate400ResponseErrorsInner1',   'InviteTeammateRequest',   'ListPendingTeammate200Response',   'ListPendingTeammate200ResponseResultInner',   'ListSubuserByTemplate200Response',   'ListSubuserByTemplate200ResponseMetadata',   'ListSubuserByTemplate200ResponseMetadataNextParams',   'ListSubuserByTemplate200ResponseSubuserAccessInner',   'ListSubuserByTemplate400Response',   'ListSubuserByTemplate400ResponseErrorsInner',   'ListTeammate200Response',   'ListTeammate200ResponseResultInner',   'ListTeammate200ResponseResultInner1',   'PermissionType',   'ResendTeammateInvite200Response',   'UpdateTeammate200Response',   'UpdateTeammateRequest',   'UserType',   'UserType1',   'UserType2'  ]
+__all__ = [ 'GetTeammate200Response',   'InviteTeammate201Response',   'InviteTeammate400Response',   'InviteTeammate400ResponseErrorsInner',   'InviteTeammateRequest',   'ListPendingTeammate200Response',   'ListPendingTeammate200ResponseResultInner',   'ListSubuserByTemplate200Response',   'ListSubuserByTemplate200ResponseMetadata',   'ListSubuserByTemplate200ResponseMetadataNextParams',   'ListSubuserByTemplate200ResponseSubuserAccessInner',   'ListSubuserByTemplate400Response',   'ListSubuserByTemplate400ResponseErrorsInner',   'ListTeammate200Response',   'ListTeammate200ResponseResultInner',   'PermissionType',   'ResendTeammateInvite200Response',   'UpdateTeammate200Response',   'UpdateTeammateRequest',   'UserType',   'UserType1',   'UserType2'  ]
 # Testing code

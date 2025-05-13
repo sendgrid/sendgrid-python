@@ -2,21 +2,21 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
-from sendgrid.rest.api.teammates.v3.models.list_teammate200_response_result_inner import ListTeammate200ResponseResultInner
+from sendgrid.rest.api.webhooks.v3.models.list_all_security_policies200_response_policies_inner import ListAllSecurityPolicies200ResponsePoliciesInner
 
 
 
-class ListTeammate200Response:
+class ListAllSecurityPolicies200Response:
     def __init__(
             self,
-            result: Optional[List[ListTeammate200ResponseResultInner]]=None
+            policies: Optional[List[ListAllSecurityPolicies200ResponsePoliciesInner]]=None
     ):
-        self.result=result
+        self.policies=policies
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "result": self.result
+            "policies": self.policies
             }.items() if value is not None}
 
     @classmethod
@@ -25,7 +25,7 @@ class ListTeammate200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return ListTeammate200Response(
-            result=payload.get('result')
+        return ListAllSecurityPolicies200Response(
+            policies=payload.get('policies')
         ) 
 

@@ -1,0 +1,42 @@
+from enum import Enum
+from typing import Optional, Dict, List
+from sendgrid.converters.serialize import to_serializable, from_serializable
+from enum import Enum
+
+
+
+class CreateSecurityPolicyRequestOauth:
+    def __init__(
+            self,
+            client_id: Optional[str]=None,
+            client_secret: Optional[str]=None,
+            token_url: Optional[str]=None,
+            scopes: Optional[List[str]]=None
+    ):
+        self.client_id=client_id
+        self.client_secret=client_secret
+        self.token_url=token_url
+        self.scopes=scopes
+
+    def to_dict(self):
+        return {key: to_serializable(value)
+            for key, value in {
+            "client_id": self.client_id,
+            "client_secret": self.client_secret,
+            "token_url": self.token_url,
+            "scopes": self.scopes
+            }.items() if value is not None}
+
+    @classmethod
+    def from_dict(cls, data):
+        return from_serializable(data, cls)
+
+    @staticmethod
+    def generate_model(payload: Dict[str, object]):
+        return CreateSecurityPolicyRequestOauth(
+            client_id=payload.get('client_id'),
+            client_secret=payload.get('client_secret'),
+            token_url=payload.get('token_url'),
+            scopes=payload.get('scopes')
+        ) 
+
