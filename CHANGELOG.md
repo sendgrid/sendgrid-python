@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-13] Version 6.12.2
+---------------------------
+**Library - Chore**
+- [PR #1102](https://github.com/sendgrid/sendgrid-python/pull/1102): update ecdsa in setup.py. Thanks to [@tiwarishubham635](https://github.com/tiwarishubham635)!
+
+
 [2025-05-13] Version 6.12.1
 ---------------------------
 **Library - Fix**
