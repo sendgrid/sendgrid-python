@@ -13,8 +13,11 @@ def getRequires():
         'ecdsa>=0.19.1,<1',
         "werkzeug>=0.11.15,<1.0.0 ; python_version < '3.0'",
         "werkzeug>=0.15.0,<2.0.0 ; python_version >= '3.0' and python_version < '3.6'",
-        "werkzeug>=2.0.0,<3.0.0 ; python_version >= '3.6' and python_version < '3.11'",
-        "werkzeug>=3.0.0 ; python_version >= '3.11'"
+        "werkzeug>=0.15.0,<2.3.0 ; python_version >= '3.0' and python_version < '3.7'",
+        "werkzeug>=0.16.0,<3.1.0 ; python_version >= '3.0' and python_version < '3.8'",
+        "werkzeug>=1.0.0 ; python_version >= '3.9'",
+        "werkzeug>=2.2.0 ; python_version >= '3.11'",
+        "werkzeug>=2.3.5 ; python_version >= '3.12'"
     ]
     return deps
 
