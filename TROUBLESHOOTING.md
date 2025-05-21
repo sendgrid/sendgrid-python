@@ -2,8 +2,6 @@ If you have an issue logging into your Twilio SendGrid account, please read this
 
 If you have a non-library Twilio SendGrid issue, please contact our [support team](https://support.sendgrid.com).
 
-If you can't find a solution below, please open an [issue](https://github.com/sendgrid/sendgrid-python/issues).
-
 ## Table of Contents
 
 * [Environment Variables and Your Twilio SendGrid API Key](#environment)
