@@ -2,6 +2,7 @@ from ecdsa import VerifyingKey, BadSignatureError
 from ecdsa.util import sigdecode_der
 import base64
 import hashlib
+from .eventwebhook_header import EventWebhookHeader
 
 class EventWebhook:
     """
