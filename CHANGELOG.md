@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-29] Version 6.12.3
+---------------------------
+**Library - Chore**
+- [PR #1107](https://github.com/sendgrid/sendgrid-python/pull/1107): export EventWebhookHeader. Thanks to [@tiwarishubham635](https://github.com/tiwarishubham635)!
+- [PR #1104](https://github.com/sendgrid/sendgrid-python/pull/1104): fix werkzeug lower versions. Thanks to [@eladkal](https://github.com/eladkal)!
+- [PR #1103](https://github.com/sendgrid/sendgrid-python/pull/1103): Relax werkzeug version. Thanks to [@eladkal](https://github.com/eladkal)!
+
+
 [2025-05-13] Version 6.12.2
 ---------------------------
 **Library - Chore**
