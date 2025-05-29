@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-05-29] Version 7.0.0-rc.8
+-------------------------------
+**Domain authentication**
+- Add information about: Subdomain also refers to custom return path
+
+**Suppressions**
+- Update `on-behalf-of` header to mention using the appropriate URL for the region of the subuser
+
+
 [2025-05-13] Version 7.0.0-rc.7
 -------------------------------
 **Lmc contactdb v3**
