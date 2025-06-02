@@ -567,7 +567,7 @@ class Mail(object):
         :param value: A CustomArg object or a dict of custom arg key/values
         :type value: CustomArg, dict
         """
-        if custom_arg.personalization is not None:
+        if not isinstance(custom_arg, dict) and custom_arg.personalization is not None:
             try:
                 personalization = \
                     self._personalizations[custom_arg.personalization]
