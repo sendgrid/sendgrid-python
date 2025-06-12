@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-06-12] Version 6.12.4
+---------------------------
+**Library - Chore**
+- [PR #1109](https://github.com/sendgrid/sendgrid-python/pull/1109): bug-fix. Thanks to [@manisha1997](https://github.com/manisha1997)!
+
+
 [2025-05-29] Version 6.12.3
 ---------------------------
 **Library - Chore**
