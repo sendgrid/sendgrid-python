@@ -26,7 +26,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 - Python version 2.7, 3.5, 3.6, 3.7, or 3.8
 - [python_http_client](https://github.com/sendgrid/python-http-client)
-- [ecdsa_python](https://github.com/starkbank/ecdsa-python)
+- [cryptography](https://github.com/pyca/cryptography)
 - [pyenv](https://github.com/yyuu/pyenv)
 - [tox](https://pypi.python.org/pypi/tox)
 
