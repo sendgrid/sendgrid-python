@@ -5,17 +5,20 @@ from enum import Enum
 
 
 
-class DownloadCsv200Response:
+class ListReputation200ResponseInner:
     def __init__(
             self,
-            presigned_url: Optional[str]=None
+            reputation: Optional[float]=None,
+            username: Optional[str]=None
     ):
-        self.presigned_url=presigned_url
+        self.reputation=reputation
+        self.username=username
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "presigned_url": self.presigned_url
+            "reputation": self.reputation,
+            "username": self.username
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +27,8 @@ class DownloadCsv200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return DownloadCsv200Response(
-            presigned_url=payload.get('presigned_url')
+        return ListReputation200ResponseInner(
+            reputation=payload.get('reputation'),
+            username=payload.get('username')
         ) 
 

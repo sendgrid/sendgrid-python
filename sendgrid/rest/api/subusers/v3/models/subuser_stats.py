@@ -2,20 +2,24 @@ from enum import Enum
 from typing import Optional, Dict, List
 from sendgrid.converters.serialize import to_serializable, from_serializable
 from enum import Enum
+from sendgrid.rest.api.subusers.v3.models.subuser_stats_stats_inner import SubuserStatsStatsInner
 
 
 
-class DownloadCsv200Response:
+class SubuserStats:
     def __init__(
             self,
-            presigned_url: Optional[str]=None
+            var_date: Optional[str]=None,
+            stats: Optional[List[SubuserStatsStatsInner]]=None
     ):
-        self.presigned_url=presigned_url
+        self.var_date=var_date
+        self.stats=stats
 
     def to_dict(self):
         return {key: to_serializable(value)
             for key, value in {
-            "presigned_url": self.presigned_url
+            "date": self.var_date,
+            "stats": self.stats
             }.items() if value is not None}
 
     @classmethod
@@ -24,7 +28,8 @@ class DownloadCsv200Response:
 
     @staticmethod
     def generate_model(payload: Dict[str, object]):
-        return DownloadCsv200Response(
-            presigned_url=payload.get('presigned_url')
+        return SubuserStats(
+            var_date=payload.get('date'),
+            stats=payload.get('stats')
         ) 
 

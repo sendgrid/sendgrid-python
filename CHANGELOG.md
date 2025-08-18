@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-08-18] Version 7.0.0-rc.9
+-------------------------------
+**Email activity**
+- Update the API specs for email activity DownloadCsv operation
+
+
 [2025-05-29] Version 7.0.0-rc.8
 -------------------------------
 **Domain authentication**
