@@ -1,7 +1,8 @@
-from ecdsa import VerifyingKey, BadSignatureError
-from ecdsa.util import sigdecode_der
+from cryptography.exceptions import InvalidSignature
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.primitives.serialization import load_pem_public_key
 import base64
-import hashlib
 from .eventwebhook_header import EventWebhookHeader
 
 class EventWebhook:
@@ -20,15 +21,15 @@ class EventWebhook:
 
     def convert_public_key_to_ecdsa(self, public_key):
         """
-        Convert the public key string to a VerifyingKey object.
+        Convert the public key string to an EllipticCurvePublicKey object.
 
         :param public_key: verification key under Mail Settings
         :type public_key string
-        :return: VerifyingKey object using the ECDSA algorithm
-        :rtype VerifyingKey
+        :return: An EllipticCurvePublicKey object using the ECDSA algorithm
+        :rtype cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey
         """
         pem_key = "-----BEGIN PUBLIC KEY-----\n" + public_key + "\n-----END PUBLIC KEY-----"
-        return VerifyingKey.from_pem(pem_key)
+        return load_pem_public_key(pem_key.encode("utf-8"))
 
     def verify_signature(self, payload, signature, timestamp, public_key=None):
         """
@@ -41,7 +42,7 @@ class EventWebhook:
         :param timestamp: value obtained from the 'X-Twilio-Email-Event-Webhook-Timestamp' header
         :type timestamp: string
         :param public_key: elliptic curve public key
-        :type public_key: VerifyingKey
+        :type public_key: cryptography.hazmat.primitives.asymmetric.ec.EllipticCurvePublicKey
         :return: true or false if signature is valid
         """
         timestamped_payload = (timestamp + payload).encode('utf-8')
@@ -49,7 +50,7 @@ class EventWebhook:
 
         key = public_key or self.public_key
         try:
-            key.verify(decoded_signature, timestamped_payload, hashfunc=hashlib.sha256, sigdecode=sigdecode_der)
+            key.verify(decoded_signature, timestamped_payload, ec.ECDSA(hashes.SHA256()))
             return True
-        except BadSignatureError:
+        except InvalidSignature:
             return False
