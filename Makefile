@@ -18,7 +18,7 @@ test-integ: test
 
 version ?= latest
 test-docker:
-	curl -s "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/refs/heads/main/prism/prism.sh?token=$(GITHUB_TOKEN)" -o prism.sh
+    curl -H "Authorization: token $GITHUB_TOKEN" -s "https://raw.githubusercontent.com/sendgrid/sendgrid-oai/main/prism/prism.sh" -o prism.sh
 	version=$(version) bash ./prism.sh
 
 clean: nopyc
