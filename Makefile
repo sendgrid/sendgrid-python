@@ -18,7 +18,6 @@ test-integ: test
 
 version ?= latest
 test-docker:
-	curl -s https://raw.githubusercontent.com/sendgrid/sendgrid-oai/refs/heads/main/prism/prism.sh?token=$(raw_token) -o prism.sh
 	version=$(version) bash ./prism.sh
 
 clean: nopyc
