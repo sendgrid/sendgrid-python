@@ -37,7 +37,7 @@ jobs:
           sudo apt-get install -y docker-compose
 
       - name: Build & Test
-        run: make test
+        run: make test-integ
 
   deploy:
     name: Deploy
