@@ -38,6 +38,8 @@ jobs:
 
       - name: Build & Test
         run: make test-docker version=${{ matrix.python-version }} raw_token=${{ secrets.RAW_GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy
