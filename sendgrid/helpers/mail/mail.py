@@ -464,7 +464,8 @@ class Mail(object):
         :param value: A Header object or a dict of header key/values
         :type value: Header, dict
         """
-        if header.personalization is not None:
+        if (isinstance(header, Header) and header.personalization is not None) or (
+                isinstance(header, dict) and header.get('personalization')):
             try:
                 personalization = \
                     self._personalizations[header.personalization]
