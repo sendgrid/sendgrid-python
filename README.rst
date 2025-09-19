@@ -43,7 +43,7 @@ Installation
 Prerequisites
 -------------
 
--  Python version 2.7 and 3.5+
+-  Python version 3.8+
 -  For email, you will need a Twilio SendGrid account, starting at the `free level`_
 -  For SMS messages, you will need a free `Twilio account`_
 

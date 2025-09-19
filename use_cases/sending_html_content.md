@@ -9,12 +9,7 @@ Currently, we require both HTML and Plain Text content for improved deliverabili
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import From, To, Subject, PlainTextContent, HtmlContent, Mail
-try:
-    # Python 3
-    import urllib.request as urllib
-except ImportError:
-    # Python 2
-    import urllib2 as urllib
+import urllib.request as urllib
 from bs4 import BeautifulSoup
 
 html_text = """

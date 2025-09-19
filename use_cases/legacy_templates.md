@@ -40,12 +40,7 @@ I hope you are having a great day in -city- :)
 import sendgrid
 import os
 from sendgrid.helpers.mail import Email, Content, Substitution, Mail
-try:
-    # Python 3
-    import urllib.request as urllib
-except ImportError:
-    # Python 2
-    import urllib2 as urllib
+import urllib.request as urllib
 
 sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 from_email = Email("test@example.com")
@@ -71,12 +66,7 @@ print(response.headers)
 ```python
 import sendgrid
 import os
-try:
-    # Python 3
-    import urllib.request as urllib
-except ImportError:
-    # Python 2
-    import urllib2 as urllib
+import urllib.request as urllib
 
 sg = sendgrid.SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 data = {

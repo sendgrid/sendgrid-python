@@ -37,17 +37,6 @@ In the first case, SENDGRID_API_KEY is in reference to the name of the environme
 
 HTTP exceptions are defined in the [`python_http_client` package](https://github.com/sendgrid/python-http-client/blob/HEAD/python_http_client/exceptions.py).
 
-To read the error message returned by SendGrid's API in Python 2.X:
-
-```python
-from python_http_client.exceptions import HTTPError
-
-try:
-  response = sg.client.mail.send.post(request_body=mail.get())
-except HTTPError as e:
-    print e.to_dict
-```
-
 To read the error message returned by Twilio SendGrid's API in Python 3.X:
 
 ```python

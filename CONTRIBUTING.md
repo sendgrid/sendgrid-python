@@ -24,7 +24,7 @@ We welcome direct contributions to the sendgrid-python code base. Thank you!
 
 #### Prerequisites
 
-- Python version 2.7, 3.5, 3.6, 3.7, or 3.8
+- Python version 3.8+
 - [python_http_client](https://github.com/sendgrid/python-http-client)
 - [cryptography](https://github.com/pyca/cryptography)
 - [pyenv](https://github.com/yyuu/pyenv)
