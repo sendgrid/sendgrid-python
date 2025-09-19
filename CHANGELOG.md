@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2025-09-19] Version 6.12.5
+---------------------------
+**Library - Fix**
+- [PR #1114](https://github.com/sendgrid/sendgrid-python/pull/1114): #1108 - Replace ecdsa with cryptography. Thanks to [@dacevedo12](https://github.com/dacevedo12)!
+
+**Library - Chore**
+- [PR #1117](https://github.com/sendgrid/sendgrid-python/pull/1117): use make-test instead of make test-docker. Thanks to [@tiwarishubham635](https://github.com/tiwarishubham635)!
+
+
 [2025-06-12] Version 6.12.4
 ---------------------------
 **Library - Chore**
