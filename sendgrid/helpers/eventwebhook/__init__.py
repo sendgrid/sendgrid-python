@@ -35,7 +35,7 @@ class EventWebhook:
         """
         Verify signed event webhook requests.
 
-        :param payload: event payload in the request body
+        :param payload: event payload in the request body decoded using latin-1
         :type payload: string
         :param signature: value obtained from the 'X-Twilio-Email-Event-Webhook-Signature' header
         :type signature: string
