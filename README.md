@@ -11,7 +11,7 @@
 
 Version 3.X.X+ of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
 
-This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
+This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To avoid making sure we are building the right things in the right order, we do not allow you to create [issues](https://github.com/sendgrid/sendgrid-python/issues) and [pull requests](CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
 **If you need help using SendGrid, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).**
 
