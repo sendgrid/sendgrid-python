@@ -1992,19 +1992,34 @@ class UnitTests(unittest.TestCase):
             "unsubscribe": True,
             "url": "url"
         }
+        webhook_id = "some-webhook-uuid"
         headers = {'X-Mock': 200}
-        response = self.sg.client.user.webhooks.event.settings.patch(
+        response = self.sg.client.user.webhooks.event.settings._(webhook_id).patch(
             request_body=data, request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
-    def test_user_webhooks_event_settings_get(self):
+    # legacy webhook API only allowed for a single webhook. When no ID is provided,
+    # backwards compatiblity ensures we will get the oldest webhook back.
+    # Going forward, users should use settings._(webhook_id) in all calls.
+    def test_user_webhooks_event_settings_get_legacy_no_id(self):
         headers = {'X-Mock': 200}
+        webhook_id = "some-webhook-uuid"
         response = self.sg.client.user.webhooks.event.settings.get(
             request_headers=headers)
         self.assertEqual(response.status_code, 200)
 
+    def test_user_webhooks_event_settings_get(self):
+        headers = {'X-Mock': 200}
+        webhook_id = "some-webhook-uuid"
+        self.assertTrue(False, "not true")
+        response = self.sg.client.user.webhooks.event.settings._(webhook_id).get(
+            request_headers=headers)
+
+        self.assertEqual(response.status_code, 200)
+
     def test_user_webhooks_event_test_post(self):
         data = {
+            "id": "some-webhook-id",
             "url": "url"
         }
         headers = {'X-Mock': 204}

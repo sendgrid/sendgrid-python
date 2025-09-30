@@ -77,7 +77,7 @@ All test files are in the [`test`](test) directory. For the purposes of contribu
 
 The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 
-Once these are available, simply execute the Docker test target to run all tests: `make test-docker`. This command can also be used to open an interactive shell into the container where this library is installed. To start a *bash* shell for example, use this command: `command=bash make test-docker`.
+Once these are available, simply execute the Docker test target to run all tests: `make test-docker`. This command can also be used to open an interactive shell into the container where this library is installed. To start a *bash* shell for example, use this command: `command=bash make test-docker` and you can run a specific test like `source venv/bin/activate;  python -m unittest test.integ.test_sendgrid.UnitTests.test_useragent`.
 
 ## Style Guidelines & Naming Conventions
 
