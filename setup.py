@@ -31,7 +31,7 @@ setup(
     author='Elmer Thomas, Yamil Asusta',
     author_email='help@twilio.com',
     url='https://github.com/sendgrid/sendgrid-python/',
-    packages=find_packages(exclude=["temp*.py", "test"]),
+    packages=find_packages(exclude=["test", "test.*"]),
     include_package_data=True,
     license='MIT',
     description='Twilio SendGrid library for Python',
