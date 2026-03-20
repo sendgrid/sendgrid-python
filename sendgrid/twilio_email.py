@@ -35,7 +35,8 @@ class TwilioEmailAPIClient(BaseInterface):
             username=None,
             password=None,
             host='https://email.twilio.com',
-            impersonate_subuser=None):
+            impersonate_subuser=None,
+            timeout=30):
         """
         Construct the Twilio Email v3 API object.
         Note that the underlying client is being set up during initialization,
@@ -59,6 +60,9 @@ class TwilioEmailAPIClient(BaseInterface):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
+        :param timeout: the timeout (in seconds) for HTTP requests.
+                        Defaults to 30. Set to None to disable.
+        :type timeout: int
         """
         self.username = username or \
                         os.environ.get('TWILIO_API_KEY') or \
@@ -70,4 +74,4 @@ class TwilioEmailAPIClient(BaseInterface):
 
         auth = 'Basic ' + b64encode('{}:{}'.format(self.username, self.password).encode()).decode()
 
-        super(TwilioEmailAPIClient, self).__init__(auth, host, impersonate_subuser)
+        super(TwilioEmailAPIClient, self).__init__(auth, host, impersonate_subuser, timeout=timeout)

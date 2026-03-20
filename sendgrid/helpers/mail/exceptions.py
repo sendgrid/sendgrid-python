@@ -8,6 +8,11 @@ class SendGridException(Exception):
     pass
 
 
+class SendGridTimeoutError(SendGridException):
+    """Exception raised when an HTTP request to the SendGrid API times out"""
+    pass
+
+
 class ApiKeyIncludedException(SendGridException):
     """Exception raised for when Twilio SendGrid API Key included in message text"""
 

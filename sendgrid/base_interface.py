@@ -1,9 +1,14 @@
+import socket
+import urllib.error
+
 import python_http_client
+
+from .helpers.mail.exceptions import SendGridTimeoutError
 
 region_host_dict = {'eu':'https://api.eu.sendgrid.com','global':'https://api.sendgrid.com'}
 
 class BaseInterface(object):
-    def __init__(self, auth, host, impersonate_subuser):
+    def __init__(self, auth, host, impersonate_subuser, timeout=30):
         """
         Construct the Twilio SendGrid v3 API object.
         Note that the underlying client is being set up during initialization,
@@ -20,6 +25,9 @@ class BaseInterface(object):
         :type impersonate_subuser: string
         :param host: base URL for API calls
         :type host: string
+        :param timeout: the timeout (in seconds) for HTTP requests.
+                        Defaults to 30. Set to None to disable.
+        :type timeout: int
         """
         from . import __version__
         self.auth = auth
@@ -27,11 +35,13 @@ class BaseInterface(object):
         self.version = __version__
         self.useragent = 'sendgrid/{};python'.format(self.version)
         self.host = host
+        self.timeout = timeout
 
         self.client = python_http_client.Client(
             host=self.host,
             request_headers=self._default_headers,
-            version=3)
+            version=3,
+            timeout=timeout)
 
     @property
     def _default_headers(self):
@@ -60,7 +70,13 @@ class BaseInterface(object):
         if not isinstance(message, dict):
             message = message.get()
 
-        return self.client.mail.send.post(request_body=message)
+        try:
+            return self.client.mail.send.post(request_body=message)
+        except urllib.error.URLError as e:
+            if isinstance(e.reason, socket.timeout):
+                raise SendGridTimeoutError(
+                    'The SendGrid API request timed out') from e
+            raise
 
     def set_sendgrid_data_residency(self, region):
         """
@@ -78,6 +94,7 @@ class BaseInterface(object):
                 self.client = python_http_client.Client(
                     host=self.host,
                     request_headers=self._default_headers,
-                    version=3)
+                    version=3,
+                    timeout=self.timeout)
         else:
             raise ValueError("region can only be \"eu\" or \"global\"")

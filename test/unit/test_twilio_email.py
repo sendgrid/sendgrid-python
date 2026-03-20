@@ -35,3 +35,13 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(mail_client.username, 'username')
         self.assertEqual(mail_client.password, 'password')
         self.assertEqual(mail_client.auth, 'Basic dXNlcm5hbWU6cGFzc3dvcmQ=')
+
+    def test_timeout_default(self):
+        mail_client = TwilioEmailAPIClient('username', 'password')
+        self.assertEqual(mail_client.timeout, 30)
+        self.assertEqual(mail_client.client.timeout, 30)
+
+    def test_timeout_set_via_constructor(self):
+        mail_client = TwilioEmailAPIClient('username', 'password', timeout=10)
+        self.assertEqual(mail_client.timeout, 10)
+        self.assertEqual(mail_client.client.timeout, 10)

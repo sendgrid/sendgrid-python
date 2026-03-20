@@ -137,6 +137,16 @@ print(response.body)
 print(response.headers)
 ```
 
+## Timeout
+
+By default, HTTP requests will time out after 30 seconds. You can change this by passing a `timeout` parameter (in seconds) when creating the client:
+
+```python
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'), timeout=60)
+```
+
+To disable the timeout, pass `None`.
+
 ## General v3 Web API Usage (With [Fluent Interface](https://sendgrid.com/blog/using-python-to-implement-a-fluent-interface-to-any-rest-api/))
 
 ```python
