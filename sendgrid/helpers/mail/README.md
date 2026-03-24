@@ -7,4 +7,4 @@ Please complete the [installation steps](https://github.com/sendgrid/sendgrid-py
 ## Usage
 
 - For the most common use cases, please see [these examples](../../../use_cases)
-- The complete v3 API Documentation can be found [here](https://sendgrid.com/docs/API_Reference/api_v3.html)
+- The complete v3 API Documentation can be found [here](https://www.twilio.com/docs/sendgrid/api-reference)
