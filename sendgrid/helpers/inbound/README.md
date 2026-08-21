@@ -127,8 +127,8 @@ This module is used to send sample test data. It is useful for testing and devel
 
 Tests are located in the root of this project in the /test folder:
 
-- [test_config.py](../../../test/test_config.py)
-- [test_parse.py](../../../test/test_parse.py)
+- [test_config.py](../../../test/unit/test_config.py)
+- [test_parse.py](../../../test/unit/test_parse.py)
 
 Learn about testing this code [here](../../../CONTRIBUTING.md#testing).
 
