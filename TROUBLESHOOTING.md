@@ -124,7 +124,7 @@ Please review [our use_cases](use_cases/README.md) for examples of error handlin
 
 Twilio SendGrid's Event Webhook will notify a URL via HTTP POST with information about events that occur as your mail is processed. [This](https://docs.sendgrid.com/for-developers/tracking-events/getting-started-event-webhook-security-features) article covers all you need to know to secure the Event Webhook, allowing you to verify that incoming requests originate from Twilio SendGrid. The sendgrid-python library can help you verify these Signed Event Webhooks.
 
-You can find the usage example [here](examples/helpers/eventwebhook/eventwebhook_example.py) and the tests [here](test/test_eventwebhook.py). 
+You can find the usage example [here](examples/helpers/eventwebhook/eventwebhook_example.py) and the tests [here](test/unit/test_eventwebhook.py). 
 If you are still having trouble getting the validation to work, follow the following instructions:
 - Be sure to use the *raw* payload for validation
 - Be sure to include a trailing carriage return and newline in your payload
