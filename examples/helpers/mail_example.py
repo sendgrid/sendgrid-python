@@ -316,7 +316,8 @@ def build_kitchen_sink():
     mail_settings = MailSettings()
     mail_settings.bcc_settings = BccSettings(False, BccSettingsTo("bcc@twilio.com"))
     mail_settings.bypass_list_management = BypassListManagement(False)
-    mail_settings.footer_settings = FooterSettings(True, FooterText("w00t"), FooterHtml("<string>w00t!<strong>"))
+    # Footer text and HTML also accept strings directly.
+    mail_settings.footer_settings = FooterSettings(True, "w00t", "<strong>w00t!</strong>")
     mail_settings.sandbox_mode = SandBoxMode(True)
     mail_settings.spam_check = SpamCheck(True, SpamThreshold(5), SpamUrl("https://example.com"))
     message.mail_settings = mail_settings

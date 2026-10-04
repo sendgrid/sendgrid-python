@@ -1,3 +1,7 @@
+from .footer_html import FooterHtml
+from .footer_text import FooterText
+
+
 class FooterSettings(object):
     """The default footer that you would like included on every email."""
 
@@ -7,9 +11,9 @@ class FooterSettings(object):
         :param enable: Whether this footer should be applied.
         :type enable: boolean, optional
         :param text: Text content of this footer
-        :type text: FooterText, optional
+        :type text: FooterText or string, optional
         :param html: HTML content of this footer
-        :type html: FooterHtml, optional
+        :type html: FooterHtml or string, optional
         """
         self._enable = None
         self._text = None
@@ -45,7 +49,7 @@ class FooterSettings(object):
     def text(self):
         """The plain text content of your footer.
 
-        :rtype: string
+        :rtype: FooterText
         """
         return self._text
 
@@ -54,15 +58,16 @@ class FooterSettings(object):
         """The plain text content of your footer.
 
         :param value: The plain text content of your footer.
-        :type value: string
+        :type value: FooterText or string
         """
-        self._text = value
+        self._text = (value if value is None or isinstance(value, FooterText)
+                      else FooterText(value))
 
     @property
     def html(self):
         """The HTML content of your footer.
 
-        :rtype: string
+        :rtype: FooterHtml
         """
         return self._html
 
@@ -71,9 +76,10 @@ class FooterSettings(object):
         """The HTML content of your footer.
 
         :param value: The HTML content of your footer.
-        :type value: string
+        :type value: FooterHtml or string
         """
-        self._html = value
+        self._html = (value if value is None or isinstance(value, FooterHtml)
+                      else FooterHtml(value))
 
     def get(self):
         """
