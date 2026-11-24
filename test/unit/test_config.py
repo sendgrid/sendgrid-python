@@ -34,7 +34,7 @@ class UnitTests(unittest.TestCase):
         ]
         host = 'http://127.0.0.1:5000/inbound'
 
-        self.assertTrue(self.config.debug_mode)
+        self.assertFalse(self.config.debug_mode)
         self.assertEqual(self.config.endpoint, endpoint)
         self.assertEqual(self.config.host, host)
         self.assertEqual(self.config.port, port)

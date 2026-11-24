@@ -20,6 +20,16 @@ app = Flask(__name__)
 config = Config()
 
 
+def debug_enabled(config, port):
+    """Return True only when debug mode is explicitly enabled and the app is
+    running locally. Debug is never enabled when PORT is provided by the
+    hosting platform (e.g. Heroku) or ENV is 'prod', since the Werkzeug
+    debugger allows arbitrary code execution."""
+    return bool(config.debug_mode) \
+        and port == config.port \
+        and os.environ.get('ENV') != 'prod'
+
+
 @app.route('/', methods=['GET'])
 def index():
     """Show index page to confirm that server is running."""
@@ -40,6 +50,4 @@ def inbound_parse():
 if __name__ == '__main__':
     # Be sure to set config.debug_mode to False in production
     port = int(os.environ.get("PORT", config.port))
-    if port != config.port:
-        config.debug = False
-    app.run(host='0.0.0.0', debug=config.debug_mode, port=port)
+    app.run(host='0.0.0.0', debug=debug_enabled(config, port), port=port)

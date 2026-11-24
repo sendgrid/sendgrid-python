@@ -5,9 +5,9 @@ endpoint: '/inbound'
 port: 5000
 
 # Flask debug mode
-# Set this to False in production
+# Only honoured when running locally; never enabled on Heroku/production.
 # Reference: http://flask.pocoo.org/docs/0.11/api/#flask.Flask.run
-debug_mode: True
+debug_mode: False
 
 # List all Incoming Parse fields you would like parsed
 # Reference: https://sendgrid.com/docs/Classroom/Basics/Inbound_Parse_Webhook/setting_up_the_inbound_parse_webhook.html
